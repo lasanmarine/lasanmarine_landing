@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/project-showcase",
+    "title": "LASAN — Project Showcase",
+    "description": "Carousel điện ảnh trên nền navy sâu nhất.",
+    "category": "flexible-blocks",
+    "icon": "images-alt2",
+    "keywords": ["showcase", "carousel", "projects"],
+    "align": "full",
+    "supports": { "align": ["full"], "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

@@ -1,0 +1,19 @@
+{
+  "key": "group_key_numbers",
+  "title": "Key Numbers",
+  "fields": [
+    { "key": "field_key_numbers_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "KEY NUMBERS" },
+    {
+      "key": "field_key_numbers_stats", "label": "Stats", "name": "stats", "type": "repeater",
+      "layout": "block", "button_label": "Add Stat",
+      "sub_fields": [
+        { "key": "field_key_numbers_stat_value", "label": "Value", "name": "value", "type": "text" },
+        { "key": "field_key_numbers_stat_suffix", "label": "Suffix", "name": "suffix", "type": "text", "instructions": "Phần tô màu marine ngay sau con số." },
+        { "key": "field_key_numbers_stat_label", "label": "Label", "name": "label", "type": "text" },
+        { "key": "field_key_numbers_stat_note", "label": "Note", "name": "note", "type": "textarea", "rows": 2, "new_lines": "" }
+      ]
+    },
+    { "key": "field_key_numbers_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/key-numbers" }]]
+}

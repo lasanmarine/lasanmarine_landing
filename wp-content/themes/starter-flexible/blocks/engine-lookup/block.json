@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/engine-lookup",
+    "title": "LASAN — Engine Lookup",
+    "description": "Bảng tra động cơ: lọc, sắp xếp và phân trang phía client.",
+    "category": "flexible-blocks",
+    "icon": "search",
+    "keywords": ["engine", "lookup", "table"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

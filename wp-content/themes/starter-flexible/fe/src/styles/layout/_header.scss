@@ -1,0 +1,451 @@
+/* ==========================================================================
+   Header — fixed bar, mega menu, mobile drawer.
+   Ported from src/blocks/Header.astro of the Astro site.
+   ========================================================================== */
+
+.hdr {
+	@apply fixed;
+	inset: 0 0 auto;
+	z-index: 200;
+}
+
+.hdr__strip {
+	/* Padding, not a fixed height: the notice must be free to wrap on a phone. */
+	@apply bg-navy-deep;
+	padding-block: 8px;
+}
+/* Reads as body copy, not as a micro-label: body face, body size, white. */
+.hdr__strip-inner {
+	@apply flex flex-wrap items-baseline justify-center text-center font-body font-normal text-white;
+	gap: 4px 10px;
+	font-size: 16px;
+	line-height: 1.5;
+	letter-spacing: normal;
+}
+.hdr__strip-inner a {
+	@apply font-medium text-white underline;
+	text-decoration-color: var(--marine);
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1.5px;
+}
+.hdr__strip-inner a:hover {
+	@apply text-marine-bright;
+}
+
+.hdr__bar {
+	@apply border-b border-transparent bg-transparent;
+	height: 92px;
+	transition:
+		background 300ms ease,
+		height 300ms ease,
+		border-color 300ms ease;
+}
+/* Once the page scrolls the bar becomes an opaque white rail. */
+.hdr__bar.is-stuck {
+	@apply border-b-line;
+	height: 74px;
+	background: rgba(255, 255, 255, 0.96);
+	backdrop-filter: blur(12px);
+}
+.hdr__bar-inner {
+	@apply flex h-full items-center justify-between;
+	gap: 48px;
+}
+
+.hdr__brand img {
+	@apply w-auto;
+	height: 34px;
+	filter: brightness(0) invert(1);
+	transition: filter 300ms ease;
+}
+.hdr__bar.is-stuck .hdr__brand img {
+	height: 30px;
+	filter: none;
+}
+
+.hdr__nav {
+	@apply flex items-center font-display font-semibold text-white;
+	gap: 30px;
+	font-size: 13.5px;
+	letter-spacing: 0.1em;
+}
+.hdr__bar.is-stuck .hdr__nav {
+	@apply text-navy;
+}
+
+.hdr__link {
+	@apply relative;
+	padding: 6px 0;
+	color: inherit;
+}
+.hdr__link::after {
+	@apply absolute bg-marine;
+	content: '';
+	inset: auto 0 0;
+	height: 1.5px;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 280ms ease;
+}
+.hdr__link:hover,
+.hdr__link[aria-current='page'] {
+	color: inherit;
+}
+.hdr__link:hover::after,
+.hdr__link[aria-current='page']::after {
+	transform: scaleX(1);
+}
+
+.hdr__cta {
+	height: 48px;
+	padding-inline: 24px;
+	border-radius: var(--r-md);
+	letter-spacing: 0.08em;
+	font-size: 13px;
+}
+
+.hdr__burger {
+	@apply hidden cursor-pointer flex-col items-end border-none bg-none;
+	gap: 6px;
+	padding: 8px;
+}
+.hdr__burger span {
+	@apply bg-white;
+	display: block;
+	width: 26px;
+	height: 1.5px;
+	transition:
+		transform 250ms ease,
+		width 250ms ease;
+}
+.hdr__burger span:last-child {
+	width: 18px;
+}
+.hdr__bar.is-stuck .hdr__burger span {
+	@apply bg-navy;
+}
+.hdr__burger[aria-expanded='true'] span {
+	@apply bg-white;
+}
+.hdr__burger[aria-expanded='true'] span:first-child {
+	transform: translateY(3.75px) rotate(45deg);
+}
+.hdr__burger[aria-expanded='true'] span:last-child {
+	width: 26px;
+	transform: translateY(-3.75px) rotate(-45deg);
+}
+
+/* --- mega menu --- */
+.hdr__mega-trigger {
+	@apply static;
+}
+.mega {
+	/* On a short laptop screen the panel is taller than the space under the
+	   header, and a dropdown cannot be scrolled to — so it scrolls itself.
+	   --hdr-h is measured, because the bar changes height once it sticks. */
+	@apply absolute overflow-y-auto border-b border-line invisible opacity-0;
+	inset: 100% 0 auto;
+	max-height: calc(100dvh - var(--hdr-h, 8rem));
+	overscroll-behavior: contain;
+	background: rgba(255, 255, 255, 0.98);
+	backdrop-filter: blur(12px);
+	box-shadow: 0 24px 48px -32px rgba(11, 27, 76, 0.35);
+	transform: translateY(-8px);
+	transition:
+		opacity 280ms ease,
+		transform 280ms ease,
+		visibility 280ms;
+}
+.hdr__mega-trigger:hover .mega,
+.hdr__mega-trigger:focus-within .mega {
+	@apply visible opacity-100;
+	transform: none;
+}
+/* Same grammar as the ServiceArchitecture block, sized down for a dropdown:
+   rows on the left, one figure on the right that follows the hovered row. */
+.mega__inner {
+	@apply items-start;
+	display: grid;
+	grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+	gap: clamp(28px, 3vw, 48px);
+	padding-block: 40px 36px;
+}
+.mega__title {
+	margin-bottom: 18px;
+	font-size: clamp(22px, 2.2vw, 32px);
+}
+
+/* Each row carries its own bottom rule; the list needs no divider above it,
+   and the heading none at all. */
+.mega__row {
+	@apply relative items-center border-b border-line text-navy;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 14px;
+	padding: clamp(14px, 1.6vw, 20px) clamp(16px, 2.4vw, 36px) clamp(14px, 1.6vw, 20px) 6px;
+	transition:
+		background 260ms ease,
+		padding-left 260ms var(--ease);
+}
+.mega__row::after {
+	@apply absolute bg-marine;
+	content: '';
+	inset: auto 0 -1px;
+	height: 1.5px;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 300ms ease;
+}
+.mega__row[data-active='true'] {
+	@apply bg-pale;
+	padding-left: 12px;
+}
+.mega__row[data-active='true']::after {
+	transform: scaleX(1);
+}
+
+.mega__index {
+	@apply font-display font-semibold text-mute;
+	font-size: clamp(18px, 1.7vw, 24px);
+	transition: color 240ms ease;
+}
+.mega__row[data-active='true'] .mega__index {
+	@apply text-marine;
+}
+.mega__text {
+	@apply min-w-0;
+}
+.mega__name {
+	@apply font-display font-semibold;
+	display: block;
+	font-size: clamp(19px, 1.8vw, 26px);
+	letter-spacing: -0.01em;
+}
+.mega__children {
+	@apply flex flex-wrap;
+	gap: 6px 8px;
+	margin-top: 8px;
+}
+.mega__children span {
+	@apply border border-line text-steel;
+	padding: 4px 9px;
+	border-radius: var(--r-xs);
+	font-size: 11.5px;
+	letter-spacing: 0.04em;
+}
+.mega__row[data-active='true'] .mega__children span {
+	@apply border-marine text-marine;
+}
+.mega__arrow {
+	@apply text-mute;
+	transition:
+		transform 240ms ease,
+		color 240ms ease;
+}
+.mega__row[data-active='true'] .mega__arrow {
+	@apply text-marine;
+	transform: translateX(4px);
+}
+
+.mega__figure {
+	@apply relative overflow-hidden bg-tint;
+	aspect-ratio: 4 / 3;
+	border-radius: var(--r-sm);
+}
+.mega__slide {
+	@apply absolute inset-0 opacity-0;
+	transform: scale(1.03);
+	transition:
+		opacity 420ms ease,
+		transform 700ms var(--ease);
+}
+.mega__slide[data-active='true'] {
+	@apply opacity-100;
+	transform: none;
+}
+.mega__slide .frame {
+	@apply absolute inset-0;
+}
+
+.mega__rule {
+	@apply bg-marine;
+	display: block;
+	height: 2px;
+}
+
+/* --- mobile drawer ---------------------------------------------------
+   The panel fades in; the rows arrive one after another off `--i`. Closing
+   drops every delay so the drawer leaves in one movement. */
+.drawer {
+	@apply invisible fixed inset-0 bg-navy-deep opacity-0;
+	display: grid;
+	z-index: 190;
+	grid-template-rows: 1fr auto;
+	gap: 32px;
+	padding: 120px 24px 40px;
+	overflow: hidden auto;
+	transition:
+		opacity 320ms ease,
+		visibility 320ms;
+}
+.drawer[data-open='true'] {
+	@apply visible opacity-100;
+}
+
+.drawer__wave {
+	@apply absolute w-full opacity-0;
+	inset: auto 0 0;
+	height: 44%;
+	transform: translateY(24px);
+	transition:
+		opacity 700ms ease 200ms,
+		transform 900ms var(--ease) 200ms;
+}
+.drawer[data-open='true'] .drawer__wave {
+	opacity: 0.16;
+	transform: none;
+}
+
+.drawer__nav {
+	@apply relative flex flex-col;
+	align-content: start;
+}
+.drawer__nav a {
+	@apply relative flex items-baseline font-display font-semibold text-white opacity-0;
+	gap: 16px;
+	padding: 13px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+	font-size: clamp(19px, 5vw, 24px);
+	letter-spacing: -0.01em;
+	transform: translateY(26px);
+	transition:
+		opacity 520ms ease,
+		transform 520ms var(--ease);
+	transition-delay: calc(var(--i, 0) * 55ms + 90ms);
+}
+.drawer[data-open='true'] .drawer__nav a {
+	@apply opacity-100;
+	transform: none;
+}
+/* The marine rule that wipes in under the row being pressed. */
+.drawer__nav a::after {
+	@apply absolute bg-marine;
+	content: '';
+	inset: auto 0 -1px;
+	height: 1.5px;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 340ms var(--ease);
+}
+.drawer__nav a:hover::after,
+.drawer__nav a:focus-visible::after,
+.drawer__nav a:active::after {
+	transform: scaleX(1);
+}
+
+.drawer__label {
+	@apply flex-1;
+}
+.drawer__arrow {
+	@apply self-center;
+	color: rgba(255, 255, 255, 0.3);
+	transition:
+		transform 300ms var(--ease),
+		color 240ms ease;
+}
+.drawer__nav a:hover .drawer__arrow,
+.drawer__nav a:focus-visible .drawer__arrow {
+	@apply text-marine-bright;
+	transform: translate(4px, -4px);
+}
+
+.drawer__foot {
+	@apply relative flex flex-col;
+	gap: 14px;
+}
+.drawer__foot > * {
+	@apply opacity-0;
+	transform: translateY(18px);
+	transition:
+		opacity 460ms ease,
+		transform 460ms var(--ease);
+	transition-delay: calc(var(--i, 0) * 60ms + 320ms);
+}
+.drawer[data-open='true'] .drawer__foot > * {
+	@apply opacity-100;
+	transform: none;
+}
+
+.drawer__call {
+	@apply inline-flex w-fit items-center font-display font-semibold text-white;
+	gap: 12px;
+	font-size: 17px;
+}
+.drawer__call svg {
+	@apply text-marine;
+}
+.drawer__call:hover {
+	@apply text-marine-bright;
+}
+
+.drawer__meta {
+	@apply flex flex-wrap justify-between;
+	gap: 14px 24px;
+	margin-top: 10px;
+	padding-top: 18px;
+	border-top: 1px solid rgba(255, 255, 255, 0.16);
+	font-size: 11.5px;
+	letter-spacing: 0.12em;
+	color: rgba(255, 255, 255, 0.6);
+}
+.drawer__social {
+	@apply flex;
+	gap: 22px;
+}
+.drawer__social a {
+	@apply inline-flex items-center;
+	gap: 6px;
+	color: rgba(255, 255, 255, 0.6);
+}
+.drawer__social a:hover {
+	@apply text-white;
+}
+
+/* Closing: no stagger, everything leaves together. */
+.drawer:not([data-open='true']) .drawer__nav a,
+.drawer:not([data-open='true']) .drawer__foot > *,
+.drawer:not([data-open='true']) .drawer__wave {
+	transition-duration: 180ms;
+	transition-delay: 0ms;
+}
+
+/* The bar sits above the drawer, so it must go transparent while open or a
+   white rail cuts across the navy panel. */
+html[data-nav-open='true'] .hdr__bar {
+	/* Matches the drawer so rows scrolling under the bar disappear cleanly
+	   instead of showing through behind the logo. */
+	@apply bg-navy-deep;
+	backdrop-filter: none;
+	border-bottom-color: transparent;
+}
+html[data-nav-open='true'] .hdr__brand img {
+	filter: brightness(0) invert(1);
+}
+
+@media (max-width: 1080px) {
+	.hdr__nav {
+		@apply hidden;
+	}
+	.hdr__burger {
+		@apply flex;
+	}
+	.hdr__bar {
+		height: 72px;
+	}
+}
+@media (max-width: 600px) {
+	.hdr__strip-inner {
+		gap: 2px 8px;
+		font-size: 14px;
+	}
+}

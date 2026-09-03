@@ -1,0 +1,73 @@
+.el__controls {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+	gap: 26px 24px;
+}
+.el__meta {
+	@apply border-b border-line;
+	margin-top: 28px;
+	padding-bottom: 12px;
+}
+.el__scroll {
+	@apply overflow-x-auto;
+}
+.el__table {
+	@apply w-full border-collapse;
+	font-size: 14px;
+}
+.el__table th {
+	@apply border-b border-line p-0 text-left;
+}
+.el__table th button {
+	@apply w-full cursor-pointer border-none bg-none text-left font-display font-semibold text-mute;
+	padding: 14px 12px 14px 0;
+	font-size: 11.5px;
+	letter-spacing: 0.12em;
+	transition: color 200ms ease;
+}
+.el__table th button:hover,
+.el__table th[aria-sort] button {
+	@apply text-marine;
+}
+.el__arrow {
+	opacity: 0.5;
+}
+.el__table th[aria-sort='ascending'] .el__arrow::before {
+	content: '↑';
+}
+.el__table th[aria-sort='descending'] .el__arrow::before {
+	content: '↓';
+}
+.el__table th[aria-sort] .el__arrow {
+	opacity: 1;
+	font-size: 0;
+}
+.el__table th[aria-sort] .el__arrow::before {
+	font-size: 14px;
+}
+.el__table td {
+	@apply border-b border-line-soft text-steel;
+	padding: 14px 12px 14px 0;
+}
+.el__table tbody tr:hover td {
+	@apply bg-pale;
+}
+.el__table td:first-child,
+.el__table td:nth-child(2) {
+	@apply font-display font-semibold text-navy;
+}
+.el__empty {
+	@apply text-mute;
+	padding: 32px 0;
+}
+.el__empty[hidden] {
+	@apply hidden;
+}
+.el__pager {
+	@apply flex items-center;
+	gap: 16px;
+	margin-top: 24px;
+}
+.el__pager[hidden] {
+	@apply hidden;
+}

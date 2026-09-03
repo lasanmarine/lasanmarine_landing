@@ -1,0 +1,60 @@
+#apply {
+	scroll-margin-top: 140px;
+}
+.ef {
+	@apply grid items-start;
+	margin-top: clamp(32px, 4vw, 56px);
+	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+	gap: clamp(28px, 4vw, 72px);
+}
+.ef__note {
+	margin-top: 16px;
+	font-size: 14.5px;
+}
+.ef__form {
+	@apply grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 26px 24px;
+}
+/* Only the action row spans both columns. The Astro original also marked the
+   select, textarea and file plate, but that class landed on a second `class`
+   attribute the browser discarded — so they stay one column wide here too. */
+.ef__full {
+	grid-column: 1 / -1;
+}
+.ef__actions {
+	@apply flex flex-wrap items-center;
+	gap: 16px;
+}
+.ef__error {
+	font-size: 13.5px;
+	color: #b3261e;
+}
+.ef__error[hidden] {
+	@apply hidden;
+}
+@media (max-width: 620px) {
+	.ef__form {
+		grid-template-columns: 1fr;
+	}
+}
+
+.toast {
+	@apply fixed flex items-center bg-navy text-white;
+	right: 20px;
+	bottom: 20px;
+	z-index: 220;
+	gap: 14px;
+	padding: 16px 20px;
+	border-left: 2px solid var(--marine);
+}
+.toast[hidden] {
+	@apply hidden;
+}
+.toast__icon {
+	@apply text-marine-bright;
+}
+.toast__title {
+	@apply font-display font-semibold;
+	font-size: 13.5px;
+}

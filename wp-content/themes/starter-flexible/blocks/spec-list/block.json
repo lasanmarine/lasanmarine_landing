@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/spec-list",
+    "title": "LASAN — Spec List",
+    "description": "Dữ liệu kỹ thuật dạng dòng kẻ, không phải bảng văn phòng.",
+    "category": "flexible-blocks",
+    "icon": "editor-ul",
+    "keywords": ["spec", "table", "data"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

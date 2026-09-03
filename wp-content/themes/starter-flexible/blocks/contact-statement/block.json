@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/contact-statement",
+    "title": "LASAN — Contact Statement",
+    "description": "Lời kết trên nền navy với các lớp sóng chồng nhau.",
+    "category": "flexible-blocks",
+    "icon": "phone",
+    "keywords": ["contact", "cta", "closing"],
+    "align": "full",
+    "supports": { "align": ["full"], "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

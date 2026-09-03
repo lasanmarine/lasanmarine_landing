@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/page-hero",
+    "title": "LASAN — Page Hero",
+    "description": "Hero rút gọn mở đầu các trang trong.",
+    "category": "flexible-blocks",
+    "icon": "align-full-width",
+    "keywords": ["hero", "page", "banner"],
+    "align": "full",
+    "supports": { "align": ["full"], "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

@@ -1,0 +1,22 @@
+{
+  "key": "group_service_spotlight",
+  "title": "Service Spotlight",
+  "fields": [
+    { "key": "field_ss_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_ss_image", "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
+    { "key": "field_ss_placeholder", "label": "Placeholder Text", "name": "placeholder", "type": "text" },
+    { "key": "field_ss_caption", "label": "Caption", "name": "caption", "type": "text" },
+    { "key": "field_ss_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_ss_body", "label": "Body", "name": "body", "type": "textarea", "rows": 4, "new_lines": "" },
+    {
+      "key": "field_ss_items", "label": "List Items", "name": "items", "type": "repeater",
+      "layout": "table", "button_label": "Add Item",
+      "sub_fields": [
+        { "key": "field_ss_item_text", "label": "Text", "name": "text", "type": "text" }
+      ]
+    },
+    { "key": "field_ss_cta", "label": "CTA", "name": "cta", "type": "link", "return_format": "array" },
+    { "key": "field_ss_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/service-spotlight" }]]
+}

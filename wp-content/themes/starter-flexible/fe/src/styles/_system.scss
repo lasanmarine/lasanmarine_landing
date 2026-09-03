@@ -1,0 +1,590 @@
+/* ==========================================================================
+   LASAN MARINE — shared system classes
+   Ported 1:1 from src/styles/system.css of the Astro site. Selectors and
+   cascade order are unchanged so the rendered result is identical.
+   ========================================================================== */
+
+/* --- layout ------------------------------------------------------------- */
+
+.container {
+	@apply mx-auto w-full max-w-shell;
+	padding-inline: var(--gutter);
+}
+
+/* Every content block sits on the same vertical rhythm. */
+.block {
+	margin-top: var(--block-gap);
+}
+.block:first-child {
+	@apply mt-0;
+}
+
+/* The numbered rule that opens each block. */
+.block-head {
+	@apply flex flex-wrap items-baseline;
+	gap: clamp(14px, 1.8vw, 26px);
+}
+.block-head__label {
+	@apply font-display font-semibold text-navy;
+	font-size: clamp(16px, 1.6vw, 22px);
+	letter-spacing: 0.01em;
+}
+.block-head__aside {
+	@apply ml-auto;
+}
+
+/* Full-bleed bands. */
+.band {
+	@apply mt-6;
+}
+.band--navy {
+	@apply bg-navy-deep;
+	color: rgba(255, 255, 255, 0.74);
+}
+.band--navy-mid {
+	@apply bg-navy;
+	color: rgba(255, 255, 255, 0.74);
+}
+.band--pale {
+	@apply border-b border-t border-line-soft bg-pale;
+}
+.band--navy h1,
+.band--navy h2,
+.band--navy h3,
+.band--navy h4,
+.band--navy-mid h1,
+.band--navy-mid h2,
+.band--navy-mid h3,
+.band--navy-mid h4 {
+	@apply text-white;
+}
+.band--pad {
+	padding-block: clamp(48px, 6vw, 96px);
+}
+
+// `@apply grid` inside `.grid` is a circular reference — the utility and the
+// system class share a name, so this one stays raw.
+.grid {
+	display: grid;
+	gap: clamp(28px, 4vw, 64px);
+}
+.grid--auto {
+	grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+.grid--12 {
+	@apply grid-cols-12;
+	gap: clamp(16px, 2vw, 32px);
+}
+
+/* A hairline mesh. Each cell draws its own 1px rule, so a partly-filled last
+   row leaves paper behind it rather than a stray block of border colour. */
+.mesh {
+	@apply grid gap-px p-px;
+	grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+}
+.mesh > * {
+	@apply bg-paper;
+	box-shadow: 0 0 0 1px var(--line);
+}
+
+/* --- type --------------------------------------------------------------- */
+
+.display {
+	@apply font-display font-semibold;
+	font-size: clamp(38px, 5.2vw, 74px);
+	line-height: 1.02;
+	letter-spacing: -0.025em;
+}
+
+.h2 {
+	font-size: clamp(28px, 3vw, 46px);
+}
+.h3 {
+	font-size: clamp(26px, 3vw, 44px);
+}
+.h4 {
+	font-size: clamp(22px, 2.3vw, 34px);
+}
+
+.lead {
+	@apply font-display font-medium text-navy;
+	font-size: clamp(19px, 1.6vw, 26px);
+	line-height: 1.45;
+}
+
+.copy {
+	@apply text-steel;
+	max-width: 36em;
+	font-size: 16.5px;
+	line-height: 1.8;
+}
+.band--navy .copy,
+.band--navy-mid .copy {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.meta {
+	@apply text-mute;
+	font-size: 12.5px;
+	letter-spacing: 0.14em;
+}
+
+/* --- primitives --------------------------------------------------------- */
+
+.btn {
+	@apply inline-flex cursor-pointer items-center justify-center border border-transparent bg-marine font-display font-semibold text-white;
+	gap: 10px;
+	height: 50px;
+	padding-inline: 24px;
+	border-radius: var(--r-md);
+	font-size: 13.5px;
+	transition:
+		background 220ms ease,
+		color 200ms ease,
+		border-color 200ms ease;
+}
+.btn:hover {
+	@apply bg-navy text-white;
+}
+.btn--lg {
+	height: 56px;
+	padding-inline: 28px;
+	font-size: 14.5px;
+}
+.btn--sm {
+	height: 42px;
+	padding-inline: 18px;
+	border-radius: var(--r-sm);
+	font-size: 12px;
+}
+.btn--secondary {
+	@apply border-navy bg-transparent text-navy;
+}
+.btn--secondary:hover {
+	@apply border-marine bg-transparent text-marine;
+}
+.btn--ghost {
+	@apply bg-transparent text-navy;
+	padding-inline: 8px;
+}
+.btn--ghost:hover {
+	@apply bg-transparent text-marine;
+}
+.btn[disabled],
+.btn[aria-disabled='true'] {
+	@apply pointer-events-none;
+	opacity: 0.45;
+}
+/* On a navy field the outline borrows white, the solid inverts to paper. */
+.band--navy .btn--secondary,
+.band--navy-mid .btn--secondary,
+.hero .btn--secondary {
+	@apply text-white;
+	border-color: rgba(255, 255, 255, 0.34);
+}
+.band--navy .btn--secondary:hover,
+.band--navy-mid .btn--secondary:hover,
+.hero .btn--secondary:hover {
+	@apply border-marine text-marine-bright;
+}
+.band--navy .btn:not(.btn--secondary):not(.btn--ghost):hover,
+.band--navy-mid .btn:not(.btn--secondary):not(.btn--ghost):hover,
+.hero .btn:not(.btn--secondary):not(.btn--ghost):hover {
+	@apply bg-white text-navy;
+}
+
+/* A text link underscored by the accent, drawn left to right. */
+.link {
+	@apply relative inline-flex items-center font-display font-semibold text-navy;
+	gap: 8px;
+	padding-bottom: 5px;
+	font-size: 14px;
+}
+.link::after {
+	@apply absolute bottom-0 left-0 w-full bg-marine;
+	content: '';
+	height: 1.5px;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 260ms ease;
+}
+.link:hover {
+	@apply text-marine;
+}
+.link:hover::after {
+	transform: scaleX(1);
+}
+.link--fixed::after {
+	transform: scaleX(1);
+	height: 2px;
+}
+.link--lg {
+	font-size: 16px;
+}
+.band--navy .link,
+.band--navy-mid .link {
+	@apply text-white;
+}
+.band--navy .link:hover,
+.band--navy-mid .link:hover {
+	@apply text-marine-bright;
+}
+
+.icon-btn {
+	@apply inline-flex cursor-pointer items-center justify-center border border-line bg-none text-navy;
+	width: 46px;
+	height: 46px;
+	border-radius: var(--r-sm);
+	transition:
+		border-color 200ms ease,
+		color 200ms ease;
+}
+.icon-btn:hover:not(:disabled) {
+	@apply border-marine text-marine;
+}
+.icon-btn:disabled {
+	@apply cursor-default;
+	opacity: 0.4;
+}
+.icon-btn--sm {
+	width: 40px;
+	height: 40px;
+}
+.band--navy .icon-btn,
+.band--navy-mid .icon-btn {
+	@apply text-white;
+	border-color: rgba(255, 255, 255, 0.28);
+}
+.band--navy .icon-btn:hover:not(:disabled),
+.band--navy-mid .icon-btn:hover:not(:disabled) {
+	@apply border-marine text-marine-bright;
+}
+
+.tag {
+	@apply inline-flex items-center border border-line text-navy;
+	padding: 6px 10px;
+	border-radius: var(--r-xs);
+	font-size: 10.5px;
+	letter-spacing: 0.12em;
+}
+
+.card {
+	@apply border border-line p-5;
+	border-radius: var(--r-lg);
+	transition: border-color 220ms ease;
+}
+.card:hover {
+	@apply border-marine;
+}
+
+/* Image frames — square, never rounded; the picture scales inside on hover. */
+.frame {
+	@apply relative overflow-hidden bg-tint;
+}
+.frame > img,
+.frame > .frame__inner {
+	@apply absolute inset-0 h-full w-full object-cover;
+	transition: transform 620ms var(--ease);
+}
+a:hover > .frame > img,
+a:hover .frame > img,
+.frame--zoom:hover > img {
+	transform: scale(1.045);
+}
+.frame__caption {
+	@apply pointer-events-none absolute bottom-0 left-0 text-white;
+	padding: 12px 16px;
+	background: rgba(6, 18, 45, 0.82);
+	font-size: 12.5px;
+	letter-spacing: 0.14em;
+}
+.frame__caption--tr {
+	@apply bottom-auto left-auto right-0 top-0 bg-navy;
+}
+.frame__placeholder {
+	@apply absolute inset-0 grid justify-items-center p-5 text-center uppercase text-mute;
+	place-content: center;
+	gap: 12px;
+	font-size: 11.5px;
+	letter-spacing: 0.14em;
+}
+.frame__placeholder::before {
+	content: '';
+	width: 76px;
+	height: 24px;
+	background: no-repeat center / contain
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 90' preserveAspectRatio='none'%3E%3Cpath d='M0 66 C110 20 230 84 350 56 C450 33 530 22 600 30' fill='none' stroke='%230A72C8' stroke-width='6'/%3E%3Cpath d='M0 78 C120 34 240 96 360 68 C460 45 535 36 600 44' fill='none' stroke='%230B1B4C' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+.band--navy .frame__placeholder,
+.band--navy-mid .frame__placeholder {
+	color: rgba(255, 255, 255, 0.45);
+}
+
+.ratio-4-3 {
+	aspect-ratio: 4 / 3;
+}
+.ratio-4-5 {
+	aspect-ratio: 4 / 5;
+}
+.ratio-16-9 {
+	aspect-ratio: 16 / 9;
+}
+.ratio-16-10 {
+	aspect-ratio: 16 / 10;
+}
+/* A min-height here would force the width past the viewport on a phone
+   (300px x 21/9 = 700px), so the cinematic ratio relaxes instead. */
+.ratio-21-9 {
+	aspect-ratio: 21 / 9;
+}
+@media (max-width: 860px) {
+	.ratio-21-9 {
+		aspect-ratio: 16 / 10;
+	}
+}
+
+/* A ruled data row: label, leader, value. */
+.spec {
+	@apply flex items-baseline border-b border-line-soft;
+	gap: 16px;
+	padding: 15px 0;
+}
+.spec__label {
+	@apply flex-none text-mute;
+	min-width: 150px;
+	font-size: 12.5px;
+	letter-spacing: 0.12em;
+}
+.spec__leader {
+	@apply flex-1 bg-line-soft;
+	height: 1px;
+}
+.spec__value {
+	/* Shrinkable, not `flex: none`: a long value such as a full street address
+	   otherwise pushes the row past a narrow SpecList column. */
+	@apply min-w-0 break-words text-right font-display font-semibold text-navy;
+	flex: 0 1 auto;
+	font-size: 15.5px;
+}
+
+/* On a narrow phone the label, leader and value cannot share one line — stack
+   the pair and drop the leader rather than push the page sideways. */
+@media (max-width: 520px) {
+	.spec {
+		@apply flex-wrap;
+		gap: 4px 16px;
+	}
+	.spec__label {
+		@apply min-w-0;
+		flex: 1 0 100%;
+	}
+	.spec__leader {
+		@apply hidden;
+	}
+}
+
+/* Statistics — a big Manrope numeral with the accent carrying the suffix. */
+.stat {
+	@apply border-l border-line;
+	padding: 6px clamp(16px, 2vw, 30px);
+}
+.stat:first-child {
+	@apply border-l-0;
+}
+.stat__value {
+	@apply font-display font-semibold leading-none text-navy;
+	font-size: clamp(42px, 4.4vw, 66px);
+	letter-spacing: -0.03em;
+}
+.stat__value span {
+	@apply text-marine;
+}
+.stat__label {
+	@apply font-display font-semibold text-navy;
+	margin-top: 14px;
+	font-size: 11.5px;
+	letter-spacing: 0.14em;
+}
+.stat__note {
+	@apply text-mute;
+	margin-top: 6px;
+	max-width: 18em;
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+/* Form controls — boxed, hairline border, soft radius. The button, input,
+   select, textarea and file-field template parts emit exactly this markup. */
+.field {
+	@apply flex min-w-0 flex-col;
+	gap: 8px;
+}
+.field__label {
+	@apply text-mute;
+	font-size: 10.5px;
+	letter-spacing: 0.14em;
+}
+.field__req {
+	@apply text-marine;
+}
+.field__control {
+	@apply w-full border border-line bg-paper font-body text-navy outline-none;
+	min-height: 52px;
+	padding: 13px 16px;
+	border-radius: var(--r-md);
+	font-size: 15px;
+	line-height: 1.5;
+	transition:
+		border-color 200ms ease,
+		box-shadow 200ms ease;
+}
+.field__control::placeholder {
+	@apply text-mute;
+}
+.field__control:hover:not(:disabled) {
+	@apply border-mute;
+}
+.field__control:focus {
+	@apply border-marine;
+	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
+}
+.field__control:disabled {
+	@apply cursor-not-allowed;
+	opacity: 0.5;
+}
+textarea.field__control {
+	@apply resize-y;
+	min-height: 132px;
+	line-height: 1.7;
+}
+/* `appearance: none` removes the native arrow, so the chevron is drawn back. */
+select.field__control {
+	@apply cursor-pointer appearance-none bg-no-repeat;
+	padding-right: 46px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237B8794' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+	background-position: right 16px center;
+	background-size: 18px;
+}
+.field__hint {
+	@apply text-mute;
+	font-size: 12.5px;
+}
+
+/* File input: the native control is hidden behind a dashed drop plate. */
+.field__file {
+	@apply flex cursor-pointer flex-col items-center border border-dashed border-line bg-paper text-center;
+	gap: 6px;
+	padding: 26px 20px;
+	border-radius: var(--r-md);
+	transition:
+		border-color 200ms ease,
+		background 200ms ease;
+}
+.field__file:hover {
+	@apply border-marine bg-pale;
+}
+.field__file input {
+	@apply absolute overflow-hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(0, 0, 0, 0);
+}
+.field__file:focus-within {
+	@apply border-marine;
+	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
+}
+.field__file-action {
+	@apply font-display font-semibold text-marine;
+	font-size: 14.5px;
+}
+
+/* The wave that closes a navy field onto the paper below it. */
+.wave-cap {
+	@apply pointer-events-none absolute left-0 right-0 w-full;
+	bottom: -1px;
+	height: clamp(44px, 5.5vw, 88px);
+}
+
+/* --- reveal ------------------------------------------------------------- */
+
+/* A block fades up as a whole; `data-reveal` takes a direction. */
+.reveal-on [data-reveal] {
+	@apply opacity-0;
+	transform: translateY(20px);
+	transition:
+		opacity 700ms ease,
+		transform 700ms var(--ease);
+}
+.reveal-on [data-reveal='left'] {
+	transform: translateX(-28px);
+}
+.reveal-on [data-reveal='right'] {
+	transform: translateX(28px);
+}
+.reveal-on [data-reveal='scale'] {
+	transform: scale(0.965);
+}
+.reveal-on [data-reveal='fade'] {
+	transform: none;
+}
+.reveal-on [data-reveal].is-revealed {
+	@apply opacity-100;
+	transform: none;
+}
+
+/* Children of a `data-reveal-stagger` container arrive one after another.
+   reveal.js numbers them; the delay is derived from that index. */
+.reveal-on [data-reveal-item] {
+	@apply opacity-0;
+	transform: translateY(22px);
+	transition:
+		opacity 640ms ease,
+		transform 640ms var(--ease);
+	transition-delay: calc(var(--reveal-i, 0) * 70ms);
+}
+.reveal-on [data-reveal-item].is-revealed {
+	@apply opacity-100;
+	transform: none;
+}
+
+/* Above the fold there is nothing to scroll into — those parts animate on
+   load instead, on the same curve so the page reads as one motion system. */
+[data-enter] {
+	animation: lasan-enter 820ms var(--ease) both;
+	animation-delay: calc(var(--enter-i, 0) * 110ms);
+}
+@keyframes lasan-enter {
+	from {
+		opacity: 0;
+		transform: translateY(26px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* --- editor only --------------------------------------------------------- */
+
+/* ACF Blocks V3 has no edit mode, so an empty block draws this instead of
+   collapsing to nothing in the editor. It never reaches the front end. */
+.module-placeholder {
+	@apply border border-dashed border-line bg-pale text-center text-mute;
+	margin: 12px;
+	padding: 32px 20px;
+	border-radius: var(--r-md);
+	font-size: 13.5px;
+	letter-spacing: 0.04em;
+}

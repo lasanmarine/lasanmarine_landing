@@ -1,0 +1,21 @@
+{
+  "key": "group_project_grid",
+  "title": "Project Grid",
+  "fields": [
+    { "key": "field_pg_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "PROJECT GRID" },
+    {
+      "key": "field_pg_items", "label": "Projects", "name": "items", "type": "repeater",
+      "layout": "block", "button_label": "Add Project",
+      "sub_fields": [
+        { "key": "field_pg_item_image", "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
+        { "key": "field_pg_item_name", "label": "Name", "name": "name", "type": "text" },
+        { "key": "field_pg_item_tag", "label": "Tag", "name": "tag", "type": "text" },
+        { "key": "field_pg_item_meta", "label": "Meta", "name": "meta", "type": "text" },
+        { "key": "field_pg_item_span", "label": "Column Span", "name": "span", "type": "number", "default_value": 4, "min": 1, "max": 12, "step": 1 },
+        { "key": "field_pg_item_link", "label": "Link", "name": "link", "type": "link", "return_format": "array" }
+      ]
+    },
+    { "key": "field_pg_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/project-grid" }]]
+}

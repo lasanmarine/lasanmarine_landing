@@ -1,0 +1,83 @@
+.sd__inputs {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+	gap: 26px 24px;
+}
+.sd__materials {
+	@apply min-w-0 border-0;
+	margin: 32px 0 0;
+	padding: 0;
+}
+.sd__materials legend {
+	@apply p-0 text-mute;
+	margin-bottom: 12px;
+	font-size: 10.5px;
+	letter-spacing: 0.14em;
+}
+.sd__options {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+	gap: 10px;
+}
+.sd__option input {
+	@apply absolute overflow-hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(0, 0, 0, 0);
+}
+.sd__option span {
+	@apply flex h-full cursor-pointer flex-col border border-line text-navy;
+	gap: 4px;
+	padding: 14px 16px;
+	border-radius: var(--r-md);
+	transition:
+		border-color 200ms ease,
+		background 200ms ease,
+		color 200ms ease;
+}
+.sd__option strong {
+	@apply font-display font-semibold;
+	font-size: 15px;
+}
+.sd__option em {
+	@apply not-italic text-mute;
+	font-size: 13px;
+	transition: color 200ms ease;
+}
+.sd__option:hover span {
+	@apply border-marine;
+}
+.sd__option input:checked + span {
+	@apply border-navy bg-navy text-white;
+}
+.sd__option input:checked + span em {
+	color: rgba(255, 255, 255, 0.7);
+}
+.sd__option input:focus-visible + span {
+	outline: 2px solid var(--marine);
+	outline-offset: 2px;
+}
+
+.sd__result {
+	@apply flex flex-wrap items-baseline justify-between;
+	margin-top: 36px;
+	padding-top: 20px;
+	border-top: 2px solid var(--navy);
+	gap: 16px;
+}
+.sd__value {
+	@apply font-display font-semibold text-navy;
+	font-size: clamp(34px, 3.4vw, 50px);
+	letter-spacing: -0.03em;
+}
+.sd__error {
+	margin-top: 12px;
+	font-size: 13.5px;
+	color: #b3261e;
+}
+.sd__error[hidden] {
+	@apply hidden;
+}
+.sd__reset {
+	margin-top: 20px;
+}

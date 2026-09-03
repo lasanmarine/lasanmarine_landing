@@ -1,0 +1,3 @@
+// Project rules load after Tailwind so the Astro design system wins at equal
+// specificity while retaining Tailwind's border reset for @apply utilities.
+@use './styles/index' as *;

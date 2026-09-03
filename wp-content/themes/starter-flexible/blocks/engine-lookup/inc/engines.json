@@ -1,0 +1,562 @@
+[
+  {
+    "make": "Yanmar",
+    "model": "4JH-1",
+    "kw": 640,
+    "rpm": 1800,
+    "cylinders": 12
+  },
+  {
+    "make": "Yanmar",
+    "model": "4JH-2",
+    "kw": 1200,
+    "rpm": 1500,
+    "cylinders": 16
+  },
+  {
+    "make": "Yanmar",
+    "model": "6LY-1",
+    "kw": 250,
+    "rpm": 2300,
+    "cylinders": 4
+  },
+  {
+    "make": "Yanmar",
+    "model": "6LY-2",
+    "kw": 1650,
+    "rpm": 1800,
+    "cylinders": 4
+  },
+  {
+    "make": "Yanmar",
+    "model": "6AY-1",
+    "kw": 240,
+    "rpm": 2100,
+    "cylinders": 4
+  },
+  {
+    "make": "Yanmar",
+    "model": "6AY-2",
+    "kw": 500,
+    "rpm": 2300,
+    "cylinders": 12
+  },
+  {
+    "make": "Yanmar",
+    "model": "3YM-1",
+    "kw": 190,
+    "rpm": 2300,
+    "cylinders": 4
+  },
+  {
+    "make": "Yanmar",
+    "model": "3YM-2",
+    "kw": 1710,
+    "rpm": 2600,
+    "cylinders": 16
+  },
+  {
+    "make": "Yanmar",
+    "model": "6HYM-1",
+    "kw": 1710,
+    "rpm": 2300,
+    "cylinders": 16
+  },
+  {
+    "make": "Yanmar",
+    "model": "6HYM-2",
+    "kw": 770,
+    "rpm": 1800,
+    "cylinders": 4
+  },
+  {
+    "make": "Caterpillar",
+    "model": "C7.1-1",
+    "kw": 1040,
+    "rpm": 1800,
+    "cylinders": 8
+  },
+  {
+    "make": "Caterpillar",
+    "model": "C7.1-2",
+    "kw": 810,
+    "rpm": 2300,
+    "cylinders": 4
+  },
+  {
+    "make": "Caterpillar",
+    "model": "C12.9-1",
+    "kw": 1070,
+    "rpm": 2300,
+    "cylinders": 6
+  },
+  {
+    "make": "Caterpillar",
+    "model": "C12.9-2",
+    "kw": 270,
+    "rpm": 2300,
+    "cylinders": 6
+  },
+  {
+    "make": "Caterpillar",
+    "model": "C18-1",
+    "kw": 730,
+    "rpm": 2300,
+    "cylinders": 4
+  },
+  {
+    "make": "Caterpillar",
+    "model": "C18-2",
+    "kw": 1060,
+    "rpm": 2300,
+    "cylinders": 6
+  },
+  {
+    "make": "Caterpillar",
+    "model": "C32-1",
+    "kw": 940,
+    "rpm": 2300,
+    "cylinders": 12
+  },
+  {
+    "make": "Caterpillar",
+    "model": "C32-2",
+    "kw": 1420,
+    "rpm": 2100,
+    "cylinders": 16
+  },
+  {
+    "make": "Caterpillar",
+    "model": "3512C-1",
+    "kw": 1670,
+    "rpm": 1900,
+    "cylinders": 8
+  },
+  {
+    "make": "Caterpillar",
+    "model": "3512C-2",
+    "kw": 510,
+    "rpm": 1800,
+    "cylinders": 6
+  },
+  {
+    "make": "Cummins",
+    "model": "QSB6.7-1",
+    "kw": 230,
+    "rpm": 1900,
+    "cylinders": 16
+  },
+  {
+    "make": "Cummins",
+    "model": "QSB6.7-2",
+    "kw": 940,
+    "rpm": 1900,
+    "cylinders": 12
+  },
+  {
+    "make": "Cummins",
+    "model": "QSL9-1",
+    "kw": 580,
+    "rpm": 1500,
+    "cylinders": 4
+  },
+  {
+    "make": "Cummins",
+    "model": "QSL9-2",
+    "kw": 970,
+    "rpm": 1800,
+    "cylinders": 8
+  },
+  {
+    "make": "Cummins",
+    "model": "QSM11-1",
+    "kw": 350,
+    "rpm": 2100,
+    "cylinders": 12
+  },
+  {
+    "make": "Cummins",
+    "model": "QSM11-2",
+    "kw": 160,
+    "rpm": 2600,
+    "cylinders": 4
+  },
+  {
+    "make": "Cummins",
+    "model": "QSK19-1",
+    "kw": 1400,
+    "rpm": 2300,
+    "cylinders": 8
+  },
+  {
+    "make": "Cummins",
+    "model": "QSK19-2",
+    "kw": 670,
+    "rpm": 1900,
+    "cylinders": 16
+  },
+  {
+    "make": "Cummins",
+    "model": "KTA38-1",
+    "kw": 940,
+    "rpm": 2100,
+    "cylinders": 4
+  },
+  {
+    "make": "Cummins",
+    "model": "KTA38-2",
+    "kw": 1530,
+    "rpm": 1900,
+    "cylinders": 12
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D4-1",
+    "kw": 1280,
+    "rpm": 1500,
+    "cylinders": 4
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D4-2",
+    "kw": 1340,
+    "rpm": 1900,
+    "cylinders": 16
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D6-1",
+    "kw": 1790,
+    "rpm": 2100,
+    "cylinders": 8
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D6-2",
+    "kw": 1320,
+    "rpm": 2600,
+    "cylinders": 8
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D11-1",
+    "kw": 130,
+    "rpm": 2100,
+    "cylinders": 8
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D11-2",
+    "kw": 380,
+    "rpm": 1500,
+    "cylinders": 12
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D13-1",
+    "kw": 190,
+    "rpm": 1900,
+    "cylinders": 6
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D13-2",
+    "kw": 1350,
+    "rpm": 2100,
+    "cylinders": 12
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D16-1",
+    "kw": 1660,
+    "rpm": 2100,
+    "cylinders": 4
+  },
+  {
+    "make": "Volvo Penta",
+    "model": "D16-2",
+    "kw": 370,
+    "rpm": 2100,
+    "cylinders": 16
+  },
+  {
+    "make": "MAN",
+    "model": "i6-730-1",
+    "kw": 570,
+    "rpm": 1800,
+    "cylinders": 12
+  },
+  {
+    "make": "MAN",
+    "model": "i6-730-2",
+    "kw": 1570,
+    "rpm": 1900,
+    "cylinders": 12
+  },
+  {
+    "make": "MAN",
+    "model": "V8-1200-1",
+    "kw": 1780,
+    "rpm": 2600,
+    "cylinders": 12
+  },
+  {
+    "make": "MAN",
+    "model": "V8-1200-2",
+    "kw": 1730,
+    "rpm": 1800,
+    "cylinders": 4
+  },
+  {
+    "make": "MAN",
+    "model": "V12-1650-1",
+    "kw": 390,
+    "rpm": 1800,
+    "cylinders": 6
+  },
+  {
+    "make": "MAN",
+    "model": "V12-1650-2",
+    "kw": 110,
+    "rpm": 2300,
+    "cylinders": 6
+  },
+  {
+    "make": "MAN",
+    "model": "D2676-1",
+    "kw": 540,
+    "rpm": 1500,
+    "cylinders": 6
+  },
+  {
+    "make": "MAN",
+    "model": "D2676-2",
+    "kw": 810,
+    "rpm": 1900,
+    "cylinders": 16
+  },
+  {
+    "make": "MAN",
+    "model": "D2862-1",
+    "kw": 1060,
+    "rpm": 1800,
+    "cylinders": 16
+  },
+  {
+    "make": "MAN",
+    "model": "D2862-2",
+    "kw": 1710,
+    "rpm": 2600,
+    "cylinders": 4
+  },
+  {
+    "make": "Doosan",
+    "model": "L086-1",
+    "kw": 870,
+    "rpm": 2600,
+    "cylinders": 16
+  },
+  {
+    "make": "Doosan",
+    "model": "L086-2",
+    "kw": 760,
+    "rpm": 2100,
+    "cylinders": 12
+  },
+  {
+    "make": "Doosan",
+    "model": "L126-1",
+    "kw": 270,
+    "rpm": 2600,
+    "cylinders": 12
+  },
+  {
+    "make": "Doosan",
+    "model": "L126-2",
+    "kw": 200,
+    "rpm": 1500,
+    "cylinders": 6
+  },
+  {
+    "make": "Doosan",
+    "model": "V158-1",
+    "kw": 840,
+    "rpm": 1500,
+    "cylinders": 8
+  },
+  {
+    "make": "Doosan",
+    "model": "V158-2",
+    "kw": 1120,
+    "rpm": 1500,
+    "cylinders": 4
+  },
+  {
+    "make": "Doosan",
+    "model": "V180-1",
+    "kw": 1060,
+    "rpm": 2300,
+    "cylinders": 4
+  },
+  {
+    "make": "Doosan",
+    "model": "V180-2",
+    "kw": 1710,
+    "rpm": 2300,
+    "cylinders": 4
+  },
+  {
+    "make": "Doosan",
+    "model": "4V222-1",
+    "kw": 210,
+    "rpm": 1800,
+    "cylinders": 16
+  },
+  {
+    "make": "Doosan",
+    "model": "4V222-2",
+    "kw": 730,
+    "rpm": 2600,
+    "cylinders": 8
+  },
+  {
+    "make": "Weichai",
+    "model": "WP6C-1",
+    "kw": 1720,
+    "rpm": 2300,
+    "cylinders": 8
+  },
+  {
+    "make": "Weichai",
+    "model": "WP6C-2",
+    "kw": 900,
+    "rpm": 1500,
+    "cylinders": 12
+  },
+  {
+    "make": "Weichai",
+    "model": "WP10C-1",
+    "kw": 1790,
+    "rpm": 2100,
+    "cylinders": 12
+  },
+  {
+    "make": "Weichai",
+    "model": "WP10C-2",
+    "kw": 920,
+    "rpm": 1500,
+    "cylinders": 6
+  },
+  {
+    "make": "Weichai",
+    "model": "WP12C-1",
+    "kw": 260,
+    "rpm": 1900,
+    "cylinders": 8
+  },
+  {
+    "make": "Weichai",
+    "model": "WP12C-2",
+    "kw": 910,
+    "rpm": 2600,
+    "cylinders": 6
+  },
+  {
+    "make": "Weichai",
+    "model": "WP13C-1",
+    "kw": 970,
+    "rpm": 1800,
+    "cylinders": 16
+  },
+  {
+    "make": "Weichai",
+    "model": "WP13C-2",
+    "kw": 710,
+    "rpm": 2600,
+    "cylinders": 16
+  },
+  {
+    "make": "Weichai",
+    "model": "CW200-1",
+    "kw": 1650,
+    "rpm": 2300,
+    "cylinders": 8
+  },
+  {
+    "make": "Weichai",
+    "model": "CW200-2",
+    "kw": 1760,
+    "rpm": 1500,
+    "cylinders": 8
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S6R-1",
+    "kw": 980,
+    "rpm": 1800,
+    "cylinders": 8
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S6R-2",
+    "kw": 1410,
+    "rpm": 2300,
+    "cylinders": 16
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S12R-1",
+    "kw": 1420,
+    "rpm": 1900,
+    "cylinders": 6
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S12R-2",
+    "kw": 1140,
+    "rpm": 1800,
+    "cylinders": 6
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S16R-1",
+    "kw": 1490,
+    "rpm": 2600,
+    "cylinders": 6
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S16R-2",
+    "kw": 430,
+    "rpm": 2100,
+    "cylinders": 8
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S6A3-1",
+    "kw": 1340,
+    "rpm": 1500,
+    "cylinders": 8
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S6A3-2",
+    "kw": 900,
+    "rpm": 1800,
+    "cylinders": 16
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S12A2-1",
+    "kw": 1730,
+    "rpm": 2100,
+    "cylinders": 8
+  },
+  {
+    "make": "Mitsubishi",
+    "model": "S12A2-2",
+    "kw": 1720,
+    "rpm": 1900,
+    "cylinders": 4
+  }
+]

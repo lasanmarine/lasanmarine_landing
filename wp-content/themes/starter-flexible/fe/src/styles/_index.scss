@@ -1,0 +1,7 @@
+// Styles index — global base, shared system and layout only.
+// Block styles are independent Vite entries in production.
+@forward './base';
+@forward './system';
+@forward './layout/header';
+@forward './layout/footer';
+@forward './layout/single-post';

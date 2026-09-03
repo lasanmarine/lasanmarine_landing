@@ -1,0 +1,19 @@
+{
+  "key": "group_manifesto",
+  "title": "Manifesto",
+  "fields": [
+    { "key": "field_manifesto_label", "label": "Block Label", "name": "label", "type": "text", "instructions": "Nhãn gạch đầu block. Để trống thì ẩn." },
+    { "key": "field_manifesto_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_manifesto_lead", "label": "Lead", "name": "lead", "type": "textarea", "rows": 3, "new_lines": "" },
+    {
+      "key": "field_manifesto_body", "label": "Body Paragraphs", "name": "body", "type": "repeater",
+      "layout": "row", "button_label": "Add Paragraph",
+      "sub_fields": [
+        { "key": "field_manifesto_body_text", "label": "Paragraph", "name": "text", "type": "textarea", "rows": 3, "new_lines": "" }
+      ]
+    },
+    { "key": "field_manifesto_cta_link", "label": "CTA", "name": "cta", "type": "link", "return_format": "array" },
+    { "key": "field_manifesto_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/manifesto" }]]
+}

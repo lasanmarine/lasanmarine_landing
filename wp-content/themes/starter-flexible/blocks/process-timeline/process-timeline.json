@@ -1,0 +1,19 @@
+{
+  "key": "group_process_timeline",
+  "title": "Process Timeline",
+  "fields": [
+    { "key": "field_pt_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "PROCESS TIMELINE" },
+    { "key": "field_pt_heading", "label": "Heading", "name": "heading", "type": "text" },
+    {
+      "key": "field_pt_steps", "label": "Steps", "name": "steps", "type": "repeater",
+      "layout": "block", "button_label": "Add Step",
+      "sub_fields": [
+        { "key": "field_pt_step_index", "label": "Index", "name": "index", "type": "text" },
+        { "key": "field_pt_step_title", "label": "Title", "name": "title", "type": "text" },
+        { "key": "field_pt_step_desc", "label": "Description", "name": "desc", "type": "textarea", "rows": 3, "new_lines": "" }
+      ]
+    },
+    { "key": "field_pt_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/process-timeline" }]]
+}

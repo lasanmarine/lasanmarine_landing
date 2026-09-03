@@ -1,0 +1,16 @@
+{
+  "key": "group_clients",
+  "title": "Clients",
+  "fields": [
+    { "key": "field_clients_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "CLIENTS & PARTNERS" },
+    {
+      "key": "field_clients_items", "label": "Clients", "name": "items", "type": "repeater",
+      "layout": "table", "button_label": "Add Client",
+      "sub_fields": [
+        { "key": "field_clients_item_name", "label": "Name", "name": "name", "type": "text" }
+      ]
+    },
+    { "key": "field_clients_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/clients" }]]
+}

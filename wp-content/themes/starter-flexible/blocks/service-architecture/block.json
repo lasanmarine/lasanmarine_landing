@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/service-architecture",
+    "title": "LASAN — Service Architecture",
+    "description": "Danh mục dịch vụ; rê chuột vào một dòng thì đổi ảnh bên cạnh.",
+    "category": "flexible-blocks",
+    "icon": "list-view",
+    "keywords": ["services", "capabilities", "index"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

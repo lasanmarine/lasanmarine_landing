@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/value-grid",
+    "title": "LASAN — Value Grid",
+    "description": "Lưới giá trị/nguyên tắc có đánh số.",
+    "category": "flexible-blocks",
+    "icon": "grid-view",
+    "keywords": ["values", "principles", "grid"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

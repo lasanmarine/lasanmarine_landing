@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/shaft-diameter",
+    "title": "LASAN — Shaft Diameter",
+    "description": "Đường kính trục chân vịt tối thiểu tham khảo, theo công thức phân cấp thông dụng.",
+    "category": "flexible-blocks",
+    "icon": "calculator",
+    "keywords": ["shaft", "calculator", "diameter"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/power-converter",
+    "title": "LASAN — Power Converter",
+    "description": "Quy đổi kW / HP / PS. Một ô nhập, các đơn vị còn lại suy ra từ đó.",
+    "category": "flexible-blocks",
+    "icon": "controls-repeat",
+    "keywords": ["power", "converter", "kw", "hp"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

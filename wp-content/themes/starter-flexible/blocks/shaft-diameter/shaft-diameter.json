@@ -1,0 +1,23 @@
+{
+  "key": "group_shaft_diameter",
+  "title": "Shaft Diameter",
+  "fields": [
+    { "key": "field_sd_f_power", "label": "Power Field Label", "name": "label_power", "type": "text" },
+    { "key": "field_sd_f_rpm", "label": "RPM Field Label", "name": "label_rpm", "type": "text" },
+    { "key": "field_sd_f_material", "label": "Material Field Label", "name": "label_material", "type": "text" },
+    { "key": "field_sd_result_label", "label": "Result Label", "name": "result_label", "type": "text" },
+    {
+      "key": "field_sd_materials", "label": "Materials", "name": "materials", "type": "repeater",
+      "layout": "row", "button_label": "Add Material",
+      "sub_fields": [
+        { "key": "field_sd_material_name", "label": "Name", "name": "name", "type": "text" },
+        { "key": "field_sd_material_note", "label": "Note", "name": "note", "type": "text" },
+        { "key": "field_sd_material_strength", "label": "Tensile Strength Rm (N/mm²)", "name": "strength", "type": "number", "step": "any" }
+      ]
+    },
+    { "key": "field_sd_reset_label", "label": "Reset Label", "name": "reset_label", "type": "text", "default_value": "Đặt lại" },
+    { "key": "field_sd_error_text", "label": "Error Text", "name": "error_text", "type": "text", "default_value": "Nhập công suất lớn hơn 0 kW và vòng quay lớn hơn 0 rpm." },
+    { "key": "field_sd_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/shaft-diameter" }]]
+}

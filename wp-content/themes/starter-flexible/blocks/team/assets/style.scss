@@ -1,0 +1,27 @@
+.tm {
+	@apply grid items-start;
+	margin-top: clamp(32px, 4vw, 56px);
+	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+	gap: clamp(28px, 3.5vw, 64px);
+}
+.tm__heading {
+	max-width: 18em;
+	line-height: 1.12;
+}
+.tm__list {
+	@apply border-t border-line;
+	margin-top: 28px;
+}
+.tm__row {
+	@apply flex flex-wrap items-baseline justify-between border-b border-line;
+	gap: 6px 20px;
+	padding: 18px 2px;
+}
+.tm__name {
+	@apply font-display font-semibold text-navy;
+	font-size: 18px;
+}
+.tm__role {
+	@apply text-mute;
+	font-size: 14px;
+}

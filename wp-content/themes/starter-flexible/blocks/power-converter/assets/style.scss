@@ -1,0 +1,12 @@
+.pc__inputs {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+	gap: 26px 24px;
+}
+.pc__results {
+	@apply border-t border-line;
+	margin-top: 36px;
+}
+.pc__reset {
+	margin-top: 20px;
+}

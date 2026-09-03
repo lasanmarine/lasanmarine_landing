@@ -1,0 +1,94 @@
+.geo {
+	@apply grid items-center;
+	grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+	gap: clamp(32px, 4vw, 72px);
+}
+.geo__heading {
+	max-width: 18em;
+	line-height: 1.14;
+}
+.geo__note {
+	margin-top: 16px;
+	font-size: 15px;
+}
+
+.geo__list {
+	@apply flex list-none flex-wrap;
+	margin: 28px 0 0;
+	padding: 0;
+	gap: 8px;
+}
+.geo__list button {
+	@apply cursor-pointer bg-none;
+	padding: 7px 13px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: var(--r-sm);
+	color: rgba(255, 255, 255, 0.68);
+	font-size: 13px;
+	transition:
+		border-color 220ms ease,
+		background 220ms ease,
+		color 220ms ease;
+}
+.geo__list button:hover,
+.geo__list button[data-active='true'] {
+	@apply border-marine text-white;
+	background: rgba(10, 114, 200, 0.18);
+}
+
+.geo__plate svg {
+	@apply h-auto w-full;
+	max-height: 620px;
+}
+.geo__grid line {
+	stroke: rgba(255, 255, 255, 0.06);
+	stroke-width: 1;
+}
+.geo__land {
+	fill: rgba(10, 114, 200, 0.22);
+	stroke: rgba(255, 255, 255, 0.55);
+	stroke-width: 1.4;
+	stroke-linejoin: round;
+	vector-effect: non-scaling-stroke;
+}
+
+.geo__island rect {
+	fill: none;
+	stroke: rgba(255, 255, 255, 0.3);
+	stroke-width: 1;
+	stroke-dasharray: 3 3;
+	vector-effect: non-scaling-stroke;
+}
+.geo__island circle {
+	fill: var(--marine-bright);
+}
+.geo__island text {
+	fill: rgba(255, 255, 255, 0.72);
+	font-family: var(--body);
+	font-size: 15px;
+	text-anchor: middle;
+}
+
+.geo__pin-halo {
+	fill: none;
+	stroke: var(--marine);
+	stroke-width: 1;
+	opacity: 0;
+	transform-box: fill-box;
+	transform-origin: center;
+	transform: scale(0.5);
+	transition:
+		opacity 300ms ease,
+		transform 300ms var(--ease);
+}
+.geo__pin-dot {
+	fill: rgba(255, 255, 255, 0.5);
+	transition: fill 240ms ease;
+}
+.geo__pin[data-active='true'] .geo__pin-halo {
+	opacity: 1;
+	transform: none;
+}
+.geo__pin[data-active='true'] .geo__pin-dot {
+	fill: var(--marine-bright);
+}

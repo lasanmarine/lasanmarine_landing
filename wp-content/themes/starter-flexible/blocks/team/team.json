@@ -1,0 +1,20 @@
+{
+  "key": "group_team",
+  "title": "Team",
+  "fields": [
+    { "key": "field_tm_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "ENGINEERING TEAM" },
+    { "key": "field_tm_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_tm_image", "label": "Portrait", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
+    { "key": "field_tm_placeholder", "label": "Placeholder Text", "name": "placeholder", "type": "text" },
+    {
+      "key": "field_tm_people", "label": "People", "name": "people", "type": "repeater",
+      "layout": "row", "button_label": "Add Person",
+      "sub_fields": [
+        { "key": "field_tm_person_name", "label": "Name", "name": "name", "type": "text" },
+        { "key": "field_tm_person_role", "label": "Role", "name": "role", "type": "text" }
+      ]
+    },
+    { "key": "field_tm_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/team" }]]
+}

@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/hero",
+    "title": "LASAN — Hero",
+    "description": "Hero điện ảnh toàn màn: nền navy, nội dung neo đáy, đóng bằng sóng.",
+    "category": "flexible-blocks",
+    "icon": "cover-image",
+    "keywords": ["hero", "banner", "cover"],
+    "align": "full",
+    "supports": { "align": ["full"], "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

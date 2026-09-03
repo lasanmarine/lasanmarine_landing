@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/document-center",
+    "title": "LASAN — Document Center",
+    "description": "Danh sách tài liệu, lọc phía client.",
+    "category": "flexible-blocks",
+    "icon": "media-text",
+    "keywords": ["documents", "downloads", "files"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

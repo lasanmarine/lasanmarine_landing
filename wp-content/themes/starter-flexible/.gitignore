@@ -1,0 +1,7 @@
+# Frontend build files
+fe/node_modules/
+fe/dist/
+fe/.vite/
+fe/*.log
+fe/.vite-dev
+.vite-dev

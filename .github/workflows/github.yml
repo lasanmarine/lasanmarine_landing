@@ -1,0 +1,49 @@
+name: Deploy AAC79
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+      - name: Add host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p 22 -H 160.191.50.83 >> ~/.ssh/known_hosts
+
+      - name: Sync repository to server
+        run: |
+          rsync -rlz --delete \
+            --omit-dir-times \
+            --no-perms \
+            --no-owner \
+            --no-group \
+            --exclude "uploads/" \
+            --exclude "themes/starter-flexible/fe/node_modules/" \
+            -e "ssh -p 22" \
+            ./wp-content/ deployaac79@160.191.50.83:/var/www/acc79/wp-content/
+
+      - name: Build frontend and reload services
+        run: |
+          ssh -p 22 deployaac79@160.191.50.83 <<'EOF'
+          set -e
+          cd /var/www/acc79
+          cd /var/www/acc79/wp-content/themes/starter-flexible/fe
+          npm ci
+          npm run build
+          sudo systemctl reload php8.1-fpm
+          sudo systemctl reload nginx
+          EOF

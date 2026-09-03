@@ -1,0 +1,19 @@
+{
+  "key": "group_image_story",
+  "title": "Image Story",
+  "fields": [
+    { "key": "field_is_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "IMAGE STORY" },
+    {
+      "key": "field_is_items", "label": "Images", "name": "items", "type": "repeater",
+      "layout": "block", "button_label": "Add Image",
+      "sub_fields": [
+        { "key": "field_is_item_image", "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
+        { "key": "field_is_item_placeholder", "label": "Placeholder Text", "name": "placeholder", "type": "text", "instructions": "Hiện thay cho ảnh khi chưa chọn ảnh." },
+        { "key": "field_is_item_caption", "label": "Caption", "name": "caption", "type": "text" }
+      ]
+    },
+    { "key": "field_is_note", "label": "Note", "name": "note", "type": "textarea", "rows": 3, "new_lines": "" },
+    { "key": "field_is_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/image-story" }]]
+}

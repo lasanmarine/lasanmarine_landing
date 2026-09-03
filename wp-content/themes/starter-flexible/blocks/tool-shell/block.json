@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/tool-shell",
+    "title": "LASAN — Tool Shell",
+    "description": "Khung dùng chung cho mọi công cụ tính; đặt block công cụ vào trong.",
+    "category": "flexible-blocks",
+    "icon": "admin-tools",
+    "keywords": ["tool", "calculator", "shell"],
+    "supports": { "anchor": true, "jsx": true },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

@@ -1,0 +1,986 @@
+{
+  "about": {
+    "title": "Giới thiệu | Lasan Marine",
+    "description": "Lasan Marine là đơn vị tư vấn và thiết kế kỹ thuật cho tàu đánh cá, phương tiện thủy nội địa và phương tiện vận tải đường thủy.",
+    "hero": {
+      "headline": "Giải pháp thiết kế kỹ thuật cho phương tiện thủy.",
+      "lead": "Lasan Marine là đơn vị tư vấn và thiết kế kỹ thuật cho tàu đánh cá, phương tiện thủy nội địa và phương tiện vận tải đường thủy.",
+      "placeholder": "Ảnh: đội ngũ kỹ sư tại xưởng"
+    },
+    "letter": {
+      "heading": "Kính gửi quý khách hàng",
+      "signature": "TS. Huỳnh Lê Hồng Thái — Giám đốc công ty",
+      "body": [
+        "Lasan Marine ra đời với mục tiêu trở thành đơn vị thiết kế tàu uy tín, lấy chất lượng và sự tin cậy làm nền tảng.",
+        "Chúng tôi tập trung vào các dịch vụ khoa học kỹ thuật trong lĩnh vực phương tiện thủy, với quy trình làm việc rõ ràng và khép kín.",
+        "Công ty liên tục lắng nghe, học hỏi và cải tiến để chất lượng ngày sau hoàn thiện hơn ngày trước. Hân hạnh được phục vụ quý khách hàng!"
+      ]
+    },
+    "values": [
+      {
+        "index": "01",
+        "title": "Chất lượng từ đội ngũ trẻ",
+        "desc": "Là một công ty trẻ, chúng tôi xác định chất lượng và sáng tạo là điều kiện để đáp ứng nhu cầu của khách hàng trong thời gian ngắn hơn và với hiệu quả cao hơn."
+      },
+      {
+        "index": "02",
+        "title": "Đáp ứng nhanh và hiệu quả",
+        "desc": "Đáp ứng nhanh chóng các yêu cầu của khách hàng và cải thiện chất lượng dịch vụ một cách liên tục."
+      },
+      {
+        "index": "03",
+        "title": "Cầu thị và lắng nghe",
+        "desc": "Làm việc nhiệt tình, chu đáo với thái độ cầu thị, cung cấp dịch vụ với chi phí hợp lý và sức cạnh tranh cao."
+      }
+    ],
+    "quote": "Lợi ích của khách hàng và phục vụ cộng đồng là sự sống còn của công ty. Đây là giá trị mà Lasan Marine đã và đang xây dựng.",
+    "process": {
+      "heading": "Quy trình triển khai.",
+      "steps": [
+        {
+          "index": "01",
+          "title": "Tiếp nhận",
+          "desc": "Tiếp nhận bài toán khai thác và khảo sát phương tiện."
+        },
+        {
+          "index": "02",
+          "title": "Phân tích",
+          "desc": "Phân tích thủy động lực học và đề xuất thông số chính."
+        },
+        {
+          "index": "03",
+          "title": "Thiết kế",
+          "desc": "Thiết kế tuyến hình, bố trí chung và kết cấu."
+        },
+        {
+          "index": "04",
+          "title": "Tính toán",
+          "desc": "Tính toán thủy tĩnh, ổn định và sức bền theo quy phạm."
+        },
+        {
+          "index": "05",
+          "title": "Thẩm định",
+          "desc": "Nộp và bảo vệ hồ sơ trước Cục Đăng kiểm Việt Nam."
+        },
+        {
+          "index": "06",
+          "title": "Bàn giao",
+          "desc": "Bàn giao hồ sơ kỹ thuật và hỗ trợ giám sát thi công."
+        }
+      ]
+    },
+    "legal": {
+      "heading": "Thông tin pháp lý",
+      "rows": [
+        {
+          "label": "TÊN CÔNG TY",
+          "value": "LASAN MARINE COMPANY LIMITED"
+        },
+        {
+          "label": "MÃ SỐ THUẾ",
+          "value": "4202063521"
+        },
+        {
+          "label": "ĐỊA CHỈ",
+          "value": "03 Trần Lư, phường Bắc Nha Trang, tỉnh Khánh Hòa"
+        },
+        {
+          "label": "HOTLINE",
+          "value": "0834 310 781"
+        },
+        {
+          "label": "EMAIL",
+          "value": "contact@lasanmarine.vn"
+        }
+      ],
+      "note": "Lasan Marine thực hiện thiết kế đóng mới, chuyển hoán, hoàn công và hồ sơ kỹ thuật cho nhiều loại phương tiện với các vật liệu vỏ khác nhau."
+    },
+    "locations": {
+      "heading": "Phục vụ trên khắp mọi miền tổ quốc.",
+      "note": "Đội ngũ nhận khảo sát và triển khai tại các tỉnh, thành ven biển từ Quảng Ninh đến Cà Mau."
+    },
+    "team": {
+      "heading": "Kỹ sư theo sát từ bản vẽ đến hiện trường.",
+      "placeholder": "Ảnh: kỹ sư khảo sát phương tiện",
+      "people": [
+        {
+          "name": "TS. Huỳnh Lê Hồng Thái",
+          "role": "Giám đốc công ty"
+        },
+        {
+          "name": "Kỹ sư thiết kế",
+          "role": "Tuyến hình và kết cấu"
+        },
+        {
+          "name": "Kỹ sư tính toán",
+          "role": "Thủy tĩnh và ổn định"
+        },
+        {
+          "name": "Kỹ sư hệ động lực",
+          "role": "Máy chính và hệ trục"
+        },
+        {
+          "name": "Chuyên viên hồ sơ",
+          "role": "Thẩm định đăng kiểm"
+        }
+      ]
+    },
+    "standards": {
+      "heading": "Hồ sơ lập theo quy chuẩn hiện hành.",
+      "note": "Và các QCVN/TCVN/IMO chuyên ngành tương ứng theo loại và công dụng tàu.",
+      "items": [
+        {
+          "name": "QCVN 21:2025/BGTVT",
+          "issuer": "Phân cấp và đóng tàu biển vỏ thép",
+          "year": "Hiệu lực 01/09/2025"
+        },
+        {
+          "name": "QCVN 03:2025/BGTVT",
+          "issuer": "Kiểm tra và đóng tàu biển cỡ nhỏ",
+          "year": "Hiệu lực 01/09/2025"
+        },
+        {
+          "name": "QCVN 72:2025/BGTVT",
+          "issuer": "Phân cấp và đóng phương tiện thủy nội địa",
+          "year": "Hiệu lực 01/08/2025"
+        },
+        {
+          "name": "QCVN 91:2025/BNNMT",
+          "issuer": "Phân cấp và đóng tàu cá có chiều dài lớn nhất từ 24 m trở lên",
+          "year": "Hiệu lực 10/03/2026"
+        },
+        {
+          "name": "QCVN 92:2025/BNNMT",
+          "issuer": "Phân cấp và đóng tàu cá có chiều dài lớn nhất từ 12 m đến dưới 24 m",
+          "year": "Hiệu lực 10/03/2026"
+        },
+        {
+          "name": "IMO 2008 IS Code — 2020 Edition",
+          "issuer": "Tiêu chí ổn định nguyên vẹn quốc tế",
+          "year": "Bản hợp nhất 2020"
+        }
+      ]
+    }
+  },
+  "announcement": {
+    "text": "Đã có bảng giá 2026",
+    "cta": {
+      "label": "Xem ngay!",
+      "href": "/nang-luc/"
+    }
+  },
+  "capabilities": [
+    {
+      "index": "01",
+      "name": "Thiết kế tàu cá",
+      "href": "/nang-luc/thiet-ke-tau-ca/",
+      "desc": "Tàu cá vỏ thép, composite và gỗ — từ hồ sơ kỹ thuật đến thiết kế đóng mới và cải hoán.",
+      "icon": "ship",
+      "children": [
+        {
+          "name": "Lập hồ sơ kỹ thuật",
+          "desc": "Lập bản vẽ và thuyết minh tính toán phục vụ thẩm định, phân cấp và cấp giấy chứng nhận."
+        },
+        {
+          "name": "Thiết kế cải hoán",
+          "desc": "Xác định lại trọng tâm tàu, điều chỉnh bố trí boong và thiết bị nghề, tính lại thông báo ổn định."
+        },
+        {
+          "name": "Thiết kế cải hoán vỏ",
+          "desc": "Tính toán cải tạo kết cấu, kéo dài thân tàu hoặc tăng tải trọng chở hàng."
+        },
+        {
+          "name": "Thiết kế kỹ thuật đóng mới",
+          "desc": "Phát triển phương án tàu từ bài toán khai thác đến bộ hồ sơ thi công và thẩm định đăng kiểm."
+        }
+      ]
+    },
+    {
+      "index": "02",
+      "name": "Thiết kế phương tiện thủy nội địa",
+      "href": "/nang-luc/phuong-tien-thuy-noi-dia/",
+      "desc": "Sà lan, tàu chở hàng, tàu khách và tàu sông pha biển cấp VR-SI, VR-SB.",
+      "icon": "waves"
+    },
+    {
+      "index": "03",
+      "name": "Dịch vụ CNTT",
+      "href": "/nang-luc/dich-vu-cntt/",
+      "desc": "Thiết kế website, hệ thống quản lý và các giải pháp phần mềm cho doanh nghiệp hàng hải.",
+      "icon": "scan"
+    }
+  ],
+  "capabilitiesPage": {
+    "title": "Dịch vụ kỹ thuật tàu thủy | Lasan Marine",
+    "description": "Thiết kế tàu cá, phương tiện thủy nội địa và giải pháp công nghệ thông tin cho doanh nghiệp hàng hải.",
+    "hero": {
+      "headline": "Đa dạng dịch vụ cho đa dạng nhu cầu.",
+      "lead": "Từ lập hồ sơ kỹ thuật, cải hoán đến thiết kế đóng mới cho tàu cá và phương tiện thủy nội địa — cùng các giải pháp công nghệ thông tin cho doanh nghiệp hàng hải.",
+      "placeholder": "Ảnh: bản vẽ kỹ thuật và mô hình tàu"
+    },
+    "specs": {
+      "heading": "Phạm vi kỹ thuật.",
+      "note": "Thông số dưới đây là khoảng làm việc thường gặp; hạng mục ngoài khoảng vẫn nhận đánh giá theo từng trường hợp.",
+      "rows": [
+        {
+          "label": "CHIỀU DÀI PHƯƠNG TIỆN",
+          "value": "12 – 50 m"
+        },
+        {
+          "label": "VẬT LIỆU VỎ",
+          "value": "Thép / composite / gỗ"
+        },
+        {
+          "label": "CẤP ĐĂNG KIỂM",
+          "value": "VR-SI · VR-SB · biển"
+        },
+        {
+          "label": "TÍNH TOÁN ỔN ĐỊNH",
+          "value": "Nguyên vẹn và tai nạn"
+        },
+        {
+          "label": "BẢN VẼ THI CÔNG",
+          "value": "Shop drawing · nesting CNC"
+        },
+        {
+          "label": "THỜI GIAN HỒ SƠ CƠ BẢN",
+          "value": "3 – 6 tuần"
+        },
+        {
+          "label": "PHẢN HỒI BÁO GIÁ",
+          "value": "≤ 24 giờ"
+        }
+      ]
+    },
+    "documents": {
+      "heading": "Tài liệu",
+      "filters": [
+        "TẤT CẢ",
+        "HỒ SƠ",
+        "BIỂU MẪU",
+        "KỸ THUẬT"
+      ],
+      "items": [
+        {
+          "title": "Hồ sơ năng lực Lasan Marine",
+          "size": "—",
+          "group": "HỒ SƠ"
+        },
+        {
+          "title": "Phiếu yêu cầu thiết kế",
+          "size": "—",
+          "group": "BIỂU MẪU"
+        },
+        {
+          "title": "Danh mục bản vẽ trình đăng kiểm",
+          "size": "—",
+          "group": "KỸ THUẬT"
+        },
+        {
+          "title": "Mẫu thông báo ổn định",
+          "size": "—",
+          "group": "KỸ THUẬT"
+        }
+      ]
+    }
+  },
+  "careers": {
+    "title": "Tuyển dụng | Lasan Marine",
+    "description": "Cơ hội làm việc tại Lasan Marine.",
+    "hero": {
+      "headline": "Làm kỹ thuật ở nơi mỗi con số đều phải bảo vệ được.",
+      "lead": "Chúng tôi tìm kỹ sư vỏ tàu, kỹ sư hệ động lực và chuyên viên hồ sơ sẵn sàng đi hiện trường và chịu trách nhiệm với tính toán mình ký.",
+      "placeholder": "Ảnh: kỹ sư trẻ tại xưởng"
+    },
+    "values": [
+      {
+        "index": "01",
+        "title": "Số liệu trước ý kiến",
+        "desc": "Mọi kết luận kỹ thuật phải đi kèm phép đo hoặc tính toán theo quy phạm."
+      },
+      {
+        "index": "02",
+        "title": "Hồ sơ bảo vệ được",
+        "desc": "Bản vẽ và thuyết minh phải đứng vững trước hội đồng thẩm định đăng kiểm."
+      },
+      {
+        "index": "03",
+        "title": "Học nghề tại chỗ",
+        "desc": "Kỹ sư mới đi khảo sát cùng người có kinh nghiệm trong sáu tháng đầu."
+      }
+    ],
+    "openings": [
+      {
+        "role": "Kỹ sư thiết kế vỏ tàu",
+        "location": "Nha Trang",
+        "type": "TOÀN THỜI GIAN"
+      },
+      {
+        "role": "Kỹ sư hệ động lực",
+        "location": "Nha Trang",
+        "type": "TOÀN THỜI GIAN"
+      },
+      {
+        "role": "Chuyên viên hồ sơ đăng kiểm",
+        "location": "Nha Trang",
+        "type": "TOÀN THỜI GIAN"
+      },
+      {
+        "role": "Cộng tác viên khảo sát hiện trường",
+        "location": "Miền Trung / Nam Bộ",
+        "type": "THEO DỰ ÁN"
+      }
+    ],
+    "form": {
+      "heading": "Gửi hồ sơ",
+      "note": "Đính kèm CV và hồ sơ năng lực. Chúng tôi phản hồi trong 5 ngày làm việc.",
+      "fields": {
+        "name": "HỌ VÀ TÊN",
+        "email": "EMAIL",
+        "role": "VỊ TRÍ ỨNG TUYỂN",
+        "message": "GIỚI THIỆU NGẮN",
+        "attach": "ĐÍNH KÈM HỒ SƠ",
+        "attachHint": "PDF, DOCX — tối đa 10 MB",
+        "submit": "Gửi hồ sơ"
+      }
+    }
+  },
+  "contact": {
+    "title": "Liên hệ tư vấn kỹ thuật | Lasan Marine",
+    "description": "Liên hệ Lasan Marine để được tư vấn kỹ thuật và báo giá trong 24 giờ.",
+    "hero": {
+      "headline": "Liên hệ tư vấn kỹ thuật.",
+      "lead": "Mô tả phương tiện và nhu cầu khai thác — chúng tôi phản hồi kèm phân tích sơ bộ và báo giá trong 24 giờ."
+    },
+    "offices": [
+      {
+        "name": "CÔNG TY TNHH LASAN MARINE",
+        "address": "Số 03 Trần Lư, phường Bắc Nha Trang, tỉnh Khánh Hòa, Việt Nam",
+        "meta": "MST 4202063521"
+      },
+      {
+        "name": "Hotline / Zalo",
+        "address": "0834 310 781 · contact@lasanmarine.vn",
+        "meta": "PHẢN HỒI TRONG 24 GIỜ"
+      }
+    ],
+    "form": {
+      "heading": "Gửi yêu cầu tư vấn",
+      "fields": {
+        "name": "HỌ VÀ TÊN",
+        "company": "ĐƠN VỊ / CƠ SỞ ĐÓNG TÀU",
+        "email": "EMAIL",
+        "phone": "SỐ ĐIỆN THOẠI",
+        "interest": "DỊCH VỤ QUAN TÂM",
+        "message": "YÊU CẦU KỸ THUẬT",
+        "attach": "ĐÍNH KÈM BẢN VẼ",
+        "attachHint": "PDF, DWG, DOCX, XLSX",
+        "submit": "Gửi yêu cầu tư vấn"
+      },
+      "interests": [
+        "Thiết kế tàu cá — Lập hồ sơ kỹ thuật",
+        "Thiết kế tàu cá — Thiết kế cải hoán",
+        "Thiết kế tàu cá — Thiết kế cải hoán vỏ",
+        "Thiết kế tàu cá — Thiết kế kỹ thuật đóng mới",
+        "Thiết kế phương tiện thủy nội địa",
+        "Dịch vụ CNTT"
+      ],
+      "vesselTypes": [
+        "Tàu đánh cá (vỏ thép, composite hoặc gỗ)",
+        "Phương tiện thủy nội địa (VR-SI, VR-SB)",
+        "Tàu vận tải đường thủy và biển xa",
+        "Tàu khách và du thuyền",
+        "Phương tiện công vụ và loại khác"
+      ],
+      "success": "Đã gửi yêu cầu. Chúng tôi phản hồi trong 24 giờ làm việc."
+    }
+  },
+  "footerNav": [
+    {
+      "label": "Giới thiệu",
+      "href": "/gioi-thieu/"
+    },
+    {
+      "label": "Dịch vụ thiết kế tàu cá",
+      "href": "/nang-luc/thiet-ke-tau-ca/"
+    },
+    {
+      "label": "Dịch vụ thiết kế phương tiện thủy nội địa",
+      "href": "/nang-luc/phuong-tien-thuy-noi-dia/"
+    },
+    {
+      "label": "Tin tức",
+      "href": "/tin-tuc/"
+    },
+    {
+      "label": "Công cụ",
+      "href": "/cong-cu/"
+    }
+  ],
+  "home": {
+    "title": "Lasan Marine | Thiết kế tàu thủy và hồ sơ đăng kiểm VR",
+    "description": "Thiết kế, hoán cải và lập hồ sơ kỹ thuật cho tàu cá, phương tiện thủy nội địa và tàu vận tải đường thủy.",
+    "hero": {
+      "headline": "Engineering",
+      "headlineAccent": "Tomorrow’s",
+      "headlineTail": "Oceans",
+      "lead": "Từ đường nước đầu tiên trên bản vẽ đến bộ hồ sơ đăng kiểm sau cùng, chúng tôi tính từng thông số để con tàu chạy êm hơn, tốn ít nhiên liệu hơn và ra khơi đúng hạn.",
+      "placeholder": "Ảnh hero: tàu cá vỏ thép / xưởng đóng tàu",
+      "primary": {
+        "label": "Xem dịch vụ kỹ thuật",
+        "href": "/nang-luc/"
+      },
+      "secondary": {
+        "label": "Tư vấn trực tiếp",
+        "href": "/lien-he/"
+      }
+    },
+    "manifesto": {
+      "heading": "Giải pháp thiết kế kỹ thuật cho phương tiện thủy.",
+      "lead": "Lasan Marine là công ty thiết kế, hoán cải và lập hồ sơ kỹ thuật cho phương tiện thủy.",
+      "body": [
+        "Đội ngũ kỹ sư xuất phát từ yêu cầu khai thác thực tế của chủ tàu, lần lượt xác định thông số chính, bố trí chung, tuyến hình, kết cấu, hệ động lực và tính toán ổn định cho đến khi hoàn thiện hồ sơ.",
+        "Mỗi phương tiện là một bài toán kỹ thuật riêng. Chúng tôi lắng nghe nhu cầu khai thác thực tế để cùng khách hàng xây dựng giải pháp an toàn, hiệu quả và phù hợp lâu dài."
+      ],
+      "cta": {
+        "label": "Giới thiệu về công ty",
+        "href": "/gioi-thieu/"
+      }
+    },
+    "stats": [
+      {
+        "value": "1000",
+        "suffix": "+",
+        "label": "HỒ SƠ THIẾT KẾ TÀU CÁ",
+        "note": "Hồ sơ đã lập và trình thẩm định"
+      },
+      {
+        "value": "05",
+        "suffix": "",
+        "label": "TÀU VỎ THÉP",
+        "note": "Thiết kế đóng mới và hoán cải"
+      },
+      {
+        "value": "30",
+        "suffix": "+",
+        "label": "TÀU VỎ COMPOSITE",
+        "note": "Tàu cá và tàu công vụ"
+      },
+      {
+        "value": "03",
+        "suffix": "",
+        "label": "PHƯƠNG TIỆN THỦY NỘI ĐỊA",
+        "note": "Cấp VR-SI và VR-SB"
+      }
+    ],
+    "services": {
+      "heading": "Dịch vụ trọng tâm.",
+      "caption": "DỊCH VỤ"
+    },
+    "spotlight": {
+      "caption": "01 / 03 — THIẾT KẾ TÀU CÁ",
+      "heading": "Phát triển phương án tàu từ bài toán khai thác đến hồ sơ thẩm định.",
+      "body": "Xuất phát từ yêu cầu khai thác thực tế của chủ tàu, chúng tôi xác định thông số chính rồi triển khai đến bộ hồ sơ kỹ thuật thi công và thẩm định đăng kiểm.",
+      "items": [
+        "Xác định thông số chính và bố trí chung",
+        "Thiết kế tuyến hình và kết cấu thân vỏ",
+        "Tính toán thủy tĩnh, ổn định và sức bền",
+        "Hồ sơ trình Cục Đăng kiểm Việt Nam"
+      ],
+      "cta": {
+        "label": "Xem chi tiết dịch vụ",
+        "href": "/nang-luc/"
+      },
+      "placeholder": "Ảnh dịch vụ: bản vẽ tuyến hình / xưởng đóng tàu"
+    },
+    "contact": {
+      "heading": "Liên hệ chúng tôi",
+      "cta": {
+        "label": "Chi tiết thông tin liên hệ",
+        "href": "/lien-he/"
+      }
+    }
+  },
+  "insights": {
+    "title": "Bài viết và ghi chú kỹ thuật | Lasan Marine",
+    "description": "Bài viết của đội ngũ kỹ sư Lasan Marine về thủy động lực học, kết cấu vỏ, hệ động lực và quy chuẩn đăng kiểm VR.",
+    "hero": {
+      "headline": "Ghi chú kỹ thuật và kiến thức chuyên ngành.",
+      "lead": "Bài viết của đội ngũ kỹ sư Lasan Marine về thủy động lực học, kết cấu vỏ, hệ động lực và quy chuẩn đăng kiểm VR."
+    },
+    "featured": {
+      "kind": "TƯ VẤN KỸ THUẬT TÀU CÁ",
+      "date": "12.06.2026",
+      "title": "Những lưu ý kỹ thuật khi chuyển hoán nghề cho tàu cá",
+      "excerpt": "Thay đổi nghề khai thác kéo theo thay đổi chiều cao trọng tâm (KG) và sơ đồ bố trí boong. Bài viết phân tích cách tính lại ổn định và gia cường kết cấu bệ tời.",
+      "placeholder": "Ảnh bài viết — chuyển hoán nghề tàu cá"
+    },
+    "articles": [
+      {
+        "title": "Tuyến hình thân tàu và giải pháp giảm tiêu thụ nhiên liệu",
+        "date": "THỦY ĐỘNG LỰC HỌC · 02.06.2026"
+      },
+      {
+        "title": "Hồ sơ thiết kế kỹ thuật cho tàu cá vỏ thép xa bờ",
+        "date": "HỒ SƠ ĐĂNG KIỂM · 24.05.2026"
+      },
+      {
+        "title": "Cách đọc và sử dụng thông báo ổn định (stability booklet)",
+        "date": "TÍNH TOÁN ỔN ĐỊNH · 15.05.2026"
+      },
+      {
+        "title": "So sánh hiệu quả kinh tế – kỹ thuật giữa đóng mới và hoán cải",
+        "date": "PHÂN TÍCH HOÁN CẢI · 28.04.2026"
+      },
+      {
+        "title": "Kiểm tra kết cấu dầm bệ máy khi nâng công suất động cơ",
+        "date": "KẾT CẤU VÀ ĐỘNG LỰC · 12.04.2026"
+      },
+      {
+        "title": "Thủ tục và hồ sơ khi chuyển vùng hoạt động sang VR-SB",
+        "date": "QUY CHUẨN ĐĂNG KIỂM · 30.03.2026"
+      }
+    ]
+  },
+  "nav": [
+    {
+      "label": "GIỚI THIỆU",
+      "href": "/gioi-thieu/"
+    },
+    {
+      "label": "DỊCH VỤ",
+      "href": "/nang-luc/",
+      "mega": true,
+      "title": "Dịch vụ"
+    },
+    {
+      "label": "DỰ ÁN",
+      "href": "/du-an/"
+    },
+    {
+      "label": "BÀI VIẾT",
+      "href": "/tin-tuc/"
+    },
+    {
+      "label": "CÔNG CỤ",
+      "href": "/cong-cu/"
+    }
+  ],
+  "notFound": {
+    "title": "404 | Lasan Marine",
+    "code": "404",
+    "headline": "Không tìm thấy trang.",
+    "lead": "Đường dẫn có thể đã thay đổi hoặc trang đã được gỡ.",
+    "cta": {
+      "label": "Về trang chủ",
+      "href": "/"
+    }
+  },
+  "projects": {
+    "title": "Dự án tiêu biểu | Lasan Marine",
+    "description": "Những phương tiện thủy mà Lasan Marine đã tư vấn thiết kế, chuyển hoán công năng và hoàn tất hồ sơ thẩm định đăng kiểm.",
+    "hero": {
+      "headline": "Dự án tiêu biểu.",
+      "lead": "Những phương tiện thủy mà Lasan Marine đã tư vấn thiết kế, chuyển hoán công năng và hoàn tất hồ sơ thẩm định đăng kiểm."
+    },
+    "filters": [
+      "Tất cả",
+      "Thiết kế mới",
+      "Chuyển hoán",
+      "Hoán cải",
+      "Hồ sơ kỹ thuật"
+    ],
+    "showcase": [
+      {
+        "tag": "THIẾT KẾ TÀU MỚI",
+        "name": "Tàu cá vỏ thép 24m",
+        "location": "TÀU ĐÁNH CÁ",
+        "year": "2026",
+        "service": "L = 24M",
+        "placeholder": "Ảnh dự án thực tế — tàu cá vỏ thép 24m"
+      },
+      {
+        "tag": "HOÁN CẢI",
+        "name": "Tàu chở hàng nội địa 38m",
+        "location": "VẬN TẢI ĐƯỜNG THỦY",
+        "year": "2026",
+        "service": "L = 38M",
+        "placeholder": "Ảnh dự án thực tế — tàu chở hàng 38m"
+      },
+      {
+        "tag": "THIẾT KẾ TÀU MỚI",
+        "name": "Tàu cá vỏ composite 18m",
+        "location": "TÀU ĐÁNH CÁ",
+        "year": "2026",
+        "service": "L = 18M",
+        "placeholder": "Ảnh dự án thực tế — tàu cá composite 18m"
+      },
+      {
+        "tag": "CHUYỂN HOÁN NGHỀ",
+        "name": "Tàu cá vỏ gỗ 15m",
+        "location": "TÀU ĐÁNH CÁ",
+        "year": "2025",
+        "service": "L = 15M",
+        "placeholder": "Ảnh dự án thực tế — tàu cá vỏ gỗ 15m"
+      }
+    ],
+    "grid": [
+      {
+        "tag": "THIẾT KẾ TÀU MỚI",
+        "name": "Tàu cá vỏ thép 24m",
+        "meta": "Tàu đánh cá · L = 24m · 2026",
+        "span": 6
+      },
+      {
+        "tag": "HOÁN CẢI",
+        "name": "Tàu chở hàng nội địa 38m",
+        "meta": "Vận tải đường thủy · L = 38m · 2026",
+        "span": 6
+      },
+      {
+        "tag": "THIẾT KẾ TÀU MỚI",
+        "name": "Tàu cá vỏ composite 18m",
+        "meta": "Tàu đánh cá · L = 18m · 2026",
+        "span": 6
+      },
+      {
+        "tag": "CHUYỂN HOÁN NGHỀ",
+        "name": "Tàu cá vỏ gỗ 15m",
+        "meta": "Tàu đánh cá · L = 15m · 2025",
+        "span": 6
+      },
+      {
+        "tag": "HỒ SƠ KỸ THUẬT PHÂN CẤP",
+        "name": "Tàu khách nội địa 22m",
+        "meta": "Thủy nội địa · L = 22m · 2025",
+        "span": 6
+      },
+      {
+        "tag": "CHUYỂN HOÁN VỎ",
+        "name": "Sà lan chở hàng 45m",
+        "meta": "Vận tải đường thủy · L = 45m · 2025",
+        "span": 6
+      }
+    ],
+    "metrics": {
+      "rows": [
+        {
+          "label": "PHƯƠNG TIỆN",
+          "value": "Tàu cá vỏ thép 24m"
+        },
+        {
+          "label": "NGHỀ KHAI THÁC",
+          "value": "Lưới vây xa bờ"
+        },
+        {
+          "label": "NĂM",
+          "value": "2026"
+        },
+        {
+          "label": "HẠNG MỤC",
+          "value": "Thiết kế tàu mới"
+        },
+        {
+          "label": "CẤP ĐĂNG KIỂM",
+          "value": "Tàu cá biển"
+        }
+      ],
+      "stats": [
+        {
+          "value": "24",
+          "suffix": "m",
+          "note": "Chiều dài lớn nhất của thân tàu"
+        },
+        {
+          "value": "8",
+          "suffix": "–9",
+          "note": "Cấp sóng gió thiết kế chịu được"
+        },
+        {
+          "value": "1",
+          "suffix": "",
+          "note": "Lần trình đăng kiểm, không phải sửa đổi"
+        },
+        {
+          "value": "6",
+          "suffix": " tuần",
+          "note": "Thời gian hoàn thiện bộ hồ sơ"
+        }
+      ]
+    },
+    "gallery": {
+      "note": "Ảnh chụp tại xưởng và trên hiện trường trong quá trình thi công thực tế.",
+      "items": [
+        {
+          "caption": "TUYẾN HÌNH VÀ BỐ TRÍ CHUNG",
+          "placeholder": "Ảnh — bản vẽ tuyến hình"
+        },
+        {
+          "caption": "KẾT CẤU THÂN VỎ",
+          "placeholder": "Ảnh — thi công kết cấu"
+        },
+        {
+          "caption": "HỆ ĐỘNG LỰC",
+          "placeholder": "Ảnh — buồng máy"
+        },
+        {
+          "caption": "HẠ THỦY VÀ NGHIỆM THU",
+          "placeholder": "Ảnh — hạ thủy"
+        }
+      ]
+    }
+  },
+  "servicePages": {
+    "01": {
+      "standards": true,
+      "intro": "Tàu cá xa bờ đòi hỏi dung tích hầm bảo quản lớn, ổn định tốt khi kéo lưới và hồ sơ đủ để qua đăng kiểm ngay lần trình đầu. Chúng tôi nhận trọn gói từ khảo sát đến bàn giao hồ sơ.",
+      "specs": {
+        "heading": "Phạm vi thường gặp.",
+        "rows": [
+          {
+            "label": "CHIỀU DÀI",
+            "value": "12 – 30 m"
+          },
+          {
+            "label": "VẬT LIỆU VỎ",
+            "value": "Thép · composite · gỗ"
+          },
+          {
+            "label": "NGHỀ KHAI THÁC",
+            "value": "Lưới vây · lưới chụp · câu"
+          },
+          {
+            "label": "CẤP HOẠT ĐỘNG",
+            "value": "Tàu cá biển"
+          }
+        ]
+      }
+    },
+    "02": {
+      "intro": "Phương tiện thủy nội địa được tính trên bài toán cân đối giữa mớn nước, tải trọng và vùng hoạt động. Hồ sơ lập theo quy phạm phân cấp phương tiện thủy nội địa.",
+      "items": [
+        {
+          "name": "Thiết kế đóng mới",
+          "desc": "Sà lan, tàu chở hàng, tàu khách và tàu sông pha biển từ thông số khai thác ban đầu."
+        },
+        {
+          "name": "Nâng cấp tải trọng",
+          "desc": "Tính lại sức bền dầm dọc và mạn khô khi tăng DWT trên phương tiện đang khai thác."
+        },
+        {
+          "name": "Hoán cải công năng",
+          "desc": "Chuyển đổi phương tiện thành tàu du lịch, nhà hàng nổi hoặc tàu công vụ."
+        },
+        {
+          "name": "Hồ sơ phân cấp VR-SI / VR-SB",
+          "desc": "Lập và bảo vệ hồ sơ mở rộng vùng hoạt động từ sông ra sông pha biển."
+        }
+      ],
+      "specs": {
+        "heading": "Phạm vi thường gặp.",
+        "rows": [
+          {
+            "label": "CHIỀU DÀI",
+            "value": "15 – 50 m"
+          },
+          {
+            "label": "LOẠI PHƯƠNG TIỆN",
+            "value": "Sà lan · hàng · khách"
+          },
+          {
+            "label": "CẤP ĐĂNG KIỂM",
+            "value": "VR-SI · VR-SB"
+          },
+          {
+            "label": "VẬT LIỆU VỎ",
+            "value": "Thép · composite"
+          }
+        ]
+      }
+    },
+    "03": {
+      "intro": "Ngoài kỹ thuật tàu thủy, Lasan Marine nhận xây dựng website và hệ thống quản lý cho doanh nghiệp trong ngành — nơi bài toán nghiệp vụ cần người hiểu cả phần mềm lẫn hiện trường.",
+      "items": [
+        {
+          "name": "Thiết kế website",
+          "desc": "Website giới thiệu, hồ sơ năng lực và trang thương mại, tối ưu tốc độ tải và tìm kiếm."
+        },
+        {
+          "name": "Hệ thống quản lý",
+          "desc": "Quản lý hồ sơ thiết kế, tiến độ dự án, vật tư và nhân sự hiện trường."
+        },
+        {
+          "name": "Giải pháp phần mềm",
+          "desc": "Công cụ tính toán chuyên ngành và tự động hoá các bước lập hồ sơ lặp lại."
+        },
+        {
+          "name": "Hạ tầng và vận hành",
+          "desc": "Triển khai, sao lưu và bảo trì hệ thống sau khi bàn giao."
+        }
+      ],
+      "process": {
+        "heading": "Cách chúng tôi triển khai.",
+        "steps": [
+          {
+            "index": "01",
+            "title": "Khảo sát",
+            "desc": "Làm rõ nghiệp vụ và người dùng thực tế của hệ thống."
+          },
+          {
+            "index": "02",
+            "title": "Đề xuất",
+            "desc": "Chốt phạm vi, công nghệ và mốc bàn giao."
+          },
+          {
+            "index": "03",
+            "title": "Thiết kế",
+            "desc": "Dựng giao diện và cấu trúc dữ liệu."
+          },
+          {
+            "index": "04",
+            "title": "Phát triển",
+            "desc": "Làm theo từng đợt, có bản chạy thử để duyệt sớm."
+          },
+          {
+            "index": "05",
+            "title": "Nghiệm thu",
+            "desc": "Kiểm thử, chuyển dữ liệu và đào tạo sử dụng."
+          },
+          {
+            "index": "06",
+            "title": "Vận hành",
+            "desc": "Bàn giao, theo dõi và bảo trì định kỳ."
+          }
+        ]
+      }
+    }
+  },
+  "tools": {
+    "index": {
+      "title": "Công cụ kỹ thuật | Lasan Marine",
+      "description": "Các công cụ tính toán nhanh dùng trong khảo sát và lập phương án.",
+      "headline": "Công cụ kỹ thuật.",
+      "lead": "Ba công cụ tính nhanh dùng khi khảo sát và lập phương án. Kết quả mang tính tham khảo, không thay thế hồ sơ đăng kiểm."
+    },
+    "power": {
+      "title": "Chuyển đổi công suất | Lasan Marine",
+      "description": "Chuyển đổi giữa kW, HP (mã lực) và PS.",
+      "label": "CÔNG CỤ 01",
+      "headline": "Chuyển đổi công suất",
+      "lead": "Nhập một giá trị, các đơn vị còn lại được quy đổi ngay.",
+      "units": [
+        {
+          "id": "kw",
+          "label": "kW",
+          "factor": 1
+        },
+        {
+          "id": "hp",
+          "label": "HP (mã lực Anh)",
+          "factor": 0.745699872
+        },
+        {
+          "id": "ps",
+          "label": "PS (mã lực Đức)",
+          "factor": 0.73549875
+        }
+      ],
+      "inputLabel": "GIÁ TRỊ",
+      "unitLabel": "ĐƠN VỊ NGUỒN",
+      "note": "Quy ước: 1 HP = 0,745699872 kW; 1 PS = 0,73549875 kW."
+    },
+    "shaft": {
+      "title": "Kiểm tra đường kính trục chân vịt | Lasan Marine",
+      "description": "Ước tính đường kính tối thiểu của trục chân vịt theo công suất và vòng quay.",
+      "label": "CÔNG CỤ 02",
+      "headline": "Đường kính trục chân vịt",
+      "lead": "Ước tính đường kính tối thiểu theo công suất, vòng quay và vật liệu trục.",
+      "fields": {
+        "power": "CÔNG SUẤT (kW)",
+        "rpm": "VÒNG QUAY TRỤC (rpm)",
+        "material": "VẬT LIỆU TRỤC"
+      },
+      "materials": [
+        {
+          "id": "cs",
+          "name": "Thép carbon",
+          "strength": 400,
+          "note": "Rm ≈ 400 N/mm²"
+        },
+        {
+          "id": "as",
+          "name": "Thép hợp kim",
+          "strength": 600,
+          "note": "Rm ≈ 600 N/mm²"
+        },
+        {
+          "id": "ss",
+          "name": "Thép không gỉ",
+          "strength": 500,
+          "note": "Rm ≈ 500 N/mm²"
+        }
+      ],
+      "resultLabel": "ĐƯỜNG KÍNH TỐI THIỂU",
+      "note": "Công thức tham khảo theo quy phạm phân cấp: d = F · k · ∛(P / n · 560/(Rm+160)). Kết quả chỉ dùng để ước lượng sơ bộ."
+    },
+    "engine": {
+      "title": "Tra cứu động cơ | Lasan Marine",
+      "description": "Tra cứu thông số động cơ thủy theo hãng và model.",
+      "label": "CÔNG CỤ 03",
+      "headline": "Tra cứu động cơ",
+      "lead": "Lọc theo hãng, model hoặc dải công suất.",
+      "columns": [
+        "HÃNG",
+        "MODEL",
+        "CÔNG SUẤT (kW)",
+        "VÒNG QUAY (rpm)",
+        "SỐ XY-LANH"
+      ],
+      "perPage": 12
+    }
+  },
+  "site": {
+    "name": "LASAN MARINE",
+    "legalName": "CÔNG TY TNHH LASAN MARINE",
+    "legalNameEn": "LASAN MARINE COMPANY LIMITED",
+    "taxCode": "4202063521",
+    "address": "Số 03 Trần Lư, phường Bắc Nha Trang, tỉnh Khánh Hòa, Việt Nam",
+    "phone": "0834 310 781",
+    "email": "contact@lasanmarine.vn",
+    "tagline": "Engineering Tomorrow’s Oceans",
+    "mapsApiKey": "",
+    "bank": {
+      "holder": "CÔNG TY TNHH LASAN MARINE",
+      "number": "310781",
+      "currency": "VND",
+      "name": "Techcombank – chi nhánh Mã Vòng",
+      "swift": "VTCBVNVX"
+    },
+    "social": [
+      {
+        "label": "LinkedIn",
+        "href": "#"
+      },
+      {
+        "label": "YouTube",
+        "href": "#"
+      }
+    ]
+  },
+  "routes": {
+    "home": "/",
+    "about": "/gioi-thieu/",
+    "capabilities": "/nang-luc/",
+    "serviceFishing": "/nang-luc/thiet-ke-tau-ca/",
+    "serviceInland": "/nang-luc/phuong-tien-thuy-noi-dia/",
+    "serviceIt": "/nang-luc/dich-vu-cntt/",
+    "projects": "/du-an/",
+    "insights": "/tin-tuc/",
+    "careers": "/tuyen-dung/",
+    "contact": "/lien-he/",
+    "tools": "/cong-cu/",
+    "powerConverter": "/cong-cu/chuyen-doi-cong-suat/",
+    "shaftDiameter": "/cong-cu/kiem-tra-duong-kinh-truc-chan-vit/",
+    "engineLookup": "/cong-cu/tra-cuu-dong-co/"
+  }
+}

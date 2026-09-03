@@ -1,0 +1,4 @@
+interface:
+  display_name: "ACF Block Builder"
+  short_description: "Scaffold ACF blocks for this theme"
+  default_prompt: "Use $acf-block-builder to create or update an ACF block that matches this WordPress theme structure."

@@ -1,0 +1,70 @@
+.cs {
+	/* --cs-pad is named so the mascot can cancel the bottom padding and stand
+	   on the band's edge instead of floating above it. */
+	@apply relative overflow-hidden;
+	--cs-pad: clamp(56px, 7vw, 120px);
+	padding-block: var(--cs-pad);
+}
+.cs__waves {
+	@apply absolute inset-0 h-full w-full;
+	opacity: 0.5;
+}
+.cs__inner {
+	@apply relative grid items-center;
+	grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+	gap: clamp(28px, 4vw, 72px);
+}
+.cs__mascot {
+	@apply flex justify-center self-end;
+	margin: 0 0 calc(var(--cs-pad) * -1);
+}
+.cs__mascot img {
+	@apply h-auto w-full;
+	display: block;
+	max-width: 420px;
+}
+
+.cs__body {
+	@apply flex flex-col items-start;
+	gap: 26px;
+}
+.cs__heading {
+	@apply text-white;
+	max-width: 14em;
+	font-size: clamp(28px, 3.4vw, 52px);
+	line-height: 1.06;
+	letter-spacing: -0.025em;
+}
+.cs__details {
+	@apply flex flex-col;
+	gap: 16px;
+}
+.cs__line {
+	@apply flex items-center font-display font-semibold text-white;
+	gap: 12px;
+	font-size: clamp(17px, 1.5vw, 21px);
+}
+.cs__line:hover {
+	@apply text-marine-bright;
+}
+.cs__icon {
+	@apply flex-none text-marine;
+}
+.cs__cta {
+	margin-top: 4px;
+}
+
+/* Below this the mascot stacks above the copy rather than shrinking away. */
+@media (max-width: 760px) {
+	.cs__inner {
+		grid-template-columns: 1fr;
+	}
+	.cs__mascot {
+		/* Stacked above the copy on a phone, so it sits in the flow again. */
+		@apply self-center;
+		margin-bottom: 0;
+	}
+	.cs__mascot img {
+		max-width: 280px;
+	}
+}

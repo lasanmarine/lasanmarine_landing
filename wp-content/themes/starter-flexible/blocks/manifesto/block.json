@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/manifesto",
+    "title": "LASAN — Manifesto",
+    "description": "Tuyên ngôn: tiêu đề bên trái, lập luận bên phải.",
+    "category": "flexible-blocks",
+    "icon": "editor-alignleft",
+    "keywords": ["manifesto", "statement", "about"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

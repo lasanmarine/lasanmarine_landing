@@ -1,0 +1,31 @@
+{
+  "key": "group_service_architecture",
+  "title": "Service Architecture",
+  "fields": [
+    { "key": "field_sa_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_sa_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_sa_caption", "label": "Figure Caption", "name": "caption", "type": "text" },
+    { "key": "field_sa_view_all", "label": "View All Label", "name": "view_all", "type": "text" },
+    { "key": "field_sa_view_all_link", "label": "View All Link", "name": "view_all_link", "type": "link", "return_format": "array" },
+    {
+      "key": "field_sa_items", "label": "Services", "name": "items", "type": "repeater",
+      "layout": "block", "button_label": "Add Service",
+      "sub_fields": [
+        { "key": "field_sa_item_index", "label": "Index", "name": "index", "type": "text" },
+        { "key": "field_sa_item_name", "label": "Name", "name": "name", "type": "text" },
+        { "key": "field_sa_item_desc", "label": "Description", "name": "desc", "type": "textarea", "rows": 2, "new_lines": "" },
+        { "key": "field_sa_item_link", "label": "Link", "name": "link", "type": "link", "return_format": "array" },
+        { "key": "field_sa_item_image", "label": "Figure", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
+        {
+          "key": "field_sa_item_children", "label": "Sub-services", "name": "children", "type": "repeater",
+          "layout": "table", "button_label": "Add Sub-service",
+          "sub_fields": [
+            { "key": "field_sa_item_child_name", "label": "Name", "name": "name", "type": "text" }
+          ]
+        }
+      ]
+    },
+    { "key": "field_sa_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/service-architecture" }]]
+}

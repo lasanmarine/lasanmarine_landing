@@ -1,0 +1,19 @@
+{
+  "key": "group_spec_list",
+  "title": "Spec List",
+  "fields": [
+    { "key": "field_spec_list_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_spec_list_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_spec_list_note", "label": "Note", "name": "note", "type": "textarea", "rows": 3, "new_lines": "" },
+    {
+      "key": "field_spec_list_rows", "label": "Rows", "name": "rows", "type": "repeater",
+      "layout": "row", "button_label": "Add Row",
+      "sub_fields": [
+        { "key": "field_spec_list_row_label", "label": "Label", "name": "label", "type": "text" },
+        { "key": "field_spec_list_row_value", "label": "Value", "name": "value", "type": "text" }
+      ]
+    },
+    { "key": "field_spec_list_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/spec-list" }]]
+}

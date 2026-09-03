@@ -1,0 +1,28 @@
+{
+  "key": "group_capability_matrix",
+  "title": "Capability Matrix",
+  "fields": [
+    { "key": "field_cm_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "CAPABILITY MATRIX" },
+    { "key": "field_cm_heading", "label": "Heading", "name": "heading", "type": "text" },
+    {
+      "key": "field_cm_items", "label": "Capabilities", "name": "items", "type": "repeater",
+      "layout": "block", "button_label": "Add Capability",
+      "sub_fields": [
+        { "key": "field_cm_item_index", "label": "Index", "name": "index", "type": "text", "instructions": "Cũng dùng làm id neo của ô." },
+        { "key": "field_cm_item_icon", "label": "Icon", "name": "icon", "type": "select", "choices": { "ship": "ship", "waves": "waves", "ruler": "ruler", "wrench": "wrench", "compass": "compass", "scan": "scan", "gauge": "gauge", "award": "award", "calculator": "calculator", "link": "link" }, "default_value": "ship", "return_format": "value" },
+        { "key": "field_cm_item_name", "label": "Name", "name": "name", "type": "text" },
+        { "key": "field_cm_item_desc", "label": "Description", "name": "desc", "type": "textarea", "rows": 3, "new_lines": "" },
+        { "key": "field_cm_item_link", "label": "Link", "name": "link", "type": "link", "return_format": "array" },
+        {
+          "key": "field_cm_item_children", "label": "Sub-items", "name": "children", "type": "repeater",
+          "layout": "table", "button_label": "Add Sub-item",
+          "sub_fields": [
+            { "key": "field_cm_item_child_name", "label": "Name", "name": "name", "type": "text" }
+          ]
+        }
+      ]
+    },
+    { "key": "field_cm_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/capability-matrix" }]]
+}

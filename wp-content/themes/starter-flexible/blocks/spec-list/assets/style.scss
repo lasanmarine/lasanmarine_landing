@@ -1,0 +1,22 @@
+.sl {
+	@apply grid items-start;
+	margin-top: clamp(32px, 4vw, 56px);
+	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+	gap: clamp(28px, 4vw, 72px);
+}
+.sl__intro {
+	@apply sticky;
+	top: 140px;
+}
+.sl__note {
+	@apply text-steel;
+	margin-top: 16px;
+	max-width: 26em;
+	font-size: 14.5px;
+	line-height: 1.75;
+}
+@media (max-width: 760px) {
+	.sl__intro {
+		@apply static;
+	}
+}

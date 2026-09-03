@@ -1,0 +1,12 @@
+.manifesto {
+	margin-top: clamp(36px, 4.5vw, 72px);
+	gap: clamp(36px, 5vw, 88px);
+}
+.manifesto__body {
+	@apply flex flex-col;
+	gap: 24px;
+	max-width: 38em;
+}
+.manifesto__body .btn {
+	@apply self-start;
+}

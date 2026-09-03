@@ -1,0 +1,16 @@
+{
+  "key": "group_insights",
+  "title": "Bài viết",
+  "fields": [
+    { "key": "field_in_label", "label": "Nhãn block", "name": "label", "type": "text", "default_value": "BÀI VIẾT" },
+    { "key": "field_in_view_all", "label": "Nhãn xem tất cả", "name": "view_all", "type": "text", "default_value": "Xem tất cả bài viết" },
+    { "key": "field_in_view_all_link", "label": "Liên kết xem tất cả", "name": "view_all_link", "type": "link", "return_format": "array" },
+    { "key": "field_in_read_more", "label": "Nhãn đọc tiếp", "name": "read_more", "type": "text", "default_value": "Đọc tiếp" },
+    { "key": "field_in_featured_post", "label": "Bài nổi bật", "name": "featured_post", "type": "post_object", "post_type": ["post"], "post_status": ["publish"], "return_format": "id", "allow_null": 1, "multiple": 0, "ui": 1 },
+    { "key": "field_in_category", "label": "Chuyên mục", "name": "category", "type": "taxonomy", "taxonomy": "category", "field_type": "select", "return_format": "id", "allow_null": 1, "add_term": 0, "save_terms": 0, "load_terms": 0 },
+    { "key": "field_in_posts_per_page", "label": "Số bài thường", "name": "posts_per_page", "type": "number", "default_value": 6, "min": 1, "max": 12, "step": 1 },
+    { "key": "field_in_custom_class", "label": "CSS class tùy chỉnh", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/insights" }]],
+  "active": true
+}

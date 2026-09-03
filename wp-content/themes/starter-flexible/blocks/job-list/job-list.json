@@ -1,0 +1,19 @@
+{
+  "key": "group_job_list",
+  "title": "Job List",
+  "fields": [
+    { "key": "field_jl_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "OPEN POSITIONS" },
+    { "key": "field_jl_apply_link", "label": "Apply Link", "name": "apply_link", "type": "link", "return_format": "array", "instructions": "Đích chung cho mọi dòng." },
+    {
+      "key": "field_jl_items", "label": "Positions", "name": "items", "type": "repeater",
+      "layout": "row", "button_label": "Add Position",
+      "sub_fields": [
+        { "key": "field_jl_item_role", "label": "Role", "name": "role", "type": "text" },
+        { "key": "field_jl_item_location", "label": "Location", "name": "location", "type": "text" },
+        { "key": "field_jl_item_type", "label": "Type", "name": "type", "type": "text" }
+      ]
+    },
+    { "key": "field_jl_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/job-list" }]]
+}

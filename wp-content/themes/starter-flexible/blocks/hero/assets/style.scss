@@ -1,0 +1,53 @@
+.hero {
+	@apply relative grid overflow-hidden bg-navy-deep;
+	/* minmax(0, 1fr), not the implicit auto column: an auto column sizes to the
+	   headline's max-content and pushes the hero wider than the phone. */
+	grid-template-columns: minmax(0, 1fr);
+	align-content: end;
+	min-height: min(88vh, 860px);
+}
+.hero__media {
+	@apply absolute inset-0;
+}
+.hero__media img {
+	@apply h-full w-full object-cover;
+}
+/* The one allowed gradient, laid over the photograph. */
+.hero__scrim {
+	@apply pointer-events-none absolute inset-0;
+	background: linear-gradient(
+		103deg,
+		rgba(5, 18, 45, 0.94) 0%,
+		rgba(5, 18, 45, 0.78) 42%,
+		rgba(5, 18, 45, 0.3) 100%
+	);
+}
+.hero__body {
+	@apply relative;
+	padding-block: clamp(120px, 16vw, 220px) clamp(120px, 13vw, 190px);
+}
+.hero__headline {
+	@apply text-white;
+	max-width: 16em;
+	font-size: clamp(34px, 4.6vw, 64px);
+	line-height: 1.04;
+	letter-spacing: -0.035em;
+}
+.hero__headline span {
+	@apply text-marine-bright;
+}
+.hero__foot {
+	@apply grid items-end;
+	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+	gap: clamp(24px, 3vw, 56px);
+	max-width: 1280px;
+	margin-top: clamp(36px, 4vw, 60px);
+}
+.hero__foot .copy {
+	max-width: 30em;
+	color: rgba(255, 255, 255, 0.74);
+}
+.hero__actions {
+	@apply flex flex-wrap;
+	gap: 14px;
+}

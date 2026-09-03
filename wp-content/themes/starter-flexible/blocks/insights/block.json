@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/insights",
+    "title": "LASAN — Insights",
+    "description": "Một bài nổi bật phía trên hàng ba bài.",
+    "category": "flexible-blocks",
+    "icon": "media-document",
+    "keywords": ["insights", "news", "articles"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

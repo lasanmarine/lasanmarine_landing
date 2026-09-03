@@ -1,0 +1,21 @@
+.vg {
+	margin-top: clamp(32px, 4vw, 56px);
+}
+.vg__cell {
+	@apply flex flex-col;
+	gap: 12px;
+	padding: clamp(22px, 2.4vw, 32px);
+}
+.vg__index {
+	@apply font-display font-semibold text-marine;
+	font-size: clamp(20px, 1.8vw, 26px);
+	letter-spacing: -0.02em;
+}
+.vg__title {
+	font-size: 20px;
+}
+.vg__desc {
+	@apply text-steel;
+	font-size: 13.5px;
+	line-height: 1.7;
+}

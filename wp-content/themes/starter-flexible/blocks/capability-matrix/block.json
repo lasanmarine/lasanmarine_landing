@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/capability-matrix",
+    "title": "LASAN — Capability Matrix",
+    "description": "Ma trận năng lực, vẽ bằng lưới kẻ mảnh.",
+    "category": "flexible-blocks",
+    "icon": "screenoptions",
+    "keywords": ["capability", "matrix", "services"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

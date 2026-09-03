@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/process-timeline",
+    "title": "LASAN — Process Timeline",
+    "description": "Thanh quy trình; vạch marine chạy dần khi cuộn qua.",
+    "category": "flexible-blocks",
+    "icon": "clock",
+    "keywords": ["process", "timeline", "steps"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

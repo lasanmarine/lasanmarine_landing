@@ -1,0 +1,53 @@
+.cm__heading {
+	margin-top: clamp(32px, 4vw, 56px);
+	max-width: 20em;
+}
+.cm {
+	margin-top: clamp(32px, 4vw, 56px);
+}
+.cm__cell {
+	@apply flex flex-col text-navy;
+	transition: background 220ms ease;
+	gap: 12px;
+	padding: clamp(22px, 2.4vw, 32px);
+	scroll-margin-top: 140px;
+}
+.cm__cell:hover {
+	@apply bg-pale;
+}
+.cm__cell:hover .cm__name {
+	@apply text-marine;
+}
+.cm__top {
+	@apply flex items-center justify-between text-navy;
+}
+.cm__index {
+	@apply font-display font-semibold text-marine;
+	font-size: clamp(20px, 1.8vw, 26px);
+	letter-spacing: -0.02em;
+}
+.cm__name {
+	font-size: 20px;
+}
+.cm__desc {
+	@apply text-steel;
+	font-size: 13.5px;
+	line-height: 1.7;
+}
+.cm__children {
+	@apply flex list-none flex-col border-t border-line-soft;
+	margin: 4px 0 0;
+	padding: 14px 0 0;
+	gap: 8px;
+}
+.cm__children li {
+	@apply flex items-baseline font-display font-semibold text-navy;
+	gap: 10px;
+	font-size: 14px;
+}
+.cm__children li::before {
+	@apply flex-none bg-marine;
+	content: '';
+	width: 12px;
+	height: 1.5px;
+}

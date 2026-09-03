@@ -1,0 +1,18 @@
+{
+  "key": "group_value_grid",
+  "title": "Value Grid",
+  "fields": [
+    { "key": "field_value_grid_label", "label": "Block Label", "name": "label", "type": "text" },
+    {
+      "key": "field_value_grid_items", "label": "Items", "name": "items", "type": "repeater",
+      "layout": "block", "button_label": "Add Value",
+      "sub_fields": [
+        { "key": "field_value_grid_item_index", "label": "Index", "name": "index", "type": "text", "instructions": "Ví dụ: 01, 02…" },
+        { "key": "field_value_grid_item_title", "label": "Title", "name": "title", "type": "text" },
+        { "key": "field_value_grid_item_desc", "label": "Description", "name": "desc", "type": "textarea", "rows": 3, "new_lines": "" }
+      ]
+    },
+    { "key": "field_value_grid_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/value-grid" }]]
+}

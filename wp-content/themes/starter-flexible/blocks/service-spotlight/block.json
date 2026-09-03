@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/service-spotlight",
+    "title": "LASAN — Service Spotlight",
+    "description": "Một dịch vụ: nửa ảnh, nửa bảng navy.",
+    "category": "flexible-blocks",
+    "icon": "align-pull-left",
+    "keywords": ["service", "spotlight", "feature"],
+    "align": "full",
+    "supports": { "align": ["full"], "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

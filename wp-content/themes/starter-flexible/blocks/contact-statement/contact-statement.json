@@ -1,0 +1,14 @@
+{
+  "key": "group_contact_statement",
+  "title": "Contact Statement",
+  "fields": [
+    { "key": "field_cs_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_cs_heading", "label": "Heading", "name": "heading", "type": "wysiwyg", "tabs": "visual", "toolbar": "basic", "media_upload": 0 },
+    { "key": "field_cs_phone", "label": "Phone", "name": "phone", "type": "text" },
+    { "key": "field_cs_email", "label": "Email", "name": "email", "type": "email" },
+    { "key": "field_cs_cta", "label": "CTA", "name": "cta", "type": "link", "return_format": "array" },
+    { "key": "field_cs_mascot", "label": "Mascot", "name": "mascot", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "instructions": "Để trống thì dùng linh vật mặc định của theme." },
+    { "key": "field_cs_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/contact-statement" }]]
+}

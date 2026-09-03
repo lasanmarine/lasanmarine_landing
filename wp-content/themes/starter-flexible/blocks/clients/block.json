@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/clients",
+    "title": "LASAN — Clients",
+    "description": "Bảng khách hàng & đối tác — tên trên lưới kẻ, không mượn logo.",
+    "category": "flexible-blocks",
+    "icon": "groups",
+    "keywords": ["clients", "partners", "logos"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

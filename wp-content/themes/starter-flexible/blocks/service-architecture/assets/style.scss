@@ -1,0 +1,114 @@
+.sa__head {
+	@apply flex flex-wrap items-end justify-between;
+	margin-top: clamp(36px, 4.5vw, 64px);
+	gap: 20px;
+}
+.sa__head .h3 {
+	max-width: 22em;
+}
+.sa {
+	@apply grid items-start;
+	margin-top: clamp(32px, 4vw, 56px);
+	grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+	gap: clamp(28px, 4vw, 64px);
+}
+.sa__list {
+	@apply border-t border-line;
+}
+.sa__row {
+	@apply relative grid items-center border-b border-line text-navy;
+	grid-template-columns: auto 1fr auto;
+	gap: clamp(14px, 2.2vw, 32px);
+	padding: clamp(18px, 2.2vw, 28px) clamp(18px, 3vw, 46px) clamp(18px, 2.2vw, 28px) 6px;
+	transition:
+		background 300ms ease,
+		padding-left 300ms var(--ease);
+}
+.sa__row::after {
+	@apply absolute bg-marine;
+	content: '';
+	inset: auto 0 -1px;
+	height: 1.5px;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 340ms ease;
+}
+.sa__row[data-active='true'],
+.sa__row:hover {
+	@apply bg-pale;
+	padding-left: 22px;
+}
+.sa__row[data-active='true']::after,
+.sa__row:hover::after {
+	transform: scaleX(1);
+}
+.sa__index {
+	@apply font-display font-semibold text-mute;
+	font-size: clamp(18px, 1.7vw, 24px);
+	letter-spacing: -0.01em;
+	transition: color 260ms ease;
+}
+.sa__row[data-active='true'] .sa__index,
+.sa__row:hover .sa__index {
+	@apply text-marine;
+}
+.sa__name {
+	@apply font-display font-semibold;
+	display: block;
+	font-size: clamp(19px, 1.8vw, 26px);
+	letter-spacing: -0.01em;
+}
+.sa__desc {
+	@apply text-mute;
+	display: block;
+	margin-top: 5px;
+	max-width: 30em;
+	font-size: 13.5px;
+	line-height: 1.6;
+}
+.sa__children {
+	@apply flex flex-wrap;
+	gap: 6px 8px;
+	margin-top: 10px;
+}
+.sa__children span {
+	@apply border border-line text-steel;
+	padding: 4px 9px;
+	border-radius: var(--r-xs);
+	font-size: 11.5px;
+	letter-spacing: 0.04em;
+}
+.sa__row[data-active='true'] .sa__children span,
+.sa__row:hover .sa__children span {
+	@apply border-marine text-marine;
+}
+
+.sa__arrow {
+	@apply text-mute;
+	transition:
+		transform 260ms ease,
+		color 260ms ease;
+}
+.sa__row[data-active='true'] .sa__arrow,
+.sa__row:hover .sa__arrow {
+	@apply text-marine;
+	transform: translateX(6px);
+}
+
+.sa__figure {
+	/* The waiting slides are scaled 1.04; without this they spill past the
+	   frame and widen the page on a narrow phone. */
+	@apply relative overflow-hidden bg-tint;
+	aspect-ratio: 4 / 5;
+}
+.sa__slide {
+	@apply absolute inset-0 opacity-0;
+	transform: scale(1.04);
+	transition:
+		opacity 500ms ease,
+		transform 900ms var(--ease);
+}
+.sa__slide[data-active='true'] {
+	@apply opacity-100;
+	transform: none;
+}

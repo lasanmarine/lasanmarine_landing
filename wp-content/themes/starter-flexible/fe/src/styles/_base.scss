@@ -1,0 +1,114 @@
+/* ==========================================================================
+   LASAN MARINE — base layer
+   Ported from the Astro site's src/styles/system.css (base section).
+   Class names are unchanged; bodies use @apply where Tailwind can express
+   the rule and raw CSS where it cannot (clamp, custom properties, keyframes).
+   ========================================================================== */
+
+@use '@fontsource-variable/manrope' as manrope;
+@use '@fontsource/be-vietnam-pro/300.css' as bvp300;
+@use '@fontsource/be-vietnam-pro/400.css' as bvp400;
+@use '@fontsource/be-vietnam-pro/500.css' as bvp500;
+@use '@fontsource/be-vietnam-pro/600.css' as bvp600;
+
+:root {
+	/* Type — kept as variables because block CSS reads them directly. */
+	--display: 'Manrope Variable', Manrope, system-ui, sans-serif;
+	--body: 'Be Vietnam Pro', system-ui, sans-serif;
+
+	/* Ink & ground. */
+	--paper: #ffffff;
+	--navy: #0b1b4c;
+	--navy-deep: #06122d;
+	--marine: #0a72c8;
+	--marine-bright: #4da3e8;
+	--steel: #536173;
+	--mute: #7b8794;
+	--tint: #edf3f8;
+	--pale: #f5f8fc;
+	--line: #dce5ee;
+	--line-soft: #e9eff5;
+
+	/* Radii. */
+	--r-xs: 2px;
+	--r-sm: 3px;
+	--r-md: 5px;
+	--r-lg: 10px;
+
+	/* Rhythm — fluid, so these stay raw CSS. */
+	--gutter: clamp(20px, 2.4vw, 32px);
+	--block-gap: clamp(56px, 7vw, 110px);
+	--ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+/* --- base --------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+	@apply box-border;
+}
+
+html {
+	@apply scroll-smooth;
+}
+
+body {
+	@apply m-0 bg-paper font-body text-steel antialiased;
+	min-width: 320px;
+	font-size: 16px;
+	line-height: 1.75;
+	overflow-x: hidden;
+}
+
+img,
+svg {
+	@apply max-w-full;
+	display: block;
+}
+
+a {
+	@apply text-marine no-underline;
+	transition: color 200ms ease;
+}
+a:hover {
+	@apply text-navy;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	@apply m-0 font-display font-semibold text-navy;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	text-wrap: pretty;
+}
+
+p {
+	@apply m-0;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}
+
+::selection {
+	@apply bg-marine text-white;
+}
+
+:focus-visible {
+	outline: 2px solid var(--marine);
+	outline-offset: 3px;
+}
+
+.sr-only {
+	@apply absolute overflow-hidden whitespace-nowrap border-0 p-0;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	clip: rect(0, 0, 0, 0);
+}

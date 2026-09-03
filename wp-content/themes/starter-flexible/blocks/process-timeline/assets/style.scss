@@ -1,0 +1,80 @@
+.pt__heading {
+	margin-top: clamp(32px, 4vw, 56px);
+	max-width: 20em;
+}
+.pt {
+	@apply relative;
+	margin-top: clamp(36px, 4.5vw, 64px);
+}
+.pt__rail,
+.pt__fill {
+	@apply absolute left-0 bg-line;
+	top: 5px;
+	height: 2px;
+}
+.pt__rail {
+	@apply w-full;
+}
+.pt__fill {
+	@apply w-0 bg-marine;
+	transition: width 320ms linear;
+}
+.pt__steps {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+	gap: 24px;
+}
+.pt__step {
+	@apply relative;
+	padding-top: 32px;
+}
+.pt__dot {
+	@apply absolute left-0 top-0 bg-line;
+	width: 12px;
+	height: 12px;
+	border-radius: 1px;
+	transition: background 400ms ease;
+}
+.pt--lit .pt__dot {
+	@apply bg-marine;
+}
+.pt__index {
+	@apply font-display font-semibold text-marine;
+	font-size: clamp(20px, 1.9vw, 26px);
+	letter-spacing: -0.02em;
+}
+.pt__title {
+	@apply font-display font-semibold text-navy;
+	margin-top: 8px;
+	font-size: 19px;
+}
+.pt__desc {
+	@apply text-mute;
+	margin-top: 6px;
+	max-width: 16em;
+	font-size: 13px;
+	line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+	.pt__rail,
+	.pt__fill {
+		top: 0;
+		left: 5px;
+		width: 2px !important;
+		height: 100%;
+	}
+	.pt__fill {
+		height: 0;
+		transition: height 320ms linear;
+	}
+	.pt__steps {
+		grid-template-columns: 1fr;
+	}
+	.pt__step {
+		padding: 0 0 0 32px;
+	}
+	.pt__dot {
+		top: 6px;
+	}
+}

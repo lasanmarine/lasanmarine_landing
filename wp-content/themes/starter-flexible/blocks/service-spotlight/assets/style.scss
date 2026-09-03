@@ -1,0 +1,32 @@
+.spotlight {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+}
+.spotlight__media {
+	@apply relative;
+	min-height: clamp(320px, 42vw, 560px);
+}
+.spotlight__media .frame {
+	@apply absolute inset-0;
+}
+.spotlight__panel {
+	@apply flex flex-col justify-center;
+	gap: 24px;
+	padding: clamp(36px, 5vw, 80px) clamp(24px, 4vw, 72px);
+}
+.spotlight__heading {
+	max-width: 18em;
+	line-height: 1.12;
+}
+.spotlight__items {
+	@apply m-0 flex list-none flex-col p-0;
+}
+.spotlight__items li {
+	padding: 15px 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.16);
+	font-size: 15px;
+	color: rgba(255, 255, 255, 0.85);
+}
+.spotlight__panel .btn {
+	@apply self-start;
+}

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/team",
+    "title": "LASAN — Team",
+    "description": "Danh sách nhân sự bên cạnh một chân dung tư liệu.",
+    "category": "flexible-blocks",
+    "icon": "businessperson",
+    "keywords": ["team", "people", "staff"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

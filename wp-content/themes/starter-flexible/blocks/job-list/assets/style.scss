@@ -1,0 +1,37 @@
+.jl {
+	@apply border-t border-line;
+	margin-top: clamp(32px, 4vw, 56px);
+}
+.jl__row {
+	@apply grid items-center border-b border-line;
+	grid-template-columns: 1fr auto auto auto;
+	gap: clamp(12px, 2vw, 28px);
+	padding: 22px 2px;
+	transition: background 200ms ease;
+}
+.jl__row:hover {
+	@apply bg-pale;
+}
+.jl__role {
+	@apply font-display font-semibold text-navy;
+	font-size: clamp(18px, 1.6vw, 23px);
+}
+.jl__location {
+	@apply text-mute;
+	font-size: 13.5px;
+}
+.jl__arrow {
+	@apply text-marine;
+	transition: transform 240ms ease;
+}
+.jl__row:hover .jl__arrow {
+	transform: translateX(4px);
+}
+@media (max-width: 640px) {
+	.jl__row {
+		grid-template-columns: 1fr auto;
+	}
+	.jl__location {
+		grid-column: 1;
+	}
+}

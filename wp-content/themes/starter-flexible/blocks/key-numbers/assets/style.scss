@@ -1,0 +1,14 @@
+.stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+	padding-block: clamp(48px, 6vw, 96px);
+}
+@media (max-width: 640px) {
+	.stats .stat {
+		@apply border-l-0 border-t border-line;
+		padding-block: 20px;
+	}
+	.stats .stat:first-child {
+		@apply border-t-0 pt-0;
+	}
+}

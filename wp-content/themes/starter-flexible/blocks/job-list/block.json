@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/job-list",
+    "title": "LASAN — Job List",
+    "description": "Danh sách vị trí tuyển dụng; mỗi dòng dẫn tới form ứng tuyển.",
+    "category": "flexible-blocks",
+    "icon": "id",
+    "keywords": ["jobs", "careers", "positions"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

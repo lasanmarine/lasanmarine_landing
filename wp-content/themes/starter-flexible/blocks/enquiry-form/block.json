@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/enquiry-form",
+    "title": "LASAN — Enquiry Form",
+    "description": "Form liên hệ / ứng tuyển. Kiểm tra và xác nhận ngay trong trang.",
+    "category": "flexible-blocks",
+    "icon": "email-alt",
+    "keywords": ["form", "contact", "enquiry", "apply"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

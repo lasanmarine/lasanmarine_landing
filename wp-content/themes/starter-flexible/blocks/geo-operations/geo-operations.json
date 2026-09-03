@@ -1,0 +1,20 @@
+{
+  "key": "group_geo_operations",
+  "title": "Geo Operations",
+  "fields": [
+    { "key": "field_geo_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_geo_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_geo_note", "label": "Note", "name": "note", "type": "textarea", "rows": 3, "new_lines": "" },
+    {
+      "key": "field_geo_provinces", "label": "Locations", "name": "provinces", "type": "repeater",
+      "layout": "table", "button_label": "Add Location",
+      "sub_fields": [
+        { "key": "field_geo_province_name", "label": "Name", "name": "name", "type": "text" },
+        { "key": "field_geo_province_x", "label": "X", "name": "x", "type": "number", "instructions": "Toạ độ trong viewBox 1000 × 1017.", "step": "any" },
+        { "key": "field_geo_province_y", "label": "Y", "name": "y", "type": "number", "step": "any" }
+      ]
+    },
+    { "key": "field_geo_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/geo-operations" }]]
+}

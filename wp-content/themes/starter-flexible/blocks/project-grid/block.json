@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/project-grid",
+    "title": "LASAN — Project Grid",
+    "description": "Lưới dự án 12 cột.",
+    "category": "flexible-blocks",
+    "icon": "grid-view",
+    "keywords": ["projects", "portfolio", "grid"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}
