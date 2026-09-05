@@ -64,11 +64,12 @@ function starter_flexible_header_menu_tree(): array {
 		$path = trailingslashit( (string) ( wp_parse_url( (string) $item->url, PHP_URL_PATH ) ?? '/' ) );
 
 		$tree[] = array(
-			'label'    => (string) $item->title,
-			'url'      => (string) $item->url,
-			'mega'     => in_array( 'has-mega', $classes, true ),
-			'current'  => '/' === $path ? $current === $path : str_starts_with( $current, $path ),
-			'children' => $children,
+			'label'       => (string) $item->title,
+			'url'         => (string) $item->url,
+			'description' => (string) $item->description,
+			'mega'        => in_array( 'has-mega', $classes, true ),
+			'current'     => '/' === $path ? $current === $path : str_starts_with( $current, $path ),
+			'children'    => $children,
 		);
 	}
 
@@ -81,6 +82,7 @@ function starter_flexible_header_menu_tree(): array {
 function starter_flexible_render_primary_nav_markup(): void {
 	$tree       = starter_flexible_header_menu_tree();
 	$mega_title = (string) starter_flexible_setting( 'mega_title', '' );
+	$is_english = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 
 	foreach ( $tree as $item ) {
 		$aria = $item['current'] ? ' aria-current="page"' : '';
@@ -99,12 +101,25 @@ function starter_flexible_render_primary_nav_markup(): void {
 			<a href="<?php echo esc_url( $item['url'] ); ?>" class="hdr__link"<?php echo $aria; // phpcs:ignore ?>><?php echo esc_html( $item['label'] ); ?></a>
 			<div class="mega" data-mega-panel>
 				<div class="container mega__inner">
-					<div class="mega__rows">
+					<div class="mega__intro">
 						<h2 class="mega__title"><?php echo esc_html( '' !== $mega_title ? $mega_title : $item['label'] ); ?></h2>
-						<?php foreach ( $item['children'] as $i => $child ) : ?>
-							<a href="<?php echo esc_url( $child['url'] ); ?>" class="mega__row" data-mega-row data-i="<?php echo esc_attr( (string) $i ); ?>" data-active="<?php echo 0 === $i ? 'true' : 'false'; ?>">
+						<?php if ( '' !== trim( $item['description'] ) ) : ?>
+							<p class="copy mega__lead"><?php echo esc_html( $item['description'] ); ?></p>
+						<?php endif; ?>
+						<a href="<?php echo esc_url( $item['url'] ); ?>" class="link mega__more">
+							<?php echo esc_html( $is_english ? 'View details' : 'Xem chi tiết' ); ?>
+							<?php echo starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore ?>
+						</a>
+					</div>
+
+					<div class="mega__sections">
+						<?php foreach ( $item['children'] as $child ) : ?>
+							<a href="<?php echo esc_url( $child['url'] ); ?>" class="mega__section">
 								<span class="mega__text">
 									<span class="mega__name"><?php echo esc_html( $child['label'] ); ?></span>
+									<?php if ( '' !== trim( $child['description'] ) ) : ?>
+										<span class="mega__desc"><?php echo esc_html( $child['description'] ); ?></span>
+									<?php endif; ?>
 									<?php if ( ! empty( $child['children'] ) ) : ?>
 										<span class="mega__children">
 											<?php foreach ( $child['children'] as $grandchild ) : ?>
@@ -113,22 +128,8 @@ function starter_flexible_render_primary_nav_markup(): void {
 										</span>
 									<?php endif; ?>
 								</span>
-								<?php echo starter_flexible_icon( 'arrow', 30, 'mega__arrow' ); // phpcs:ignore ?>
+								<?php echo starter_flexible_icon( 'arrow', 22, 'mega__arrow' ); // phpcs:ignore ?>
 							</a>
-						<?php endforeach; ?>
-					</div>
-
-					<div class="mega__figure">
-						<?php foreach ( $item['children'] as $i => $child ) : ?>
-							<span class="mega__slide" data-mega-slide data-i="<?php echo esc_attr( (string) $i ); ?>" data-active="<?php echo 0 === $i ? 'true' : 'false'; ?>">
-								<?php
-								get_template_part(
-									'template-parts/components/frame',
-									null,
-									array( 'ratio' => '', 'placeholder' => $child['label'] )
-								);
-								?>
-							</span>
 						<?php endforeach; ?>
 					</div>
 				</div>

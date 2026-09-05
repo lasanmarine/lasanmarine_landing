@@ -17,21 +17,8 @@ export function initHeader() {
 	window.addEventListener('resize', syncHeight);
 	if (header) new ResizeObserver(syncHeight).observe(header);
 
-	// The mega panel's figure follows whichever service row is hovered.
-	document.querySelectorAll('[data-mega-panel]').forEach((panel) => {
-		const rows = panel.querySelectorAll('[data-mega-row]');
-		const slides = panel.querySelectorAll('[data-mega-slide]');
-		rows.forEach((row) => {
-			const on = () => {
-				rows.forEach((r) => r.setAttribute('data-active', String(r === row)));
-				slides.forEach((sl) =>
-					sl.setAttribute('data-active', String(sl.dataset.i === row.dataset.i)),
-				);
-			};
-			row.addEventListener('mouseenter', on);
-			row.addEventListener('focus', on);
-		});
-	});
+	// The mega panel is hover/focus driven in CSS — each section row lights
+	// itself, so nothing here has to track which one is active.
 
 	// The bar only turns opaque once the hero has scrolled past its own height.
 	const sync = () => bar?.classList.toggle('is-stuck', window.scrollY > 24);

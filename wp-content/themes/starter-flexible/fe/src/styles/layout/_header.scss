@@ -162,33 +162,51 @@
 	@apply visible opacity-100;
 	transform: none;
 }
-/* Same grammar as the ServiceArchitecture block, sized down for a dropdown:
-   rows on the left, one figure on the right that follows the hovered row. */
+/* Left: what this section is, and a way into it. Right: the sections
+   themselves, one row each. */
 .mega__inner {
 	@apply items-start;
 	display: grid;
-	grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-	gap: clamp(28px, 3vw, 48px);
+	grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+	gap: clamp(28px, 4vw, 72px);
 	padding-block: 40px 36px;
 }
+@media (max-width: 1000px) {
+	.mega__inner {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+}
+.mega__intro {
+	@apply flex flex-col items-start;
+	gap: 14px;
+}
 .mega__title {
-	margin-bottom: 18px;
 	font-size: clamp(22px, 2.2vw, 32px);
 }
+.mega__lead {
+	font-size: 15.5px;
+	line-height: 1.7;
+}
+.mega__more {
+	margin-top: 2px;
+}
 
-/* Each row carries its own bottom rule; the list needs no divider above it,
-   and the heading none at all. */
-.mega__row {
+.mega__sections {
+	@apply grid;
+	gap: 2px;
+}
+.mega__section {
 	@apply relative items-center border-b border-line text-navy;
 	display: grid;
 	grid-template-columns: 1fr auto;
 	gap: 14px;
-	padding: clamp(14px, 1.6vw, 20px) clamp(16px, 2.4vw, 36px) clamp(14px, 1.6vw, 20px) 6px;
+	padding: clamp(12px, 1.3vw, 18px) clamp(12px, 1.6vw, 22px) clamp(12px, 1.3vw, 18px) 6px;
 	transition:
 		background 260ms ease,
 		padding-left 260ms var(--ease);
 }
-.mega__row::after {
+.mega__section::after {
 	@apply absolute bg-marine;
 	content: '';
 	inset: auto 0 -1px;
@@ -197,11 +215,13 @@
 	transform-origin: left;
 	transition: transform 300ms ease;
 }
-.mega__row[data-active='true'] {
+.mega__section:hover,
+.mega__section:focus-visible {
 	@apply bg-pale;
 	padding-left: 12px;
 }
-.mega__row[data-active='true']::after {
+.mega__section:hover::after,
+.mega__section:focus-visible::after {
 	transform: scaleX(1);
 }
 
@@ -211,8 +231,14 @@
 .mega__name {
 	@apply font-display font-semibold;
 	display: block;
-	font-size: clamp(19px, 1.8vw, 26px);
+	font-size: clamp(17px, 1.5vw, 21px);
 	letter-spacing: -0.01em;
+}
+.mega__desc {
+	@apply block text-steel;
+	margin-top: 3px;
+	font-size: 13.5px;
+	line-height: 1.6;
 }
 .mega__children {
 	@apply flex flex-wrap;
@@ -225,8 +251,11 @@
 	border-radius: var(--r-xs);
 	font-size: 11.5px;
 	letter-spacing: 0.04em;
+	transition:
+		border-color 200ms ease,
+		color 200ms ease;
 }
-.mega__row[data-active='true'] .mega__children span {
+.mega__section:hover .mega__children span {
 	@apply border-marine text-marine;
 }
 .mega__arrow {
@@ -235,29 +264,9 @@
 		transform 240ms ease,
 		color 240ms ease;
 }
-.mega__row[data-active='true'] .mega__arrow {
+.mega__section:hover .mega__arrow {
 	@apply text-marine;
 	transform: translateX(4px);
-}
-
-.mega__figure {
-	@apply relative overflow-hidden bg-tint;
-	aspect-ratio: 4 / 3;
-	border-radius: var(--r-sm);
-}
-.mega__slide {
-	@apply absolute inset-0 opacity-0;
-	transform: scale(1.03);
-	transition:
-		opacity 420ms ease,
-		transform 700ms var(--ease);
-}
-.mega__slide[data-active='true'] {
-	@apply opacity-100;
-	transform: none;
-}
-.mega__slide .frame {
-	@apply absolute inset-0;
 }
 
 .mega__rule {
