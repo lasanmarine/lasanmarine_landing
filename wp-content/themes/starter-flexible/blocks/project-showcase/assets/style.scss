@@ -1,57 +1,108 @@
-.ps {
-	padding-block: clamp(40px, 5vw, 80px);
-}
+/* Project Showcase — a slider on white. One project fills the viewport; the
+   track slides sideways rather than cross-fading, so the movement reads as
+   "next in a row" and not "a new image appeared". */
 .ps__bar {
-	@apply flex flex-wrap items-center justify-between;
-	gap: 20px;
-	margin-bottom: 26px;
+	@apply flex flex-wrap items-end justify-between;
+	gap: 16px 32px;
+	margin-bottom: clamp(20px, 2.4vw, 32px);
+}
+.ps__bar .block-head {
+	margin-bottom: 0;
 }
 .ps__nav {
-	@apply flex items-center;
-	gap: 14px;
+	@apply flex flex-none items-center;
+	gap: 12px;
 }
 .ps__nav .meta {
-	margin-right: 6px;
-	color: rgba(255, 255, 255, 0.5);
+	font-variant-numeric: tabular-nums;
 }
-.ps__stage {
-	@apply relative bg-navy;
+
+.ps__viewport {
+	@apply overflow-hidden;
+	border-radius: var(--r-md);
+}
+.ps__track {
+	@apply flex;
+	transition: transform 520ms var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+	.ps__track {
+		transition: none;
+	}
 }
 .ps__slide {
-	@apply absolute inset-0 opacity-0;
-	transition: opacity 420ms ease;
+	@apply grid w-full flex-none items-center;
+	grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+	gap: clamp(24px, 3.2vw, 56px);
 }
-.ps__slide[data-active='true'] {
-	@apply opacity-100;
+@media (max-width: 820px) {
+	.ps__slide {
+		grid-template-columns: 1fr;
+	}
 }
-.ps__slide .frame {
-	@apply absolute inset-0 bg-navy;
+.ps__media {
+	@apply overflow-hidden bg-tint;
+	border-radius: var(--r-md);
 }
-.ps__scrim {
-	@apply pointer-events-none absolute inset-0;
-	background: linear-gradient(
-		90deg,
-		rgba(6, 18, 45, 0.9) 0%,
-		rgba(6, 18, 45, 0.42) 58%,
-		rgba(6, 18, 45, 0.08) 100%
-	);
-}
-.ps__caption {
-	@apply pointer-events-none absolute;
-	inset: auto auto 0 0;
-	padding: clamp(22px, 3vw, 44px);
+
+.ps__body {
+	@apply flex flex-col items-start;
+	gap: 18px;
+	padding-right: clamp(0px, 1vw, 16px);
 }
 .ps__name {
-	@apply text-white;
-	max-width: 18em;
-	font-size: clamp(24px, 2.8vw, 42px);
-	line-height: 1.08;
+	@apply font-display font-semibold text-navy;
+	max-width: 20ch;
+	font-size: clamp(22px, 2.4vw, 34px);
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 }
-.ps__meta {
-	@apply flex flex-wrap;
-	gap: clamp(18px, 2.4vw, 40px);
-	margin-top: 20px;
+.ps__specs {
+	@apply m-0 flex w-full flex-col;
+}
+.ps__specs > div {
+	@apply flex flex-wrap items-baseline border-b border-line;
+	gap: 4px 18px;
+	padding-block: 10px;
+}
+.ps__specs > div:first-child {
+	@apply border-t border-line;
+}
+.ps__specs dt {
+	@apply flex-none text-mute;
+	width: 8.5em;
 	font-size: 12.5px;
-	letter-spacing: 0.14em;
-	color: rgba(255, 255, 255, 0.62);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+.ps__specs dd {
+	@apply m-0 min-w-0 flex-1 text-navy;
+	font-size: 15px;
+	font-variant-numeric: tabular-nums;
+}
+.ps__cta {
+	margin-top: 4px;
+}
+
+.ps__dots {
+	@apply flex flex-wrap justify-center;
+	gap: 8px;
+	margin-top: clamp(20px, 2.4vw, 28px);
+}
+.ps__dot {
+	@apply cursor-pointer border-none bg-line p-0;
+	width: 28px;
+	height: 3px;
+	border-radius: 2px;
+	transition:
+		background 220ms ease,
+		width 220ms ease;
+}
+.ps__dot:hover {
+	@apply bg-mute;
+}
+.ps__dot[aria-selected='true'] {
+	@apply bg-marine;
+	width: 44px;
 }

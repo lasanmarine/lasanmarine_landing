@@ -44,15 +44,14 @@ function starter_flexible_block_data_contact_statement( array $block ) {
 	}
 
 	$mascot_id = (int) $data['mascot'];
-	$theme_uri = defined( 'STARTER_FLEXIBLE_THEME_URI' ) ? STARTER_FLEXIBLE_THEME_URI : get_template_directory_uri();
 
 	$cta     = is_array( $data['cta'] ) ? $data['cta'] : array();
 	$cta_url = isset( $cta['url'] ) ? (string) $cta['url'] : '';
 
 	$data['waves']      = $waves;
-	$data['mascot_url'] = $mascot_id
-		? (string) wp_get_attachment_image_url( $mascot_id, 'full' )
-		: $theme_uri . '/assets/images/mascot-support.png';
+	// No stand-in image: an unset mascot simply leaves the band to the copy.
+	$data['mascot_url'] = $mascot_id ? (string) wp_get_attachment_image_url( $mascot_id, 'full' ) : '';
+	$data['has_mascot'] = '' !== $data['mascot_url'];
 	$data['cta']        = array(
 		'url'    => $cta_url,
 		'label'  => isset( $cta['title'] ) ? (string) $cta['title'] : '',

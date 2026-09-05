@@ -1,0 +1,84 @@
+{
+  "menu": "LASAN Header",
+  "location": "header_menu",
+  "lang": "vi",
+  "items": [
+    {
+      "label": "Giới thiệu",
+      "page": "about"
+    },
+    {
+      "label": "Năng lực",
+      "page": "capabilities",
+      "classes": [
+        "has-mega"
+      ],
+      "description": "Ba mảng chuyên môn độc lập, cùng dựa trên tính toán kỹ thuật và dữ liệu kiểm chứng.",
+      "children": [
+        {
+          "label": "Thiết kế & Kỹ thuật tàu thủy",
+          "page": "service_01",
+          "description": "Đóng mới, cải hoán và lập hồ sơ kỹ thuật theo quy chuẩn Đăng kiểm.",
+          "children": [
+            {
+              "label": "Thiết kế đóng mới"
+            },
+            {
+              "label": "Thiết kế cải hoán"
+            },
+            {
+              "label": "Tính toán ổn định"
+            },
+            {
+              "label": "Thiết kế chân vịt"
+            }
+          ]
+        },
+        {
+          "label": "Dịch vụ Công nghệ Thông tin",
+          "page": "service_03",
+          "description": "Website, phần mềm quản lý nội bộ và tự động hóa bằng AI.",
+          "children": [
+            {
+              "label": "Website & Landing page"
+            },
+            {
+              "label": "Phần mềm quản lý"
+            },
+            {
+              "label": "AI & Automation"
+            }
+          ]
+        },
+        {
+          "label": "Nghiên cứu & Phát triển",
+          "page": "service_rnd",
+          "description": "Mô phỏng số CFD, phân tích kết cấu và chế tạo thiết bị đo kiểm.",
+          "children": [
+            {
+              "label": "Mô phỏng CFD"
+            },
+            {
+              "label": "Phân tích kết cấu"
+            },
+            {
+              "label": "Công bố khoa học"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Dự án",
+      "page": "projects"
+    },
+    {
+      "label": "Công cụ",
+      "page": "tools"
+    },
+    {
+      "label": "Tin tức",
+      "page": "insights"
+    }
+  ]
+}

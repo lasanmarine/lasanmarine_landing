@@ -1,0 +1,43 @@
+{
+  "menu": "LASAN Footer EN",
+  "location": "footer_menu",
+  "lang": "en",
+  "items": [
+    {
+      "label": "About",
+      "page": "about-us"
+    },
+    {
+      "label": "Capabilities",
+      "page": "capabilities"
+    },
+    {
+      "label": "Ship Design",
+      "page": "ship-design"
+    },
+    {
+      "label": "Digital Solutions",
+      "page": "information-technology-services"
+    },
+    {
+      "label": "Marine R&D",
+      "page": "marine-rd"
+    },
+    {
+      "label": "Projects",
+      "page": "projects"
+    },
+    {
+      "label": "Tools",
+      "page": "tools"
+    },
+    {
+      "label": "Insights",
+      "page": "insights"
+    },
+    {
+      "label": "Contact",
+      "page": "contact"
+    }
+  ]
+}

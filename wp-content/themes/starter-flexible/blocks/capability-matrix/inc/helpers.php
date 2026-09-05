@@ -43,6 +43,7 @@ function starter_flexible_block_data_capability_matrix( array $block ) {
 			'name'     => $name,
 			'desc'     => isset( $item['desc'] ) ? (string) $item['desc'] : '',
 			'url'      => isset( $link['url'] ) ? (string) $link['url'] : '',
+			'cta'      => isset( $link['title'] ) ? (string) $link['title'] : '',
 			'target'   => ! empty( $link['target'] ) ? (string) $link['target'] : '_self',
 			'children' => $children,
 		);

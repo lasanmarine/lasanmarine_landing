@@ -1,0 +1,84 @@
+{
+  "menu": "LASAN Header EN",
+  "location": "header_menu",
+  "lang": "en",
+  "items": [
+    {
+      "label": "About",
+      "page": "about-us"
+    },
+    {
+      "label": "Capabilities",
+      "page": "capabilities",
+      "classes": [
+        "has-mega"
+      ],
+      "description": "Three independent fields, each built on engineering calculation and verified data.",
+      "children": [
+        {
+          "label": "Ship Design & Engineering",
+          "page": "ship-design",
+          "description": "Newbuild, conversion and complete documentation to class requirements.",
+          "children": [
+            {
+              "label": "Newbuild design"
+            },
+            {
+              "label": "Conversion design"
+            },
+            {
+              "label": "Stability calculation"
+            },
+            {
+              "label": "Propeller design"
+            }
+          ]
+        },
+        {
+          "label": "Digital Solutions",
+          "page": "information-technology-services",
+          "description": "Websites, internal management software and AI automation.",
+          "children": [
+            {
+              "label": "Websites"
+            },
+            {
+              "label": "Management software"
+            },
+            {
+              "label": "AI & Automation"
+            }
+          ]
+        },
+        {
+          "label": "Marine R&D",
+          "page": "marine-rd",
+          "description": "CFD simulation, structural analysis and measuring equipment.",
+          "children": [
+            {
+              "label": "CFD simulation"
+            },
+            {
+              "label": "Structural analysis"
+            },
+            {
+              "label": "Publications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Projects",
+      "page": "projects"
+    },
+    {
+      "label": "Tools",
+      "page": "tools"
+    },
+    {
+      "label": "Insights",
+      "page": "insights"
+    }
+  ]
+}

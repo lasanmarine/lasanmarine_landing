@@ -1,0 +1,129 @@
+{
+    "key": "group_project",
+    "title": "Thông số cơ bản",
+    "fields": [
+        {
+            "key": "field_pj_vessel_name",
+            "label": "Tên tàu",
+            "name": "vessel_name",
+            "type": "text",
+            "instructions": "Tên riêng của phương tiện, nếu có. Tàu cá thường chỉ có số hiệu."
+        },
+        {
+            "key": "field_pj_vessel_no",
+            "label": "Số hiệu tàu",
+            "name": "vessel_no",
+            "type": "text",
+            "instructions": "Ví dụ: QNa-91304-TS"
+        },
+        {
+            "key": "field_pj_registry",
+            "label": "Số ĐKHC / Số đăng kiểm",
+            "name": "registry",
+            "type": "text"
+        },
+        {
+            "key": "field_pj_design_type",
+            "label": "Loại thiết kế",
+            "name": "design_type",
+            "type": "text",
+            "instructions": "Thiết kế đóng mới, thiết kế cải hoán, thiết kế hoàn công…"
+        },
+        {
+            "key": "field_pj_lmax",
+            "label": "Lmax (m)",
+            "name": "lmax",
+            "type": "number",
+            "step": "any"
+        },
+        {
+            "key": "field_pj_bmax",
+            "label": "Bmax (m)",
+            "name": "bmax",
+            "type": "number",
+            "step": "any"
+        },
+        {
+            "key": "field_pj_depth",
+            "label": "Chiều cao mạn D (m)",
+            "name": "depth",
+            "type": "number",
+            "step": "any"
+        },
+        {
+            "key": "field_pj_tonnage",
+            "label": "Trọng tải (T)",
+            "name": "tonnage",
+            "type": "number",
+            "step": "any"
+        },
+        {
+            "key": "field_pj_power",
+            "label": "Công suất máy chính (kW)",
+            "name": "power_kw",
+            "type": "number",
+            "step": "any"
+        },
+        {
+            "key": "field_pj_region",
+            "label": "Vùng hoạt động",
+            "name": "region",
+            "type": "text",
+            "instructions": "Ví dụ: Vùng hạn chế I, Vùng IV"
+        },
+        {
+            "key": "field_pj_location",
+            "label": "Địa phương",
+            "name": "location",
+            "type": "text"
+        },
+        {
+            "key": "field_pj_year",
+            "label": "Năm thực hiện",
+            "name": "year",
+            "type": "text"
+        },
+        {
+            "key": "field_pj_status",
+            "label": "Trạng thái",
+            "name": "status",
+            "type": "text",
+            "instructions": "Ví dụ: Đã duyệt Đăng kiểm, Đã thi công hoàn thiện"
+        },
+        {
+            "key": "field_pj_gallery",
+            "label": "Hình ảnh khác",
+            "name": "gallery",
+            "type": "repeater",
+            "button_label": "Thêm ảnh",
+            "sub_fields": [
+                {
+                    "key": "field_pj_gallery_image",
+                    "label": "Ảnh",
+                    "name": "image",
+                    "type": "image",
+                    "return_format": "id"
+                },
+                {
+                    "key": "field_pj_gallery_caption",
+                    "label": "Chú thích",
+                    "name": "caption",
+                    "type": "text"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "active": true
+}

@@ -25,7 +25,7 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 	<div class="mesh vg" data-reveal-stagger>
 		<?php foreach ( $data->items as $item ) : ?>
 			<article class="vg__cell">
-				<span class="vg__icon"><?php echo starter_flexible_icon( $item['icon'], 30 ); // phpcs:ignore ?></span>
+				<span class="vg__icon"><?php echo starter_flexible_icon( $item['icon'], 40 ); // phpcs:ignore ?></span>
 				<h3 class="vg__title"><?php echo esc_html( $item['title'] ); ?></h3>
 				<p class="vg__desc"><?php echo esc_html( $item['desc'] ); ?></p>
 				<?php if ( $item['has_link'] ) : ?>
@@ -35,7 +35,7 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 						<?php echo '_blank' === $item['link_target'] ? 'target="_blank" rel="noopener"' : ''; ?>
 					>
 						<?php echo esc_html( '' !== $item['link_label'] ? $item['link_label'] : __( 'Tìm hiểu thêm', 'starter-flexible' ) ); ?>
-						<?php echo starter_flexible_icon( 'arrow', 16 ); // phpcs:ignore ?>
+						<?php echo starter_flexible_icon_swap( 'arrow', 17 ); // phpcs:ignore ?>
 					</a>
 				<?php endif; ?>
 			</article>

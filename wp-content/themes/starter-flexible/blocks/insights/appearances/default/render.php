@@ -40,6 +40,10 @@ if ( $data->has_view_all ) {
 	);
 	?>
 
+	<?php if ( '' !== trim( (string) $data->heading ) ) : ?>
+		<h3 class="in__heading"><?php echo esc_html( $data->heading ); ?></h3>
+	<?php endif; ?>
+
 	<?php if ( $data->has_featured ) : ?>
 		<div class="in__featured">
 			<?php
@@ -75,21 +79,35 @@ if ( $data->has_view_all ) {
 	<div class="in__row" data-reveal-stagger>
 		<?php foreach ( $data->articles as $article ) : ?>
 			<a href="<?php echo esc_url( $article['url'] ); ?>" class="in__card">
-				<?php
-				get_template_part(
-					'template-parts/components/frame',
-					null,
-					array(
-						'ratio'       => 'ratio-4-3',
-						'class'       => 'frame--zoom',
-						'src'         => $article['image_url'],
-						'alt'         => $article['title'],
-						'placeholder' => $article['title'],
-					)
-				);
-				?>
-				<span class="in__card-title"><?php echo esc_html( $article['title'] ); ?></span>
-				<span class="in__card-date"><?php echo esc_html( $article['date'] ); ?></span>
+				<span class="in__card-media">
+					<?php
+					get_template_part(
+						'template-parts/components/frame',
+						null,
+						array(
+							'ratio'       => 'ratio-4-3',
+							'class'       => 'frame--zoom',
+							'src'         => $article['image_url'],
+							'alt'         => $article['title'],
+							'placeholder' => $article['title'],
+						)
+					);
+					?>
+					<?php if ( '' !== $article['kind'] ) : ?>
+						<span class="in__card-chip"><?php echo esc_html( $article['kind'] ); ?></span>
+					<?php endif; ?>
+				</span>
+				<span class="in__card-body">
+					<span class="in__card-title"><?php echo esc_html( $article['title'] ); ?></span>
+					<span class="in__card-meta">
+						<span><?php echo esc_html( $article['date'] ); ?></span>
+						<span><?php printf( esc_html__( '%d phút đọc', 'starter-flexible' ), (int) $article['minutes'] ); ?></span>
+					</span>
+					<span class="in__card-more">
+						<?php echo esc_html( $data->read_more ); ?>
+						<?php echo starter_flexible_icon_swap( 'arrow', 16 ); // phpcs:ignore ?>
+					</span>
+				</span>
 			</a>
 		<?php endforeach; ?>
 	</div>

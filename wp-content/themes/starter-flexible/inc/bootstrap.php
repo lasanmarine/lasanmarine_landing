@@ -28,6 +28,7 @@ require_once __DIR__ . '/media.php';
 require_once __DIR__ . '/media-webp.php';
 require_once __DIR__ . '/site-settings.php';
 require_once __DIR__ . '/navigation.php';
+require_once __DIR__ . '/post-types.php';
 require_once __DIR__ . '/theme.php';
 require_once __DIR__ . '/widgets.php';
 require_once __DIR__ . '/blocks.php';

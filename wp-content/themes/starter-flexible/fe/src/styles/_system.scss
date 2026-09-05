@@ -455,8 +455,9 @@ a:hover .frame > img,
 .stat__label {
 	@apply font-display font-semibold text-navy;
 	margin-top: 14px;
-	font-size: 11.5px;
-	letter-spacing: 0.14em;
+	font-size: 15px;
+	line-height: 1.4;
+	letter-spacing: 0;
 }
 .stat__note {
 	@apply text-mute;

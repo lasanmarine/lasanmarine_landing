@@ -21,6 +21,11 @@ if ( empty( $data->should_render ) ) {
 $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
+	<?php
+	if ( '' !== trim( (string) $data->label ) ) {
+		get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) );
+	}
+	?>
 	<?php if ( $data->has_heading ) : ?>
 		<h2 class="h3 cm__heading"><?php echo esc_html( $data->heading ); ?></h2>
 	<?php endif; ?>
@@ -38,6 +43,12 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 				</div>
 				<h3 class="cm__name"><?php echo esc_html( $item['name'] ); ?></h3>
 				<p class="cm__desc"><?php echo esc_html( $item['desc'] ); ?></p>
+				<?php if ( '' !== trim( $item['cta'] ) ) : ?>
+					<span class="cm__cta">
+						<?php echo esc_html( $item['cta'] ); ?>
+						<?php echo starter_flexible_icon_swap( 'arrow', 17 ); // phpcs:ignore ?>
+					</span>
+				<?php endif; ?>
 				<?php if ( ! empty( $item['children'] ) ) : ?>
 					<ul class="cm__children">
 						<?php foreach ( $item['children'] as $child ) : ?>

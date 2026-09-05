@@ -1,0 +1,270 @@
+{
+  "post_type": "project",
+  "lang": "vi",
+  "posts": [
+    {
+      "slug": "tau-ca-vo-go-nghe-an",
+      "title": "Tàu cá vỏ gỗ tỉnh Nghệ An",
+      "excerpt": "Mẫu tàu cá vỏ gỗ khai thác xa bờ, tối ưu tuyến hình truyền thống của nghề cá Nghệ An.",
+      "image": {
+        "media": "tau-ca-vo-go-nghe-an"
+      },
+      "terms": {
+        "project_material": [
+          "Gỗ"
+        ],
+        "project_use": [
+          "Đánh bắt thủy sản"
+        ]
+      },
+      "fields": {
+        "design_type": "Thiết kế đóng mới",
+        "lmax": 18.5,
+        "bmax": 4.5,
+        "depth": 2.3,
+        "tonnage": 31.05,
+        "power_kw": 614,
+        "region": "Vùng hạn chế I",
+        "location": "Nghệ An"
+      }
+    },
+    {
+      "slug": "tau-ca-vo-thep-na-95678-ts",
+      "title": "Tàu cá vỏ thép NA-95678-TS",
+      "excerpt": "Tàu cá vỏ thép cỡ lớn, trọng tải 130 tấn, hoạt động vùng hạn chế I.",
+      "image": {
+        "media": "tau-ca-vo-thep-na-95678-ts"
+      },
+      "terms": {
+        "project_material": [
+          "Thép"
+        ],
+        "project_use": [
+          "Đánh bắt thủy sản"
+        ]
+      },
+      "fields": {
+        "vessel_no": "NA-95678-TS",
+        "lmax": 30.5,
+        "bmax": 7.4,
+        "depth": 3.15,
+        "tonnage": 130.0,
+        "power_kw": 610,
+        "region": "Vùng hạn chế I",
+        "location": "Nghệ An"
+      }
+    },
+    {
+      "slug": "tau-ca-vo-thep-qna-91304-ts",
+      "title": "Tàu cá vỏ thép QNa-91304-TS",
+      "excerpt": "Tàu cá lưới vây vỏ thép, máy chính 1.328 kW, đã thi công hoàn thiện tại Quảng Nam.",
+      "image": {
+        "media": "tau-ca-vo-thep-qna-91304-ts"
+      },
+      "terms": {
+        "project_material": [
+          "Thép"
+        ],
+        "project_use": [
+          "Đánh bắt thủy sản"
+        ]
+      },
+      "fields": {
+        "vessel_no": "QNa-91304-TS",
+        "lmax": 26.0,
+        "bmax": 7.3,
+        "depth": 3.3,
+        "tonnage": 84.95,
+        "power_kw": 1328,
+        "region": "Vùng hạn chế I",
+        "location": "Quảng Nam",
+        "status": "Đã thi công đóng mới hoàn thiện"
+      }
+    },
+    {
+      "slug": "tau-ca-vo-thep-qna-91312-ts",
+      "title": "Tàu cá vỏ thép QNa-91312-TS",
+      "excerpt": "Tàu cá lưới vây vỏ thép cùng đội với QNa-91304-TS, máy chính 1.452 kW.",
+      "image": {
+        "media": "tau-ca-vo-thep-qna-91312-ts"
+      },
+      "terms": {
+        "project_material": [
+          "Thép"
+        ],
+        "project_use": [
+          "Đánh bắt thủy sản"
+        ]
+      },
+      "fields": {
+        "vessel_no": "QNa-91312-TS",
+        "lmax": 26.0,
+        "bmax": 7.3,
+        "depth": 3.3,
+        "tonnage": 86.2,
+        "power_kw": 1452,
+        "region": "Vùng hạn chế I",
+        "location": "Quảng Nam",
+        "status": "Đã thi công đóng mới hoàn thiện"
+      }
+    },
+    {
+      "slug": "tau-hau-can-bv-99889-ts",
+      "title": "Tàu hậu cần thủy sản BV-99889-TS",
+      "excerpt": "Tàu hậu cần đánh bắt xa bờ lớn nhất trong danh mục: dài 34,86 m, trọng tải 388 tấn.",
+      "image": {
+        "media": "tau-hau-can-bv-99889-ts"
+      },
+      "terms": {
+        "project_material": [
+          "Thép"
+        ],
+        "project_use": [
+          "Hậu cần thủy sản"
+        ]
+      },
+      "fields": {
+        "vessel_no": "BV-99889-TS",
+        "lmax": 34.86,
+        "bmax": 7.4,
+        "depth": 3.5,
+        "tonnage": 388.02,
+        "power_kw": 772,
+        "region": "Vùng hạn chế I",
+        "location": "Bà Rịa – Vũng Tàu",
+        "status": "Hoàn thành trọn gói hồ sơ kỹ thuật"
+      }
+    },
+    {
+      "slug": "tau-hau-can-bt-98144-ts",
+      "title": "Tàu hậu cần thủy sản BT-98144-TS",
+      "excerpt": "Tàu hậu cần thủy sản vỏ thép, trọng tải 353 tấn, máy chính 1.177 kW.",
+      "image": {
+        "media": "tau-hau-can-bt-98144-ts"
+      },
+      "terms": {
+        "project_material": [
+          "Thép"
+        ],
+        "project_use": [
+          "Hậu cần thủy sản"
+        ]
+      },
+      "fields": {
+        "vessel_no": "BT-98144-TS",
+        "lmax": 34.1,
+        "bmax": 7.2,
+        "depth": 3.7,
+        "tonnage": 353.03,
+        "power_kw": 1177,
+        "region": "Vùng hạn chế I",
+        "location": "Bình Thuận"
+      }
+    },
+    {
+      "slug": "tau-ca-composite-bth-94111-ts",
+      "title": "Tàu cá vỏ composite BTh-94111-TS",
+      "excerpt": "Tàu cá vỏ composite dài 24 m, kết hợp độ bền vật liệu với chi phí bảo dưỡng thấp.",
+      "image": {
+        "media": "tau-ca-composite-bth-94111-ts"
+      },
+      "terms": {
+        "project_material": [
+          "Composite"
+        ],
+        "project_use": [
+          "Đánh bắt thủy sản"
+        ]
+      },
+      "fields": {
+        "vessel_no": "BTh-94111-TS",
+        "lmax": 24.0,
+        "bmax": 6.5,
+        "depth": 3.1,
+        "tonnage": 85.1,
+        "power_kw": 588,
+        "region": "Vùng hạn chế I",
+        "location": "Bình Thuận"
+      }
+    },
+    {
+      "slug": "tau-ca-composite-kh-95177-ts",
+      "title": "Tàu cá vỏ composite KH-95177-TS",
+      "excerpt": "Tàu cá vỏ composite cỡ trung, khai thác vùng hạn chế I.",
+      "image": {
+        "media": "tau-ca-composite-kh-95177-ts"
+      },
+      "terms": {
+        "project_material": [
+          "Composite"
+        ],
+        "project_use": [
+          "Đánh bắt thủy sản"
+        ]
+      },
+      "fields": {
+        "vessel_no": "KH-95177-TS",
+        "lmax": 21.0,
+        "bmax": 5.7,
+        "depth": 2.1,
+        "tonnage": 26.95,
+        "power_kw": 433,
+        "region": "Vùng hạn chế I",
+        "location": "Khánh Hòa"
+      }
+    },
+    {
+      "slug": "cano-lam-hai",
+      "title": "Cano chở khách Lam Hải",
+      "excerpt": "Cano chở khách vỏ composite hoạt động vùng IV, đã được Đăng kiểm V79 duyệt.",
+      "image": {
+        "media": "cano-lam-hai"
+      },
+      "terms": {
+        "project_material": [
+          "Composite"
+        ],
+        "project_use": [
+          "Chở khách"
+        ]
+      },
+      "fields": {
+        "vessel_name": "Lam Hải",
+        "registry": "KH-0935 / V79-01143",
+        "lmax": 9.5,
+        "bmax": 2.35,
+        "depth": 1.25,
+        "tonnage": 2.2,
+        "power_kw": 85,
+        "region": "Vùng IV",
+        "location": "Khánh Hòa",
+        "status": "Đã duyệt Đăng kiểm V79"
+      }
+    },
+    {
+      "slug": "cano-clc-02",
+      "title": "Cano chở khách CLC 02",
+      "excerpt": "Cano chở khách vỏ composite cỡ nhỏ, dài 7 m, máy 110 kW.",
+      "image": {
+        "media": "cano-clc-02"
+      },
+      "terms": {
+        "project_material": [
+          "Composite"
+        ],
+        "project_use": [
+          "Chở khách"
+        ]
+      },
+      "fields": {
+        "vessel_name": "CLC 02",
+        "lmax": 7.0,
+        "bmax": 2.2,
+        "depth": 1.27,
+        "tonnage": 0.73,
+        "power_kw": 110,
+        "region": "Vùng IV"
+      }
+    }
+  ]
+}

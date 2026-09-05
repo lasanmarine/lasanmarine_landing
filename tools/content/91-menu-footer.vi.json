@@ -1,0 +1,43 @@
+{
+  "menu": "LASAN Footer",
+  "location": "footer_menu",
+  "lang": "vi",
+  "items": [
+    {
+      "label": "Giới thiệu",
+      "page": "about"
+    },
+    {
+      "label": "Năng lực",
+      "page": "capabilities"
+    },
+    {
+      "label": "Thiết kế tàu",
+      "page": "service_01"
+    },
+    {
+      "label": "Dịch vụ CNTT",
+      "page": "service_03"
+    },
+    {
+      "label": "Nghiên cứu R&D",
+      "page": "service_rnd"
+    },
+    {
+      "label": "Dự án",
+      "page": "projects"
+    },
+    {
+      "label": "Công cụ",
+      "page": "tools"
+    },
+    {
+      "label": "Tin tức",
+      "page": "insights"
+    },
+    {
+      "label": "Liên hệ",
+      "page": "contact"
+    }
+  ]
+}

@@ -28,10 +28,12 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 			<?php endforeach; ?>
 		</svg>
 
-		<div class="container cs__inner">
-			<figure class="cs__mascot">
-				<img src="<?php echo esc_url( $data->mascot_url ); ?>" alt="" loading="lazy" decoding="async" />
-			</figure>
+		<div class="container cs__inner<?php echo $data->has_mascot ? '' : ' cs__inner--solo'; ?>">
+			<?php if ( $data->has_mascot ) : ?>
+				<figure class="cs__mascot">
+					<img src="<?php echo esc_url( $data->mascot_url ); ?>" alt="" loading="lazy" decoding="async" />
+				</figure>
+			<?php endif; ?>
 
 			<div class="cs__body">
 				<h2 class="cs__heading"><?php echo wp_kses_post( $data->heading ); ?></h2>

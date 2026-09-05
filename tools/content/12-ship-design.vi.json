@@ -1,0 +1,228 @@
+{
+  "key": "service_01",
+  "title": "Thiết kế tàu",
+  "slug": "thiet-ke-tau",
+  "parent": "capabilities",
+  "lang": "vi",
+  "seo": {
+    "title": "Thiết kế & Kỹ thuật tàu thủy — LASAN MARINE",
+    "description": "Giải pháp kỹ thuật trọn gói từ tính toán thủy tĩnh, kết cấu đến lập hồ sơ Đăng kiểm cho tàu đóng mới và tàu cải hoán."
+  },
+  "blocks": [
+    {
+      "type": "page-hero",
+      "fields": {
+        "headline": "Dịch vụ Thiết kế & Kỹ thuật Tàu thủy",
+        "lead": "Giải pháp kỹ thuật trọn gói từ tính toán thủy tĩnh, kết cấu đến lập hồ sơ Đăng kiểm cho tàu đóng mới và tàu cải hoán.",
+        "placeholder": "SHIP DESIGN & ENGINEERING",
+        "heading_level": "h1",
+        "height": 420,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "manifesto",
+      "fields": {
+        "label": "CHUYÊN MÔN CỐT LÕI",
+        "heading": "Bản vẽ chuẩn xác, tối ưu chi phí vật tư và thuận tiện khi thi công",
+        "lead": "Một hồ sơ thiết kế tốt không chỉ dừng lại ở việc đáp ứng quy chuẩn Đăng kiểm, mà còn phải giúp xưởng đóng tàu triển khai thuận lợi, tiết kiệm vật tư và đảm bảo an toàn khai thác cho chủ tàu.",
+        "body": [
+          {
+            "text": "Chúng tôi xử lý toàn diện các giai đoạn kỹ thuật: từ thiết kế cơ bản, thiết kế công nghệ, tính toán đường nước, kết cấu thân vỏ đến bố trí buồng máy cho đa dạng chủng loại tàu (tàu cá, tàu hàng, tàu dịch vụ, cano chở khách) trên các loại vật liệu thép, composite và gỗ. Mọi bài toán đều được mô hình hóa và kiểm tra trên các phần mềm chuyên dụng như Maxsurf, PropCad trước khi xuất hồ sơ thi công."
+          }
+        ],
+        "cta": {
+          "label": "Nhận tư vấn phương án tàu",
+          "page": "contact"
+        },
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "service-architecture",
+      "fields": {
+        "label": "HẠNG MỤC THỰC HIỆN",
+        "heading": "Các dịch vụ kỹ thuật tàu thủy chính",
+        "caption": "Hồ sơ bản vẽ kỹ thuật, mô hình tính toán ổn định và thủy tĩnh.",
+        "view_all": "Xem các dự án thực tế",
+        "view_all_link": {
+          "label": "Xem các dự án thực tế",
+          "page": "projects"
+        },
+        "items": [
+          {
+            "index": "01",
+            "name": "Thiết kế đóng mới",
+            "desc": "Lập hồ sơ kỹ thuật hoàn chỉnh cho tàu đóng mới. Tối ưu tuyến hình thân vỏ để giảm lực cản, tính toán kết cấu chịu lực và bố trí hệ thống động lực tối ưu tiêu hao nhiên liệu.",
+            "link": {
+              "label": "Liên hệ tư vấn",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Thiết kế tàu cá xa bờ, tàu hậu cần thủy sản vỏ thép/gỗ/composite"
+              },
+              {
+                "name": "Thiết kế tàu chở hàng, sà lan và phương tiện thủy nội địa"
+              },
+              {
+                "name": "Thiết kế cano cao tốc, tàu chở khách du lịch"
+              },
+              {
+                "name": "Bản vẽ bố trí chung, kết cấu thân tàu và hệ thống công nghệ"
+              }
+            ]
+          },
+          {
+            "index": "02",
+            "name": "Thiết kế cải hoán & Hoán cải công năng",
+            "desc": "Khảo sát hiện trạng, đo đạc kích thước thực tế và lập phương án kỹ thuật cải tạo tàu nhằm thay đổi công năng hoặc nâng cao hiệu quả khai thác.",
+            "link": {
+              "label": "Liên hệ tư vấn",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Cải hoán đổi nghề đánh bắt hoặc đổi công năng khai thác"
+              },
+              {
+                "name": "Kéo dài thân vỏ, nâng mạn, thay đổi kích thước chính"
+              },
+              {
+                "name": "Nâng cabin, gia cố boong lắp đặt cẩu và trang thiết bị mới"
+              },
+              {
+                "name": "Thay đổi cụm máy chính, trục và hệ thống lái"
+              }
+            ]
+          },
+          {
+            "index": "03",
+            "name": "Lập hồ sơ kỹ thuật & Tính toán chuyên sâu",
+            "desc": "Thực hiện các bài toán tính toán kỹ thuật khắt khe phục vụ công tác thẩm tra, trình duyệt hồ sơ với các cơ quan Đăng kiểm.",
+            "link": {
+              "label": "Liên hệ tư vấn",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Lập đường cong thủy tĩnh, cánh tay đòn ổn định và bài toán chống chìm"
+              },
+              {
+                "name": "Tổ chức thử nghiêng thực tế và lập sổ tay hướng dẫn xếp hàng"
+              },
+              {
+                "name": "Thiết kế chân vịt, tính toán đường kính trục và sức cản thân vỏ"
+              },
+              {
+                "name": "Lập hồ sơ hoàn công và hồ sơ cấp phép phương tiện"
+              }
+            ]
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "image-story",
+      "fields": {
+        "label": "PHẦN MỀM THIẾT KẾ",
+        "items": [
+          {
+            "image": {
+              "media": "phan-mem-maxsurf"
+            },
+            "placeholder": "Maxsurf",
+            "caption": "Maxsurf — dựng tuyến hình, tính thủy tĩnh, ổn định và sức cản thân vỏ."
+          },
+          {
+            "image": {
+              "media": "phan-mem-propcad"
+            },
+            "placeholder": "PropCad",
+            "caption": "PropCad — thiết kế và dựng hình học chân vịt tàu thủy."
+          }
+        ],
+        "note": "Phòng thiết kế dùng phần mềm chuyên dụng để mô hình hóa và kiểm tra mọi bài toán trước khi xuất hồ sơ thi công.",
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "process-timeline",
+      "fields": {
+        "label": "QUY TRÌNH THỰC HIỆN",
+        "steps": [
+          {
+            "index": "01",
+            "title": "Tiếp nhận & Khảo sát bài toán",
+            "desc": "Làm rõ yêu cầu công năng, vùng hoạt động, kích thước giới hạn luồng lạch hoặc khảo sát đo đạc trực tiếp hiện trạng phương tiện."
+          },
+          {
+            "index": "02",
+            "title": "Thiết kế sơ bộ & Tính toán thông số",
+            "desc": "Dựng tuyến hình thân vỏ, phân chia khoang, tính toán sức cản, công suất máy và kiểm tra sơ bộ điều kiện ổn định."
+          },
+          {
+            "index": "03",
+            "title": "Triển khai hồ sơ kỹ thuật chi tiết",
+            "desc": "Vẽ chi tiết kết cấu thân tàu, hệ thống đường ống, buồng máy, trang thiết bị boong và hệ thống điện theo đúng quy chuẩn."
+          },
+          {
+            "index": "04",
+            "title": "Hỗ trợ duyệt Đăng kiểm & Hậu mãi thi công",
+            "desc": "Theo sát quá trình thẩm định hồ sơ với Đăng kiểm, tham gia thử nghiêng thực tế và hỗ trợ kỹ thuật tại xưởng khi triển khai đóng."
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "project-grid",
+      "fields": {
+        "label": "DỰ ÁN THIẾT KẾ ĐÃ TRIỂN KHAI",
+        "items": [
+          {
+            "name": "Tàu hậu cần đánh bắt xa bờ BV-99889-TS (Dài 34.86m, Tải trọng 388 tấn)",
+            "tag": "Vỏ thép · Hậu cần thủy sản",
+            "meta": "Vũng Tàu · Hoàn thành trọn gói hồ sơ kỹ thuật",
+            "span": 8
+          },
+          {
+            "name": "Cano chở khách Lam Hải (Dài 9.5m, Máy ngoài 115 CV)",
+            "tag": "Composite · Cano cao tốc",
+            "meta": "Khánh Hòa · Đăng kiểm V79 duyệt",
+            "span": 4
+          },
+          {
+            "name": "Mẫu tàu cá vỏ gỗ khai thác xa bờ Nghệ An (Dài 18.5m, Máy 614 kW)",
+            "tag": "Vỏ gỗ · Thiết kế đóng mới",
+            "meta": "Nghệ An · Tối ưu tuyến hình truyền thống",
+            "span": 4
+          },
+          {
+            "name": "Đội tàu cá vỏ thép QNa-91304-TS & QNa-91312-TS (Máy chính 1452 kW)",
+            "tag": "Vỏ thép · Tàu cá lưới vây",
+            "meta": "Quảng Nam · Thi công đóng mới hoàn thiện",
+            "span": 8
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "contact-statement",
+      "fields": {
+        "label": "TƯ VẤN DỰ ÁN TÀU",
+        "heading": "Bạn đang cần lên phương án đóng tàu mới hay cải hoán thân vỏ?",
+        "description": "Đội ngũ kỹ sư tàu thủy của chúng tôi sẽ trực tiếp xem xét yêu cầu kỹ thuật, tư vấn sơ bộ kích thước chính và giải pháp thi công tối ưu nhất cho bạn.",
+        "phone": "0834 310 781",
+        "email": "hello@lasanmarine.com",
+        "cta": {
+          "label": "Gửi thông số cần thiết kế",
+          "page": "contact"
+        },
+        "custom_class": ""
+      }
+    }
+  ]
+}

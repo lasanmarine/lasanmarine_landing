@@ -17,52 +17,51 @@ $author_name      = get_the_author();
 $author_initial   = mb_strtoupper( mb_substr( $author_name, 0, 1 ) );
 ?>
 
-<div class="post-progress" aria-hidden="true"><span class="post-progress__bar" data-post-progress></span></div>
+<?php
+get_template_part(
+	'template-parts/components/reading-bar',
+	null,
+	array( 'title' => get_the_title(), 'byline' => $author_name )
+);
+?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'post-single' ); ?>>
 
-	<header class="post-single__header">
-		<div class="post-single__intro">
-			<div class="post-single__badges">
-				<span class="post-single__eyebrow"><?php esc_html_e( 'GHI CHÚ KỸ THUẬT', 'starter-flexible' ); ?></span>
+	<?php /* The photograph carries the title and the byline, so the article
+	         opens on the subject rather than on a stack of labels. */ ?>
+	<header class="post-hero<?php echo has_post_thumbnail() ? '' : ' post-hero--flat'; ?>">
+		<?php if ( has_post_thumbnail() ) : ?>
+			<div class="post-hero__media">
+				<?php the_post_thumbnail( 'full' ); ?>
+			</div>
+			<span class="post-hero__scrim" aria-hidden="true"></span>
+		<?php endif; ?>
+
+		<div class="container post-hero__inner">
+			<div class="post-hero__badges">
+				<span class="post-hero__eyebrow"><?php esc_html_e( 'GHI CHÚ KỸ THUẬT', 'starter-flexible' ); ?></span>
 				<?php foreach ( $post_categories as $category ) : ?>
-					<a class="post-single__cat-link" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
+					<a class="post-hero__cat" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
 				<?php endforeach; ?>
 			</div>
-			<h1 class="post-single__title"><?php the_title(); ?></h1>
-			<?php if ( has_excerpt() ) : ?>
-				<p class="post-single__lead"><?php echo esc_html( get_the_excerpt() ); ?></p>
-			<?php endif; ?>
-		</div>
 
-		<div class="post-single__meta">
-			<span class="post-single__meta-row">
-				<span class="post-single__avatar" aria-hidden="true"><?php echo esc_html( $author_initial ); ?></span>
-				<span class="post-single__meta-text">
-					<span class="post-single__meta-name"><?php echo esc_html( $author_name ); ?></span>
-					<span class="post-single__meta-sub"><?php esc_html_e( 'Kỹ sư Lasan Marine', 'starter-flexible' ); ?></span>
-				</span>
-			</span>
-			<span class="post-single__meta-row post-single__meta-row--stat">
-				<?php echo starter_flexible_icon( 'calendar', 16 ); // phpcs:ignore ?>
-				<span><?php echo esc_html( get_the_date() ); ?></span>
-			</span>
-			<span class="post-single__meta-row post-single__meta-row--stat">
-				<?php echo starter_flexible_icon( 'clock', 16 ); // phpcs:ignore ?>
-				<span><?php printf( esc_html__( '%d phút đọc', 'starter-flexible' ), $reading_time ); ?></span>
-			</span>
+			<h1 class="post-hero__title"><?php the_title(); ?></h1>
+
+			<ul class="post-hero__meta">
+				<li>
+					<span class="post-hero__avatar" aria-hidden="true"><?php echo esc_html( $author_initial ); ?></span>
+					<?php echo esc_html( $author_name ); ?>
+				</li>
+				<li><time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></time></li>
+				<li><?php printf( esc_html__( '%d phút đọc', 'starter-flexible' ), $reading_time ); ?></li>
+			</ul>
 		</div>
 	</header>
 
-	<?php if ( has_post_thumbnail() ) : ?>
-		<div class="post-single__thumb">
-			<?php the_post_thumbnail( 'full', array( 'class' => 'post-single__image' ) ); ?>
-		</div>
-	<?php else : ?>
-		<div class="post-single__thumb post-single__thumb--placeholder" role="img" aria-label="<?php echo esc_attr( $placeholder ?: get_the_title() ); ?>">
-			<?php echo esc_html( $placeholder ?: get_the_title() ); ?>
-		</div>
-	<?php endif; ?>
+	<div class="container post-single__wrap">
+		<?php if ( has_excerpt() ) : ?>
+			<p class="post-single__lead"><?php echo esc_html( get_the_excerpt() ); ?></p>
+		<?php endif; ?>
 
 	<div class="post-single__body">
 		<?php
@@ -88,6 +87,7 @@ $author_initial   = mb_strtoupper( mb_substr( $author_name, 0, 1 ) );
 			</div>
 		</footer>
 	<?php endif; ?>
+	</div>
 
 </article>
 

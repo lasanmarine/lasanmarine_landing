@@ -21,6 +21,11 @@ if ( empty( $data->should_render ) ) {
 $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
+	<?php
+	if ( '' !== trim( (string) $data->label ) ) {
+		get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) );
+	}
+	?>
 	<div class="grid grid--auto manifesto">
 		<h2 class="h3"><?php echo esc_html( $data->heading ); ?></h2>
 		<div class="manifesto__body">

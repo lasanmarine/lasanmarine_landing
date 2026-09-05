@@ -1,0 +1,180 @@
+{
+  "key": "home",
+  "title": "Trang chủ",
+  "slug": "trang-chu",
+  "lang": "vi",
+  "front_page": true,
+  "seo": {
+    "title": "LASAN MARINE — Thiết kế tàu thủy, phần mềm quản lý và nghiên cứu hàng hải",
+    "description": "Giải pháp kỹ thuật thực tế, tính toán chuẩn xác cho từng bài toán: thiết kế vỏ và kết cấu tàu thủy, phần mềm quản lý công việc, nghiên cứu chuyên sâu về hàng hải."
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "fields": {
+        "headline": "Giải pháp kỹ thuật thực tế,",
+        "headline_accent": "tính toán chuẩn xác",
+        "headline_tail": "cho từng bài toán.",
+        "lead": "Chúng tôi làm việc dựa trên dữ liệu thật và bản vẽ chuẩn: từ thiết kế vỏ và kết cấu tàu thủy, xây dựng phần mềm quản lý công việc, cho đến nghiên cứu chuyên sâu về hàng hải.",
+        "primary": { "label": "Xem các mảng dịch vụ", "url": "#dich-vu" },
+        "secondary": { "label": "Liên hệ tư vấn", "page": "contact" },
+        "heading_level": "h1",
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "manifesto",
+      "fields": {
+        "label": "CÁCH CHÚNG TÔI LÀM VIỆC",
+        "heading": "Kỹ thuật dựa trên thực tế vận hành và dữ liệu kiểm chứng",
+        "lead": "Chúng tôi bắt đầu mọi dự án từ bài toán thực tế của khách hàng, giải quyết bằng các mô hình tính toán chuẩn xác và kết thúc bằng sản phẩm ứng dụng được ngay.",
+        "body": [
+          {
+            "text": "Kỹ thuật tàu thủy là nền tảng cốt lõi của công ty. Chúng tôi tập trung vào tính khả thi khi thi công và an toàn khai thác: từ thiết kế đóng mới, cải hoán thân vỏ đến lập hồ sơ đăng kiểm hoàn chỉnh. Song song với đó, năng lực tính toán và xử lý kỹ thuật được mở rộng sang hai mảng độc lập: Dịch vụ CNTT xây dựng các phần mềm tối ưu quy trình quản lý, và R&D chuyên sâu về mô phỏng, phân tích dữ liệu thực nghiệm hàng hải."
+          }
+        ],
+        "cta": { "label": "Tìm hiểu thêm về công ty", "page": "about" },
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "service-architecture",
+      "anchor": "dich-vu",
+      "fields": {
+        "label": "DỊCH VỤ CHÍNH",
+        "heading": "3 mảng dịch vụ tại công ty",
+        "caption": "Hồ sơ kỹ thuật tàu, phần mềm vận hành và mô phỏng thực nghiệm.",
+        "view_all": "Xem chi tiết năng lực",
+        "view_all_link": { "label": "Xem chi tiết năng lực", "page": "capabilities" },
+        "items": [
+          {
+            "index": "01",
+            "name": "Thiết kế & Kỹ thuật tàu thủy",
+            "desc": "Chuyên môn cốt lõi. Chuyên thiết kế đóng mới, thiết kế cải hoán và lập hồ sơ kỹ thuật hoàn chỉnh theo quy chuẩn Đăng kiểm.",
+            "link": { "label": "Xem thiết kế tàu", "page": "service_01" },
+            "children": [
+              { "name": "Thiết kế đóng mới (vỏ, máy, kết cấu)" },
+              { "name": "Thiết kế cải hoán (đổi công năng, nâng cấp thân tàu)" },
+              { "name": "Lập hồ sơ kỹ thuật và hoàn công" },
+              { "name": "Tính toán ổn định, sức cản và thử nghiêng" }
+            ]
+          },
+          {
+            "index": "02",
+            "name": "Dịch vụ Công nghệ Thông tin (CNTT)",
+            "desc": "Mảng kinh doanh độc lập. Xây dựng phần mềm quản lý, ứng dụng nội bộ theo đúng quy trình thực tế của từng đơn vị.",
+            "link": { "label": "Xem dịch vụ CNTT", "page": "service_03" },
+            "children": [
+              { "name": "Phần mềm quản lý thiết bị và lịch bảo dưỡng" },
+              { "name": "Số hóa biểu mẫu và quy trình làm việc" },
+              { "name": "Ứng dụng web quản trị nội bộ" }
+            ]
+          },
+          {
+            "index": "03",
+            "name": "Nghiên cứu & Phát triển (R&D)",
+            "desc": "Hướng đi chuyên sâu về học thuật hàng hải. Xử lý bài toán mô phỏng số, đo đạc thực nghiệm và công bố nghiên cứu khoa học.",
+            "link": { "label": "Xem nghiên cứu R&D", "page": "service_rnd" },
+            "children": [
+              { "name": "Mô phỏng chuyển động thân vỏ và dòng chảy" },
+              { "name": "Tính toán độ bền kết cấu chịu tải" },
+              { "name": "Báo cáo chuyên gia và công bố học thuật" }
+            ]
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "capability-matrix",
+      "fields": {
+        "label": "CHI TIẾT NĂNG LỰC",
+        "heading": "Khách hàng tìm đến chúng tôi khi nào?",
+        "items": [
+          {
+            "index": "01",
+            "icon": "ship",
+            "name": "Thiết kế đóng mới & Cải hoán tàu",
+            "desc": "Cần bộ bản vẽ chuẩn để xưởng thi công chính xác, hồ sơ nộp lên Đăng kiểm duyệt thuận lợi mà không phải sửa đi sửa lại.",
+            "link": { "label": "Xem thiết kế tàu", "page": "service_01" },
+            "children": [
+              { "name": "Thiết kế đóng mới tàu hàng, tàu kéo, sà lan" },
+              { "name": "Thiết kế cải hoán kéo dài vỏ, nâng cabin, đổi công năng" },
+              { "name": "Lập hồ sơ kỹ thuật hoàn công, thử nghiêng, duyệt VR" }
+            ]
+          },
+          {
+            "index": "02",
+            "icon": "link",
+            "name": "Cần phần mềm theo đúng việc",
+            "desc": "Dành cho các đơn vị cần hệ thống quản lý gọn nhẹ, khớp chính xác với luồng công việc thực tế thay vì các phần mềm cồng kềnh có sẵn.",
+            "link": { "label": "Xem dịch vụ CNTT", "page": "service_03" },
+            "children": [
+              { "name": "Theo dõi vật tư, thiết bị và tiến độ sửa chữa" },
+              { "name": "Quản lý phân ca và nhật trình làm việc" },
+              { "name": "Tổng hợp báo cáo số liệu vận hành" }
+            ]
+          },
+          {
+            "index": "03",
+            "icon": "scan",
+            "name": "Cần số liệu và nghiên cứu chuyên sâu",
+            "desc": "Phục vụ các dự án cần dữ liệu đo đạc thực tế, phân tích mô phỏng dòng chảy hoặc cần báo cáo chuyên gia để đánh giá độc lập.",
+            "link": { "label": "Xem nghiên cứu R&D", "page": "service_rnd" },
+            "children": [
+              { "name": "Mô phỏng tối ưu sức cản và công suất máy" },
+              { "name": "Kiểm tra phân bố ứng suất kết cấu" },
+              { "name": "Báo cáo số liệu thực nghiệm hiện trường" }
+            ]
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "project-grid",
+      "fields": {
+        "label": "CÔNG VIỆC THỰC TẾ",
+        "items": [
+          {
+            "name": "Thiết kế kỹ thuật tàu chở hàng rời 3.200 DWT",
+            "tag": "Thiết kế đóng mới",
+            "meta": "Hải Phòng · Đã duyệt Đăng kiểm VR",
+            "span": 8
+          },
+          {
+            "name": "Hệ thống theo dõi lịch bảo dưỡng máy móc và vật tư",
+            "tag": "Phần mềm quản lý",
+            "meta": "Đơn vị vận tải · Đang sử dụng thực tế",
+            "span": 4
+          },
+          {
+            "name": "Mô phỏng dòng chảy quanh bánh lái và thân tàu cao tốc",
+            "tag": "Nghiên cứu R&D",
+            "meta": "Nghiên cứu ứng dụng · Năm 2025",
+            "span": 4
+          },
+          {
+            "name": "Phương án nâng cabin và gia cố mặt boong tàu công trình",
+            "tag": "Thiết kế cải hoán",
+            "meta": "Vũng Tàu · Đã thi công hoàn thiện",
+            "span": 8
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "contact-statement",
+      "fields": {
+        "label": "BẮT ĐẦU DỰ ÁN",
+        "heading": "Bạn đang cần tư vấn kỹ thuật hay nhận báo giá?",
+        "description": "Đội ngũ kỹ sư của chúng tôi trực tiếp tiếp nhận bài toán — từ phương án đóng mới, hồ sơ cải hoán tàu cho đến nhu cầu xây dựng phần mềm — để đưa ra giải pháp rõ ràng, dùng được ngay.",
+        "phone": "0834 310 781",
+        "email": "hello@lasanmarine.com",
+        "cta": { "label": "Nhắn tin cho chúng tôi", "page": "contact" },
+        "custom_class": ""
+      }
+    }
+  ]
+}

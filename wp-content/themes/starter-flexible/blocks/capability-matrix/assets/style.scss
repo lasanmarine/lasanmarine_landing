@@ -30,6 +30,19 @@
 	font-size: 15px;
 	line-height: 1.7;
 }
+/* Lối vào của ô — chữ chạy cùng mũi tên khi rê chuột lên cả ô. */
+.cm__cta {
+	@apply mt-auto inline-flex items-center font-display font-semibold text-marine;
+	gap: 8px;
+	padding-top: 18px;
+	font-size: 14px;
+}
+.cm__cell:hover .cm__cta .btn__icon svg:nth-child(1) {
+	transform: translateX(150%);
+}
+.cm__cell:hover .cm__cta .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
+}
 .cm__children {
 	@apply flex list-none flex-col border-t border-line-soft;
 	margin: 4px 0 0;

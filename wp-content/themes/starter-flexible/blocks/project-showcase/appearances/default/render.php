@@ -2,6 +2,9 @@
 /**
  * Project Showcase — default appearance.
  *
+ * A slider on white: one project per view, photograph beside its spec lines,
+ * each slide carrying its own way into the full record.
+ *
  * @var object $data
  * @var array  $block
  * @var bool   $is_preview
@@ -13,59 +16,98 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( empty( $data->should_render ) ) {
 	if ( $is_preview ) {
-		printf( '<div class="module-placeholder">%s</div>', esc_html__( 'Thêm dự án cho Showcase ở thanh bên.', 'starter-flexible' ) );
+		printf( '<div class="module-placeholder">%s</div>', esc_html__( 'Tích chọn dự án cho Showcase ở thanh bên.', 'starter-flexible' ) );
 	}
 	return;
 }
 
 $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
-$first  = $data->first;
+$total  = count( $data->items );
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
-	<div class="band band--navy ps" data-showcase>
-		<div class="container">
-			<div class="ps__bar">
-				<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
+	<div class="container ps" data-showcase>
+		<div class="ps__bar">
+			<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
+			<?php if ( $total > 1 ) : ?>
 				<div class="ps__nav">
 					<span class="meta" data-ps-counter><?php echo esc_html( $data->count_label ); ?></span>
-					<button type="button" class="icon-btn" data-ps-prev aria-label="<?php esc_attr_e( 'Trước', 'starter-flexible' ); ?>">
+					<button type="button" class="icon-btn icon-btn--sm" data-ps-prev aria-label="<?php esc_attr_e( 'Dự án trước', 'starter-flexible' ); ?>">
 						<?php echo starter_flexible_icon( 'chevronLeft', 20 ); // phpcs:ignore ?>
 					</button>
-					<button type="button" class="icon-btn" data-ps-next aria-label="<?php esc_attr_e( 'Sau', 'starter-flexible' ); ?>">
+					<button type="button" class="icon-btn icon-btn--sm" data-ps-next aria-label="<?php esc_attr_e( 'Dự án sau', 'starter-flexible' ); ?>">
 						<?php echo starter_flexible_icon( 'chevronRight', 20 ); // phpcs:ignore ?>
 					</button>
 				</div>
-			</div>
+			<?php endif; ?>
+		</div>
 
-			<div class="ps__stage ratio-21-9">
+		<div class="ps__viewport">
+			<div class="ps__track" data-ps-track>
 				<?php foreach ( $data->items as $i => $item ) : ?>
-					<div class="ps__slide" data-ps-slide data-active="<?php echo 0 === $i ? 'true' : 'false'; ?>">
-						<?php
-						get_template_part(
-							'template-parts/components/frame',
-							null,
-							array(
-								'ratio'       => '',
-								'src'         => $item['image_url'],
-								'alt'         => $item['name'],
-								'placeholder' => $item['placeholder'],
-							)
-						);
-						?>
-					</div>
+					<article class="ps__slide" data-ps-slide aria-hidden="<?php echo 0 === $i ? 'false' : 'true'; ?>">
+						<div class="ps__media">
+							<?php
+							get_template_part(
+								'template-parts/components/frame',
+								null,
+								array(
+									'ratio'       => 'ratio-4-3',
+									'class'       => 'frame--zoom',
+									'src'         => $item['image_url'],
+									'alt'         => $item['name'],
+									'placeholder' => $item['placeholder'],
+								)
+							);
+							?>
+						</div>
+
+						<div class="ps__body">
+							<h3 class="ps__name"><?php echo esc_html( $item['name'] ); ?></h3>
+
+							<dl class="ps__specs">
+								<?php
+								$rows = array(
+									__( 'Kích thước', 'starter-flexible' ) => $item['location'],
+									__( 'Địa bàn', 'starter-flexible' )    => $item['year'],
+									__( 'Trạng thái', 'starter-flexible' ) => $item['service'],
+								);
+								foreach ( $rows as $label => $value ) :
+									if ( '' === trim( (string) $value ) ) {
+										continue;
+									}
+									?>
+									<div>
+										<dt><?php echo esc_html( $label ); ?></dt>
+										<dd><?php echo esc_html( $value ); ?></dd>
+									</div>
+								<?php endforeach; ?>
+							</dl>
+
+							<?php if ( '' !== (string) $item['url'] ) : ?>
+								<a class="btn ps__cta" href="<?php echo esc_url( (string) $item['url'] ); ?>">
+									<?php esc_html_e( 'Xem chi tiết', 'starter-flexible' ); ?>
+									<?php echo starter_flexible_icon_swap( 'arrow', 20 ); // phpcs:ignore ?>
+								</a>
+							<?php endif; ?>
+						</div>
+					</article>
 				<?php endforeach; ?>
-				<span class="ps__scrim"></span>
-				<div class="ps__caption">
-					<h3 class="ps__name" data-ps-name><?php echo esc_html( $first['name'] ); ?></h3>
-					<div class="ps__meta">
-						<span data-ps-location><?php echo esc_html( $first['location'] ); ?></span>
-						<span data-ps-year><?php echo esc_html( $first['year'] ); ?></span>
-						<span data-ps-service><?php echo esc_html( $first['service'] ); ?></span>
-					</div>
-				</div>
 			</div>
 		</div>
-	</div>
 
-	<script type="application/json" data-ps-data><?php echo wp_json_encode( $data->items ); ?></script>
+		<?php if ( $total > 1 ) : ?>
+			<div class="ps__dots" role="tablist" aria-label="<?php esc_attr_e( 'Chọn dự án', 'starter-flexible' ); ?>">
+				<?php foreach ( $data->items as $i => $item ) : ?>
+					<button
+						type="button"
+						class="ps__dot"
+						role="tab"
+						data-ps-dot="<?php echo esc_attr( (string) $i ); ?>"
+						aria-label="<?php echo esc_attr( $item['name'] ); ?>"
+						aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>"
+					></button>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+	</div>
 </section>

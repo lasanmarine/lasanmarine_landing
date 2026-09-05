@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/design-brief",
+    "title": "LASAN — Design Brief",
+    "description": "Form xây dựng nhiệm vụ thư thiết kế: thông tin chung, kích thước, kết cấu, khai thác và máy.",
+    "category": "flexible-blocks",
+    "icon": "clipboard",
+    "keywords": ["nhiệm vụ thư", "design brief", "form"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

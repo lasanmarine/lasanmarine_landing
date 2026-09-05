@@ -1,21 +1,43 @@
 {
-  "key": "group_project_showcase",
-  "title": "Project Showcase",
-  "fields": [
-    { "key": "field_ps_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "PROJECT SHOWCASE" },
-    {
-      "key": "field_ps_items", "label": "Projects", "name": "items", "type": "repeater",
-      "layout": "block", "button_label": "Add Project",
-      "sub_fields": [
-        { "key": "field_ps_item_image", "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
-        { "key": "field_ps_item_placeholder", "label": "Placeholder Text", "name": "placeholder", "type": "text" },
-        { "key": "field_ps_item_name", "label": "Name", "name": "name", "type": "text" },
-        { "key": "field_ps_item_location", "label": "Location", "name": "location", "type": "text" },
-        { "key": "field_ps_item_year", "label": "Year", "name": "year", "type": "text" },
-        { "key": "field_ps_item_service", "label": "Service", "name": "service", "type": "text" }
-      ]
-    },
-    { "key": "field_ps_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
-  ],
-  "location": [[{ "param": "block", "operator": "==", "value": "acf/project-showcase" }]]
+    "key": "group_project_showcase",
+    "title": "Dự án tiêu biểu",
+    "fields": [
+        {
+            "key": "field_ps_label",
+            "label": "Nhãn block",
+            "name": "label",
+            "type": "text",
+            "default_value": "DỰ ÁN TIÊU BIỂU"
+        },
+        {
+            "key": "field_ps_projects",
+            "label": "Chọn dự án",
+            "name": "projects",
+            "type": "relationship",
+            "instructions": "Tích chọn dự án từ post type Dự án. Ảnh, tên và thông số lấy thẳng từ hồ sơ dự án, không phải nhập lại. Để trống thì tự lấy các dự án mới nhất.",
+            "post_type": ["project"],
+            "filters": ["search", "taxonomy"],
+            "taxonomy": [],
+            "return_format": "id",
+            "min": 0,
+            "max": 12,
+            "elements": ["featured_image"]
+        },
+        {
+            "key": "field_ps_limit",
+            "label": "Số dự án khi để trống",
+            "name": "limit",
+            "type": "number",
+            "default_value": 5,
+            "min": 1,
+            "max": 12
+        },
+        {
+            "key": "field_ps_custom_class",
+            "label": "Custom Class",
+            "name": "custom_class",
+            "type": "text"
+        }
+    ],
+    "location": [[{ "param": "block", "operator": "==", "value": "acf/project-showcase" }]]
 }

@@ -21,7 +21,7 @@
 	   never from a margin on the section itself. */
 	@apply relative flex flex-col;
 	padding-block: clamp(110px, 13vw, 190px) clamp(48px, 6vw, 96px);
-	gap: clamp(48px, 6vw, 96px);
+	gap: clamp(128px, 16vw, 264px);
 }
 
 .ftr__statement {
@@ -117,14 +117,13 @@ a.ftr__row:hover {
 
 .ftr__bank {
 	@apply flex flex-col;
-	padding-top: 20px;
-	border-top: 1px solid rgba(255, 255, 255, 0.16);
-	gap: 10px;
+	padding-top: 26px;
+	gap: 12px;
 }
 .ftr__bank-title {
-	@apply font-display font-semibold text-marine;
-	font-size: 12.5px;
-	letter-spacing: 0.16em;
+	@apply font-display font-semibold text-white;
+	font-size: 17px;
+	letter-spacing: -0.01em;
 }
 .ftr__bank > div {
 	@apply items-baseline;
@@ -168,9 +167,19 @@ a.ftr__row:hover {
 }
 
 /* One horizontal row; it wraps to as many lines as the width allows. */
-.ftr__menu {
-	@apply flex flex-wrap;
+/* Closing group: the menu sits close above the base row, and the pair takes
+   the inner gap as a whole. */
+.ftr__end {
+	@apply flex flex-col;
+	gap: clamp(22px, 2.4vw, 34px);
+}
+
+.ftr__menu-list {
+	@apply m-0 flex list-none flex-wrap p-0;
 	gap: 14px clamp(24px, 3.5vw, 52px);
+}
+.ftr__menu-list li {
+	@apply list-none;
 }
 .ftr__menu a {
 	@apply relative font-display font-semibold;
@@ -196,30 +205,62 @@ a.ftr__row:hover {
 
 .ftr__base {
 	@apply flex flex-wrap items-center justify-between;
-	padding-top: 22px;
+	padding-top: 26px;
 	border-top: 1px solid rgba(255, 255, 255, 0.16);
-	gap: 16px 32px;
-	font-size: 12.5px;
-	letter-spacing: 0.1em;
-	color: rgba(255, 255, 255, 0.45);
+	gap: 18px 32px;
+	font-size: 15px;
+	letter-spacing: 0;
+	color: rgba(255, 255, 255, 0.55);
 }
 .ftr__base > div {
 	@apply flex flex-wrap items-center;
 	gap: 24px;
 }
 .ftr__base a {
-	color: rgba(255, 255, 255, 0.45);
+	color: rgba(255, 255, 255, 0.55);
 }
 .ftr__base a:hover {
 	@apply text-white;
 }
+/* Language switch sits in the base row, left of "back to top". */
+.ftr__base-end {
+	gap: 20px !important;
+}
+.lang--footer {
+	gap: 6px;
+}
+.lang--footer .lang__item {
+	padding: 6px 10px;
+	font-size: 15px;
+	letter-spacing: 0;
+	color: rgba(255, 255, 255, 0.55);
+	opacity: 1;
+}
+.lang--footer .lang__item:hover {
+	@apply text-white;
+}
+.lang--footer .lang__item.is-active {
+	@apply text-marine-bright;
+}
+
+/* A real button on the navy ground: outlined, inverting on hover like the
+   secondary buttons everywhere else. */
 .ftr__top {
-	@apply inline-flex items-center;
-	gap: 8px;
-	color: rgba(255, 255, 255, 0.7) !important;
+	@apply border text-white !important;
+	border-color: rgba(255, 255, 255, 0.28);
+	background: transparent;
+	letter-spacing: 0;
 }
 .ftr__top:hover {
-	color: var(--marine-bright) !important;
+	@apply border-marine bg-marine text-white !important;
+}
+
+/* The footer's own call to action reads at heading scale, not link scale. */
+.ftr__statement .link--fixed {
+	gap: 14px;
+	padding-bottom: 8px;
+	font-size: clamp(22px, 2.4vw, 30px);
+	letter-spacing: -0.01em;
 }
 
 @media (max-width: 700px) {

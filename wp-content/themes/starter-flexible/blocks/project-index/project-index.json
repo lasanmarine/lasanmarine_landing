@@ -1,0 +1,13 @@
+{
+    "key": "group_project_index",
+    "title": "Danh mục dự án",
+    "fields": [
+        { "key": "field_pi_label", "label": "Nhãn block", "name": "label", "type": "text", "default_value": "DỰ ÁN" },
+        { "key": "field_pi_all_label", "label": "Nhãn \"tất cả\"", "name": "all_label", "type": "text", "default_value": "TẤT CẢ" },
+        { "key": "field_pi_filter_by", "label": "Lọc theo", "name": "filter_by", "type": "select", "choices": { "project_material": "Vật liệu", "project_use": "Công dụng", "none": "Không lọc" }, "default_value": "project_material" },
+        { "key": "field_pi_limit", "label": "Số dự án tối đa", "name": "limit", "type": "number", "default_value": 24, "min": 1, "max": 100 },
+        { "key": "field_pi_empty_text", "label": "Chữ khi rỗng", "name": "empty_text", "type": "text", "default_value": "Không có dự án nào." },
+        { "key": "field_pi_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text" }
+    ],
+    "location": [[{ "param": "block", "operator": "==", "value": "acf/project-index" }]]
+}

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/project-index",
+    "title": "LASAN — Project Index",
+    "description": "Danh mục dự án lấy từ post type Dự án, lọc theo vật liệu và công dụng.",
+    "category": "flexible-blocks",
+    "icon": "screenoptions",
+    "keywords": ["project", "index", "cpt"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

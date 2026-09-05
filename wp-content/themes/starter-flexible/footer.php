@@ -89,7 +89,7 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 				<?php if ( '' !== $footer_cta['url'] ) : ?>
 					<a href="<?php echo esc_url( $footer_cta['url'] ); ?>" class="link link--fixed">
 						<?php echo esc_html( $footer_cta['label'] ); ?>
-						<?php echo starter_flexible_icon( 'arrowUpRight' ); // phpcs:ignore ?>
+						<?php echo starter_flexible_icon_swap( 'arrowUpRight', 28 ); // phpcs:ignore ?>
 					</a>
 				<?php endif; ?>
 			</div>
@@ -139,7 +139,7 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 
 					<?php if ( ! empty( array_filter( $bank ) ) ) : ?>
 						<dl class="ftr__bank">
-							<p class="ftr__bank-title"><?php echo esc_html( $is_english ? 'BANK DETAILS' : 'THÔNG TIN TÀI KHOẢN' ); ?></p>
+							<p class="ftr__bank-title"><?php echo esc_html( $is_english ? 'Bank details' : 'Thông tin tài khoản' ); ?></p>
 
 							<div>
 								<dt><?php echo esc_html( $is_english ? 'Account holder' : 'Chủ tài khoản' ); ?></dt>
@@ -192,6 +192,9 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 				<?php endif; ?>
 			</div>
 
+			<?php /* Menu and base row are one closing group: a tight pair, set
+			         apart from the sections above by the inner gap. */ ?>
+			<div class="ftr__end">
 			<?php
 			if ( has_nav_menu( 'footer_menu' ) ) {
 				wp_nav_menu(
@@ -200,7 +203,7 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 						'container'      => 'nav',
 						'container_class' => 'ftr__menu',
 						'container_aria_label' => __( 'Menu', 'starter-flexible' ),
-						'items_wrap'     => '%3$s',
+						'items_wrap'     => '<ul class="ftr__menu-list">%3$s</ul>',
 						'depth'          => 1,
 						'fallback_cb'    => false,
 					)
@@ -221,12 +224,14 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 						<a href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['label'] ); ?></a>
 					<?php endforeach; ?>
 				</div>
-				<div>
-					<a href="#top" class="ftr__top">
+				<div class="ftr__base-end">
+					<?php get_template_part( 'template-parts/components/lang-switch', null, array( 'class' => 'lang--footer' ) ); ?>
+					<a href="#top" class="btn btn--sm ftr__top">
 						<?php echo esc_html( $is_english ? 'Back to top' : 'Lên đầu trang' ); ?>
-						<?php echo starter_flexible_icon( 'arrowUp', 16 ); // phpcs:ignore ?>
+						<?php echo starter_flexible_icon_swap( 'arrowUp', 18 ); // phpcs:ignore ?>
 					</a>
 				</div>
+			</div>
 			</div>
 		</div>
 	</footer>

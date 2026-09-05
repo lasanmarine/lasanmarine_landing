@@ -20,19 +20,16 @@
 	font-size: 12.5px;
 	transition: color 200ms ease;
 }
+/* Tách bằng khoảng trắng và màu, không kẻ vạch — như mọi cặp nhãn/giá trị
+   khác trên site. */
 .sd__choice-k {
-	@apply flex-none border-l border-line font-display font-semibold text-steel;
-	padding-left: 12px;
+	@apply ml-auto flex-none font-display font-semibold text-mute;
+	padding-left: 16px;
 	font-size: 14.5px;
 	font-variant-numeric: tabular-nums;
-	transition:
-		border-color 200ms ease,
-		color 200ms ease;
+	transition: color 200ms ease;
 }
 .sd .pc__choice:has(input:checked) .sd__choice-text em,
 .sd .pc__choice:has(input:checked) .sd__choice-k {
 	color: inherit;
-}
-.sd .pc__choice:has(input:checked) .sd__choice-k {
-	@apply border-marine;
 }

@@ -1,0 +1,121 @@
+{
+  "key": "tools",
+  "title": "Công cụ",
+  "slug": "cong-cu",
+  "lang": "vi",
+  "seo": {
+    "title": "Công cụ tính toán mở — LASAN MARINE",
+    "description": "Ba công cụ tính toán kỹ thuật tàu thủy dùng miễn phí ngay trên trình duyệt: quy đổi công suất, kiểm tra đường kính trục chân vịt và tra cứu thông số động cơ thủy."
+  },
+  "blocks": [
+    {
+      "type": "page-hero",
+      "fields": {
+        "headline": "Công cụ tính toán mở",
+        "lead": "Ba tiện ích kỹ thuật chạy thẳng trên trình duyệt, không cần cài đặt và không thu phí — kết quả tính ngay khi bạn gõ.",
+        "placeholder": "OPEN ENGINEERING TOOLS",
+        "heading_level": "h1",
+        "height": 420,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "manifesto",
+      "fields": {
+        "label": "VÌ SAO CHÚNG TÔI LÀM",
+        "heading": "Những phép tính lặp đi lặp lại nên được làm sẵn một lần cho tất cả",
+        "lead": "Đổi kW sang mã lực, tra công suất một đời máy cũ, kiểm tra nhanh đường kính trục — đây là các bước nhỏ nhưng xuất hiện trong hầu hết mọi hồ sơ. Chúng tôi viết sẵn để không ai phải mở lại bảng tính cũ.",
+        "body": [
+          {
+            "text": "Các công cụ này là một phần trong hướng đóng góp cộng đồng của công ty: dùng được ngay, không đăng ký tài khoản, không quảng cáo. Công thức và hệ số đều lấy theo quy chuẩn hiện hành, có ghi rõ trong từng công cụ để bạn đối chiếu. Kết quả mang tính tham khảo nhanh — hồ sơ trình Đăng kiểm vẫn cần bộ tính toán đầy đủ."
+          }
+        ],
+        "cta": { "label": "Xem hướng nghiên cứu R&D", "page": "service_rnd" },
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "capability-matrix",
+      "fields": {
+        "label": "BA CÔNG CỤ",
+        "heading": "Chọn phép tính bạn đang cần",
+        "items": [
+          {
+            "index": "01",
+            "icon": "calculator",
+            "name": "Quy đổi công suất",
+            "desc": "Nhập một giá trị, các đơn vị còn lại hiện ngay. Mỗi kết quả có nút sao chép, chép ra số trần theo dấu thập phân của máy bạn.",
+            "link": { "label": "Mở công cụ quy đổi", "page": "tool_power" },
+            "children": [
+              { "name": "kW · HP · CV · PS" },
+              { "name": "Chọn số chữ số thập phân" },
+              { "name": "Sao chép từng kết quả" }
+            ]
+          },
+          {
+            "index": "02",
+            "icon": "ruler",
+            "name": "Đường kính trục chân vịt",
+            "desc": "Tính đường kính trục tối thiểu tham khảo từ công suất máy, vòng quay, tỉ số truyền và hệ số vật liệu K3.",
+            "link": { "label": "Mở công cụ tính trục", "page": "tool_shaft" },
+            "children": [
+              { "name": "n = n_e / i, d = k₃ · ∛(P/n)" },
+              { "name": "Bảng hệ số K3 theo vật liệu" },
+              { "name": "Đổi đơn vị kW/HP/CV/PS và rpm/rps" }
+            ]
+          },
+          {
+            "index": "03",
+            "icon": "scan",
+            "name": "Tra cứu động cơ thủy",
+            "desc": "Lọc theo hãng, model, khoảng công suất và khoảng vòng quay trên bộ dữ liệu hơn 250 đời máy.",
+            "link": { "label": "Mở bảng tra động cơ", "page": "tool_engine" },
+            "children": [
+              { "name": "Lọc nhiều hãng và nhiều model" },
+              { "name": "Sắp xếp theo từng cột" },
+              { "name": "Sao chép từng ô giá trị" }
+            ]
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "spec-list",
+      "fields": {
+        "heading": "Điều cần biết trước khi dùng",
+        "note": "Công cụ phục vụ tra cứu và kiểm tra nhanh trong giai đoạn phương án.",
+        "rows": [
+          { "label": "Chi phí sử dụng", "value": "Miễn phí, không cần tài khoản" },
+          { "label": "Nơi chạy", "value": "Ngay trên trình duyệt, không gửi dữ liệu đi đâu" },
+          { "label": "Đơn vị công suất", "value": "kW · HP · CV · PS (CV và PS là cùng một mã lực mét)" },
+          { "label": "Đơn vị vòng quay", "value": "rpm · rps" },
+          { "label": "Nguồn dữ liệu động cơ", "value": "Hơn 250 đời máy, cập nhật từ hồ sơ thiết kế đã thực hiện" },
+          { "label": "Giá trị pháp lý", "value": "Kết quả tham khảo — hồ sơ Đăng kiểm cần bộ tính toán đầy đủ" }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "project-showcase",
+      "fields": {
+        "label": "TÍNH TOÁN NÀY DÙNG Ở ĐÂU",
+        "projects": ["tau-hau-can-bv-99889-ts", "tau-ca-vo-thep-qna-91312-ts", "cano-lam-hai"],
+        "limit": 5,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "contact-statement",
+      "fields": {
+        "label": "CẦN TÍNH SÂU HƠN",
+        "heading": "Bài toán của bạn vượt quá một phép tính nhanh?",
+        "description": "Khi cần tính đầy đủ ổn định, sức cản hay kết cấu để trình Đăng kiểm, gửi cho chúng tôi thông số hiện có — đội ngũ kỹ sư sẽ làm tiếp từ đó.",
+        "phone": "0834 310 781",
+        "email": "hello@lasanmarine.com",
+        "cta": { "label": "Gửi bài toán cần tính", "page": "contact" },
+        "custom_class": ""
+      }
+    }
+  ]
+}

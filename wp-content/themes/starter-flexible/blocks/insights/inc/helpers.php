@@ -17,11 +17,17 @@ function starter_flexible_insights_post_data( WP_Post $post, bool $featured = fa
 	$image_id   = (int) get_post_thumbnail_id( $post->ID );
 	$excerpt    = has_excerpt( $post ) ? $post->post_excerpt : wp_trim_words( wp_strip_all_tags( $post->post_content ), 34 );
 
+	// Same 180 wpm as the article page, so the two never disagree.
+	$words   = preg_split( '/\s+/u', trim( wp_strip_all_tags( $post->post_content ) ) );
+	$minutes = max( 1, (int) ceil( ( is_array( $words ) ? count( $words ) : 0 ) / 180 ) );
+
 	return array(
 		'image_url'   => $image_id ? (string) wp_get_attachment_image_url( $image_id, $featured ? 'large' : 'medium_large' ) : '',
 		'placeholder' => (string) ( get_post_meta( $post->ID, '_lasan_image_placeholder', true ) ?: get_the_title( $post ) ),
 		'kind'        => $kind,
-		'date'        => $featured ? get_the_date( 'd.m.Y', $post ) : trim( $kind . ( $kind ? ' · ' : '' ) . get_the_date( 'd.m.Y', $post ) ),
+		'date'        => get_the_date( 'd/m/Y', $post ),
+		'author'      => get_the_author_meta( 'display_name', (int) $post->post_author ),
+		'minutes'     => $minutes,
 		'title'       => get_the_title( $post ),
 		'excerpt'     => (string) $excerpt,
 		'url'         => get_permalink( $post ),
@@ -32,6 +38,7 @@ function starter_flexible_block_data_insights( array $block ) {
 	$data = array_merge(
 		array(
 			'label'          => 'BÀI VIẾT',
+			'heading'        => '',
 			'view_all'       => 'Xem tất cả bài viết',
 			'view_all_link'  => array(),
 			'read_more'      => 'Đọc tiếp',

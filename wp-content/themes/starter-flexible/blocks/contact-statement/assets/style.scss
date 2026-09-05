@@ -14,6 +14,18 @@
 	grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
 	gap: clamp(28px, 4vw, 72px);
 }
+/* Chưa gán mascot thì lưới còn một cột — băng vẫn rộng nguyên, chỉ dòng chữ
+   được giới hạn để không dài quá tầm đọc. */
+.cs__inner--solo {
+	grid-template-columns: minmax(0, 1fr);
+}
+.cs__inner--solo .cs__heading,
+.cs__inner--solo .cs__description {
+	max-width: 30ch;
+}
+.cs__inner--solo .cs__description {
+	max-width: 60ch;
+}
 .cs__mascot {
 	@apply flex justify-center self-end;
 	margin: 0 0 calc(var(--cs-pad) * -1);

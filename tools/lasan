@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# LASAN content CLI. Chạy trong container WordPress nếu nó đang lên,
+# nếu không thì chạy bằng PHP của máy.
+#
+#   ./tools/lasan apply
+#   ./tools/lasan apply 10-home.vi --dry-run
+#   ./tools/lasan dump home > tools/content/10-home.vi.json
+#   ./tools/lasan pages
+#   ./tools/lasan blocks capability-matrix
+set -euo pipefail
+
+CONTAINER="${LASAN_WP_CONTAINER:-lasan_wp}"
+
+if docker ps --format '{{.Names}}' 2>/dev/null | grep -qx "$CONTAINER"; then
+	exec docker exec -i "$CONTAINER" php /var/www/html/tools/content.php "$@"
+fi
+
+exec php "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/content.php" "$@"

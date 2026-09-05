@@ -1,0 +1,53 @@
+{
+    "key": "group_design_brief",
+    "title": "Nhiệm vụ thư",
+    "fields": [
+        {
+            "key": "field_db_label",
+            "label": "Nhãn block",
+            "name": "label",
+            "type": "text",
+            "default_value": "NHIỆM VỤ THƯ"
+        },
+        {
+            "key": "field_db_heading",
+            "label": "Tiêu đề",
+            "name": "heading",
+            "type": "text",
+            "default_value": "Xây dựng nhiệm vụ thư thiết kế"
+        },
+        {
+            "key": "field_db_intro",
+            "label": "Đoạn dẫn",
+            "name": "intro",
+            "type": "textarea"
+        },
+        {
+            "key": "field_db_cf7",
+            "label": "Form Contact Form 7",
+            "name": "cf7_form",
+            "type": "post_object",
+            "post_type": [
+                "wpcf7_contact_form"
+            ],
+            "return_format": "id",
+            "allow_null": 1,
+            "instructions": "Nơi nhận nhiệm vụ thư. Form cần có các trường brief-code, brief-customer, brief-vessel, brief-email và brief-body."
+        },
+        {
+            "key": "field_db_custom_class",
+            "label": "Custom Class",
+            "name": "custom_class",
+            "type": "text"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/design-brief"
+            }
+        ]
+    ]
+}
