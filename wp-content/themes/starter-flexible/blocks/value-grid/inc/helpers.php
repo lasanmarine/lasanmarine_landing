@@ -1,6 +1,6 @@
 <?php
 /**
- * Value Grid — a numbered three-up used for values and principles.
+ * Value Grid — an icon-led three-up used for values and principles.
  *
  * @package Starter_Flexible
  */
@@ -21,10 +21,18 @@ function starter_flexible_block_data_value_grid( array $block ) {
 		if ( '' === trim( $title ) ) {
 			continue;
 		}
+
+		$link     = isset( $item['link'] ) && is_array( $item['link'] ) ? $item['link'] : array();
+		$link_url = isset( $link['url'] ) ? (string) $link['url'] : '';
+
 		$items[] = array(
-			'index' => isset( $item['index'] ) ? (string) $item['index'] : '',
-			'title' => $title,
-			'desc'  => isset( $item['desc'] ) ? (string) $item['desc'] : '',
+			'icon'        => isset( $item['icon'] ) ? (string) $item['icon'] : 'ship',
+			'title'       => $title,
+			'desc'        => isset( $item['desc'] ) ? (string) $item['desc'] : '',
+			'has_link'    => '' !== trim( $link_url ),
+			'link_url'    => $link_url,
+			'link_label'  => isset( $link['title'] ) ? (string) $link['title'] : '',
+			'link_target' => ! empty( $link['target'] ) ? (string) $link['target'] : '_self',
 		);
 	}
 

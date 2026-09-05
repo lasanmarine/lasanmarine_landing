@@ -12,6 +12,7 @@ import { initFooter } from './site/footer';
 import { initReveal } from './site/reveal';
 import { initWaves } from './site/waves';
 import { initPostProgress } from './site/post-progress';
+import { initAos } from './site/aos';
 
 if (import.meta.env.DEV) {
 	// Production builds/enqueues independent block entries. The dev server only
@@ -35,4 +36,5 @@ onDomReady(() => {
 	initReveal();
 	initWaves();
 	initPostProgress();
+	initAos();
 });

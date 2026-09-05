@@ -3,10 +3,8 @@
 	gap: 12px;
 	padding: clamp(22px, 2.4vw, 32px);
 }
-.vg__index {
-	@apply font-display font-semibold text-marine;
-	font-size: clamp(20px, 1.8vw, 26px);
-	letter-spacing: -0.02em;
+.vg__icon {
+	@apply text-marine;
 }
 .vg__title {
 	font-size: 20px;
@@ -15,4 +13,17 @@
 	@apply text-steel;
 	font-size: 13.5px;
 	line-height: 1.7;
+}
+.vg__link {
+	@apply inline-flex w-fit items-center text-marine;
+	margin-top: auto;
+	padding-top: 8px;
+	gap: 6px;
+	font-family: var(--display);
+	font-size: 13px;
+	font-weight: 600;
+	transition: gap 200ms ease;
+}
+.vg__link:hover {
+	gap: 10px;
 }

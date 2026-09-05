@@ -103,7 +103,6 @@ function starter_flexible_render_primary_nav_markup(): void {
 						<h2 class="mega__title"><?php echo esc_html( '' !== $mega_title ? $mega_title : $item['label'] ); ?></h2>
 						<?php foreach ( $item['children'] as $i => $child ) : ?>
 							<a href="<?php echo esc_url( $child['url'] ); ?>" class="mega__row" data-mega-row data-i="<?php echo esc_attr( (string) $i ); ?>" data-active="<?php echo 0 === $i ? 'true' : 'false'; ?>">
-								<span class="mega__index"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
 								<span class="mega__text">
 									<span class="mega__name"><?php echo esc_html( $child['label'] ); ?></span>
 									<?php if ( ! empty( $child['children'] ) ) : ?>

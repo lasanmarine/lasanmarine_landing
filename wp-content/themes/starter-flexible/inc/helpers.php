@@ -67,6 +67,22 @@ function starter_flexible_merge_block_classes( ...$sources ): string {
 	return implode( ' ', $classes );
 }
 
+/**
+ * Power units shared by the converter and the shaft calculator. `factor`
+ * converts a value in that unit to kW. CV (cheval vapeur) and PS
+ * (Pferdestärke) are the same metric horsepower, hence the same factor.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function starter_flexible_power_units(): array {
+	return array(
+		array( 'id' => 'kw', 'label' => 'kW', 'factor' => 1.0, 'is_default' => true ),
+		array( 'id' => 'hp', 'label' => 'HP', 'factor' => 0.7457, 'is_default' => false ),
+		array( 'id' => 'cv', 'label' => 'CV', 'factor' => 0.735499, 'is_default' => false ),
+		array( 'id' => 'ps', 'label' => 'PS (mã lực)', 'factor' => 0.735499, 'is_default' => false ),
+	);
+}
+
 function starter_flexible_build_module_class( string $base_class, string $custom_class = '' ): string {
 	$merged = starter_flexible_merge_block_classes( $base_class, $custom_class );
 

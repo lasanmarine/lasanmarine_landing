@@ -40,7 +40,6 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 					data-i="<?php echo esc_attr( (string) $i ); ?>"
 					<?php echo '_blank' === $item['target'] ? 'target="_blank" rel="noopener"' : ''; ?>
 				>
-					<span class="sa__index"><?php echo esc_html( $item['index'] ); ?></span>
 					<span>
 						<span class="sa__name"><?php echo esc_html( $item['name'] ); ?></span>
 						<span class="sa__desc"><?php echo esc_html( $item['desc'] ); ?></span>

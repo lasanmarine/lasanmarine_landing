@@ -7,9 +7,10 @@
       "key": "field_value_grid_items", "label": "Items", "name": "items", "type": "repeater",
       "layout": "block", "button_label": "Add Value",
       "sub_fields": [
-        { "key": "field_value_grid_item_index", "label": "Index", "name": "index", "type": "text", "instructions": "Ví dụ: 01, 02…" },
+        { "key": "field_value_grid_item_icon", "label": "Icon", "name": "icon", "type": "select", "choices": { "ship": "ship", "waves": "waves", "ruler": "ruler", "wrench": "wrench", "compass": "compass", "scan": "scan", "gauge": "gauge", "award": "award", "calculator": "calculator", "link": "link" }, "default_value": "ship", "return_format": "value" },
         { "key": "field_value_grid_item_title", "label": "Title", "name": "title", "type": "text" },
-        { "key": "field_value_grid_item_desc", "label": "Description", "name": "desc", "type": "textarea", "rows": 3, "new_lines": "" }
+        { "key": "field_value_grid_item_desc", "label": "Description", "name": "desc", "type": "textarea", "rows": 3, "new_lines": "" },
+        { "key": "field_value_grid_item_link", "label": "Link", "name": "link", "type": "link", "return_format": "array", "instructions": "Tuỳ chọn — hiện một liên kết nhỏ ở cuối ô." }
       ]
     },
     { "key": "field_value_grid_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }

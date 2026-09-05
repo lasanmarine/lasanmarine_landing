@@ -181,7 +181,7 @@
 .mega__row {
 	@apply relative items-center border-b border-line text-navy;
 	display: grid;
-	grid-template-columns: auto 1fr auto;
+	grid-template-columns: 1fr auto;
 	gap: 14px;
 	padding: clamp(14px, 1.6vw, 20px) clamp(16px, 2.4vw, 36px) clamp(14px, 1.6vw, 20px) 6px;
 	transition:
@@ -205,14 +205,6 @@
 	transform: scaleX(1);
 }
 
-.mega__index {
-	@apply font-display font-semibold text-mute;
-	font-size: clamp(18px, 1.7vw, 24px);
-	transition: color 240ms ease;
-}
-.mega__row[data-active='true'] .mega__index {
-	@apply text-marine;
-}
 .mega__text {
 	@apply min-w-0;
 }

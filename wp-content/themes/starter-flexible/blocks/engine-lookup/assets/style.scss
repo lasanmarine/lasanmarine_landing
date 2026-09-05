@@ -1,25 +1,24 @@
-.el {
-	width: 100%;
-	max-width: 760px;
-	margin-inline: auto;
-	min-width: 0;
+/* Engine Lookup reuses the Power Converter's shell (`.pc` / `.pc__*`, see
+   blocks/power-converter/assets/style.scss). What is left here is the result
+   table, which no other tool has. */
+/* Doubled up on purpose: block styles land in one bundle in folder order, so
+   `.pc__grid`'s even split would otherwise win over this one. */
+.pc__grid.el__grid {
+	/* Filters take a third, the table the other two. */
+	grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 }
-.el__controls {
-	@apply grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
-	gap: 22px 24px;
+@media (max-width: 760px) {
+	.pc__grid.el__grid {
+		grid-template-columns: 1fr;
+	}
 }
-/* Labels read at the same weight as the Liên hệ form's — bold and navy,
-   not the small uppercase micro-label the shared `.field` component uses. */
-.el .field__label {
-	@apply font-display font-semibold text-navy;
-	font-size: 16.5px;
-	letter-spacing: 0;
-}
-.el__meta {
-	@apply border-b border-line;
-	margin-top: 28px;
+.el__head {
+	@apply flex flex-wrap items-baseline justify-between border-b border-line;
+	gap: 8px 16px;
 	padding-bottom: 12px;
+}
+.el__head .pc__heading {
+	margin-bottom: 0;
 }
 .el__scroll {
 	@apply overflow-x-auto;
@@ -31,39 +30,70 @@
 .el__table th {
 	@apply border-b border-line p-0 text-left;
 }
+/* Header reads at body size, like a <p> — not as a micro-label. */
 .el__table th button {
-	@apply w-full cursor-pointer border-none bg-none text-left font-display font-semibold text-mute;
+	@apply flex w-full cursor-pointer items-center border-none bg-none text-left font-display font-semibold text-navy;
+	gap: 6px;
 	padding: 14px 12px 14px 0;
-	font-size: 11.5px;
-	letter-spacing: 0.12em;
+	font-size: 16px;
+	letter-spacing: 0;
 	transition: color 200ms ease;
 }
 .el__table th button:hover,
 .el__table th[aria-sort] button {
 	@apply text-marine;
 }
+/* Three glyphs in the same slot: unsorted, ascending, descending. */
 .el__arrow {
-	opacity: 0.5;
-}
-.el__table th[aria-sort='ascending'] .el__arrow::before {
-	content: '↑';
-}
-.el__table th[aria-sort='descending'] .el__arrow::before {
-	content: '↓';
+	@apply inline-flex flex-none;
+	opacity: 0.45;
 }
 .el__table th[aria-sort] .el__arrow {
 	opacity: 1;
-	font-size: 0;
 }
-.el__table th[aria-sort] .el__arrow::before {
-	font-size: 14px;
+.el__arrow-icon--asc,
+.el__arrow-icon--desc {
+	@apply hidden;
+}
+.el__table th[aria-sort] .el__arrow-icon--idle {
+	@apply hidden;
+}
+.el__table th[aria-sort='ascending'] .el__arrow-icon--asc,
+.el__table th[aria-sort='descending'] .el__arrow-icon--desc {
+	@apply block;
 }
 .el__table td {
 	@apply border-b border-line-soft text-steel;
-	padding: 14px 12px 14px 0;
+	padding: 8px 12px 8px 0;
+}
+.el__cell {
+	@apply flex items-center justify-between;
+	gap: 6px;
+	min-height: 30px;
+}
+/* One copy button per value. It only shows on the row you are pointing at, so
+   a full table does not read as a wall of icons. */
+.el__copy {
+	@apply flex-none opacity-0;
+	width: 28px;
+	height: 28px;
+	transition:
+		background 180ms ease,
+		color 180ms ease,
+		opacity 160ms ease;
+}
+.el__table tbody tr:hover .el__copy,
+.el__copy:focus-visible,
+.el__copy.is-copied {
+	@apply opacity-100;
+}
+@media (hover: none) {
+	.el__copy {
+		@apply opacity-100;
+	}
 }
 .el__table tbody tr:hover td {
-	@apply bg-pale;
+	@apply bg-paper;
 }
 .el__table td:first-child,
 .el__table td:nth-child(2) {

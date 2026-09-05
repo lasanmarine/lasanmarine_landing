@@ -1,12 +1,21 @@
 .pc {
 	width: 100%;
-	max-width: 560px;
-	margin-inline: auto;
 	min-width: 0;
+}
+.pc__grid {
+	@apply grid items-start;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: clamp(28px, 4vw, 56px);
+}
+@media (max-width: 720px) {
+	.pc__grid {
+		grid-template-columns: 1fr;
+	}
 }
 .pc__inputs {
 	@apply grid;
 	gap: 22px;
+	align-content: start;
 }
 /* Labels read at the same weight as the Liên hệ form's — bold and navy,
    not the small uppercase micro-label the shared `.field` component uses. */
@@ -14,6 +23,138 @@
 	@apply font-display font-semibold text-navy;
 	font-size: 16.5px;
 	letter-spacing: 0;
+}
+/* A value and its unit read as one control: the field takes the room left over,
+   the unit select sizes to its longest label. */
+.pc__combo {
+	@apply flex;
+	gap: 10px;
+}
+.pc__combo .field__control:not(.pc__unit) {
+	min-width: 0;
+}
+.pc__unit {
+	@apply w-auto flex-none;
+}
+/* A from/to pair sharing one unit select. */
+.pc__range {
+	@apply flex items-center;
+	gap: 10px;
+}
+.pc__range .field__control:not(.pc__unit) {
+	min-width: 0;
+	flex: 1 1 0;
+}
+.pc__range-sep {
+	@apply flex-none text-mute;
+}
+
+/* Multi-select: a control that looks like a <select> but opens a searchable
+   list of checkboxes, since these filters take more than one value. */
+.pc__multi {
+	@apply relative;
+}
+.pc__multi-trigger {
+	@apply flex cursor-pointer items-center justify-between text-left;
+	gap: 12px;
+}
+.pc__multi-trigger[aria-expanded='true'] {
+	@apply border-marine;
+	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
+}
+.pc__multi-value {
+	@apply min-w-0 flex-1 truncate;
+}
+.pc__multi-trigger.is-empty .pc__multi-value {
+	@apply text-mute;
+}
+.pc__multi-caret {
+	@apply flex-none text-mute;
+	transition: transform 200ms ease;
+}
+.pc__multi-trigger[aria-expanded='true'] .pc__multi-caret {
+	transform: rotate(180deg);
+}
+.pc__multi-pop {
+	@apply absolute z-20 flex flex-col border border-line bg-paper;
+	inset-inline: 0;
+	top: calc(100% + 6px);
+	padding: 10px;
+	border-radius: var(--r-md);
+	box-shadow: 0 18px 40px rgba(11, 27, 76, 0.14);
+}
+.pc__multi-pop[hidden] {
+	@apply hidden;
+}
+.pc__multi-search {
+	min-height: 42px;
+	padding: 9px 14px;
+	font-size: 14px;
+}
+.pc__multi-note {
+	@apply text-mute;
+	margin-top: 8px;
+	font-size: 12.5px;
+	line-height: 1.5;
+}
+.pc__multi-note[hidden] {
+	@apply hidden;
+}
+.pc__multi-list {
+	@apply flex flex-col overflow-y-auto;
+	margin-top: 8px;
+	max-height: 240px;
+	gap: 2px;
+}
+.pc__multi-option {
+	@apply flex cursor-pointer items-center text-navy;
+	gap: 10px;
+	padding: 8px 10px;
+	border-radius: var(--r-sm);
+	font-size: 14.5px;
+	transition: background 160ms ease;
+}
+.pc__multi-option:hover {
+	@apply bg-pale;
+}
+.pc__multi-option input {
+	@apply m-0 flex-none cursor-pointer appearance-none border border-mute bg-paper;
+	width: 17px;
+	height: 17px;
+	border-radius: 4px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 13px;
+	transition:
+		border-color 200ms ease,
+		background-color 200ms ease;
+}
+.pc__multi-option input:checked {
+	@apply border-marine bg-marine;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5L20 7'/%3E%3C/svg%3E");
+}
+.pc__multi-option input:focus-visible {
+	@apply border-marine;
+	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.2);
+}
+.pc__multi-empty {
+	@apply text-mute;
+	padding: 12px 10px;
+	font-size: 13.5px;
+}
+.pc__multi-foot {
+	@apply flex justify-end border-t border-line;
+	margin-top: 8px;
+	padding-top: 8px;
+}
+.pc__multi-clear {
+	@apply cursor-pointer border-none bg-none font-display font-semibold text-mute;
+	padding: 4px 6px;
+	font-size: 13px;
+	transition: color 200ms ease;
+}
+.pc__multi-clear:hover {
+	@apply text-marine;
 }
 .pc__units {
 	min-width: 0;
@@ -65,7 +206,6 @@
 }
 .pc__results {
 	@apply bg-pale;
-	margin-top: 28px;
 	padding: clamp(20px, 2vw, 28px);
 	border-radius: var(--r-md);
 }
@@ -81,7 +221,7 @@
 }
 .pc__result-label {
 	@apply text-steel;
-	font-size: 13px;
+	font-size: 16px;
 	overflow-wrap: anywhere;
 }
 .pc__result-value {
@@ -97,8 +237,72 @@
 .pc__result.is-source .pc__result-value {
 	color: var(--marine);
 }
+/* Once the row wraps, the value no longer shares a line with its label — so it
+   reads left, in line with everything above it, rather than orphaned right. */
+@media (max-width: 560px) {
+	.pc__result {
+		gap: 4px 12px;
+	}
+	.pc__result-label {
+		flex-basis: 100%;
+	}
+	.pc__result-value {
+		margin-left: 0;
+		text-align: left;
+	}
+}
+.pc__copy {
+	@apply inline-flex flex-none cursor-pointer items-center justify-center border-none bg-none text-mute;
+	align-self: center;
+	padding: 0;
+	width: 38px;
+	height: 38px;
+	border-radius: var(--r-sm);
+	transition:
+		background 180ms ease,
+		color 180ms ease;
+}
+.pc__copy:hover {
+	@apply bg-paper text-navy;
+}
+.pc__copy.is-copied {
+	color: var(--marine);
+}
+.pc__copy[disabled] {
+	@apply pointer-events-none;
+	opacity: 0.4;
+}
+.pc__copy-icon {
+	display: block;
+}
+.pc__copy-icon--done {
+	display: none;
+}
+.pc__copy.is-copied .pc__copy-icon:not(.pc__copy-icon--done) {
+	display: none;
+}
+.pc__copy.is-copied .pc__copy-icon--done {
+	display: block;
+}
 .pc__note {
+	@apply flex flex-wrap items-center;
 	margin-top: 16px;
+	gap: 6px;
+}
+.pc__precision {
+	@apply border border-line bg-paper text-center font-display font-semibold text-navy outline-none;
+	width: 44px;
+	padding: 4px 2px;
+	border-radius: var(--r-sm);
+	font-size: 13px;
+	transition: border-color 200ms ease;
+}
+.pc__precision:hover {
+	@apply border-mute;
+}
+.pc__precision:focus {
+	@apply border-marine;
+	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
 }
 .pc__error {
 	color: #b42318;

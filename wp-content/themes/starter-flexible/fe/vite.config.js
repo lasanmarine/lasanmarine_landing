@@ -186,7 +186,10 @@ export default defineConfig({
 							}
 							return `blocks/${blockName}/assets/${assetType}.css`;
 						}
-						return 'app.css';
+						// Only the main entry's own CSS is app.css; a dependency's
+						// stylesheet (AOS) keeps its own name rather than pushing
+						// the theme's out to app2.css.
+						return name.startsWith('main') ? 'app.css' : name;
 					}
 					return assetInfo.name;
 				},
