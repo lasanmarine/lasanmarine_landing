@@ -21,7 +21,7 @@ if ( empty( $data->should_render ) ) {
 $heading = $data->heading_level;
 $anchor  = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>"<?php echo $anchor; // phpcs:ignore ?>>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" style="--phero-h:<?php echo esc_attr( (string) $data->height ); ?>px"<?php echo $anchor; // phpcs:ignore ?>>
 	<?php if ( $data->has_media ) : ?>
 		<div class="phero__media">
 			<?php if ( '' !== $data->image_url ) : ?>

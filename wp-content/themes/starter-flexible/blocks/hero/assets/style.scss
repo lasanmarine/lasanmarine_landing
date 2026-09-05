@@ -23,7 +23,8 @@
 	);
 }
 .hero__body {
-	@apply relative;
+	@apply relative flex flex-col;
+	gap: clamp(36px, 4vw, 60px);
 	padding-block: clamp(120px, 16vw, 220px) clamp(120px, 13vw, 190px);
 }
 .hero__headline {
@@ -41,7 +42,6 @@
 	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 	gap: clamp(24px, 3vw, 56px);
 	max-width: 1280px;
-	margin-top: clamp(36px, 4vw, 60px);
 }
 .hero__foot .copy {
 	max-width: 30em;

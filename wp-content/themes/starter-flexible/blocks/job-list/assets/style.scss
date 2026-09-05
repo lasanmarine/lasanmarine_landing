@@ -1,12 +1,12 @@
 .jl {
 	@apply border-t border-line;
-	margin-top: clamp(32px, 4vw, 56px);
 }
 .jl__row {
 	@apply grid items-center border-b border-line;
 	grid-template-columns: 1fr auto auto auto;
 	gap: clamp(12px, 2vw, 28px);
 	padding: 22px 2px;
+	padding-right: clamp(14px, 2vw, 28px);
 	transition: background 200ms ease;
 }
 .jl__row:hover {
@@ -22,10 +22,13 @@
 }
 .jl__arrow {
 	@apply text-marine;
-	transition: transform 240ms ease;
 }
-.jl__row:hover .jl__arrow {
-	transform: translateX(4px);
+/* Icon swap on hover: front arrow exits right, back one slides in from the left. */
+.jl__row:hover .btn__icon[data-dir='right'] svg:nth-child(1) {
+	transform: translateX(150%);
+}
+.jl__row:hover .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
 }
 @media (max-width: 640px) {
 	.jl__row {

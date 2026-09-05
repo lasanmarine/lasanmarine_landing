@@ -21,12 +21,12 @@ if ( empty( $data->should_render ) ) {
 $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
-	<?php if ( $data->has_label ) : ?>
-		<div class="container">
-			<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
-		</div>
-	<?php endif; ?>
 	<div class="band band--pale">
+		<?php if ( $data->has_label ) : ?>
+			<div class="container">
+				<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
+			</div>
+		<?php endif; ?>
 		<div class="container stats" data-reveal-stagger>
 			<?php foreach ( $data->stats as $stat ) : ?>
 				<div class="stat">

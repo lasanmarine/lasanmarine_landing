@@ -47,6 +47,9 @@ function starter_flexible_icon_paths(): array {
 		'calculator'   => '<rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path>',
 		'gauge'        => '<path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path>',
 		'search'       => '<circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path>',
+		'calendar'     => '<path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path>',
+		'clock'        => '<circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16.5 14.5"></polyline>',
+		'user'         => '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>',
 	);
 
 	return $paths;
@@ -71,6 +74,34 @@ function starter_flexible_icon( string $name, int $size = 19, string $class = ''
 		esc_attr( (string) $stroke ),
 		esc_attr( $class ),
 		$inner
+	);
+}
+
+/**
+ * A hover-swap icon: two identical glyphs in a clipped box. On `.btn:hover` the
+ * front one leaves in the direction it points and the back one slides in.
+ * Mirrors the wrapper the button component emits, for buttons built inline.
+ *
+ * @param string $name Icon key (arrow|arrowLeft|arrowUp|arrowUpRight).
+ * @param int    $size Width and height in px.
+ */
+function starter_flexible_icon_swap( string $name, int $size = 19, string $dir = '' ): string {
+	$dirs = array(
+		'arrow'        => 'right',
+		'arrowLeft'    => 'left',
+		'arrowUp'      => 'up',
+		'arrowUpRight' => 'up-right',
+		'download'     => 'down',
+	);
+	$svg  = starter_flexible_icon( $name, $size );
+
+	return sprintf(
+		'<span class="btn__icon" data-dir="%s" style="width:%dpx;height:%dpx" aria-hidden="true">%s%s</span>',
+		esc_attr( '' !== $dir ? $dir : ( $dirs[ $name ] ?? 'right' ) ),
+		$size,
+		$size,
+		$svg,
+		$svg
 	);
 }
 

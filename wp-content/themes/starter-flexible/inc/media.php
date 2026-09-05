@@ -21,12 +21,14 @@ function starter_flexible_brand_asset_mimes( array $mimes ): array {
 add_filter( 'upload_mimes', 'starter_flexible_brand_asset_mimes' );
 
 /** Correct WordPress/fileinfo extension detection for sanitized SVG and ICO. */
-function starter_flexible_brand_asset_filetype( array $checked, string $file, string $filename, array $mimes ): array { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+function starter_flexible_brand_asset_filetype( $checked, $file, $filename, $mimes = null ): array { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	$checked = is_array( $checked ) ? $checked : array();
+
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return $checked;
 	}
 
-	$extension = strtolower( (string) pathinfo( $filename, PATHINFO_EXTENSION ) );
+	$extension = strtolower( (string) pathinfo( (string) $filename, PATHINFO_EXTENSION ) );
 	if ( 'svg' === $extension ) {
 		$checked['ext']             = 'svg';
 		$checked['type']            = 'image/svg+xml';

@@ -1,9 +1,5 @@
 .cm__heading {
-	margin-top: clamp(32px, 4vw, 56px);
 	max-width: 20em;
-}
-.cm {
-	margin-top: clamp(32px, 4vw, 56px);
 }
 .cm__cell {
 	@apply flex flex-col text-navy;
@@ -23,15 +19,15 @@
 }
 .cm__index {
 	@apply font-display font-semibold text-marine;
-	font-size: clamp(20px, 1.8vw, 26px);
+	font-size: clamp(22px, 2vw, 28px);
 	letter-spacing: -0.02em;
 }
 .cm__name {
-	font-size: 20px;
+	font-size: 22px;
 }
 .cm__desc {
 	@apply text-steel;
-	font-size: 13.5px;
+	font-size: 15px;
 	line-height: 1.7;
 }
 .cm__children {
@@ -43,11 +39,11 @@
 .cm__children li {
 	@apply flex items-baseline font-display font-semibold text-navy;
 	gap: 10px;
-	font-size: 14px;
+	font-size: 15.5px;
 }
 .cm__children li::before {
-	@apply flex-none bg-marine;
+	@apply flex-none self-center rounded-full bg-marine;
 	content: '';
-	width: 12px;
-	height: 1.5px;
+	width: 6px;
+	height: 6px;
 }

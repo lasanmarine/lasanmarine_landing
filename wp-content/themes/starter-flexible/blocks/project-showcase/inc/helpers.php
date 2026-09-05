@@ -26,7 +26,6 @@ function starter_flexible_block_data_project_showcase( array $block ) {
 
 		$items[] = array(
 			'name'        => $name,
-			'tag'         => isset( $item['tag'] ) ? (string) $item['tag'] : '',
 			'location'    => isset( $item['location'] ) ? (string) $item['location'] : '',
 			'year'        => isset( $item['year'] ) ? (string) $item['year'] : '',
 			'service'     => isset( $item['service'] ) ? (string) $item['service'] : '',
@@ -36,7 +35,7 @@ function starter_flexible_block_data_project_showcase( array $block ) {
 	}
 
 	$data['items']         = $items;
-	$data['first']         = $items[0] ?? array( 'name' => '', 'tag' => '', 'location' => '', 'year' => '', 'service' => '' );
+	$data['first']         = $items[0] ?? array( 'name' => '', 'location' => '', 'year' => '', 'service' => '' );
 	$data['count_label']   = '01 / ' . str_pad( (string) count( $items ), 2, '0', STR_PAD_LEFT );
 	$data['module_class']  = starter_flexible_build_module_class( 'block', (string) $data['custom_class'] );
 	$data['should_render'] = ! empty( $items );

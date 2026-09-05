@@ -43,7 +43,9 @@ foreach ( $attrs as $key => $value ) {
 }
 
 $class_attr = esc_attr( implode( ' ', $classes ) );
-$icon_html  = '' !== $icon ? starter_flexible_icon( $icon ) : '';
+
+// Hover-swap icon, sized to match the header CTA (20px) on every button.
+$icon_html = '' !== $icon ? starter_flexible_icon_swap( $icon, 20 ) : '';
 ?>
 <?php if ( '' !== $href ) : ?>
 	<a class="<?php echo $class_attr; // phpcs:ignore ?>" href="<?php echo esc_url( $href ); ?>"<?php echo $attr_html; // phpcs:ignore ?>><?php echo esc_html( $label ); ?><?php echo $icon_html; // phpcs:ignore ?></a>

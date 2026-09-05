@@ -1,6 +1,5 @@
 .sa__head {
 	@apply flex flex-wrap items-end justify-between;
-	margin-top: clamp(36px, 4.5vw, 64px);
 	gap: 20px;
 }
 .sa__head .h3 {
@@ -8,7 +7,6 @@
 }
 .sa {
 	@apply grid items-start;
-	margin-top: clamp(32px, 4vw, 56px);
 	grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
 	gap: clamp(28px, 4vw, 64px);
 }
@@ -99,7 +97,7 @@
 	/* The waiting slides are scaled 1.04; without this they spill past the
 	   frame and widen the page on a narrow phone. */
 	@apply relative overflow-hidden bg-tint;
-	aspect-ratio: 4 / 5;
+	aspect-ratio: 3 / 2;
 }
 .sa__slide {
 	@apply absolute inset-0 opacity-0;

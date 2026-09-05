@@ -2,28 +2,6 @@
   "key": "group_engine_lookup",
   "title": "Engine Lookup",
   "fields": [
-    { "key": "field_el_per_page", "label": "Rows Per Page", "name": "per_page", "type": "number", "default_value": 12, "min": 1, "step": 1 },
-    {
-      "key": "field_el_columns", "label": "Column Headings", "name": "columns", "type": "group",
-      "instructions": "Theo đúng thứ tự: hãng, model, kW, rpm, số xy-lanh.",
-      "sub_fields": [
-        { "key": "field_el_col_make", "label": "Make", "name": "make", "type": "text" },
-        { "key": "field_el_col_model", "label": "Model", "name": "model", "type": "text" },
-        { "key": "field_el_col_kw", "label": "kW", "name": "kw", "type": "text" },
-        { "key": "field_el_col_rpm", "label": "RPM", "name": "rpm", "type": "text" },
-        { "key": "field_el_col_cylinders", "label": "Cylinders", "name": "cylinders", "type": "text" }
-      ]
-    },
-    {
-      "key": "field_el_labels", "label": "Control Labels", "name": "labels", "type": "group",
-      "sub_fields": [
-        { "key": "field_el_lbl_search", "label": "Search", "name": "search", "type": "text", "default_value": "TÌM KIẾM" },
-        { "key": "field_el_lbl_all_makes", "label": "All Makes", "name": "all_makes", "type": "text", "default_value": "Tất cả hãng" },
-        { "key": "field_el_lbl_min_power", "label": "Min Power", "name": "min_power", "type": "text", "default_value": "CÔNG SUẤT TỐI THIỂU (kW)" },
-        { "key": "field_el_lbl_rows_found", "label": "Rows Found", "name": "rows_found", "type": "text", "default_value": "kết quả" },
-        { "key": "field_el_lbl_no_results", "label": "No Results", "name": "no_results", "type": "text", "default_value": "Không có kết quả." }
-      ]
-    },
     { "key": "field_el_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
   ],
   "location": [[{ "param": "block", "operator": "==", "value": "acf/engine-lookup" }]]

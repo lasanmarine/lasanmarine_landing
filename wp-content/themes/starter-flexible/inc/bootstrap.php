@@ -31,3 +31,5 @@ require_once __DIR__ . '/navigation.php';
 require_once __DIR__ . '/theme.php';
 require_once __DIR__ . '/widgets.php';
 require_once __DIR__ . '/blocks.php';
+require_once __DIR__ . '/seo-analysis.php';
+require_once __DIR__ . '/service-redirects.php';

@@ -1,18 +1,26 @@
 .cl {
 	@apply grid;
-	margin-top: clamp(32px, 4vw, 56px);
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
 }
 .cl__cell {
 	@apply flex flex-col items-center justify-center border-b border-r border-t border-line-soft text-mute;
 	gap: 14px;
-	height: 150px;
+	min-height: 150px;
+	height: calc(var(--cl-logo-h, 54px) + 96px);
+	padding: 12px;
 	transition:
 		color 240ms ease,
 		background 240ms ease;
 }
 .cl__cell:hover {
 	@apply bg-pale text-marine;
+}
+.cl__logo {
+	height: var(--cl-logo-h, 54px);
+	max-height: 100%;
+	width: auto;
+	max-width: 100%;
+	object-fit: contain;
 }
 .cl__name {
 	@apply font-display font-semibold;

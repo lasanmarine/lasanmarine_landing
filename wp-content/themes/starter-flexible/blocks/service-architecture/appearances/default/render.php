@@ -67,7 +67,7 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 						'template-parts/components/frame',
 						null,
 						array(
-							'ratio'       => 'ratio-4-5',
+							'ratio'       => 'ratio-3-2',
 							'src'         => $item['image_url'],
 							'placeholder' => $item['name'],
 						)
@@ -75,9 +75,6 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 					?>
 				</div>
 			<?php endforeach; ?>
-			<?php if ( $data->has_caption ) : ?>
-				<span class="frame__caption frame__caption--tr"><?php echo esc_html( $data->caption ); ?></span>
-			<?php endif; ?>
 		</div>
 	</div>
 </section>

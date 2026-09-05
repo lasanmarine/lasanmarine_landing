@@ -18,12 +18,14 @@ $address     = (string) starter_flexible_setting( 'address', '' );
 $phone       = (string) starter_flexible_setting( 'phone', '' );
 $email       = (string) starter_flexible_setting( 'email', '' );
 $maps_key    = (string) starter_flexible_setting( 'maps_api_key', '' );
-$logo_id     = (int) starter_flexible_setting( 'footer_logo', 0 );
-$logo_url    = $logo_id ? (string) wp_get_attachment_image_url( $logo_id, 'full' ) : $theme_uri . '/assets/images/footer-logo.svg';
+// The footer reuses the header logo so the brand stays consistent across the page.
+$logo_id     = (int) starter_flexible_setting( 'header_logo', 0 );
+$logo_url    = $logo_id ? (string) wp_get_attachment_image_url( $logo_id, 'full' ) : $theme_uri . '/assets/images/logo-lasan.svg';
 $wordmark    = (string) starter_flexible_setting( 'wordmark', 'ENGINEERING|FOR TOMORROW|OCEAN' );
 $footer_cta  = starter_flexible_link( starter_flexible_setting( 'footer_cta', array() ) );
 $bank        = (array) starter_flexible_setting( 'bank', array() );
 $legal_links = (array) starter_flexible_setting( 'legal_links', array() );
+$is_english  = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 
 $wordmark_lines = array_values( array_filter( array_map( 'trim', explode( '|', $wordmark ) ) ) );
 
@@ -94,23 +96,23 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 
 			<div class="ftr__contact">
 				<div class="ftr__brand">
-					<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="415" height="220" />
+					<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="150" height="34" />
 
 					<div class="ftr__details">
 						<p class="ftr__legal"><?php echo esc_html( $legal_name ); ?></p>
 
 						<?php if ( '' !== $tax_code ) : ?>
 							<p class="ftr__tax">
-								<span><?php esc_html_e( 'MST', 'starter-flexible' ); ?> <?php echo esc_html( $tax_code ); ?></span>
+								<span><?php echo esc_html( $is_english ? 'Tax ID' : 'MST' ); ?> <?php echo esc_html( $tax_code ); ?></span>
 								<button
 									type="button"
 									class="ftr__copy"
 									data-copy="<?php echo esc_attr( $tax_code ); ?>"
-									data-copied="<?php esc_attr_e( 'Đã chép', 'starter-flexible' ); ?>"
+									data-copied="<?php echo esc_attr( $is_english ? 'Copied' : 'Đã chép' ); ?>"
 									aria-label="<?php echo esc_attr( sprintf( /* translators: %s: tax code. */ __( 'Chép mã số thuế %s', 'starter-flexible' ), $tax_code ) ); ?>"
 								>
 									<?php echo starter_flexible_icon( 'file', 15 ); // phpcs:ignore ?>
-									<span data-copy-label><?php esc_html_e( 'Chép', 'starter-flexible' ); ?></span>
+									<span data-copy-label><?php echo esc_html( $is_english ? 'Copy' : 'Chép' ); ?></span>
 								</button>
 							</p>
 						<?php endif; ?>
@@ -137,30 +139,30 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 
 					<?php if ( ! empty( array_filter( $bank ) ) ) : ?>
 						<dl class="ftr__bank">
-							<p class="ftr__bank-title"><?php esc_html_e( 'THÔNG TIN TÀI KHOẢN', 'starter-flexible' ); ?></p>
+							<p class="ftr__bank-title"><?php echo esc_html( $is_english ? 'BANK DETAILS' : 'THÔNG TIN TÀI KHOẢN' ); ?></p>
 
 							<div>
-								<dt><?php esc_html_e( 'Chủ tài khoản', 'starter-flexible' ); ?></dt>
+								<dt><?php echo esc_html( $is_english ? 'Account holder' : 'Chủ tài khoản' ); ?></dt>
 								<dd><?php echo esc_html( (string) ( $bank['holder'] ?? '' ) ); ?></dd>
 							</div>
 							<div>
-								<dt><?php esc_html_e( 'Số tài khoản', 'starter-flexible' ); ?></dt>
+								<dt><?php echo esc_html( $is_english ? 'Account number' : 'Số tài khoản' ); ?></dt>
 								<dd>
 									<?php echo esc_html( (string) ( $bank['number'] ?? '' ) ); ?> (<?php echo esc_html( (string) ( $bank['currency'] ?? '' ) ); ?>)
 									<button
 										type="button"
 										class="ftr__copy"
 										data-copy="<?php echo esc_attr( (string) ( $bank['number'] ?? '' ) ); ?>"
-										data-copied="<?php esc_attr_e( 'Đã chép', 'starter-flexible' ); ?>"
+										data-copied="<?php echo esc_attr( $is_english ? 'Copied' : 'Đã chép' ); ?>"
 										aria-label="<?php echo esc_attr( sprintf( /* translators: %s: account number. */ __( 'Chép số tài khoản %s', 'starter-flexible' ), (string) ( $bank['number'] ?? '' ) ) ); ?>"
 									>
 										<?php echo starter_flexible_icon( 'file', 14 ); // phpcs:ignore ?>
-										<span data-copy-label><?php esc_html_e( 'Chép', 'starter-flexible' ); ?></span>
+										<span data-copy-label><?php echo esc_html( $is_english ? 'Copy' : 'Chép' ); ?></span>
 									</button>
 								</dd>
 							</div>
 							<div>
-								<dt><?php esc_html_e( 'Ngân hàng', 'starter-flexible' ); ?></dt>
+								<dt><?php echo esc_html( $is_english ? 'Bank' : 'Ngân hàng' ); ?></dt>
 								<dd><?php echo esc_html( (string) ( $bank['name'] ?? '' ) ); ?></dd>
 							</div>
 							<div>
@@ -183,7 +185,7 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 							></iframe>
 						</div>
 						<a href="<?php echo esc_url( $map_link ); ?>" target="_blank" rel="noopener" class="btn btn--secondary ftr__map-cta">
-							<?php esc_html_e( 'Mở trên Google Maps', 'starter-flexible' ); ?>
+							<?php echo esc_html( $is_english ? 'Open in Google Maps' : 'Mở trên Google Maps' ); ?>
 							<?php echo starter_flexible_icon( 'arrowUpRight', 18 ); // phpcs:ignore ?>
 						</a>
 					</div>
@@ -221,7 +223,7 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 				</div>
 				<div>
 					<a href="#top" class="ftr__top">
-						<?php esc_html_e( 'Lên đầu trang', 'starter-flexible' ); ?>
+						<?php echo esc_html( $is_english ? 'Back to top' : 'Lên đầu trang' ); ?>
 						<?php echo starter_flexible_icon( 'arrowUp', 16 ); // phpcs:ignore ?>
 					</a>
 				</div>

@@ -7,26 +7,28 @@
  */
 
 $post_categories = array_values( array_filter( get_the_category(), static fn( WP_Term $term ): bool => 'bai-viet' !== $term->slug ) );
-$post_tags       = get_the_tags();
-$plain_content   = trim( wp_strip_all_tags( (string) get_post_field( 'post_content', get_the_ID() ) ) );
-$words           = '' === $plain_content ? array() : preg_split( '/\s+/u', $plain_content );
-$word_count      = is_array( $words ) ? count( $words ) : 0;
-$reading_time    = max( 1, (int) ceil( $word_count / 180 ) );
-$placeholder     = (string) get_post_meta( get_the_ID(), '_lasan_image_placeholder', true );
+$post_tags        = get_the_tags();
+$plain_content    = trim( wp_strip_all_tags( (string) get_post_field( 'post_content', get_the_ID() ) ) );
+$words            = '' === $plain_content ? array() : preg_split( '/\s+/u', $plain_content );
+$word_count       = is_array( $words ) ? count( $words ) : 0;
+$reading_time     = max( 1, (int) ceil( $word_count / 180 ) );
+$placeholder      = (string) get_post_meta( get_the_ID(), '_lasan_image_placeholder', true );
+$author_name      = get_the_author();
+$author_initial   = mb_strtoupper( mb_substr( $author_name, 0, 1 ) );
 ?>
+
+<div class="post-progress" aria-hidden="true"><span class="post-progress__bar" data-post-progress></span></div>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'post-single' ); ?>>
 
 	<header class="post-single__header">
 		<div class="post-single__intro">
-			<span class="post-single__eyebrow"><?php esc_html_e( 'GHI CHÚ KỸ THUẬT', 'starter-flexible' ); ?></span>
-			<?php if ( ! empty( $post_categories ) ) : ?>
-				<div class="post-single__cats">
-					<?php foreach ( $post_categories as $category ) : ?>
-						<a class="post-single__cat-link" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
-					<?php endforeach; ?>
-				</div>
-			<?php endif; ?>
+			<div class="post-single__badges">
+				<span class="post-single__eyebrow"><?php esc_html_e( 'GHI CHÚ KỸ THUẬT', 'starter-flexible' ); ?></span>
+				<?php foreach ( $post_categories as $category ) : ?>
+					<a class="post-single__cat-link" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
+				<?php endforeach; ?>
+			</div>
 			<h1 class="post-single__title"><?php the_title(); ?></h1>
 			<?php if ( has_excerpt() ) : ?>
 				<p class="post-single__lead"><?php echo esc_html( get_the_excerpt() ); ?></p>
@@ -34,11 +36,21 @@ $placeholder     = (string) get_post_meta( get_the_ID(), '_lasan_image_placehold
 		</div>
 
 		<div class="post-single__meta">
-			<span><?php echo esc_html( get_the_date() ); ?></span>
-			<span class="post-single__sep">/</span>
-			<span><?php printf( esc_html__( '%d phút đọc', 'starter-flexible' ), $reading_time ); ?></span>
-			<span class="post-single__sep">/</span>
-			<span><?php echo esc_html( get_the_author() ); ?></span>
+			<span class="post-single__meta-row">
+				<span class="post-single__avatar" aria-hidden="true"><?php echo esc_html( $author_initial ); ?></span>
+				<span class="post-single__meta-text">
+					<span class="post-single__meta-name"><?php echo esc_html( $author_name ); ?></span>
+					<span class="post-single__meta-sub"><?php esc_html_e( 'Kỹ sư Lasan Marine', 'starter-flexible' ); ?></span>
+				</span>
+			</span>
+			<span class="post-single__meta-row post-single__meta-row--stat">
+				<?php echo starter_flexible_icon( 'calendar', 16 ); // phpcs:ignore ?>
+				<span><?php echo esc_html( get_the_date() ); ?></span>
+			</span>
+			<span class="post-single__meta-row post-single__meta-row--stat">
+				<?php echo starter_flexible_icon( 'clock', 16 ); // phpcs:ignore ?>
+				<span><?php printf( esc_html__( '%d phút đọc', 'starter-flexible' ), $reading_time ); ?></span>
+			</span>
 		</div>
 	</header>
 
@@ -93,12 +105,22 @@ if ( $related ) :
 	?>
 	<section class="post-related" aria-labelledby="post-related-title">
 		<h2 class="post-related__head" id="post-related-title"><?php esc_html_e( 'BÀI VIẾT LIÊN QUAN', 'starter-flexible' ); ?></h2>
-		<div class="post-related__grid">
-			<?php foreach ( $related as $related_post ) : ?>
+		<div class="post-related__grid" data-reveal-stagger>
+			<?php foreach ( $related as $i => $related_post ) : ?>
 				<a class="post-related__item" href="<?php echo esc_url( get_permalink( $related_post ) ); ?>">
-					<span class="post-related__date"><?php echo esc_html( get_the_date( 'd.m.Y', $related_post ) ); ?></span>
-					<span class="post-related__title"><?php echo esc_html( get_the_title( $related_post ) ); ?></span>
-					<span class="post-related__arrow" aria-hidden="true"><?php echo starter_flexible_icon( 'arrow', 18 ); // phpcs:ignore ?></span>
+					<span class="post-related__figure">
+						<?php if ( has_post_thumbnail( $related_post ) ) : ?>
+							<?php echo get_the_post_thumbnail( $related_post, 'medium_large', array( 'class' => 'post-related__image' ) ); ?>
+						<?php else : ?>
+							<span class="post-related__placeholder"></span>
+						<?php endif; ?>
+						<span class="post-related__index"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
+					</span>
+					<span class="post-related__body">
+						<span class="post-related__date"><?php echo esc_html( get_the_date( 'd.m.Y', $related_post ) ); ?></span>
+						<span class="post-related__title"><?php echo esc_html( get_the_title( $related_post ) ); ?></span>
+						<span class="post-related__arrow" aria-hidden="true"><?php echo starter_flexible_icon( 'arrow', 18 ); // phpcs:ignore ?></span>
+					</span>
 				</a>
 			<?php endforeach; ?>
 		</div>
@@ -109,8 +131,8 @@ if ( $related ) :
 	<?php
 	the_post_navigation(
 		array(
-			'prev_text'    => '<span class="post-nav__label">' . __( '← Bài trước', 'starter-flexible' ) . '</span><span class="post-nav__title">%title</span>',
-			'next_text'    => '<span class="post-nav__label">' . __( 'Bài tiếp →', 'starter-flexible' ) . '</span><span class="post-nav__title">%title</span>',
+			'prev_text'    => '<span class="post-nav__icon">' . starter_flexible_icon( 'arrowLeft', 18 ) . '</span><span class="post-nav__copy"><span class="post-nav__label">' . __( 'Bài trước', 'starter-flexible' ) . '</span><span class="post-nav__title">%title</span></span>',
+			'next_text'    => '<span class="post-nav__copy post-nav__copy--right"><span class="post-nav__label">' . __( 'Bài tiếp', 'starter-flexible' ) . '</span><span class="post-nav__title">%title</span></span><span class="post-nav__icon">' . starter_flexible_icon( 'arrow', 18 ) . '</span>',
 			'in_same_term' => true,
 			'taxonomy'     => 'category',
 		)
@@ -119,6 +141,7 @@ if ( $related ) :
 </nav>
 
 <section class="post-single__cta">
+	<span class="post-single__cta-icon"><?php echo starter_flexible_icon( 'ship', 26 ); // phpcs:ignore ?></span>
 	<h2><?php esc_html_e( 'Cần trao đổi về một bài toán kỹ thuật cụ thể?', 'starter-flexible' ); ?></h2>
 	<a class="btn" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>">
 		<?php esc_html_e( 'Liên hệ kỹ sư Lasan Marine', 'starter-flexible' ); ?>

@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function starter_flexible_block_data_spec_list( array $block ) {
 	$data = array_merge(
-		array( 'label' => '', 'heading' => '', 'note' => '', 'rows' => array(), 'custom_class' => '' ),
+		array( 'heading' => '', 'note' => '', 'rows' => array(), 'custom_class' => '' ),
 		starter_flexible_get_block_fields( $block )
 	);
 
@@ -26,7 +26,6 @@ function starter_flexible_block_data_spec_list( array $block ) {
 	}
 
 	$data['rows']          = $rows;
-	$data['has_label']     = '' !== trim( (string) $data['label'] );
 	$data['has_note']      = '' !== trim( (string) $data['note'] );
 	$data['module_class']  = starter_flexible_build_module_class( 'block container', (string) $data['custom_class'] );
 	$data['should_render'] = ! empty( $rows ) || '' !== trim( (string) $data['heading'] );

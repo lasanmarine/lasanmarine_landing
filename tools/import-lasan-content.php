@@ -35,10 +35,92 @@ function lasan_rows( array $values, string $key = 'text' ): array {
 	return array_map( static fn( $value ): array => array( $key => (string) $value ), $values );
 }
 
+/**
+ * Top-level ACF field definitions for a block, read from blocks/<slug>/<slug>.json.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function lasan_block_field_defs( string $slug ): array {
+	static $cache = array();
+	if ( isset( $cache[ $slug ] ) ) {
+		return $cache[ $slug ];
+	}
+	$file = get_stylesheet_directory() . "/blocks/{$slug}/{$slug}.json";
+	$json = is_file( $file ) ? json_decode( (string) file_get_contents( $file ), true ) : null;
+
+	return $cache[ $slug ] = ( is_array( $json ) && ! empty( $json['fields'] ) && is_array( $json['fields'] ) )
+		? $json['fields']
+		: array();
+}
+
+/**
+ * Recursively flatten a nested value array into ACF's block-data / post-meta
+ * shape: every field emits `path => value` plus `_path => field_key`, repeaters
+ * emit a row count and per-row keys. Without the `_key` pointers the block
+ * editor cannot map stored values back to fields and wipes them on first save.
+ *
+ * @param array<string, mixed> $out
+ * @param array<string, mixed> $values
+ * @param array<int, array<string, mixed>> $defs
+ */
+function lasan_acf_fill( array &$out, string $prefix, array $values, array $defs ): void {
+	foreach ( $defs as $def ) {
+		$name = (string) ( $def['name'] ?? '' );
+		$key  = (string) ( $def['key'] ?? '' );
+		$type = (string) ( $def['type'] ?? '' );
+
+		if ( '' === $name || '' === $key || 'tab' === $type || 'message' === $type ) {
+			continue;
+		}
+		if ( ! array_key_exists( $name, $values ) ) {
+			continue;
+		}
+
+		$value = $values[ $name ];
+		$path  = $prefix . $name;
+		$subs  = ( isset( $def['sub_fields'] ) && is_array( $def['sub_fields'] ) ) ? $def['sub_fields'] : array();
+
+		if ( 'repeater' === $type ) {
+			$rows = is_array( $value ) ? array_values( $value ) : array();
+			$out[ $path ]        = count( $rows );
+			$out[ '_' . $path ]  = $key;
+			foreach ( $rows as $i => $row ) {
+				if ( is_array( $row ) ) {
+					lasan_acf_fill( $out, $path . '_' . $i . '_', $row, $subs );
+				}
+			}
+			continue;
+		}
+
+		if ( 'group' === $type ) {
+			$out[ '_' . $path ] = $key;
+			if ( is_array( $value ) ) {
+				lasan_acf_fill( $out, $path . '_', $value, $subs );
+			}
+			continue;
+		}
+
+		$out[ $path ]       = $value;
+		$out[ '_' . $path ] = $key;
+	}
+}
+
+/** Build an ACF-editor-compatible `data` attribute for a block. */
+function lasan_acf_block_data( string $slug, array $fields ): array {
+	$defs = lasan_block_field_defs( $slug );
+	if ( ! $defs ) {
+		return $fields; // Unknown block — leave the raw shape untouched.
+	}
+	$out = array();
+	lasan_acf_fill( $out, '', $fields, $defs );
+
+	return $out;
+}
+
 function lasan_block( string $slug, array $fields, array $inner_blocks = array() ): array {
 	$attrs = array(
 		'name' => 'acf/' . $slug,
-		'data' => $fields,
+		'data' => lasan_acf_block_data( $slug, $fields ),
 		'mode' => 'preview',
 	);
 
@@ -57,9 +139,9 @@ function lasan_page_content( array $blocks ): string {
 
 function lasan_capabilities( array $items ): array {
 	return array_map(
-		static function ( array $item ): array {
+		static function ( array $item, int $position ): array {
 			return array(
-				'index'    => (string) ( $item['index'] ?? '' ),
+				'index'    => str_pad( (string) ( $position + 1 ), 2, '0', STR_PAD_LEFT ),
 				'icon'     => (string) ( $item['icon'] ?? 'ship' ),
 				'name'     => (string) ( $item['name'] ?? '' ),
 				'desc'     => (string) ( $item['desc'] ?? '' ),
@@ -67,7 +149,8 @@ function lasan_capabilities( array $items ): array {
 				'children' => array_map( static fn( array $child ): array => array( 'name' => (string) ( $child['name'] ?? '' ) ), (array) ( $item['children'] ?? array() ) ),
 			);
 		},
-		$items
+		$items,
+		array_keys( $items )
 	);
 }
 
@@ -268,15 +351,19 @@ $pages['capabilities'] = array(
 );
 
 foreach ( $data['servicePages'] as $index => $service ) {
-	$cap = $data['capabilities'][ (int) $index - 1 ];
+	$cap = $capabilities_by_index[ $index ];
 	$blocks = array( lasan_page_hero( array( 'headline' => $cap['name'], 'lead' => $service['intro'] ) ) );
 	if ( ! empty( $service['items'] ) ) $blocks[] = lasan_block( 'value-grid', array( 'label' => 'CÁC HẠNG MỤC', 'items' => array_map( static fn( array $row, int $i ): array => array( 'index' => str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ), 'title' => $row['name'], 'desc' => $row['desc'] ), $service['items'], array_keys( $service['items'] ) ) ) );
 	if ( '01' === $index ) $blocks[] = $spotlight_block;
 	if ( ! empty( $service['specs'] ) ) $blocks[] = lasan_block( 'spec-list', array( 'label' => 'PHẠM VI', 'heading' => $service['specs']['heading'], 'rows' => $service['specs']['rows'] ) );
 	if ( ! empty( $service['process'] ) ) $blocks[] = lasan_block( 'process-timeline', array( 'label' => 'QUY TRÌNH', 'heading' => $service['process']['heading'], 'steps' => $service['process']['steps'] ) );
 	if ( ! empty( $service['standards'] ) ) $blocks[] = lasan_block( 'standards', array( 'label' => 'TIÊU CHUẨN', 'heading' => $about['standards']['heading'], 'items' => $about['standards']['items'], 'note' => $about['standards']['note'] ) );
+	foreach ( $service['sections'] ?? array() as $section ) {
+		if ( ! empty( $section['items'] ) ) $blocks[] = lasan_block( 'value-grid', array( 'label' => 'PHƯƠNG TIỆN THỦY NỘI ĐỊA', 'items' => array_map( static fn( array $row, int $i ): array => array( 'index' => str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ), 'title' => $row['name'], 'desc' => $row['desc'] ), $section['items'], array_keys( $section['items'] ) ) ) );
+		if ( ! empty( $section['specs'] ) ) $blocks[] = lasan_block( 'spec-list', array( 'label' => 'PHẠM VI', 'heading' => 'Phạm vi phương tiện thủy nội địa', 'rows' => $section['specs']['rows'] ) );
+	}
 	$blocks[] = $contact_block;
-	$slugs = array( '01' => 'thiet-ke-tau-ca', '02' => 'phuong-tien-thuy-noi-dia', '03' => 'dich-vu-cntt' );
+	$slugs = array( '01' => 'thiet-ke-tau', '03' => 'dich-vu-cntt' );
 	$pages['service_' . $index] = array( 'title' => $cap['name'], 'slug' => $slugs[ $index ], 'parent' => 'capabilities', 'blocks' => $blocks );
 }
 
@@ -312,7 +399,7 @@ $seo = array(
 	'tools'        => array( $tools['index']['title'], $tools['index']['description'] ),
 );
 foreach ( $data['servicePages'] as $index => $service ) {
-	$cap = $data['capabilities'][ (int) $index - 1 ];
+	$cap = $capabilities_by_index[ $index ];
 	$seo['service_' . $index] = array( $cap['name'] . ' | Lasan Marine', $service['intro'] );
 }
 foreach ( array( 'power', 'shaft', 'engine' ) as $key ) {
@@ -376,19 +463,31 @@ function lasan_import_menu( string $name, array $items, string $location, array 
 	$menu = wp_get_nav_menu_object( $name );
 	$menu_id = $menu ? (int) $menu->term_id : (int) wp_create_nav_menu( $name );
 	foreach ( wp_get_nav_menu_items( $menu_id ) ?: array() as $item ) wp_delete_post( (int) $item->ID, true );
-	$path_map = array( '/gioi-thieu/' => 'about', '/nang-luc/' => 'capabilities', '/du-an/' => 'projects', '/tin-tuc/' => 'insights', '/cong-cu/' => 'tools', '/nang-luc/thiet-ke-tau-ca/' => 'service_01', '/nang-luc/phuong-tien-thuy-noi-dia/' => 'service_02' );
+	$path_map = array( '/gioi-thieu/' => 'about', '/nang-luc/' => 'capabilities', '/du-an/' => 'projects', '/tin-tuc/' => 'insights', '/cong-cu/' => 'tools', '/nang-luc/thiet-ke-tau/' => 'service_01' );
 	foreach ( $items as $item ) {
 		$key = $path_map[ $item['href'] ] ?? '';
 		$args = array( 'menu-item-title' => $item['label'], 'menu-item-status' => 'publish', 'menu-item-type' => $key ? 'post_type' : 'custom', 'menu-item-object' => $key ? 'page' : '', 'menu-item-object-id' => $key ? $page_ids[ $key ] : 0, 'menu-item-url' => $key ? '' : home_url( $item['href'] ) );
 		$id = wp_update_nav_menu_item( $menu_id, 0, $args );
 		if ( ! empty( $item['mega'] ) && ! is_wp_error( $id ) ) {
 			update_post_meta( $id, '_menu_item_classes', array( 'has-mega' ) );
-			foreach ( array( 'service_01', 'service_02', 'service_03' ) as $child_key ) wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => get_the_title( $page_ids[ $child_key ] ), 'menu-item-status' => 'publish', 'menu-item-type' => 'post_type', 'menu-item-object' => 'page', 'menu-item-object-id' => $page_ids[ $child_key ], 'menu-item-parent-id' => $id ) );
+			foreach ( array( 'service_01', 'service_03' ) as $child_key ) wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => get_the_title( $page_ids[ $child_key ] ), 'menu-item-status' => 'publish', 'menu-item-type' => 'post_type', 'menu-item-object' => 'page', 'menu-item-object-id' => $page_ids[ $child_key ], 'menu-item-parent-id' => $id ) );
 		}
 	}
 	$locations = get_theme_mod( 'nav_menu_locations', array() );
 	$locations[ $location ] = $menu_id;
 	set_theme_mod( 'nav_menu_locations', $locations );
+
+	// Polylang stores a separate menu ID per theme/location/language and filters
+	// the ordinary nav_menu_locations value on the front end. Imports do not go
+	// through the Appearance > Menus request that normally populates this map.
+	if ( function_exists( 'PLL' ) && isset( PLL()->options ) ) {
+		$menu_language = (string) PLL()->options->get( 'default_lang' );
+		if ( '' !== $menu_language ) {
+			$nav_menus = (array) PLL()->options->get( 'nav_menus' );
+			$nav_menus[ get_stylesheet() ][ $location ][ $menu_language ] = $menu_id;
+			PLL()->options->set( 'nav_menus', $nav_menus );
+		}
+	}
 }
 lasan_import_menu( 'LASAN Header', $data['nav'], 'header_menu', $page_ids );
 lasan_import_menu( 'LASAN Footer', $data['footerNav'], 'footer_menu', $page_ids );

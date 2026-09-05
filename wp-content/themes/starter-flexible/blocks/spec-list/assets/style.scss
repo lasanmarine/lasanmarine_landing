@@ -1,6 +1,5 @@
 .sl {
 	@apply grid items-start;
-	margin-top: clamp(32px, 4vw, 56px);
 	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 	gap: clamp(28px, 4vw, 72px);
 }

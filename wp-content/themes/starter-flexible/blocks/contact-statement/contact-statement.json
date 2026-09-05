@@ -4,6 +4,7 @@
   "fields": [
     { "key": "field_cs_label", "label": "Block Label", "name": "label", "type": "text" },
     { "key": "field_cs_heading", "label": "Heading", "name": "heading", "type": "wysiwyg", "tabs": "visual", "toolbar": "basic", "media_upload": 0 },
+    { "key": "field_cs_description", "label": "Description", "name": "description", "type": "textarea", "rows": 3, "new_lines": "br", "instructions": "Đoạn mô tả ngắn nằm dưới heading." },
     { "key": "field_cs_phone", "label": "Phone", "name": "phone", "type": "text" },
     { "key": "field_cs_email", "label": "Email", "name": "email", "type": "email" },
     { "key": "field_cs_cta", "label": "CTA", "name": "cta", "type": "link", "return_format": "array" },

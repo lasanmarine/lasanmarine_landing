@@ -20,6 +20,7 @@ $header_cta   = starter_flexible_link( starter_flexible_setting( 'header_cta', a
 $phone        = (string) starter_flexible_setting( 'phone', '' );
 $email        = (string) starter_flexible_setting( 'email', '' );
 $social       = (array) starter_flexible_setting( 'social', array() );
+$is_english   = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -34,7 +35,7 @@ $social       = (array) starter_flexible_setting( 'social', array() );
 <body <?php body_class(); ?> id="top">
 	<?php wp_body_open(); ?>
 
-	<a href="#main" class="sr-only"><?php esc_html_e( 'Tới nội dung chính', 'starter-flexible' ); ?></a>
+	<a href="#main" class="sr-only"><?php echo esc_html( $is_english ? 'Skip to main content' : 'Tới nội dung chính' ); ?></a>
 
 	<header class="hdr" data-header>
 		<?php if ( '' !== $announcement ) : ?>
@@ -62,7 +63,7 @@ $social       = (array) starter_flexible_setting( 'social', array() );
 						?>
 						<a href="<?php echo esc_url( $header_cta['url'] ); ?>" class="btn btn--sm hdr__cta">
 							<?php echo esc_html( $header_cta['label'] ); ?>
-							<?php echo starter_flexible_icon( 'arrowUpRight', 20 ); // phpcs:ignore ?>
+							<?php echo starter_flexible_icon_swap( 'arrowUpRight', 20 ); // phpcs:ignore ?>
 						</a>
 					<?php endif; ?>
 				</nav>
@@ -80,7 +81,7 @@ $social       = (array) starter_flexible_setting( 'social', array() );
 			<path d="M-40 176 C130 126 250 196 370 164 C480 134 550 104 640 110" fill="none" stroke="#0A72C8" stroke-width="3"></path>
 		</svg>
 
-		<nav class="drawer__nav" aria-label="<?php esc_attr_e( 'Di động', 'starter-flexible' ); ?>">
+		<nav class="drawer__nav" aria-label="<?php echo esc_attr( $is_english ? 'Mobile' : 'Di động' ); ?>">
 			<?php starter_flexible_render_drawer_nav( $header_cta ); ?>
 		</nav>
 

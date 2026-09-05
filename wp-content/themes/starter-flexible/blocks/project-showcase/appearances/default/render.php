@@ -22,14 +22,10 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 $first  = $data->first;
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
-	<div class="container">
-		<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
-	</div>
-
 	<div class="band band--navy ps" data-showcase>
 		<div class="container">
 			<div class="ps__bar">
-				<span class="meta ps__tag" data-ps-tag><?php echo esc_html( $first['tag'] ); ?></span>
+				<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
 				<div class="ps__nav">
 					<span class="meta" data-ps-counter><?php echo esc_html( $data->count_label ); ?></span>
 					<button type="button" class="icon-btn" data-ps-prev aria-label="<?php esc_attr_e( 'Trước', 'starter-flexible' ); ?>">

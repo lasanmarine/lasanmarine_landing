@@ -36,6 +36,10 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 			<div class="cs__body">
 				<h2 class="cs__heading"><?php echo wp_kses_post( $data->heading ); ?></h2>
 
+				<?php if ( $data->has_description ) : ?>
+					<p class="cs__description"><?php echo wp_kses_post( $data->description ); ?></p>
+				<?php endif; ?>
+
 				<div class="cs__details">
 					<?php if ( $data->has_phone ) : ?>
 						<a href="<?php echo esc_attr( $data->phone_href ); ?>" class="cs__line">

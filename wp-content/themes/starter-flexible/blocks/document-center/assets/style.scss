@@ -1,18 +1,23 @@
 .dc__filters {
-	@apply flex flex-wrap border-b border-line;
-	margin-top: clamp(32px, 4vw, 56px);
-	gap: 20px;
-	padding-bottom: 18px;
+	@apply flex flex-wrap;
+	gap: 26px;
+	padding-bottom: 2px;
+	/* The real gap here is `.block`'s flex gap, not padding: pull the list back
+	   up so tabs sit ~1/3 of that distance above the first row. */
+	margin-bottom: calc(clamp(32px, 4vw, 56px) * -0.7);
 }
 .dc__filter {
 	@apply cursor-pointer border-none bg-none font-display font-semibold text-mute;
-	padding: 4px 0;
-	border-bottom: 1.5px solid transparent;
-	font-size: 14px;
-	letter-spacing: 0.1em;
+	padding: 6px 0;
+	border-bottom: 2px solid transparent;
+	font-size: clamp(14.5px, 1vw, 16.5px);
+	letter-spacing: 0.08em;
 	transition:
 		color 200ms ease,
 		border-color 200ms ease;
+}
+.dc__filter:hover {
+	@apply text-navy;
 }
 .dc__filter[data-active='true'] {
 	@apply text-marine;
@@ -23,13 +28,28 @@
 	grid-template-columns: auto 1fr auto auto;
 	gap: clamp(12px, 2vw, 28px);
 	padding: 20px 2px;
-	transition: background 200ms ease;
+	margin-inline: -2px;
+	padding-inline: 2px;
+	border-radius: var(--r-sm);
+	transition:
+		background 200ms ease,
+		border-color 200ms ease;
+}
+/* Tabs sit close to the list: 14px + 20px of stacked padding cut to ~1/3. */
+.dc__row:first-child {
+	padding-top: 10px;
 }
 .dc__row[hidden] {
 	@apply hidden;
 }
 .dc__row:hover {
-	@apply bg-pale;
+	@apply bg-tint border-line-soft;
+}
+.dc__row:hover .dc__title {
+	@apply text-marine;
+}
+.dc__row:hover .dc__icon {
+	color: var(--navy);
 }
 .dc__icon {
 	@apply inline-flex text-marine;
@@ -42,13 +62,21 @@
 	@apply text-mute;
 	font-size: 13px;
 }
-.dc__dl {
-	@apply text-marine;
+.dc__actions {
+	@apply flex flex-wrap items-center justify-end;
+	gap: 10px;
 }
 /* No file attached yet — keep the slot, drop the affordance. */
 .dc__dl.is-inert {
-	@apply cursor-default text-mute;
-	opacity: 0.45;
+	@apply cursor-default;
+	opacity: 0.4;
+}
+/* Xem PDF — the scan glyph zooms slightly on hover. */
+.dc__view svg {
+	transition: transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dc__view:hover svg {
+	transform: scale(1.18);
 }
 .dc__empty {
 	@apply text-mute;
@@ -56,4 +84,14 @@
 }
 .dc__empty[hidden] {
 	@apply hidden;
+}
+@media (max-width: 700px) {
+	.dc__row {
+		grid-template-columns: auto 1fr;
+	}
+	.dc__size,
+	.dc__actions {
+		grid-column: 2;
+		justify-content: flex-start;
+	}
 }

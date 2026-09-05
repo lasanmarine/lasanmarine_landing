@@ -21,11 +21,6 @@ if ( empty( $data->should_render ) ) {
 $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
-	<?php
-	if ( $data->has_label ) {
-		get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) );
-	}
-	?>
 	<div class="sl">
 		<div class="sl__intro">
 			<h2 class="h4"><?php echo esc_html( $data->heading ); ?></h2>

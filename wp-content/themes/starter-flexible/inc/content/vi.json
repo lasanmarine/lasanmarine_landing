@@ -172,9 +172,9 @@
   "capabilities": [
     {
       "index": "01",
-      "name": "Thiết kế tàu cá",
-      "href": "/nang-luc/thiet-ke-tau-ca/",
-      "desc": "Tàu cá vỏ thép, composite và gỗ — từ hồ sơ kỹ thuật đến thiết kế đóng mới và cải hoán.",
+      "name": "Thiết kế tàu",
+      "href": "/nang-luc/thiet-ke-tau/",
+      "desc": "Thiết kế đóng mới, hoán cải và hồ sơ kỹ thuật cho tàu cá, tàu hàng, tàu khách và sà lan.",
       "icon": "ship",
       "children": [
         {
@@ -196,13 +196,6 @@
       ]
     },
     {
-      "index": "02",
-      "name": "Thiết kế phương tiện thủy nội địa",
-      "href": "/nang-luc/phuong-tien-thuy-noi-dia/",
-      "desc": "Sà lan, tàu chở hàng, tàu khách và tàu sông pha biển cấp VR-SI, VR-SB.",
-      "icon": "waves"
-    },
-    {
       "index": "03",
       "name": "Dịch vụ CNTT",
       "href": "/nang-luc/dich-vu-cntt/",
@@ -212,7 +205,7 @@
   ],
   "capabilitiesPage": {
     "title": "Dịch vụ kỹ thuật tàu thủy | Lasan Marine",
-    "description": "Thiết kế tàu cá, phương tiện thủy nội địa và giải pháp công nghệ thông tin cho doanh nghiệp hàng hải.",
+    "description": "Thiết kế tàu và giải pháp công nghệ thông tin cho doanh nghiệp hàng hải.",
     "hero": {
       "headline": "Đa dạng dịch vụ cho đa dạng nhu cầu.",
       "lead": "Từ lập hồ sơ kỹ thuật, cải hoán đến thiết kế đóng mới cho tàu cá và phương tiện thủy nội địa — cùng các giải pháp công nghệ thông tin cho doanh nghiệp hàng hải.",
@@ -401,12 +394,8 @@
       "href": "/gioi-thieu/"
     },
     {
-      "label": "Dịch vụ thiết kế tàu cá",
-      "href": "/nang-luc/thiet-ke-tau-ca/"
-    },
-    {
-      "label": "Dịch vụ thiết kế phương tiện thủy nội địa",
-      "href": "/nang-luc/phuong-tien-thuy-noi-dia/"
+      "label": "Thiết kế tàu",
+      "href": "/nang-luc/thiet-ke-tau/"
     },
     {
       "label": "Tin tức",
@@ -733,7 +722,7 @@
   "servicePages": {
     "01": {
       "standards": true,
-      "intro": "Tàu cá xa bờ đòi hỏi dung tích hầm bảo quản lớn, ổn định tốt khi kéo lưới và hồ sơ đủ để qua đăng kiểm ngay lần trình đầu. Chúng tôi nhận trọn gói từ khảo sát đến bàn giao hồ sơ.",
+      "intro": "Thiết kế tàu từ nhu cầu khai thác đến hồ sơ kỹ thuật: tàu cá, tàu hàng, tàu khách và sà lan. Lasan Marine tư vấn đóng mới, hoán cải và lập hồ sơ phù hợp với từng phương tiện.",
       "specs": {
         "heading": "Phạm vi thường gặp.",
         "rows": [
@@ -754,49 +743,51 @@
             "value": "Tàu cá biển"
           }
         ]
-      }
-    },
-    "02": {
-      "intro": "Phương tiện thủy nội địa được tính trên bài toán cân đối giữa mớn nước, tải trọng và vùng hoạt động. Hồ sơ lập theo quy phạm phân cấp phương tiện thủy nội địa.",
-      "items": [
+      },
+      "sections": [
         {
-          "name": "Thiết kế đóng mới",
-          "desc": "Sà lan, tàu chở hàng, tàu khách và tàu sông pha biển từ thông số khai thác ban đầu."
-        },
-        {
-          "name": "Nâng cấp tải trọng",
-          "desc": "Tính lại sức bền dầm dọc và mạn khô khi tăng DWT trên phương tiện đang khai thác."
-        },
-        {
-          "name": "Hoán cải công năng",
-          "desc": "Chuyển đổi phương tiện thành tàu du lịch, nhà hàng nổi hoặc tàu công vụ."
-        },
-        {
-          "name": "Hồ sơ phân cấp VR-SI / VR-SB",
-          "desc": "Lập và bảo vệ hồ sơ mở rộng vùng hoạt động từ sông ra sông pha biển."
-        }
-      ],
-      "specs": {
-        "heading": "Phạm vi thường gặp.",
-        "rows": [
-          {
-            "label": "CHIỀU DÀI",
-            "value": "15 – 50 m"
-          },
-          {
-            "label": "LOẠI PHƯƠNG TIỆN",
-            "value": "Sà lan · hàng · khách"
-          },
-          {
-            "label": "CẤP ĐĂNG KIỂM",
-            "value": "VR-SI · VR-SB"
-          },
-          {
-            "label": "VẬT LIỆU VỎ",
-            "value": "Thép · composite"
+          "intro": "Phương tiện thủy nội địa được tính trên bài toán cân đối giữa mớn nước, tải trọng và vùng hoạt động. Hồ sơ lập theo quy phạm phân cấp phương tiện thủy nội địa.",
+          "items": [
+            {
+              "name": "Thiết kế đóng mới",
+              "desc": "Sà lan, tàu chở hàng, tàu khách và tàu sông pha biển từ thông số khai thác ban đầu."
+            },
+            {
+              "name": "Nâng cấp tải trọng",
+              "desc": "Tính lại sức bền dầm dọc và mạn khô khi tăng DWT trên phương tiện đang khai thác."
+            },
+            {
+              "name": "Hoán cải công năng",
+              "desc": "Chuyển đổi phương tiện thành tàu du lịch, nhà hàng nổi hoặc tàu công vụ."
+            },
+            {
+              "name": "Hồ sơ phân cấp VR-SI / VR-SB",
+              "desc": "Lập và bảo vệ hồ sơ mở rộng vùng hoạt động từ sông ra sông pha biển."
+            }
+          ],
+          "specs": {
+            "heading": "Phạm vi thường gặp.",
+            "rows": [
+              {
+                "label": "CHIỀU DÀI",
+                "value": "15 – 50 m"
+              },
+              {
+                "label": "LOẠI PHƯƠNG TIỆN",
+                "value": "Sà lan · hàng · khách"
+              },
+              {
+                "label": "CẤP ĐĂNG KIỂM",
+                "value": "VR-SI · VR-SB"
+              },
+              {
+                "label": "VẬT LIỆU VỎ",
+                "value": "Thép · composite"
+              }
+            ]
           }
-        ]
-      }
+        }
+      ]
     },
     "03": {
       "intro": "Ngoài kỹ thuật tàu thủy, Lasan Marine nhận xây dựng website và hệ thống quản lý cho doanh nghiệp trong ngành — nơi bài toán nghiệp vụ cần người hiểu cả phần mềm lẫn hiện trường.",
@@ -971,8 +962,8 @@
     "home": "/",
     "about": "/gioi-thieu/",
     "capabilities": "/nang-luc/",
-    "serviceFishing": "/nang-luc/thiet-ke-tau-ca/",
-    "serviceInland": "/nang-luc/phuong-tien-thuy-noi-dia/",
+    "serviceFishing": "/nang-luc/thiet-ke-tau/",
+    "serviceInland": "/nang-luc/thiet-ke-tau/",
     "serviceIt": "/nang-luc/dich-vu-cntt/",
     "projects": "/du-an/",
     "insights": "/tin-tuc/",

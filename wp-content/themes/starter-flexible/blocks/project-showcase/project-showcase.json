@@ -9,7 +9,6 @@
       "sub_fields": [
         { "key": "field_ps_item_image", "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
         { "key": "field_ps_item_placeholder", "label": "Placeholder Text", "name": "placeholder", "type": "text" },
-        { "key": "field_ps_item_tag", "label": "Tag", "name": "tag", "type": "text" },
         { "key": "field_ps_item_name", "label": "Name", "name": "name", "type": "text" },
         { "key": "field_ps_item_location", "label": "Location", "name": "location", "type": "text" },
         { "key": "field_ps_item_year", "label": "Year", "name": "year", "type": "text" },

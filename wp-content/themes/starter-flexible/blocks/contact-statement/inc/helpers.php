@@ -14,6 +14,7 @@ function starter_flexible_block_data_contact_statement( array $block ) {
 		array(
 			'label'        => '',
 			'heading'      => '',
+			'description'  => '',
 			'phone'        => '',
 			'email'        => '',
 			'cta'          => array(),
@@ -58,6 +59,7 @@ function starter_flexible_block_data_contact_statement( array $block ) {
 		'target' => ! empty( $cta['target'] ) ? (string) $cta['target'] : '_self',
 	);
 	$data['has_cta']       = '' !== $cta_url && '' !== $data['cta']['label'];
+	$data['has_description'] = '' !== trim( wp_strip_all_tags( (string) $data['description'] ) );
 	$data['has_label']     = '' !== trim( (string) $data['label'] );
 	$data['has_phone']     = '' !== trim( (string) $data['phone'] );
 	$data['has_email']     = '' !== trim( (string) $data['email'] );

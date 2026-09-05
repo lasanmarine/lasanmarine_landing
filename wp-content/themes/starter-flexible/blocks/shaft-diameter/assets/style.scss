@@ -1,39 +1,68 @@
+.sd {
+	width: 100%;
+	max-width: 560px;
+	margin-inline: auto;
+	min-width: 0;
+}
 .sd__inputs {
 	@apply grid;
 	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
-	gap: 26px 24px;
+	gap: 22px 24px;
+}
+/* Labels read at the same weight as the Liên hệ form's — bold and navy,
+   not the small uppercase micro-label the shared `.field` component uses. */
+.sd .field__label {
+	@apply font-display font-semibold text-navy;
+	font-size: 16.5px;
+	letter-spacing: 0;
 }
 .sd__materials {
 	@apply min-w-0 border-0;
-	margin: 32px 0 0;
+	margin: 28px 0 0;
 	padding: 0;
 }
 .sd__materials legend {
-	@apply p-0 text-mute;
-	margin-bottom: 12px;
-	font-size: 10.5px;
-	letter-spacing: 0.14em;
+	@apply font-display font-semibold text-navy;
+	margin-bottom: 10px;
+	padding: 0;
+	font-size: 16.5px;
+	letter-spacing: 0;
 }
 .sd__options {
-	@apply grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+	@apply flex flex-col;
 	gap: 10px;
 }
-.sd__option input {
-	@apply absolute overflow-hidden;
-	width: 1px;
-	height: 1px;
-	clip: rect(0, 0, 0, 0);
-}
-.sd__option span {
-	@apply flex h-full cursor-pointer flex-col border border-line text-navy;
-	gap: 4px;
-	padding: 14px 16px;
+.sd__option {
+	@apply m-0 flex cursor-pointer items-start border border-line bg-paper text-navy;
+	gap: 12px;
+	padding: 14px 18px;
 	border-radius: var(--r-md);
 	transition:
 		border-color 200ms ease,
 		background 200ms ease,
 		color 200ms ease;
+}
+.sd__option input {
+	@apply m-0 flex-none cursor-pointer appearance-none border border-mute bg-paper;
+	width: 17px;
+	height: 17px;
+	margin-top: 2px;
+	border-radius: 50%;
+	transition:
+		border-color 200ms ease,
+		box-shadow 200ms ease;
+}
+.sd__option input:checked {
+	@apply border-marine bg-marine;
+	box-shadow: inset 0 0 0 3px var(--paper);
+}
+.sd__option input:focus-visible {
+	@apply border-marine;
+	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.2);
+}
+.sd__option span {
+	@apply flex flex-col;
+	gap: 2px;
 }
 .sd__option strong {
 	@apply font-display font-semibold;
@@ -44,18 +73,11 @@
 	font-size: 13px;
 	transition: color 200ms ease;
 }
-.sd__option:hover span {
+.sd__option:hover {
 	@apply border-marine;
 }
-.sd__option input:checked + span {
-	@apply border-navy bg-navy text-white;
-}
-.sd__option input:checked + span em {
-	color: rgba(255, 255, 255, 0.7);
-}
-.sd__option input:focus-visible + span {
-	outline: 2px solid var(--marine);
-	outline-offset: 2px;
+.sd__option:has(input:checked) {
+	@apply border-marine bg-pale text-marine;
 }
 
 .sd__result {

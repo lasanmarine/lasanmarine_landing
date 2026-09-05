@@ -1,6 +1,6 @@
 .phero {
 	@apply relative flex items-center overflow-hidden bg-navy-deep;
-	min-height: 56vh;
+	min-height: var(--phero-h, 420px);
 }
 .phero__media {
 	@apply absolute inset-0;
@@ -19,7 +19,8 @@
 	);
 }
 .phero__body {
-	@apply relative;
+	@apply relative flex flex-col;
+	gap: 24px;
 	padding-block: clamp(104px, 11vw, 150px) clamp(80px, 9vw, 120px);
 }
 .phero__headline {
@@ -30,6 +31,5 @@
 	letter-spacing: -0.03em;
 }
 .phero__lead {
-	margin-top: 24px;
 	color: rgba(255, 255, 255, 0.7);
 }

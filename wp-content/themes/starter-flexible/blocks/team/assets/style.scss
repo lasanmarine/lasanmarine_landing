@@ -1,8 +1,12 @@
 .tm {
 	@apply grid items-start;
-	margin-top: clamp(32px, 4vw, 56px);
-	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+	grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 	gap: clamp(28px, 3.5vw, 64px);
+}
+@media (max-width: 640px) {
+	.tm {
+		grid-template-columns: 1fr;
+	}
 }
 .tm__heading {
 	max-width: 18em;

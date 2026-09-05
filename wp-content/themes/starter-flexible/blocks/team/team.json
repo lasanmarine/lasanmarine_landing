@@ -2,7 +2,6 @@
   "key": "group_team",
   "title": "Team",
   "fields": [
-    { "key": "field_tm_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "ENGINEERING TEAM" },
     { "key": "field_tm_heading", "label": "Heading", "name": "heading", "type": "text" },
     { "key": "field_tm_image", "label": "Portrait", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
     { "key": "field_tm_placeholder", "label": "Placeholder Text", "name": "placeholder", "type": "text" },

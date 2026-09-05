@@ -2,32 +2,9 @@
   "key": "group_enquiry_form",
   "title": "Enquiry Form",
   "fields": [
-    { "key": "field_ef_label", "label": "Block Label", "name": "label", "type": "text" },
     { "key": "field_ef_heading", "label": "Heading", "name": "heading", "type": "text" },
     { "key": "field_ef_note", "label": "Note", "name": "note", "type": "textarea", "rows": 3, "new_lines": "" },
-    {
-      "key": "field_ef_fields", "label": "Field Labels", "name": "fields", "type": "group",
-      "sub_fields": [
-        { "key": "field_ef_f_name", "label": "Name", "name": "name", "type": "text" },
-        { "key": "field_ef_f_company", "label": "Company", "name": "company", "type": "text", "instructions": "Để trống thì ẩn trường này." },
-        { "key": "field_ef_f_email", "label": "Email", "name": "email", "type": "text" },
-        { "key": "field_ef_f_phone", "label": "Phone", "name": "phone", "type": "text", "instructions": "Để trống thì ẩn trường này." },
-        { "key": "field_ef_f_interest", "label": "Interest / Role", "name": "interest", "type": "text" },
-        { "key": "field_ef_f_message", "label": "Message", "name": "message", "type": "text" },
-        { "key": "field_ef_f_attach", "label": "Attachment", "name": "attach", "type": "text" },
-        { "key": "field_ef_f_attach_hint", "label": "Attachment Hint", "name": "attach_hint", "type": "text" },
-        { "key": "field_ef_f_submit", "label": "Submit", "name": "submit", "type": "text" }
-      ]
-    },
-    {
-      "key": "field_ef_choices", "label": "Interest Choices", "name": "choices", "type": "repeater",
-      "layout": "table", "button_label": "Add Choice",
-      "sub_fields": [
-        { "key": "field_ef_choice_text", "label": "Text", "name": "text", "type": "text" }
-      ]
-    },
-    { "key": "field_ef_error_text", "label": "Error Text", "name": "error_text", "type": "text", "default_value": "Vui lòng điền đầy đủ các trường bắt buộc." },
-    { "key": "field_ef_toast_text", "label": "Success Toast", "name": "toast_text", "type": "text", "default_value": "Đã gửi yêu cầu" },
+    { "key": "field_ef_cf7", "label": "Contact Form 7", "name": "cf7_form", "type": "post_object", "post_type": ["wpcf7_contact_form"], "return_format": "id", "allow_null": 1, "multiple": 0, "ui": 1, "instructions": "Chọn form đã tạo trong Contact → Contact Forms." },
     { "key": "field_ef_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
   ],
   "location": [[{ "param": "block", "operator": "==", "value": "acf/enquiry-form" }]]

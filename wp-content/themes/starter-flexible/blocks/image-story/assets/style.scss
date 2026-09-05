@@ -1,12 +1,12 @@
 .is__grid {
 	@apply grid;
-	margin-top: clamp(32px, 4vw, 56px);
 	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 	gap: clamp(20px, 2.6vw, 40px);
 }
 .is__item {
-	@apply w-full cursor-pointer border-none bg-none p-0 text-left;
+	@apply w-full;
 	display: block;
+	margin: 0;
 }
 .is__caption {
 	@apply text-mute;
@@ -16,47 +16,6 @@
 	letter-spacing: 0.12em;
 }
 .is__note {
-	margin-top: clamp(20px, 2.4vw, 32px);
-}
-
-.lightbox {
-	@apply fixed inset-0 flex flex-col items-center justify-center;
-	z-index: 210;
-	gap: 20px;
-	padding: clamp(20px, 4vw, 60px);
-	background: rgba(6, 18, 45, 0.94);
-}
-.lightbox[hidden] {
-	@apply hidden;
-}
-.lightbox__bar {
-	@apply flex w-full items-center justify-between;
-	gap: 16px;
-	max-width: 1280px;
-	font-size: 12.5px;
-	letter-spacing: 0.14em;
-	color: rgba(255, 255, 255, 0.7);
-}
-.lightbox__stage {
-	@apply flex w-full items-center justify-center bg-navy p-5 text-center;
-	max-width: 1280px;
-	aspect-ratio: 16 / 9;
-	border: 1px solid rgba(255, 255, 255, 0.16);
-	font-size: 12px;
-	letter-spacing: 0.14em;
-	color: rgba(255, 255, 255, 0.5);
-}
-.lightbox__stage img {
-	@apply h-full w-full object-contain;
-}
-.lightbox__nav {
-	@apply flex;
-	gap: 8px;
-}
-.lightbox .icon-btn {
-	@apply text-white;
-	border-color: rgba(255, 255, 255, 0.3);
-}
-.lightbox .icon-btn:hover {
-	@apply border-marine text-marine-bright;
+	/* `.block`'s flex gap already spaces this off the grid. */
+	margin-top: 0;
 }

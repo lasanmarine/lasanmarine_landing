@@ -95,6 +95,10 @@ add_action( 'wp_head', 'starter_flexible_print_reveal_primer', 1 );
 
 /** Keep the Astro page titles and descriptions after moving content to WP. */
 function starter_flexible_lasan_document_title( string $title ): string {
+	if ( defined( 'WPSEO_VERSION' ) ) {
+		return $title;
+	}
+
 	if ( ! is_singular( 'page' ) ) {
 		return $title;
 	}
@@ -105,6 +109,10 @@ function starter_flexible_lasan_document_title( string $title ): string {
 add_filter( 'pre_get_document_title', 'starter_flexible_lasan_document_title' );
 
 function starter_flexible_lasan_meta_description(): void {
+	if ( defined( 'WPSEO_VERSION' ) ) {
+		return;
+	}
+
 	if ( ! is_singular( 'page' ) ) {
 		return;
 	}

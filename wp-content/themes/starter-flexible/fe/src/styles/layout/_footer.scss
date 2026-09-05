@@ -4,7 +4,10 @@
    ========================================================================== */
 
 .ftr {
+	/* Picks up where the Contact Statement band leaves off (bg-navy, #0b1b4c)
+	   and sinks to navy-deep, so the two sections read as one continuous field. */
 	@apply relative overflow-hidden bg-navy-deep;
+	background-image: linear-gradient(to bottom, #0b1b4c 0%, #06122d clamp(320px, 42vw, 620px));
 }
 .ftr__wave {
 	/* Tall enough to pass behind the wordmark, which sits above it. */
@@ -14,8 +17,11 @@
 	opacity: 0.9;
 }
 .ftr__inner {
-	@apply relative;
+	/* One flex column: every gap between footer sections comes from `gap`,
+	   never from a margin on the section itself. */
+	@apply relative flex flex-col;
 	padding-block: clamp(110px, 13vw, 190px) clamp(48px, 6vw, 96px);
+	gap: clamp(48px, 6vw, 96px);
 }
 
 .ftr__statement {
@@ -44,7 +50,6 @@
 .ftr__contact {
 	@apply items-center;
 	display: grid;
-	margin-top: clamp(56px, 7vw, 120px);
 	grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
 	gap: clamp(32px, 4vw, 64px);
 }
@@ -54,7 +59,7 @@
 }
 .ftr__brand img {
 	@apply w-auto self-start;
-	height: clamp(120px, 15vw, 220px);
+	height: clamp(40px, 5vw, 64px);
 	filter: brightness(0) invert(1);
 }
 .ftr__details {
@@ -102,8 +107,9 @@
 	color: rgba(255, 255, 255, 0.62);
 }
 .ftr__row svg {
-	@apply flex-none text-marine;
-	margin-top: 3px;
+	/* Padding, not margin: nudges the glyph onto the first line's baseline. */
+	@apply flex-none box-content text-marine;
+	padding-top: 3px;
 }
 a.ftr__row:hover {
 	@apply text-white;
@@ -111,14 +117,12 @@ a.ftr__row:hover {
 
 .ftr__bank {
 	@apply flex flex-col;
-	margin: 22px 0 0;
 	padding-top: 20px;
 	border-top: 1px solid rgba(255, 255, 255, 0.16);
 	gap: 10px;
 }
 .ftr__bank-title {
 	@apply font-display font-semibold text-marine;
-	margin-bottom: 4px;
 	font-size: 12.5px;
 	letter-spacing: 0.16em;
 }
@@ -166,7 +170,6 @@ a.ftr__row:hover {
 /* One horizontal row; it wraps to as many lines as the width allows. */
 .ftr__menu {
 	@apply flex flex-wrap;
-	margin-top: clamp(48px, 6vw, 88px);
 	gap: 14px clamp(24px, 3.5vw, 52px);
 }
 .ftr__menu a {
@@ -193,7 +196,6 @@ a.ftr__row:hover {
 
 .ftr__base {
 	@apply flex flex-wrap items-center justify-between;
-	margin-top: clamp(40px, 5vw, 72px);
 	padding-top: 22px;
 	border-top: 1px solid rgba(255, 255, 255, 0.16);
 	gap: 16px 32px;

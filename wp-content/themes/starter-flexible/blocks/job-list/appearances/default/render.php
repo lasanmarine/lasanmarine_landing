@@ -29,7 +29,7 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 				<span class="jl__location"><?php echo esc_html( $job['location'] ); ?></span>
 				<span class="tag"><?php echo esc_html( $job['type'] ); ?></span>
 				<span class="jl__arrow">
-					<?php echo starter_flexible_icon( 'arrow', 20 ); // phpcs:ignore ?>
+					<?php echo starter_flexible_icon_swap( 'arrow', 20 ); // phpcs:ignore ?>
 				</span>
 			</a>
 		<?php endforeach; ?>

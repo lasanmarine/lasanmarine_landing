@@ -1,562 +1,1526 @@
 [
   {
-    "make": "Yanmar",
-    "model": "4JH-1",
-    "kw": 640,
-    "rpm": 1800,
-    "cylinders": 12
+    "make": "CATERPILLAR",
+    "model": "3406",
+    "kw": 349,
+    "rpm": 1800
   },
   {
-    "make": "Yanmar",
-    "model": "4JH-2",
-    "kw": 1200,
-    "rpm": 1500,
-    "cylinders": 16
+    "make": "CATERPILLAR",
+    "model": "C7",
+    "kw": 224,
+    "rpm": 1800
   },
   {
-    "make": "Yanmar",
-    "model": "6LY-1",
+    "make": "CUMMINS",
+    "model": "6",
+    "kw": 268,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "6C8.3",
+    "kw": 184,
+    "rpm": 2200
+  },
+  {
+    "make": "CUMMINS",
+    "model": "6CTA8.3",
+    "kw": 316,
+    "rpm": 2900
+  },
+  {
+    "make": "CUMMINS",
+    "model": "6NHC",
+    "kw": 184,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "C300-20",
+    "kw": 224,
+    "rpm": 2200
+  },
+  {
+    "make": "CUMMINS",
+    "model": "K19",
+    "kw": 552,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "K38-M",
+    "kw": 746,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KT19",
+    "kw": 336,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KT19M",
+    "kw": 331,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA-19",
+    "kw": 368,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA-19M",
+    "kw": 373,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA-C525",
+    "kw": 386,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA1150-C",
+    "kw": 391,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA1150-M",
+    "kw": 382,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA1150M",
+    "kw": 386,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA19",
+    "kw": 368,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA19-G3",
+    "kw": 504,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA19-G4",
+    "kw": 555,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA19-M",
+    "kw": 368,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA19-M3",
+    "kw": 368,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA19M",
+    "kw": 368,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA19M3",
+    "kw": 447,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA38",
+    "kw": 625,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA389-G2",
+    "kw": 895,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "KTA50 M2",
+    "kw": 1193,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "M11",
+    "kw": 185,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "M11-C",
+    "kw": 261,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "N14",
+    "kw": 294,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "N14-500",
+    "kw": 367.5,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NHC",
+    "kw": 316,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NHC-250",
+    "kw": 176,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NHC250",
+    "kw": 186,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NT855-G6",
+    "kw": 305,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NT855-M300",
+    "kw": 224,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA-430",
+    "kw": 316,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA-855",
+    "kw": 294,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA-855-M",
+    "kw": 294.4,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA855",
+    "kw": 257,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA855-G3",
+    "kw": 353,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA855-M",
+    "kw": 294,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA855-M350",
+    "kw": 261,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA855-M400",
+    "kw": 298.5,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTA855M",
+    "kw": 257,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTC-400",
+    "kw": 294.4,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTC-444",
+    "kw": 326,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTC250",
+    "kw": 176,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTC300",
+    "kw": 221,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTC400",
+    "kw": 294.4,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "NTC444",
+    "kw": 327,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "OSK23-G3",
+    "kw": 882,
+    "rpm": 1800
+  },
+  {
+    "make": "CUMMINS",
+    "model": "QSK19",
+    "kw": 515,
+    "rpm": 2100
+  },
+  {
+    "make": "CUMMINS",
+    "model": "QSK19C",
+    "kw": 551,
+    "rpm": 1800
+  },
+  {
+    "make": "DAEWOO",
+    "model": "D2366T",
+    "kw": 217,
+    "rpm": 1800
+  },
+  {
+    "make": "DAEWOO",
+    "model": "D2366TI",
+    "kw": 184,
+    "rpm": 1800
+  },
+  {
+    "make": "DAEWOO",
+    "model": "DE12",
+    "kw": 166,
+    "rpm": 2100
+  },
+  {
+    "make": "DAEWOO",
+    "model": "DE12TI",
+    "kw": 202,
+    "rpm": 2100
+  },
+  {
+    "make": "DAEWOO",
+    "model": "DE12TIS",
+    "kw": 250.2,
+    "rpm": 2100
+  },
+  {
+    "make": "DAEWOO",
+    "model": "DVISTIS",
+    "kw": 309.1,
+    "rpm": 2200
+  },
+  {
+    "make": "DOOSAN",
+    "model": "V158TIM",
+    "kw": 397,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "6",
+    "kw": 202,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "6K13D",
+    "kw": 198.5,
+    "rpm": 2500
+  },
+  {
+    "make": "HINO",
+    "model": "8-F20C",
+    "kw": 269,
+    "rpm": 2500
+  },
+  {
+    "make": "HINO",
+    "model": "8F21C",
+    "kw": 287,
+    "rpm": 2500
+  },
+  {
+    "make": "HINO",
+    "model": "EC100",
+    "kw": 99,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "EF 550",
+    "kw": 224,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "EF300",
+    "kw": 213,
+    "rpm": 1800
+  },
+  {
+    "make": "HINO",
+    "model": "EF350",
+    "kw": 224,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "EF500",
+    "kw": 224,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "EF550",
+    "kw": 221,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "EF700",
+    "kw": 243,
+    "rpm": 2500
+  },
+  {
+    "make": "HINO",
+    "model": "EF750",
+    "kw": 243,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "EH700",
+    "kw": 125,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "EK100",
+    "kw": 202,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "F17C",
+    "kw": 265,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "F17D",
+    "kw": 243,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "F17E",
+    "kw": 265,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "F20C",
+    "kw": 283,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "F21C",
+    "kw": 287,
+    "rpm": 2500
+  },
+  {
+    "make": "HINO",
+    "model": "H06C",
+    "kw": 124,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "H07C",
+    "kw": 125,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "HO6B",
+    "kw": 103,
+    "rpm": 3000
+  },
+  {
+    "make": "HINO",
+    "model": "HO7C",
+    "kw": 125,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "PO9B",
+    "kw": 217,
+    "rpm": 2150
+  },
+  {
+    "make": "HINO",
+    "model": "S05D",
+    "kw": 96,
+    "rpm": 3000
+  },
+  {
+    "make": "HINO",
+    "model": "V22C",
+    "kw": 309,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "V22D",
+    "kw": 306,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "V25C",
+    "kw": 331,
+    "rpm": 2200
+  },
+  {
+    "make": "HINO",
+    "model": "V26C",
+    "kw": 336,
+    "rpm": 2200
+  },
+  {
+    "make": "HYUNDAI",
+    "model": "6",
     "kw": 250,
-    "rpm": 2300,
-    "cylinders": 4
+    "rpm": 2200
   },
   {
-    "make": "Yanmar",
-    "model": "6LY-2",
-    "kw": 1650,
-    "rpm": 1800,
-    "cylinders": 4
+    "make": "HYUNDAI",
+    "model": "C6AC",
+    "kw": 175,
+    "rpm": 2200
   },
   {
-    "make": "Yanmar",
-    "model": "6AY-1",
-    "kw": 240,
-    "rpm": 2100,
-    "cylinders": 4
+    "make": "HYUNDAI",
+    "model": "D6AB",
+    "kw": 124,
+    "rpm": 2000
   },
   {
-    "make": "Yanmar",
-    "model": "6AY-2",
-    "kw": 500,
-    "rpm": 2300,
-    "cylinders": 12
+    "make": "HYUNDAI",
+    "model": "D6AC",
+    "kw": 159,
+    "rpm": 1800
   },
   {
-    "make": "Yanmar",
-    "model": "3YM-1",
-    "kw": 190,
-    "rpm": 2300,
-    "cylinders": 4
+    "make": "HYUNDAI",
+    "model": "D6AUMR",
+    "kw": 95,
+    "rpm": 2000
   },
   {
-    "make": "Yanmar",
-    "model": "3YM-2",
-    "kw": 1710,
-    "rpm": 2600,
-    "cylinders": 16
+    "make": "HYUNDAI",
+    "model": "D6AUN",
+    "kw": 118,
+    "rpm": 2000
   },
   {
-    "make": "Yanmar",
-    "model": "6HYM-1",
-    "kw": 1710,
-    "rpm": 2300,
-    "cylinders": 16
+    "make": "HYUNDAI",
+    "model": "D6AV",
+    "kw": 173,
+    "rpm": 2200
   },
   {
-    "make": "Yanmar",
-    "model": "6HYM-2",
-    "kw": 770,
-    "rpm": 1800,
-    "cylinders": 4
+    "make": "HYUNDAI",
+    "model": "D6AVX",
+    "kw": 173,
+    "rpm": 2000
   },
   {
-    "make": "Caterpillar",
-    "model": "C7.1-1",
-    "kw": 1040,
-    "rpm": 1800,
-    "cylinders": 8
+    "make": "HYUNDAI",
+    "model": "D6B",
+    "kw": 94,
+    "rpm": 2000
   },
   {
-    "make": "Caterpillar",
-    "model": "C7.1-2",
-    "kw": 810,
-    "rpm": 2300,
-    "cylinders": 4
+    "make": "HYUNDAI",
+    "model": "D6BJR",
+    "kw": 94,
+    "rpm": 2000
   },
   {
-    "make": "Caterpillar",
-    "model": "C12.9-1",
-    "kw": 1070,
-    "rpm": 2300,
-    "cylinders": 6
+    "make": "HYUNDAI",
+    "model": "D6BJT",
+    "kw": 94,
+    "rpm": 2000
   },
   {
-    "make": "Caterpillar",
-    "model": "C12.9-2",
-    "kw": 270,
-    "rpm": 2300,
-    "cylinders": 6
+    "make": "HYUNDAI",
+    "model": "D6BR",
+    "kw": 94,
+    "rpm": 2000
   },
   {
-    "make": "Caterpillar",
-    "model": "C18-1",
-    "kw": 730,
-    "rpm": 2300,
-    "cylinders": 4
+    "make": "HYUNDAI",
+    "model": "D6BRM",
+    "kw": 94,
+    "rpm": 2000
   },
   {
-    "make": "Caterpillar",
-    "model": "C18-2",
-    "kw": 1060,
-    "rpm": 2300,
-    "cylinders": 6
+    "make": "HYUNDAI",
+    "model": "D6BRX",
+    "kw": 94,
+    "rpm": 2000
   },
   {
-    "make": "Caterpillar",
-    "model": "C32-1",
-    "kw": 940,
-    "rpm": 2300,
-    "cylinders": 12
-  },
-  {
-    "make": "Caterpillar",
-    "model": "C32-2",
-    "kw": 1420,
-    "rpm": 2100,
-    "cylinders": 16
-  },
-  {
-    "make": "Caterpillar",
-    "model": "3512C-1",
-    "kw": 1670,
-    "rpm": 1900,
-    "cylinders": 8
-  },
-  {
-    "make": "Caterpillar",
-    "model": "3512C-2",
-    "kw": 510,
-    "rpm": 1800,
-    "cylinders": 6
-  },
-  {
-    "make": "Cummins",
-    "model": "QSB6.7-1",
-    "kw": 230,
-    "rpm": 1900,
-    "cylinders": 16
-  },
-  {
-    "make": "Cummins",
-    "model": "QSB6.7-2",
-    "kw": 940,
-    "rpm": 1900,
-    "cylinders": 12
-  },
-  {
-    "make": "Cummins",
-    "model": "QSL9-1",
-    "kw": 580,
-    "rpm": 1500,
-    "cylinders": 4
-  },
-  {
-    "make": "Cummins",
-    "model": "QSL9-2",
-    "kw": 970,
-    "rpm": 1800,
-    "cylinders": 8
-  },
-  {
-    "make": "Cummins",
-    "model": "QSM11-1",
-    "kw": 350,
-    "rpm": 2100,
-    "cylinders": 12
-  },
-  {
-    "make": "Cummins",
-    "model": "QSM11-2",
-    "kw": 160,
-    "rpm": 2600,
-    "cylinders": 4
-  },
-  {
-    "make": "Cummins",
-    "model": "QSK19-1",
-    "kw": 1400,
-    "rpm": 2300,
-    "cylinders": 8
-  },
-  {
-    "make": "Cummins",
-    "model": "QSK19-2",
-    "kw": 670,
-    "rpm": 1900,
-    "cylinders": 16
-  },
-  {
-    "make": "Cummins",
-    "model": "KTA38-1",
-    "kw": 940,
-    "rpm": 2100,
-    "cylinders": 4
-  },
-  {
-    "make": "Cummins",
-    "model": "KTA38-2",
-    "kw": 1530,
-    "rpm": 1900,
-    "cylinders": 12
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D4-1",
-    "kw": 1280,
-    "rpm": 1500,
-    "cylinders": 4
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D4-2",
-    "kw": 1340,
-    "rpm": 1900,
-    "cylinders": 16
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D6-1",
-    "kw": 1790,
-    "rpm": 2100,
-    "cylinders": 8
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D6-2",
-    "kw": 1320,
-    "rpm": 2600,
-    "cylinders": 8
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D11-1",
-    "kw": 130,
-    "rpm": 2100,
-    "cylinders": 8
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D11-2",
-    "kw": 380,
-    "rpm": 1500,
-    "cylinders": 12
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D13-1",
-    "kw": 190,
-    "rpm": 1900,
-    "cylinders": 6
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D13-2",
-    "kw": 1350,
-    "rpm": 2100,
-    "cylinders": 12
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D16-1",
-    "kw": 1660,
-    "rpm": 2100,
-    "cylinders": 4
-  },
-  {
-    "make": "Volvo Penta",
-    "model": "D16-2",
-    "kw": 370,
-    "rpm": 2100,
-    "cylinders": 16
-  },
-  {
-    "make": "MAN",
-    "model": "i6-730-1",
-    "kw": 570,
-    "rpm": 1800,
-    "cylinders": 12
-  },
-  {
-    "make": "MAN",
-    "model": "i6-730-2",
-    "kw": 1570,
-    "rpm": 1900,
-    "cylinders": 12
-  },
-  {
-    "make": "MAN",
-    "model": "V8-1200-1",
-    "kw": 1780,
-    "rpm": 2600,
-    "cylinders": 12
-  },
-  {
-    "make": "MAN",
-    "model": "V8-1200-2",
-    "kw": 1730,
-    "rpm": 1800,
-    "cylinders": 4
-  },
-  {
-    "make": "MAN",
-    "model": "V12-1650-1",
-    "kw": 390,
-    "rpm": 1800,
-    "cylinders": 6
-  },
-  {
-    "make": "MAN",
-    "model": "V12-1650-2",
+    "make": "HYUNDAI",
+    "model": "D6BRY",
     "kw": 110,
-    "rpm": 2300,
-    "cylinders": 6
+    "rpm": 2100
   },
   {
-    "make": "MAN",
-    "model": "D2676-1",
+    "make": "HYUNDAI",
+    "model": "D8AYK",
+    "kw": 235,
+    "rpm": 2200
+  },
+  {
+    "make": "HYUNDAI",
+    "model": "D8AYM",
+    "kw": 235,
+    "rpm": 2200
+  },
+  {
+    "make": "HYUNDAI",
+    "model": "M6D22T",
+    "kw": 185,
+    "rpm": 2000
+  },
+  {
+    "make": "ISUZU",
+    "model": "4BB",
+    "kw": 66,
+    "rpm": 3400
+  },
+  {
+    "make": "ISUZU",
+    "model": "4JB1",
+    "kw": 70,
+    "rpm": 2300
+  },
+  {
+    "make": "ISUZU",
+    "model": "6WF1",
+    "kw": 291,
+    "rpm": 1800
+  },
+  {
+    "make": "ISUZU",
+    "model": "6WF1A",
+    "kw": 287,
+    "rpm": 2200
+  },
+  {
+    "make": "ISUZU",
+    "model": "6WF1D",
+    "kw": 265,
+    "rpm": 1800
+  },
+  {
+    "make": "ISUZU",
+    "model": "6WF1TC",
+    "kw": 291,
+    "rpm": 2200
+  },
+  {
+    "make": "ISUZU",
+    "model": "6WG1",
+    "kw": 254,
+    "rpm": 1800
+  },
+  {
+    "make": "ISUZU",
+    "model": "UM6WF1TCX",
+    "kw": 423,
+    "rpm": 2160
+  },
+  {
+    "make": "ISUZU",
+    "model": "UM6WG1UTCG",
+    "kw": 518.5,
+    "rpm": 2060
+  },
+  {
+    "make": "KIA",
+    "model": "6",
+    "kw": 53,
+    "rpm": 2600
+  },
+  {
+    "make": "KOMATSU",
+    "model": "4D105-3",
+    "kw": 46,
+    "rpm": 2350
+  },
+  {
+    "make": "KOMATSU",
+    "model": "6M122BP-1",
+    "kw": 355,
+    "rpm": 2229
+  },
+  {
+    "make": "KOMATSU",
+    "model": "6M125A-1",
+    "kw": 301,
+    "rpm": 2130
+  },
+  {
+    "make": "KOMATSU",
+    "model": "6M140A-1",
+    "kw": 394,
+    "rpm": 2030
+  },
+  {
+    "make": "KOMATSU",
+    "model": "EM440",
+    "kw": 59,
+    "rpm": 2400
+  },
+  {
+    "make": "KOMATSU",
+    "model": "EM645A-A",
+    "kw": 180,
+    "rpm": 2600
+  },
+  {
+    "make": "KOMATSU",
+    "model": "EM645A-B",
+    "kw": 221,
+    "rpm": 2600
+  },
+  {
+    "make": "KOMATSU",
+    "model": "SA6D170A",
+    "kw": 513,
+    "rpm": 1800
+  },
+  {
+    "make": "MERCURY",
+    "model": "SEAPRO 115",
+    "kw": 84.5,
+    "rpm": ""
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6A-1",
+    "kw": 62.8,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6A1",
+    "kw": 33.1,
+    "rpm": 2900
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6AAC-1",
+    "kw": 81,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6AAC-2",
+    "kw": 55.2,
+    "rpm": 1440
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6AC-1",
+    "kw": 44,
+    "rpm": 2000
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D-20",
+    "kw": 88.3,
+    "rpm": 2000
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D14",
+    "kw": 118,
+    "rpm": 3000
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D15",
+    "kw": 119,
+    "rpm": 2500
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D16",
+    "kw": 136,
+    "rpm": 2500
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D20",
+    "kw": 158,
+    "rpm": 2500
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D22",
+    "kw": 165,
+    "rpm": 2200
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D22 TURBO",
+    "kw": 235,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D22T",
+    "kw": 184,
+    "rpm": 2000
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6D24",
+    "kw": 169,
+    "rpm": 2200
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "6M61",
+    "kw": 132,
+    "rpm": 2900
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "8DC9",
+    "kw": 235,
+    "rpm": 2200
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "D4R5",
+    "kw": 29.4,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "M25",
+    "kw": 66.2,
+    "rpm": 2710
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S12R-MTK2",
+    "kw": 868,
+    "rpm": 1600
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S12R-PTK",
+    "kw": 1110,
+    "rpm": 1500
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S4B",
+    "kw": 103,
+    "rpm": 3200
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S4E",
+    "kw": 29.4,
+    "rpm": 2400
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S4M-MTK",
+    "kw": 103,
+    "rpm": 2400
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S4M3E-MTK",
+    "kw": 162,
+    "rpm": 2300
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S4M3F",
+    "kw": 74,
+    "rpm": 2700
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S4M3F-M25",
+    "kw": 74,
+    "rpm": 2700
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6A-MTK",
+    "kw": 331,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6A2-MTK",
+    "kw": 412,
+    "rpm": 2100
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6A3-MTK 2",
+    "kw": 478,
+    "rpm": 1900
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6A3-PTA",
+    "kw": 485,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6B3F-MTK",
+    "kw": 368,
+    "rpm": 2000
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6B5-MTK-2S",
+    "kw": 537,
+    "rpm": 1990
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6B5-MTKL",
+    "kw": 471,
+    "rpm": 1940
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6BF-MTK2",
+    "kw": 309,
+    "rpm": 2100
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6M2-MTK2",
+    "kw": 235,
+    "rpm": 2400
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6M3-MTK-2S",
+    "kw": 331,
+    "rpm": 2460
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6MB-MTK",
+    "kw": 147,
+    "rpm": 2500
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6R",
+    "kw": 441,
+    "rpm": 1450
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6R-MPTK",
+    "kw": 605,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6R-PTA",
+    "kw": 551,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6R2-MPTK",
+    "kw": 615,
+    "rpm": 1500
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6R2-MTK",
+    "kw": 708,
+    "rpm": 1800
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6R2-PTA",
+    "kw": 625.5,
+    "rpm": 1500
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "S6R2-PTA-S",
+    "kw": 739,
+    "rpm": 1500
+  },
+  {
+    "make": "MITSUBISHI",
+    "model": "SM3",
+    "kw": 48,
+    "rpm": 2900
+  },
+  {
+    "make": "NISSAN",
+    "model": "FE6",
+    "kw": 132,
+    "rpm": 3000
+  },
+  {
+    "make": "NISSAN",
+    "model": "FM6",
+    "kw": 180,
+    "rpm": 2700
+  },
+  {
+    "make": "NISSAN",
+    "model": "PD6T16",
+    "kw": 154,
+    "rpm": 2100
+  },
+  {
+    "make": "NISSAN",
+    "model": "PD6TA16",
+    "kw": 182,
+    "rpm": 2100
+  },
+  {
+    "make": "SINOTRUK",
+    "model": "WD615.95E",
+    "kw": 247,
+    "rpm": 2200
+  },
+  {
+    "make": "WEICHAI",
+    "model": "WD10C326-21",
+    "kw": 240,
+    "rpm": 2100
+  },
+  {
+    "make": "WEICHAI",
+    "model": "WD615.50",
+    "kw": 206,
+    "rpm": 2200
+  },
+  {
+    "make": "WEICHAI",
+    "model": "WD615.61C-6A",
+    "kw": 140,
+    "rpm": 1800
+  },
+  {
+    "make": "WEICHAI",
+    "model": "WP10.310E32",
+    "kw": 228,
+    "rpm": 2200
+  },
+  {
+    "make": "WEICHAI",
+    "model": "WP12.375E40",
+    "kw": 276,
+    "rpm": 1900
+  },
+  {
+    "make": "WEICHAI",
+    "model": "WP13.550E501",
+    "kw": 405,
+    "rpm": 1900
+  },
+  {
+    "make": "WEICHAI",
+    "model": "WP13C1500-18",
+    "kw": 368,
+    "rpm": 1800
+  },
+  {
+    "make": "XINCHAI",
+    "model": "498BT",
+    "kw": 44,
+    "rpm": 2400
+  },
+  {
+    "make": "YAMAHA",
+    "model": "200A",
+    "kw": 147,
+    "rpm": ""
+  },
+  {
+    "make": "YAMAHA",
+    "model": "200AETX",
+    "kw": 147,
+    "rpm": ""
+  },
+  {
+    "make": "YAMAHA",
+    "model": "4CH25A",
+    "kw": 59,
+    "rpm": 2600
+  },
+  {
+    "make": "YAMAHA",
+    "model": "F225BETX",
+    "kw": 165.5,
+    "rpm": ""
+  },
+  {
+    "make": "YAMAHA",
+    "model": "MD628KUH",
+    "kw": 169,
+    "rpm": 2900
+  },
+  {
+    "make": "YAMAHA",
+    "model": "MD858KUH",
+    "kw": 221,
+    "rpm": 2200
+  },
+  {
+    "make": "YAMAHA-HINO",
+    "model": "MD858KUH",
+    "kw": 221,
+    "rpm": 2200
+  },
+  {
+    "make": "YANMAR",
+    "model": "2TGK",
+    "kw": 15,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "3ES",
+    "kw": 41,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "3ESBG",
+    "kw": 31,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "3ESDGGE",
+    "kw": 29,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "3ESDSGG",
+    "kw": 41,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "3L-15",
+    "kw": 32.35,
+    "rpm": 2100
+  },
+  {
+    "make": "YANMAR",
+    "model": "3L15",
+    "kw": 32,
+    "rpm": 2100
+  },
+  {
+    "make": "YANMAR",
+    "model": "3LD",
+    "kw": 34,
+    "rpm": 850
+  },
+  {
+    "make": "YANMAR",
+    "model": "3LDGD",
+    "kw": 34,
+    "rpm": 850
+  },
+  {
+    "make": "YANMAR",
+    "model": "3S15",
+    "kw": 46,
+    "rpm": 2850
+  },
+  {
+    "make": "YANMAR",
+    "model": "3S15A",
+    "kw": 46,
+    "rpm": 2850
+  },
+  {
+    "make": "YANMAR",
+    "model": "3S15B",
+    "kw": 46,
+    "rpm": 2850
+  },
+  {
+    "make": "YANMAR",
+    "model": "3SM",
+    "kw": 33,
+    "rpm": 2200
+  },
+  {
+    "make": "YANMAR",
+    "model": "3TCGGE",
+    "kw": 29,
+    "rpm": 2000
+  },
+  {
+    "make": "YANMAR",
+    "model": "3TGGE",
+    "kw": 24,
+    "rpm": 2100
+  },
+  {
+    "make": "YANMAR",
+    "model": "3TGK",
+    "kw": 22,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "3Z15",
+    "kw": 40,
+    "rpm": 2900
+  },
+  {
+    "make": "YANMAR",
+    "model": "3Z155",
+    "kw": 40,
+    "rpm": 2900
+  },
+  {
+    "make": "YANMAR",
+    "model": "4",
+    "kw": 59,
+    "rpm": 2100
+  },
+  {
+    "make": "YANMAR",
+    "model": "4CH25A",
+    "kw": 77,
+    "rpm": 2850
+  },
+  {
+    "make": "YANMAR",
+    "model": "4CHS",
+    "kw": 63,
+    "rpm": 2800
+  },
+  {
+    "make": "YANMAR",
+    "model": "4DH",
+    "kw": 32,
+    "rpm": 2300
+  },
+  {
+    "make": "YANMAR",
+    "model": "4ES",
+    "kw": 54,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "4ESD",
+    "kw": 54,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "4H21",
+    "kw": 95.9,
+    "rpm": 2100
+  },
+  {
+    "make": "YANMAR",
+    "model": "4HA35",
+    "kw": 66,
+    "rpm": 2000
+  },
+  {
+    "make": "YANMAR",
+    "model": "4HB35",
+    "kw": 88,
+    "rpm": 2100
+  },
+  {
+    "make": "YANMAR",
+    "model": "4HC35",
+    "kw": 95.9,
+    "rpm": 2100
+  },
+  {
+    "make": "YANMAR",
+    "model": "4KD",
+    "kw": 59,
+    "rpm": 1200
+  },
+  {
+    "make": "YANMAR",
+    "model": "4LDL",
+    "kw": 45,
+    "rpm": 900
+  },
+  {
+    "make": "YANMAR",
+    "model": "4LM",
+    "kw": 53,
+    "rpm": 3000
+  },
+  {
+    "make": "YANMAR",
+    "model": "4MD",
+    "kw": 27,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "4T112",
+    "kw": 90,
+    "rpm": 3000
+  },
+  {
+    "make": "YANMAR",
+    "model": "6AYM-WET",
+    "kw": 610,
+    "rpm": 1900
+  },
+  {
+    "make": "YANMAR",
+    "model": "6CH-HT",
+    "kw": 114,
+    "rpm": 2600
+  },
+  {
+    "make": "YANMAR",
+    "model": "6CH-ST",
+    "kw": 180,
+    "rpm": 2500
+  },
+  {
+    "make": "YANMAR",
+    "model": "6CH-UT",
+    "kw": 169.1,
+    "rpm": 2500
+  },
+  {
+    "make": "YANMAR",
+    "model": "6CHK",
+    "kw": 114,
+    "rpm": 2500
+  },
+  {
+    "make": "YANMAR",
+    "model": "6CHK-DT",
+    "kw": 140,
+    "rpm": 2500
+  },
+  {
+    "make": "YANMAR",
+    "model": "6CHK-HT",
+    "kw": 114,
+    "rpm": 2500
+  },
+  {
+    "make": "YANMAR",
+    "model": "6CHS-HT",
+    "kw": 114,
+    "rpm": 2500
+  },
+  {
+    "make": "YANMAR",
+    "model": "6CZP-GT",
+    "kw": 389,
+    "rpm": 2229
+  },
+  {
+    "make": "YANMAR",
+    "model": "6GH-20",
+    "kw": 161.9,
+    "rpm": 2200
+  },
+  {
+    "make": "YANMAR",
+    "model": "6GH-DT",
+    "kw": 184,
+    "rpm": 2200
+  },
+  {
+    "make": "YANMAR",
+    "model": "6GH-UT",
+    "kw": 221,
+    "rpm": 2200
+  },
+  {
+    "make": "YANMAR",
+    "model": "6GHA-ET",
+    "kw": 323.8,
+    "rpm": 2200
+  },
+  {
+    "make": "YANMAR",
+    "model": "6GHA-ST",
+    "kw": 265,
+    "rpm": 2200
+  },
+  {
+    "make": "YANMAR",
+    "model": "6GX-ET",
+    "kw": 316.5,
+    "rpm": 2300
+  },
+  {
+    "make": "YANMAR",
+    "model": "6GX-GT",
+    "kw": 404.52,
+    "rpm": 2430
+  },
+  {
+    "make": "YANMAR",
+    "model": "6GX-ST",
+    "kw": 316.5,
+    "rpm": 2300
+  },
+  {
+    "make": "YANMAR",
+    "model": "6HAB2-HT",
+    "kw": 48,
+    "rpm": 1150
+  },
+  {
+    "make": "YANMAR",
+    "model": "6HAK-TH",
+    "kw": 176.5,
+    "rpm": 2050
+  },
+  {
+    "make": "YANMAR",
+    "model": "6HD",
+    "kw": 96,
+    "rpm": 1800
+  },
+  {
+    "make": "YANMAR",
+    "model": "6KH-ET",
+    "kw": 331,
+    "rpm": 2300
+  },
+  {
+    "make": "YANMAR",
+    "model": "6KH-ST",
+    "kw": 301.8,
+    "rpm": 2000
+  },
+  {
+    "make": "YANMAR",
+    "model": "6KX-ET",
+    "kw": 382,
+    "rpm": 2000
+  },
+  {
+    "make": "YANMAR",
+    "model": "6KXZS-GT",
     "kw": 540,
-    "rpm": 1500,
-    "cylinders": 6
+    "rpm": 2084
   },
   {
-    "make": "MAN",
-    "model": "D2676-2",
-    "kw": 810,
-    "rpm": 1900,
-    "cylinders": 16
+    "make": "YANMAR",
+    "model": "6LY-ST",
+    "kw": 198.5,
+    "rpm": 3000
   },
   {
-    "make": "MAN",
-    "model": "D2862-1",
-    "kw": 1060,
-    "rpm": 1800,
-    "cylinders": 16
+    "make": "YANMAR",
+    "model": "6TY120",
+    "kw": 86,
+    "rpm": 2500
   },
   {
-    "make": "MAN",
-    "model": "D2862-2",
-    "kw": 1710,
-    "rpm": 2600,
-    "cylinders": 4
+    "make": "YANMAR",
+    "model": "GX-ET",
+    "kw": 316,
+    "rpm": 2300
   },
   {
-    "make": "Doosan",
-    "model": "L086-1",
-    "kw": 870,
-    "rpm": 2600,
-    "cylinders": 16
+    "make": "YANMAR",
+    "model": "HINO",
+    "kw": 184,
+    "rpm": 2900
   },
   {
-    "make": "Doosan",
-    "model": "L086-2",
-    "kw": 760,
-    "rpm": 2100,
-    "cylinders": 12
-  },
-  {
-    "make": "Doosan",
-    "model": "L126-1",
-    "kw": 270,
-    "rpm": 2600,
-    "cylinders": 12
-  },
-  {
-    "make": "Doosan",
-    "model": "L126-2",
-    "kw": 200,
-    "rpm": 1500,
-    "cylinders": 6
-  },
-  {
-    "make": "Doosan",
-    "model": "V158-1",
-    "kw": 840,
-    "rpm": 1500,
-    "cylinders": 8
-  },
-  {
-    "make": "Doosan",
-    "model": "V158-2",
-    "kw": 1120,
-    "rpm": 1500,
-    "cylinders": 4
-  },
-  {
-    "make": "Doosan",
-    "model": "V180-1",
-    "kw": 1060,
-    "rpm": 2300,
-    "cylinders": 4
-  },
-  {
-    "make": "Doosan",
-    "model": "V180-2",
-    "kw": 1710,
-    "rpm": 2300,
-    "cylinders": 4
-  },
-  {
-    "make": "Doosan",
-    "model": "4V222-1",
-    "kw": 210,
-    "rpm": 1800,
-    "cylinders": 16
-  },
-  {
-    "make": "Doosan",
-    "model": "4V222-2",
-    "kw": 730,
-    "rpm": 2600,
-    "cylinders": 8
-  },
-  {
-    "make": "Weichai",
-    "model": "WP6C-1",
-    "kw": 1720,
-    "rpm": 2300,
-    "cylinders": 8
-  },
-  {
-    "make": "Weichai",
-    "model": "WP6C-2",
-    "kw": 900,
-    "rpm": 1500,
-    "cylinders": 12
-  },
-  {
-    "make": "Weichai",
-    "model": "WP10C-1",
-    "kw": 1790,
-    "rpm": 2100,
-    "cylinders": 12
-  },
-  {
-    "make": "Weichai",
-    "model": "WP10C-2",
-    "kw": 920,
-    "rpm": 1500,
-    "cylinders": 6
-  },
-  {
-    "make": "Weichai",
-    "model": "WP12C-1",
-    "kw": 260,
-    "rpm": 1900,
-    "cylinders": 8
-  },
-  {
-    "make": "Weichai",
-    "model": "WP12C-2",
-    "kw": 910,
-    "rpm": 2600,
-    "cylinders": 6
-  },
-  {
-    "make": "Weichai",
-    "model": "WP13C-1",
-    "kw": 970,
-    "rpm": 1800,
-    "cylinders": 16
-  },
-  {
-    "make": "Weichai",
-    "model": "WP13C-2",
-    "kw": 710,
-    "rpm": 2600,
-    "cylinders": 16
-  },
-  {
-    "make": "Weichai",
-    "model": "CW200-1",
-    "kw": 1650,
-    "rpm": 2300,
-    "cylinders": 8
-  },
-  {
-    "make": "Weichai",
-    "model": "CW200-2",
-    "kw": 1760,
-    "rpm": 1500,
-    "cylinders": 8
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S6R-1",
-    "kw": 980,
-    "rpm": 1800,
-    "cylinders": 8
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S6R-2",
-    "kw": 1410,
-    "rpm": 2300,
-    "cylinders": 16
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S12R-1",
-    "kw": 1420,
-    "rpm": 1900,
-    "cylinders": 6
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S12R-2",
-    "kw": 1140,
-    "rpm": 1800,
-    "cylinders": 6
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S16R-1",
-    "kw": 1490,
-    "rpm": 2600,
-    "cylinders": 6
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S16R-2",
-    "kw": 430,
-    "rpm": 2100,
-    "cylinders": 8
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S6A3-1",
-    "kw": 1340,
-    "rpm": 1500,
-    "cylinders": 8
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S6A3-2",
-    "kw": 900,
-    "rpm": 1800,
-    "cylinders": 16
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S12A2-1",
-    "kw": 1730,
-    "rpm": 2100,
-    "cylinders": 8
-  },
-  {
-    "make": "Mitsubishi",
-    "model": "S12A2-2",
-    "kw": 1720,
-    "rpm": 1900,
-    "cylinders": 4
+    "make": "YUCHAI",
+    "model": "YC4E140-33",
+    "kw": 103,
+    "rpm": 2800
   }
 ]

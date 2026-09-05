@@ -123,6 +123,39 @@ function starter_flexible_register_site_settings_fields(): void {
 						array( 'key' => 'field_sfs_legal_link', 'label' => __( 'Link', 'starter-flexible' ), 'name' => 'link', 'type' => 'link', 'return_format' => 'array' ),
 					),
 				),
+
+				array( 'key' => 'field_sfs_tab_tools', 'label' => __( 'Tools', 'starter-flexible' ), 'type' => 'tab' ),
+				array(
+					'key'          => 'field_sfs_machines',
+					'label'        => __( 'Machine List', 'starter-flexible' ),
+					'name'         => 'machines',
+					'type'         => 'repeater',
+					'layout'       => 'table',
+					'button_label' => __( 'Add Machine', 'starter-flexible' ),
+					'instructions' => __( 'Dữ liệu cho công cụ Tra cứu động cơ (Engine Lookup).', 'starter-flexible' ),
+					'sub_fields'   => array(
+						array( 'key' => 'field_sfs_machine_make', 'label' => __( 'Make', 'starter-flexible' ), 'name' => 'make', 'type' => 'text' ),
+						array( 'key' => 'field_sfs_machine_model', 'label' => __( 'Model', 'starter-flexible' ), 'name' => 'model', 'type' => 'text' ),
+						array( 'key' => 'field_sfs_machine_kw', 'label' => __( 'kW', 'starter-flexible' ), 'name' => 'kw', 'type' => 'number', 'step' => 'any' ),
+						array( 'key' => 'field_sfs_machine_rpm', 'label' => __( 'RPM', 'starter-flexible' ), 'name' => 'rpm', 'type' => 'number', 'step' => 'any' ),
+					),
+				),
+				array(
+					'key'          => 'field_sfs_shaft_materials',
+					'label'        => __( 'Vật liệu trục chân vịt', 'starter-flexible' ),
+					'name'         => 'shaft_materials',
+					'type'         => 'repeater',
+					'layout'       => 'table',
+					'button_label' => __( 'Add Material', 'starter-flexible' ),
+					'instructions' => __( 'Dữ liệu cho công cụ Tính đường kính trục (Shaft Diameter). Điền cả bản dịch tiếng Anh để hiển thị khi site chuyển sang EN.', 'starter-flexible' ),
+					'sub_fields'   => array(
+						array( 'key' => 'field_sfs_material_name', 'label' => __( 'Name (VI)', 'starter-flexible' ), 'name' => 'name', 'type' => 'text' ),
+						array( 'key' => 'field_sfs_material_name_en', 'label' => __( 'Name (EN)', 'starter-flexible' ), 'name' => 'name_en', 'type' => 'text' ),
+						array( 'key' => 'field_sfs_material_note', 'label' => __( 'Note (VI)', 'starter-flexible' ), 'name' => 'note', 'type' => 'text' ),
+						array( 'key' => 'field_sfs_material_note_en', 'label' => __( 'Note (EN)', 'starter-flexible' ), 'name' => 'note_en', 'type' => 'text' ),
+						array( 'key' => 'field_sfs_material_k3', 'label' => __( 'Hệ số k3', 'starter-flexible' ), 'name' => 'k3', 'type' => 'number', 'step' => 'any' ),
+					),
+				),
 			),
 			'location'              => array(
 				array(
@@ -142,6 +175,48 @@ function starter_flexible_register_site_settings_fields(): void {
 add_action( 'acf/init', 'starter_flexible_register_site_settings_fields', 5 );
 
 /**
+ * Seed the Machine List and Vật liệu trục chân vịt repeaters once, the first
+ * time the options page is used, so the tools keep working out of the box.
+ * Admins can then edit or clear the rows normally from Site Settings.
+ */
+function starter_flexible_seed_site_settings_tool_data(): void {
+	if ( ! function_exists( 'get_field' ) || ! function_exists( 'update_field' ) ) {
+		return;
+	}
+
+	if ( ! get_option( 'starter_flexible_tools_seeded' ) ) {
+		$machines = get_field( 'machines', 'option' );
+		if ( empty( $machines ) ) {
+			$json = file_get_contents( __DIR__ . '/../blocks/engine-lookup/inc/engines.json' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			$rows = false !== $json ? (array) json_decode( $json, true ) : array();
+			if ( ! empty( $rows ) ) {
+				update_field( 'machines', $rows, 'option' );
+			}
+		}
+
+		$materials = get_field( 'shaft_materials', 'option' );
+		if ( empty( $materials ) ) {
+			update_field(
+				'shaft_materials',
+				array(
+					array( 'name' => 'Thép các bon và thép các bon măng gan', 'name_en' => 'Carbon steel and carbon-manganese steel', 'note' => '', 'note_en' => '', 'k3' => 119.7 ),
+					array( 'name' => 'Thép không rỉ 316', 'name_en' => 'Stainless steel 316', 'note' => '', 'note_en' => '', 'k3' => 98.8 ),
+					array( 'name' => 'Thép không rỉ 431', 'name_en' => 'Stainless steel 431', 'note' => '', 'note_en' => '', 'k3' => 89.3 ),
+					array( 'name' => 'Đồng măng gan', 'name_en' => 'Manganese bronze', 'note' => '', 'note_en' => '', 'k3' => 87.4 ),
+					array( 'name' => 'Đồng nhôm nikken / Hợp kim đồng nikken K400', 'name_en' => 'Nickel-aluminium bronze / Nickel copper alloy K400', 'note' => '', 'note_en' => '', 'k3' => 80.7 ),
+					array( 'name' => 'Hợp kim đồng nikken K500', 'name_en' => 'Nickel copper alloy K500', 'note' => '', 'note_en' => '', 'k3' => 67.5 ),
+					array( 'name' => 'L<15m', 'name_en' => 'L<15m', 'note' => '', 'note_en' => '', 'k3' => 100 ),
+				),
+				'option'
+			);
+		}
+
+		update_option( 'starter_flexible_tools_seeded', 1 );
+	}
+}
+add_action( 'acf/init', 'starter_flexible_seed_site_settings_tool_data', 20 );
+
+/**
  * Read one Site Settings value, with a fallback when ACF is absent.
  *
  * @param string $name    Field name.
@@ -155,11 +230,71 @@ function starter_flexible_setting( string $name, $default = '' ) {
 
 	$value = get_field( $name, 'option' );
 
+	if ( function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ) ) {
+		$english = array(
+			'announcement_text' => 'The 2026 price list is now available',
+			'announcement_cta'  => array( 'title' => 'View now!', 'url' => home_url( '/en/capabilities/' ), 'target' => '_self' ),
+			'header_cta'        => array( 'title' => 'Contact', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ),
+			'mega_title'        => 'Services',
+			'footer_cta'        => array( 'title' => 'Start a project', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ),
+			'address'           => 'No. 03 Tran Lu Street, Bac Nha Trang Ward, Khanh Hoa Province, Vietnam',
+			'legal_name'        => 'LASAN MARINE COMPANY LIMITED',
+			'legal_links'       => array(
+				array( 'link' => array( 'title' => 'Privacy', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ) ),
+				array( 'link' => array( 'title' => 'Terms', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ) ),
+			),
+		);
+		if ( array_key_exists( $name, $english ) ) {
+			$value = $english[ $name ];
+		}
+		if ( 'bank' === $name && is_array( $value ) ) {
+			$value['holder'] = 'LASAN MARINE COMPANY LIMITED';
+			$value['name']   = 'Techcombank – Ma Vong Branch';
+		}
+	}
+
 	if ( null === $value || '' === $value || array() === $value ) {
 		return $default;
 	}
 
 	return $value;
+}
+
+/**
+ * The Machine List from Site Settings → Tools, for the Engine Lookup tool.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function starter_flexible_machines(): array {
+	return (array) starter_flexible_setting( 'machines', array() );
+}
+
+/**
+ * The Vật liệu trục chân vịt list from Site Settings → Tools, for the Shaft
+ * Diameter tool. Picks the English name/note when Polylang is on the EN
+ * locale, falling back to the Vietnamese text if no translation was entered.
+ *
+ * @return array<int, array{name: string, note: string, k3: float}>
+ */
+function starter_flexible_shaft_materials(): array {
+	$rows = (array) starter_flexible_setting( 'shaft_materials', array() );
+	$is_en = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
+
+	$materials = array();
+	foreach ( $rows as $row ) {
+		$name = $is_en && ! empty( $row['name_en'] ) ? (string) $row['name_en'] : (string) ( $row['name'] ?? '' );
+		if ( '' === trim( $name ) ) {
+			continue;
+		}
+		$note = $is_en && ! empty( $row['note_en'] ) ? (string) $row['note_en'] : (string) ( $row['note'] ?? '' );
+		$materials[] = array(
+			'name' => $name,
+			'note' => $note,
+			'k3'   => isset( $row['k3'] ) ? (float) $row['k3'] : 0.0,
+		);
+	}
+
+	return $materials;
 }
 
 /**

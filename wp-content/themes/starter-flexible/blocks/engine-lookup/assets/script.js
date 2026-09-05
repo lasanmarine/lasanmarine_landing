@@ -43,9 +43,9 @@ document.querySelectorAll('[data-engines]').forEach((root) => {
 			body.replaceChildren(
 				...slice.map((e) => {
 					const tr = document.createElement('tr');
-					for (const value of [e.make, e.model, e.kw, e.rpm, e.cylinders]) {
+					for (const value of [e.make, e.model, e.kw, e.rpm]) {
 						const td = document.createElement('td');
-						td.textContent = String(value);
+						td.textContent = value === null || value === undefined || value === '' ? '—' : String(value);
 						tr.append(td);
 					}
 					return tr;

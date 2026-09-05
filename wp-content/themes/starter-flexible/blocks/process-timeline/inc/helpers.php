@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function starter_flexible_block_data_process_timeline( array $block ) {
 	$data = array_merge(
-		array( 'label' => 'PROCESS TIMELINE', 'heading' => '', 'steps' => array(), 'custom_class' => '' ),
+		array( 'label' => 'PROCESS TIMELINE', 'steps' => array(), 'custom_class' => '' ),
 		starter_flexible_get_block_fields( $block )
 	);
 

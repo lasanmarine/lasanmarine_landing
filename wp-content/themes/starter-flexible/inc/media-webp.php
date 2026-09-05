@@ -49,7 +49,15 @@ function starter_flexible_can_write_webp(): bool {
  * @param string $context 'upload' or 'sideload'.
  * @return array
  */
-function starter_flexible_convert_upload_to_webp( array $upload, string $context = 'upload' ): array { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+function starter_flexible_convert_upload_to_webp( $upload, $context = 'upload' ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	if ( ! is_array( $upload ) ) {
+		return $upload;
+	}
+
+	if ( ! is_array( $upload ) ) {
+		return $upload;
+	}
+
 	if ( empty( $upload['file'] ) || empty( $upload['type'] ) || ! empty( $upload['error'] ) ) {
 		return $upload;
 	}

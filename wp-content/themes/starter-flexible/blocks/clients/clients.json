@@ -3,11 +3,13 @@
   "title": "Clients",
   "fields": [
     { "key": "field_clients_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "CLIENTS & PARTNERS" },
+    { "key": "field_clients_logo_size", "label": "Logo Height (px)", "name": "logo_size", "type": "number", "default_value": 54, "min": 16, "max": 400, "step": 2, "append": "px", "instructions": "Chiều cao tối đa của logo trong mỗi ô." },
     {
       "key": "field_clients_items", "label": "Clients", "name": "items", "type": "repeater",
-      "layout": "table", "button_label": "Add Client",
+      "layout": "block", "button_label": "Add Client",
       "sub_fields": [
-        { "key": "field_clients_item_name", "label": "Name", "name": "name", "type": "text" }
+        { "key": "field_clients_item_name", "label": "Name", "name": "name", "type": "text" },
+        { "key": "field_clients_item_logo", "label": "Logo", "name": "logo", "type": "image", "return_format": "id", "preview_size": "thumbnail", "library": "all", "instructions": "Để trống sẽ hiển thị icon + tên." }
       ]
     },
     { "key": "field_clients_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }

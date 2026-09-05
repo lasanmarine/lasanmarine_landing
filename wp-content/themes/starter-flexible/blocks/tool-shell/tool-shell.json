@@ -2,10 +2,6 @@
   "key": "group_tool_shell",
   "title": "Tool Shell",
   "fields": [
-    { "key": "field_ts_label", "label": "Block Label", "name": "label", "type": "text" },
-    { "key": "field_ts_heading", "label": "Heading", "name": "heading", "type": "text" },
-    { "key": "field_ts_lead", "label": "Lead", "name": "lead", "type": "textarea", "rows": 3, "new_lines": "" },
-    { "key": "field_ts_note", "label": "Note", "name": "note", "type": "textarea", "rows": 3, "new_lines": "" },
     { "key": "field_ts_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
   ],
   "location": [[{ "param": "block", "operator": "==", "value": "acf/tool-shell" }]]

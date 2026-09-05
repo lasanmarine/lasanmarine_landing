@@ -13,6 +13,8 @@
 
 get_header();
 
+echo '<div class="block-stream">';
+
 while ( have_posts() ) {
 	the_post();
 	the_content();
@@ -23,5 +25,7 @@ while ( have_posts() ) {
 		)
 	);
 }
+
+echo '</div>';
 
 get_footer();

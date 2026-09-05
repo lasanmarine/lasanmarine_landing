@@ -27,7 +27,7 @@ if ( $data->has_view_all ) {
 		'<a href="%s" class="link link--lg">%s %s</a>',
 		esc_url( $data->view_all_url ),
 		esc_html( $data->view_all ),
-		starter_flexible_icon( 'arrow', 18 )
+		starter_flexible_icon_swap( 'arrow', 18 )
 	);
 }
 ?>
@@ -57,14 +57,15 @@ if ( $data->has_view_all ) {
 			?>
 			<div>
 				<div class="in__kicker">
-					<span><?php echo esc_html( $featured['kind'] ); ?></span><span><?php echo esc_html( $featured['date'] ); ?></span>
+					<span class="in__badge"><?php echo esc_html( $featured['kind'] ); ?></span>
+					<span class="in__badge"><?php echo starter_flexible_icon( 'calendar', 15 ); // phpcs:ignore ?><?php echo esc_html( $featured['date'] ); ?></span>
 				</div>
 				<h3 class="h4 in__title"><?php echo esc_html( $featured['title'] ); ?></h3>
 				<p class="copy in__excerpt"><?php echo esc_html( $featured['excerpt'] ); ?></p>
 				<?php if ( $data->has_read_more ) : ?>
 					<a href="<?php echo esc_url( $featured['url'] ); ?>" class="link link--fixed link--lg in__cta">
 						<?php echo esc_html( $data->read_more ); ?>
-						<?php echo starter_flexible_icon( 'arrow', 18 ); // phpcs:ignore ?>
+						<?php echo starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore ?>
 					</a>
 				<?php endif; ?>
 			</div>

@@ -11,12 +11,18 @@
 	padding-inline: var(--gutter);
 }
 
-/* Every content block sits on the same vertical rhythm. */
-.block {
-	margin-top: var(--block-gap);
+/* The stream that stacks the flexible modules. No default vertical rhythm:
+   each module's own Padding Top / Padding Bottom fields are the only source of
+   top/bottom spacing. */
+.block-stream {
+	@apply flex flex-col;
 }
-.block:first-child {
-	@apply mt-0;
+
+/* Every content block is itself a flex column: the numbered head and the body
+   below it are spaced by gap, not margin. Single-child blocks are unaffected. */
+.block {
+	@apply flex flex-col;
+	gap: clamp(32px, 4vw, 56px);
 }
 
 /* The numbered rule that opens each block. */
@@ -33,10 +39,7 @@
 	@apply ml-auto;
 }
 
-/* Full-bleed bands. */
-.band {
-	@apply mt-6;
-}
+/* Full-bleed bands. Spacing comes from the band's own padding, not margin. */
 .band--navy {
 	@apply bg-navy-deep;
 	color: rgba(255, 255, 255, 0.74);
@@ -134,10 +137,10 @@
 .btn {
 	@apply inline-flex cursor-pointer items-center justify-center border border-transparent bg-marine font-display font-semibold text-white;
 	gap: 10px;
-	height: 50px;
+	height: 52px;
 	padding-inline: 24px;
 	border-radius: var(--r-md);
-	font-size: 13.5px;
+	font-size: 16px; /* same size as body copy (<p>) */
 	transition:
 		background 220ms ease,
 		color 200ms ease,
@@ -147,15 +150,56 @@
 	@apply bg-navy text-white;
 }
 .btn--lg {
-	height: 56px;
+	height: 58px;
 	padding-inline: 28px;
-	font-size: 14.5px;
+	font-size: 16px;
 }
 .btn--sm {
-	height: 42px;
+	height: 44px;
 	padding-inline: 18px;
 	border-radius: var(--r-sm);
-	font-size: 12px;
+	font-size: 14px;
+}
+
+/* Icon swap-on-hover: two identical glyphs stacked in a clipped box; the front
+   one exits along its pointing direction while the back one slides into place. */
+.btn__icon {
+	position: relative;
+	display: inline-block;
+	flex: none;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
+}
+.btn__icon svg {
+	position: absolute;
+	inset: 0;
+	transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn__icon svg:nth-child(1) {
+	transform: translate(0, 0);
+}
+.btn__icon[data-dir='right']    svg:nth-child(2) { transform: translateX(-150%); }
+.btn__icon[data-dir='left']     svg:nth-child(2) { transform: translateX(150%); }
+.btn__icon[data-dir='up']       svg:nth-child(2) { transform: translateY(150%); }
+.btn__icon[data-dir='down']     svg:nth-child(2) { transform: translateY(-150%); }
+.btn__icon[data-dir='up-right'] svg:nth-child(2) { transform: translate(-150%, 150%); }
+
+.btn:hover .btn__icon[data-dir='right']    svg:nth-child(1),
+.link:hover .btn__icon[data-dir='right']    svg:nth-child(1) { transform: translateX(150%); }
+.btn:hover .btn__icon[data-dir='left']     svg:nth-child(1),
+.link:hover .btn__icon[data-dir='left']     svg:nth-child(1) { transform: translateX(-150%); }
+.btn:hover .btn__icon[data-dir='up']       svg:nth-child(1),
+.link:hover .btn__icon[data-dir='up']       svg:nth-child(1) { transform: translateY(-150%); }
+.btn:hover .btn__icon[data-dir='down']     svg:nth-child(1),
+.link:hover .btn__icon[data-dir='down']     svg:nth-child(1) { transform: translateY(150%); }
+.btn:hover .btn__icon[data-dir='up-right'] svg:nth-child(1),
+.link:hover .btn__icon[data-dir='up-right'] svg:nth-child(1) { transform: translate(150%, -150%); }
+.btn:hover .btn__icon svg:nth-child(2),
+.link:hover .btn__icon svg:nth-child(2) { transform: translate(0, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+	.btn__icon svg { transition: none; }
 }
 .btn--secondary {
 	@apply border-navy bg-transparent text-navy;
@@ -311,15 +355,24 @@ a:hover .frame > img,
 .frame__placeholder::before {
 	content: '';
 	width: 76px;
-	height: 24px;
+	height: 28px;
 	background: no-repeat center / contain
-		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 90' preserveAspectRatio='none'%3E%3Cpath d='M0 66 C110 20 230 84 350 56 C450 33 530 22 600 30' fill='none' stroke='%230A72C8' stroke-width='6'/%3E%3Cpath d='M0 78 C120 34 240 96 360 68 C460 45 535 36 600 44' fill='none' stroke='%230B1B4C' stroke-width='1.5'/%3E%3C/svg%3E");
+		url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzcyLjA5N3B0IiBoZWlnaHQ9IjEzOC4wMTJwdCIgdmlld0JveD0iMCAwIDM3Mi4wOTcgMTM4LjAxMiI+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAtMCI+CjxwYXRoIGNsaXAtcnVsZT0ibm9uemVybyIgZD0iTSA1MyAxOCBMIDM3MC4zMjgxMjUgMTggTCAzNzAuMzI4MTI1IDk5IEwgNTMgOTkgWiBNIDUzIDE4ICIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAtMSI+CjxwYXRoIGNsaXAtcnVsZT0ibm9uemVybyIgZD0iTSAwLjg3NSA5MCBMIDM2NiA5MCBMIDM2NiAxMzcuMDMxMjUgTCAwLjg3NSAxMzcuMDMxMjUgWiBNIDAuODc1IDkwICIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+CjxwYXRoIGZpbGwtcnVsZT0ibm9uemVybyIgZmlsbD0icmdiKDQuMjk5OTI3JSwgMTAuNTk4NzU1JSwgMjkuNzk4ODg5JSkiIGZpbGwtb3BhY2l0eT0iMSIgZD0iTSAxMjkuNzEwOTM4IDI3LjE2Nzk2OSBDIDEyOS43MTA5MzggMjcuMTY3OTY5IDE1Mi43NDYwOTQgMTUuMDYyNSAxOTYuODk0NTMxIDAgQyAxOTYuODk0NTMxIDAgMjMxLjAwNzgxMiAxMy4xMDU0NjkgMjMzLjg4NjcxOSAyNC43MzQzNzUgQyAyMzMuODg2NzE5IDI0LjczNDM3NSAxNDEuNTIzNDM4IDQ3LjU0Njg3NSAxMDYuMzA0Njg4IDYwLjM5NDUzMSBDIDEwNi4zMDQ2ODggNjAuMzk0NTMxIDE1My4wNDI5NjkgMzcuMjEwOTM4IDIxMS42NjQwNjIgMjAuOTY4NzUgQyAyMTEuNjY0MDYyIDIwLjk2ODc1IDIwMC4yOTI5NjkgMTIuMTgzNTk0IDE5NC45NzY1NjIgOC43ODUxNTYgQyAxOTQuOTc2NTYyIDguNzg1MTU2IDE1MC42Nzk2ODggMjAuOTY4NzUgMTI5LjcxMDkzOCAyNy4xNjc5NjkgIi8+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwLTApIj4KPHBhdGggZmlsbC1ydWxlPSJub256ZXJvIiBmaWxsPSJyZ2IoNC4yOTk5MjclLCAxMC41OTg3NTUlLCAyOS43OTg4ODklKSIgZmlsbC1vcGFjaXR5PSIxIiBkPSJNIDUzLjE0ODQzOCA5NC43MjY1NjIgQyA1My4xNDg0MzggOTQuNzI2NTYyIDIzMS44OTA2MjUgMzYuMDMxMjUgMzQzLjUyNzM0NCAzMy4zNzEwOTQgTCAzMDcuNDIxODc1IDk4LjkzMzU5NCBMIDM3MC4zMjgxMjUgMTguNzUzOTA2IEMgMzcwLjMyODEyNSAxOC43NTM5MDYgMzA4Ljk3MjY1NiAxOC45NzI2NTYgMjA3LjMwODU5NCA0My4xMTcxODggQyAxMDUuNjQwNjI1IDY3LjI2MTcxOSA1My4xNDg0MzggOTQuNzI2NTYyIDUzLjE0ODQzOCA5NC43MjY1NjIgIi8+CjwvZz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAtMSkiPgo8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9InJnYigzLjg5ODYyMSUsIDQ0LjY5OTA5NyUsIDc4LjM5OTY1OCUpIiBmaWxsLW9wYWNpdHk9IjEiIGQ9Ik0gMC44NzUgMTM3LjAzMTI1IEMgMC44NzUgMTM3LjAzMTI1IDgzLjkzMzU5NCAxMDcuMTI4OTA2IDE1Ny4yNSAxMDQuNDcyNjU2IEMgMjYzLjY0MDYyNSA5OS45Njg3NSAzMDMuODA0Njg4IDE1MC4zMjAzMTIgMzY1LjY3NTc4MSAxMDYuMDIzNDM4IEMgMzY1LjY3NTc4MSAxMDYuMDIzNDM4IDM1MC44MzU5MzggMTEzLjU1NDY4OCAzMjYuMzU5Mzc1IDExMy43NzM0MzggQyAyOTIuNjU2MjUgMTEzLjY1NjI1IDI2OS44Nzg5MDYgOTkuNDg4MjgxIDIzNy43NjE3MTkgOTQuMDYyNSBDIDIwNS42NDQ1MzEgODguNjMyODEyIDEwOC4yOTY4NzUgODAuNzczNDM4IDAuODc1IDEzNy4wMzEyNSAiLz4KPC9nPgo8L3N2Zz4K');
 }
 .band--navy .frame__placeholder,
 .band--navy-mid .frame__placeholder {
 	color: rgba(255, 255, 255, 0.45);
 }
 
+.ratio-1-1 {
+	aspect-ratio: 1 / 1;
+}
+.ratio-2-1 {
+	aspect-ratio: 2 / 1;
+}
+.ratio-3-2 {
+	aspect-ratio: 3 / 2;
+}
 .ratio-4-3 {
 	aspect-ratio: 4 / 3;
 }
@@ -346,14 +399,13 @@ a:hover .frame > img,
 /* A ruled data row: label, leader, value. */
 .spec {
 	@apply flex items-baseline border-b border-line-soft;
-	gap: 16px;
-	padding: 15px 0;
+	gap: 20px;
+	padding: 22px 0;
 }
 .spec__label {
 	@apply flex-none text-mute;
-	min-width: 150px;
-	font-size: 12.5px;
-	letter-spacing: 0.12em;
+	min-width: 180px;
+	font-size: 20px;
 }
 .spec__leader {
 	@apply flex-1 bg-line-soft;
@@ -364,7 +416,7 @@ a:hover .frame > img,
 	   otherwise pushes the row past a narrow SpecList column. */
 	@apply min-w-0 break-words text-right font-display font-semibold text-navy;
 	flex: 0 1 auto;
-	font-size: 15.5px;
+	font-size: 26px;
 }
 
 /* On a narrow phone the label, leader and value cannot share one line — stack
@@ -390,6 +442,7 @@ a:hover .frame > img,
 }
 .stat:first-child {
 	@apply border-l-0;
+	padding-left: 0;
 }
 .stat__value {
 	@apply font-display font-semibold leading-none text-navy;

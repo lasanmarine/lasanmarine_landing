@@ -286,3 +286,122 @@ function starter_flexible_find_files_recursive( string $dir, array $extensions )
 
 	return $result;
 }
+
+/**
+ * Append the global "Spacing" tab (Padding Top / Padding Bottom) to a block
+ * field group. Called for every block so the two controls exist everywhere
+ * without touching each block's JSON.
+ *
+ * @param array<int, array<string, mixed>> $fields    Existing field definitions.
+ * @param string                           $group_key Field group key, for unique field keys.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function starter_flexible_append_spacing_fields( array $fields, string $group_key ): array {
+	$suffix = sanitize_key( str_replace( 'group_', '', $group_key ) );
+
+	foreach ( $fields as $field ) {
+		if ( isset( $field['name'] ) && 'padding_top' === $field['name'] ) {
+			return $fields; // Already added (e.g. group reloaded).
+		}
+	}
+
+	$common = array(
+		'type'          => 'number',
+		'append'        => 'px',
+		'min'           => 0,
+		'placeholder'   => __( 'Mặc định', 'starter-flexible' ),
+		'wrapper'       => array( 'width' => '50' ),
+	);
+
+	$fields[] = array(
+		'key'   => 'field_' . $suffix . '_spacing_tab',
+		'label' => __( 'Khoảng cách', 'starter-flexible' ),
+		'name'  => '',
+		'type'  => 'tab',
+		'placement' => 'top',
+	);
+	$fields[] = array_merge(
+		$common,
+		array(
+			'key'          => 'field_' . $suffix . '_padding_top',
+			'label'        => __( 'Padding Top', 'starter-flexible' ),
+			'name'         => 'padding_top',
+			'instructions' => __( 'Để trống để dùng khoảng cách mặc định của module.', 'starter-flexible' ),
+		)
+	);
+	$fields[] = array_merge(
+		$common,
+		array(
+			'key'   => 'field_' . $suffix . '_padding_bottom',
+			'label' => __( 'Padding Bottom', 'starter-flexible' ),
+			'name'  => 'padding_bottom',
+		)
+	);
+
+	return $fields;
+}
+
+/**
+ * Build the inline style attribute (with leading space) that applies the
+ * per-module Padding Top / Padding Bottom overrides, or '' when both are unset.
+ */
+function starter_flexible_module_spacing_style( array $block ): string {
+	$read = static function ( string $name ) use ( $block ) {
+		if ( isset( $block['data'][ $name ] ) && '' !== $block['data'][ $name ] ) {
+			return $block['data'][ $name ];
+		}
+		$value = function_exists( 'get_field' ) ? get_field( $name ) : null;
+
+		return ( null === $value || '' === $value ) ? null : $value;
+	};
+
+	$rules = array();
+	$top   = $read( 'padding_top' );
+	$bot   = $read( 'padding_bottom' );
+
+	if ( is_numeric( $top ) ) {
+		$rules[] = 'padding-top:' . (float) $top . 'px';
+	}
+	if ( is_numeric( $bot ) ) {
+		$rules[] = 'padding-bottom:' . (float) $bot . 'px';
+	}
+
+	return $rules ? ' style="' . esc_attr( implode( ';', $rules ) ) . '"' : '';
+}
+
+/**
+ * Decorate the first HTML tag of a block's rendered markup (the module wrapper
+ * that carries $data->module_class): add the per-module `lasanmarine-<slug>`
+ * hook class and, when set, the Padding Top / Padding Bottom inline style.
+ */
+function starter_flexible_decorate_module_markup( string $html, string $block_slug, string $style_attr ): string {
+	$hook_class = '' !== $block_slug ? 'lasanmarine-' . sanitize_html_class( $block_slug ) : '';
+
+	if ( '' === $hook_class && '' === $style_attr ) {
+		return $html;
+	}
+
+	return preg_replace_callback(
+		'/<[a-zA-Z][a-zA-Z0-9]*(?:\s[^<>]*?)?>/',
+		static function ( array $m ) use ( $hook_class, $style_attr ) {
+			$tag = $m[0];
+
+			if ( '' !== $hook_class ) {
+				if ( preg_match( '/\sclass=("|\')(.*?)\1/', $tag, $c ) ) {
+					$tag = str_replace(
+						$c[0],
+						' class=' . $c[1] . trim( $c[2] . ' ' . $hook_class ) . $c[1],
+						$tag
+					);
+				} else {
+					$tag = substr( $tag, 0, -1 ) . ' class="' . $hook_class . '">';
+				}
+			}
+
+			return substr( $tag, 0, -1 ) . $style_attr . '>';
+		},
+		$html,
+		1
+	);
+}

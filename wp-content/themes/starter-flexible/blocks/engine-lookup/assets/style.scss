@@ -1,7 +1,20 @@
+.el {
+	width: 100%;
+	max-width: 760px;
+	margin-inline: auto;
+	min-width: 0;
+}
 .el__controls {
 	@apply grid;
 	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
-	gap: 26px 24px;
+	gap: 22px 24px;
+}
+/* Labels read at the same weight as the Liên hệ form's — bold and navy,
+   not the small uppercase micro-label the shared `.field` component uses. */
+.el .field__label {
+	@apply font-display font-semibold text-navy;
+	font-size: 16.5px;
+	letter-spacing: 0;
 }
 .el__meta {
 	@apply border-b border-line;

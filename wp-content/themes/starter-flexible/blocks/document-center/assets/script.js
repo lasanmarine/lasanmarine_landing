@@ -4,14 +4,14 @@ document.querySelectorAll('[data-doc-filters]').forEach((bar) => {
 	const empty = scope?.querySelector('[data-doc-empty]');
 	const buttons = bar.querySelectorAll('[data-doc-filter]');
 
-	buttons.forEach((btn, i) => {
+	buttons.forEach((btn) => {
 		btn.addEventListener('click', () => {
 			buttons.forEach((b) => b.setAttribute('data-active', String(b === btn)));
-			// The first filter is always the "all" pill.
-			const group = i === 0 ? null : btn.dataset.docFilter;
+			// The "all" pill carries no group index.
+			const group = btn.dataset.docFilter === 'all' ? null : btn.dataset.docFilter;
 			let shown = 0;
 			rows.forEach((row) => {
-				const hit = !group || row.dataset.docGroup === group;
+				const hit = group === null || row.dataset.docGroup === group;
 				row.hidden = !hit;
 				if (hit) shown += 1;
 			});

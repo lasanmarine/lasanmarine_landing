@@ -2,18 +2,6 @@
   "key": "group_power_converter",
   "title": "Power Converter",
   "fields": [
-    { "key": "field_pc_input_label", "label": "Input Label", "name": "input_label", "type": "text" },
-    { "key": "field_pc_unit_label", "label": "Unit Label", "name": "unit_label", "type": "text" },
-    {
-      "key": "field_pc_units", "label": "Units", "name": "units", "type": "repeater",
-      "layout": "row", "button_label": "Add Unit",
-      "sub_fields": [
-        { "key": "field_pc_unit_id", "label": "Id", "name": "id", "type": "text" },
-        { "key": "field_pc_unit_label_text", "label": "Label", "name": "label", "type": "text" },
-        { "key": "field_pc_unit_factor", "label": "Factor to kW", "name": "factor", "type": "number", "step": "any", "instructions": "kW = giá trị × hệ số. kW dùng hệ số 1." }
-      ]
-    },
-    { "key": "field_pc_reset_label", "label": "Reset Label", "name": "reset_label", "type": "text", "default_value": "Đặt lại" },
     { "key": "field_pc_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
   ],
   "location": [[{ "param": "block", "operator": "==", "value": "acf/power-converter" }]]

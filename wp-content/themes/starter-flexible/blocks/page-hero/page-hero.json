@@ -7,6 +7,7 @@
     { "key": "field_page_hero_image", "label": "Background Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
     { "key": "field_page_hero_placeholder", "label": "Placeholder Text", "name": "placeholder", "type": "text", "instructions": "Hiện thay cho ảnh khi chưa chọn ảnh." },
     { "key": "field_page_hero_heading_level", "label": "Heading Level", "name": "heading_level", "type": "select", "choices": { "h1": "H1", "h2": "H2" }, "default_value": "h1", "return_format": "value" },
+    { "key": "field_page_hero_height", "label": "Hero Height (px)", "name": "height", "type": "number", "default_value": 420, "min": 200, "max": 800, "step": 10, "append": "px", "instructions": "Chiều cao tối thiểu của hero, tính theo px." },
     { "key": "field_page_hero_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
   ],
   "location": [[{ "param": "block", "operator": "==", "value": "acf/page-hero" }]]

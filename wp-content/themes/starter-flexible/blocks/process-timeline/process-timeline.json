@@ -3,7 +3,6 @@
   "title": "Process Timeline",
   "fields": [
     { "key": "field_pt_label", "label": "Block Label", "name": "label", "type": "text", "default_value": "PROCESS TIMELINE" },
-    { "key": "field_pt_heading", "label": "Heading", "name": "heading", "type": "text" },
     {
       "key": "field_pt_steps", "label": "Steps", "name": "steps", "type": "repeater",
       "layout": "block", "button_label": "Add Step",

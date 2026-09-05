@@ -16,19 +16,7 @@ $allowed   = wp_json_encode( array( 'acf/engine-lookup', 'acf/power-converter', 
 $template  = wp_json_encode( array() );
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
-	<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
 	<div class="tool">
-		<div class="tool__intro">
-			<h2 class="h4"><?php echo esc_html( $data->heading ); ?></h2>
-			<?php if ( $data->has_lead ) : ?>
-				<p class="copy tool__lead"><?php echo esc_html( $data->lead ); ?></p>
-			<?php endif; ?>
-			<?php if ( $data->has_note ) : ?>
-				<p class="tool__note"><?php echo esc_html( $data->note ); ?></p>
-			<?php endif; ?>
-		</div>
-		<div class="tool__body">
-			<InnerBlocks allowedBlocks="<?php echo esc_attr( $allowed ); ?>" template="<?php echo esc_attr( $template ); ?>" />
-		</div>
+		<InnerBlocks allowedBlocks="<?php echo esc_attr( $allowed ); ?>" template="<?php echo esc_attr( $template ); ?>" />
 	</div>
 </section>

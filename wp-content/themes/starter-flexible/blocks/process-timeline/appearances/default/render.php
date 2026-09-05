@@ -22,7 +22,6 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
 	<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
-	<h2 class="h3 pt__heading"><?php echo esc_html( $data->heading ); ?></h2>
 	<div class="pt" data-timeline>
 		<span class="pt__rail"></span>
 		<span class="pt__fill" data-timeline-fill></span>

@@ -2,7 +2,6 @@
   "key": "group_spec_list",
   "title": "Spec List",
   "fields": [
-    { "key": "field_spec_list_label", "label": "Block Label", "name": "label", "type": "text" },
     { "key": "field_spec_list_heading", "label": "Heading", "name": "heading", "type": "text" },
     { "key": "field_spec_list_note", "label": "Note", "name": "note", "type": "textarea", "rows": 3, "new_lines": "" },
     {

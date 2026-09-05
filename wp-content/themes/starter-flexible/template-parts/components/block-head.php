@@ -16,6 +16,7 @@ $aside = isset( $args['aside'] ) ? (string) $args['aside'] : '';
 <div class="block-head">
 	<h2 class="h3 block-head__label"><?php echo esc_html( $label ); ?></h2>
 	<?php if ( '' !== $aside ) : ?>
-		<span class="block-head__aside"><?php echo wp_kses_post( $aside ); ?></span>
+		<?php /* wp_kses_post() strips <svg>, so the icon set is allowed alongside it. */ ?>
+		<span class="block-head__aside"><?php echo wp_kses( $aside, array_merge( wp_kses_allowed_html( 'post' ), starter_flexible_icon_kses() ) ); ?></span>
 	<?php endif; ?>
 </div>

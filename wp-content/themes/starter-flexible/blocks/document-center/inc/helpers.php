@@ -13,8 +13,8 @@ function starter_flexible_block_data_document_center( array $block ) {
 	$data = array_merge(
 		array(
 			'label'        => '',
-			'filters'      => array(),
-			'items'        => array(),
+			'all_label'    => 'TẤT CẢ',
+			'groups'       => array(),
 			'empty_text'   => 'Không có kết quả.',
 			'custom_class' => '',
 		),
@@ -22,27 +22,43 @@ function starter_flexible_block_data_document_center( array $block ) {
 	);
 
 	$filters = array();
-	foreach ( (array) $data['filters'] as $filter ) {
-		$name = isset( $filter['name'] ) ? (string) $filter['name'] : '';
-		if ( '' !== trim( $name ) ) {
-			$filters[] = $name;
-		}
-	}
+	$items   = array();
 
-	$items = array();
-	foreach ( (array) $data['items'] as $item ) {
-		$title = isset( $item['title'] ) ? (string) $item['title'] : '';
-		if ( '' === trim( $title ) ) {
+	foreach ( (array) $data['groups'] as $group ) {
+		$name = isset( $group['name'] ) ? trim( (string) $group['name'] ) : '';
+		if ( '' === $name ) {
 			continue;
 		}
-		$items[] = array(
-			'title' => $title,
-			'group' => isset( $item['group'] ) ? (string) $item['group'] : '',
-			'size'  => isset( $item['size'] ) ? (string) $item['size'] : '',
-			'file'  => isset( $item['file'] ) ? (string) $item['file'] : '',
-		);
+
+		$rows = array();
+		foreach ( (array) ( $group['items'] ?? array() ) as $item ) {
+			$title = isset( $item['title'] ) ? (string) $item['title'] : '';
+			if ( '' === trim( $title ) ) {
+				continue;
+			}
+			$file = isset( $item['file'] ) ? (string) $item['file'] : '';
+			$rows[] = array(
+				'title'  => $title,
+				'size'   => isset( $item['size'] ) ? (string) $item['size'] : '',
+				'file'   => $file,
+				// Only a PDF can be handed to the browser's own viewer.
+				'is_pdf' => '' !== $file && 'pdf' === strtolower( (string) pathinfo( wp_parse_url( $file, PHP_URL_PATH ) ?? '', PATHINFO_EXTENSION ) ),
+			);
+		}
+
+		if ( empty( $rows ) ) {
+			continue;
+		}
+
+		$index     = count( $filters );
+		$filters[] = $name;
+		foreach ( $rows as $row ) {
+			$row['group'] = $index;
+			$items[]      = $row;
+		}
 	}
 
+	$data['all_label']     = '' !== trim( (string) $data['all_label'] ) ? (string) $data['all_label'] : 'TẤT CẢ';
 	$data['filters']       = $filters;
 	$data['items']         = $items;
 	$data['has_label']     = '' !== trim( (string) $data['label'] );

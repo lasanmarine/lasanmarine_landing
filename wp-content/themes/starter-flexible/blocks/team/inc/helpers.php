@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 function starter_flexible_block_data_team( array $block ) {
 	$data = array_merge(
 		array(
-			'label'        => 'ENGINEERING TEAM',
 			'heading'      => '',
 			'image'        => 0,
 			'placeholder'  => '',

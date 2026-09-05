@@ -35,6 +35,14 @@
 	line-height: 1.06;
 	letter-spacing: -0.025em;
 }
+.cs__description {
+	@apply text-white;
+	max-width: 44ch;
+	margin: -8px 0 0;
+	font-size: clamp(15px, 1.15vw, 17.5px);
+	line-height: 1.65;
+	opacity: 0.78;
+}
 .cs__details {
 	@apply flex flex-col;
 	gap: 16px;

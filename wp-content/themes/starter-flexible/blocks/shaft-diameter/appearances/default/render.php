@@ -49,7 +49,7 @@ if ( empty( $data->should_render ) ) {
 		<div class="sd__options">
 			<?php foreach ( $data->materials as $i => $material ) : ?>
 				<label class="sd__option">
-					<input type="radio" name="material" value="<?php echo esc_attr( (string) $material['strength'] ); ?>" <?php checked( 0, $i ); ?> data-shaft-material />
+					<input type="radio" name="material" value="<?php echo esc_attr( (string) $material['k3'] ); ?>" <?php checked( 0, $i ); ?> data-shaft-material />
 					<span>
 						<strong><?php echo esc_html( $material['name'] ); ?></strong>
 						<em><?php echo esc_html( $material['note'] ); ?></em>

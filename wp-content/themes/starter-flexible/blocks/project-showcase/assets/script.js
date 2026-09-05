@@ -6,7 +6,7 @@ document.querySelectorAll('[data-showcase]').forEach((root) => {
 	const pad = (n) => String(n).padStart(2, '0');
 	let at = 0;
 
-	const fields = ['tag', 'name', 'location', 'year', 'service'];
+	const fields = ['name', 'location', 'year', 'service'];
 
 	const render = () => {
 		const item = items[at];

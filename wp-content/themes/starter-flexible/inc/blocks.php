@@ -135,6 +135,11 @@ function starter_flexible_load_block_field_groups(): void {
 				$field_group['active'] = true;
 			}
 
+			$field_group['fields'] = starter_flexible_append_spacing_fields(
+				isset( $field_group['fields'] ) && is_array( $field_group['fields'] ) ? $field_group['fields'] : array(),
+				(string) $field_group['key']
+			);
+
 			acf_add_local_field_group( $field_group );
 		}
 	}
@@ -189,5 +194,9 @@ function starter_flexible_render_block( array $block, string $content = '', bool
 		$data = (object) $data;
 	}
 
+	ob_start();
 	include $render_file;
+	$html = (string) ob_get_clean();
+
+	echo starter_flexible_decorate_module_markup( $html, $block_slug, starter_flexible_module_spacing_style( $block ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
