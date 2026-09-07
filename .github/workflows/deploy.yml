@@ -15,6 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: wp-content/themes/starter-flexible/fe/package-lock.json
+
+      - name: Build frontend assets
+        working-directory: wp-content/themes/starter-flexible/fe
+        run: |
+          npm ci
+          npm run build
+
       - name: Backup and deploy
         env:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
