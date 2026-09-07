@@ -1,0 +1,271 @@
+{
+  "key": "service_01_en",
+  "title": "Ship Design",
+  "slug": "ship-design",
+  "lang": "en",
+  "translation_of": "service_01",
+  "seo": {
+    "title": "Ship Design & Vessel Conversion Services | LASAN MARINE",
+    "description": "Ship design for newbuilds and conversions, including hull form, hydrostatics, stability, resistance, structures, propulsion, propellers, shafting and technical drawings."
+  },
+  "blocks": [
+    {
+      "type": "page-hero",
+      "fields": {
+        "headline": "From operating requirements to a design that can move forward",
+        "lead": "We design newbuilds and vessel conversions, and we take on specialist calculations where a full design package is not required. The work can cover principal dimensions, hull form, hydrostatics, stability, resistance, structures, propulsion and technical drawings.",
+        "placeholder": "Ship design",
+        "heading_level": "h1",
+        "height": 420,
+        "custom_class": "",
+        "image": 585
+      }
+    },
+    {
+      "type": "use-case",
+      "fields": {
+        "heading": "Different projects need different levels of design support",
+        "intro": "A new vessel, a conversion and a single calculation do not need the same scope. We start from the operating goal and the information already available, then define the work that actually needs to be done.",
+        "items": [
+          {
+            "problem": "I need a new vessel concept from an operating brief",
+            "context": "The vessel type, mission, operating area or key constraints are known, but there is not yet a complete technical concept.",
+            "solution": "We develop the principal dimensions, hull form, general arrangement, structure and propulsion concept from the operating requirements, then carry the agreed design into the calculations and drawings needed for the next stage.",
+            "link": {
+              "label": "Build a design brief",
+              "page": "design_brief"
+            }
+          },
+          {
+            "problem": "An existing vessel needs to be lengthened, reconfigured or repowered",
+            "context": "Changes to dimensions, loading, layout or equipment can affect stability, structures and onboard systems.",
+            "solution": "We review the available drawings and vessel condition, identify the areas affected by the proposed change, and define the calculations and drawings that need to be updated.",
+            "link": {
+              "label": "Discuss a conversion",
+              "page": "contact"
+            }
+          },
+          {
+            "problem": "I only need one calculation or design check",
+            "context": "The project already has a design, but a specific question remains around stability, resistance, power, propellers, shafting or structural strength.",
+            "solution": "We can take on a defined calculation package without rebuilding work that is already complete, giving the project the technical evidence needed to make the next decision.",
+            "link": {
+              "label": "Send the calculation brief",
+              "page": "contact"
+            }
+          },
+          {
+            "problem": "I already have drawings and need missing technical work completed",
+            "context": "Part of the design package exists, but some calculations, drawings or supporting documents are still missing.",
+            "solution": "We review the existing material, identify the gaps and complete the agreed technical work so the project can continue without duplicating what has already been done.",
+            "link": {
+              "label": "Send existing drawings",
+              "page": "contact"
+            }
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "service-architecture",
+      "fields": {
+        "heading": "We can take on a complete design package or a defined part of the work",
+        "caption": "Some projects start from an operating brief. Others already have vessel data, drawings or a partial design. We adapt the scope to the actual starting point rather than forcing every project into the same process.",
+        "view_all": "View selected projects",
+        "view_all_link": {
+          "label": "View selected projects",
+          "page": "projects"
+        },
+        "items": [
+          {
+            "index": "01",
+            "name": "Newbuild Design",
+            "desc": "Develop the vessel from operating requirements through the calculations, drawings and technical documentation needed to move into detailed planning and construction.",
+            "link": {
+              "label": "Discuss a newbuild",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Principal dimensions, hull form and general arrangement"
+              },
+              {
+                "name": "Hull structure and system arrangement"
+              },
+              {
+                "name": "Propulsion, propeller, shafting and related equipment"
+              },
+              {
+                "name": "Technical drawings and project documentation"
+              }
+            ]
+          },
+          {
+            "index": "02",
+            "name": "Conversion & Retrofit Design",
+            "desc": "Reassess the parts of the vessel affected by changes to mission, dimensions, loading, layout, machinery or equipment.",
+            "link": {
+              "label": "Discuss a conversion",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Change of mission or operating function"
+              },
+              {
+                "name": "Hull extension, freeboard or principal-dimension changes"
+              },
+              {
+                "name": "Cabin changes, deck strengthening and new equipment"
+              },
+              {
+                "name": "Main-engine, shafting or steering-system changes"
+              }
+            ]
+          },
+          {
+            "index": "03",
+            "name": "Calculations & Technical Documentation",
+            "desc": "Carry out a defined set of calculations or complete missing drawings and technical documents without duplicating the work already available.",
+            "link": {
+              "label": "Send a technical brief",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Hydrostatics, stability, subdivision and inclining-test support"
+              },
+              {
+                "name": "Resistance, power, propeller and shafting calculations"
+              },
+              {
+                "name": "Structural calculations and checks"
+              },
+              {
+                "name": "As-built drawings and related technical documentation"
+              }
+            ]
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "service-spotlight",
+      "fields": {
+        "placeholder": "Ship design package",
+        "caption": "Calculations · Drawings · Technical Documentation",
+        "heading": "Know what will be delivered before the work starts",
+        "body": "A project may need a complete design package or only a defined group of calculations and drawings. We agree the deliverables up front so the client knows what is included, what is not, and how the output can be used in the next stage of the project.",
+        "items": [
+          {
+            "text": "Hydrostatics, stability, resistance, structural and propulsion calculations within the agreed scope"
+          },
+          {
+            "text": "General arrangement, structural, system and detail drawings"
+          },
+          {
+            "text": "Technical notes, manuals, as-built drawings and supporting documentation"
+          },
+          {
+            "text": "Revisions and technical coordination for the work we deliver"
+          }
+        ],
+        "cta": {
+          "label": "Discuss the required deliverables",
+          "page": "contact"
+        },
+        "custom_class": "",
+        "image": 586
+      }
+    },
+    {
+      "type": "process-timeline",
+      "fields": {
+        "label": "How the work moves forward",
+        "steps": [
+          {
+            "index": "01",
+            "title": "Review the brief and available information",
+            "desc": "We look at the operating requirements, existing drawings and the intended use of the final output, then agree the work that needs to be done."
+          },
+          {
+            "index": "02",
+            "title": "Develop and check the design",
+            "desc": "Principal dimensions, hull form, arrangement and the key design calculations are checked before the project moves deeper into detailed documentation."
+          },
+          {
+            "index": "03",
+            "title": "Complete calculations and drawings",
+            "desc": "We develop the agreed calculations and drawings, keeping assumptions, inputs and design decisions traceable."
+          },
+          {
+            "index": "04",
+            "title": "Coordinate revisions and project feedback",
+            "desc": "We update the work we have delivered when technical feedback or project changes affect the agreed design scope."
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "project-showcase",
+      "fields": {
+        "label": "Selected ship design projects",
+        "projects": [
+          "tau-hau-can-bv-99889-ts",
+          "tau-ca-vo-thep-qna-91312-ts",
+          "cano-lam-hai"
+        ],
+        "limit": 3,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "accordion",
+      "fields": {
+        "heading": "Common questions before a ship-design project starts",
+        "intro": "You do not need a complete specification to start a conversation. The questions below explain what information is useful, how narrowly the work can be scoped, and how we handle revisions.",
+        "items": [
+          {
+            "title": "Can you start if I do not have all the vessel parameters yet?",
+            "content": "Yes. The vessel type, operating mission, expected dimensions, operating area or existing drawings are enough to begin. We will identify which missing inputs matter before detailed calculations start."
+          },
+          {
+            "title": "Can I engage you for one calculation instead of a full design package?",
+            "content": "Yes. We can take on a defined calculation or drawing package for stability, resistance, power, propellers, shafting, structures or other clearly scoped design work."
+          },
+          {
+            "title": "Do you work on conversions of vessels already in service?",
+            "content": "Yes. We review the existing vessel information and the proposed change, then identify which parts of the design are affected and need to be recalculated or redrawn."
+          },
+          {
+            "title": "Can you revise the design after owner or yard feedback?",
+            "content": "Yes. For the work within our agreed scope, we can review technical feedback and update the calculations or drawings when the project changes."
+          },
+          {
+            "title": "What determines the project schedule?",
+            "content": "Timing depends on vessel type, the quality of the available input data, the number of calculations and drawings required, and how much iteration the design needs. We confirm an expected schedule after reviewing the brief."
+          }
+        ],
+        "open_first": 0,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "contact-statement",
+      "fields": {
+        "heading": "Existing information is enough to start",
+        "description": "Vessel type, operating profile, expected dimensions, old drawings or photos of the current vessel can all be useful. Send what you have and we will tell you what can be done next and what additional information would help.",
+        "phone": "+84 834 310 781",
+        "email": "hello@lasanmarine.com",
+        "cta": {
+          "label": "Send your project brief",
+          "page": "contact"
+        },
+        "custom_class": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+/* Câu nối giữa hai section: một cột hẹp căn giữa, không viền, không nền. */
+.si {
+	@apply mx-auto flex flex-col items-center text-center;
+	gap: clamp(16px, 1.6vw, 22px);
+}
+.si--narrow {
+	max-width: 720px;
+}
+.si--medium {
+	max-width: 800px;
+}
+.si__label {
+	@apply uppercase;
+}
+.si__heading {
+	text-wrap: balance;
+}
+/* Căn giữa nên danh sách trong đoạn mở cũng bỏ thụt đầu dòng. */
+.si__body li {
+	@apply pl-0;
+}
+.si__body li::before {
+	@apply hidden;
+}
+.si__cta {
+	margin-top: clamp(10px, 1.2vw, 18px);
+}

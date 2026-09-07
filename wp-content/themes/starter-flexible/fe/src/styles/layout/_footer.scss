@@ -20,8 +20,9 @@
 	/* One flex column: every gap between footer sections comes from `gap`,
 	   never from a margin on the section itself. */
 	@apply relative flex flex-col;
+	--ftr-gap: clamp(128px, 16vw, 264px);
 	padding-block: clamp(110px, 13vw, 190px) clamp(48px, 6vw, 96px);
-	gap: clamp(128px, 16vw, 264px);
+	gap: var(--ftr-gap);
 }
 
 .ftr__statement {
@@ -57,30 +58,46 @@
 	@apply flex flex-col;
 	gap: 28px;
 }
-.ftr__brand img {
-	@apply w-auto self-start;
-	height: clamp(40px, 5vw, 64px);
-	filter: brightness(0) invert(1);
-}
 .ftr__details {
 	@apply flex flex-col;
-	gap: 10px;
-	max-width: 26em;
-	font-size: 15px;
-	line-height: 1.6;
-	color: rgba(255, 255, 255, 0.62);
+	gap: 18px;
 }
-.ftr__legal {
+/* Section titles for the detail groups — they head a block of ruled rows, so
+   they read a step above the values rather than level with them. */
+.ftr__group-title {
 	@apply font-display font-semibold text-white;
-	font-size: 17px;
+	font-size: clamp(20px, 1.9vw, 26px);
+	letter-spacing: -0.015em;
 }
-.ftr__tax {
-	@apply flex flex-wrap items-center;
-	gap: 10px;
-	font-size: 13.5px;
-	letter-spacing: 0.08em;
-	color: rgba(255, 255, 255, 0.5);
+
+/* The company and bank details read as the site's ruled spec rows. `.spec` is
+   drawn for a light page, so on the navy footer only the rule and the two text
+   tones are re-tinted. */
+.ftr__specs .spec {
+	padding: 16px 0;
+	gap: 16px;
+	border-bottom-color: rgb(255 255 255 / 0.14);
 }
+.ftr__specs .spec__label {
+	@apply text-white;
+	min-width: 0;
+	font-size: 15px;
+	opacity: 0.55;
+}
+.ftr__specs .spec__leader {
+	background: rgb(255 255 255 / 0.14);
+}
+.ftr__specs .spec__value {
+	/* Every value at one size — a long address wraps rather than shrinks. */
+	@apply flex flex-wrap items-center justify-end text-white;
+	gap: 8px 10px;
+	font-size: clamp(16px, 1.3vw, 19px);
+	line-height: 1.4;
+}
+.ftr__specs a.spec__value:hover {
+	@apply text-marine-bright;
+}
+
 .ftr__copy {
 	@apply inline-flex cursor-pointer items-center bg-none font-display font-semibold;
 	gap: 6px;
@@ -101,46 +118,13 @@
 	@apply border-marine text-marine-bright;
 }
 
-.ftr__row {
-	@apply flex w-fit items-start;
-	gap: 11px;
-	color: rgba(255, 255, 255, 0.62);
-}
-.ftr__row svg {
-	/* Padding, not margin: nudges the glyph onto the first line's baseline. */
-	@apply flex-none box-content text-marine;
-	padding-top: 3px;
-}
-a.ftr__row:hover {
-	@apply text-white;
-}
-
 .ftr__bank {
 	@apply flex flex-col;
-	padding-top: 26px;
+	padding-top: 14px;
 	gap: 12px;
 }
-.ftr__bank-title {
-	@apply font-display font-semibold text-white;
-	font-size: 17px;
-	letter-spacing: -0.01em;
-}
-.ftr__bank > div {
-	@apply items-baseline;
-	display: grid;
-	grid-template-columns: minmax(0, 8.5em) minmax(0, 1fr);
-	gap: 4px 16px;
-}
-.ftr__bank dt {
-	font-size: 13px;
-	color: rgba(255, 255, 255, 0.45);
-}
-.ftr__bank dd {
-	@apply m-0 flex flex-wrap items-center;
-	gap: 8px 10px;
-	font-size: 14.5px;
-	color: rgba(255, 255, 255, 0.82);
-}
+
+
 
 .ftr__map-wrap {
 	@apply flex flex-col items-start;
@@ -166,17 +150,48 @@ a.ftr__row:hover {
 	@apply border-marine text-marine-bright;
 }
 
-/* One horizontal row; it wraps to as many lines as the width allows. */
-/* Closing group: the menu sits close above the base row, and the pair takes
-   the inner gap as a whole. */
+/* The closing group: the menu on the full width, a rule, then the mark, the
+   year and the two controls held at the far edge. The menu is given its own
+   line so it never has to wrap around the mark. */
 .ftr__end {
 	@apply flex flex-col;
-	gap: clamp(22px, 2.4vw, 34px);
+	gap: clamp(20px, 2.2vw, 30px);
+}
+.ftr__end-row {
+	@apply flex flex-wrap items-center;
+	padding-top: 26px;
+	border-top: 1px solid rgba(255, 255, 255, 0.16);
+	gap: 18px clamp(20px, 2.4vw, 36px);
+}
+.ftr__mark {
+	@apply flex-none;
+}
+.ftr__mark img {
+	/* A shade taller than the header's, so the mark leads the row. */
+	@apply block w-auto;
+	height: 40px;
+	filter: brightness(0) invert(1);
+	opacity: 0.92;
+	transition: opacity 280ms var(--ease);
+}
+.ftr__mark:hover img {
+	opacity: 1;
+}
+.ftr__year {
+	@apply flex-none;
+	font-size: 15px;
+	letter-spacing: 0;
+	color: rgba(255, 255, 255, 0.74);
+}
+.ftr__end-aside {
+	/* Everything before it is read left to right; these two close the line. */
+	@apply ml-auto flex flex-wrap items-center;
+	gap: 20px;
 }
 
 .ftr__menu-list {
-	@apply m-0 flex list-none flex-wrap p-0;
-	gap: 14px clamp(24px, 3.5vw, 52px);
+	@apply m-0 flex list-none flex-wrap items-center p-0;
+	gap: 12px clamp(18px, 2vw, 30px);
 }
 .ftr__menu-list li {
 	@apply list-none;
@@ -203,37 +218,43 @@ a.ftr__row:hover {
 	transform: scaleX(1);
 }
 
-.ftr__base {
-	@apply flex flex-wrap items-center justify-between;
-	padding-top: 26px;
-	border-top: 1px solid rgba(255, 255, 255, 0.16);
-	gap: 18px 32px;
-	font-size: 15px;
-	letter-spacing: 0;
-	color: rgba(255, 255, 255, 0.55);
+/* --- language switch ---
+   The header no longer carries one, so the footer's base row is the only
+   place it appears: the site's single language control. */
+.lang {
+	@apply flex flex-none items-center;
+	gap: 2px;
 }
-.ftr__base > div {
-	@apply flex flex-wrap items-center;
-	gap: 24px;
+.lang__item {
+	@apply font-display font-semibold;
+	padding: 5px 8px;
+	border-radius: var(--r-sm);
+	font-size: 12.5px;
+	letter-spacing: 0.08em;
+	color: inherit;
+	opacity: 0.55;
+	transition:
+		opacity 200ms ease,
+		background 200ms ease,
+		color 200ms ease;
 }
-.ftr__base a {
-	color: rgba(255, 255, 255, 0.55);
+.lang__item:hover {
+	opacity: 1;
 }
-.ftr__base a:hover {
-	@apply text-white;
+.lang__item.is-active {
+	@apply text-marine;
+	opacity: 1;
 }
+
 /* Language switch sits in the base row, left of "back to top". */
-.ftr__base-end {
-	gap: 20px !important;
-}
 .lang--footer {
 	gap: 6px;
 }
 .lang--footer .lang__item {
-	padding: 6px 10px;
+	padding: 0 8px;
 	font-size: 15px;
 	letter-spacing: 0;
-	color: rgba(255, 255, 255, 0.55);
+	color: rgba(255, 255, 255, 0.68);
 	opacity: 1;
 }
 .lang--footer .lang__item:hover {
@@ -243,16 +264,36 @@ a.ftr__row:hover {
 	@apply text-marine-bright;
 }
 
-/* A real button on the navy ground: outlined, inverting on hover like the
-   secondary buttons everywhere else. */
+/* Not a button: a plain link with the hairline the footer menu uses. */
 .ftr__top {
-	@apply border text-white !important;
-	border-color: rgba(255, 255, 255, 0.28);
-	background: transparent;
+	@apply relative inline-flex items-center font-display font-semibold;
+	gap: 8px;
+	padding-bottom: 3px;
+	font-size: 15px;
 	letter-spacing: 0;
+	color: rgba(255, 255, 255, 0.74);
+}
+.ftr__top::after {
+	@apply absolute bg-marine;
+	content: '';
+	inset: auto 0 0;
+	height: 1px;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 280ms var(--ease);
 }
 .ftr__top:hover {
-	@apply border-marine bg-marine text-white !important;
+	@apply text-white;
+}
+/* The icon swap keys off `.btn`/`.link`; this link is neither, so it opts in. */
+.ftr__top:hover .btn__icon[data-dir='up-right'] svg:nth-child(1) {
+	transform: translate(150%, -150%);
+}
+.ftr__top:hover .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
+}
+.ftr__top:hover::after {
+	transform: scaleX(1);
 }
 
 /* The footer's own call to action reads at heading scale, not link scale. */
@@ -267,4 +308,8 @@ a.ftr__row:hover {
 	.ftr__statement .link {
 		@apply justify-self-start;
 	}
+	.ftr__end-aside {
+		@apply ml-0 w-full justify-between;
+	}
 }
+

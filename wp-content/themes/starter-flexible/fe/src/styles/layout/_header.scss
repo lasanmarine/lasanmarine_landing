@@ -1,6 +1,10 @@
 /* ==========================================================================
-   Header — fixed bar, mega menu, mobile drawer.
-   Ported from src/blocks/Header.astro of the Astro site.
+   Header — fixed bar plus the full-screen nav overlay.
+
+   The bar carries the brand, the top-level links and the CTA. An item with
+   children opens its panel in the full-bleed strip below the bar; below
+   1080px both give way to `.navx`, a full-screen overlay that shows every
+   item at once. The language switch lives in the footer alone.
    ========================================================================== */
 
 .hdr {
@@ -33,23 +37,33 @@
 }
 
 .hdr__bar {
-	@apply border-b border-transparent bg-transparent;
+	/* Transparent, the bar floats over the hero image: everything in it is
+	   white. Once it sticks it becomes a white rail and the ink turns navy.
+	   The colour is set here, not per element, so the nav, the actions and
+	   the menu control can never fall out of step. */
+	@apply border-b border-transparent bg-transparent text-white;
 	height: 92px;
 	transition:
 		background 300ms ease,
 		height 300ms ease,
+		color 300ms ease,
 		border-color 300ms ease;
 }
 /* Once the page scrolls the bar becomes an opaque white rail. */
 .hdr__bar.is-stuck {
-	@apply border-b-line;
+	@apply border-b-line text-navy;
 	height: 74px;
 	background: rgba(255, 255, 255, 0.96);
 	backdrop-filter: blur(12px);
 }
 .hdr__bar-inner {
+	/* Brand on the left; the nav and the actions travel together on the
+	   right, so the links sit beside the CTA rather than floating mid-bar. */
 	@apply flex h-full items-center justify-between;
-	gap: 48px;
+	gap: 32px;
+}
+.hdr__bar-inner > .hdr__nav {
+	@apply ml-auto;
 }
 
 .hdr__brand img {
@@ -63,37 +77,56 @@
 	filter: none;
 }
 
+/* --- the bar's own nav ---
+   Top-level items stay in the bar; the ones with children carry a caret and
+   open a panel below it. Colour follows the bar, white over the hero and navy
+   once it sticks. */
 .hdr__nav {
-	@apply flex items-center font-display font-semibold text-white;
-	gap: 30px;
-	font-size: 13.5px;
-	letter-spacing: 0.1em;
+	@apply flex items-center justify-end font-display font-semibold;
+	gap: clamp(18px, 2.6vw, 44px);
+	font-size: 14px;
+	letter-spacing: 0.06em;
+	color: inherit;
 }
-.hdr__bar.is-stuck .hdr__nav {
-	@apply text-navy;
-}
-
 .hdr__link {
-	@apply relative uppercase;
-	padding: 6px 0;
+	@apply relative inline-flex items-center uppercase;
+	gap: 5px;
+	padding: 8px 0;
+	color: inherit;
+}
+/* The bar sets the ink for everything in it, so a link here keeps the bar's
+   colour in every state — the base `a:hover` would otherwise repaint it navy,
+   which disappears against the hero. The underline carries the state instead. */
+.hdr__link:hover,
+.hdr__link:focus,
+.hdr__link[aria-expanded='true'] {
 	color: inherit;
 }
 .hdr__link::after {
 	@apply absolute bg-marine;
 	content: '';
-	inset: auto 0 0;
+	inset: auto 0 2px;
 	height: 1.5px;
 	transform: scaleX(0);
 	transform-origin: left;
-	transition: transform 280ms ease;
-}
-.hdr__link:hover,
-.hdr__link[aria-current='page'] {
-	color: inherit;
+	transition: transform 300ms var(--ease);
 }
 .hdr__link:hover::after,
-.hdr__link[aria-current='page']::after {
+.hdr__link:focus-visible::after,
+.hdr__link[aria-current='page']::after,
+.hdr__link[aria-expanded='true']::after {
 	transform: scaleX(1);
+}
+.hdr__link-caret {
+	transition: transform 320ms var(--ease);
+}
+.hdr__link[aria-expanded='true'] .hdr__link-caret {
+	transform: rotate(180deg);
+}
+
+.hdr__actions {
+	@apply flex items-center;
+	gap: clamp(10px, 1.4vw, 22px);
 }
 
 .hdr__cta {
@@ -105,381 +138,645 @@
 	font-size: 13px;
 }
 
-.hdr__burger {
-	@apply hidden cursor-pointer flex-col items-end border-none bg-none;
-	gap: 6px;
-	padding: 8px;
-}
-.hdr__burger span {
-	@apply bg-white;
-	display: block;
-	width: 26px;
-	height: 1.5px;
-	transition:
-		transform 250ms ease,
-		width 250ms ease;
-}
-.hdr__burger span:last-child {
-	width: 18px;
-}
-.hdr__bar.is-stuck .hdr__burger span {
-	@apply bg-navy;
-}
-.hdr__burger[aria-expanded='true'] span {
-	@apply bg-white;
-}
-.hdr__burger[aria-expanded='true'] span:first-child {
-	transform: translateY(3.75px) rotate(45deg);
-}
-.hdr__burger[aria-expanded='true'] span:last-child {
-	width: 26px;
-	transform: translateY(-3.75px) rotate(-45deg);
-}
-
-/* --- language switch ---
-   Two letters, the inactive one muted. Follows the bar's colour, so it flips
-   from white to navy with everything else once the bar sticks. */
-.lang {
-	@apply flex flex-none items-center;
-	gap: 2px;
-}
-.lang__item {
-	@apply font-display font-semibold;
-	padding: 5px 8px;
-	border-radius: var(--r-sm);
-	font-size: 12.5px;
-	letter-spacing: 0.08em;
-	color: inherit;
-	opacity: 0.55;
-	transition:
-		opacity 200ms ease,
-		background 200ms ease,
-		color 200ms ease;
-}
-.lang__item:hover {
-	opacity: 1;
-}
-.lang__item.is-active {
-	@apply text-marine;
-	opacity: 1;
-}
-.hdr__bar.is-stuck .lang__item.is-active {
-	@apply bg-pale text-marine;
-}
-
-/* --- mega menu --- */
-.hdr__mega-trigger {
-	@apply static;
-}
-.mega {
-	/* On a short laptop screen the panel is taller than the space under the
-	   header, and a dropdown cannot be scrolled to — so it scrolls itself.
-	   --hdr-h is measured, because the bar changes height once it sticks. */
-	@apply absolute overflow-y-auto border-b border-line invisible opacity-0;
-	inset: 100% 0 auto;
-	max-height: calc(100dvh - var(--hdr-h, 8rem));
-	overscroll-behavior: contain;
-	background: rgba(255, 255, 255, 0.98);
-	backdrop-filter: blur(12px);
-	box-shadow: 0 24px 48px -32px rgba(11, 27, 76, 0.35);
-	transform: translateY(-8px);
-	transition:
-		opacity 280ms ease,
-		transform 280ms ease,
-		visibility 280ms;
-}
-.hdr__mega-trigger:hover .mega,
-.hdr__mega-trigger:focus-within .mega {
-	@apply visible opacity-100;
-	transform: none;
-}
-/* Left: what this section is, and a way into it. Right: the sections
-   themselves, one row each. */
-.mega__inner {
-	@apply items-start;
-	display: grid;
-	grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-	gap: clamp(28px, 4vw, 72px);
-	padding-block: 40px 36px;
-}
-@media (max-width: 1000px) {
-	.mega__inner {
-		grid-template-columns: 1fr;
-		gap: 24px;
-	}
-}
-.mega__intro {
-	@apply flex flex-col items-start;
-	gap: 14px;
-}
-.mega__title {
-	font-size: clamp(22px, 2.2vw, 32px);
-}
-.mega__lead {
-	font-size: 15.5px;
-	line-height: 1.7;
-}
-.mega__more {
-	margin-top: 2px;
-}
-
-.mega__sections {
-	@apply grid;
-	gap: 2px;
-}
-.mega__section {
-	@apply relative items-center border-b border-line text-navy;
-	display: grid;
-	grid-template-columns: 1fr auto;
-	gap: 14px;
-	padding: clamp(12px, 1.3vw, 18px) clamp(12px, 1.6vw, 22px) clamp(12px, 1.3vw, 18px) 6px;
-	transition:
-		background 260ms ease,
-		padding-left 260ms var(--ease);
-}
-.mega__section::after {
-	@apply absolute bg-marine;
-	content: '';
-	inset: auto 0 -1px;
-	height: 1.5px;
-	transform: scaleX(0);
-	transform-origin: left;
-	transition: transform 300ms ease;
-}
-.mega__section:hover,
-.mega__section:focus-visible {
-	@apply bg-pale;
-	padding-left: 12px;
-}
-.mega__section:hover::after,
-.mega__section:focus-visible::after {
-	transform: scaleX(1);
-}
-
-.mega__text {
-	@apply min-w-0;
-}
-.mega__name {
-	@apply font-display font-semibold;
-	display: block;
-	font-size: clamp(17px, 1.5vw, 21px);
-	letter-spacing: -0.01em;
-}
-.mega__desc {
-	@apply block text-steel;
-	margin-top: 3px;
-	font-size: 13.5px;
-	line-height: 1.6;
-}
-.mega__children {
-	@apply flex flex-wrap;
-	gap: 6px 8px;
-	margin-top: 8px;
-}
-.mega__children span {
-	@apply border border-line text-steel;
-	padding: 4px 9px;
-	border-radius: var(--r-xs);
-	font-size: 11.5px;
-	letter-spacing: 0.04em;
-	transition:
-		border-color 200ms ease,
-		color 200ms ease;
-}
-.mega__section:hover .mega__children span {
-	@apply border-marine text-marine;
-}
-.mega__arrow {
-	@apply text-mute;
-	transition:
-		transform 240ms ease,
-		color 240ms ease;
-}
-.mega__section:hover .mega__arrow {
-	@apply text-marine;
-	transform: translateX(4px);
-}
-
-.mega__rule {
-	@apply bg-marine;
-	display: block;
-	height: 2px;
-}
-
-/* --- mobile drawer ---------------------------------------------------
-   The panel fades in; the rows arrive one after another off `--i`. Closing
-   drops every delay so the drawer leaves in one movement. */
-.drawer {
-	@apply invisible fixed inset-0 bg-navy-deep opacity-0;
-	display: grid;
-	z-index: 190;
-	grid-template-rows: 1fr auto;
-	gap: 32px;
-	padding: 120px 24px 40px;
-	overflow: hidden auto;
-	transition:
-		opacity 320ms ease,
-		visibility 320ms;
-}
-.drawer[data-open='true'] {
-	@apply visible opacity-100;
-}
-
-.drawer__wave {
-	@apply absolute w-full opacity-0;
-	inset: auto 0 0;
-	height: 44%;
-	transform: translateY(24px);
-	transition:
-		opacity 700ms ease 200ms,
-		transform 900ms var(--ease) 200ms;
-}
-.drawer[data-open='true'] .drawer__wave {
-	opacity: 0.16;
-	transform: none;
-}
-
-.drawer__nav {
-	@apply relative flex flex-col;
-	align-content: start;
-}
-.drawer__nav a {
-	@apply relative flex items-baseline font-display font-semibold text-white opacity-0;
-	gap: 16px;
-	padding: 13px 0;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-	font-size: clamp(19px, 5vw, 24px);
-	letter-spacing: -0.01em;
-	transform: translateY(26px);
-	transition:
-		opacity 520ms ease,
-		transform 520ms var(--ease);
-	transition-delay: calc(var(--i, 0) * 55ms + 90ms);
-}
-.drawer[data-open='true'] .drawer__nav a {
-	@apply opacity-100;
-	transform: none;
-}
-/* The marine rule that wipes in under the row being pressed. */
-.drawer__nav a::after {
-	@apply absolute bg-marine;
-	content: '';
-	inset: auto 0 -1px;
-	height: 1.5px;
-	transform: scaleX(0);
-	transform-origin: left;
-	transition: transform 340ms var(--ease);
-}
-.drawer__nav a:hover::after,
-.drawer__nav a:focus-visible::after,
-.drawer__nav a:active::after {
-	transform: scaleX(1);
-}
-
-.drawer__label {
-	@apply flex-1 uppercase;
-	letter-spacing: 0.02em;
-}
-.drawer__arrow {
-	@apply self-center;
-	color: rgba(255, 255, 255, 0.3);
-	transition:
-		transform 300ms var(--ease),
-		color 240ms ease;
-}
-.drawer__nav a:hover .drawer__arrow,
-.drawer__nav a:focus-visible .drawer__arrow {
-	@apply text-marine-bright;
-	transform: translate(4px, -4px);
-}
-
-.drawer__foot {
-	@apply relative flex flex-col;
-	gap: 14px;
-}
-.drawer__foot > * {
-	@apply opacity-0;
-	transform: translateY(18px);
-	transition:
-		opacity 460ms ease,
-		transform 460ms var(--ease);
-	transition-delay: calc(var(--i, 0) * 60ms + 320ms);
-}
-.drawer[data-open='true'] .drawer__foot > * {
-	@apply opacity-100;
-	transform: none;
-}
-
-.drawer__call {
-	@apply inline-flex w-fit items-center font-display font-semibold text-white;
+/* --- the menu control ---
+   A word that swaps for "Đóng" and two rules that cross. It is the only way
+   into the nav, so it stays legible on both grounds and while the overlay is
+   open (where the bar is navy again). */
+.hdr__menu {
+	@apply hidden cursor-pointer items-center border-none bg-transparent font-display font-semibold uppercase;
 	gap: 12px;
-	font-size: 17px;
+	padding: 8px 2px 8px 10px;
+	font-size: 13px;
+	letter-spacing: 0.12em;
+	color: inherit;
 }
-.drawer__call svg {
-	@apply text-marine;
+.hdr__menu-word {
+	/* Both words stack in one clipped box, so the swap has nothing to reflow. */
+	@apply relative block overflow-hidden;
+	height: 1.15em;
+	min-width: 3.4em;
+	text-align: right;
 }
-.drawer__call:hover {
+.hdr__menu-word span {
+	@apply block;
+	transition: transform 420ms var(--ease);
+}
+.hdr__menu-word [data-word-close] {
+	@apply absolute inset-x-0 top-0;
+}
+.hdr__menu[aria-expanded='true'] .hdr__menu-word span {
+	transform: translateY(-1.15em);
+}
+
+.hdr__menu-icon {
+	@apply relative flex flex-none flex-col items-end justify-center;
+	width: 26px;
+	height: 14px;
+}
+.hdr__menu-icon span {
+	@apply absolute right-0 block;
+	width: 26px;
+	height: 1.5px;
+	background: currentColor;
+	transition:
+		transform 420ms var(--ease),
+		width 300ms ease;
+}
+.hdr__menu-icon span:first-child {
+	transform: translateY(-4px);
+}
+.hdr__menu-icon span:last-child {
+	width: 17px;
+	transform: translateY(4px);
+}
+.hdr__menu:hover .hdr__menu-icon span:last-child {
+	width: 26px;
+}
+.hdr__menu[aria-expanded='true'] .hdr__menu-icon span:first-child {
+	transform: rotate(45deg);
+}
+.hdr__menu[aria-expanded='true'] .hdr__menu-icon span:last-child {
+	width: 26px;
+	transform: rotate(-45deg);
+}
+
+/* ==========================================================================
+   The dropdown panels — one full-bleed strip under the bar.
+   ========================================================================== */
+
+.hdr__panels {
+	/* The strip is always in the tree so a panel can animate; it only takes
+	   pointer events, and space on screen, while one of them is open. */
+	@apply pointer-events-none relative;
+}
+.hdr__panels[data-open='true'] {
+	@apply pointer-events-auto;
+}
+.hdr__panel {
+	@apply invisible absolute inset-x-0 top-0 overflow-hidden bg-navy-deep text-white;
+	/* One wipe from the bar downwards, so the panel reads as being pulled out
+	   of the header rather than fading in over the page. */
+	clip-path: inset(0 0 100% 0);
+	opacity: 0;
+	transition:
+		clip-path 460ms var(--ease),
+		opacity 240ms ease,
+		visibility 0ms linear 460ms;
+}
+.hdr__panel[data-open='true'] {
+	@apply visible;
+	clip-path: inset(0 0 0 0);
+	opacity: 1;
+	transition:
+		clip-path 460ms var(--ease),
+		opacity 200ms ease,
+		visibility 0ms linear 0ms;
+}
+.hdr__panel-in {
+	/* Nothing is boxed or ruled off here: the section name, the columns and
+	   the preview are held apart by space alone, the way the reference sets
+	   are. The name column is narrow and the columns take the rest. */
+	@apply grid items-start;
+	grid-template-columns: minmax(0, 0.8fr) minmax(0, 3fr);
+	gap: clamp(24px, 4vw, 90px);
+	padding-block: clamp(36px, 4.5vw, 72px) clamp(40px, 5vw, 80px);
+}
+.hdr__panel-intro {
+	@apply flex flex-col items-start;
+	gap: 12px;
+}
+.hdr__panel-title {
+	@apply font-display font-semibold text-marine-bright;
+	font-size: clamp(28px, 2.4vw, 42px);
+	line-height: 1.1;
+	letter-spacing: -0.025em;
+}
+.hdr__panel-lead {
+	@apply font-body;
+	max-width: 22em;
+	font-size: 14px;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.42);
+}
+.hdr__panel-more {
+	margin-top: 12px;
+	font-size: 15px;
+	color: rgba(255, 255, 255, 0.6);
+}
+.hdr__panel-more:hover {
 	@apply text-marine-bright;
 }
-
-.drawer__meta {
-	@apply flex flex-wrap justify-between;
-	gap: 14px 24px;
-	margin-top: 10px;
-	padding-top: 18px;
-	border-top: 1px solid rgba(255, 255, 255, 0.16);
-	font-size: 11.5px;
-	letter-spacing: 0.12em;
-	color: rgba(255, 255, 255, 0.6);
-}
-.drawer__social {
-	@apply flex;
-	gap: 22px;
-}
-.drawer__social a {
-	@apply inline-flex items-center;
-	gap: 6px;
-	color: rgba(255, 255, 255, 0.6);
-}
-.drawer__social a:hover {
-	@apply text-white;
+.hdr__panel-cols {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+	gap: clamp(24px, 3.5vw, 72px);
 }
 
-/* Closing: no stagger, everything leaves together. */
-.drawer:not([data-open='true']) .drawer__nav a,
-.drawer:not([data-open='true']) .drawer__foot > *,
-.drawer:not([data-open='true']) .drawer__wave {
-	transition-duration: 180ms;
+/* Columns arrive left to right once the wipe has cleared them. */
+.hdr__panel .navx__col {
+	transform: translateY(14px);
+	opacity: 0;
+	transition:
+		transform 460ms var(--ease),
+		opacity 300ms ease;
+	transition-delay: calc(120ms + var(--c) * 60ms);
+}
+.hdr__panel[data-open='true'] .navx__col {
+	transform: none;
+	opacity: 1;
+}
+/* Closing: the columns leave with the panel, not one at a time. */
+.hdr__panel:not([data-open='true']) .navx__col {
+	transition-duration: 160ms;
 	transition-delay: 0ms;
 }
 
-/* The bar sits above the drawer, so it must go transparent while open or a
-   white rail cuts across the navy panel. */
-html[data-nav-open='true'] .hdr__bar {
-	/* Matches the drawer so rows scrolling under the bar disappear cleanly
-	   instead of showing through behind the logo. */
-	@apply bg-navy-deep;
+/* An open panel puts a navy field under the bar, so the bar joins it. */
+html[data-panel-open='true'] .hdr__bar,
+html[data-panel-open='true'] .hdr__bar.is-stuck {
+	@apply bg-navy-deep text-white;
 	backdrop-filter: none;
 	border-bottom-color: transparent;
 }
-html[data-nav-open='true'] .hdr__brand img {
+html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	filter: brightness(0) invert(1);
 }
 
+/* ==========================================================================
+   The overlay
+   ========================================================================== */
+
+.navx {
+	/* Sits under the bar rather than over it, so the brand and the control
+	   that opened the overlay stay in place and in reach. */
+	@apply fixed overflow-hidden bg-navy-deep text-white;
+	inset: var(--hdr-h, 92px) 0 0;
+	z-index: 190;
+	/* One wipe, from the top edge down. Opacity alone reads as a fade-in
+	   panel; the clip makes the nav feel like it is being drawn. */
+	clip-path: inset(0 0 100% 0);
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		clip-path 620ms var(--ease),
+		opacity 320ms ease,
+		visibility 0ms linear 620ms;
+}
+.navx[data-open='true'] {
+	clip-path: inset(0 0 0 0);
+	opacity: 1;
+	visibility: visible;
+	transition:
+		clip-path 620ms var(--ease),
+		opacity 240ms ease,
+		visibility 0ms linear 0ms;
+}
+
+.navx__ground {
+	@apply pointer-events-none absolute;
+	inset: 0;
+	background:
+		radial-gradient(120% 90% at 78% 8%, rgba(10, 114, 200, 0.28), transparent 62%),
+		linear-gradient(to bottom, #0b1b4c 0%, #06122d 62%);
+}
+.navx__wave {
+	@apply absolute w-full;
+	inset: auto 0 0;
+	height: clamp(280px, 44vw, 620px);
+}
+/* The swell settles in behind the list, one line after another. */
+.navx__wave path {
+	transform: translateY(26px);
+	opacity: 0;
+	transition:
+		transform 900ms var(--ease),
+		opacity 700ms ease;
+	transition-delay: calc(160ms + var(--i) * 55ms);
+}
+.navx[data-open='true'] .navx__wave path {
+	transform: none;
+	opacity: 1;
+}
+
+.navx__scroll {
+	@apply relative flex h-full flex-col overflow-y-auto;
+	padding-block: clamp(28px, 4vw, 64px) clamp(20px, 2.6vw, 34px);
+	gap: clamp(28px, 3.4vw, 52px);
+}
+
+.navx__grid {
+	@apply grid flex-1 items-start;
+	grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr);
+	gap: clamp(28px, 4vw, 72px);
+}
+
+/* --- the top level: every item, at heading scale --- */
+
+.navx__primary {
+	@apply flex flex-col;
+}
+.navx__item {
+	@apply relative flex items-baseline border-t text-white;
+	border-color: rgba(255, 255, 255, 0.14);
+	gap: clamp(12px, 1.4vw, 22px);
+	padding-block: clamp(10px, 1.3vw, 18px);
+	padding-left: 0;
+	/* Rows arrive one after another, then the indent is the only motion left. */
+	transform: translateY(26px);
+	opacity: 0;
+	transition:
+		transform 620ms var(--ease),
+		opacity 440ms ease,
+		padding-left 380ms var(--ease);
+	transition-delay: calc(var(--i) * 58ms), calc(var(--i) * 58ms), 0ms;
+}
+.navx__item:last-child {
+	@apply border-b;
+	border-color: rgba(255, 255, 255, 0.14);
+}
+.navx[data-open='true'] .navx__item {
+	transform: none;
+	opacity: 1;
+}
+.navx__item:hover {
+	padding-left: clamp(10px, 1.2vw, 18px);
+}
+
+.navx__num {
+	@apply flex-none font-display font-semibold;
+	font-size: 12px;
+	letter-spacing: 0.14em;
+	color: rgba(255, 255, 255, 0.34);
+	transition: color 240ms ease;
+}
+.navx__item:hover .navx__num {
+	@apply text-marine-bright;
+}
+.navx__label {
+	@apply font-display font-semibold;
+	font-size: clamp(26px, 3.4vw, 50px);
+	line-height: 1.05;
+	letter-spacing: -0.03em;
+}
+.navx__go {
+	@apply ml-auto flex-none self-center;
+	opacity: 0;
+	transform: translate(-8px, 8px);
+	transition:
+		opacity 280ms ease,
+		transform 400ms var(--ease);
+}
+.navx__item:hover .navx__go,
+.navx__item:focus-visible .navx__go {
+	opacity: 1;
+	transform: none;
+}
+.navx__item[aria-current='page'] .navx__label {
+	text-decoration: underline;
+	text-decoration-color: var(--marine);
+	text-underline-offset: 8px;
+	text-decoration-thickness: 2px;
+}
+
+/* --- the second level: one column per group, all of them open --- */
+
+.navx__secondary {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+	gap: clamp(20px, 2.4vw, 40px);
+	padding-left: clamp(20px, 2.6vw, 44px);
+	border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+/* The band's name, when every column below shares one parent. */
+.navx__band {
+	@apply font-display font-semibold uppercase;
+	grid-column: 1 / -1;
+	margin-bottom: -6px;
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	color: rgba(255, 255, 255, 0.36);
+	transform: translateY(16px);
+	opacity: 0;
+	transition:
+		transform 560ms var(--ease),
+		opacity 400ms ease;
+	transition-delay: 150ms;
+}
+.navx[data-open='true'] .navx__band {
+	transform: none;
+	opacity: 1;
+}
+
+.navx__col {
+	@apply flex flex-col;
+	gap: 8px;
+	/* The columns follow the list in, left to right, a beat behind it. */
+	transform: translateY(20px);
+	opacity: 0;
+	transition:
+		transform 620ms var(--ease),
+		opacity 440ms ease;
+	transition-delay: calc(180ms + var(--c) * 70ms);
+}
+.navx[data-open='true'] .navx__col {
+	transform: none;
+	opacity: 1;
+}
+
+/* Closing: everything leaves together, no stagger to sit through. */
+.navx:not([data-open='true']) .navx__item,
+.navx:not([data-open='true']) .navx__band,
+.navx:not([data-open='true']) .navx__col,
+.navx:not([data-open='true']) .navx__wave path {
+	transition-duration: 200ms;
+	transition-delay: 0ms;
+}
+
+.navx__col-media {
+	@apply block overflow-hidden;
+	border-radius: var(--r-md);
+	aspect-ratio: 16 / 9;
+	margin-bottom: 10px;
+}
+.navx__col-media img {
+	@apply h-full w-full object-cover;
+	opacity: 0.85;
+	transition:
+		opacity 400ms ease,
+		transform 900ms var(--ease);
+}
+.navx__col:hover .navx__col-media img {
+	opacity: 1;
+	transform: scale(1.05);
+}
+
+.navx__col-eyebrow {
+	@apply font-display font-semibold uppercase;
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	color: rgba(255, 255, 255, 0.32);
+}
+/* The group's own name is the heading of its column — set large, in the
+   accent, and unruled. The arrow only appears under the cursor. */
+.navx__col-name {
+	@apply flex items-start font-display font-semibold text-marine-bright;
+	gap: clamp(12px, 1.2vw, 22px);
+	font-size: clamp(20px, 1.7vw, 30px);
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	transition: color 240ms ease;
+}
+.navx__col-name:hover {
+	@apply text-white;
+}
+/* The arrow sits clear of the last letter and only lights under the cursor.
+   `.btn__icon` is the swap wrapper: two glyphs in a clipped box, the front one
+   leaving in the direction it points as the back one slides in behind it. The
+   site drives that from `.btn:hover`/`.link:hover`, neither of which these
+   links are, so the panel repeats the handful of rules for its own. */
+.navx__col-name .btn__icon,
+.navx__biglist a .btn__icon {
+	@apply flex-none;
+	margin-top: 0.18em;
+	opacity: 0;
+	transition: opacity 240ms ease;
+}
+.navx__col-name:hover .btn__icon,
+.navx__col-name:focus-visible .btn__icon,
+.navx__biglist a:hover .btn__icon,
+.navx__biglist a:focus-visible .btn__icon {
+	opacity: 1;
+}
+.navx__col-name:hover .btn__icon[data-dir='up-right'] svg:nth-child(1),
+.navx__biglist a:hover .btn__icon[data-dir='up-right'] svg:nth-child(1) {
+	transform: translate(150%, -150%);
+}
+.navx__col-name:hover .btn__icon svg:nth-child(2),
+.navx__biglist a:hover .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
+}
+.navx__col-desc {
+	@apply font-body;
+	max-width: 22em;
+	font-size: 14.5px;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.45);
+}
+
+/* A column of leaf destinations: the same large accent type as a group's
+   name, stacked, with the arrow appearing under the cursor. This is what a
+   panel of plain pages looks like. */
+.navx__biglist {
+	@apply m-0 flex list-none flex-col p-0;
+	gap: clamp(6px, 0.6vw, 12px);
+}
+.navx__biglist li {
+	@apply list-none;
+}
+.navx__biglist a {
+	@apply flex items-start font-display font-semibold text-marine-bright;
+	gap: clamp(12px, 1.2vw, 22px);
+	font-size: clamp(19px, 1.5vw, 27px);
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	transition: color 240ms ease;
+}
+.navx__biglist a:hover {
+	@apply text-white;
+}
+/* auto-fit collapses the tracks a lone list column does not fill, so it would
+   otherwise stretch the full width of the panel. */
+.navx__col--list {
+	max-width: 520px;
+}
+
+.navx__sublist {
+	@apply m-0 flex list-none flex-col p-0;
+	gap: 0;
+	margin-top: 10px;
+}
+.navx__sublist li {
+	@apply list-none;
+}
+/* No bullets and no indent shift: the third level is simply smaller type in
+   the same accent, spaced the way the second level is. Marine-bright rather
+   than marine: the darker blue only reaches 3.4:1 on this ground. */
+.navx__sublist a {
+	@apply block font-display font-medium text-marine-bright;
+	padding-block: 7px;
+	font-size: clamp(15px, 1.15vw, 18px);
+	line-height: 1.35;
+	opacity: 0.82;
+	transition:
+		color 220ms ease,
+		opacity 220ms ease;
+}
+.navx__sublist a:hover {
+	@apply text-white;
+	opacity: 1;
+}
+
+
+/* --- the closing strip --- */
+
+.navx__foot {
+	@apply flex flex-wrap items-center justify-between border-t;
+	border-color: rgba(255, 255, 255, 0.14);
+	padding-top: clamp(16px, 2vw, 26px);
+	gap: 16px 32px;
+	transform: translateY(20px);
+	opacity: 0;
+	transition:
+		transform 620ms var(--ease),
+		opacity 420ms ease;
+	transition-delay: 240ms;
+}
+.navx[data-open='true'] .navx__foot {
+	transform: none;
+	opacity: 1;
+}
+.navx:not([data-open='true']) .navx__foot {
+	transition-duration: 200ms;
+	transition-delay: 0ms;
+}
+.navx__reach {
+	@apply flex flex-wrap items-center;
+	gap: 12px 28px;
+	font-size: 15px;
+}
+.navx__reach-item {
+	@apply inline-flex items-center;
+	gap: 8px;
+	color: rgba(255, 255, 255, 0.68);
+	transition: color 220ms ease;
+}
+.navx__reach-item:hover {
+	@apply text-marine-bright;
+}
+.navx__foot-end {
+	@apply flex flex-wrap items-center;
+	gap: 12px 20px;
+}
+.navx__social {
+	@apply flex flex-wrap items-center;
+	gap: 6px 18px;
+	font-size: 13.5px;
+}
+.navx__social a {
+	@apply inline-flex items-center;
+	gap: 5px;
+	color: rgba(255, 255, 255, 0.6);
+	transition: color 220ms ease;
+}
+.navx__social a:hover {
+	@apply text-white;
+}
+.navx__cta {
+	@apply border text-white !important;
+	border-color: rgba(255, 255, 255, 0.28);
+	background: transparent;
+	letter-spacing: 0.08em;
+}
+.navx__cta:hover {
+	@apply border-marine bg-marine text-white !important;
+}
+
+/* While the overlay is open the bar shares its ground, or a white rail cuts
+   across the top of the navy field. */
+html[data-nav-open='true'] .hdr__bar {
+	@apply bg-navy-deep text-white;
+	backdrop-filter: none;
+	border-bottom-color: rgba(255, 255, 255, 0.14);
+	height: 92px;
+}
+html[data-nav-open='true'] .hdr__brand img {
+	height: 34px;
+	filter: brightness(0) invert(1);
+}
+
+
+/* ==========================================================================
+   Accordion layout — the same panel, opened under its own row.
+   ========================================================================== */
+
 @media (max-width: 1080px) {
-	.hdr__nav {
+	/* Too narrow for six items plus a CTA: the overlay takes over, and the
+	   panels go with the nav that opened them. */
+	.hdr__nav,
+	.hdr__panels {
 		@apply hidden;
 	}
-	.hdr__burger {
+	.hdr__menu {
 		@apply flex;
+	}
+}
+
+@media (max-width: 1000px) {
+	/* The two bands stack: the list first, then every column under it. */
+	.navx__grid {
+		@apply block;
+	}
+	.navx__secondary {
+		@apply border-l-0 border-t pl-0;
+		border-color: rgba(255, 255, 255, 0.14);
+		margin-top: clamp(24px, 4vw, 40px);
+		padding-top: clamp(24px, 4vw, 40px);
+	}
+	.navx__label {
+		font-size: clamp(26px, 5.2vw, 40px);
+	}
+}
+
+@media (max-width: 720px) {
+	.navx__go {
+		@apply hidden;
+	}
+	.navx__secondary {
+		grid-template-columns: 1fr;
+	}
+	.navx__item:hover {
+		padding-left: 0;
+	}
+}
+
+@media (max-width: 720px) {
+	.hdr__cta {
+		@apply hidden;
+	}
+	.hdr__menu-word {
+		@apply sr-only;
+	}
+	.navx__foot {
+		@apply flex-col items-start;
+	}
+}
+
+@media (max-width: 600px) {
+	.hdr__strip-inner {
+		gap: 2px 8px;
+		font-size: 14px;
 	}
 	.hdr__bar {
 		height: 72px;
 	}
 }
-@media (max-width: 600px) {
-	.hdr__strip-inner {
-		gap: 2px 8px;
-		font-size: 14px;
+
+/* Reduced motion: the overlay still opens, it just stops travelling. */
+@media (prefers-reduced-motion: reduce) {
+	.hdr__panel,
+	.hdr__panel .navx__col,
+	.navx,
+	.navx__item,
+	.navx__band,
+	.navx__col,
+	.navx__foot,
+	.navx__col-media img,
+	.navx__wave path {
+		transition-duration: 140ms !important;
+		transition-delay: 0ms !important;
+		transform: none !important;
+	}
+	.navx {
+		clip-path: none;
 	}
 }

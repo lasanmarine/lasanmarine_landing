@@ -3,7 +3,6 @@
  * Power Converter — default appearance.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -56,8 +55,8 @@ if ( empty( $data->should_render ) ) {
 		<div class="pc__results" data-aos="fade-left" data-aos-delay="100">
 			<h3 class="pc__heading"><?php echo esc_html( $data->results_label ); ?></h3>
 			<div class="pc__result-list" data-power-results aria-live="polite" aria-atomic="true">
-				<?php foreach ( $data->units as $i => $unit ) : ?>
-					<div class="pc__result" data-power-row="<?php echo esc_attr( $unit['id'] ); ?>" data-aos="fade-up" data-aos-delay="<?php echo esc_attr( (string) ( 150 + $i * 70 ) ); ?>">
+				<?php foreach ( $data->units as $unit ) : ?>
+					<div class="pc__result" data-power-row="<?php echo esc_attr( $unit['id'] ); ?>" data-aos="fade-up" data-aos-delay="<?php echo esc_attr( (string) $unit['delay'] ); ?>">
 						<span class="pc__result-label"><?php echo esc_html( $unit['label'] ); ?></span>
 						<output class="pc__result-value" for="<?php echo esc_attr( $data->input_id ); ?>" aria-label="<?php echo esc_attr( $unit['label'] ); ?>" data-power-out="<?php echo esc_attr( $unit['id'] ); ?>">—</output>
 						<button type="button" class="pc__copy" data-power-copy="<?php echo esc_attr( $unit['id'] ); ?>" aria-label="<?php esc_attr_e( 'Sao chép kết quả', 'starter-flexible' ); ?>">
@@ -84,5 +83,5 @@ if ( empty( $data->should_render ) ) {
 		</div>
 	</div>
 
-	<script type="application/json" data-power-units><?php echo wp_json_encode( $data->units, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ); ?></script>
+	<script type="application/json" data-power-units><?php echo $data->units_json; ?></script>
 </form>

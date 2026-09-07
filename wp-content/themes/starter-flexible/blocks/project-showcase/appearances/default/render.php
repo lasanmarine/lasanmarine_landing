@@ -6,7 +6,6 @@
  * each slide carrying its own way into the full record.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -21,14 +20,13 @@ if ( empty( $data->should_render ) ) {
 	return;
 }
 
-$anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
-$total  = count( $data->items );
+
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<div class="container ps" data-showcase>
 		<div class="ps__bar">
 			<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
-			<?php if ( $total > 1 ) : ?>
+			<?php if ( $data->has_navigation ) : ?>
 				<div class="ps__nav">
 					<span class="meta" data-ps-counter><?php echo esc_html( $data->count_label ); ?></span>
 					<button type="button" class="icon-btn icon-btn--sm" data-ps-prev aria-label="<?php esc_attr_e( 'Dự án trước', 'starter-flexible' ); ?>">
@@ -66,15 +64,7 @@ $total  = count( $data->items );
 
 							<dl class="ps__specs">
 								<?php
-								$rows = array(
-									__( 'Kích thước', 'starter-flexible' ) => $item['location'],
-									__( 'Địa bàn', 'starter-flexible' )    => $item['year'],
-									__( 'Trạng thái', 'starter-flexible' ) => $item['service'],
-								);
-								foreach ( $rows as $label => $value ) :
-									if ( '' === trim( (string) $value ) ) {
-										continue;
-									}
+								foreach ( $item['specs'] as $label => $value ) :
 									?>
 									<div>
 										<dt><?php echo esc_html( $label ); ?></dt>
@@ -95,7 +85,7 @@ $total  = count( $data->items );
 			</div>
 		</div>
 
-		<?php if ( $total > 1 ) : ?>
+		<?php if ( $data->has_navigation ) : ?>
 			<div class="ps__dots" role="tablist" aria-label="<?php esc_attr_e( 'Chọn dự án', 'starter-flexible' ); ?>">
 				<?php foreach ( $data->items as $i => $item ) : ?>
 					<button

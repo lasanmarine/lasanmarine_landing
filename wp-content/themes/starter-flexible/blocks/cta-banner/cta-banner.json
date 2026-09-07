@@ -1,0 +1,14 @@
+{
+  "key": "group_cta_banner",
+  "title": "CTA Banner",
+  "fields": [
+    { "key": "field_cta_banner_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_cta_banner_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_cta_banner_content", "label": "Content", "name": "content", "type": "textarea", "rows": 3, "new_lines": "" },
+    { "key": "field_cta_banner_primary_cta", "label": "Primary CTA", "name": "primary_cta", "type": "link", "return_format": "array" },
+    { "key": "field_cta_banner_secondary_cta", "label": "Secondary CTA", "name": "secondary_cta", "type": "link", "return_format": "array" },
+    { "key": "field_cta_banner_theme", "label": "Theme", "name": "theme", "type": "select", "choices": { "navy": "Navy", "pale": "Nền nhạt", "outline": "Nền trắng, kẻ viền" }, "default_value": "navy", "return_format": "value" },
+    { "key": "field_cta_banner_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/cta-banner" }]]
+}

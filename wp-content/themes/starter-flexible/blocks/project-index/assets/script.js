@@ -3,6 +3,7 @@ document.querySelectorAll('[data-project-index]').forEach((root) => {
 	const buttons = [...root.querySelectorAll('[data-pi-filter]')];
 	const items = [...root.querySelectorAll('[data-pi-item]')];
 	const empty = root.querySelector('[data-pi-empty]');
+	const count = root.querySelector('[data-pi-count]');
 	if (!buttons.length || !items.length) return;
 
 	const apply = (term) => {
@@ -17,6 +18,7 @@ document.querySelectorAll('[data-project-index]').forEach((root) => {
 			button.setAttribute('aria-pressed', String((button.dataset.piFilter || '') === term));
 		});
 		if (empty) empty.hidden = shown > 0;
+		if (count) count.textContent = `${shown} ${count.dataset.label}`;
 	};
 
 	buttons.forEach((button) => {

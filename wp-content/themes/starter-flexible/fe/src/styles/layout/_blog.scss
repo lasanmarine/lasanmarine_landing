@@ -1,0 +1,291 @@
+/* ==========================================================================
+   Blog listing — the posts index, every post archive and the search results.
+   Opens on the same navy header as the inner pages, then a card grid on the
+   page's own container.
+   ========================================================================== */
+
+.site-main--blog {
+	@apply bg-paper;
+}
+
+/* --- page head (dùng chung: archive tin tức + taxonomy dự án) ---------- */
+
+.phead {
+	@apply relative overflow-hidden bg-navy-deep;
+}
+.phead__scrim {
+	@apply pointer-events-none absolute inset-0;
+	background: linear-gradient(
+		110deg,
+		rgba(6, 18, 45, 0.96) 0%,
+		rgba(6, 18, 45, 0.86) 52%,
+		rgba(10, 114, 200, 0.34) 140%
+	);
+}
+.phead__inner {
+	@apply relative flex flex-wrap items-end justify-between;
+	gap: 28px clamp(24px, 4vw, 56px);
+	padding-block: clamp(104px, 11vw, 150px) clamp(52px, 6vw, 76px);
+}
+.phead__copy {
+	@apply flex min-w-0 flex-col;
+	gap: 14px;
+}
+/* Where this page sits: home, its index, then the term. */
+.phead__crumbs {
+	@apply flex flex-wrap items-center;
+	gap: 4px 8px;
+	font-size: 13px;
+	color: rgba(255, 255, 255, 0.56);
+}
+.phead__crumbs a {
+	color: rgba(255, 255, 255, 0.72);
+	transition: color 200ms ease;
+}
+.phead__crumbs a:hover {
+	@apply text-marine-bright;
+}
+.phead__crumbs [aria-current='page'] {
+	@apply text-white;
+}
+.phead__sep {
+	color: rgba(255, 255, 255, 0.32);
+}
+.phead__eyebrow {
+	@apply font-display font-semibold text-marine-bright;
+	font-size: 12px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+.phead__title {
+	@apply m-0 text-white;
+	max-width: 18em;
+	font-size: clamp(32px, 4.2vw, 58px);
+	line-height: 1.06;
+	letter-spacing: -0.03em;
+}
+.phead__lead {
+	@apply m-0;
+	max-width: 46em;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: clamp(15px, 1.3vw, 17px);
+	line-height: 1.7;
+}
+.phead__note {
+	@apply m-0;
+	font-size: 13px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.5);
+}
+.phead__aside {
+	@apply flex-none;
+}
+
+/* The search sits on the header, so it is drawn for a dark ground. */
+.blog__search {
+	@apply relative flex flex-none items-center;
+	width: min(320px, 100%);
+}
+.blog__search-input {
+	@apply w-full border font-body text-white outline-none;
+	border-color: rgba(255, 255, 255, 0.24);
+	background: rgba(255, 255, 255, 0.06);
+	padding: 13px 48px 13px 16px;
+	border-radius: var(--r-md);
+	font-size: 15px;
+	transition:
+		border-color 200ms ease,
+		background 200ms ease;
+}
+.blog__search-input::placeholder {
+	color: rgba(255, 255, 255, 0.5);
+}
+.blog__search-input:hover {
+	border-color: rgba(255, 255, 255, 0.4);
+}
+.blog__search-input:focus {
+	@apply border-marine-bright;
+	background: rgba(255, 255, 255, 0.1);
+}
+.blog__search-btn {
+	@apply absolute inline-flex cursor-pointer items-center justify-center border-0 bg-transparent p-0;
+	right: 14px;
+	color: rgba(255, 255, 255, 0.66);
+	transition: color 200ms ease;
+}
+.blog__search-btn:hover {
+	@apply text-marine-bright;
+}
+
+/* --- the grid -------------------------------------------------------- */
+
+.blog__body {
+	padding-block: clamp(48px, 6vw, 88px) clamp(64px, 8vw, 110px);
+}
+.blog__grid {
+	@apply grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+	gap: clamp(28px, 3.2vw, 44px) clamp(20px, 2.4vw, 32px);
+}
+.blog__empty {
+	@apply text-mute;
+	padding: 40px 0;
+}
+
+/* --- one post card --------------------------------------------------- */
+
+/* Flat, like every other card on the site: the photograph, what it is,
+   the headline. No box, no shadow. */
+.post-card {
+	@apply min-w-0;
+}
+.post-card__link {
+	@apply flex h-full min-w-0 flex-col text-navy;
+	gap: 14px;
+}
+.post-card__media {
+	@apply relative block overflow-hidden bg-tint;
+	aspect-ratio: 16 / 10;
+	border-radius: var(--r-sm);
+}
+.post-card__media img {
+	@apply h-full w-full object-cover;
+	transition: transform 600ms var(--ease);
+}
+.post-card__link:hover .post-card__media img {
+	transform: scale(1.04);
+}
+.post-card__placeholder {
+	@apply block h-full w-full bg-pale;
+}
+.post-card__body {
+	@apply flex min-w-0 flex-col;
+	gap: 8px;
+}
+.post-card__meta {
+	@apply flex flex-wrap items-center text-mute;
+	gap: 6px 10px;
+	font-size: 11.5px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+.post-card__cat {
+	@apply text-marine;
+}
+.post-card__cat::after {
+	content: '·';
+	margin-left: 10px;
+	color: var(--mute);
+}
+.post-card__title {
+	@apply font-display font-semibold;
+	font-size: clamp(17px, 1.5vw, 20px);
+	line-height: 1.38;
+	letter-spacing: -0.01em;
+	transition: color 200ms ease;
+}
+.post-card__link:hover .post-card__title {
+	@apply text-marine;
+}
+.post-card__excerpt {
+	@apply text-steel;
+	font-size: 14.5px;
+	line-height: 1.65;
+}
+
+/* --- pagination ------------------------------------------------------ */
+
+.blog__pagination {
+	margin-top: clamp(40px, 5vw, 64px);
+}
+.blog__pagination .nav-links {
+	@apply flex flex-wrap items-center justify-center;
+	gap: 8px;
+}
+.blog__pagination .page-numbers {
+	@apply inline-flex items-center justify-center border border-line font-display font-semibold text-steel;
+	min-width: 42px;
+	height: 42px;
+	padding: 0 12px;
+	border-radius: var(--r-sm);
+	font-size: 14px;
+	transition:
+		border-color 200ms ease,
+		background 200ms ease,
+		color 200ms ease;
+}
+.blog__pagination a.page-numbers:hover {
+	@apply border-marine text-marine;
+}
+.blog__pagination .page-numbers.current {
+	@apply border-navy bg-navy text-white;
+}
+.blog__pagination .page-numbers.dots {
+	@apply border-transparent;
+}
+.blog__pagination .screen-reader-text {
+	@apply hidden;
+}
+
+/* --- 404 và trạng thái rỗng ------------------------------------------ */
+
+/* The way back: the pages a lost reader most likely wanted, as ruled rows. */
+.err__grid {
+	@apply grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+	gap: 0 clamp(24px, 3vw, 48px);
+	border-top: 1px solid var(--line);
+}
+.err__link {
+	@apply flex items-center justify-between border-b border-line text-navy;
+	gap: 20px;
+	padding: clamp(16px, 1.8vw, 22px) 0;
+}
+.err__link-body {
+	@apply flex min-w-0 flex-col;
+	gap: 4px;
+}
+.err__link-label {
+	@apply font-display font-semibold;
+	font-size: clamp(16px, 1.4vw, 19px);
+	letter-spacing: -0.01em;
+	transition: color 200ms ease;
+}
+.err__link:hover .err__link-label {
+	@apply text-marine;
+}
+.err__link-note {
+	@apply text-steel;
+	font-size: 13.5px;
+}
+.err__link-go {
+	@apply inline-flex flex-none items-center text-steel;
+	transition: color 220ms var(--ease);
+}
+.err__link:hover .err__link-go {
+	@apply text-marine;
+}
+.err__link:hover .err__link-go .btn__icon[data-dir='right'] svg:nth-child(1) {
+	transform: translateX(150%);
+}
+.err__link:hover .err__link-go .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
+}
+
+.err__empty {
+	@apply flex flex-col items-start;
+	gap: 12px;
+	padding: clamp(32px, 4vw, 56px) 0;
+}
+.err__empty-title {
+	@apply m-0 font-display font-semibold text-navy;
+	font-size: clamp(18px, 1.7vw, 22px);
+}
+.err__empty-note {
+	@apply m-0 text-steel;
+	font-size: 15px;
+}
+.err__empty .btn {
+	margin-top: 8px;
+}

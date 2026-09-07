@@ -1,0 +1,243 @@
+{
+  "key": "about_en",
+  "title": "About",
+  "slug": "about",
+  "lang": "en",
+  "translation_of": "about",
+  "seo": {
+    "title": "About LASAN MARINE | Ship Design, R&D & Software",
+    "description": "Ship design is the discipline at the centre of LASAN MARINE. Our R&D and software work grew from real technical, data and workflow problems encountered in practice."
+  },
+  "blocks": [
+    {
+      "type": "page-hero",
+      "fields": {
+        "headline": "Ship design is the discipline at the centre of our work",
+        "lead": "Our experience spans newbuild and conversion design, specialist calculations and technical documentation across multiple vessel types and hull materials. The same hands-on work also created the questions that led us into R&D and the workflow problems that led us into software.",
+        "placeholder": "LASAN MARINE",
+        "heading_level": "h1",
+        "height": 420,
+        "custom_class": "",
+        "image": 592
+      }
+    },
+    {
+      "type": "image-text",
+      "fields": {
+        "heading": "R&D and software grew from problems worth solving",
+        "content": "Some design questions need simulation, measurement or testing before the answer is clear. Some recurring work is better handled by software than by another spreadsheet or manual process. We developed both capabilities from those practical needs, and they now stand alongside ship design as dedicated areas of work.",
+        "placeholder": "Ship design and research work",
+        "caption": "How our capabilities grew",
+        "image_position": "right",
+        "split": "even",
+        "ratio": "ratio-4-3",
+        "cta": {
+          "label": "Explore our capabilities",
+          "page": "capabilities"
+        },
+        "custom_class": "",
+        "image": 576
+      }
+    },
+    {
+      "type": "proof-strip",
+      "fields": {
+        "items": [
+          {
+            "value": "300+",
+            "label": "Vessel design packages",
+            "link": {
+              "label": "View projects",
+              "page": "projects"
+            }
+          },
+          {
+            "value": "20+ years",
+            "label": "Experience across our core team"
+          },
+          {
+            "value": "3",
+            "label": "Hull material groups",
+            "note": "Wood · Steel · Composite"
+          },
+          {
+            "value": "20+",
+            "label": "Scientific publications",
+            "link": {
+              "label": "Explore R&D",
+              "page": "service_rnd"
+            }
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "value-grid",
+      "fields": {
+        "label": "How we work",
+        "items": [
+          {
+            "icon": "ruler",
+            "title": "Clear scope before the work starts",
+            "desc": "We agree what we will do, what will be delivered and what information is still needed. That gives both sides the same understanding of the project from the start."
+          },
+          {
+            "icon": "calculator",
+            "title": "Calculations you can follow",
+            "desc": "Assumptions, inputs and results are presented clearly so they can be reviewed, compared and used in the next technical decision."
+          },
+          {
+            "icon": "wrench",
+            "title": "Designs grounded in real conditions",
+            "desc": "We consider the vessel as it will be built and operated, not only as a set of drawings. Existing conditions, fabrication constraints and operating limits are part of the design discussion."
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "team",
+      "fields": {
+        "heading": "Core team",
+        "placeholder": "LASAN MARINE team",
+        "people": [
+          {
+            "name": "Huỳnh Lê Hồng Thái, PhD",
+            "role": "Director · Ship Engineering, Machine Structures & Equipment · 2005–present"
+          },
+          {
+            "name": "Trần Đình Tứ, MSc",
+            "role": "Specialist · Ship Engineering & Ship Systems Engineering · 2009–present"
+          },
+          {
+            "name": "Huỳnh Tấn Đạt, Eng.",
+            "role": "Marine Mechanical Engineering · 2002–present"
+          },
+          {
+            "name": "Nguyễn Minh Nhật, Eng.",
+            "role": "Manufacturing Engineering · 2008–present"
+          },
+          {
+            "name": "Nguyễn Văn Hiền, Eng.",
+            "role": "Shipbuilding · 2009–present"
+          },
+          {
+            "name": "Nguyễn Văn Thắng, Eng.",
+            "role": "Electrical Engineering · 2010–present"
+          },
+          {
+            "name": "Nguyễn Tuấn Anh, Eng.",
+            "role": "Ship Engineering · 2017–present"
+          },
+          {
+            "name": "Nguyễn Công Chánh, Eng.",
+            "role": "Ship Engineering · 2021–present"
+          },
+          {
+            "name": "Ngô Hoàng Thịnh, Eng.",
+            "role": "Ship Engineering · 2023–present"
+          },
+          {
+            "name": "Nguyễn Thái Nguyên, Eng.",
+            "role": "Ship Engineering · 2024–present"
+          }
+        ],
+        "custom_class": "",
+        "image": 587
+      }
+    },
+    {
+      "type": "geo-operations",
+      "fields": {
+        "heading": "Experience across different operating environments",
+        "note": "Our project record spans coastal, offshore and inland-waterway work across Vietnam, giving the team experience with different vessel types, operating profiles and local build conditions.",
+        "provinces": [
+          {
+            "name": "Khanh Hoa (Head Office)",
+            "x": 68,
+            "y": 62
+          },
+          {
+            "name": "Hai Phong (cargo vessels and inland-waterway craft)",
+            "x": 58,
+            "y": 22
+          },
+          {
+            "name": "Nghe An (offshore wooden fishing fleet)",
+            "x": 50,
+            "y": 34
+          },
+          {
+            "name": "Quang Nam (high-power steel fishing vessels)",
+            "x": 64,
+            "y": 47
+          },
+          {
+            "name": "Ba Ria – Vung Tau (service and offshore fisheries support vessels)",
+            "x": 56,
+            "y": 78
+          },
+          {
+            "name": "Can Tho and the Mekong Delta (barges and inland transport craft)",
+            "x": 46,
+            "y": 84
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "spec-list",
+      "fields": {
+        "heading": "Company information",
+        "note": "Official company and contact information for LASAN MARINE CO., LTD.",
+        "rows": [
+          {
+            "label": "Legal name",
+            "value": "Công ty TNHH Lasan Marine"
+          },
+          {
+            "label": "International name",
+            "value": "LASAN MARINE CO., LTD."
+          },
+          {
+            "label": "Tax code",
+            "value": "4202063521"
+          },
+          {
+            "label": "Address",
+            "value": "03 Tran Lu, Bac Nha Trang Ward, Khanh Hoa Province, Vietnam"
+          },
+          {
+            "label": "Phone / Zalo",
+            "value": "+84 834 310 781"
+          },
+          {
+            "label": "Website",
+            "value": "lasanmarine.com"
+          },
+          {
+            "label": "Email",
+            "value": "hello@lasanmarine.com"
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "contact-statement",
+      "fields": {
+        "heading": "Have a project in mind?",
+        "description": "Send us the brief, drawings, data or a short description of the problem. Whether it is ship design, R&D or software, we will review the information and tell you where we can contribute.",
+        "phone": "+84 834 310 781",
+        "email": "hello@lasanmarine.com",
+        "cta": {
+          "label": "Discuss a project",
+          "page": "contact"
+        },
+        "custom_class": ""
+      }
+    }
+  ]
+}

@@ -10,6 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once __DIR__ . '/abstract-block.php';
+
 function starter_flexible_register_block_category( array $categories, $editor_context ): array {
 	if ( ! empty( $editor_context->post ) ) {
 		array_unshift(
@@ -187,7 +189,7 @@ function starter_flexible_render_block( array $block, string $content = '', bool
 	}
 
 	if ( null === $data ) {
-		$data = starter_flexible_get_block_fields( $block );
+		return;
 	}
 
 	if ( is_array( $data ) ) {
@@ -198,5 +200,5 @@ function starter_flexible_render_block( array $block, string $content = '', bool
 	include $render_file;
 	$html = (string) ob_get_clean();
 
-	echo starter_flexible_decorate_module_markup( $html, $block_slug, starter_flexible_module_spacing_style( $block ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo starter_flexible_decorate_module_markup( $html, $block_slug, $data->spacing_style ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }

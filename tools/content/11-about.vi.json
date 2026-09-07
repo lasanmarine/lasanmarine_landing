@@ -4,70 +4,68 @@
   "slug": "gioi-thieu",
   "lang": "vi",
   "seo": {
-    "title": "Giới thiệu — LASAN MARINE",
-    "description": "Chúng tôi xuất phát từ chuyên môn tàu thủy, phát triển bền vững dựa trên các số liệu kiểm chứng và quy trình làm việc chuẩn xác."
+    "title": "Giới thiệu LASAN MARINE | Thiết kế tàu, R&D và phần mềm",
+    "description": "Chuyên môn chính của LASAN MARINE là thiết kế tàu. Từ quá trình làm việc thực tế, công ty phát triển thêm R&D và phần mềm thành hai hướng dịch vụ bên cạnh thiết kế tàu."
   },
   "blocks": [
     {
       "type": "page-hero",
       "fields": {
-        "headline": "Nền tảng kỹ thuật thực tế và tư duy mở rộng",
-        "lead": "Chúng tôi xuất phát từ chuyên môn tàu thủy, phát triển bền vững dựa trên các số liệu kiểm chứng và quy trình làm việc chuẩn xác.",
+        "headline": "Chuyên môn chính của chúng tôi là thiết kế tàu",
+        "lead": "Từ thiết kế đóng mới, cải hoán đến các nhóm tính toán và hồ sơ chuyên biệt, chúng tôi đã tích lũy kinh nghiệm qua nhiều loại phương tiện và vật liệu thân vỏ. Từ chính những nhu cầu nảy sinh trong quá trình làm việc, chúng tôi phát triển thêm R&D và phần mềm thành hai hướng dịch vụ riêng.",
         "placeholder": "LASAN MARINE",
         "heading_level": "h1",
         "height": 420,
-        "custom_class": ""
+        "custom_class": "",
+        "image": 592
       }
     },
     {
-      "type": "manifesto",
+      "type": "image-text",
       "fields": {
-        "label": "CÂU CHUYỆN CÔNG TY",
-        "heading": "Đi lên từ chuyên môn sâu, mở rộng bằng năng lực giải quyết vấn đề",
-        "lead": "Chúng tôi không chọn cách trở thành một công ty \"làm đủ thứ\" một cách hời hợt. Từng bước phát triển của công ty đều có gốc rễ kỹ thuật vững vàng.",
-        "body": [
+        "heading": "R&D và phần mềm phát triển từ những nhu cầu có thật trong quá trình làm việc",
+        "content": "Trong quá trình thiết kế, có những câu hỏi cần mô phỏng, đo kiểm hoặc thực nghiệm để kiểm chứng. Cũng có những công việc về dữ liệu, hồ sơ và quy trình phù hợp để giải quyết bằng phần mềm. Từ các nhu cầu đó, chúng tôi phát triển R&D và phần mềm thành hai hướng dịch vụ bên cạnh thiết kế tàu.",
+        "placeholder": "Thiết kế tàu và hoạt động nghiên cứu",
+        "caption": "Nền tảng phát triển",
+        "image_position": "right",
+        "split": "even",
+        "ratio": "ratio-4-3",
+        "cta": {
+          "label": "Xem năng lực tổng thể",
+          "page": "capabilities"
+        },
+        "custom_class": "",
+        "image": 576
+      }
+    },
+    {
+      "type": "proof-strip",
+      "fields": {
+        "items": [
           {
-            "text": "Kỹ thuật tàu thủy là nền móng của công ty. Đội ngũ kỹ sư của chúng tôi gắn bó trực tiếp với từng xưởng đóng tàu, bãi cẩu và luồng lạch thực tế. Một bộ hồ sơ xuất xưởng phải vừa vặn với tay nghề thợ gia công, tuân thủ đúng quy chuẩn Đăng kiểm và tối ưu chi phí vận hành cho chủ tàu."
+            "value": "300+",
+            "label": "Hồ sơ thiết kế tàu",
+            "link": {
+              "label": "Xem dự án",
+              "page": "projects"
+            }
           },
           {
-            "text": "Từ năng lực giải quyết các bài toán kỹ thuật phức tạp, chúng tôi mở rộng sang hai hướng độc lập: Dịch vụ CNTT để giải quyết nhu cầu số hóa quy trình quản lý thực tế; và mảng R&D nhằm đi sâu vào mô phỏng dòng chảy, kết cấu và thực nghiệm khoa học hàng hải. Mở rộng nhưng không làm loãng gốc chuyên môn là nguyên tắc hoạt động xuyên suốt của công ty."
-          }
-        ],
-        "cta": {
-          "label": "Xem các dự án thực tế",
-          "page": "projects"
-        },
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "key-numbers",
-      "fields": {
-        "label": "NĂNG LỰC QUA CON SỐ",
-        "stats": [
+            "value": "20+ năm",
+            "label": "Kinh nghiệm của nhân sự nòng cốt"
+          },
           {
-            "value": "300",
-            "suffix": "+",
-            "label": "Hồ sơ kỹ thuật hoàn thành",
-            "note": "Bao gồm tàu vỏ gỗ, vỏ thép, composite và phương tiện thủy nội địa."
+            "value": "3",
+            "label": "Nhóm vật liệu thân vỏ",
+            "note": "Gỗ · Thép · Composite"
           },
           {
             "value": "20+",
-            "suffix": "năm",
-            "label": "Kinh nghiệm chuyên gia chủ chốt",
-            "note": "Trực tiếp chỉ đạo và kiểm tra chất lượng mọi hồ sơ thiết kế."
-          },
-          {
-            "value": "03",
-            "suffix": "mảng",
-            "label": "Hướng phát triển độc lập",
-            "note": "Thiết kế tàu, Dịch vụ CNTT và Nghiên cứu R&D."
-          },
-          {
-            "value": "100",
-            "suffix": "%",
-            "label": "Quy trình số hóa",
-            "note": "Quản lý tiến độ và luồng thông tin minh bạch, đúng hẹn."
+            "label": "Công bố khoa học",
+            "link": {
+              "label": "Xem R&D",
+              "page": "service_rnd"
+            }
           }
         ],
         "custom_class": ""
@@ -76,43 +74,22 @@
     {
       "type": "value-grid",
       "fields": {
-        "label": "NGUYÊN TẮC LÀM VIỆC",
+        "label": "Nguyên tắc làm việc",
         "items": [
           {
             "icon": "ruler",
-            "title": "Chính xác trước, đẹp sau",
-            "desc": "Số liệu, kích thước và kết cấu phải được tính toán chuẩn xác từ đầu. Chúng tôi không bao biện lỗi kỹ thuật bằng hình thức trình bày.",
-            "link": {
-              "label": "Xem thiết kế tàu",
-              "page": "service_01"
-            }
-          },
-          {
-            "icon": "wrench",
-            "title": "Bám sát hiện trường",
-            "desc": "Thiết kế phải thi công được. Đội ngũ kỹ thuật đối chiếu trực tiếp với năng lực xưởng bãi và tay nghề thợ để đưa ra phương án khả thi nhất.",
-            "link": {
-              "label": "Xem thiết kế tàu",
-              "page": "service_01"
-            }
+            "title": "Thống nhất công việc ngay từ đầu",
+            "desc": "Trước khi bắt đầu, LASAN trao đổi với khách hàng về phần việc sẽ thực hiện, tài liệu sẽ bàn giao và những thông tin còn thiếu. Nhờ đó, hai bên có cùng một cách hiểu về dự án."
           },
           {
             "icon": "calculator",
-            "title": "Thực chứng bằng dữ liệu",
-            "desc": "Từ công suất máy, đường kính trục đến mô phỏng sức cản, mọi đề xuất đều phải có cơ sở tính toán rõ ràng, không phỏng đoán.",
-            "link": {
-              "label": "Xem nghiên cứu R&D",
-              "page": "service_rnd"
-            }
+            "title": "Trình bày rõ cơ sở tính toán",
+            "desc": "Các giả thiết, số liệu và kết quả tính toán được trình bày rõ ràng để khách hàng thuận tiện kiểm tra, đối chiếu và sử dụng cho những bước kỹ thuật tiếp theo."
           },
           {
-            "icon": "link",
-            "title": "Minh bạch luồng việc",
-            "desc": "Vận hành quản lý công việc trên nền tảng số hóa, đảm bảo trao đổi hai chiều thông suốt và đúng tiến độ cam kết.",
-            "link": {
-              "label": "Xem dịch vụ CNTT",
-              "page": "service_03"
-            }
+            "icon": "wrench",
+            "title": "Xem xét cả điều kiện triển khai thực tế",
+            "desc": "Khi xây dựng phương án, LASAN không chỉ nhìn vào bản vẽ mà còn xem xét hiện trạng, điều kiện thi công và giới hạn vận hành. Nhờ vậy, hồ sơ bám sát hơn với những điều kiện sẽ gặp khi triển khai thực tế."
           }
         ],
         "custom_class": ""
@@ -121,8 +98,8 @@
     {
       "type": "team",
       "fields": {
-        "heading": "Đội ngũ kỹ thuật chủ chốt",
-        "placeholder": "LASAN MARINE",
+        "heading": "Đội ngũ nòng cốt",
+        "placeholder": "Đội ngũ LASAN MARINE",
         "people": [
           {
             "name": "TS. Huỳnh Lê Hồng Thái",
@@ -165,14 +142,55 @@
             "role": "Kỹ thuật tàu thủy · 2024–nay"
           }
         ],
+        "custom_class": "",
+        "image": 587
+      }
+    },
+    {
+      "type": "geo-operations",
+      "fields": {
+        "heading": "Chúng tôi đã thực hiện dự án tại nhiều địa bàn và điều kiện khai thác khác nhau",
+        "note": "Các địa bàn dưới đây được tổng hợp từ danh mục dự án hiện có, cho thấy những khu vực LASAN MARINE đã có kinh nghiệm làm việc thực tế.",
+        "provinces": [
+          {
+            "name": "Khánh Hòa (trụ sở chính)",
+            "x": 68,
+            "y": 62
+          },
+          {
+            "name": "Hải Phòng (tàu hàng và phương tiện thủy nội địa)",
+            "x": 58,
+            "y": 22
+          },
+          {
+            "name": "Nghệ An (đội tàu cá vỏ gỗ xa bờ)",
+            "x": 50,
+            "y": 34
+          },
+          {
+            "name": "Quảng Nam (đội tàu cá vỏ thép công suất lớn)",
+            "x": 64,
+            "y": 47
+          },
+          {
+            "name": "Bà Rịa – Vũng Tàu (tàu dịch vụ và tàu hậu cần xa bờ)",
+            "x": 56,
+            "y": 78
+          },
+          {
+            "name": "Cần Thơ và Đồng bằng sông Cửu Long (sà lan và phương tiện vận tải thủy)",
+            "x": 46,
+            "y": 84
+          }
+        ],
         "custom_class": ""
       }
     },
     {
       "type": "spec-list",
       "fields": {
-        "heading": "Tư cách pháp nhân",
-        "note": "Thông tin đăng ký doanh nghiệp và tài khoản giao dịch.",
+        "heading": "Thông tin doanh nghiệp",
+        "note": "Thông tin pháp lý và kênh liên hệ chính thức của Công ty TNHH Lasan Marine.",
         "rows": [
           {
             "label": "Tên công ty",
@@ -192,10 +210,10 @@
           },
           {
             "label": "Tài khoản",
-            "value": "310781 — Techcombank, CN Mã Vòng, Bắc Nha Trang, Khánh Hòa"
+            "value": "310781 – Techcombank, CN Mã Vòng, Bắc Nha Trang, Khánh Hòa"
           },
           {
-            "label": "Điện thoại & Zalo",
+            "label": "Điện thoại và Zalo",
             "value": "0834 310 781"
           },
           {
@@ -203,7 +221,7 @@
             "value": "lasanmarine.com"
           },
           {
-            "label": "E-mail",
+            "label": "Email",
             "value": "hello@lasanmarine.com"
           }
         ],
@@ -213,13 +231,12 @@
     {
       "type": "contact-statement",
       "fields": {
-        "label": "HỢP TÁC KỸ THUẬT",
-        "heading": "Cùng trao đổi trực tiếp về dự án của bạn",
-        "description": "Đội ngũ kỹ sư của chúng tôi sẵn sàng phân tích yêu cầu, hiện trạng thiết bị và đưa ra phương án xử lý chuẩn xác.",
+        "heading": "Có một dự án cần trao đổi?",
+        "description": "Bạn có thể gửi yêu cầu, hồ sơ hoặc mô tả ngắn nhu cầu hiện tại. Chúng tôi sẽ xem thông tin và trao đổi cụ thể theo từng trường hợp, dù đó là thiết kế tàu, R&D hay phần mềm.",
         "phone": "0834 310 781",
         "email": "hello@lasanmarine.com",
         "cta": {
-          "label": "Gửi yêu cầu dự án",
+          "label": "Trao đổi về dự án",
           "page": "contact"
         },
         "custom_class": ""

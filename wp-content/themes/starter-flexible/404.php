@@ -7,11 +7,5 @@
  */
 
 get_header();
-?>
-
-<div class="site-main site-main--404">
-	<?php get_template_part( 'template-parts/content', '404' ); ?>
-</div>
-
-<?php
+get_template_part( 'template-parts/content', '404' );
 get_footer();

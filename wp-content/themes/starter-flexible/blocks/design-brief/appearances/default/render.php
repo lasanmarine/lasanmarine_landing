@@ -2,8 +2,10 @@
 /**
  * Design Brief — default appearance.
  *
+ * The form is laid out row by row: each row holds the fields a person fills in
+ * together, so the eye never has to reassemble a measurement from two columns.
+ *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -11,84 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$anchor   = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
-$catalogs = $data->catalogs;
-
-/**
- * One labelled control. `unit` prints a suffix inside the field, `hint` a line
- * under it; everything else is forwarded to the input.
- *
- * @param array<string, mixed> $args
- */
-$field = static function ( array $args ): void {
-	$name  = (string) ( $args['name'] ?? '' );
-	$type  = (string) ( $args['type'] ?? 'text' );
-	$id    = 'db-' . $name;
-	$unit  = (string) ( $args['unit'] ?? '' );
-	$hint  = (string) ( $args['hint'] ?? '' );
-	$value = (string) ( $args['value'] ?? '' );
-	$attrs = '';
-	foreach ( (array) ( $args['attrs'] ?? array() ) as $key => $val ) {
-		$attrs .= true === $val ? ' ' . esc_attr( (string) $key ) : sprintf( ' %s="%s"', esc_attr( (string) $key ), esc_attr( (string) $val ) );
-	}
-	?>
-	<div class="field db__field<?php echo ! empty( $args['wide'] ) ? ' db__field--wide' : ''; ?>">
-		<label class="field__label" for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( (string) ( $args['label'] ?? '' ) ); ?></label>
-
-		<?php if ( 'select' === $type ) : ?>
-			<select class="field__control" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>"<?php echo $attrs; // phpcs:ignore ?>>
-				<option value=""><?php echo esc_html( (string) ( $args['placeholder'] ?? '— Chọn —' ) ); ?></option>
-				<?php foreach ( (array) ( $args['options'] ?? array() ) as $option ) : ?>
-					<?php
-					$opt_value = is_array( $option ) ? (string) $option['value'] : (string) $option;
-					$opt_label = is_array( $option ) ? (string) $option['label'] : (string) $option;
-					$opt_data  = '';
-					foreach ( (array) ( is_array( $option ) ? ( $option['data'] ?? array() ) : array() ) as $dk => $dv ) {
-						$opt_data .= sprintf( ' data-%s="%s"', esc_attr( (string) $dk ), esc_attr( (string) $dv ) );
-					}
-					?>
-					<option value="<?php echo esc_attr( $opt_value ); ?>"<?php echo $opt_data; // phpcs:ignore ?>><?php echo esc_html( $opt_label ); ?></option>
-				<?php endforeach; ?>
-			</select>
-
-		<?php elseif ( 'textarea' === $type ) : ?>
-			<textarea class="field__control" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" rows="3"<?php echo $attrs; // phpcs:ignore ?>><?php echo esc_textarea( $value ); ?></textarea>
-
-		<?php else : ?>
-			<div class="db__control<?php echo '' !== $unit ? ' db__control--unit' : ''; ?>">
-				<input
-					class="field__control"
-					id="<?php echo esc_attr( $id ); ?>"
-					name="<?php echo esc_attr( $name ); ?>"
-					type="<?php echo esc_attr( $type ); ?>"
-					value="<?php echo esc_attr( $value ); ?>"
-					<?php echo 'number' === $type ? 'step="any" inputmode="decimal"' : ''; ?>
-					<?php echo $attrs; // phpcs:ignore ?>
-				/>
-				<?php if ( '' !== $unit ) : ?>
-					<span class="db__unit"><?php echo esc_html( $unit ); ?></span>
-				<?php endif; ?>
-			</div>
-		<?php endif; ?>
-
-		<?php if ( '' !== $hint ) : ?>
-			<span class="field__hint"><?php echo esc_html( $hint ); ?></span>
-		<?php endif; ?>
-	</div>
-	<?php
-};
-
-$options_from = static function ( array $rows, string $sep = ' · ' ): array {
-	return array_map(
-		static fn( array $row ): array => array(
-			'value' => $row['code'],
-			'label' => $row['code'] . $sep . $row['name'],
-		),
-		$rows
-	);
-};
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
 
 	<form class="db__form" data-design-brief novalidate>
@@ -103,141 +29,225 @@ $options_from = static function ( array $rows, string $sep = ' · ' ): array {
 		<fieldset class="db__section">
 			<legend class="db__legend"><?php esc_html_e( 'Khách hàng', 'starter-flexible' ); ?></legend>
 			<p class="db__note"><?php esc_html_e( 'Chưa nhập CCCD / mã số thuế. Nhập thông tin để tạo khách hàng mới.', 'starter-flexible' ); ?></p>
-			<div class="db__grid">
-				<?php
-				$field( array( 'name' => 'customer_id', 'label' => 'CCCD / Mã số thuế' ) );
-				$field( array( 'name' => 'customer_name', 'label' => 'Họ và tên' ) );
-				$field( array( 'name' => 'customer_phone', 'label' => 'Số điện thoại', 'type' => 'tel' ) );
-				$field( array( 'name' => 'customer_email', 'label' => 'Email', 'type' => 'email' ) );
-				$field( array( 'name' => 'customer_address', 'label' => 'Địa chỉ', 'wide' => true ) );
-				?>
-			</div>
+
+			<?php
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'customer_id', 'label' => 'CCCD / Mã số thuế' ),
+					array( 'name' => 'customer_name', 'label' => 'Họ và tên' ),
+				),
+				array( 'cols' => 2, 'title' => 'Định danh' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'customer_phone', 'label' => 'Số điện thoại', 'type' => 'tel' ),
+					array( 'name' => 'customer_email', 'label' => 'Email', 'type' => 'email' ),
+				),
+				array( 'cols' => 2, 'title' => 'Liên hệ' )
+			);
+			starter_flexible_design_brief_row(
+				array( array( 'name' => 'customer_address', 'label' => 'Địa chỉ' ) ),
+				array( 'cols' => 1 )
+			);
+			?>
 		</fieldset>
 
 		<!-- Thông tin chung -->
 		<fieldset class="db__section">
 			<legend class="db__legend"><?php esc_html_e( 'Thông tin chung', 'starter-flexible' ); ?></legend>
-			<div class="db__grid">
-				<?php
-				$field( array( 'name' => 'request_no', 'label' => 'Số đơn đề nghị' ) );
-				$field( array( 'name' => 'request_date', 'label' => 'Ngày nộp đơn đề nghị', 'type' => 'date' ) );
-				$field( array( 'name' => 'vessel_no', 'label' => 'Số đăng ký (số hiệu tàu)' ) );
-				$field(
+
+			<?php
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'request_no', 'label' => 'Số đơn đề nghị' ),
+					array( 'name' => 'request_date', 'label' => 'Ngày nộp đơn đề nghị', 'type' => 'date' ),
+				),
+				array( 'cols' => 2, 'title' => 'Đơn đề nghị' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'vessel_no', 'label' => 'Số đăng ký (số hiệu tàu)' ),
+					array( 'name' => 'vessel_template', 'label' => 'Mẫu tàu' ),
+				),
+				array( 'cols' => 2, 'title' => 'Nhận dạng tàu' )
+			);
+			starter_flexible_design_brief_row(
+				array(
 					array(
 						'name'    => 'design_type',
 						'label'   => 'Loại hình thiết kế',
-						'type'    => 'select',
-						'options' => $options_from( (array) $catalogs['design_types'] ),
-					)
-				);
-				$field(
+						'type'    => 'combo',
+						'options' => $data->catalog_options['design_types'],
+					),
+				),
+				array( 'cols' => 1, 'title' => 'Phân loại hồ sơ' )
+			);
+			starter_flexible_design_brief_row(
+				array(
 					array(
 						'name'    => 'region',
 						'label'   => 'Vùng hoạt động',
-						'type'    => 'select',
-						'options' => (array) $catalogs['regions'],
-					)
-				);
-				$field(
+						'type'    => 'combo',
+						'options' => (array) $data->catalogs['regions'],
+					),
 					array(
 						'name'    => 'province',
 						'label'   => 'Tỉnh',
-						'type'    => 'select',
-						'options' => $options_from( (array) $catalogs['provinces'] ),
-					)
-				);
-				$field(
+						'type'    => 'combo',
+						'options' => $data->catalog_options['provinces'],
+					),
+				),
+				array( 'cols' => 1, 'title' => 'Địa bàn hoạt động' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array(
+						'name'    => 'registry',
+						'label'   => 'Trung tâm đăng kiểm',
+						'type'    => 'combo',
+						'options' => $data->catalog_options['registries'],
+					),
+				),
+				array( 'cols' => 1, 'title' => 'Cơ quan đăng kiểm' )
+			);
+			starter_flexible_design_brief_row(
+				array(
 					array(
 						'name'  => 'design_code',
 						'label' => 'Ký hiệu thiết kế',
 						'hint'  => 'Ghép từ Tỉnh – số – Loại hình thiết kế. Sửa được phần số ở giữa.',
 						'attrs' => array( 'data-db-code' => true ),
-					)
-				);
-				$field( array( 'name' => 'vessel_template', 'label' => 'Mẫu tàu' ) );
-				$field(
-					array(
-						'name'    => 'registry',
-						'label'   => 'Trung tâm đăng kiểm',
-						'type'    => 'select',
-						'options' => $options_from( (array) $catalogs['registries'] ),
-					)
-				);
-				$field( array( 'name' => 'handler', 'label' => 'Người phụ trách (nếu có)' ) );
-				$field( array( 'name' => 'fee', 'label' => 'Số tiền cần thanh toán', 'unit' => 'đ', 'attrs' => array( 'data-db-money' => true ) ) );
-				$field( array( 'name' => 'general_note', 'label' => 'Ghi chú', 'type' => 'textarea', 'wide' => true ) );
-				?>
-			</div>
+					),
+					array( 'name' => 'handler', 'label' => 'Người phụ trách (nếu có)' ),
+				),
+				array( 'cols' => 2, 'title' => 'Hồ sơ thiết kế' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'fee', 'label' => 'Số tiền cần thanh toán', 'unit' => 'đ', 'attrs' => array( 'data-db-money' => true ) ),
+				),
+				array( 'cols' => 2, 'title' => 'Thanh toán' )
+			);
+			starter_flexible_design_brief_row(
+				array( array( 'name' => 'general_note', 'label' => 'Ghi chú', 'type' => 'textarea' ) ),
+				array( 'cols' => 1 )
+			);
+			?>
 		</fieldset>
 
 		<!-- Kích thước tàu -->
 		<fieldset class="db__section">
 			<legend class="db__legend"><?php esc_html_e( 'Kích thước tàu', 'starter-flexible' ); ?></legend>
-			<div class="db__grid db__grid--tight">
-				<?php
-				$dims = array(
-					array( 'lmax', 'Chiều dài Lmax', 'm' ),
-					array( 'bmax', 'Chiều rộng Bmax', 'm' ),
-					array( 'depth', 'Chiều cao mạn D', 'm' ),
-					array( 'frame_space', 'Khoảng cách sườn', 'mm' ),
-					array( 'cabin1_l', 'Chiều dài cabin tầng 1', 'm' ),
-					array( 'cabin1_b', 'Chiều rộng cabin tầng 1', 'm' ),
-					array( 'cabin1_h', 'Chiều cao cabin tầng 1', 'm' ),
-					array( 'cabin2_l', 'Chiều dài cabin tầng 2', 'm' ),
-					array( 'cabin2_b', 'Chiều rộng cabin tầng 2', 'm' ),
-					array( 'cabin2_h', 'Chiều cao cabin tầng 2', 'm' ),
+
+			<?php
+			$dimension_titles = array( 'Kích thước chính', 'Cabin tầng 1', 'Cabin tầng 2' );
+			foreach ( $data->dimension_rows as $i => $row ) {
+				starter_flexible_design_brief_row(
+					array_map(
+						static fn( array $dim ): array => array( 'name' => $dim[0], 'label' => $dim[1], 'type' => 'number', 'unit' => $dim[2] ),
+						$row
+					),
+					array( 'cols' => count( $row ), 'title' => $dimension_titles[ $i ] ?? '' )
 				);
-				foreach ( $dims as $dim ) {
-					$field( array( 'name' => $dim[0], 'label' => $dim[1], 'type' => 'number', 'unit' => $dim[2] ) );
-				}
-				$field( array( 'name' => 'hold_count', 'label' => 'Số lượng khoang', 'type' => 'number' ) );
-				$field( array( 'name' => 'hold_layout', 'label' => 'Bố trí khoang', 'hint' => 'Ví dụ: 1NC+3H' ) );
-				$field( array( 'name' => 'cabin_actual', 'label' => 'Cabin thực tế' ) );
-				$field( array( 'name' => 'size_note', 'label' => 'Ghi chú', 'type' => 'textarea', 'wide' => true ) );
-				?>
-			</div>
+			}
+
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'hold_count', 'label' => 'Số lượng khoang', 'type' => 'number' ),
+					array( 'name' => 'hold_layout', 'label' => 'Bố trí khoang', 'hint' => 'Ví dụ: 1NC+3H' ),
+					array( 'name' => 'cabin_actual', 'label' => 'Cabin thực tế' ),
+				),
+				array( 'cols' => 3, 'title' => 'Khoang & cabin' )
+			);
+			starter_flexible_design_brief_row(
+				array( array( 'name' => 'size_note', 'label' => 'Ghi chú', 'type' => 'textarea' ) ),
+				array( 'cols' => 1 )
+			);
+			?>
 		</fieldset>
 
 		<!-- Kết cấu thân tàu -->
 		<fieldset class="db__section">
 			<legend class="db__legend"><?php esc_html_e( 'Kết cấu thân tàu', 'starter-flexible' ); ?></legend>
 			<p class="db__note"><?php esc_html_e( 'Ghi quy cách từng cơ cấu, ví dụ 60 × 120. Để trống nếu tàu không có cơ cấu đó.', 'starter-flexible' ); ?></p>
-			<div class="db__grid db__grid--members">
-				<?php foreach ( $data->hull_members as $i => $member ) : ?>
-					<?php $field( array( 'name' => 'hull_' . $i, 'label' => $member ) ); ?>
-				<?php endforeach; ?>
-			</div>
-			<div class="db__grid">
-				<?php $field( array( 'name' => 'hull_note', 'label' => 'Ghi chú', 'type' => 'textarea', 'wide' => true ) ); ?>
-			</div>
+
+			<?php
+			foreach ( $data->hull_groups as $group ) {
+				starter_flexible_design_brief_row(
+					$group['fields'],
+					array( 'cols' => min( 4, count( $group['fields'] ) ), 'title' => $group['title'] )
+				);
+			}
+			starter_flexible_design_brief_row(
+				array( array( 'name' => 'hull_note', 'label' => 'Ghi chú', 'type' => 'textarea' ) ),
+				array( 'cols' => 1 )
+			);
+			?>
 		</fieldset>
 
 		<!-- Khai thác & trang thiết bị -->
 		<fieldset class="db__section">
 			<legend class="db__legend"><?php esc_html_e( 'Khai thác & Trang thiết bị', 'starter-flexible' ); ?></legend>
-			<div class="db__grid">
-				<?php
-				$field( array( 'name' => 'trade_1', 'label' => 'Nghề 1 (khai thác chính)' ) );
-				$field( array( 'name' => 'trade_2', 'label' => 'Nghề 2 (nghề phụ)' ) );
-				$field( array( 'name' => 'trip_days', 'label' => 'Thời gian chuyến biển', 'unit' => 'ngày' ) );
-				$field( array( 'name' => 'crew', 'label' => 'Số lượng thuyền viên', 'type' => 'number' ) );
-				$field( array( 'name' => 'gear_weight', 'label' => 'Khối lượng lưới/ngư cụ', 'type' => 'number', 'unit' => 'kg' ) );
-				$field( array( 'name' => 'store_fuel', 'label' => 'Dầu', 'type' => 'number', 'unit' => 'kg' ) );
-				$field( array( 'name' => 'store_water', 'label' => 'Nước ngọt', 'type' => 'number', 'unit' => 'kg' ) );
-				$field( array( 'name' => 'store_ice', 'label' => 'Đá', 'type' => 'number', 'unit' => 'kg' ) );
-				$field( array( 'name' => 'store_fish', 'label' => 'Cá', 'type' => 'number', 'unit' => 'kg' ) );
-				$field( array( 'name' => 'crane_count', 'label' => 'Số lượng cẩu', 'type' => 'number' ) );
-				$field( array( 'name' => 'crane_type', 'label' => 'Loại cẩu' ) );
-				$field( array( 'name' => 'winch_count', 'label' => 'Số lượng tời', 'type' => 'number' ) );
-				$field( array( 'name' => 'winch_type', 'label' => 'Loại tời' ) );
-				$field( array( 'name' => 'rudder', 'label' => 'Bánh lái', 'type' => 'select', 'options' => (array) $catalogs['rudders'] ) );
-				$field( array( 'name' => 'steering', 'label' => 'Hệ thống lái', 'type' => 'select', 'options' => (array) $catalogs['steering'] ) );
-				$field( array( 'name' => 'power_source', 'label' => 'Hình thức phát điện', 'type' => 'select', 'options' => (array) $catalogs['power_sources'] ) );
-				$field( array( 'name' => 'genset_count', 'label' => 'Số lượng máy phát điện', 'type' => 'number' ) );
-				$field( array( 'name' => 'genset_kw', 'label' => 'Công suất máy phát điện', 'type' => 'number', 'unit' => 'kW' ) );
-				$field( array( 'name' => 'ops_note', 'label' => 'Ghi chú', 'type' => 'textarea', 'wide' => true ) );
-				?>
-			</div>
+
+			<?php
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'trade_1', 'label' => 'Nghề 1 (khai thác chính)' ),
+					array( 'name' => 'trade_2', 'label' => 'Nghề 2 (nghề phụ)' ),
+				),
+				array( 'cols' => 2, 'title' => 'Nghề khai thác' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'trip_days', 'label' => 'Thời gian chuyến biển', 'unit' => 'ngày' ),
+					array( 'name' => 'crew', 'label' => 'Số lượng thuyền viên', 'type' => 'number' ),
+					array( 'name' => 'gear_weight', 'label' => 'Khối lượng lưới/ngư cụ', 'type' => 'number', 'unit' => 'kg' ),
+				),
+				array( 'cols' => 3, 'title' => 'Chuyến biển' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'store_fuel', 'label' => 'Dầu', 'type' => 'number', 'unit' => 'kg' ),
+					array( 'name' => 'store_water', 'label' => 'Nước ngọt', 'type' => 'number', 'unit' => 'kg' ),
+					array( 'name' => 'store_ice', 'label' => 'Đá', 'type' => 'number', 'unit' => 'kg' ),
+					array( 'name' => 'store_fish', 'label' => 'Cá', 'type' => 'number', 'unit' => 'kg' ),
+				),
+				array( 'cols' => 4, 'title' => 'Dự trữ & sản lượng' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'crane_count', 'label' => 'Số lượng cẩu', 'type' => 'number' ),
+					array( 'name' => 'crane_type', 'label' => 'Loại cẩu' ),
+					array( 'name' => 'winch_count', 'label' => 'Số lượng tời', 'type' => 'number' ),
+					array( 'name' => 'winch_type', 'label' => 'Loại tời' ),
+				),
+				array( 'cols' => 4, 'title' => 'Cẩu & tời' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'rudder', 'label' => 'Bánh lái', 'type' => 'combo', 'options' => (array) $data->catalogs['rudders'] ),
+					array( 'name' => 'steering', 'label' => 'Hệ thống lái', 'type' => 'combo', 'options' => (array) $data->catalogs['steering'] ),
+				),
+				array( 'cols' => 2, 'title' => 'Thiết bị lái' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'power_source', 'label' => 'Hình thức phát điện', 'type' => 'combo', 'options' => (array) $data->catalogs['power_sources'] ),
+				),
+				array( 'cols' => 1, 'title' => 'Nguồn điện' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'genset_count', 'label' => 'Số lượng máy phát điện', 'type' => 'number' ),
+					array( 'name' => 'genset_kw', 'label' => 'Công suất máy phát điện', 'type' => 'number', 'unit' => 'kW' ),
+				),
+				array( 'cols' => 2 )
+			);
+			starter_flexible_design_brief_row(
+				array( array( 'name' => 'ops_note', 'label' => 'Ghi chú', 'type' => 'textarea' ) ),
+				array( 'cols' => 1 )
+			);
+			?>
 		</fieldset>
 
 		<!-- Máy -->
@@ -273,91 +283,127 @@ $options_from = static function ( array $rows, string $sep = ' · ' ): array {
 			</button>
 
 			<h4 class="db__sub"><?php esc_html_e( 'Nhận dạng máy', 'starter-flexible' ); ?></h4>
-			<div class="db__grid db__grid--tight">
-				<?php
-				$field( array( 'name' => 'engine_position', 'label' => 'Vị trí máy (nhìn về mũi)', 'type' => 'select', 'options' => (array) $catalogs['engine_positions'] ) );
-				$field(
+			<?php
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'engine_position', 'label' => 'Vị trí máy (nhìn về mũi)', 'type' => 'combo', 'options' => (array) $data->catalogs['engine_positions'] ),
+				),
+				array( 'cols' => 1, 'title' => 'Vị trí lắp đặt' )
+			);
+			starter_flexible_design_brief_row(
+				array(
 					array(
-						'name'        => 'engine_make',
-						'label'       => 'Hãng',
-						'type'        => 'select',
-						'options'     => array_values( array_unique( array_column( $data->engines, 'make' ) ) ),
-						'attrs'       => array( 'data-db-make' => true ),
-						'placeholder' => '— Chọn hãng —',
-					)
-				);
-				$field(
+						'name'    => 'engine_make',
+						'label'   => 'Hãng',
+						'type'    => 'combo',
+						'options' => $data->make_options,
+						'attrs'   => array( 'data-db-make' => true ),
+					),
+				),
+				array( 'cols' => 1, 'title' => 'Dòng máy' )
+			);
+			starter_flexible_design_brief_row(
+				array(
 					array(
 						'name'        => 'engine_model',
 						'label'       => 'Mã hiệu máy',
-						'type'        => 'select',
+						'type'        => 'combo',
 						'options'     => array(),
+						'scroll'      => true,
 						'attrs'       => array( 'data-db-model' => true ),
-						'placeholder' => '— Chọn mã hiệu —',
+						'empty'       => 'Nhập hoặc chọn hãng ở trên để thấy danh sách mã hiệu.',
 						'hint'        => 'Chọn từ danh mục Mẫu máy; công suất và số vòng quay lấy theo dòng máy này.',
-					)
-				);
-				$field( array( 'name' => 'engine_serial', 'label' => 'Số máy' ) );
-				?>
-			</div>
+					),
+				),
+				array( 'cols' => 1 )
+			);
+			starter_flexible_design_brief_row(
+				array( array( 'name' => 'engine_serial', 'label' => 'Số máy' ) ),
+				array( 'cols' => 2 )
+			);
 
-			<h4 class="db__sub"><?php esc_html_e( 'Thông số máy', 'starter-flexible' ); ?></h4>
-			<div class="db__grid db__grid--tight">
-				<?php
-				$field( array( 'name' => 'engine_kw', 'label' => 'Công suất', 'type' => 'number', 'unit' => 'kW', 'attrs' => array( 'data-db-kw' => true ) ) );
-				$field( array( 'name' => 'engine_rpm', 'label' => 'Số vòng quay', 'type' => 'number', 'unit' => 'rpm', 'attrs' => array( 'data-db-rpm' => true ) ) );
-				$field( array( 'name' => 'gear_ratio', 'label' => 'Tỉ số truyền', 'type' => 'number', 'attrs' => array( 'data-db-ratio' => true ) ) );
-				?>
-			</div>
+			echo '<h4 class="db__sub">' . esc_html__( 'Thông số máy', 'starter-flexible' ) . '</h4>';
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'engine_kw', 'label' => 'Công suất', 'type' => 'number', 'unit' => 'kW', 'attrs' => array( 'data-db-kw' => true ) ),
+					array( 'name' => 'engine_rpm', 'label' => 'Số vòng quay', 'type' => 'number', 'unit' => 'rpm', 'attrs' => array( 'data-db-rpm' => true ) ),
+					array( 'name' => 'gear_ratio', 'label' => 'Tỉ số truyền', 'type' => 'number', 'attrs' => array( 'data-db-ratio' => true ) ),
+				),
+				array( 'cols' => 3, 'title' => 'Công suất & vòng quay' )
+			);
 
-			<h4 class="db__sub"><?php esc_html_e( 'Trục chân vịt', 'starter-flexible' ); ?></h4>
-			<div class="db__grid db__grid--tight">
-				<?php
-				$field(
+			echo '<h4 class="db__sub">' . esc_html__( 'Trục chân vịt', 'starter-flexible' ) . '</h4>';
+			starter_flexible_design_brief_row(
+				array(
 					array(
 						'name'    => 'shaft_material',
 						'label'   => 'Vật liệu trục chân vịt',
-						'type'    => 'select',
-						'options' => array_map(
-							static fn( array $m ): array => array(
-								'value' => $m['code'],
-								'label' => $m['code'] . ' · ' . $m['name'],
-								'data'  => array( 'k3' => $m['k3'] ),
-							),
-							$data->materials
-						),
+						'type'    => 'combo',
+						'options' => $data->material_options,
 						'attrs'   => array( 'data-db-material' => true ),
-					)
-				);
-				$field( array( 'name' => 'k3', 'label' => 'Hệ số K3', 'type' => 'number', 'attrs' => array( 'data-db-k3' => true ) ) );
-				$field( array( 'name' => 'prop_rpm', 'label' => 'Số vòng quay chân vịt', 'type' => 'number', 'unit' => 'rpm', 'attrs' => array( 'data-db-prop-rpm' => true, 'readonly' => true ) ) );
-				$field( array( 'name' => 'shaft_length', 'label' => 'Chiều dài trục chân vịt', 'type' => 'number', 'unit' => 'mm' ) );
-				$field( array( 'name' => 'shaft_dmin', 'label' => 'Đường kính tối thiểu trục chân vịt', 'type' => 'number', 'unit' => 'mm', 'attrs' => array( 'data-db-dmin' => true, 'readonly' => true ) ) );
-				$field( array( 'name' => 'shaft_dreal', 'label' => 'Đường kính trục thực tế', 'type' => 'number', 'unit' => 'mm' ) );
-				?>
-			</div>
+					),
+				),
+				array( 'cols' => 1, 'title' => 'Vật liệu' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'k3', 'label' => 'Hệ số K3', 'type' => 'number', 'attrs' => array( 'data-db-k3' => true ) ),
+					array( 'name' => 'prop_rpm', 'label' => 'Số vòng quay chân vịt', 'type' => 'number', 'unit' => 'rpm', 'attrs' => array( 'data-db-prop-rpm' => true, 'readonly' => true ) ),
+				),
+				array( 'cols' => 2, 'title' => 'Hệ số tính toán' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'shaft_length', 'label' => 'Chiều dài trục chân vịt', 'type' => 'number', 'unit' => 'mm' ),
+					array( 'name' => 'shaft_dmin', 'label' => 'Đường kính tối thiểu trục chân vịt', 'type' => 'number', 'unit' => 'mm', 'attrs' => array( 'data-db-dmin' => true, 'readonly' => true ) ),
+					array( 'name' => 'shaft_dreal', 'label' => 'Đường kính trục thực tế', 'type' => 'number', 'unit' => 'mm' ),
+				),
+				array( 'cols' => 3, 'title' => 'Kích thước trục' )
+			);
 
-			<h4 class="db__sub"><?php esc_html_e( 'Chân vịt', 'starter-flexible' ); ?></h4>
-			<div class="db__grid db__grid--tight">
-				<?php
-				$field( array( 'name' => 'prop_material', 'label' => 'Vật liệu chân vịt', 'type' => 'select', 'options' => (array) $catalogs['propeller_materials'] ) );
-				$field( array( 'name' => 'prop_blades', 'label' => 'Số cánh chân vịt', 'type' => 'number' ) );
-				$field( array( 'name' => 'prop_diameter', 'label' => 'Đường kính chân vịt', 'type' => 'number', 'unit' => 'm' ) );
-				$field( array( 'name' => 'prop_weight', 'label' => 'Khối lượng chân vịt', 'type' => 'number', 'unit' => 'kg' ) );
-				?>
-			</div>
+			echo '<h4 class="db__sub">' . esc_html__( 'Chân vịt', 'starter-flexible' ) . '</h4>';
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'prop_material', 'label' => 'Vật liệu chân vịt', 'type' => 'combo', 'options' => (array) $data->catalogs['propeller_materials'] ),
+				),
+				array( 'cols' => 1, 'title' => 'Vật liệu' )
+			);
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'prop_blades', 'label' => 'Số cánh chân vịt', 'type' => 'number' ),
+					array( 'name' => 'prop_diameter', 'label' => 'Đường kính chân vịt', 'type' => 'number', 'unit' => 'm' ),
+					array( 'name' => 'prop_weight', 'label' => 'Khối lượng chân vịt', 'type' => 'number', 'unit' => 'kg' ),
+				),
+				array( 'cols' => 3, 'title' => 'Kích thước & khối lượng' )
+			);
 
-			<h4 class="db__sub"><?php esc_html_e( 'Bệ máy', 'starter-flexible' ); ?></h4>
-			<div class="db__grid db__grid--tight">
-				<?php
-				$field( array( 'name' => 'bed_gearbox_bolt', 'label' => 'Chân hộp số (bu lông)', 'type' => 'number', 'unit' => 'mm' ) );
-				$field( array( 'name' => 'bed_engine_bolt', 'label' => 'Chân máy chính (bu lông)', 'type' => 'number', 'unit' => 'mm' ) );
-				foreach ( array( 'L1', 'L2', 'L3', 'L4', 'L5', 'B1', 'B2', 'B3', 'B4' ) as $mark ) {
-					$field( array( 'name' => 'bed_' . strtolower( $mark ), 'label' => $mark, 'type' => 'number', 'unit' => 'mm' ) );
-				}
-				$field( array( 'name' => 'engine_note', 'label' => 'Ghi chú', 'type' => 'textarea', 'wide' => true ) );
-				?>
-			</div>
+			echo '<h4 class="db__sub">' . esc_html__( 'Bệ máy', 'starter-flexible' ) . '</h4>';
+			starter_flexible_design_brief_row(
+				array(
+					array( 'name' => 'bed_gearbox_bolt', 'label' => 'Chân hộp số (bu lông)', 'type' => 'number', 'unit' => 'mm' ),
+					array( 'name' => 'bed_engine_bolt', 'label' => 'Chân máy chính (bu lông)', 'type' => 'number', 'unit' => 'mm' ),
+				),
+				array( 'cols' => 2, 'title' => 'Bu lông liên kết' )
+			);
+			starter_flexible_design_brief_row(
+				array_map(
+					static fn( string $mark ): array => array( 'name' => 'bed_' . strtolower( $mark ), 'label' => $mark, 'type' => 'number', 'unit' => 'mm' ),
+					array( 'L1', 'L2', 'L3', 'L4', 'L5' )
+				),
+				array( 'cols' => 5, 'title' => 'Kích thước dọc' )
+			);
+			starter_flexible_design_brief_row(
+				array_map(
+					static fn( string $mark ): array => array( 'name' => 'bed_' . strtolower( $mark ), 'label' => $mark, 'type' => 'number', 'unit' => 'mm' ),
+					array( 'B1', 'B2', 'B3', 'B4' )
+				),
+				array( 'cols' => 4, 'title' => 'Kích thước ngang' )
+			);
+			starter_flexible_design_brief_row(
+				array( array( 'name' => 'engine_note', 'label' => 'Ghi chú', 'type' => 'textarea' ) ),
+				array( 'cols' => 1 )
+			);
+			?>
 		</fieldset>
 	</template>
 
@@ -365,9 +411,10 @@ $options_from = static function ( array $rows, string $sep = ' · ' ): array {
 		<?php /* Contact Form 7 does the sending: the brief is written into its
 		         hidden fields and its own submit button is clicked. */ ?>
 		<div class="db__cf7" data-db-cf7>
-			<?php echo do_shortcode( sprintf( '[contact-form-7 id="%d"]', $data->cf7_id ) ); ?>
+			<?php echo $data->form_html; ?>
 		</div>
 	<?php endif; ?>
 
-	<script type="application/json" data-db-engines-data><?php echo wp_json_encode( $data->engines ); ?></script>
+	<script type="application/json" data-db-engines-data><?php echo $data->engines_json; ?></script>
+	<script type="application/json" data-db-doc-data><?php echo $data->doc_json; ?></script>
 </section>

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/quote",
+    "title": "LASAN — Quote",
+    "description": "Một phát biểu thật của khách hoặc của đội ngũ, cỡ chữ lớn.",
+    "category": "flexible-blocks",
+    "icon": "format-quote",
+    "keywords": ["quote", "testimonial", "statement"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

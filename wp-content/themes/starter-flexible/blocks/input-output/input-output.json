@@ -1,0 +1,29 @@
+{
+  "key": "group_input_output",
+  "title": "Input / Output",
+  "fields": [
+    { "key": "field_input_output_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_input_output_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_input_output_intro", "label": "Intro", "name": "intro", "type": "textarea", "rows": 3, "new_lines": "" },
+    { "key": "field_input_output_input_title", "label": "Input — Column Title", "name": "input_title", "type": "text", "default_value": "Đầu vào" },
+    {
+      "key": "field_input_output_input", "label": "Input — Items", "name": "input", "type": "repeater",
+      "layout": "row", "button_label": "Add Input",
+      "sub_fields": [ { "key": "field_input_output_input_text", "label": "Text", "name": "text", "type": "text" } ]
+    },
+    { "key": "field_input_output_process_title", "label": "Process — Column Title", "name": "process_title", "type": "text", "default_value": "Xử lý" },
+    {
+      "key": "field_input_output_process", "label": "Process — Items", "name": "process", "type": "repeater",
+      "layout": "row", "button_label": "Add Step",
+      "sub_fields": [ { "key": "field_input_output_process_text", "label": "Text", "name": "text", "type": "text" } ]
+    },
+    { "key": "field_input_output_output_title", "label": "Output — Column Title", "name": "output_title", "type": "text", "default_value": "Đầu ra" },
+    {
+      "key": "field_input_output_output", "label": "Output — Items", "name": "output", "type": "repeater",
+      "layout": "row", "button_label": "Add Output",
+      "sub_fields": [ { "key": "field_input_output_output_text", "label": "Text", "name": "text", "type": "text" } ]
+    },
+    { "key": "field_input_output_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/input-output" }]]
+}

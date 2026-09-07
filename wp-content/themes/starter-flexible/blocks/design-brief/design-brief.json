@@ -32,7 +32,29 @@
             ],
             "return_format": "id",
             "allow_null": 1,
-            "instructions": "Nơi nhận nhiệm vụ thư. Form cần có các trường brief-code, brief-customer, brief-vessel, brief-email và brief-body."
+            "instructions": "Nơi nhận nhiệm vụ thư. Form cần có các trường brief-code, brief-customer, brief-vessel, brief-email, brief-body và brief-json (toàn bộ hồ sơ dưới dạng một khối JSON)."
+        },
+        {
+            "key": "field_db_doc_org",
+            "label": "Tên cơ quan trên văn bản in",
+            "name": "doc_org",
+            "type": "text",
+            "instructions": "Để trống thì lấy Tên pháp lý trong Site Settings."
+        },
+        {
+            "key": "field_db_doc_place",
+            "label": "Địa danh trên văn bản in",
+            "name": "doc_place",
+            "type": "text",
+            "default_value": "Khánh Hòa"
+        },
+        {
+            "key": "field_db_doc_symbol",
+            "label": "Ký hiệu văn bản",
+            "name": "doc_symbol",
+            "type": "text",
+            "default_value": "NVT-LSM",
+            "instructions": "Phần sau dấu gạch chéo của số văn bản, ví dụ 12/NVT-LSM."
         },
         {
             "key": "field_db_custom_class",

@@ -90,7 +90,7 @@
         },
         {
           "label": "EMAIL",
-          "value": "contact@lasanmarine.vn"
+          "value": "hello@lasanmarine.com"
         }
       ],
       "note": "Lasan Marine thực hiện thiết kế đóng mới, chuyển hoán, hoàn công và hồ sơ kỹ thuật cho nhiều loại phương tiện với các vật liệu vỏ khác nhau."
@@ -353,7 +353,7 @@
       },
       {
         "name": "Hotline / Zalo",
-        "address": "0834 310 781 · contact@lasanmarine.vn",
+        "address": "0834 310 781 · hello@lasanmarine.com",
         "meta": "PHẢN HỒI TRONG 24 GIỜ"
       }
     ],
@@ -937,7 +937,7 @@
     "taxCode": "4202063521",
     "address": "Số 03 Trần Lư, phường Bắc Nha Trang, tỉnh Khánh Hòa, Việt Nam",
     "phone": "0834 310 781",
-    "email": "contact@lasanmarine.vn",
+    "email": "hello@lasanmarine.com",
     "tagline": "Engineering Tomorrow’s Oceans",
     "mapsApiKey": "",
     "bank": {

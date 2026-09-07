@@ -1,83 +1,163 @@
 {
   "key": "service_03",
-  "title": "Dịch vụ CNTT",
+  "title": "Giải pháp số",
   "slug": "dich-vu-cntt",
-  "parent": "capabilities",
   "lang": "vi",
   "seo": {
-    "title": "Dịch vụ Công nghệ Thông tin — LASAN MARINE",
-    "description": "Xây dựng website, hệ thống quản lý nội bộ và ứng dụng tự động hóa thông minh theo đúng luồng vận hành thực tế của từng đơn vị."
+    "title": "Phần mềm quản lý, website và tự động hóa | LASAN MARINE",
+    "description": "Mảng phần mềm của LASAN MARINE gồm hệ thống quản lý, website, tự động hóa và các ứng dụng AI. Hướng dịch vụ này bắt đầu từ nhu cầu số hóa trong công việc thực tế và hiện phục vụ nhiều bài toán quản lý, dữ liệu và vận hành."
   },
   "blocks": [
     {
       "type": "page-hero",
       "fields": {
-        "headline": "Dịch vụ Công nghệ Thông tin",
-        "lead": "Xây dựng website, hệ thống quản lý nội bộ và ứng dụng tự động hóa thông minh theo đúng luồng vận hành thực tế của từng đơn vị.",
-        "placeholder": "IT SERVICES & AUTOMATION",
+        "headline": "Chúng tôi phát triển phần mềm từ những nhu cầu thực tế trong công việc",
+        "lead": "Nhu cầu ban đầu đến từ dữ liệu, hồ sơ và quy trình trong công việc thiết kế tàu. Từ đó, chúng tôi mở rộng sang hệ thống quản lý, website, tự động hóa và ứng dụng AI cho nhiều nhu cầu quản lý và vận hành khác nhau.",
+        "placeholder": "Giải pháp số và phần mềm quản lý",
         "heading_level": "h1",
         "height": 420,
-        "custom_class": ""
+        "custom_class": "",
+        "image": 818
       }
     },
     {
-      "type": "manifesto",
+      "type": "image-text",
       "fields": {
-        "label": "ĐỊNH HƯỚNG CÔNG NGHỆ",
-        "heading": "Phần mềm phục vụ công việc, không vẽ thêm quy trình phức tạp",
-        "lead": "Chúng tôi tiếp cận CNTT bằng tư duy của người làm kỹ thuật: hệ thống tạo ra phải giải quyết trực tiếp điểm nghẽn trong vận hành, nhân viên dùng được ngay và dữ liệu luôn minh bạch.",
-        "body": [
+        "heading": "Từ nhu cầu số hóa công việc nội bộ, phần mềm dần trở thành một hướng dịch vụ riêng",
+        "content": "Những nhu cầu đầu tiên liên quan đến tính toán, bảng tra, hồ sơ và dữ liệu lặp lại trong công việc. Sau đó, chúng tôi tiếp tục xây hệ thống quản lý, website và các luồng tự động hóa. Các công cụ tính toán vẫn được duy trì, nhưng chỉ là một phần nhỏ trong mảng phần mềm.",
+        "placeholder": "Quy trình và dữ liệu",
+        "caption": "Từ công việc kỹ thuật đến phần mềm",
+        "image_position": "right",
+        "split": "even",
+        "ratio": "ratio-4-3",
+        "custom_class": "",
+        "image": 576
+      }
+    },
+    {
+      "type": "use-case",
+      "fields": {
+        "heading": "Phần mềm bắt đầu từ một vấn đề cụ thể trong quy trình hoặc dữ liệu",
+        "intro": "Có dự án bắt đầu từ một quy trình quản lý, có dự án là website, có dự án cần tự động hóa hoặc khai thác dữ liệu bằng AI. Điểm chung là chúng tôi bắt đầu từ cách công việc đang diễn ra thay vì từ một gói tính năng có sẵn.",
+        "items": [
           {
-            "text": "Thay vì triển khai những bộ giải pháp đóng gói cồng kềnh với nhiều tính năng thừa thãi, chúng tôi tập trung phát triển các sản phẩm số vừa vặn với nhu cầu: từ website giới thiệu năng lực doanh nghiệp, hệ thống quản lý công việc và tài sản nội bộ, đến các giải pháp ứng dụng trí tuệ nhân tạo (AI) để tự động hóa những khâu lặp lại. Mục tiêu cuối cùng là giúp doanh nghiệp tiết kiệm thời gian, hạn chế sai sót và kiểm soát tốt số liệu."
+            "problem": "Dữ liệu và công việc đang được quản lý bằng nhiều bảng tính, biểu mẫu hoặc tệp riêng",
+            "context": "Thông tin khó theo dõi, nhiều người cùng xử lý nhưng không có một nguồn dữ liệu thống nhất và mất thời gian khi cần tổng hợp báo cáo.",
+            "solution": "Chúng tôi xây hệ thống quản lý theo đúng dữ liệu, vai trò và luồng xử lý đang có, sau đó điều chỉnh từng phần khi quy trình thực tế thay đổi.",
+            "link": {
+              "label": "Trao đổi nhu cầu hệ thống",
+              "page": "contact"
+            }
+          },
+          {
+            "problem": "Website hiện tại chưa thể hiện rõ dịch vụ, sản phẩm hoặc năng lực của doanh nghiệp",
+            "context": "Nội dung có nhiều nhưng cấu trúc khó theo dõi, việc cập nhật phụ thuộc vào kỹ thuật hoặc website chưa hỗ trợ tốt cho tìm kiếm và đo lường.",
+            "solution": "Chúng tôi xây dựng cấu trúc nội dung, giao diện và hệ quản trị để website vừa rõ với người xem, vừa thuận tiện cho đội ngũ vận hành lâu dài.",
+            "link": {
+              "label": "Trao đổi nhu cầu website",
+              "page": "contact"
+            }
+          },
+          {
+            "problem": "Một số bước trong quy trình phải nhập lại hoặc xử lý thủ công quá nhiều lần",
+            "context": "Dữ liệu phải chuyển giữa các biểu mẫu, bảng tính, email hoặc nhiều hệ thống khác nhau, làm tăng thời gian xử lý và dễ sai lệch.",
+            "solution": "Những bước có quy tắc rõ có thể được tự động hóa để chuyển dữ liệu, tạo báo cáo, gửi thông báo hoặc kích hoạt bước xử lý tiếp theo.",
+            "link": {
+              "label": "Trao đổi bài toán tự động hóa",
+              "page": "contact"
+            }
+          },
+          {
+            "problem": "Doanh nghiệp muốn ứng dụng AI nhưng chưa xác định được tác vụ phù hợp",
+            "context": "Dữ liệu và tài liệu đã có, nhưng chưa rõ AI nên tham gia ở bước nào và kết quả cần được kiểm tra ra sao.",
+            "solution": "Chúng tôi xem xét các tác vụ cụ thể như trích xuất, phân loại, tìm kiếm, hỏi đáp hoặc nhận diện. Nếu một giải pháp thông thường đã giải quyết tốt vấn đề, AI không cần được đưa vào.",
+            "link": {
+              "label": "Trao đổi bài toán AI",
+              "page": "contact"
+            }
           }
         ],
-        "cta": { "label": "Nhận tư vấn giải pháp số", "page": "contact" },
         "custom_class": ""
       }
     },
     {
       "type": "service-architecture",
       "fields": {
-        "label": "3 NHÓM DỊCH VỤ CHÍNH",
-        "heading": "Giải pháp số hóa cho doanh nghiệp",
-        "caption": "Giao diện website chuẩn SEO, phần mềm quản lý nội bộ và luồng tự động hóa bằng AI.",
-        "view_all": "Xem các sản phẩm mẫu",
-        "view_all_link": { "label": "Xem các sản phẩm mẫu", "page": "projects" },
+        "heading": "Mảng phần mềm hiện gồm hệ thống quản lý, website, tự động hóa và AI",
+        "caption": "Mỗi dự án bắt đầu từ quy trình, dữ liệu và người sử dụng thực tế. Sau khi hiểu rõ công việc cần giải quyết, chúng tôi mới lựa chọn công nghệ.",
+        "view_all": "Xem năng lực tổng thể",
+        "view_all_link": {
+          "label": "Xem năng lực tổng thể",
+          "page": "capabilities"
+        },
         "items": [
           {
             "index": "01",
-            "name": "Thiết kế Website & Landing Page",
-            "desc": "Xây dựng website giới thiệu doanh nghiệp, trang đích quảng bá dịch vụ với giao diện hiện đại, tốc độ tải trang nhanh và tối ưu chuẩn hiển thị trên mọi thiết bị.",
-            "link": { "label": "Liên hệ tư vấn", "page": "contact" },
+            "name": "Hệ thống phần mềm quản lý",
+            "desc": "Xây dựng hệ thống theo dữ liệu và quy trình thực tế, từ quản lý công việc, hồ sơ, kho và thiết bị đến các luồng phê duyệt và báo cáo.",
+            "link": {
+              "label": "Trao đổi bài toán quản lý",
+              "page": "contact"
+            },
             "children": [
-              { "name": "Website hồ sơ năng lực cho doanh nghiệp kỹ thuật, sản xuất" },
-              { "name": "Landing page giới thiệu sản phẩm, thu thập thông tin khách hàng" },
-              { "name": "Tối ưu cấu trúc chuẩn SEO, tốc độ tải trang và trải nghiệm người dùng" },
-              { "name": "Quản trị nội dung trực quan, dễ dàng cập nhật dữ liệu" }
+              {
+                "name": "Quản lý công việc, tiến độ và phân công"
+              },
+              {
+                "name": "Quản lý hồ sơ, dữ liệu và phiên bản tài liệu"
+              },
+              {
+                "name": "Quản lý kho, vật tư và thiết bị"
+              },
+              {
+                "name": "Báo cáo và bảng điều khiển dữ liệu"
+              }
             ]
           },
           {
             "index": "02",
-            "name": "Hệ thống phần mềm quản lý",
-            "desc": "Thiết kế các phần mềm quản lý nội bộ may đo riêng theo luồng công việc thực tế, giúp số hóa dữ liệu từ giấy tờ và bảng tính Excel phân tán.",
-            "link": { "label": "Liên hệ tư vấn", "page": "contact" },
+            "name": "Website và sản phẩm số",
+            "desc": "Xây dựng website doanh nghiệp, trang đích và các sản phẩm web có nội dung rõ, hiển thị tốt và dễ quản trị sau khi bàn giao.",
+            "link": {
+              "label": "Trao đổi nhu cầu website",
+              "page": "contact"
+            },
             "children": [
-              { "name": "Quản lý tiến độ công việc, dự án và giao việc theo ca" },
-              { "name": "Quản lý kho bãi, vật tư kỹ thuật và lịch bảo dưỡng thiết bị" },
-              { "name": "Số hóa biểu mẫu, quy trình phê duyệt nội bộ" },
-              { "name": "Báo cáo và bảng điều khiển (dashboard) theo dõi số liệu trực tiếp" }
+              {
+                "name": "Website doanh nghiệp và hồ sơ năng lực"
+              },
+              {
+                "name": "Trang đích giới thiệu sản phẩm hoặc dịch vụ"
+              },
+              {
+                "name": "Hệ quản trị nội dung"
+              },
+              {
+                "name": "Cấu trúc hỗ trợ SEO và đo lường"
+              }
             ]
           },
           {
             "index": "03",
-            "name": "AI & Tự động hóa (Automation)",
-            "desc": "Tích hợp các mô hình AI và luồng tự động hóa để xử lý công việc lặp lại, nhận diện dữ liệu và hỗ trợ ra quyết định nhanh chóng.",
-            "link": { "label": "Liên hệ tư vấn", "page": "contact" },
+            "name": "Tự động hóa và ứng dụng AI",
+            "desc": "Tự động hóa những bước có quy tắc rõ và ứng dụng AI cho các tác vụ có dữ liệu, tiêu chí kiểm tra và mục tiêu sử dụng cụ thể.",
+            "link": {
+              "label": "Trao đổi bài toán tự động hóa",
+              "page": "contact"
+            },
             "children": [
-              { "name": "Tự động hóa trích xuất và nhập liệu từ hình ảnh, hóa đơn, chứng từ" },
-              { "name": "Trợ lý ảo AI nội bộ tra cứu nhanh tài liệu, quy chuẩn kỹ thuật" },
-              { "name": "Tự động hóa quy trình gửi thông báo, báo cáo và đồng bộ dữ liệu" },
-              { "name": "Ứng dụng mô hình thị giác máy tính trong kiểm tra, giám sát chất lượng" }
+              {
+                "name": "Đồng bộ dữ liệu, thông báo và báo cáo tự động"
+              },
+              {
+                "name": "Trích xuất dữ liệu từ tài liệu và hình ảnh"
+              },
+              {
+                "name": "Tìm kiếm và hỏi đáp trên tài liệu nội bộ"
+              },
+              {
+                "name": "Nhận diện và phân loại theo bộ dữ liệu cụ thể"
+              }
             ]
           }
         ],
@@ -87,87 +167,107 @@
     {
       "type": "process-timeline",
       "fields": {
-        "label": "QUY TRÌNH TRIỂN KHAI",
+        "label": "Cách triển khai",
         "steps": [
           {
             "index": "01",
-            "title": "Khảo sát bài toán thực tế",
-            "desc": "Ngồi trực tiếp với các bộ phận liên quan để làm rõ quy trình làm việc hiện tại, các điểm nghẽn và yêu cầu dữ liệu đầu ra."
+            "title": "Tìm hiểu quy trình và những điểm đang gây vướng",
+            "desc": "Chúng tôi trao đổi với những người trực tiếp sử dụng để hiểu quy trình hiện tại, những bước đang làm chậm công việc và các điểm thường gây sai lệch dữ liệu hoặc khó theo dõi."
           },
           {
             "index": "02",
-            "title": "Lên khung kiến trúc & Giao diện",
-            "desc": "Phác thảo cấu trúc hệ thống, luồng dữ liệu và thiết kế giao diện trực quan trước khi bắt đầu lập trình."
+            "title": "Thiết kế dữ liệu và luồng thao tác",
+            "desc": "LASAN thiết kế cấu trúc dữ liệu, quyền truy cập và các bước xử lý theo vai trò thực tế của từng nhóm người dùng."
           },
           {
             "index": "03",
-            "title": "Lập trình & Kiểm thử thực tế",
-            "desc": "Xây dựng phần mềm theo từng giai đoạn, cho đội ngũ người dùng thử nghiệm trên dữ liệu thật để hiệu chỉnh kịp thời."
+            "title": "Phát triển từng phần và kiểm thử sớm",
+            "desc": "Chúng tôi đưa từng nhóm chức năng vào kiểm thử sớm bằng dữ liệu thực tế để phát hiện những điểm chưa phù hợp trước khi mở rộng sang phần tiếp theo."
           },
           {
             "index": "04",
-            "title": "Chuyển giao & Đồng hành",
-            "desc": "Hướng dẫn vận hành cho nhân sự, bàn giao tài liệu kỹ thuật và bảo trì, hỗ trợ mở rộng tính năng khi doanh nghiệp phát triển."
+            "title": "Bàn giao và mở rộng theo nhu cầu",
+            "desc": "Khi hoàn thành phạm vi đã thống nhất, LASAN bàn giao hệ thống cùng tài liệu sử dụng. Nếu phát sinh nhu cầu tích hợp hoặc mở rộng, hai bên có thể tiếp tục theo từng giai đoạn thay vì làm mọi thứ ngay từ đầu."
           }
         ],
         "custom_class": ""
       }
     },
     {
-      "type": "capability-matrix",
+      "type": "value-grid",
       "fields": {
-        "label": "GIÁ TRỊ THỰC TẾ",
-        "heading": "Hệ thống của chúng tôi giải quyết điều gì cho bạn?",
+        "label": "Giá trị trong vận hành hằng ngày",
         "items": [
           {
-            "index": "01",
             "icon": "link",
-            "name": "Đồng bộ dữ liệu tập trung",
-            "desc": "Chấm dứt tình trạng lưu trữ tản mát trên file cá nhân, tránh thất thoát thông tin và giúp các phòng ban phối hợp nhịp nhàng.",
-            "link": { "label": "Trao đổi bài toán", "page": "contact" },
-            "children": [
-              { "name": "Một nguồn dữ liệu chuẩn xác duy nhất" },
-              { "name": "Phân quyền truy cập bảo mật theo vai trò" },
-              { "name": "Tra cứu lịch sử thao tác rõ ràng" }
-            ]
+            "title": "Dữ liệu dễ tìm và dễ đối chiếu hơn",
+            "desc": "Người dùng mất ít thời gian hơn cho việc tìm tệp, đối chiếu phiên bản và tổng hợp thông tin từ nhiều nguồn rời rạc."
           },
           {
-            "index": "02",
             "icon": "gauge",
-            "name": "Cắt giảm thời gian lặp lại",
-            "desc": "Dùng công cụ tự động để giải phóng nhân sự khỏi các công việc thủ công, tốn thời gian như tổng hợp số liệu hay gõ lại tài liệu.",
-            "link": { "label": "Trao đổi bài toán", "page": "contact" },
-            "children": [
-              { "name": "Báo cáo tạo tự động định kỳ" },
-              { "name": "Luồng duyệt việc không cần giấy tờ" },
-              { "name": "Nhắc việc và cảnh báo hạn chót tức thời" }
-            ]
+            "title": "Giảm nhập liệu và các thao tác lặp lại",
+            "desc": "Những bước lặp lại có quy tắc rõ có thể được tự động hóa, giúp người dùng dành thời gian cho phần việc cần xử lý và phán đoán."
           },
           {
-            "index": "03",
             "icon": "award",
-            "name": "Tối ưu theo nghiệp vụ đặc thù",
-            "desc": "Không ép doanh nghiệp phải đổi cách làm việc theo một phần mềm có sẵn; phần mềm được viết để thích ứng với cách doanh nghiệp vận hành.",
-            "link": { "label": "Trao đổi bài toán", "page": "contact" },
-            "children": [
-              { "name": "Giao diện tinh gọn, đúng việc cần làm" },
-              { "name": "Dễ mở rộng tính năng theo quy mô" },
-              { "name": "Thời gian đào tạo sử dụng ngắn" }
-            ]
+            "title": "Trạng thái công việc rõ ràng hơn",
+            "desc": "Mỗi vai trò có quyền truy cập phù hợp, đồng thời trạng thái và lịch sử xử lý được lưu lại để công việc dễ theo dõi hơn."
+          },
+          {
+            "icon": "wrench",
+            "title": "Có thể mở rộng khi nhu cầu thay đổi",
+            "desc": "LASAN tổ chức hệ thống theo cấu trúc có thể bổ sung chức năng hoặc tích hợp về sau, tránh phải làm lại toàn bộ khi nhu cầu thay đổi."
           }
         ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "accordion",
+      "fields": {
+        "heading": "Một số câu hỏi trước khi triển khai giải pháp số",
+        "intro": "Nếu đội ngũ đang có một phép tính, bộ dữ liệu hoặc quy trình muốn đưa lên phần mềm nhưng chưa rõ nên bắt đầu ở đâu, các câu hỏi dưới đây sẽ giúp hình dung rõ hơn cách chúng tôi triển khai.",
+        "items": [
+          {
+            "title": "Có cần thay toàn bộ hệ thống hiện tại không?",
+            "content": "Không nhất thiết. Chúng tôi xem phần nào đang hoạt động tốt và phần nào thực sự gây vướng trước khi đề xuất thay đổi. Nhiều dự án chỉ cần xử lý một quy trình nhỏ trước, sau đó mới mở rộng nếu cách làm mới mang lại hiệu quả."
+          },
+          {
+            "title": "Có thể làm việc từ dữ liệu Excel đang sử dụng không?",
+            "content": "Có. Các bảng tính, biểu mẫu và tệp dữ liệu hiện có giúp LASAN hiểu cấu trúc thông tin và cách đội ngũ đang xử lý công việc. Sau khi xem dữ liệu mẫu, LASAN sẽ trao đổi phần nào có thể giữ lại và phần nào nên tổ chức lại."
+          },
+          {
+            "title": "Có thể chỉ phát triển một mô-đun nhỏ trước không?",
+            "content": "Có. Nếu bài toán có thể tách thành từng phần, LASAN có thể phát triển một mô-đun nhỏ trước để người dùng kiểm thử trong thực tế rồi mới quyết định có mở rộng hay không."
+          },
+          {
+            "title": "Dự án nào cũng cần tích hợp AI không?",
+            "content": "Không. Chúng tôi chỉ đề xuất AI khi có một tác vụ phù hợp và dữ liệu đủ để kiểm chứng kết quả. Với nhiều bài toán quản lý, một cấu trúc dữ liệu rõ ràng và các bước tự động hóa thông thường đã có thể mang lại hiệu quả tốt hơn."
+          },
+          {
+            "title": "Hệ thống có thể mở rộng thêm sau khi bàn giao không?",
+            "content": "Có. Khi xuất hiện nhu cầu mới, chúng tôi xem lại kiến trúc và dữ liệu hiện có để xác định cách bổ sung hoặc tích hợp mà không làm hệ thống phức tạp hơn mức cần thiết."
+          },
+          {
+            "title": "Cần chuẩn bị gì trước buổi trao đổi đầu tiên?",
+            "content": "Bạn có thể bắt đầu bằng quy trình hiện tại, một vài biểu mẫu hoặc bảng tính mẫu, nhóm người dùng chính và những bước đang gây mất thời gian. Không cần chuẩn bị trước một tài liệu yêu cầu phần mềm hoàn chỉnh."
+          }
+        ],
+        "open_first": 0,
         "custom_class": ""
       }
     },
     {
       "type": "contact-statement",
       "fields": {
-        "label": "BẮT ĐẦU DỰ ÁN SỐ HÓA",
-        "heading": "Bạn đang cần xây dựng website hay tự động hóa một quy trình nội bộ?",
-        "description": "Hãy chia sẻ bài toán quản lý hoặc yêu cầu sản phẩm số của bạn. Đội ngũ kỹ thuật của chúng tôi sẽ phân tích luồng việc và đề xuất phương án công nghệ khả thi nhất.",
+        "heading": "Bạn đang cần xây một hệ thống, website hoặc quy trình tự động hóa?",
+        "description": "Bạn có thể gửi quy trình hiện tại, dữ liệu mẫu, yêu cầu website hoặc mô tả công việc đang cần số hóa. Chúng tôi sẽ trao đổi phần nào nên làm trước, những gì cần chuẩn bị và cách mở rộng về sau nếu cần.",
         "phone": "0834 310 781",
         "email": "hello@lasanmarine.com",
-        "cta": { "label": "Trao đổi bài toán phần mềm", "page": "contact" },
+        "cta": {
+          "label": "Gửi nhu cầu phần mềm",
+          "page": "contact"
+        },
         "custom_class": ""
       }
     }

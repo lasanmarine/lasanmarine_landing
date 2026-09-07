@@ -132,6 +132,102 @@
 	letter-spacing: 0.14em;
 }
 
+/* Editorial copy out of the WYSIWYG. The editor emits bare <p>/<ul>/<h3>, so
+   the rhythm is set here once rather than in each block that renders one. */
+.prose {
+	@apply text-steel;
+	font-size: 16.5px;
+	line-height: 1.8;
+}
+.prose > * + * {
+	margin-top: 18px;
+}
+.prose h2,
+.prose h3 {
+	@apply font-display font-semibold text-navy;
+	margin-top: 34px;
+	font-size: 24px;
+	line-height: 1.25;
+}
+.prose h4 {
+	@apply font-display font-semibold text-navy;
+	margin-top: 28px;
+	font-size: 19px;
+	line-height: 1.35;
+}
+.prose ul,
+.prose ol {
+	@apply pl-0;
+	list-style: none;
+}
+.prose ol {
+	counter-reset: prose-ol;
+}
+.prose li {
+	@apply relative;
+	padding-left: 26px;
+}
+.prose li + li {
+	margin-top: 10px;
+}
+.prose ul > li::before {
+	@apply absolute bg-marine;
+	content: '';
+	top: 0.72em;
+	left: 4px;
+	width: 7px;
+	height: 1.5px;
+}
+.prose ol > li::before {
+	@apply absolute font-display font-semibold text-marine;
+	counter-increment: prose-ol;
+	content: counter(prose-ol) '.';
+	top: 0;
+	left: 0;
+	font-size: 15px;
+}
+.prose a {
+	@apply text-marine;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-color: var(--line);
+}
+.prose a:hover {
+	@apply text-navy;
+	text-decoration-color: currentColor;
+}
+.prose strong {
+	@apply font-semibold text-navy;
+}
+.prose blockquote {
+	@apply border-l border-marine;
+	margin: 26px 0;
+	padding: 2px 0 2px 20px;
+	font-size: 17.5px;
+	line-height: 1.7;
+}
+.prose img {
+	@apply h-auto w-full;
+	border-radius: var(--r-md);
+}
+.prose > :first-child {
+	margin-top: 0;
+}
+.band--navy .prose,
+.band--navy-mid .prose {
+	color: rgba(255, 255, 255, 0.7);
+}
+.band--navy .prose strong,
+.band--navy-mid .prose strong,
+.band--navy .prose h2,
+.band--navy .prose h3,
+.band--navy .prose h4,
+.band--navy-mid .prose h2,
+.band--navy-mid .prose h3,
+.band--navy-mid .prose h4 {
+	@apply text-white;
+}
+
 /* --- primitives --------------------------------------------------------- */
 
 .btn {

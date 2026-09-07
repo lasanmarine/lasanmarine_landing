@@ -18,9 +18,7 @@
 	grid-template-columns: 1fr auto;
 	gap: clamp(14px, 2.2vw, 32px);
 	padding: clamp(18px, 2.2vw, 28px) clamp(18px, 3vw, 46px) clamp(18px, 2.2vw, 28px) 6px;
-	transition:
-		background 300ms ease,
-		padding-left 300ms var(--ease);
+	transition: background 300ms ease;
 }
 .sa__row::after {
 	@apply absolute bg-marine;
@@ -34,7 +32,6 @@
 .sa__row[data-active='true'],
 .sa__row:hover {
 	@apply bg-pale;
-	padding-left: 22px;
 }
 .sa__row[data-active='true']::after,
 .sa__row:hover::after {

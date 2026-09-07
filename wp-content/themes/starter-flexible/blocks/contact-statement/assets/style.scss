@@ -9,8 +9,19 @@
 	@apply absolute inset-0 h-full w-full;
 	opacity: 0.5;
 }
+/* Statement on the left, contact details on the right. */
+.cs__layout {
+	/* Stretch, not center: the mascot hangs off the bottom of the left column,
+	   so that column must own the full row height. */
+	@apply relative grid items-stretch;
+	grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+	gap: clamp(32px, 5vw, 88px);
+}
+.cs__layout--solo {
+	grid-template-columns: minmax(0, 1fr);
+}
 .cs__inner {
-	@apply relative grid items-center;
+	@apply grid items-center;
 	grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
 	gap: clamp(28px, 4vw, 72px);
 }
@@ -55,26 +66,41 @@
 	line-height: 1.65;
 	opacity: 0.78;
 }
-.cs__details {
-	@apply flex flex-col;
-	gap: 16px;
+
+/* The shared `.spec` row is drawn for a light page — on the navy band the rule
+   and the two text tones are re-tinted rather than re-built. */
+.cs__contact .spec {
+	border-bottom-color: rgb(255 255 255 / 0.16);
 }
-.cs__line {
-	@apply flex items-center font-display font-semibold text-white;
-	gap: 12px;
-	font-size: clamp(17px, 1.5vw, 21px);
+.cs__contact .spec__label {
+	@apply text-white;
+	min-width: 0;
+	font-size: clamp(16px, 1.3vw, 20px);
+	opacity: 0.72;
 }
-.cs__line:hover {
+.cs__contact .spec__leader {
+	background: rgb(255 255 255 / 0.16);
+}
+.cs__contact .spec__value {
+	@apply text-white;
+	font-size: clamp(19px, 1.7vw, 26px);
+}
+.cs__contact {
+	@apply self-center;
+}
+a.spec__value:hover {
 	@apply text-marine-bright;
-}
-.cs__icon {
-	@apply flex-none text-marine;
 }
 .cs__cta {
 	margin-top: 4px;
 }
 
 /* Below this the mascot stacks above the copy rather than shrinking away. */
+@media (max-width: 1024px) {
+	.cs__layout {
+		grid-template-columns: 1fr;
+	}
+}
 @media (max-width: 760px) {
 	.cs__inner {
 		grid-template-columns: 1fr;

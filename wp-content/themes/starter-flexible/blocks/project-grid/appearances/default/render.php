@@ -3,7 +3,6 @@
  * Project Grid — default appearance.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -18,9 +17,8 @@ if ( empty( $data->should_render ) ) {
 	return;
 }
 
-$anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
 	<div class="grid grid--12 pg" data-reveal-stagger>
 		<?php foreach ( $data->items as $item ) : ?>

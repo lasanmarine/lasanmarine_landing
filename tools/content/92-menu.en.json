@@ -5,7 +5,7 @@
   "items": [
     {
       "label": "About",
-      "page": "about-us"
+      "page": "about"
     },
     {
       "label": "Capabilities",
@@ -13,56 +13,57 @@
       "classes": [
         "has-mega"
       ],
-      "description": "Three independent fields, each built on engineering calculation and verified data.",
+      "description": "Ship design is our core discipline. R&D extends our ability to investigate technical questions, while software turns recurring workflow problems into usable systems.",
       "children": [
         {
-          "label": "Ship Design & Engineering",
-          "page": "ship-design",
-          "description": "Newbuild, conversion and complete documentation to class requirements.",
+          "label": "Ship Design",
+          "page": "service_01",
+          "description": "Newbuild and conversion design, calculations, drawings and technical documentation.",
           "children": [
             {
               "label": "Newbuild design"
             },
             {
-              "label": "Conversion design"
+              "label": "Conversion & retrofit design"
             },
             {
-              "label": "Stability calculation"
+              "label": "Calculations & documentation"
             },
             {
-              "label": "Propeller design"
+              "label": "Build a design brief",
+              "page": "design_brief"
             }
           ]
         },
         {
-          "label": "Digital Solutions",
-          "page": "information-technology-services",
-          "description": "Websites, internal management software and AI automation.",
+          "label": "Research & Development",
+          "page": "service_rnd",
+          "description": "CFD, structural analysis, measurement and comparison with real-world data.",
           "children": [
             {
-              "label": "Websites"
+              "label": "CFD and hydrodynamics"
             },
             {
-              "label": "Management software"
+              "label": "Structures and vibration"
             },
             {
-              "label": "AI & Automation"
+              "label": "Measurement and validation"
             }
           ]
         },
         {
-          "label": "Marine R&D",
-          "page": "marine-rd",
-          "description": "CFD simulation, structural analysis and measuring equipment.",
+          "label": "Software",
+          "page": "service_03",
+          "description": "Management systems, websites, automation and applied AI.",
           "children": [
             {
-              "label": "CFD simulation"
+              "label": "Custom management systems"
             },
             {
-              "label": "Structural analysis"
+              "label": "Websites and web products"
             },
             {
-              "label": "Publications"
+              "label": "Automation and applied AI"
             }
           ]
         }

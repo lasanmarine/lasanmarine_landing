@@ -6,7 +6,6 @@
  * and result panel, so the two calculators read as one tool.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -24,37 +23,8 @@ if ( empty( $data->should_render ) ) {
 <form class="<?php echo esc_attr( $data->module_class ); ?>" data-shaft novalidate data-error-text="<?php echo esc_attr( $data->error_text ); ?>">
 	<div class="pc__grid">
 		<div class="pc__inputs" data-aos="fade-right">
-			<?php
-			$power_id = wp_unique_id( 'shaft-power-' );
-			$rpm_id   = wp_unique_id( 'shaft-rpm-' );
-			$ratio_id = wp_unique_id( 'shaft-ratio-' );
 
-			$combos = array(
-				array(
-					'id'         => $power_id,
-					'label'      => $data->label_power,
-					'name'       => 'power',
-					'value'      => '750',
-					'min'        => '0',
-					'hook'       => 'data-shaft-power',
-					'unit_hook'  => 'data-shaft-power-unit',
-					'unit_label' => __( 'Đơn vị công suất', 'starter-flexible' ),
-					'units'      => $data->power_units,
-				),
-				array(
-					'id'         => $rpm_id,
-					'label'      => $data->label_rpm,
-					'name'       => 'rpm',
-					'value'      => '1800',
-					'min'        => '0',
-					'hook'       => 'data-shaft-rpm',
-					'unit_hook'  => 'data-shaft-rpm-unit',
-					'unit_label' => __( 'Đơn vị vòng quay', 'starter-flexible' ),
-					'units'      => $data->rpm_units,
-				),
-			);
-			?>
-			<?php foreach ( $combos as $combo ) : ?>
+			<?php foreach ( $data->combos as $combo ) : ?>
 				<div class="field">
 					<label class="field__label" for="<?php echo esc_attr( $combo['id'] ); ?>"><?php echo esc_html( $combo['label'] ); ?></label>
 					<div class="pc__combo">
@@ -79,10 +49,10 @@ if ( empty( $data->should_render ) ) {
 			<?php endforeach; ?>
 
 			<div class="field">
-				<label class="field__label" for="<?php echo esc_attr( $ratio_id ); ?>"><?php echo esc_html( $data->label_ratio ); ?></label>
+				<label class="field__label" for="<?php echo esc_attr( $data->ratio_id ); ?>"><?php echo esc_html( $data->label_ratio ); ?></label>
 				<input
 					class="field__control"
-					id="<?php echo esc_attr( $ratio_id ); ?>"
+					id="<?php echo esc_attr( $data->ratio_id ); ?>"
 					name="ratio"
 					type="number"
 					step="any"
@@ -103,11 +73,11 @@ if ( empty( $data->should_render ) ) {
 							<input type="radio" name="material" value="<?php echo esc_attr( (string) $material['k3'] ); ?>" <?php checked( 0, $i ); ?> data-shaft-material />
 							<span class="sd__choice-text">
 								<strong><?php echo esc_html( $material['name'] ); ?></strong>
-								<?php if ( '' !== trim( (string) $material['note'] ) ) : ?>
+								<?php if ( $material['has_note'] ) : ?>
 									<em><?php echo esc_html( $material['note'] ); ?></em>
 								<?php endif; ?>
 							</span>
-							<span class="sd__choice-k">k = <?php echo esc_html( rtrim( rtrim( number_format( (float) $material['k3'], 3, '.', '' ), '0' ), '.' ) ); ?></span>
+							<span class="sd__choice-k">k = <?php echo esc_html( $material['k3_label'] ); ?></span>
 						</label>
 					<?php endforeach; ?>
 				</div>
@@ -122,14 +92,9 @@ if ( empty( $data->should_render ) ) {
 		<div class="pc__results" data-aos="fade-left" data-aos-delay="100">
 			<h3 class="pc__heading"><?php echo esc_html( $data->results_label ); ?></h3>
 			<div class="pc__result-list" aria-live="polite" aria-atomic="true">
-				<?php
-				$rows = array(
-					array( 'id' => 'prop-rpm', 'label' => $data->prop_rpm_label, 'attr' => 'data-shaft-prop-rpm' ),
-					array( 'id' => 'result', 'label' => $data->result_label, 'attr' => 'data-shaft-result' ),
-				);
-				?>
-				<?php foreach ( $rows as $i => $row ) : ?>
-					<div class="pc__result" data-shaft-row="<?php echo esc_attr( $row['id'] ); ?>" data-aos="fade-up" data-aos-delay="<?php echo esc_attr( (string) ( 150 + $i * 70 ) ); ?>">
+
+				<?php foreach ( $data->rows as $row ) : ?>
+					<div class="pc__result" data-shaft-row="<?php echo esc_attr( $row['id'] ); ?>" data-aos="fade-up" data-aos-delay="<?php echo esc_attr( (string) $row['delay'] ); ?>">
 						<span class="pc__result-label"><?php echo esc_html( $row['label'] ); ?></span>
 						<output class="pc__result-value" aria-label="<?php echo esc_attr( $row['label'] ); ?>" <?php echo esc_attr( $row['attr'] ); ?>>—</output>
 						<button type="button" class="pc__copy" data-shaft-copy="<?php echo esc_attr( $row['id'] ); ?>" aria-label="<?php esc_attr_e( 'Sao chép kết quả', 'starter-flexible' ); ?>">

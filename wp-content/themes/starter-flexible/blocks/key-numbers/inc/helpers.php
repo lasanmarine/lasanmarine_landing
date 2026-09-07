@@ -9,34 +9,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function starter_flexible_block_data_key_numbers( array $block ) {
-	$data = array_merge(
-		array(
+final class Starter_Flexible_Block_Key_Numbers extends Starter_Flexible_Abstract_Block {
+	protected function defaults(): array {
+		return array(
 			'label'        => 'KEY NUMBERS',
 			'stats'        => array(),
 			'custom_class' => '',
-		),
-		starter_flexible_get_block_fields( $block )
-	);
-
-	$stats = array();
-	foreach ( (array) $data['stats'] as $stat ) {
-		$value = isset( $stat['value'] ) ? (string) $stat['value'] : '';
-		if ( '' === trim( $value ) ) {
-			continue;
-		}
-		$stats[] = array(
-			'value'  => $value,
-			'suffix' => isset( $stat['suffix'] ) ? (string) $stat['suffix'] : '',
-			'label'  => isset( $stat['label'] ) ? (string) $stat['label'] : '',
-			'note'   => isset( $stat['note'] ) ? (string) $stat['note'] : '',
 		);
 	}
 
-	$data['stats']         = $stats;
-	$data['has_label']     = '' !== trim( (string) $data['label'] );
-	$data['module_class']  = starter_flexible_build_module_class( 'block', (string) $data['custom_class'] );
-	$data['should_render'] = ! empty( $stats );
+	protected function base_class(): string {
+		return 'block';
+	}
 
-	return (object) $data;
+	protected function prepare( array $data ): array {
+
+		$stats = array();
+		foreach ( (array) $data['stats'] as $stat ) {
+			$value = isset( $stat['value'] ) ? (string) $stat['value'] : '';
+			if ( '' === trim( $value ) ) {
+				continue;
+			}
+			$stats[] = array(
+				'value'  => $value,
+				'suffix' => isset( $stat['suffix'] ) ? (string) $stat['suffix'] : '',
+				'label'  => isset( $stat['label'] ) ? (string) $stat['label'] : '',
+				'note'   => isset( $stat['note'] ) ? (string) $stat['note'] : '',
+			);
+		}
+
+		$data['stats']         = $stats;
+		$data['has_label']     = '' !== trim( (string) $data['label'] );
+		$data['should_render'] = ! empty( $stats );
+
+		return $data;
+	}
+}
+
+function starter_flexible_block_data_key_numbers( array $block ) {
+	return ( new Starter_Flexible_Block_Key_Numbers( $block ) )->data();
 }

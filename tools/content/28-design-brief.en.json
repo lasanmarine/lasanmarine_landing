@@ -1,0 +1,79 @@
+{
+  "key": "design_brief_en",
+  "title": "Ship Design Brief",
+  "slug": "design-brief",
+  "lang": "en",
+  "translation_of": "design_brief",
+  "parent": "tools",
+  "seo": {
+    "title": "Ship Design Brief | Start a Vessel Design Project | LASAN MARINE",
+    "description": "A simple design brief for sharing the vessel mission, expected dimensions, hull material, propulsion and other known requirements before concept development begins."
+  },
+  "blocks": [
+    {
+      "type": "page-hero",
+      "fields": {
+        "headline": "Start with what you already know",
+        "lead": "At the beginning of a project, you may only have the vessel mission, an expected size, a hull material or an engine in mind. The design brief collects those early decisions in one place so we can understand the project faster and focus the first design discussion.",
+        "placeholder": "Ship design brief",
+        "heading_level": "h1",
+        "height": 340,
+        "custom_class": "",
+        "image": 586
+      }
+    },
+    {
+      "type": "design-brief",
+      "fields": {
+        "label": "DESIGN BRIEF",
+        "heading": "You do not need every answer before you start",
+        "intro": "Add the vessel type, mission, expected dimensions, hull material, main engine or any other requirement already known. Leave uncertain items blank. We can work through them as the concept develops.",
+        "cf7_form": "nhiem-vu-thu-thiet-ke",
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "accordion",
+      "fields": {
+        "heading": "Common questions when preparing a design brief",
+        "items": [
+          {
+            "title": "Can I submit the brief if I do not know the exact vessel dimensions?",
+            "content": "Yes. You can provide a target range, known constraints or leave the dimensions open. Principal dimensions can be developed as part of the concept stage."
+          },
+          {
+            "title": "Is the design brief a design document?",
+            "content": "No. It is an input document used to establish the project requirements before detailed calculations and drawings begin."
+          },
+          {
+            "title": "Can I use the brief for a vessel conversion?",
+            "content": "Yes. Describe the intended change and attach any existing drawings, vessel data or photos you have. Those references help us understand which parts of the vessel may be affected."
+          },
+          {
+            "title": "What happens after I send the brief?",
+            "content": "We review the information, identify any critical gaps and come back with the calculations, drawings or design work we believe the project needs next."
+          }
+        ],
+        "open_first": 0,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "cta-banner",
+      "fields": {
+        "heading": "From brief to first design decisions",
+        "content": "Once the key requirements are captured, we can review the brief and discuss the concept, the calculations that matter and the technical documentation needed for the next stage.",
+        "primary_cta": {
+          "label": "Explore ship design",
+          "page": "service_01"
+        },
+        "secondary_cta": {
+          "label": "Discuss the project",
+          "page": "contact"
+        },
+        "theme": "pale",
+        "custom_class": ""
+      }
+    }
+  ]
+}

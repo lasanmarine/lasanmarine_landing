@@ -1,0 +1,52 @@
+/* Dải bằng chứng đứng giữa hai section nên nó tự lo khoảng thở của mình và
+   đổi nền để tách khỏi hai khối kề bên. */
+.ps {
+	padding-block: clamp(34px, 3.6vw, 56px);
+}
+.ps__row {
+	@apply grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+	gap: clamp(20px, 2.4vw, 36px);
+}
+.ps__item {
+	@apply flex flex-col border-l border-line;
+	gap: 6px;
+	padding-left: clamp(18px, 2vw, 30px);
+}
+.ps__item:first-child {
+	@apply border-l-0 pl-0;
+}
+.ps__value {
+	@apply font-display font-semibold leading-none text-navy;
+	font-size: clamp(32px, 3.2vw, 46px);
+	letter-spacing: -0.03em;
+}
+.ps__label {
+	@apply font-display font-semibold text-navy;
+	font-size: 14.5px;
+	line-height: 1.4;
+}
+.ps__note {
+	@apply text-mute;
+	max-width: 22em;
+	font-size: 12.5px;
+	line-height: 1.55;
+}
+.ps__item--link:hover .ps__value,
+.ps__item--link:hover .ps__label {
+	@apply text-marine;
+}
+.ps__item--link .ps__value,
+.ps__item--link .ps__label {
+	transition: color 200ms ease;
+}
+
+@media (max-width: 640px) {
+	.ps__item {
+		@apply border-l-0 border-t border-line pl-0;
+		padding-top: 18px;
+	}
+	.ps__item:first-child {
+		@apply border-t-0 pt-0;
+	}
+}

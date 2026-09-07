@@ -1,41 +1,25 @@
 <?php
 /**
- * Template part for displaying a message that posts cannot be found
+ * Nothing found — the empty state for a search or an archive with no posts.
  *
  * @package Starter_Flexible
  * @since 1.0.0
  */
 ?>
 
-<section class="no-results not-found">
-	<header class="page-header">
-		<h1 class="page-title"><?php _e('Nothing Found', 'starter-flexible'); ?></h1>
-	</header>
-
-	<div class="page-content">
-		<?php if (is_home() && current_user_can('publish_posts')) : ?>
-			<p>
-				<?php
-				printf(
-					wp_kses(
-						__('Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'starter-flexible'),
-						array(
-							'a' => array(
-								'href' => array(),
-							),
-						)
-					),
-					esc_url(admin_url('post-new.php'))
-				);
-				?>
-			</p>
-		<?php elseif (is_search()) : ?>
-			<p><?php _e('Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'starter-flexible'); ?></p>
-			<?php get_search_form(); ?>
-		<?php else : ?>
-			<p><?php _e('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'starter-flexible'); ?></p>
-			<?php get_search_form(); ?>
-		<?php endif; ?>
-	</div>
-</section>
-
+<div class="err__empty">
+	<p class="err__empty-title">
+		<?php
+		if ( is_search() ) {
+			esc_html_e( 'Không có kết quả nào khớp với từ khóa.', 'starter-flexible' );
+		} else {
+			esc_html_e( 'Chưa có nội dung trong mục này.', 'starter-flexible' );
+		}
+		?>
+	</p>
+	<p class="err__empty-note"><?php esc_html_e( 'Thử một từ khóa khác, hoặc quay lại trang chủ.', 'starter-flexible' ); ?></p>
+	<a class="btn btn--secondary" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<?php esc_html_e( 'Về trang chủ', 'starter-flexible' ); ?>
+		<?php echo starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore ?>
+	</a>
+</div>

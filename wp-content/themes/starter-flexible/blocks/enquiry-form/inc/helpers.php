@@ -10,23 +10,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function starter_flexible_block_data_enquiry_form( array $block ) {
-	$data = array_merge(
-		array(
+final class Starter_Flexible_Block_Enquiry_Form extends Starter_Flexible_Abstract_Block {
+	protected function defaults(): array {
+		return array(
 			'heading'      => '',
 			'note'         => '',
 			'cf7_form'     => 0,
 			'custom_class' => '',
-		),
-		starter_flexible_get_block_fields( $block )
-	);
+		);
+	}
 
-	$cf7_id = is_object( $data['cf7_form'] ) ? (int) $data['cf7_form']->ID : (int) $data['cf7_form'];
+	protected function base_class(): string {
+		return 'block container';
+	}
 
-	$data['cf7_id']        = $cf7_id;
-	$data['has_note']      = '' !== trim( (string) $data['note'] );
-	$data['module_class']  = starter_flexible_build_module_class( 'block container', (string) $data['custom_class'] );
-	$data['should_render'] = $cf7_id > 0 || '' !== trim( (string) $data['heading'] );
+	protected function prepare( array $data ): array {
 
-	return (object) $data;
+		$cf7_id = is_object( $data['cf7_form'] ) ? (int) $data['cf7_form']->ID : (int) $data['cf7_form'];
+
+		$data['cf7_id']        = $cf7_id;
+		$data['has_note']      = '' !== trim( (string) $data['note'] );
+		$data['should_render'] = $cf7_id > 0 || '' !== trim( (string) $data['heading'] );
+
+		$data['form_html'] = $data['cf7_id'] > 0 ? do_shortcode( sprintf( '[contact-form-7 id="%d"]', $data['cf7_id'] ) ) : '';
+
+		$data['anchor'] = 'apply';
+
+		return $data;
+	}
+}
+
+function starter_flexible_block_data_enquiry_form( array $block ) {
+	return ( new Starter_Flexible_Block_Enquiry_Form( $block ) )->data();
 }

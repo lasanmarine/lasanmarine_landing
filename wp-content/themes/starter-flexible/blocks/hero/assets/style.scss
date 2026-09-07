@@ -9,6 +9,16 @@
 .hero__media {
 	@apply absolute inset-0;
 }
+/* Every slide's photograph occupies the same box; only the current one is
+   painted, and the change is a cross-fade rather than a move. */
+.hero__frame {
+	@apply absolute inset-0;
+	opacity: 0;
+	transition: opacity 620ms var(--ease);
+}
+.hero__frame.is-current {
+	opacity: 1;
+}
 .hero__media img {
 	@apply h-full w-full object-cover;
 }
@@ -24,8 +34,37 @@
 }
 .hero__body {
 	@apply relative flex flex-col;
-	gap: clamp(36px, 4vw, 60px);
+	gap: clamp(22px, 2.4vw, 36px);
 	padding-block: clamp(120px, 16vw, 220px) clamp(120px, 13vw, 190px);
+}
+/* The headline and the lead are each a stack of panels on one grid cell, so
+   the hero is as tall as its tallest slide and never resizes as it turns. */
+.hero__headlines,
+.hero__leads {
+	@apply grid;
+}
+.hero__headlines > *,
+.hero__leads > * {
+	grid-area: 1 / 1;
+}
+.hero__headline,
+.hero__lead {
+	/* `visibility` rather than `display`, so the panel keeps its size — and
+	   leaves the accessibility tree while it is not the one being read. */
+	@apply invisible;
+	margin: 0;
+	opacity: 0;
+	transition:
+		opacity 420ms var(--ease),
+		visibility 420ms step-end;
+}
+.hero__headline.is-current,
+.hero__lead.is-current {
+	@apply visible;
+	opacity: 1;
+	transition:
+		opacity 420ms var(--ease) 90ms,
+		visibility 0s;
 }
 .hero__headline {
 	@apply text-white;
@@ -43,11 +82,59 @@
 	gap: clamp(24px, 3vw, 56px);
 	max-width: 1280px;
 }
-.hero__foot .copy {
+.hero__lead {
 	max-width: 30em;
 	color: rgba(255, 255, 255, 0.74);
 }
 .hero__actions {
 	@apply flex flex-wrap;
 	gap: 14px;
+}
+
+/* --- the dots ---------------------------------------------------------- */
+
+/* One rule per slide, filling left to right while its slide is up. The fill
+   is driven from the script so it restarts on every turn, autoplay or not. */
+.hero__dots {
+	@apply flex flex-wrap;
+	gap: 10px;
+	margin-top: clamp(14px, 1.4vw, 22px);
+}
+.hero__dot {
+	@apply relative cursor-pointer overflow-hidden border-0 p-0;
+	width: clamp(38px, 5vw, 64px);
+	height: 3px;
+	border-radius: 2px;
+	background: rgba(255, 255, 255, 0.26);
+	transition: background-color 240ms var(--ease);
+}
+.hero__dot:hover {
+	background: rgba(255, 255, 255, 0.42);
+}
+.hero__dot:focus-visible {
+	outline: 2px solid theme('colors.marine-bright');
+	outline-offset: 4px;
+}
+.hero__dot-fill {
+	@apply absolute inset-y-0 left-0 bg-marine-bright;
+	width: 100%;
+	transform: scaleX(0);
+	transform-origin: left;
+}
+.hero__dot.is-current .hero__dot-fill {
+	transform: scaleX(1);
+	transition: transform var(--hero-dot-ms, 620ms) linear;
+}
+/* No autoplay: the current dot is simply full, with no sweep to watch. */
+.hero__dot.is-current.is-static .hero__dot-fill {
+	transition: transform 240ms var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero__frame,
+	.hero__headline,
+	.hero__lead,
+	.hero__dot-fill {
+		transition-duration: 1ms !important;
+	}
 }

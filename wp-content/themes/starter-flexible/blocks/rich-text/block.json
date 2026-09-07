@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/rich-text",
+    "title": "LASAN — Rich Text",
+    "description": "Đoạn nội dung biên tập dài, một cột, chọn được bề rộng.",
+    "category": "flexible-blocks",
+    "icon": "editor-paragraph",
+    "keywords": ["text", "editorial", "content"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

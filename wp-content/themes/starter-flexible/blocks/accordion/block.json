@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/accordion",
+    "title": "LASAN — Accordion",
+    "description": "Câu hỏi thường gặp hoặc thông tin mở rộng, mỗi mục một dòng kẻ.",
+    "category": "flexible-blocks",
+    "icon": "menu",
+    "keywords": ["accordion", "faq", "toggle"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

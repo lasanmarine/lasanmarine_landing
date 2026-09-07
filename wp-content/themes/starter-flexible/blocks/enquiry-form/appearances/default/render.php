@@ -3,7 +3,6 @@
  * Enquiry Form — default appearance. Renders the chosen Contact Form 7 form.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -18,9 +17,8 @@ if ( empty( $data->should_render ) ) {
 	return;
 }
 
-$anchor = ! empty( $block['anchor'] ) ? (string) $block['anchor'] : 'apply';
 ?>
-<section id="<?php echo esc_attr( $anchor ); ?>" class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal>
+<section id="<?php echo esc_attr( $data->anchor ); ?>" class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal>
 	<div class="ef">
 		<?php if ( '' !== $data->heading || $data->has_note ) : ?>
 			<div class="ef__intro">
@@ -36,7 +34,7 @@ $anchor = ! empty( $block['anchor'] ) ? (string) $block['anchor'] : 'apply';
 		<div class="ef__form">
 			<?php
 			if ( $data->cf7_id > 0 ) {
-				echo do_shortcode( sprintf( '[contact-form-7 id="%d"]', (int) $data->cf7_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $data->form_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} elseif ( $is_preview ) {
 				printf( '<p class="ef__hint">%s</p>', esc_html__( 'Chưa chọn form Contact Form 7.', 'starter-flexible' ) );
 			}

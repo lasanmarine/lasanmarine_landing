@@ -1,0 +1,21 @@
+{
+  "key": "group_use_case",
+  "title": "Use Case",
+  "fields": [
+    { "key": "field_use_case_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_use_case_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_use_case_intro", "label": "Intro", "name": "intro", "type": "textarea", "rows": 3, "new_lines": "" },
+    {
+      "key": "field_use_case_items", "label": "Items", "name": "items", "type": "repeater",
+      "layout": "block", "button_label": "Add Use Case",
+      "sub_fields": [
+        { "key": "field_use_case_item_problem", "label": "Problem", "name": "problem", "type": "text", "instructions": "Viết như lời khách nói ra, không phải tên dịch vụ." },
+        { "key": "field_use_case_item_context", "label": "Context", "name": "context", "type": "textarea", "rows": 3, "new_lines": "" },
+        { "key": "field_use_case_item_solution", "label": "Solution", "name": "solution", "type": "textarea", "rows": 3, "new_lines": "" },
+        { "key": "field_use_case_item_link", "label": "Link", "name": "link", "type": "link", "return_format": "array" }
+      ]
+    },
+    { "key": "field_use_case_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/use-case" }]]
+}

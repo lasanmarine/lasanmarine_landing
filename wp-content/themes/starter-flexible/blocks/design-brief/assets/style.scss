@@ -1,58 +1,116 @@
-/* Design Brief — a long working form. Sections are ruled cards, fields sit on
-   an auto-fitting grid so a section is as tall as its content and no taller. */
+/* Design Brief — a long working form. Nothing is boxed: sections are separated
+   by a rule and their own spacing, and each row holds the fields that are
+   filled in together, so the page reads top to bottom like the paper it
+   becomes. */
 .db__form {
-	@apply flex flex-col;
-	gap: clamp(24px, 3vw, 40px);
+	@apply flex min-w-0 flex-col;
+	gap: clamp(28px, 3.4vw, 48px);
 }
 .db__intro {
 	@apply flex flex-col items-start;
 	gap: 10px;
 }
 
+/* A section is a heading over a rule — no card, no inner padding. The rule is
+   a pseudo-element rather than a border on the fieldset, which the browser
+   would break open to seat the legend in. */
 .db__section {
-	@apply m-0 border border-line bg-paper;
-	padding: clamp(20px, 2.4vw, 32px);
-	border-radius: var(--r-md);
+	@apply relative m-0 min-w-0 border-0 p-0;
+	padding-top: clamp(16px, 1.8vw, 24px);
+}
+.db__section::before {
+	@apply absolute left-0 top-0 w-full border-t border-line;
+	content: '';
 }
 .db__legend {
-	@apply font-display font-semibold text-navy;
-	padding: 0 10px;
-	margin-left: -10px;
+	@apply block w-full font-display font-semibold text-navy;
+	padding: 0;
+	margin: 0 0 4px;
 	font-size: 18px;
 	letter-spacing: -0.01em;
 }
 .db__note {
 	@apply text-mute;
-	margin: 4px 0 18px;
+	margin: 0 0 18px;
 	font-size: 13.5px;
 	line-height: 1.6;
 }
 .db__sub {
 	@apply font-display font-semibold text-steel;
-	margin: 22px 0 12px;
+	margin: 26px 0 6px;
 	font-size: 12.5px;
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
 }
-.db__sub:first-of-type {
-	margin-top: 14px;
-}
 
-.db__grid {
+/* --- rows -------------------------------------------------------------- */
+
+/* One family of fields: a title, then the fields side by side. Columns fold to
+   two, then one, so a five-across row of bed dimensions stays readable. */
+.db__row-group {
+	margin-top: 16px;
+}
+.db__row-title {
+	@apply block font-display font-medium text-steel;
+	margin-bottom: 8px;
+	font-size: 12px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+/* Fields are as wide as what goes in them, not as wide as the page: a column
+   is capped and the row packs to the left instead of stretching. */
+.db__row {
 	@apply grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
-	gap: 18px 20px;
-	margin-top: 14px;
+	gap: 16px 20px;
+	grid-template-columns: repeat(var(--db-cols, 1), var(--db-track, minmax(0, 300px)));
+	justify-content: start;
 }
-.db__grid--tight {
-	grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+.db__row--1 {
+	--db-cols: 1;
 }
-.db__grid--members {
-	grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
-	gap: 12px 16px;
+.db__row--2 {
+	--db-cols: 2;
 }
-.db__field--wide {
+.db__row--3 {
+	--db-cols: 3;
+}
+.db__row--4 {
+	--db-cols: 4;
+}
+.db__row--5 {
+	--db-cols: 5;
+	--db-track: minmax(0, 190px);
+}
+@media (max-width: 900px) {
+	.db__row--3,
+	.db__row--4,
+	.db__row--5 {
+		--db-cols: 2;
+	}
+}
+@media (max-width: 560px) {
+	.db__row {
+		--db-cols: 1 !important;
+		--db-track: minmax(0, 1fr);
+	}
+}
+/* A note wants room to be written in; a catalogue wants room to be read. */
+.db__row-group:has(textarea),
+.db__row-group:has(.db__field--combo) {
+	--db-track: minmax(0, 1fr);
+}
+.db__row-group:has(textarea) .db__row,
+.db__row-group:has(.db__field--combo) .db__row {
+	max-width: 940px;
+}
+.db__field--wide,
+.db__field--combo,
+.db__field:has(textarea) {
 	grid-column: 1 / -1;
+}
+.db__field--combo .field__control,
+.db__field:has(textarea) .field__control {
+	max-width: 620px;
 }
 .db .field__label {
 	@apply font-display font-semibold text-navy;
@@ -81,28 +139,71 @@
 	cursor: default;
 }
 
-/* --- engines --------------------------------------------------------- */
+/* --- catalogues ------------------------------------------------------- */
+
+/* The list under a box: click an entry and it is typed in for you. Nothing is
+   locked to the list — anything can be written into the box instead. */
+.db__presets {
+	@apply flex flex-wrap;
+	gap: 8px;
+	margin-top: 4px;
+}
+/* Hundreds of engine models: that one list scrolls. */
+.db__presets--scroll {
+	@apply overflow-y-auto border border-line;
+	max-height: 208px;
+	padding: 10px;
+	border-radius: var(--r-md);
+}
+.db__preset {
+	@apply cursor-pointer border border-line bg-paper text-steel;
+	padding: 6px 12px;
+	border-radius: var(--r-sm);
+	font-size: 13.5px;
+	line-height: 1.3;
+	transition:
+		border-color 160ms ease,
+		background-color 160ms ease,
+		color 160ms ease;
+}
+.db__preset:hover {
+	@apply border-marine text-marine;
+}
+.db__preset.is-picked {
+	@apply border-marine bg-marine text-white;
+}
+.db__preset:focus-visible {
+	outline: 2px solid theme('colors.marine-bright');
+	outline-offset: 2px;
+}
+.db__presets-empty {
+	@apply m-0 text-mute;
+	font-size: 13px;
+}
+
+/* --- engines ----------------------------------------------------------- */
+
+/* An engine is marked by a rule down its left edge, not a card. */
 .db__engines {
 	@apply flex flex-col;
-	gap: 20px;
+	gap: 28px;
 	margin-top: 14px;
 }
 .db__engine {
-	@apply relative m-0 border border-line bg-pale;
-	padding: clamp(18px, 2vw, 26px);
-	border-radius: var(--r-md);
+	@apply relative m-0 min-w-0 border-0 border-l-2 border-line p-0;
+	padding-left: clamp(14px, 1.6vw, 22px);
 }
 .db__engine-title {
-	@apply font-display font-semibold text-marine;
-	padding: 0 8px;
-	margin-left: -8px;
+	@apply block w-full font-display font-semibold text-marine;
+	padding: 0;
+	margin: 0;
 	font-size: 15px;
 	letter-spacing: 0.02em;
 }
 .db__engine-remove {
 	@apply absolute cursor-pointer border border-line bg-paper text-mute;
-	top: 14px;
-	right: 14px;
+	top: 0;
+	right: 0;
 	display: inline-flex;
 	padding: 6px;
 	border-radius: var(--r-sm);
@@ -114,14 +215,14 @@
 	@apply border-marine text-marine;
 }
 .db__add {
-	margin-top: 18px;
+	margin-top: 22px;
 }
 
-/* --- actions --------------------------------------------------------- */
+/* --- actions ----------------------------------------------------------- */
 .db__actions {
-	@apply flex flex-wrap items-center;
+	@apply flex flex-wrap items-center border-t border-line;
 	gap: 12px 16px;
-	padding-top: 8px;
+	padding-top: 20px;
 }
 .db__actions .is-copied {
 	@apply bg-navy;
@@ -149,21 +250,24 @@
 	@apply border-marine text-marine;
 }
 
-/* Printing a brief: drop the site chrome and the buttons, keep the paper. */
+/* "In / Lưu PDF" prints an administrative document from its own iframe, so the
+   page itself only needs to behave if someone reaches for Ctrl+P. */
 @media print {
 	.hdr,
 	.ftr,
-	.drawer,
+	.navx,
 	.db__actions,
 	.db__add,
 	.db__engine-remove {
 		display: none !important;
 	}
 	.db__section,
-	.db__engine {
+	.db__engine,
+	.db__row-group {
 		break-inside: avoid;
-		border-color: #999;
-		background: #fff;
+	}
+	.db__presets {
+		display: none !important;
 	}
 	.db .field__control {
 		border-color: #bbb;

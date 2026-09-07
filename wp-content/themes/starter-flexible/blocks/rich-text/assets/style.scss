@@ -1,0 +1,32 @@
+/* Một cột chữ. Bề rộng là tầm đọc, không phải bề rộng lưới — nên đặt bằng px
+   chứ không theo cột. */
+.rt__column {
+	@apply flex flex-col;
+	gap: clamp(18px, 2vw, 28px);
+}
+.rt--narrow {
+	max-width: 680px;
+}
+.rt--medium {
+	max-width: 840px;
+}
+.rt--wide {
+	max-width: 1080px;
+}
+.rt--center {
+	@apply mx-auto text-center;
+}
+/* Căn giữa thì bỏ dấu đầu dòng lệch trái, nếu không danh sách sẽ lệch trục. */
+.rt--center .rt__body li {
+	@apply pl-0;
+}
+.rt--center .rt__body li::before {
+	@apply hidden;
+}
+.rt--center .rt__body blockquote {
+	@apply border-l-0;
+	padding-left: 0;
+}
+.rt__heading {
+	text-wrap: balance;
+}

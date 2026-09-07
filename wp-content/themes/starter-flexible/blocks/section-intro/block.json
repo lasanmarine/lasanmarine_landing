@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/section-intro",
+    "title": "LASAN — Section Intro",
+    "description": "Câu mở cho một section: nhãn, tiêu đề và một đoạn ngắn, căn giữa.",
+    "category": "flexible-blocks",
+    "icon": "align-center",
+    "keywords": ["intro", "section", "heading"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

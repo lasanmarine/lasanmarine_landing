@@ -1,0 +1,300 @@
+{
+  "key": "capabilities_en",
+  "title": "Capabilities",
+  "slug": "capabilities",
+  "lang": "en",
+  "translation_of": "capabilities",
+  "seo": {
+    "title": "Ship Design, Marine R&D & Software Capabilities | LASAN MARINE",
+    "description": "Explore our ship design experience, research work, specialist software stack and custom software capabilities across vessel design, simulation, measurement and digital systems."
+  },
+  "blocks": [
+    {
+      "type": "page-hero",
+      "fields": {
+        "headline": "Capability is easier to judge when you can see the work behind it",
+        "lead": "More than 300 vessel design packages show the range of ship-design work our team has handled. Alongside that record are 20+ scientific publications and a software practice covering management systems, websites, automation and applied AI.",
+        "placeholder": "LASAN MARINE capabilities",
+        "heading_level": "h1",
+        "height": 420,
+        "custom_class": "",
+        "image": 585
+      }
+    },
+    {
+      "type": "proof-strip",
+      "fields": {
+        "items": [
+          {
+            "value": "300+",
+            "label": "Vessel design packages",
+            "link": {
+              "label": "View projects",
+              "page": "projects"
+            }
+          },
+          {
+            "value": "20+ years",
+            "label": "Experience across our core team"
+          },
+          {
+            "value": "3",
+            "label": "Hull materials",
+            "note": "Wood · Steel · Composite"
+          },
+          {
+            "value": "20+",
+            "label": "Scientific publications",
+            "link": {
+              "label": "Explore R&D",
+              "page": "service_rnd"
+            }
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "capability-matrix",
+      "fields": {
+        "heading": "Ship design is our core discipline, supported by R&D and software",
+        "items": [
+          {
+            "index": "01",
+            "icon": "ship",
+            "name": "Ship Design",
+            "desc": "Newbuild and conversion design for wood, steel and composite vessels, from concept development and hydrostatics to structures, propulsion and technical drawings.",
+            "link": {
+              "label": "Explore ship design",
+              "page": "service_01"
+            },
+            "children": [
+              {
+                "name": "Hull form, hydrostatics and stability"
+              },
+              {
+                "name": "Hull structure and system arrangement"
+              },
+              {
+                "name": "Resistance, power, propeller and shafting"
+              },
+              {
+                "name": "Technical drawings and project documentation"
+              }
+            ]
+          },
+          {
+            "index": "02",
+            "icon": "scan",
+            "name": "Research & Development",
+            "desc": "Research, simulation and measurement for questions involving hydrodynamics, structures, vibration, propulsion and geometry, with methods selected around the question being investigated.",
+            "link": {
+              "label": "Explore R&D",
+              "page": "service_rnd"
+            },
+            "children": [
+              {
+                "name": "CFD and hull–propeller–rudder interaction"
+              },
+              {
+                "name": "Stress, vibration and propulsion systems"
+              },
+              {
+                "name": "Geometric measurement and specialised equipment"
+              },
+              {
+                "name": "Research reports and scientific publications"
+              }
+            ]
+          },
+          {
+            "index": "03",
+            "icon": "link",
+            "name": "Software",
+            "desc": "Custom software for management, websites, workflow automation and AI-enabled applications. Public calculators and lookup tools are only a small part of this wider software capability.",
+            "link": {
+              "label": "Explore software",
+              "page": "service_03"
+            },
+            "children": [
+              {
+                "name": "Management systems and custom software"
+              },
+              {
+                "name": "Websites and digital products"
+              },
+              {
+                "name": "Workflow automation"
+              },
+              {
+                "name": "Applied AI for defined use cases"
+              }
+            ]
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "service-spotlight",
+      "fields": {
+        "placeholder": "Ship design calculations and drawings",
+        "caption": "Ship Design",
+        "heading": "Experience across vessel types, hull materials and design problems",
+        "body": "Our project record includes fishing vessels, fisheries support vessels, passenger craft and inland-waterway vessels in wood, steel and composite. The work ranges from newbuild and conversion design to specialist calculations and as-built technical documentation.",
+        "items": [
+          {
+            "text": "More than 300 vessel design packages"
+          },
+          {
+            "text": "Wood, steel and composite hulls"
+          },
+          {
+            "text": "Newbuilds, conversions and as-built documentation"
+          },
+          {
+            "text": "Hydrostatics, stability, resistance, structures and propulsion"
+          }
+        ],
+        "cta": {
+          "label": "View selected projects",
+          "page": "projects"
+        },
+        "custom_class": "",
+        "image": 533
+      }
+    },
+    {
+      "type": "spec-list",
+      "fields": {
+        "heading": "Specialist tools used across our work",
+        "note": "We use established software for hull modelling, design calculations, propeller work, CFD and structural analysis, alongside internal automation tools developed for recurring design tasks.",
+        "rows": [
+          {
+            "label": "Hull form, hydrostatics and stability",
+            "value": "Maxsurf Professional, Rhino Marine"
+          },
+          {
+            "label": "Propeller design",
+            "value": "HydroComp PropCad"
+          },
+          {
+            "label": "CFD and structural simulation",
+            "value": "ANSYS Fluent, SolidWorks Simulation"
+          },
+          {
+            "label": "Internal design automation",
+            "value": "ABC Design, ABC Cal"
+          },
+          {
+            "label": "Internal operations platform",
+            "value": "Base.vn"
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "project-showcase",
+      "fields": {
+        "label": "Selected projects",
+        "projects": [
+          "tau-hau-can-bv-99889-ts",
+          "tau-ca-vo-thep-qna-91312-ts",
+          "cano-lam-hai"
+        ],
+        "limit": 3,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "team",
+      "fields": {
+        "heading": "Core technical team",
+        "placeholder": "LASAN MARINE technical team",
+        "people": [
+          {
+            "name": "Huỳnh Lê Hồng Thái, PhD",
+            "role": "Director · Ship Engineering, Machine Structures & Equipment"
+          },
+          {
+            "name": "Trần Đình Tứ, MSc",
+            "role": "Specialist · Ship Engineering & Ship Systems Engineering"
+          },
+          {
+            "name": "Huỳnh Tấn Đạt, Eng.",
+            "role": "Marine Mechanical Engineering"
+          },
+          {
+            "name": "Nguyễn Văn Hiền, Eng.",
+            "role": "Shipbuilding"
+          },
+          {
+            "name": "Nguyễn Văn Thắng, Eng.",
+            "role": "Electrical Engineering"
+          },
+          {
+            "name": "Nguyễn Minh Nhật, Eng.",
+            "role": "Manufacturing Engineering"
+          }
+        ],
+        "custom_class": "",
+        "image": 587
+      }
+    },
+    {
+      "type": "geo-operations",
+      "fields": {
+        "heading": "Project experience across different operating environments",
+        "note": "Our recorded projects span coastal, offshore and inland-waterway applications across Vietnam.",
+        "provinces": [
+          {
+            "name": "Khanh Hoa (Head Office)",
+            "x": 68,
+            "y": 62
+          },
+          {
+            "name": "Hai Phong (cargo vessels and inland-waterway craft)",
+            "x": 58,
+            "y": 22
+          },
+          {
+            "name": "Nghe An (offshore wooden fishing fleet)",
+            "x": 50,
+            "y": 34
+          },
+          {
+            "name": "Quang Nam (high-power steel fishing vessels)",
+            "x": 64,
+            "y": 47
+          },
+          {
+            "name": "Ba Ria – Vung Tau (service and offshore fisheries support vessels)",
+            "x": 56,
+            "y": 78
+          },
+          {
+            "name": "Can Tho and the Mekong Delta (barges and inland transport craft)",
+            "x": 46,
+            "y": 84
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "contact-statement",
+      "fields": {
+        "heading": "Looking for experience relevant to your vessel or technical problem?",
+        "description": "Send us the vessel type, the work you need done or the technical issue you are dealing with. We will compare it with our project record and explain where our experience is most relevant.",
+        "phone": "+84 834 310 781",
+        "email": "hello@lasanmarine.com",
+        "cta": {
+          "label": "Discuss your project",
+          "page": "contact"
+        },
+        "custom_class": ""
+      }
+    }
+  ]
+}

@@ -9,12 +9,16 @@
 get_header();
 ?>
 
+<?php if ( is_post_type_archive( 'post' ) || is_category() || is_tag() || is_author() || is_date() ) : ?>
+	<?php /* The listing is full-bleed: its own navy header, its own container. */ ?>
+	<div class="site-main site-main--blog">
+		<?php get_template_part( 'template-parts/content', 'blog-list' ); ?>
+	</div>
+<?php else : ?>
 <div class="site-main">
 	<div class="container">
 		<div class="row">
-			<?php if ( is_post_type_archive( 'post' ) || is_category() || is_tag() || is_author() || is_date() ) : ?>
-				<?php get_template_part( 'template-parts/content', 'blog-list' ); ?>
-			<?php else : ?>
+			<?php if ( true ) : ?>
 				<header class="archive-header">
 					<?php
 					the_archive_title( '<h1 class="archive-title">', '</h1>' );
@@ -48,6 +52,7 @@ get_header();
 		</div>
 	</div>
 </div>
+<?php endif; ?>
 
 <?php
 get_footer();

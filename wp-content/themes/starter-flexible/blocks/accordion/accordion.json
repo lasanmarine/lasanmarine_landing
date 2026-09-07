@@ -1,0 +1,20 @@
+{
+  "key": "group_accordion",
+  "title": "Accordion",
+  "fields": [
+    { "key": "field_accordion_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_accordion_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_accordion_intro", "label": "Intro", "name": "intro", "type": "textarea", "rows": 3, "new_lines": "" },
+    {
+      "key": "field_accordion_items", "label": "Items", "name": "items", "type": "repeater",
+      "layout": "block", "button_label": "Add Item",
+      "sub_fields": [
+        { "key": "field_accordion_item_title", "label": "Title", "name": "title", "type": "text" },
+        { "key": "field_accordion_item_content", "label": "Content", "name": "content", "type": "wysiwyg", "tabs": "visual", "toolbar": "basic", "media_upload": 0 }
+      ]
+    },
+    { "key": "field_accordion_open_first", "label": "Open First Item", "name": "open_first", "type": "true_false", "ui": 1, "default_value": 1 },
+    { "key": "field_accordion_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/accordion" }]]
+}

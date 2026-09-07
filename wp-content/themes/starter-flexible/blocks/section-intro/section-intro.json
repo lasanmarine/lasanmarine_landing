@@ -1,0 +1,13 @@
+{
+  "key": "group_section_intro",
+  "title": "Section Intro",
+  "fields": [
+    { "key": "field_section_intro_label", "label": "Label", "name": "label", "type": "text", "instructions": "Nhãn ngắn phía trên tiêu đề." },
+    { "key": "field_section_intro_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_section_intro_content", "label": "Content", "name": "content", "type": "wysiwyg", "tabs": "visual", "toolbar": "basic", "media_upload": 0 },
+    { "key": "field_section_intro_width", "label": "Width", "name": "width", "type": "select", "choices": { "narrow": "Hẹp — 720px", "medium": "Vừa — 800px" }, "default_value": "narrow", "return_format": "value" },
+    { "key": "field_section_intro_cta", "label": "CTA", "name": "cta", "type": "link", "return_format": "array", "instructions": "Tuỳ chọn — một nút duy nhất dưới đoạn mở." },
+    { "key": "field_section_intro_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/section-intro" }]]
+}

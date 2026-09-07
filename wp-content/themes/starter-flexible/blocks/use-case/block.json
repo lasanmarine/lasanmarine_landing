@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/use-case",
+    "title": "LASAN — Use Case",
+    "description": "Tình huống thật của khách: vấn đề, bối cảnh, cách xử lý.",
+    "category": "flexible-blocks",
+    "icon": "lightbulb",
+    "keywords": ["use case", "problem", "solution"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

@@ -1,0 +1,48 @@
+/* Một cột hẹp căn giữa trang. Dấu ngoặc kép mở do khối vẽ, biên tập viên
+   không phải gõ vào ô nhập. */
+.qt {
+	@apply mx-auto m-0 flex flex-col items-start;
+	max-width: 800px;
+	gap: clamp(22px, 2.4vw, 34px);
+}
+.qt__quote {
+	@apply relative m-0 font-display font-medium text-navy;
+	padding-top: clamp(30px, 3vw, 44px);
+	font-size: clamp(22px, 2.4vw, 34px);
+	line-height: 1.35;
+	letter-spacing: -0.02em;
+	text-wrap: pretty;
+}
+.qt__quote::before {
+	@apply absolute font-display font-semibold text-marine;
+	content: '“';
+	top: clamp(-14px, -1vw, -6px);
+	left: -4px;
+	font-size: clamp(56px, 6vw, 88px);
+	line-height: 1;
+}
+.qt__by {
+	@apply flex items-center border-t border-line;
+	gap: 16px;
+	padding-top: 20px;
+	width: 100%;
+}
+.qt__photo {
+	@apply flex-none object-cover;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+}
+.qt__who {
+	@apply flex flex-col;
+	gap: 3px;
+}
+.qt__author {
+	@apply font-display font-semibold text-navy;
+	font-size: 16px;
+}
+.qt__role {
+	@apply text-mute;
+	font-size: 13.5px;
+	line-height: 1.5;
+}

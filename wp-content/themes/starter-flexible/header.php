@@ -1,6 +1,6 @@
 <?php
 /**
- * The site header: announcement strip, fixed bar, mega menu and mobile drawer.
+ * The site header: announcement strip, fixed bar and the full-screen nav overlay.
  *
  * @package Starter_Flexible
  */
@@ -55,66 +55,52 @@ $is_english   = function_exists( 'pll_current_language' ) && 'en' === pll_curren
 					<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="150" height="34" />
 				</a>
 
-				<nav class="hdr__nav" aria-label="Primary">
-					<?php
-					starter_flexible_render_primary_nav();
+				<nav class="hdr__nav" aria-label="<?php echo esc_attr( $is_english ? 'Primary' : 'Chính' ); ?>" data-bar-nav>
+					<?php starter_flexible_render_bar_nav(); ?>
+				</nav>
 
-					if ( '' !== $header_cta['url'] ) :
-						?>
+				<div class="hdr__actions">
+					<?php if ( '' !== $header_cta['url'] ) : ?>
 						<a href="<?php echo esc_url( $header_cta['url'] ); ?>" class="btn btn--sm hdr__cta">
 							<?php echo esc_html( $header_cta['label'] ); ?>
 							<?php echo starter_flexible_icon_swap( 'arrowUpRight', 20 ); // phpcs:ignore ?>
 						</a>
 					<?php endif; ?>
-				</nav>
 
-				<button type="button" class="hdr__burger" data-burger aria-expanded="false" aria-label="<?php esc_attr_e( 'Menu', 'starter-flexible' ); ?>">
-					<span></span><span></span>
-				</button>
-			</div>
-		</div>
-	</header>
-
-	<div class="drawer" data-drawer data-open="false" inert>
-		<svg viewBox="0 0 600 200" preserveAspectRatio="none" class="drawer__wave" aria-hidden="true">
-			<path d="M-40 150 C120 96 240 176 360 140 C470 108 545 70 640 78" fill="none" stroke="#0A72C8" stroke-width="8"></path>
-			<path d="M-40 176 C130 126 250 196 370 164 C480 134 550 104 640 110" fill="none" stroke="#0A72C8" stroke-width="3"></path>
-		</svg>
-
-		<nav class="drawer__nav" aria-label="<?php echo esc_attr( $is_english ? 'Mobile' : 'Di động' ); ?>">
-			<?php starter_flexible_render_drawer_nav( $header_cta ); ?>
-		</nav>
-
-		<div class="drawer__foot">
-			<?php if ( '' !== $phone ) : ?>
-				<a class="drawer__call" href="tel:<?php echo esc_attr( preg_replace( '/\s/', '', $phone ) ); ?>" style="--i:0">
-					<?php echo starter_flexible_icon( 'phone', 18 ); // phpcs:ignore ?>
-					<?php echo esc_html( $phone ); ?>
-				</a>
-			<?php endif; ?>
-			<?php if ( '' !== $email ) : ?>
-				<a class="drawer__call" href="mailto:<?php echo esc_attr( $email ); ?>" style="--i:1">
-					<?php echo starter_flexible_icon( 'mail', 18 ); // phpcs:ignore ?>
-					<?php echo esc_html( $email ); ?>
-				</a>
-			<?php endif; ?>
-
-			<div class="drawer__meta" style="--i:2">
-				<div class="drawer__social">
-					<?php
-					foreach ( $social as $row ) :
-						$link = starter_flexible_link( $row['link'] ?? array() );
-						if ( '' === $link['url'] ) {
-							continue;
-						}
-						?>
-						<a href="<?php echo esc_url( $link['url'] ); ?>">
-							<?php echo esc_html( $link['label'] ); ?> <?php echo starter_flexible_icon( 'arrowUpRight', 14 ); // phpcs:ignore ?>
-						</a>
-					<?php endforeach; ?>
+					<?php /* Below the nav's breakpoint this opens the full-screen overlay. */ ?>
+					<button
+						type="button"
+						class="hdr__menu"
+						data-nav-toggle
+						aria-expanded="false"
+						aria-controls="site-nav"
+					>
+						<span class="hdr__menu-word" aria-hidden="true">
+							<span data-word-open><?php echo esc_html( $is_english ? 'Menu' : 'Menu' ); ?></span>
+							<span data-word-close><?php echo esc_html( $is_english ? 'Close' : 'Đóng' ); ?></span>
+						</span>
+						<span class="hdr__menu-icon" aria-hidden="true"><span></span><span></span></span>
+						<span class="sr-only"><?php echo esc_html( $is_english ? 'Open menu' : 'Mở menu' ); ?></span>
+					</button>
 				</div>
 			</div>
 		</div>
-	</div>
+
+		<?php /* One full-bleed strip below the bar: four columns need the width. */ ?>
+		<div class="hdr__panels" data-panels>
+			<?php starter_flexible_render_bar_panels(); ?>
+		</div>
+	</header>
+
+	<?php
+	starter_flexible_render_nav_overlay(
+		$header_cta,
+		array(
+			'phone'  => $phone,
+			'email'  => $email,
+			'social' => $social,
+		)
+	);
+	?>
 
 	<main id="main">

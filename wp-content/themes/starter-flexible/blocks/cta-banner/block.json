@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/cta-banner",
+    "title": "LASAN — CTA Banner",
+    "description": "Dải kêu gọi hành động giữa hoặc cuối trang, không kèm điện thoại / email.",
+    "category": "flexible-blocks",
+    "icon": "megaphone",
+    "keywords": ["cta", "banner", "call to action"],
+    "align": "full",
+    "supports": { "align": ["full"], "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

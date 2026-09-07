@@ -6,7 +6,6 @@
  * and result panel, so the three tools read as one family.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -21,78 +20,33 @@ if ( empty( $data->should_render ) ) {
 	return;
 }
 
-$labels    = $data->labels;
-$search_id = wp_unique_id( 'el-search-' );
-
-/**
- * A from/to pair sharing one unit select — the unit's `value` is the factor
- * back to the dataset's units, applied in script.js.
- */
-$ranges = array(
-	array(
-		'label'      => $labels['power_range'],
-		'min_hook'   => 'data-el-kw-min',
-		'max_hook'   => 'data-el-kw-max',
-		'unit_hook'  => 'data-el-kw-unit',
-		'unit_label' => __( 'Đơn vị công suất', 'starter-flexible' ),
-		'units'      => $data->power_units,
-	),
-	array(
-		'label'      => $labels['rpm_range'],
-		'min_hook'   => 'data-el-rpm-min',
-		'max_hook'   => 'data-el-rpm-max',
-		'unit_hook'  => 'data-el-rpm-unit',
-		'unit_label' => __( 'Đơn vị vòng quay', 'starter-flexible' ),
-		'units'      => $data->rpm_units,
-	),
-);
 ?>
 <div
 	class="<?php echo esc_attr( $data->module_class ); ?>"
 	data-engines
 	data-per-page="<?php echo esc_attr( (string) $data->per_page ); ?>"
 	data-model-sample="<?php echo esc_attr( (string) $data->model_sample ); ?>"
-	data-model-hint="<?php echo esc_attr( $labels['model_hint'] ); ?>"
-	data-none-found="<?php echo esc_attr( $labels['none_found'] ); ?>"
-	data-copy-label="<?php echo esc_attr( $labels['copy'] ); ?>"
+	data-model-hint="<?php echo esc_attr( $data->labels['model_hint'] ); ?>"
+	data-none-found="<?php echo esc_attr( $data->labels['none_found'] ); ?>"
+	data-copy-label="<?php echo esc_attr( $data->labels['copy'] ); ?>"
 >
 	<div class="pc__grid el__grid">
 		<div class="pc__inputs" data-aos="fade-right">
 			<div class="field">
-				<label class="field__label sr-only" for="<?php echo esc_attr( $search_id ); ?>"><?php echo esc_html( $labels['search'] ); ?></label>
+				<label class="field__label sr-only" for="<?php echo esc_attr( $data->search_id ); ?>"><?php echo esc_html( $data->labels['search'] ); ?></label>
 				<input
 					class="field__control"
-					id="<?php echo esc_attr( $search_id ); ?>"
+					id="<?php echo esc_attr( $data->search_id ); ?>"
 					type="search"
-					placeholder="<?php echo esc_attr( $labels['search_hint'] ); ?>"
+					placeholder="<?php echo esc_attr( $data->labels['search_hint'] ); ?>"
 					data-el-search
 				/>
 			</div>
 
-			<?php
-			$multis = array(
-				array(
-					'key'         => 'make',
-					'label'       => $labels['make'],
-					'placeholder' => $labels['all_makes'],
-					'search'      => $labels['search_make'],
-					'more'        => $labels['more_makes'],
-					'count'       => $labels['count_makes'],
-				),
-				array(
-					'key'         => 'model',
-					'label'       => $labels['model'],
-					'placeholder' => $labels['all_models'],
-					'search'      => $labels['search_model'],
-					'more'        => $labels['more_models'],
-					'count'       => $labels['count_models'],
-				),
-			);
-			?>
-			<?php foreach ( $multis as $multi ) : ?>
-				<?php $multi_id = wp_unique_id( 'el-' . $multi['key'] . '-' ); ?>
+
+			<?php foreach ( $data->multis as $multi ) : ?>
 				<div class="field">
-					<span class="field__label" id="<?php echo esc_attr( $multi_id ); ?>-label"><?php echo esc_html( $multi['label'] ); ?></span>
+					<span class="field__label" id="<?php echo esc_attr( $multi['id'] ); ?>-label"><?php echo esc_html( $multi['label'] ); ?></span>
 					<div
 						class="pc__multi"
 						data-ms="<?php echo esc_attr( $multi['key'] ); ?>"
@@ -103,10 +57,10 @@ $ranges = array(
 						<button
 							type="button"
 							class="field__control pc__multi-trigger is-empty"
-							id="<?php echo esc_attr( $multi_id ); ?>"
+							id="<?php echo esc_attr( $multi['id'] ); ?>"
 							aria-expanded="false"
 							aria-haspopup="dialog"
-							aria-labelledby="<?php echo esc_attr( $multi_id ); ?>-label <?php echo esc_attr( $multi_id ); ?>"
+							aria-labelledby="<?php echo esc_attr( $multi['id'] ); ?>-label <?php echo esc_attr( $multi['id'] ); ?>"
 							data-ms-trigger
 						>
 							<span class="pc__multi-value" data-ms-value><?php echo esc_html( $multi['placeholder'] ); ?></span>
@@ -123,14 +77,14 @@ $ranges = array(
 							<p class="pc__multi-note" data-ms-note hidden></p>
 							<div class="pc__multi-list" data-ms-list></div>
 							<div class="pc__multi-foot">
-								<button type="button" class="pc__multi-clear" data-ms-clear><?php echo esc_html( $labels['clear'] ); ?></button>
+								<button type="button" class="pc__multi-clear" data-ms-clear><?php echo esc_html( $data->labels['clear'] ); ?></button>
 							</div>
 						</div>
 					</div>
 				</div>
 			<?php endforeach; ?>
 
-			<?php foreach ( $ranges as $range ) : ?>
+			<?php foreach ( $data->ranges as $range ) : ?>
 				<div class="field">
 					<span class="field__label"><?php echo esc_html( $range['label'] ); ?></span>
 					<div class="pc__range">
@@ -140,8 +94,8 @@ $ranges = array(
 							min="0"
 							step="any"
 							inputmode="decimal"
-							placeholder="<?php echo esc_attr( $labels['from'] ); ?>"
-							aria-label="<?php echo esc_attr( $range['label'] . ' — ' . $labels['from'] ); ?>"
+							placeholder="<?php echo esc_attr( $data->labels['from'] ); ?>"
+							aria-label="<?php echo esc_attr( $range['label'] . ' — ' . $data->labels['from'] ); ?>"
 							<?php echo esc_attr( $range['min_hook'] ); ?>
 						/>
 						<span class="pc__range-sep" aria-hidden="true">–</span>
@@ -151,8 +105,8 @@ $ranges = array(
 							min="0"
 							step="any"
 							inputmode="decimal"
-							placeholder="<?php echo esc_attr( $labels['to'] ); ?>"
-							aria-label="<?php echo esc_attr( $range['label'] . ' — ' . $labels['to'] ); ?>"
+							placeholder="<?php echo esc_attr( $data->labels['to'] ); ?>"
+							aria-label="<?php echo esc_attr( $range['label'] . ' — ' . $data->labels['to'] ); ?>"
 							<?php echo esc_attr( $range['max_hook'] ); ?>
 						/>
 						<select class="field__control pc__unit" <?php echo esc_attr( $range['unit_hook'] ); ?> aria-label="<?php echo esc_attr( $range['unit_label'] ); ?>">
@@ -165,15 +119,15 @@ $ranges = array(
 			<?php endforeach; ?>
 
 			<button type="button" class="btn pc__reset" data-el-reset>
-				<?php echo esc_html( $labels['reset'] ); ?>
+				<?php echo esc_html( $data->labels['reset'] ); ?>
 				<?php echo starter_flexible_icon( 'arrow', 17 ); // phpcs:ignore ?>
 			</button>
 		</div>
 
 		<div class="pc__results" data-aos="fade-left" data-aos-delay="100">
 			<div class="el__head">
-				<h3 class="pc__heading"><?php echo esc_html( $labels['results'] ); ?></h3>
-				<span class="meta"><span data-el-count>0</span> <?php echo esc_html( $labels['rows_found'] ); ?></span>
+				<h3 class="pc__heading"><?php echo esc_html( $data->labels['results'] ); ?></h3>
+				<span class="meta"><span data-el-count>0</span> <?php echo esc_html( $data->labels['rows_found'] ); ?></span>
 			</div>
 
 			<div class="el__scroll">
@@ -198,7 +152,7 @@ $ranges = array(
 				</table>
 			</div>
 
-			<p class="el__empty" data-el-empty hidden><?php echo esc_html( $labels['no_results'] ); ?></p>
+			<p class="el__empty" data-el-empty hidden><?php echo esc_html( $data->labels['no_results'] ); ?></p>
 
 			<div class="el__pager" data-el-pager>
 				<button type="button" class="icon-btn icon-btn--sm" data-el-prev aria-label="<?php esc_attr_e( 'Trước', 'starter-flexible' ); ?>">
@@ -212,5 +166,5 @@ $ranges = array(
 		</div>
 	</div>
 
-	<script type="application/json" data-el-rows><?php echo wp_json_encode( $data->rows ); ?></script>
+	<script type="application/json" data-el-rows><?php echo $data->rows_json; ?></script>
 </div>

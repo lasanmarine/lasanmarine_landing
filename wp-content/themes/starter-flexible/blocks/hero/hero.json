@@ -2,15 +2,145 @@
   "key": "group_hero",
   "title": "Hero",
   "fields": [
-    { "key": "field_hero_image", "label": "Background Photo", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
-    { "key": "field_hero_headline", "label": "Headline", "name": "headline", "type": "text" },
-    { "key": "field_hero_headline_accent", "label": "Headline Accent", "name": "headline_accent", "type": "text", "instructions": "Phần tô màu marine-bright giữa headline." },
-    { "key": "field_hero_headline_tail", "label": "Headline Tail", "name": "headline_tail", "type": "text" },
-    { "key": "field_hero_lead", "label": "Lead", "name": "lead", "type": "textarea", "rows": 3, "new_lines": "" },
-    { "key": "field_hero_primary", "label": "Primary Button", "name": "primary", "type": "link", "return_format": "array" },
-    { "key": "field_hero_secondary", "label": "Secondary Button", "name": "secondary", "type": "link", "return_format": "array" },
-    { "key": "field_hero_heading_level", "label": "Heading Level", "name": "heading_level", "type": "select", "choices": { "h1": "H1", "h2": "H2" }, "default_value": "h1", "return_format": "value" },
-    { "key": "field_hero_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+    {
+      "key": "field_hero_items",
+      "label": "Slides",
+      "name": "items",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Thêm slide",
+      "instructions": "Mỗi dòng là một slide: ảnh nền, headline và lead riêng. Nút bấm dùng chung cho mọi slide. Để trống thì Hero dùng các trường đơn bên dưới.",
+      "sub_fields": [
+        {
+          "key": "field_hero_item_image",
+          "label": "Background Photo",
+          "name": "image",
+          "type": "image",
+          "return_format": "id",
+          "preview_size": "medium",
+          "library": "all"
+        },
+        {
+          "key": "field_hero_item_headline",
+          "label": "Headline",
+          "name": "headline",
+          "type": "text"
+        },
+        {
+          "key": "field_hero_item_headline_accent",
+          "label": "Headline Accent",
+          "name": "headline_accent",
+          "type": "text",
+          "instructions": "Phần tô màu marine-bright giữa headline."
+        },
+        {
+          "key": "field_hero_item_headline_tail",
+          "label": "Headline Tail",
+          "name": "headline_tail",
+          "type": "text"
+        },
+        {
+          "key": "field_hero_item_lead",
+          "label": "Lead",
+          "name": "lead",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": ""
+        }
+      ]
+    },
+    {
+      "key": "field_hero_image",
+      "label": "Background Photo",
+      "name": "image",
+      "type": "image",
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all",
+      "instructions": "Chỉ dùng khi Slides để trống."
+    },
+    {
+      "key": "field_hero_headline",
+      "label": "Headline",
+      "name": "headline",
+      "type": "text",
+      "instructions": "Chỉ dùng khi Slides để trống."
+    },
+    {
+      "key": "field_hero_headline_accent",
+      "label": "Headline Accent",
+      "name": "headline_accent",
+      "type": "text",
+      "instructions": "Phần tô màu marine-bright giữa headline. Chỉ dùng khi Slides để trống."
+    },
+    {
+      "key": "field_hero_headline_tail",
+      "label": "Headline Tail",
+      "name": "headline_tail",
+      "type": "text",
+      "instructions": "Chỉ dùng khi Slides để trống."
+    },
+    {
+      "key": "field_hero_lead",
+      "label": "Lead",
+      "name": "lead",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "instructions": "Chỉ dùng khi Slides để trống."
+    },
+    {
+      "key": "field_hero_primary",
+      "label": "Primary Button",
+      "name": "primary",
+      "type": "link",
+      "return_format": "array"
+    },
+    {
+      "key": "field_hero_secondary",
+      "label": "Secondary Button",
+      "name": "secondary",
+      "type": "link",
+      "return_format": "array"
+    },
+    {
+      "key": "field_hero_autoplay",
+      "label": "Tự chuyển slide sau (giây)",
+      "name": "autoplay",
+      "type": "number",
+      "default_value": 4,
+      "min": 0,
+      "step": 0.5,
+      "append": "giây",
+      "instructions": "0 = không tự chuyển. Chỉ áp dụng khi có từ hai slide trở lên."
+    },
+    {
+      "key": "field_hero_heading_level",
+      "label": "Heading Level",
+      "name": "heading_level",
+      "type": "select",
+      "choices": {
+        "h1": "H1",
+        "h2": "H2"
+      },
+      "default_value": "h1",
+      "return_format": "value"
+    },
+    {
+      "key": "field_hero_custom_class",
+      "label": "Custom Class",
+      "name": "custom_class",
+      "type": "text",
+      "required": 0
+    }
   ],
-  "location": [[{ "param": "block", "operator": "==", "value": "acf/hero" }]]
+  "location": [
+    [
+      {
+        "param": "block",
+        "operator": "==",
+        "value": "acf/hero"
+      }
+    ]
+  ]
 }

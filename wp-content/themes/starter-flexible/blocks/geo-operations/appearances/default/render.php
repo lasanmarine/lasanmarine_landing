@@ -3,7 +3,6 @@
  * Geo Operations — default appearance.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -18,11 +17,8 @@ if ( empty( $data->should_render ) ) {
 	return;
 }
 
-$anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
-$width  = $data->map_width;
-$height = $data->map_height;
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<div class="band band--navy band--pad">
 		<div class="container geo">
 			<div class="geo__side">
@@ -46,16 +42,14 @@ $height = $data->map_height;
 			</div>
 
 			<div class="geo__plate">
-				<svg viewBox="0 0 <?php echo esc_attr( (string) $width ); ?> <?php echo esc_attr( (string) $height ); ?>" role="img" aria-label="<?php echo esc_attr( $data->heading ); ?>">
+				<svg viewBox="0 0 <?php echo esc_attr( (string) $data->map_width ); ?> <?php echo esc_attr( (string) $data->map_height ); ?>" role="img" aria-label="<?php echo esc_attr( $data->heading ); ?>">
 					<g class="geo__grid" aria-hidden="true">
-						<?php for ( $i = 0; $i < 7; $i++ ) : ?>
-							<?php $y = ( ( $i + 1 ) * $height ) / 8; ?>
-							<line x1="0" x2="<?php echo esc_attr( (string) $width ); ?>" y1="<?php echo esc_attr( (string) $y ); ?>" y2="<?php echo esc_attr( (string) $y ); ?>" />
-						<?php endfor; ?>
-						<?php for ( $i = 0; $i < 7; $i++ ) : ?>
-							<?php $x = ( ( $i + 1 ) * $width ) / 8; ?>
-							<line y1="0" y2="<?php echo esc_attr( (string) $height ); ?>" x1="<?php echo esc_attr( (string) $x ); ?>" x2="<?php echo esc_attr( (string) $x ); ?>" />
-						<?php endfor; ?>
+						<?php foreach ( $data->grid_y as $y ) : ?>
+							<line x1="0" x2="<?php echo esc_attr( (string) $data->map_width ); ?>" y1="<?php echo esc_attr( (string) $y ); ?>" y2="<?php echo esc_attr( (string) $y ); ?>" />
+						<?php endforeach; ?>
+						<?php foreach ( $data->grid_x as $x ) : ?>
+							<line y1="0" y2="<?php echo esc_attr( (string) $data->map_height ); ?>" x1="<?php echo esc_attr( (string) $x ); ?>" x2="<?php echo esc_attr( (string) $x ); ?>" />
+						<?php endforeach; ?>
 					</g>
 
 					<path class="geo__land" d="<?php echo esc_attr( $data->map_outline ); ?>"></path>
@@ -63,9 +57,9 @@ $height = $data->map_height;
 					<?php /* Both archipelagos, boxed and labelled. */ ?>
 					<?php foreach ( $data->islands as $island ) : ?>
 						<g class="geo__island">
-							<rect x="<?php echo esc_attr( (string) ( $island['x'] - 22 ) ); ?>" y="<?php echo esc_attr( (string) ( $island['y'] - 16 ) ); ?>" width="44" height="32" rx="3" />
+							<rect x="<?php echo esc_attr( (string) $island['rect_x'] ); ?>" y="<?php echo esc_attr( (string) $island['rect_y'] ); ?>" width="44" height="32" rx="3" />
 							<circle cx="<?php echo esc_attr( (string) $island['x'] ); ?>" cy="<?php echo esc_attr( (string) $island['y'] ); ?>" r="2.8" />
-							<text x="<?php echo esc_attr( (string) $island['x'] ); ?>" y="<?php echo esc_attr( (string) ( $island['y'] + 34 ) ); ?>"><?php echo esc_html( $island['name'] ); ?></text>
+							<text x="<?php echo esc_attr( (string) $island['x'] ); ?>" y="<?php echo esc_attr( (string) $island['label_y'] ); ?>"><?php echo esc_html( $island['name'] ); ?></text>
 						</g>
 					<?php endforeach; ?>
 

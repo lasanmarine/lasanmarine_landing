@@ -39,7 +39,6 @@ get_template_part(
 
 		<div class="container post-hero__inner">
 			<div class="post-hero__badges">
-				<span class="post-hero__eyebrow"><?php esc_html_e( 'GHI CHÚ KỸ THUẬT', 'starter-flexible' ); ?></span>
 				<?php foreach ( $post_categories as $category ) : ?>
 					<a class="post-hero__cat" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
 				<?php endforeach; ?>
@@ -103,31 +102,34 @@ $related = get_posts(
 );
 if ( $related ) :
 	?>
+	<?php /* The article is set to a reading measure; what follows it is not —
+	         the related posts take the page's own width. */ ?>
 	<section class="post-related" aria-labelledby="post-related-title">
-		<h2 class="post-related__head" id="post-related-title"><?php esc_html_e( 'BÀI VIẾT LIÊN QUAN', 'starter-flexible' ); ?></h2>
-		<div class="post-related__grid" data-reveal-stagger>
-			<?php foreach ( $related as $i => $related_post ) : ?>
-				<a class="post-related__item" href="<?php echo esc_url( get_permalink( $related_post ) ); ?>">
-					<span class="post-related__figure">
-						<?php if ( has_post_thumbnail( $related_post ) ) : ?>
-							<?php echo get_the_post_thumbnail( $related_post, 'medium_large', array( 'class' => 'post-related__image' ) ); ?>
-						<?php else : ?>
-							<span class="post-related__placeholder"></span>
-						<?php endif; ?>
-						<span class="post-related__index"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
-					</span>
-					<span class="post-related__body">
-						<span class="post-related__date"><?php echo esc_html( get_the_date( 'd.m.Y', $related_post ) ); ?></span>
-						<span class="post-related__title"><?php echo esc_html( get_the_title( $related_post ) ); ?></span>
-						<span class="post-related__arrow" aria-hidden="true"><?php echo starter_flexible_icon( 'arrow', 18 ); // phpcs:ignore ?></span>
-					</span>
-				</a>
-			<?php endforeach; ?>
+		<div class="container">
+			<h2 class="post-related__head" id="post-related-title"><?php esc_html_e( 'Bài viết liên quan', 'starter-flexible' ); ?></h2>
+			<div class="post-related__grid" data-reveal-stagger>
+				<?php foreach ( $related as $related_post ) : ?>
+					<a class="post-related__item" href="<?php echo esc_url( get_permalink( $related_post ) ); ?>">
+						<span class="post-related__figure">
+							<?php if ( has_post_thumbnail( $related_post ) ) : ?>
+								<?php echo get_the_post_thumbnail( $related_post, 'medium_large', array( 'class' => 'post-related__image', 'loading' => 'lazy' ) ); ?>
+							<?php else : ?>
+								<span class="post-related__placeholder"></span>
+							<?php endif; ?>
+						</span>
+						<span class="post-related__body">
+							<span class="post-related__date"><?php echo esc_html( get_the_date( 'd.m.Y', $related_post ) ); ?></span>
+							<span class="post-related__title"><?php echo esc_html( get_the_title( $related_post ) ); ?></span>
+						</span>
+					</a>
+				<?php endforeach; ?>
+			</div>
 		</div>
 	</section>
 <?php endif; ?>
 
 <nav class="post-nav">
+	<div class="container">
 	<?php
 	the_post_navigation(
 		array(
@@ -138,16 +140,8 @@ if ( $related ) :
 		)
 	);
 	?>
+	</div>
 </nav>
-
-<section class="post-single__cta">
-	<span class="post-single__cta-icon"><?php echo starter_flexible_icon( 'ship', 26 ); // phpcs:ignore ?></span>
-	<h2><?php esc_html_e( 'Cần trao đổi về một bài toán kỹ thuật cụ thể?', 'starter-flexible' ); ?></h2>
-	<a class="btn" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>">
-		<?php esc_html_e( 'Liên hệ kỹ sư Lasan Marine', 'starter-flexible' ); ?>
-		<?php echo starter_flexible_icon( 'arrowUpRight', 18 ); // phpcs:ignore ?>
-	</a>
-</section>
 
 <?php
 if ( comments_open() || get_comments_number() ) {

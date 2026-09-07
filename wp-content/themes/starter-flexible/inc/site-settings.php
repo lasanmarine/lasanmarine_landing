@@ -68,13 +68,6 @@ function starter_flexible_register_site_settings_fields(): void {
 				array( 'key' => 'field_sfs_announcement_text', 'label' => __( 'Announcement Text', 'starter-flexible' ), 'name' => 'announcement_text', 'type' => 'text', 'instructions' => __( 'Để trống thì ẩn dải thông báo.', 'starter-flexible' ) ),
 				array( 'key' => 'field_sfs_announcement_cta', 'label' => __( 'Announcement CTA', 'starter-flexible' ), 'name' => 'announcement_cta', 'type' => 'link', 'return_format' => 'array' ),
 				array( 'key' => 'field_sfs_header_cta', 'label' => __( 'Header CTA', 'starter-flexible' ), 'name' => 'header_cta', 'type' => 'link', 'return_format' => 'array' ),
-				array(
-					'key'          => 'field_sfs_mega_title',
-					'label'        => __( 'Mega Menu Title', 'starter-flexible' ),
-					'name'         => 'mega_title',
-					'type'         => 'text',
-					'instructions' => __( 'Gán class "has-mega" cho một mục menu để mở bảng mega dựng từ các mục con của nó.', 'starter-flexible' ),
-				),
 
 				array( 'key' => 'field_sfs_tab_footer', 'label' => __( 'Footer', 'starter-flexible' ), 'type' => 'tab' ),
 				array(
@@ -235,7 +228,6 @@ function starter_flexible_setting( string $name, $default = '' ) {
 			'announcement_text' => 'The 2026 price list is now available',
 			'announcement_cta'  => array( 'title' => 'View now!', 'url' => home_url( '/en/capabilities/' ), 'target' => '_self' ),
 			'header_cta'        => array( 'title' => 'Contact', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ),
-			'mega_title'        => 'Services',
 			'footer_cta'        => array( 'title' => 'Start a project', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ),
 			'address'           => 'No. 03 Tran Lu Street, Bac Nha Trang Ward, Khanh Hoa Province, Vietnam',
 			'legal_name'        => 'LASAN MARINE COMPANY LIMITED',

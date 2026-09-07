@@ -1,0 +1,62 @@
+/* Ảnh đứng trước chữ trong DOM để khi xếp dọc trên điện thoại thì ảnh lên
+   trên; thứ tự trái/phải trên desktop do grid-column quyết định. */
+.it {
+	@apply grid items-center;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: clamp(28px, 4vw, 72px);
+}
+.it--text {
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+.it--media {
+	grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+}
+.it__media {
+	grid-column: 2;
+	grid-row: 1;
+}
+.it__body {
+	@apply flex flex-col items-start;
+	grid-column: 1;
+	grid-row: 1;
+	gap: clamp(16px, 1.8vw, 24px);
+}
+/* Ảnh sang trái: đổi hai cột, và với tỉ lệ lệch thì đổi luôn bề rộng cột. */
+.it--flip .it__media {
+	grid-column: 1;
+}
+.it--flip .it__body {
+	grid-column: 2;
+}
+.it--flip.it--text {
+	grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+}
+.it--flip.it--media {
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+.it__heading {
+	max-width: 16em;
+}
+.it__cta {
+	margin-top: 6px;
+}
+
+@media (max-width: 860px) {
+	.it,
+	.it--text,
+	.it--media,
+	.it--flip.it--text,
+	.it--flip.it--media {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.it__media,
+	.it--flip .it__media {
+		grid-column: 1;
+		grid-row: 1;
+	}
+	.it__body,
+	.it--flip .it__body {
+		grid-column: 1;
+		grid-row: 2;
+	}
+}

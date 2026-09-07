@@ -9,12 +9,8 @@
 get_header();
 ?>
 
-<div class="site-main">
-	<div class="container">
-		<div class="row">
-			<?php get_template_part( 'template-parts/content', 'blog-list' ); ?>
-		</div>
-	</div>
+<div class="site-main site-main--blog">
+	<?php get_template_part( 'template-parts/content', 'blog-list' ); ?>
 </div>
 
 <?php

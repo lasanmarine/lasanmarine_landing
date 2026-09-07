@@ -417,6 +417,12 @@ function lasan_content_block( array $entry, array &$problems ): array {
 
 	$fields  = is_array( $entry['fields'] ?? null ) ? $entry['fields'] : array();
 	$fields  = lasan_content_resolve_links( $fields, $defs );
+	// Padding Top / Bottom are appended to every block group at runtime, so they
+	// are not in blocks/<slug>/<slug>.json — add them here or the CLI would
+	// reject a spacing value as an unknown field.
+	$defs[] = array( 'name' => 'padding_top', 'type' => 'number' );
+	$defs[] = array( 'name' => 'padding_bottom', 'type' => 'number' );
+
 	$unknown = array();
 	$out     = array();
 	lasan_content_fill( $out, '', $fields, $defs, $unknown );
@@ -592,6 +598,14 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 	update_post_meta( $id, '_lasan_content_key', $key );
 	update_post_meta( $id, '_lasan_meta_title', (string) ( $seo['title'] ?? $title ) );
 	update_post_meta( $id, '_lasan_meta_description', $description );
+
+	// The theme stands down from printing a title and a description whenever
+	// Yoast is active, so on a site with Yoast the fields above are read by
+	// nobody. Write its keys too and the JSON stays the one source either way.
+	if ( defined( 'WPSEO_VERSION' ) ) {
+		update_post_meta( $id, '_yoast_wpseo_title', (string) ( $seo['title'] ?? $title ) );
+		update_post_meta( $id, '_yoast_wpseo_metadesc', $description );
+	}
 
 	if ( isset( $doc['parent'] ) ) {
 		$parent = lasan_content_find_page( (string) $doc['parent'] );
@@ -802,7 +816,7 @@ function lasan_content_apply_menu( array $doc, array &$problems, bool $dry_run =
 	 * Add one level of items, then recurse. A child without its own target
 	 * inherits the parent's URL, which is what the mega panel's chips want.
 	 */
-	$add = static function ( array $items, int $parent_id, string $parent_url ) use ( &$add, $menu_id, &$problems ): void {
+	$add = static function ( array $items, int $parent_id, string $parent_url ) use ( &$add, $menu_id, &$problems, $lang ): void {
 		foreach ( $items as $item ) {
 			$label = (string) ( $item['label'] ?? '' );
 			if ( '' === $label ) {
@@ -812,6 +826,14 @@ function lasan_content_apply_menu( array $doc, array &$problems, bool $dry_run =
 			$page_id = isset( $item['page'] ) ? lasan_content_find_page( (string) $item['page'] ) : 0;
 			if ( isset( $item['page'] ) && ! $page_id ) {
 				$problems[] = "menu: không tìm thấy trang {$item['page']}";
+			}
+			// A menu belongs to one language: point it at that language's page,
+			// not at whichever page happens to carry the key.
+			if ( $page_id && '' !== $lang && function_exists( 'pll_get_post' ) ) {
+				$translated = pll_get_post( $page_id, $lang );
+				if ( $translated ) {
+					$page_id = (int) $translated;
+				}
 			}
 			$url = $page_id ? (string) get_permalink( $page_id ) : (string) ( $item['url'] ?? $parent_url );
 			if ( '' !== $url && ! preg_match( '#^(https?:)?//#', $url ) && ! str_starts_with( $url, '#' ) ) {

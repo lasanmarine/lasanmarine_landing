@@ -1,0 +1,13 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/proof-strip",
+    "title": "LASAN — Proof Strip",
+    "description": "Một dải bằng chứng ngắn: ba đến bốn con số, không diễn giải dài.",
+    "category": "flexible-blocks",
+    "icon": "chart-bar",
+    "keywords": ["proof", "stats", "strip"],
+    "align": "full",
+    "supports": { "align": ["full"], "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

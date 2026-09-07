@@ -9,26 +9,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function starter_flexible_block_data_spec_list( array $block ) {
-	$data = array_merge(
-		array( 'heading' => '', 'note' => '', 'rows' => array(), 'custom_class' => '' ),
-		starter_flexible_get_block_fields( $block )
-	);
-
-	$rows = array();
-	foreach ( (array) $data['rows'] as $row ) {
-		$label = isset( $row['label'] ) ? (string) $row['label'] : '';
-		$value = isset( $row['value'] ) ? (string) $row['value'] : '';
-		if ( '' === trim( $label ) && '' === trim( $value ) ) {
-			continue;
-		}
-		$rows[] = array( 'label' => $label, 'value' => $value );
+final class Starter_Flexible_Block_Spec_List extends Starter_Flexible_Abstract_Block {
+	protected function defaults(): array {
+		return array( 'heading' => '', 'note' => '', 'rows' => array(), 'custom_class' => '' );
 	}
 
-	$data['rows']          = $rows;
-	$data['has_note']      = '' !== trim( (string) $data['note'] );
-	$data['module_class']  = starter_flexible_build_module_class( 'block container', (string) $data['custom_class'] );
-	$data['should_render'] = ! empty( $rows ) || '' !== trim( (string) $data['heading'] );
+	protected function base_class(): string {
+		return 'block container';
+	}
 
-	return (object) $data;
+	protected function prepare( array $data ): array {
+
+		$rows = array();
+		foreach ( (array) $data['rows'] as $row ) {
+			$label = isset( $row['label'] ) ? (string) $row['label'] : '';
+			$value = isset( $row['value'] ) ? (string) $row['value'] : '';
+			if ( '' === trim( $label ) && '' === trim( $value ) ) {
+				continue;
+			}
+			$rows[] = array( 'label' => $label, 'value' => $value );
+		}
+
+		$data['rows']          = $rows;
+		$data['has_note']      = '' !== trim( (string) $data['note'] );
+		$data['should_render'] = ! empty( $rows ) || '' !== trim( (string) $data['heading'] );
+
+		return $data;
+	}
+}
+
+function starter_flexible_block_data_spec_list( array $block ) {
+	return ( new Starter_Flexible_Block_Spec_List( $block ) )->data();
 }

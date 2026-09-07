@@ -89,6 +89,17 @@ function starter_flexible_build_module_class( string $base_class, string $custom
 	return '' !== $merged ? $merged : $base_class;
 }
 
+function starter_flexible_render_hero_button( array $link, string $variant, string $icon ): void {
+	if ( empty( $link ) ) {
+		return;
+	}
+	get_template_part( 'template-parts/components/button', null, array(
+		'href' => $link['url'], 'label' => $link['label'], 'size' => 'lg',
+		'variant' => $variant, 'icon' => $icon,
+		'attrs' => '_blank' === $link['target'] ? array( 'target' => '_blank', 'rel' => 'noopener' ) : array(),
+	) );
+}
+
 /**
  * Return normalized block fields shared by all flexible blocks.
  */
@@ -420,4 +431,43 @@ function starter_flexible_decorate_module_markup( string $html, string $block_sl
 		$html,
 		1
 	);
+}
+
+/**
+ * The URL of a page by the stable key the content CLI stores on it, so links
+ * in templates survive a slug change.
+ *
+ * @param string $key           e.g. "projects".
+ * @param string $fallback_slug Used when nothing carries the key.
+ */
+function starter_flexible_content_page_url( string $key, string $fallback_slug = '' ): string {
+	$found = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => '_lasan_content_key', // phpcs:ignore WordPress.DB.SlowDBQuery
+			'meta_value'     => $key,                 // phpcs:ignore WordPress.DB.SlowDBQuery
+			'lang'           => '',                   // Polylang: any language, filtered below.
+		)
+	);
+
+	if ( ! $found && '' !== $fallback_slug ) {
+		$page  = get_page_by_path( $fallback_slug );
+		$found = $page ? array( $page->ID ) : array();
+	}
+	if ( ! $found ) {
+		return '';
+	}
+
+	$id = (int) $found[0];
+	if ( function_exists( 'pll_get_post' ) ) {
+		$translated = pll_get_post( $id );
+		if ( $translated ) {
+			$id = (int) $translated;
+		}
+	}
+
+	return (string) get_permalink( $id );
 }

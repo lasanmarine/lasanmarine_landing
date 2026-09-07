@@ -1,0 +1,13 @@
+{
+  "key": "group_rich_text",
+  "title": "Rich Text",
+  "fields": [
+    { "key": "field_rich_text_label", "label": "Block Label", "name": "label", "type": "text", "instructions": "Để trống thì bỏ dòng nhãn kẻ ở đầu khối." },
+    { "key": "field_rich_text_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_rich_text_content", "label": "Content", "name": "content", "type": "wysiwyg", "tabs": "all", "toolbar": "full", "media_upload": 1 },
+    { "key": "field_rich_text_align", "label": "Align", "name": "align", "type": "select", "choices": { "left": "Trái", "center": "Giữa" }, "default_value": "left", "return_format": "value" },
+    { "key": "field_rich_text_width", "label": "Width", "name": "width", "type": "select", "choices": { "narrow": "Hẹp — 680px", "medium": "Vừa — 840px", "wide": "Rộng — 1080px" }, "default_value": "medium", "return_format": "value" },
+    { "key": "field_rich_text_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/rich-text" }]]
+}

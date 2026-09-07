@@ -1,0 +1,188 @@
+# Giới thiệu
+
+- **Key:** `about`
+- **Slug:** `gioi-thieu`
+- **Language:** `vi`
+
+## SEO
+
+- **title:** Giới thiệu — LASAN MARINE
+- **description:** Chúng tôi xuất phát từ chuyên môn tàu thủy, phát triển bền vững dựa trên các số liệu kiểm chứng và quy trình làm việc chuẩn xác.
+
+## Block 1: `page-hero`
+
+### Fields
+
+- **headline:** Nền tảng kỹ thuật thực tế và tư duy mở rộng
+- **lead:** Chúng tôi xuất phát từ chuyên môn tàu thủy, phát triển bền vững dựa trên các số liệu kiểm chứng và quy trình làm việc chuẩn xác.
+- **placeholder:** LASAN MARINE
+- **heading_level:** h1
+- **height:** 420
+- **custom_class:** 
+
+## Block 2: `manifesto`
+
+### Fields
+
+- **label:** CÂU CHUYỆN CÔNG TY
+- **heading:** Đi lên từ chuyên môn sâu, mở rộng bằng năng lực giải quyết vấn đề
+- **lead:** Chúng tôi không chọn cách trở thành một công ty "làm đủ thứ" một cách hời hợt. Từng bước phát triển của công ty đều có gốc rễ kỹ thuật vững vàng.
+- **body**
+  -
+    - **text:** Kỹ thuật tàu thủy là nền móng của công ty. Đội ngũ kỹ sư của chúng tôi gắn bó trực tiếp với từng xưởng đóng tàu, bãi cẩu và luồng lạch thực tế. Một bộ hồ sơ xuất xưởng phải vừa vặn với tay nghề thợ gia công, tuân thủ đúng quy chuẩn Đăng kiểm và tối ưu chi phí vận hành cho chủ tàu.
+  -
+    - **text:** Từ năng lực giải quyết các bài toán kỹ thuật phức tạp, chúng tôi mở rộng sang hai hướng độc lập: Dịch vụ CNTT để giải quyết nhu cầu số hóa quy trình quản lý thực tế; và mảng R&D nhằm đi sâu vào mô phỏng dòng chảy, kết cấu và thực nghiệm khoa học hàng hải. Mở rộng nhưng không làm loãng gốc chuyên môn là nguyên tắc hoạt động xuyên suốt của công ty.
+- **cta**
+  - **label:** Xem các dự án thực tế
+  - **page:** projects
+- **custom_class:** 
+
+## Block 3: `key-numbers`
+
+### Fields
+
+- **label:** NĂNG LỰC QUA CON SỐ
+- **stats**
+  -
+    - **value:** 300
+    - **suffix:** +
+    - **label:** Hồ sơ kỹ thuật hoàn thành
+    - **note:** Bao gồm tàu vỏ gỗ, vỏ thép, composite và phương tiện thủy nội địa.
+  -
+    - **value:** 20+
+    - **suffix:** năm
+    - **label:** Kinh nghiệm chuyên gia chủ chốt
+    - **note:** Trực tiếp chỉ đạo và kiểm tra chất lượng mọi hồ sơ thiết kế.
+  -
+    - **value:** 03
+    - **suffix:** mảng
+    - **label:** Hướng phát triển độc lập
+    - **note:** Thiết kế tàu, Dịch vụ CNTT và Nghiên cứu R&D.
+  -
+    - **value:** 100
+    - **suffix:** %
+    - **label:** Quy trình số hóa
+    - **note:** Quản lý tiến độ và luồng thông tin minh bạch, đúng hẹn.
+- **custom_class:** 
+
+## Block 4: `value-grid`
+
+### Fields
+
+- **label:** NGUYÊN TẮC LÀM VIỆC
+- **items**
+  -
+    - **icon:** ruler
+    - **title:** Chính xác trước, đẹp sau
+    - **desc:** Số liệu, kích thước và kết cấu phải được tính toán chuẩn xác từ đầu. Chúng tôi không bao biện lỗi kỹ thuật bằng hình thức trình bày.
+    - **link**
+      - **label:** Xem thiết kế tàu
+      - **page:** service_01
+  -
+    - **icon:** wrench
+    - **title:** Bám sát hiện trường
+    - **desc:** Thiết kế phải thi công được. Đội ngũ kỹ thuật đối chiếu trực tiếp với năng lực xưởng bãi và tay nghề thợ để đưa ra phương án khả thi nhất.
+    - **link**
+      - **label:** Xem thiết kế tàu
+      - **page:** service_01
+  -
+    - **icon:** calculator
+    - **title:** Thực chứng bằng dữ liệu
+    - **desc:** Từ công suất máy, đường kính trục đến mô phỏng sức cản, mọi đề xuất đều phải có cơ sở tính toán rõ ràng, không phỏng đoán.
+    - **link**
+      - **label:** Xem nghiên cứu R&D
+      - **page:** service_rnd
+  -
+    - **icon:** link
+    - **title:** Minh bạch luồng việc
+    - **desc:** Vận hành quản lý công việc trên nền tảng số hóa, đảm bảo trao đổi hai chiều thông suốt và đúng tiến độ cam kết.
+    - **link**
+      - **label:** Xem dịch vụ CNTT
+      - **page:** service_03
+- **custom_class:** 
+
+## Block 5: `team`
+
+### Fields
+
+- **heading:** Đội ngũ kỹ thuật chủ chốt
+- **placeholder:** LASAN MARINE
+- **people**
+  -
+    - **name:** TS. Huỳnh Lê Hồng Thái
+    - **role:** Giám đốc · Kỹ thuật tàu thủy, kết cấu máy và thiết bị · 2005–nay
+  -
+    - **name:** ThS. Trần Đình Tứ
+    - **role:** Chuyên gia · Kỹ thuật tàu thủy, kỹ thuật hệ thống tàu · 2009–nay
+  -
+    - **name:** KS. Huỳnh Tấn Đạt
+    - **role:** Cơ khí tàu thuyền · 2002–nay
+  -
+    - **name:** KS. Nguyễn Minh Nhật
+    - **role:** Công nghệ chế tạo máy · 2008–nay
+  -
+    - **name:** KS. Nguyễn Văn Hiền
+    - **role:** Đóng tàu thủy · 2009–nay
+  -
+    - **name:** KS. Nguyễn Văn Thắng
+    - **role:** Kỹ thuật điện · 2010–nay
+  -
+    - **name:** KS. Nguyễn Tuấn Anh
+    - **role:** Kỹ thuật tàu thủy · 2017–nay
+  -
+    - **name:** KS. Nguyễn Công Chánh
+    - **role:** Kỹ thuật tàu thủy · 2021–nay
+  -
+    - **name:** KS. Ngô Hoàng Thịnh
+    - **role:** Kỹ thuật tàu thủy · 2023–nay
+  -
+    - **name:** KS. Nguyễn Thái Nguyên
+    - **role:** Kỹ thuật tàu thủy · 2024–nay
+- **custom_class:** 
+
+## Block 6: `spec-list`
+
+### Fields
+
+- **heading:** Tư cách pháp nhân
+- **note:** Thông tin đăng ký doanh nghiệp và tài khoản giao dịch.
+- **rows**
+  -
+    - **label:** Tên công ty
+    - **value:** Công ty TNHH Lasan Marine
+  -
+    - **label:** Tên quốc tế
+    - **value:** LASAN MARINE CO., LTD.
+  -
+    - **label:** Mã số thuế
+    - **value:** 4202063521
+  -
+    - **label:** Địa chỉ
+    - **value:** 03 Trần Lư, Phường Bắc Nha Trang, tỉnh Khánh Hòa
+  -
+    - **label:** Tài khoản
+    - **value:** 310781 — Techcombank, CN Mã Vòng, Bắc Nha Trang, Khánh Hòa
+  -
+    - **label:** Điện thoại & Zalo
+    - **value:** 0834 310 781
+  -
+    - **label:** Website
+    - **value:** lasanmarine.com
+  -
+    - **label:** E-mail
+    - **value:** hello@lasanmarine.com
+- **custom_class:** 
+
+## Block 7: `contact-statement`
+
+### Fields
+
+- **label:** HỢP TÁC KỸ THUẬT
+- **heading:** Cùng trao đổi trực tiếp về dự án của bạn
+- **description:** Đội ngũ kỹ sư của chúng tôi sẵn sàng phân tích yêu cầu, hiện trạng thiết bị và đưa ra phương án xử lý chuẩn xác.
+- **phone:** 0834 310 781
+- **email:** hello@lasanmarine.com
+- **cta**
+  - **label:** Gửi yêu cầu dự án
+  - **page:** contact
+- **custom_class:** 

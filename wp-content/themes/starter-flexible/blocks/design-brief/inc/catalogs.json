@@ -1,51 +1,193 @@
 {
   "design_types": [
-    { "code": "ABC01", "name": "Đóng mới" },
-    { "code": "ABC02", "name": "Hoàn công" },
-    { "code": "ABC03", "name": "Cải hoán thân vỏ" },
-    { "code": "ABC04", "name": "Cải hoán nghề" },
-    { "code": "ABC05", "name": "Thay máy chính" }
+    {
+      "code": "ABC01",
+      "name": "Đóng mới"
+    },
+    {
+      "code": "ABC02",
+      "name": "Hoàn công"
+    },
+    {
+      "code": "ABC03",
+      "name": "Cải hoán thân vỏ"
+    },
+    {
+      "code": "ABC04",
+      "name": "Cải hoán nghề"
+    },
+    {
+      "code": "ABC05",
+      "name": "Thay máy chính"
+    }
   ],
-  "regions": ["Hạn chế I", "Hạn chế II", "Hạn chế III", "Vùng IV", "SI", "SII", "VR-SB"],
+  "regions": [
+    "Hạn chế I",
+    "Hạn chế II",
+    "Hạn chế III",
+    "Vùng IV",
+    "SI",
+    "SII",
+    "VR-SB"
+  ],
   "provinces": [
-    { "code": "AG", "name": "An Giang" },
-    { "code": "BV", "name": "Bà Rịa – Vũng Tàu" },
-    { "code": "BTh", "name": "Bình Thuận" },
-    { "code": "BT", "name": "Bến Tre" },
-    { "code": "CM", "name": "Cà Mau" },
-    { "code": "CT", "name": "Cần Thơ" },
-    { "code": "DNa", "name": "Đà Nẵng" },
-    { "code": "KG", "name": "Kiên Giang" },
-    { "code": "KH", "name": "Khánh Hòa" },
-    { "code": "NA", "name": "Nghệ An" },
-    { "code": "QNa", "name": "Quảng Nam" },
-    { "code": "QNg", "name": "Quảng Ngãi" },
-    { "code": "TG", "name": "Tiền Giang" },
-    { "code": "TH", "name": "Thanh Hóa" }
+    {
+      "code": "AG",
+      "name": "An Giang"
+    },
+    {
+      "code": "BV",
+      "name": "Bà Rịa – Vũng Tàu"
+    },
+    {
+      "code": "BTh",
+      "name": "Bình Thuận"
+    },
+    {
+      "code": "BT",
+      "name": "Bến Tre"
+    },
+    {
+      "code": "CM",
+      "name": "Cà Mau"
+    },
+    {
+      "code": "CT",
+      "name": "Cần Thơ"
+    },
+    {
+      "code": "DNa",
+      "name": "Đà Nẵng"
+    },
+    {
+      "code": "KG",
+      "name": "Kiên Giang"
+    },
+    {
+      "code": "KH",
+      "name": "Khánh Hòa"
+    },
+    {
+      "code": "NA",
+      "name": "Nghệ An"
+    },
+    {
+      "code": "QNa",
+      "name": "Quảng Nam"
+    },
+    {
+      "code": "QNg",
+      "name": "Quảng Ngãi"
+    },
+    {
+      "code": "TG",
+      "name": "Tiền Giang"
+    },
+    {
+      "code": "TH",
+      "name": "Thanh Hóa"
+    }
   ],
   "registries": [
-    { "code": "ĐKAG", "name": "Đăng kiểm An Giang" },
-    { "code": "ĐKKG", "name": "Đăng kiểm Kiên Giang" },
-    { "code": "ĐKKH", "name": "Đăng kiểm Khánh Hòa" },
-    { "code": "ĐKBV", "name": "Đăng kiểm Bà Rịa – Vũng Tàu" },
-    { "code": "VR", "name": "Cục Đăng kiểm Việt Nam" }
+    {
+      "code": "ĐKAG",
+      "name": "Đăng kiểm An Giang"
+    },
+    {
+      "code": "ĐKKG",
+      "name": "Đăng kiểm Kiên Giang"
+    },
+    {
+      "code": "ĐKKH",
+      "name": "Đăng kiểm Khánh Hòa"
+    },
+    {
+      "code": "ĐKBV",
+      "name": "Đăng kiểm Bà Rịa – Vũng Tàu"
+    },
+    {
+      "code": "VR",
+      "name": "Cục Đăng kiểm Việt Nam"
+    }
   ],
-  "hull_members": [
-    "Sống đáy liền", "Sống mũi", "Sống đuôi",
-    "Thanh dọc đáy", "Thanh dọc hông", "Thanh dọc mạn", "Thanh dọc mép miệng khoang",
-    "Sườn mạn", "Đà ngang đáy", "Mã hông",
-    "Xà ngang boong", "Xà ngang boong cụt",
-    "Thanh đỡ xà ngang boong", "Thanh đỡ xà ngang boong cụt", "Thanh đế xà ngang boong",
-    "Xà ngang đầu miệng khoang", "Xà ngang cabin", "Xà dọc trần cabin",
-    "Ván vách cabin", "Ván trần cabin", "Trụ chính cabin", "Trụ phụ cabin",
-    "Ván vỏ mạn", "Ván vỏ đáy", "Ván boong", "Ván mép mạn", "Ván đai mạn", "Ván đai hông",
-    "Ván kê sống lái", "Ván kê sống chính",
-    "Trụ vách", "Trụ mũi", "Trụ tời neo",
-    "Bệ máy", "Ván vách hầm", "Bợ chụp"
+  "hull_members": {
+    "Sống tàu": [
+      "Sống đáy liền",
+      "Sống mũi",
+      "Sống đuôi"
+    ],
+    "Thanh dọc": [
+      "Thanh dọc đáy",
+      "Thanh dọc hông",
+      "Thanh dọc mạn",
+      "Thanh dọc mép miệng khoang"
+    ],
+    "Khung ngang": [
+      "Sườn mạn",
+      "Đà ngang đáy",
+      "Mã hông"
+    ],
+    "Xà ngang boong": [
+      "Xà ngang boong",
+      "Xà ngang boong cụt",
+      "Thanh đỡ xà ngang boong",
+      "Thanh đỡ xà ngang boong cụt",
+      "Thanh đế xà ngang boong",
+      "Xà ngang đầu miệng khoang"
+    ],
+    "Cabin": [
+      "Xà ngang cabin",
+      "Xà dọc trần cabin",
+      "Ván vách cabin",
+      "Ván trần cabin",
+      "Trụ chính cabin",
+      "Trụ phụ cabin"
+    ],
+    "Ván vỏ & boong": [
+      "Ván vỏ mạn",
+      "Ván vỏ đáy",
+      "Ván boong",
+      "Ván mép mạn",
+      "Ván đai mạn",
+      "Ván đai hông",
+      "Ván kê sống lái",
+      "Ván kê sống chính"
+    ],
+    "Trụ": [
+      "Trụ vách",
+      "Trụ mũi",
+      "Trụ tời neo"
+    ],
+    "Bệ & vách khác": [
+      "Bệ máy",
+      "Ván vách hầm",
+      "Bợ chụp"
+    ]
+  },
+  "rudders": [
+    "Bánh lái gắn long cốt",
+    "Bánh lái treo",
+    "Bánh lái có gót ky"
   ],
-  "rudders": ["Bánh lái gắn long cốt", "Bánh lái treo", "Bánh lái có gót ky"],
-  "steering": ["Cơ khí (dây/lái cơ)", "Thủy lực", "Điện – thủy lực"],
-  "power_sources": ["Máy phát điện", "Máy đèn kéo theo máy chính", "Không có"],
-  "engine_positions": ["Giữa", "Mạn trái", "Mạn phải"],
-  "propeller_materials": ["HK Đồng", "Đồng mangan", "Đồng nhôm niken", "Thép không rỉ"]
+  "steering": [
+    "Cơ khí (dây/lái cơ)",
+    "Thủy lực",
+    "Điện – thủy lực"
+  ],
+  "power_sources": [
+    "Máy phát điện",
+    "Máy đèn kéo theo máy chính",
+    "Không có"
+  ],
+  "engine_positions": [
+    "Giữa",
+    "Mạn trái",
+    "Mạn phải"
+  ],
+  "propeller_materials": [
+    "HK Đồng",
+    "Đồng mangan",
+    "Đồng nhôm niken",
+    "Thép không rỉ"
+  ]
 }

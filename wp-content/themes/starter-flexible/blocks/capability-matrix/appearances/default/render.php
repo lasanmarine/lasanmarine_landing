@@ -3,7 +3,6 @@
  * Capability Matrix — default appearance.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -18,11 +17,10 @@ if ( empty( $data->should_render ) ) {
 	return;
 }
 
-$anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php echo $anchor; // phpcs:ignore ?>>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<?php
-	if ( '' !== trim( (string) $data->label ) ) {
+	if ( $data->has_label ) {
 		get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) );
 	}
 	?>
@@ -43,7 +41,7 @@ $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anc
 				</div>
 				<h3 class="cm__name"><?php echo esc_html( $item['name'] ); ?></h3>
 				<p class="cm__desc"><?php echo esc_html( $item['desc'] ); ?></p>
-				<?php if ( '' !== trim( $item['cta'] ) ) : ?>
+				<?php if ( $item['has_cta'] ) : ?>
 					<span class="cm__cta">
 						<?php echo esc_html( $item['cta'] ); ?>
 						<?php echo starter_flexible_icon_swap( 'arrow', 17 ); // phpcs:ignore ?>

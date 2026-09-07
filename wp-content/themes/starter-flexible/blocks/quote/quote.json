@@ -1,0 +1,13 @@
+{
+  "key": "group_quote",
+  "title": "Quote",
+  "fields": [
+    { "key": "field_quote_quote", "label": "Quote", "name": "quote", "type": "textarea", "rows": 4, "new_lines": "", "instructions": "Chỉ dùng khi có phát biểu thật. Không đặt dấu ngoặc kép, khối tự vẽ." },
+    { "key": "field_quote_author", "label": "Author", "name": "author", "type": "text" },
+    { "key": "field_quote_role", "label": "Role", "name": "role", "type": "text" },
+    { "key": "field_quote_company", "label": "Company", "name": "company", "type": "text" },
+    { "key": "field_quote_image", "label": "Photo", "name": "image", "type": "image", "return_format": "id", "preview_size": "thumbnail", "library": "all" },
+    { "key": "field_quote_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/quote" }]]
+}

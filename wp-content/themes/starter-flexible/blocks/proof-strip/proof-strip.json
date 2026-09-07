@@ -1,0 +1,19 @@
+{
+  "key": "group_proof_strip",
+  "title": "Proof Strip",
+  "fields": [
+    {
+      "key": "field_proof_strip_items", "label": "Items", "name": "items", "type": "repeater",
+      "layout": "block", "button_label": "Add Proof", "max": 4,
+      "instructions": "Ba đến bốn mục là vừa. Dải này để liếc qua, không để đọc.",
+      "sub_fields": [
+        { "key": "field_proof_strip_item_value", "label": "Value", "name": "value", "type": "text" },
+        { "key": "field_proof_strip_item_label", "label": "Label", "name": "label", "type": "text" },
+        { "key": "field_proof_strip_item_note", "label": "Note", "name": "note", "type": "text", "instructions": "Tuỳ chọn — một dòng rất ngắn." },
+        { "key": "field_proof_strip_item_link", "label": "Link", "name": "link", "type": "link", "return_format": "array" }
+      ]
+    },
+    { "key": "field_proof_strip_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/proof-strip" }]]
+}

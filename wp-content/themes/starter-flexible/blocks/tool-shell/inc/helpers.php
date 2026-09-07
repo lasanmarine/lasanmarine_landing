@@ -9,14 +9,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+final class Starter_Flexible_Block_Tool_Shell extends Starter_Flexible_Abstract_Block {
+	protected function defaults(): array {
+		return array( 'custom_class' => '' );
+	}
+
+	protected function base_class(): string {
+		return 'block container';
+	}
+
+	protected function prepare( array $data ): array {
+
+		$data['should_render'] = true;
+
+		$data['allowed'] = wp_json_encode( array( 'acf/engine-lookup', 'acf/power-converter', 'acf/shaft-diameter' ) );
+		$data['template'] = wp_json_encode( array() );
+
+		return $data;
+	}
+}
+
 function starter_flexible_block_data_tool_shell( array $block ) {
-	$data = array_merge(
-		array( 'custom_class' => '' ),
-		starter_flexible_get_block_fields( $block )
-	);
-
-	$data['module_class']  = starter_flexible_build_module_class( 'block container', (string) $data['custom_class'] );
-	$data['should_render'] = true;
-
-	return (object) $data;
+	return ( new Starter_Flexible_Block_Tool_Shell( $block ) )->data();
 }

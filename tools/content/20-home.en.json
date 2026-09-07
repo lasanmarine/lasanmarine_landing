@@ -5,120 +5,212 @@
   "lang": "en",
   "translation_of": "home",
   "seo": {
-    "title": "LASAN MARINE — Ship design, digital solutions and marine research",
-    "description": "Three independent fields, each built around engineering thinking and real-world problems."
+    "title": "Ship Design, Marine R&D & Software | LASAN MARINE",
+    "description": "Ship design is at the centre of our work. We also take on research-led technical problems and build software for real operational needs."
   },
   "blocks": [
     {
       "type": "hero",
       "fields": {
-        "headline": "Engineering beyond the",
-        "headline_accent": "drawing board.",
-        "headline_tail": "",
-        "lead": "Ship design, digital solutions and marine research — three independent fields, each built around engineering thinking and real-world problems.",
+        "items": [
+          {
+            "headline": "Ship design starts with what the vessel is built to do.",
+            "lead": "We turn operating requirements into a workable design, from principal dimensions and hull form to calculations, drawings and technical documentation for newbuilds and conversions.",
+            "image": 585
+          },
+          {
+            "headline": "For the technical questions that still need answers.",
+            "lead": "We use simulation, measurement, testing and data analysis to investigate hydrodynamics, structures, vibration and propulsion when a question needs evidence rather than assumption.",
+            "image": 527
+          },
+          {
+            "headline": "Software should remove work, not add more of it.",
+            "lead": "We build management systems, websites, automation and AI-enabled tools around real workflows, real data and the people who use them.",
+            "image": 818
+          }
+        ],
+        "autoplay": 4,
         "primary": {
-          "label": "Explore LASAN MARINE",
-          "page": "about"
+          "label": "Explore our capabilities",
+          "page": "capabilities"
         },
-        "secondary": [],
-        "heading_level": "h1"
+        "secondary": {
+          "label": "Discuss a project",
+          "page": "contact"
+        },
+        "heading_level": "h1",
+        "custom_class": ""
       }
     },
     {
-      "type": "manifesto",
+      "type": "proof-strip",
       "fields": {
-        "label": "ABOUT",
-        "heading": "One engineering company. Three areas of expertise.",
-        "lead": "LASAN MARINE works across ship design, digital solutions and marine research. Each has its own expertise and methods, with a shared focus on outcomes that work in practice.",
-        "body": [],
-        "cta": {
-          "label": "About LASAN MARINE",
-          "page": "about"
-        }
+        "items": [
+          {
+            "value": "300+",
+            "label": "Vessel design packages",
+            "note": "Newbuilds, conversions and as-built documentation",
+            "link": {
+              "label": "View projects",
+              "page": "projects"
+            }
+          },
+          {
+            "value": "20+ years",
+            "label": "Experience across our core team",
+            "note": "Ship design, calculations and technical documentation"
+          },
+          {
+            "value": "Wood · Steel · Composite",
+            "label": "Hull materials in our project record",
+            "link": {
+              "label": "Explore capabilities",
+              "page": "capabilities"
+            }
+          },
+          {
+            "value": "20+",
+            "label": "Scientific publications",
+            "note": "Hydrodynamics, structures and propulsion",
+            "link": {
+              "label": "Explore R&D",
+              "page": "service_rnd"
+            }
+          }
+        ],
+        "custom_class": ""
       }
     },
     {
-      "type": "capability-matrix",
+      "type": "service-architecture",
+      "anchor": "services",
       "fields": {
-        "label": "WHAT WE DO",
-        "heading": "",
+        "heading": "What we do",
+        "caption": "Ship design is our core discipline. R&D extends our ability to investigate technical questions, while software turns recurring workflow and data problems into usable systems.",
+        "view_all": "Explore all capabilities",
+        "view_all_link": {
+          "label": "Explore all capabilities",
+          "page": "capabilities"
+        },
         "items": [
           {
             "index": "01",
-            "icon": "ship",
             "name": "Ship Design",
-            "desc": "From operational requirements to vessel concepts, engineering calculations and design documentation for newbuild and conversion projects.",
+            "desc": "From operating requirements or existing vessel data, we develop the design, carry out the calculations and prepare the drawings and technical documentation required for the next stage of the project.",
             "link": {
-              "label": "Explore Ship Design",
+              "label": "Explore ship design",
               "page": "service_01"
             },
-            "children": []
+            "children": [
+              {
+                "name": "Newbuild and conversion design"
+              },
+              {
+                "name": "Hydrostatics, stability, resistance, structures and propulsion"
+              },
+              {
+                "name": "Drawings and technical documentation"
+              }
+            ]
           },
           {
             "index": "02",
-            "icon": "scan",
-            "name": "Digital Solutions",
-            "desc": "Software and digital systems developed around real operational, data and management requirements.",
+            "name": "Research & Development",
+            "desc": "We investigate hydrodynamics, structures, vibration, propulsion and measurement problems using simulation, testing, measurement and data analysis where the question demands more than a standard calculation.",
             "link": {
-              "label": "Explore Digital Solutions",
-              "page": "service_03"
+              "label": "Explore R&D",
+              "page": "service_rnd"
             },
-            "children": []
+            "children": [
+              {
+                "name": "CFD and hydrodynamic simulation"
+              },
+              {
+                "name": "Structural and vibration analysis"
+              },
+              {
+                "name": "Measurement and comparison with real-world data"
+              }
+            ]
           },
           {
             "index": "03",
-            "icon": "compass",
-            "name": "Marine R&D",
-            "desc": "Research into ship and marine engineering problems through modelling, calculation, experimentation and data analysis.",
+            "name": "Software",
+            "desc": "We build custom management systems, websites, automation and AI-enabled applications around the way each organisation actually works.",
             "link": {
-              "label": "Explore Marine R&D",
-              "page": "service_rnd"
+              "label": "Explore software",
+              "page": "service_03"
             },
-            "children": []
+            "children": [
+              {
+                "name": "Management systems and custom software"
+              },
+              {
+                "name": "Websites and web platforms"
+              },
+              {
+                "name": "Automation and applied AI"
+              }
+            ]
           }
-        ]
+        ],
+        "custom_class": ""
       }
     },
     {
       "type": "service-spotlight",
       "fields": {
-        "label": "SELECTED WORK",
-        "placeholder": "Selected Work",
-        "heading": "A selection of work by LASAN MARINE.",
-        "body": "Design projects, digital systems and technical work presented through their actual scope and outcomes.",
-        "items": [],
+        "placeholder": "Ship design",
+        "caption": "Ship Design",
+        "heading": "Every project starts from a different point",
+        "body": "Some clients come with an operating brief and little else. Others already have drawings and need a defined set of calculations or design updates. We review what already exists, agree the work that still needs to be done, and make the deliverables clear before the project starts.",
+        "items": [
+          {
+            "text": "Fishing vessels, fisheries support vessels, passenger craft and inland-waterway vessels"
+          },
+          {
+            "text": "Conversions involving function, dimensions, structures or propulsion"
+          },
+          {
+            "text": "Stability, resistance, structural, propeller and shafting calculations"
+          },
+          {
+            "text": "Drawings and technical documentation for construction, retrofit or project handover"
+          }
+        ],
         "cta": {
-          "label": "View our work",
-          "page": "projects"
-        }
+          "label": "Explore ship design",
+          "page": "service_01"
+        },
+        "custom_class": "",
+        "image": 531
       }
     },
     {
-      "type": "insights",
+      "type": "project-showcase",
       "fields": {
-        "label": "INSIGHTS",
-        "heading": "From practical work to questions worth exploring further.",
-        "view_all": "Explore Insights",
-        "view_all_link": {
-          "label": "Explore Insights",
-          "page": "insights"
-        },
-        "read_more": "Read more",
-        "posts_per_page": 3
+        "label": "Selected projects",
+        "projects": [
+          "tau-hau-can-bv-99889-ts",
+          "tau-ca-vo-thep-qna-91312-ts",
+          "cano-lam-hai"
+        ],
+        "limit": 3,
+        "custom_class": ""
       }
     },
     {
       "type": "contact-statement",
       "fields": {
-        "label": "CONTACT",
-        "heading": "Have something you would like to discuss?",
-        "description": "Tell us what you are working on and what information you already have. That is enough to start a conversation.",
-        "phone": "0834 310 781",
+        "heading": "Planning a new project?",
+        "description": "Send us the operating requirements, drawings, data or simply a short description of what you need. We will review the information and come back with a clear view of where we can contribute and what we would need from you next.",
+        "phone": "+84 834 310 781",
         "email": "hello@lasanmarine.com",
         "cta": {
-          "label": "Contact LASAN MARINE",
+          "label": "Start a conversation",
           "page": "contact"
-        }
+        },
+        "custom_class": ""
       }
     }
   ]

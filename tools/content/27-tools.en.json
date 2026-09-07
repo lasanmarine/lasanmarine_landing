@@ -1,0 +1,206 @@
+{
+  "key": "tools_en",
+  "title": "Technical Tools",
+  "slug": "tools",
+  "lang": "en",
+  "translation_of": "tools",
+  "seo": {
+    "title": "Free Ship Design Calculators & Marine Lookup Tools | LASAN MARINE",
+    "description": "Free browser-based tools for power conversion, preliminary propeller-shaft diameter checks and marine-engine lookup."
+  },
+  "blocks": [
+    {
+      "type": "page-hero",
+      "fields": {
+        "headline": "Fast checks for everyday ship-design work",
+        "lead": "A small collection of browser-based converters, preliminary checks and lookup tools for recurring technical tasks. They are designed for quick reference, not as a substitute for project-specific engineering calculations.",
+        "placeholder": "Ship design tools",
+        "heading_level": "h1",
+        "height": 420,
+        "custom_class": "",
+        "image": 818
+      }
+    },
+    {
+      "type": "capability-matrix",
+      "fields": {
+        "heading": "Three tools for common technical checks",
+        "items": [
+          {
+            "index": "01",
+            "icon": "calculator",
+            "name": "Power Converter",
+            "desc": "Convert quickly between kW, HP, CV and PS when comparing manufacturer data, legacy documentation or technical references from different sources.",
+            "link": {
+              "label": "Open power converter",
+              "page": "tool_power"
+            },
+            "children": [
+              {
+                "name": "kW · HP · CV · PS"
+              },
+              {
+                "name": "Select decimal precision"
+              },
+              {
+                "name": "Copy results quickly"
+              }
+            ]
+          },
+          {
+            "index": "02",
+            "icon": "ruler",
+            "name": "Preliminary Propeller-Shaft Diameter Check",
+            "desc": "Estimate a preliminary minimum diameter from power, shaft speed, gear ratio and material factor before carrying out a complete project calculation.",
+            "link": {
+              "label": "Open shaft check",
+              "page": "tool_shaft"
+            },
+            "children": [
+              {
+                "name": "Calculate from power and shaft speed"
+              },
+              {
+                "name": "K3 material-factor reference"
+              },
+              {
+                "name": "Power and rotational-speed unit support"
+              }
+            ]
+          },
+          {
+            "index": "03",
+            "icon": "scan",
+            "name": "Marine Engine Lookup",
+            "desc": "Filter by manufacturer, engine model, power range and speed across a dataset of more than 250 marine-engine models compiled from existing design records.",
+            "link": {
+              "label": "Open engine lookup",
+              "page": "tool_engine"
+            },
+            "children": [
+              {
+                "name": "Filter by manufacturer and model"
+              },
+              {
+                "name": "Sort by technical parameter"
+              },
+              {
+                "name": "Copy individual values"
+              }
+            ]
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "spec-list",
+      "fields": {
+        "heading": "What these tools are for",
+        "note": "Use them for quick reference, comparison and preliminary checks before moving into a project-specific calculation.",
+        "rows": [
+          {
+            "label": "Cost",
+            "value": "Free, no account required"
+          },
+          {
+            "label": "Where they run",
+            "value": "Directly in the browser"
+          },
+          {
+            "label": "Power units",
+            "value": "kW · HP · CV · PS"
+          },
+          {
+            "label": "Rotational-speed units",
+            "value": "rpm · rps"
+          },
+          {
+            "label": "Engine dataset",
+            "value": "250+ models compiled from existing vessel design records"
+          },
+          {
+            "label": "Intended use",
+            "value": "Reference and preliminary checks; not a substitute for project-specific engineering calculations"
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "accordion",
+      "fields": {
+        "heading": "Common questions about the tools",
+        "intro": "These answers clarify where quick online checks are useful and where a full project calculation is still needed.",
+        "items": [
+          {
+            "title": "Can I use the tool result as the final calculation for a vessel project?",
+            "content": "No. The tools are intended for reference and preliminary checks. A project calculation should consider the full input data, load cases, material properties, operating conditions and design assumptions that apply to that vessel."
+          },
+          {
+            "title": "Are CV and PS the same unit?",
+            "content": "Both are metric-horsepower units commonly found in manufacturer documentation. The converter makes it easier to compare them with kW and mechanical horsepower (HP)."
+          },
+          {
+            "title": "Is the shaft-diameter result final or preliminary?",
+            "content": "It is a preliminary check based on the inputs provided. If the value will be used in an actual design, the complete calculation should consider the relevant material, operating and design conditions."
+          },
+          {
+            "title": "Where does the engine data come from?",
+            "content": "The current dataset contains more than 250 engine models compiled from vessel design records. For a specific project, the latest manufacturer documentation should still be used as the final technical reference."
+          },
+          {
+            "title": "Can I suggest another tool?",
+            "content": "Yes. Send us the recurring calculation or lookup task. If the logic is stable and useful to a wider audience, it may be a good candidate for another public tool."
+          }
+        ],
+        "open_first": 0,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "project-showcase",
+      "fields": {
+        "label": "Related projects",
+        "projects": [
+          "tau-hau-can-bv-99889-ts",
+          "tau-ca-vo-thep-qna-91312-ts",
+          "cano-lam-hai"
+        ],
+        "limit": 3,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "cta-banner",
+      "fields": {
+        "heading": "A quick check is a starting point, not the design",
+        "content": "When the result affects a real vessel decision, the full operating condition, geometry, loads and other project-specific inputs need to be considered. We can take on the detailed calculation when the online check is no longer enough.",
+        "primary_cta": {
+          "label": "Explore ship design",
+          "page": "service_01"
+        },
+        "secondary_cta": {
+          "label": "Explore R&D",
+          "page": "service_rnd"
+        },
+        "theme": "outline",
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "contact-statement",
+      "fields": {
+        "heading": "Is there a calculation you keep doing by hand?",
+        "description": "Send the method, input data and intended use. We can look at whether it makes sense as another public tool or should remain a project-specific calculation.",
+        "phone": "+84 834 310 781",
+        "email": "hello@lasanmarine.com",
+        "cta": {
+          "label": "Send the calculation",
+          "page": "contact"
+        },
+        "custom_class": ""
+      }
+    }
+  ]
+}

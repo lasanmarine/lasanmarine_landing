@@ -1,0 +1,276 @@
+{
+  "key": "service_03_en",
+  "title": "Software",
+  "slug": "software",
+  "lang": "en",
+  "translation_of": "service_03",
+  "seo": {
+    "title": "Custom Software, Websites, Automation & AI | LASAN MARINE",
+    "description": "Custom management systems, websites, workflow automation and AI-enabled applications built around real workflows, data and operational needs."
+  },
+  "blocks": [
+    {
+      "type": "page-hero",
+      "fields": {
+        "headline": "Software should remove work, not add more of it",
+        "lead": "We build management systems, websites, automation and AI-enabled applications around real workflows and real data. The starting point is the work that needs to run better—not a fixed feature list.",
+        "placeholder": "Custom software and digital systems",
+        "heading_level": "h1",
+        "height": 420,
+        "custom_class": "",
+        "image": 818
+      }
+    },
+    {
+      "type": "image-text",
+      "fields": {
+        "heading": "Built around real workflows, not feature lists",
+        "content": "Our software work began with recurring problems in calculations, document handling and technical data. It has since expanded into management systems, websites, automation and AI for a wider range of operational needs. We first understand the work, the users and the data; technology comes after that.",
+        "placeholder": "Workflow and data",
+        "caption": "From recurring work to software",
+        "image_position": "right",
+        "split": "even",
+        "ratio": "ratio-4-3",
+        "custom_class": "",
+        "image": 576
+      }
+    },
+    {
+      "type": "use-case",
+      "fields": {
+        "heading": "Good software starts with a specific problem",
+        "intro": "Some projects start with scattered spreadsheets. Some start with a website that is hard to manage. Others involve repetitive work that should be automated or a well-defined AI use case. We focus on the problem before deciding what to build.",
+        "items": [
+          {
+            "problem": "Our data and day-to-day work are spread across spreadsheets, forms and separate files",
+            "context": "Information is difficult to track, several people work on different versions, and reporting takes too much manual consolidation.",
+            "solution": "We build a shared system around the actual data, user roles and process, then refine it as the workflow evolves in practice.",
+            "link": {
+              "label": "Discuss a management system",
+              "page": "contact"
+            }
+          },
+          {
+            "problem": "Our website no longer explains the business clearly or is difficult to maintain",
+            "context": "The content exists, but the structure is hard to follow, updates depend on developers, or the site is weak for search and measurement.",
+            "solution": "We redesign the information structure, user experience and content-management setup so the site is clearer to customers and easier for the internal team to operate.",
+            "link": {
+              "label": "Discuss a website project",
+              "page": "contact"
+            }
+          },
+          {
+            "problem": "The same information is being re-entered or processed manually across several steps",
+            "context": "Data moves between forms, spreadsheets, email and separate systems, creating delays and avoidable errors.",
+            "solution": "We automate repeatable steps to move data, generate reports, send notifications or trigger the next action without asking people to copy the same information again.",
+            "link": {
+              "label": "Discuss automation",
+              "page": "contact"
+            }
+          },
+          {
+            "problem": "We want to use AI, but the useful task is not yet clear",
+            "context": "Data and documents exist, but there is no clear view of where AI should be used or how the output will be checked.",
+            "solution": "We look for specific tasks such as extraction, categorisation, search, question answering or recognition. If a conventional solution works better, we do not force AI into the project.",
+            "link": {
+              "label": "Discuss an AI use case",
+              "page": "contact"
+            }
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "service-architecture",
+      "fields": {
+        "heading": "Management systems, websites, automation and applied AI",
+        "caption": "Every project starts with the workflow, the data and the people who will use the system. Once those are clear, we choose the technology that fits the job.",
+        "view_all": "Explore all capabilities",
+        "view_all_link": {
+          "label": "Explore all capabilities",
+          "page": "capabilities"
+        },
+        "items": [
+          {
+            "index": "01",
+            "name": "Custom Management Systems",
+            "desc": "Systems built around real operational data and processes, from project tracking and document control to inventory, equipment, approvals and reporting.",
+            "link": {
+              "label": "Discuss a management system",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Work, schedule and assignment management"
+              },
+              {
+                "name": "Documents, data and revision control"
+              },
+              {
+                "name": "Inventory, materials and equipment"
+              },
+              {
+                "name": "Reporting and data dashboards"
+              }
+            ]
+          },
+          {
+            "index": "02",
+            "name": "Websites & Web Products",
+            "desc": "Company websites, landing pages and web products with clear information architecture, responsive interfaces and manageable content operations after handover.",
+            "link": {
+              "label": "Discuss a website",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Corporate and capability websites"
+              },
+              {
+                "name": "Product and service landing pages"
+              },
+              {
+                "name": "Content management systems"
+              },
+              {
+                "name": "Search-friendly structure and analytics"
+              }
+            ]
+          },
+          {
+            "index": "03",
+            "name": "Automation & Applied AI",
+            "desc": "Automation for repeatable rules-based work and AI for tasks where the data, success criteria and intended use are clear enough to evaluate the result.",
+            "link": {
+              "label": "Discuss automation",
+              "page": "contact"
+            },
+            "children": [
+              {
+                "name": "Data sync, notifications and automated reporting"
+              },
+              {
+                "name": "Data extraction from documents and images"
+              },
+              {
+                "name": "Search and question answering over internal documents"
+              },
+              {
+                "name": "Recognition and categorisation for defined datasets"
+              }
+            ]
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "process-timeline",
+      "fields": {
+        "label": "How we build",
+        "steps": [
+          {
+            "index": "01",
+            "title": "Understand the workflow and the friction",
+            "desc": "We speak with the people doing the work to understand the current process, where time is being lost and where data becomes difficult to track."
+          },
+          {
+            "index": "02",
+            "title": "Design the data and user flow",
+            "desc": "We shape the data model, permissions and key actions around the real roles that will use the system."
+          },
+          {
+            "index": "03",
+            "title": "Build in testable pieces",
+            "desc": "We put useful parts of the system in front of users early, with realistic data, so problems are found before the project grows larger."
+          },
+          {
+            "index": "04",
+            "title": "Hand over, then extend when it makes sense",
+            "desc": "The agreed system is delivered with usage documentation. New integrations or features can be added later instead of forcing every possible requirement into version one."
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "value-grid",
+      "fields": {
+        "label": "What should improve in daily work",
+        "items": [
+          {
+            "icon": "link",
+            "title": "Less time searching for the right information",
+            "desc": "Reduce time spent finding files, checking versions and combining data from disconnected sources."
+          },
+          {
+            "icon": "gauge",
+            "title": "Less re-entry and repetitive processing",
+            "desc": "Automate repeatable steps so people spend more time on the work that still needs judgement."
+          },
+          {
+            "icon": "award",
+            "title": "A clearer view of what is happening",
+            "desc": "Roles, status and history stay visible, making work easier to follow across the team."
+          },
+          {
+            "icon": "wrench",
+            "title": "Room to grow without rebuilding everything",
+            "desc": "We structure systems so useful features and integrations can be added later as the operation changes."
+          }
+        ],
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "accordion",
+      "fields": {
+        "heading": "Common questions before a software project starts",
+        "intro": "You do not need a complete software specification before the first conversation. A workflow, sample spreadsheet, existing website or recurring task is enough to start defining the problem.",
+        "items": [
+          {
+            "title": "Do we need to replace everything we already use?",
+            "content": "Usually not. We first look at what already works and what is actually creating friction. Many projects can start with one process or one system boundary and expand only when there is a reason to."
+          },
+          {
+            "title": "Can you work with the Excel data we already have?",
+            "content": "Yes. Existing spreadsheets, forms and data files are useful because they show how information is currently structured and handled. We can keep what is useful and reorganise only what needs to change."
+          },
+          {
+            "title": "Can we start with one small module?",
+            "content": "Yes. If the problem can be separated cleanly, starting with one module lets users test the approach in real work before committing to a wider rollout."
+          },
+          {
+            "title": "Does every project need AI?",
+            "content": "No. We only recommend AI when the task and the data make it worthwhile. For many management problems, a clean data structure and ordinary automation deliver more value with less complexity."
+          },
+          {
+            "title": "Can the system be extended after handover?",
+            "content": "Yes. We review the existing architecture and data before adding new features or integrations so the system can grow without becoming unnecessarily complicated."
+          },
+          {
+            "title": "What should we prepare for the first conversation?",
+            "content": "A current workflow, a few sample forms or spreadsheets, the main user groups and the steps that waste the most time are enough. You do not need to write a complete software requirements document first."
+          }
+        ],
+        "open_first": 0,
+        "custom_class": ""
+      }
+    },
+    {
+      "type": "contact-statement",
+      "fields": {
+        "heading": "Need a system, website or workflow automated?",
+        "description": "Send us the current process, sample data, website requirements or a short description of the work you want to improve. We will help define what is worth building first and what can wait.",
+        "phone": "+84 834 310 781",
+        "email": "hello@lasanmarine.com",
+        "cta": {
+          "label": "Discuss a software project",
+          "page": "contact"
+        },
+        "custom_class": ""
+      }
+    }
+  ]
+}

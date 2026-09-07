@@ -1,0 +1,18 @@
+{
+  "key": "group_image_text",
+  "title": "Image + Text",
+  "fields": [
+    { "key": "field_image_text_label", "label": "Block Label", "name": "label", "type": "text" },
+    { "key": "field_image_text_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_image_text_content", "label": "Content", "name": "content", "type": "wysiwyg", "tabs": "visual", "toolbar": "basic", "media_upload": 0 },
+    { "key": "field_image_text_image", "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
+    { "key": "field_image_text_placeholder", "label": "Placeholder Text", "name": "placeholder", "type": "text", "instructions": "Hiện thay cho ảnh khi chưa chọn ảnh." },
+    { "key": "field_image_text_caption", "label": "Caption", "name": "caption", "type": "text", "instructions": "Tuỳ chọn — chú thích nằm trên góc ảnh." },
+    { "key": "field_image_text_image_position", "label": "Image Position", "name": "image_position", "type": "select", "choices": { "right": "Bên phải", "left": "Bên trái" }, "default_value": "right", "return_format": "value" },
+    { "key": "field_image_text_split", "label": "Split", "name": "split", "type": "select", "choices": { "even": "50 / 50", "text": "Chữ rộng hơn — 7 / 5", "media": "Ảnh rộng hơn — 5 / 7" }, "default_value": "even", "return_format": "value" },
+    { "key": "field_image_text_ratio", "label": "Image Ratio", "name": "ratio", "type": "select", "choices": { "ratio-4-3": "4 : 3", "ratio-3-2": "3 : 2", "ratio-16-9": "16 : 9", "ratio-1-1": "1 : 1", "ratio-4-5": "4 : 5" }, "default_value": "ratio-4-3", "return_format": "value" },
+    { "key": "field_image_text_cta", "label": "CTA", "name": "cta", "type": "link", "return_format": "array" },
+    { "key": "field_image_text_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/image-text" }]]
+}

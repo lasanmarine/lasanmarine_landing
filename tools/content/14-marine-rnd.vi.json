@@ -1,80 +1,146 @@
 {
   "key": "service_rnd",
-  "title": "Marine R&D",
+  "title": "Nghiên cứu và phát triển (R&D)",
   "slug": "marine-rd",
-  "parent": "capabilities",
   "lang": "vi",
   "seo": {
-    "title": "Nghiên cứu & Phát triển (R&D) — LASAN MARINE",
-    "description": "Nghiên cứu khoa học dựa trên thực nghiệm và mô phỏng số chuyên sâu, hướng tới giải quyết các bài toán kỹ thuật hàng hải và đóng góp giá trị thực tế cho cộng đồng."
+    "title": "R&D tàu thủy, mô phỏng CFD và đo kiểm | LASAN MARINE",
+    "description": "Hoạt động R&D tập trung vào các vấn đề liên quan đến thiết kế tàu, thủy động lực học, kết cấu, hệ động lực, đo kiểm và nghiên cứu ứng dụng."
   },
   "blocks": [
     {
       "type": "page-hero",
       "fields": {
-        "headline": "Nghiên cứu & Phát triển (R&D)",
-        "lead": "Nghiên cứu khoa học dựa trên thực nghiệm và mô phỏng số chuyên sâu, hướng tới giải quyết các bài toán kỹ thuật hàng hải và đóng góp giá trị thực tế cho cộng đồng.",
-        "placeholder": "MARINE R&D & ACADEMIC PAPERS",
+        "headline": "R&D tập trung vào kiểm chứng giả thiết, nghiên cứu hiện tượng và phát triển phương pháp trong thiết kế tàu",
+        "lead": "Mỗi đề tài bắt đầu từ một câu hỏi cụ thể. Tùy nội dung cần kiểm chứng, chúng tôi lựa chọn mô phỏng số, phân tích kết cấu, đo kiểm, thực nghiệm hoặc phân tích số liệu, sau đó đối chiếu kết quả với dữ liệu thực tế khi có thể.",
+        "placeholder": "Nghiên cứu, mô phỏng và đo kiểm",
         "heading_level": "h1",
         "height": 420,
-        "custom_class": ""
+        "custom_class": "",
+        "image": 527
       }
     },
     {
-      "type": "manifesto",
+      "type": "use-case",
       "fields": {
-        "label": "ĐỊNH HƯỚNG NGHIÊN CỨU",
-        "heading": "Khoa học phục vụ thực tiễn, chia sẻ tri thức cho cộng đồng",
-        "lead": "Hoạt động R&D tại công ty không nằm trên giấy tờ lý thuyết mà bắt nguồn từ các bài toán thực tế ngoài hiện trường: rung động động cơ, dòng chảy thân vỏ, hiện tượng sủi bọt khí chân vịt và an toàn hệ động lực.",
-        "body": [
+        "heading": "Mỗi đề tài bắt đầu từ một câu hỏi cần nghiên cứu hoặc kiểm chứng",
+        "intro": "R&D không thay thế các bước tính toán vốn có trong thiết kế tàu. Chúng tôi thực hiện nghiên cứu để kiểm chứng giả thiết, tìm hiểu hiện tượng, phát triển phương pháp hoặc đối chiếu mô hình với dữ liệu thực tế. Tùy câu hỏi của từng đề tài, chúng tôi chọn phương pháp phù hợp.",
+        "items": [
           {
-            "text": "Đội ngũ chuyên môn do TS. Huỳnh Lê Hồng Thái dẫn dắt tập trung vào các hướng nghiên cứu trọng điểm: mô phỏng động lực học chất lưu (CFD), cơ học kết cấu chịu tải và chế tạo thiết bị đo kiểm chuyên dụng. Kết quả từ các bài báo khoa học quốc tế và trong nước được chúng tôi ứng dụng trực tiếp vào việc tối ưu thiết kế tàu, đồng thời chuyển hóa thành các công cụ tính toán mở, miễn phí để hỗ trợ kỹ sư và sinh viên ngành tàu thủy."
+            "problem": "Cần so sánh hai phương án hình học hoặc điều kiện làm việc",
+            "context": "Chỉ bằng quan sát, rất khó nhận biết thay đổi nào đang ảnh hưởng đến lực cản, trường dòng hoặc tải thủy động.",
+            "solution": "CFD giúp so sánh các trạng thái theo cùng một cách đánh giá, qua đó cho thấy xu hướng thay đổi và những khu vực cần xem xét kỹ hơn trước khi điều chỉnh thiết kế.",
+            "link": {
+              "label": "Xem công trình liên quan",
+              "url": "#cong-trinh"
+            }
+          },
+          {
+            "problem": "Cần làm rõ nguy cơ xâm thực hoặc vùng dòng chảy bất lợi quanh chân vịt",
+            "context": "Xâm thực và các vùng dòng chảy bất lợi phụ thuộc vào hình học, vận tốc và điều kiện làm việc nên khó đánh giá đầy đủ chỉ từ quan sát bên ngoài.",
+            "solution": "Mô phỏng cho thấy phân bố áp suất, trường vận tốc và những vùng có dấu hiệu bất lợi. Những dữ liệu này giúp khách hàng đánh giá rõ hơn trước khi quyết định có cần điều chỉnh phương án hay không.",
+            "link": {
+              "label": "Xem nghiên cứu thủy động lực học",
+              "url": "#cong-trinh"
+            }
+          },
+          {
+            "problem": "Cần kiểm tra ứng suất, rung động hoặc độ bền của một chi tiết hay cụm kết cấu",
+            "context": "Một số vùng nguy hiểm chỉ xuất hiện dưới tải trọng hoặc điều kiện liên kết cụ thể.",
+            "solution": "Phân tích kết cấu giúp so sánh các trạng thái làm việc, nhận diện vùng ứng suất cao và xem xét xu hướng dao động trước khi thay đổi thiết kế.",
+            "link": {
+              "label": "Xem nhóm nghiên cứu kết cấu",
+              "url": "#cong-trinh"
+            }
+          },
+          {
+            "problem": "Cần dữ liệu thực tế để kiểm tra thiết kế hoặc mô hình",
+            "context": "Sai lệch hình học hoặc thông số tại xưởng có thể ảnh hưởng đáng kể đến kết quả tính toán.",
+            "solution": "Dữ liệu đo cho phép đối chiếu với thông số thiết kế, đánh giá sai lệch và kiểm tra mức độ hợp lý của mô hình trước khi đưa ra kết luận.",
+            "link": {
+              "label": "Xem công trình đo kiểm",
+              "url": "#cong-trinh"
+            }
           }
         ],
-        "cta": { "label": "Trải nghiệm các công cụ tính mở", "page": "tools" },
         "custom_class": ""
       }
     },
     {
       "type": "capability-matrix",
       "fields": {
-        "label": "HƯỚNG ĐÓNG GÓP CỘNG ĐỒNG",
-        "heading": "Nghiên cứu kỹ thuật mang lại giá trị gì cho xã hội?",
+        "heading": "Các hướng nghiên cứu hiện nay tập trung vào thủy động lực học, kết cấu và đo kiểm",
         "items": [
           {
             "index": "01",
-            "icon": "ship",
-            "name": "Tối ưu hóa vỏ tàu & Tiết kiệm nhiên liệu",
-            "desc": "Ứng dụng mô phỏng số (CFD) để phân tích dòng chảy tương tác giữa vỏ tàu, bánh lái và chân vịt, giúp giảm lực cản và cắt giảm lượng dầu tiêu hao cho đội tàu đánh bắt xa bờ.",
-            "link": { "label": "Xem công trình liên quan", "url": "#cong-trinh" },
+            "icon": "waves",
+            "name": "Mô phỏng dòng chảy và thủy động lực học",
+            "desc": "LASAN mô phỏng trường dòng quanh thân tàu, chân vịt và bánh lái để so sánh phương án, đánh giá xu hướng lực cản, tải và các hiện tượng thủy động lực học liên quan.",
+            "link": {
+              "label": "Xem công trình liên quan",
+              "url": "#cong-trinh"
+            },
             "children": [
-              { "name": "Mô phỏng dòng lưu chất qua vỏ tàu cá có xét đến chân vịt và bánh lái" },
-              { "name": "Đánh giá hiện tượng sủi bọt khí (cavitation) đầu mút cánh chân vịt" },
-              { "name": "Giảm phát thải và nâng cao hiệu suất khai thác trên biển" }
+              {
+                "name": "Dòng chảy quanh vỏ tàu"
+              },
+              {
+                "name": "Tương tác vỏ tàu – chân vịt – bánh lái"
+              },
+              {
+                "name": "Xâm thực ở đầu mút cánh chân vịt"
+              },
+              {
+                "name": "Lực cản, tải và hiệu suất thủy động"
+              }
             ]
           },
           {
             "index": "02",
             "icon": "wrench",
-            "name": "Chế tạo thiết bị đo kiểm thực tế",
-            "desc": "Nghiên cứu chế tạo các thiết bị cơ khí chính xác trong nước để giải quyết bài toán đo đạc hình học phức tạp với chi phí hợp lý.",
-            "link": { "label": "Xem công trình liên quan", "url": "#cong-trinh" },
+            "name": "Kết cấu, hệ động lực và dao động",
+            "desc": "LASAN phân tích ứng suất, biến dạng và đặc tính dao động để kiểm tra độ bền, so sánh các trạng thái làm việc và nhận diện khu vực cần xem xét thêm.",
+            "link": {
+              "label": "Xem công trình liên quan",
+              "url": "#cong-trinh"
+            },
             "children": [
-              { "name": "Thiết kế, chế tạo máy đo tọa độ CMM chuyên dụng cho chân vịt tàu thủy" },
-              { "name": "Đo kiểm và hiệu chỉnh bước xoắn chân vịt thực tế tại xưởng" },
-              { "name": "Kiểm soát độ bền và rung động hệ trục động lực" }
+              {
+                "name": "Ứng suất và độ bền kết cấu"
+              },
+              {
+                "name": "Dao động và nguy cơ cộng hưởng"
+              },
+              {
+                "name": "Trục khuỷu và hệ động lực"
+              },
+              {
+                "name": "Tiếng ồn và vật liệu"
+              }
             ]
           },
           {
             "index": "03",
-            "icon": "calculator",
-            "name": "Dự án mở phục vụ cộng đồng kỹ thuật",
-            "desc": "Chia sẻ miễn phí các công cụ phần mềm tính toán kỹ thuật hàng hải trên website nhằm hỗ trợ công việc đăng kiểm, thiết kế và đào tạo sinh viên.",
-            "link": { "label": "Mở công cụ tính", "page": "tools" },
+            "icon": "scan",
+            "name": "Đo kiểm và đối chiếu dữ liệu thực tế",
+            "desc": "Đo kiểm cung cấp dữ liệu thực tế để đối chiếu hình học và thông số làm việc với thiết kế, đồng thời kiểm tra mức độ phù hợp của mô hình tính toán với trạng thái tại xưởng hoặc hiện trường.",
+            "link": {
+              "label": "Xem công trình liên quan",
+              "url": "#cong-trinh"
+            },
             "children": [
-              { "name": "Công cụ chuyển đổi công suất (kW, HP, CV, PS) trực tuyến" },
-              { "name": "Bảng tính kiểm tra đường kính trục chân vịt theo quy chuẩn" },
-              { "name": "Cơ sở dữ liệu tra cứu thông số kỹ thuật động cơ thủy" }
+              {
+                "name": "Máy đo tọa độ CMM chuyên dụng cho chân vịt"
+              },
+              {
+                "name": "Đo và hiệu chỉnh bước xoắn chân vịt"
+              },
+              {
+                "name": "Xử lý dữ liệu đo tại xưởng hoặc hiện trường"
+              },
+              {
+                "name": "Đối chiếu dữ liệu thực tế với mô hình"
+              }
             ]
           }
         ],
@@ -82,37 +148,87 @@
       }
     },
     {
+      "type": "image-text",
+      "fields": {
+        "heading": "Cách xây dựng và kiểm soát mô hình ảnh hưởng trực tiếp đến kết quả mô phỏng",
+        "content": "Chúng tôi kiểm soát các yếu tố ảnh hưởng trực tiếp đến kết quả như hình học, lưới tính, điều kiện biên và tiêu chí hội tụ. Khi có dữ liệu đo hoặc kết quả tham chiếu, các số liệu này được dùng để kiểm tra lại mô hình và xác định rõ giới hạn của kết quả.",
+        "placeholder": "Mô phỏng dòng chảy và dữ liệu tính toán",
+        "caption": "Mô phỏng và đối chiếu",
+        "image_position": "left",
+        "split": "media",
+        "ratio": "ratio-16-9",
+        "custom_class": "",
+        "image": 526
+      }
+    },
+    {
       "type": "document-center",
       "anchor": "cong-trinh",
       "fields": {
-        "label": "CÔNG TRÌNH NGHIÊN CỨU & BÀI BÁO KHOA HỌC",
+        "label": "Công trình nghiên cứu và bài báo khoa học",
         "all_label": "TẤT CẢ CÔNG TRÌNH",
         "groups": [
           {
-            "name": "Thủy khí & Chân vịt tàu thủy",
+            "name": "Thủy khí và chân vịt tàu thủy",
             "items": [
-              { "title": "Mesh Refinement Investigation to Simulate Tip Vortex Cavitation under Non-Cavitating Conditions (Dynamics — MDPI, 2024)", "size": "Open Access PDF" },
-              { "title": "Nghiên cứu mô phỏng dòng lưu chất qua vỏ tàu cá có xét ảnh hưởng của chân vịt và bánh lái (Tạp chí KH-CN Thủy sản, 2024)", "size": "1.2 MB" },
-              { "title": "Thiết kế, chế tạo máy CMM đo thông số hình học chân vịt tàu thủy (Tạp chí KH-CN Thủy sản, 2024)", "size": "1.8 MB" },
-              { "title": "Simulation the Instability of the Fishing Vessel Propeller Structure During Operation (MSDI, 2023)", "size": "Abstract" },
-              { "title": "Effects of Computational Geometry to the Laminar Viscous Flow Around the Vertical Circular Cylinder (Springer, 2021)", "size": "Chapter" }
+              {
+                "title": "Mesh Refinement Investigation to Simulate Tip Vortex Cavitation under Non-Cavitating Conditions (Dynamics – MDPI, 2024)",
+                "size": "PDF truy cập mở"
+              },
+              {
+                "title": "Nghiên cứu mô phỏng dòng lưu chất qua vỏ tàu cá có xét ảnh hưởng của chân vịt và bánh lái (Tạp chí KH-CN Thủy sản, 2024)",
+                "size": "1.2 MB"
+              },
+              {
+                "title": "Thiết kế, chế tạo máy CMM đo thông số hình học chân vịt tàu thủy (Tạp chí KH-CN Thủy sản, 2024)",
+                "size": "1.8 MB"
+              },
+              {
+                "title": "Simulation the Instability of the Fishing Vessel Propeller Structure During Operation (MSDI, 2023)",
+                "size": "Tóm tắt"
+              },
+              {
+                "title": "Effects of Computational Geometry to the Laminar Viscous Flow Around the Vertical Circular Cylinder (Springer, 2021)",
+                "size": "Chương sách"
+              }
             ]
           },
           {
-            "name": "Kết cấu & Hệ động lực",
+            "name": "Kết cấu và hệ động lực",
             "items": [
-              { "title": "Kiểm tra độ bền trục khuỷu động cơ một xy lanh bằng phương pháp mô phỏng (TNU-JST, 2021)", "size": "850 KB" },
-              { "title": "Lựa chọn các thông số cảnh báo sự cố hệ động lực tàu cá xa bờ (Tạp chí KH-CN Thủy sản, 2018)", "size": "1.1 MB" },
-              { "title": "Applying CAE Tool for Analysis Stress and Optimization of the Crankshaft in the Internal Combustion Engine (2010)", "size": "Research Paper" }
+              {
+                "title": "Kiểm tra độ bền trục khuỷu động cơ một xy lanh bằng phương pháp mô phỏng (TNU-JST, 2021)",
+                "size": "850 KB"
+              },
+              {
+                "title": "Lựa chọn các thông số cảnh báo sự cố hệ động lực tàu cá xa bờ (Tạp chí KH-CN Thủy sản, 2018)",
+                "size": "1.1 MB"
+              },
+              {
+                "title": "Applying CAE Tool for Analysis Stress and Optimization of the Crankshaft in the Internal Combustion Engine (2010)",
+                "size": "Bài báo nghiên cứu"
+              }
             ]
           },
           {
-            "name": "Dao động, Tiếng ồn & Vật liệu",
+            "name": "Dao động, tiếng ồn và vật liệu",
             "items": [
-              { "title": "Analysis Stability of Brake Related to Squeal by Finite Element Method (GRANT Journal, 2012)", "size": "650 KB" },
-              { "title": "Model Predict Vibration and Noise of Disc Brake (Scientific.Net, 2012)", "size": "Research Paper" },
-              { "title": "Identify Source Vibration and Noise of Disc Brake (IRMES Proceedings, 2011)", "size": "Conference Paper" },
-              { "title": "Estimate the Elastic Modulus and Strength of Composites with Basalt Woven Fiber Reinforcement by ANSYS (2011)", "size": "Research Paper" }
+              {
+                "title": "Analysis Stability of Brake Related to Squeal by Finite Element Method (GRANT Journal, 2012)",
+                "size": "650 KB"
+              },
+              {
+                "title": "Model Predict Vibration and Noise of Disc Brake (Scientific.Net, 2012)",
+                "size": "Bài báo nghiên cứu"
+              },
+              {
+                "title": "Identify Source Vibration and Noise of Disc Brake (IRMES Proceedings, 2011)",
+                "size": "Bài hội nghị"
+              },
+              {
+                "title": "Estimate the Elastic Modulus and Strength of Composites with Basalt Woven Fiber Reinforcement by ANSYS (2011)",
+                "size": "Bài báo nghiên cứu"
+              }
             ]
           }
         ],
@@ -121,41 +237,61 @@
       }
     },
     {
-      "type": "key-numbers",
+      "type": "proof-strip",
       "fields": {
-        "label": "DẤU ẤN NGHIÊN CỨU",
-        "stats": [
+        "items": [
           {
-            "value": "20",
-            "suffix": "+",
+            "value": "20+",
             "label": "Công bố khoa học",
-            "note": "Đăng tải trên các tạp chí thuộc danh mục ISI/Scopus và tạp chí chuyên ngành trong nước."
+            "note": "Trong nước và quốc tế"
           },
           {
-            "value": "03",
-            "suffix": "công cụ",
-            "label": "Tiện ích tính toán mở",
-            "note": "Xây dựng trên web phục vụ miễn phí cho kỹ sư và cộng đồng kỹ thuật."
-          },
-          {
-            "value": "100",
-            "suffix": "%",
-            "label": "Gắn với thực tế",
-            "note": "Nghiên cứu giải quyết bài toán sức cản, an toàn hệ động lực và công nghệ đo kiểm tàu cá."
+            "value": "3",
+            "label": "Nhóm công trình chính",
+            "note": "Thủy khí · Kết cấu · Dao động"
           }
         ],
         "custom_class": ""
       }
     },
     {
+      "type": "accordion",
+      "fields": {
+        "heading": "Một số câu hỏi thường gặp về mô phỏng và đo kiểm",
+        "intro": "Mỗi bài toán mô phỏng hoặc đo kiểm có yêu cầu khác nhau. Các câu hỏi dưới đây giải thích cách chúng tôi lựa chọn phương pháp, bàn giao kết quả và trao đổi những giới hạn cần lưu ý khi đọc kết quả.",
+        "items": [
+          {
+            "title": "Tôi có một vấn đề kỹ thuật nhưng chưa biết nên mô phỏng hay đo kiểm, LASAN có thể hỗ trợ xác định hướng nghiên cứu không?",
+            "content": "Có. Bạn có thể mô tả hiện tượng, giả thiết hoặc nội dung cần kiểm chứng. Chúng tôi sẽ xem dữ liệu hiện có và trao đổi phương pháp nên dùng, có thể là mô phỏng, đo kiểm, phân tích số liệu hoặc kết hợp nhiều phương pháp."
+          },
+          {
+            "title": "Có phải bài toán nào cũng cần đo thực tế để kiểm chứng không?",
+            "content": "Không phải lúc nào cũng cần. Việc có cần dữ liệu đo hay không phụ thuộc vào mục tiêu phân tích và mức độ kiểm chứng cần thiết trước khi đưa ra kết luận. Chúng tôi sẽ trao đổi rõ khi dữ liệu thực tế có vai trò quan trọng đối với kết quả."
+          },
+          {
+            "title": "Kết quả mô phỏng được bàn giao dưới dạng nào?",
+            "content": "Tùy câu hỏi kỹ thuật, LASAN có thể bàn giao trường dữ liệu, biểu đồ, hình ảnh trực quan, bảng so sánh và báo cáo phân tích. Hình thức bàn giao được trao đổi theo mục đích khách hàng cần dùng kết quả."
+          },
+          {
+            "title": "Các công cụ miễn phí có thay thế được báo cáo tính toán không?",
+            "content": "Không. Bộ công cụ mở phù hợp cho tra cứu và kiểm tra nhanh. Những bài toán có nhiều điều kiện biên, trạng thái tải hoặc yêu cầu thẩm tra vẫn cần mô hình và báo cáo riêng."
+          }
+        ],
+        "open_first": 0,
+        "custom_class": ""
+      }
+    },
+    {
       "type": "contact-statement",
       "fields": {
-        "label": "HỢP TÁC HỌC THUẬT & DỰ ÁN MỞ",
-        "heading": "Bạn quan tâm đến các đề tài nghiên cứu hoặc dữ liệu thực nghiệm?",
-        "description": "Chúng tôi sẵn sàng thảo luận và hợp tác với các viện nghiên cứu, trường đại học và doanh nghiệp trong các bài toán mô phỏng số, đo đạc hiện trường hoặc phát triển công cụ kỹ thuật.",
+        "heading": "Bạn đang có một vấn đề cần nghiên cứu hoặc kiểm chứng?",
+        "description": "Bạn có thể gửi câu hỏi, giả thiết cần kiểm chứng, dữ liệu đo hoặc phương án đang nghiên cứu. Chúng tôi sẽ xem thông tin và trao đổi về hướng nghiên cứu, phương pháp có thể sử dụng và dạng kết quả cần bàn giao.",
         "phone": "0834 310 781",
         "email": "hello@lasanmarine.com",
-        "cta": { "label": "Liên hệ hợp tác nghiên cứu", "page": "contact" },
+        "cta": {
+          "label": "Trao đổi bài toán R&D",
+          "page": "contact"
+        },
         "custom_class": ""
       }
     }

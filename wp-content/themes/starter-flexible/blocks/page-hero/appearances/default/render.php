@@ -3,7 +3,6 @@
  * Page Hero — default appearance.
  *
  * @var object $data
- * @var array  $block
  * @var bool   $is_preview
  */
 
@@ -18,10 +17,8 @@ if ( empty( $data->should_render ) ) {
 	return;
 }
 
-$heading = $data->heading_level;
-$anchor  = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['anchor'] ) . '"' : '';
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>" style="--phero-h:<?php echo esc_attr( (string) $data->height ); ?>px"<?php echo $anchor; // phpcs:ignore ?>>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" style="--phero-h:<?php echo esc_attr( (string) $data->height ); ?>px"<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<?php if ( $data->has_media ) : ?>
 		<div class="phero__media">
 			<?php if ( '' !== $data->image_url ) : ?>
@@ -34,7 +31,7 @@ $anchor  = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( (string) $block['an
 	<span class="phero__scrim"></span>
 	<div class="container phero__body">
 		<div data-enter style="--enter-i:0">
-			<<?php echo esc_attr( $heading ); ?> class="phero__headline"><?php echo esc_html( $data->headline ); ?></<?php echo esc_attr( $heading ); ?>>
+			<<?php echo esc_attr( $data->heading_level ); ?> class="phero__headline"><?php echo esc_html( $data->headline ); ?></<?php echo esc_attr( $data->heading_level ); ?>>
 		</div>
 		<?php if ( $data->has_lead ) : ?>
 			<p class="copy phero__lead" data-enter style="--enter-i:1"><?php echo esc_html( $data->lead ); ?></p>

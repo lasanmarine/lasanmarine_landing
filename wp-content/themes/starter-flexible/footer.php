@@ -12,15 +12,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 $theme_uri = defined( 'STARTER_FLEXIBLE_THEME_URI' ) ? STARTER_FLEXIBLE_THEME_URI : get_template_directory_uri();
 
 $site_name   = (string) starter_flexible_setting( 'site_name', get_bloginfo( 'name' ) );
+$logo_id     = (int) starter_flexible_setting( 'header_logo', 0 );
+$logo_url    = $logo_id ? (string) wp_get_attachment_image_url( $logo_id, 'full' ) : $theme_uri . '/assets/images/logo-lasan.svg';
 $legal_name  = (string) starter_flexible_setting( 'legal_name', '' );
 $tax_code    = (string) starter_flexible_setting( 'tax_code', '' );
 $address     = (string) starter_flexible_setting( 'address', '' );
 $phone       = (string) starter_flexible_setting( 'phone', '' );
 $email       = (string) starter_flexible_setting( 'email', '' );
 $maps_key    = (string) starter_flexible_setting( 'maps_api_key', '' );
-// The footer reuses the header logo so the brand stays consistent across the page.
-$logo_id     = (int) starter_flexible_setting( 'header_logo', 0 );
-$logo_url    = $logo_id ? (string) wp_get_attachment_image_url( $logo_id, 'full' ) : $theme_uri . '/assets/images/logo-lasan.svg';
 $wordmark    = (string) starter_flexible_setting( 'wordmark', 'ENGINEERING|FOR TOMORROW|OCEAN' );
 $footer_cta  = starter_flexible_link( starter_flexible_setting( 'footer_cta', array() ) );
 $bank        = (array) starter_flexible_setting( 'bank', array() );
@@ -96,80 +95,104 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 
 			<div class="ftr__contact">
 				<div class="ftr__brand">
-					<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="150" height="34" />
-
 					<div class="ftr__details">
-						<p class="ftr__legal"><?php echo esc_html( $legal_name ); ?></p>
+						<p class="ftr__group-title"><?php echo esc_html( $is_english ? 'Company details' : 'Thông tin doanh nghiệp' ); ?></p>
 
-						<?php if ( '' !== $tax_code ) : ?>
-							<p class="ftr__tax">
-								<span><?php echo esc_html( $is_english ? 'Tax ID' : 'MST' ); ?> <?php echo esc_html( $tax_code ); ?></span>
-								<button
-									type="button"
-									class="ftr__copy"
-									data-copy="<?php echo esc_attr( $tax_code ); ?>"
-									data-copied="<?php echo esc_attr( $is_english ? 'Copied' : 'Đã chép' ); ?>"
-									aria-label="<?php echo esc_attr( sprintf( /* translators: %s: tax code. */ __( 'Chép mã số thuế %s', 'starter-flexible' ), $tax_code ) ); ?>"
-								>
-									<?php echo starter_flexible_icon( 'file', 15 ); // phpcs:ignore ?>
-									<span data-copy-label><?php echo esc_html( $is_english ? 'Copy' : 'Chép' ); ?></span>
-								</button>
-							</p>
-						<?php endif; ?>
+						<?php /* The same ruled label–leader–value rows the Contact Statement uses. */ ?>
+						<div class="ftr__specs" data-reveal-stagger>
+							<?php if ( '' !== $legal_name ) : ?>
+								<div class="spec">
+									<span class="spec__label"><?php echo esc_html( $is_english ? 'Company' : 'Tên công ty' ); ?></span>
+									<span class="spec__leader"></span>
+									<span class="spec__value"><?php echo esc_html( $legal_name ); ?></span>
+								</div>
+							<?php endif; ?>
 
-						<?php if ( '' !== $address ) : ?>
-							<p class="ftr__row">
-								<?php echo starter_flexible_icon( 'pin', 17 ); // phpcs:ignore ?>
-								<span><?php echo esc_html( $address ); ?></span>
-							</p>
-						<?php endif; ?>
-						<?php if ( '' !== $phone ) : ?>
-							<a class="ftr__row" href="tel:<?php echo esc_attr( preg_replace( '/\s/', '', $phone ) ); ?>">
-								<?php echo starter_flexible_icon( 'phone', 17 ); // phpcs:ignore ?>
-								<span><?php echo esc_html( $phone ); ?></span>
-							</a>
-						<?php endif; ?>
-						<?php if ( '' !== $email ) : ?>
-							<a class="ftr__row" href="mailto:<?php echo esc_attr( $email ); ?>">
-								<?php echo starter_flexible_icon( 'mail', 17 ); // phpcs:ignore ?>
-								<span><?php echo esc_html( $email ); ?></span>
-							</a>
-						<?php endif; ?>
+							<?php if ( '' !== $tax_code ) : ?>
+								<div class="spec">
+									<span class="spec__label"><?php echo esc_html( $is_english ? 'Tax ID' : 'MST' ); ?></span>
+									<span class="spec__leader"></span>
+									<span class="spec__value">
+										<?php echo esc_html( $tax_code ); ?>
+										<button
+											type="button"
+											class="ftr__copy"
+											data-copy="<?php echo esc_attr( $tax_code ); ?>"
+											data-copied="<?php echo esc_attr( $is_english ? 'Copied' : 'Đã chép' ); ?>"
+											aria-label="<?php echo esc_attr( sprintf( /* translators: %s: tax code. */ __( 'Chép mã số thuế %s', 'starter-flexible' ), $tax_code ) ); ?>"
+										>
+											<?php echo starter_flexible_icon( 'file', 14 ); // phpcs:ignore ?>
+											<span data-copy-label><?php echo esc_html( $is_english ? 'Copy' : 'Chép' ); ?></span>
+										</button>
+									</span>
+								</div>
+							<?php endif; ?>
+
+							<?php if ( '' !== $address ) : ?>
+								<div class="spec">
+									<span class="spec__label"><?php echo esc_html( $is_english ? 'Address' : 'Địa chỉ' ); ?></span>
+									<span class="spec__leader"></span>
+									<span class="spec__value"><?php echo esc_html( $address ); ?></span>
+								</div>
+							<?php endif; ?>
+
+							<?php if ( '' !== $phone ) : ?>
+								<div class="spec">
+									<span class="spec__label"><?php echo esc_html( $is_english ? 'Phone' : 'Điện thoại' ); ?></span>
+									<span class="spec__leader"></span>
+									<a class="spec__value" href="tel:<?php echo esc_attr( preg_replace( '/\s/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a>
+								</div>
+							<?php endif; ?>
+
+							<?php if ( '' !== $email ) : ?>
+								<div class="spec">
+									<span class="spec__label">Email</span>
+									<span class="spec__leader"></span>
+									<a class="spec__value" href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
+								</div>
+							<?php endif; ?>
+						</div>
 					</div>
 
 					<?php if ( ! empty( array_filter( $bank ) ) ) : ?>
-						<dl class="ftr__bank">
-							<p class="ftr__bank-title"><?php echo esc_html( $is_english ? 'Bank details' : 'Thông tin tài khoản' ); ?></p>
+						<div class="ftr__bank">
+							<p class="ftr__group-title"><?php echo esc_html( $is_english ? 'Bank details' : 'Thông tin tài khoản' ); ?></p>
 
-							<div>
-								<dt><?php echo esc_html( $is_english ? 'Account holder' : 'Chủ tài khoản' ); ?></dt>
-								<dd><?php echo esc_html( (string) ( $bank['holder'] ?? '' ) ); ?></dd>
+							<div class="ftr__specs" data-reveal-stagger>
+								<div class="spec">
+									<span class="spec__label"><?php echo esc_html( $is_english ? 'Account holder' : 'Chủ tài khoản' ); ?></span>
+									<span class="spec__leader"></span>
+									<span class="spec__value"><?php echo esc_html( (string) ( $bank['holder'] ?? '' ) ); ?></span>
+								</div>
+								<div class="spec">
+									<span class="spec__label"><?php echo esc_html( $is_english ? 'Account number' : 'Số tài khoản' ); ?></span>
+									<span class="spec__leader"></span>
+									<span class="spec__value">
+										<?php echo esc_html( (string) ( $bank['number'] ?? '' ) ); ?> (<?php echo esc_html( (string) ( $bank['currency'] ?? '' ) ); ?>)
+										<button
+											type="button"
+											class="ftr__copy"
+											data-copy="<?php echo esc_attr( (string) ( $bank['number'] ?? '' ) ); ?>"
+											data-copied="<?php echo esc_attr( $is_english ? 'Copied' : 'Đã chép' ); ?>"
+											aria-label="<?php echo esc_attr( sprintf( /* translators: %s: account number. */ __( 'Chép số tài khoản %s', 'starter-flexible' ), (string) ( $bank['number'] ?? '' ) ) ); ?>"
+										>
+											<?php echo starter_flexible_icon( 'file', 14 ); // phpcs:ignore ?>
+											<span data-copy-label><?php echo esc_html( $is_english ? 'Copy' : 'Chép' ); ?></span>
+										</button>
+									</span>
+								</div>
+								<div class="spec">
+									<span class="spec__label"><?php echo esc_html( $is_english ? 'Bank' : 'Ngân hàng' ); ?></span>
+									<span class="spec__leader"></span>
+									<span class="spec__value"><?php echo esc_html( (string) ( $bank['name'] ?? '' ) ); ?></span>
+								</div>
+								<div class="spec">
+									<span class="spec__label"><?php esc_html_e( 'Swift code', 'starter-flexible' ); ?></span>
+									<span class="spec__leader"></span>
+									<span class="spec__value"><?php echo esc_html( (string) ( $bank['swift'] ?? '' ) ); ?></span>
+								</div>
 							</div>
-							<div>
-								<dt><?php echo esc_html( $is_english ? 'Account number' : 'Số tài khoản' ); ?></dt>
-								<dd>
-									<?php echo esc_html( (string) ( $bank['number'] ?? '' ) ); ?> (<?php echo esc_html( (string) ( $bank['currency'] ?? '' ) ); ?>)
-									<button
-										type="button"
-										class="ftr__copy"
-										data-copy="<?php echo esc_attr( (string) ( $bank['number'] ?? '' ) ); ?>"
-										data-copied="<?php echo esc_attr( $is_english ? 'Copied' : 'Đã chép' ); ?>"
-										aria-label="<?php echo esc_attr( sprintf( /* translators: %s: account number. */ __( 'Chép số tài khoản %s', 'starter-flexible' ), (string) ( $bank['number'] ?? '' ) ) ); ?>"
-									>
-										<?php echo starter_flexible_icon( 'file', 14 ); // phpcs:ignore ?>
-										<span data-copy-label><?php echo esc_html( $is_english ? 'Copy' : 'Chép' ); ?></span>
-									</button>
-								</dd>
-							</div>
-							<div>
-								<dt><?php echo esc_html( $is_english ? 'Bank' : 'Ngân hàng' ); ?></dt>
-								<dd><?php echo esc_html( (string) ( $bank['name'] ?? '' ) ); ?></dd>
-							</div>
-							<div>
-								<dt><?php esc_html_e( 'Swift code', 'starter-flexible' ); ?></dt>
-								<dd><?php echo esc_html( (string) ( $bank['swift'] ?? '' ) ); ?></dd>
-							</div>
-						</dl>
+						</div>
 					<?php endif; ?>
 				</div>
 
@@ -192,46 +215,65 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 				<?php endif; ?>
 			</div>
 
-			<?php /* Menu and base row are one closing group: a tight pair, set
-			         apart from the sections above by the inner gap. */ ?>
-			<div class="ftr__end">
 			<?php
-			if ( has_nav_menu( 'footer_menu' ) ) {
-				wp_nav_menu(
-					array(
-						'theme_location' => 'footer_menu',
-						'container'      => 'nav',
-						'container_class' => 'ftr__menu',
-						'container_aria_label' => __( 'Menu', 'starter-flexible' ),
-						'items_wrap'     => '<ul class="ftr__menu-list">%3$s</ul>',
-						'depth'          => 1,
-						'fallback_cb'    => false,
-					)
+			/* The closing group: the menu runs along the top, then a rule, then
+			   the mark, the year and — at the far edge — the two controls that
+			   have to stay reachable. The legal links join the menu list rather
+			   than open a row of their own. */
+			$legal_items = '';
+			foreach ( $legal_links as $row ) {
+				$link = starter_flexible_link( $row['link'] ?? array() );
+				if ( '' === $link['url'] ) {
+					continue;
+				}
+				$legal_items .= sprintf(
+					'<li class="ftr__menu-legal"><a href="%s">%s</a></li>',
+					esc_url( $link['url'] ),
+					esc_html( $link['label'] )
 				);
 			}
 			?>
+			<div class="ftr__end">
+				<?php
+				if ( has_nav_menu( 'footer_menu' ) ) {
+					wp_nav_menu(
+						array(
+							'theme_location'       => 'footer_menu',
+							'container'            => 'nav',
+							'container_class'      => 'ftr__menu',
+							'container_aria_label' => __( 'Menu', 'starter-flexible' ),
+							// items_wrap goes through sprintf, so a per cent sign in a
+							// legal link would be read as a placeholder.
+							'items_wrap'           => '<ul class="ftr__menu-list">%3$s' . str_replace( '%', '%%', $legal_items ) . '</ul>',
+							'depth'                => 1,
+							'fallback_cb'          => false,
+						)
+					);
+				} elseif ( '' !== $legal_items ) {
+					printf(
+						'<nav class="ftr__menu" aria-label="%s"><ul class="ftr__menu-list">%s</ul></nav>',
+						esc_attr__( 'Menu', 'starter-flexible' ),
+						$legal_items // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built escaped above.
+					);
+				}
+				?>
 
-			<div class="ftr__base">
-				<div>
-					<span>© <?php echo esc_html( (string) gmdate( 'Y' ) ); ?> <?php echo esc_html( $site_name ); ?></span>
-					<?php
-					foreach ( $legal_links as $row ) :
-						$link = starter_flexible_link( $row['link'] ?? array() );
-						if ( '' === $link['url'] ) {
-							continue;
-						}
-						?>
-						<a href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['label'] ); ?></a>
-					<?php endforeach; ?>
-				</div>
-				<div class="ftr__base-end">
-					<?php get_template_part( 'template-parts/components/lang-switch', null, array( 'class' => 'lang--footer' ) ); ?>
-					<a href="#top" class="btn btn--sm ftr__top">
-						<?php echo esc_html( $is_english ? 'Back to top' : 'Lên đầu trang' ); ?>
-						<?php echo starter_flexible_icon_swap( 'arrowUp', 18 ); // phpcs:ignore ?>
+				<div class="ftr__end-row">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ftr__mark" aria-label="<?php echo esc_attr( $site_name ); ?>">
+						<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="150" height="34" loading="lazy" />
 					</a>
+
+					<span class="ftr__year">&copy; <?php echo esc_html( (string) gmdate( 'Y' ) ); ?></span>
+
+					<div class="ftr__end-aside">
+						<?php get_template_part( 'template-parts/components/lang-switch', null, array( 'class' => 'lang--footer' ) ); ?>
+						<?php /* A link, not a button: the row carries no boxes. */ ?>
+						<a href="#top" class="ftr__top">
+							<?php echo esc_html( $is_english ? 'Back to top' : 'Lên đầu trang' ); ?>
+							<?php echo starter_flexible_icon_swap( 'arrowUpRight', 22 ); // phpcs:ignore ?>
+						</a>
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	</footer>

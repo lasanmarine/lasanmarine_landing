@@ -5,7 +5,7 @@
   "items": [
     {
       "label": "About",
-      "page": "about-us"
+      "page": "about"
     },
     {
       "label": "Capabilities",
@@ -13,15 +13,15 @@
     },
     {
       "label": "Ship Design",
-      "page": "ship-design"
+      "page": "service_01"
     },
     {
-      "label": "Digital Solutions",
-      "page": "information-technology-services"
+      "label": "Software",
+      "page": "service_03"
     },
     {
-      "label": "Marine R&D",
-      "page": "marine-rd"
+      "label": "R&D",
+      "page": "service_rnd"
     },
     {
       "label": "Projects",

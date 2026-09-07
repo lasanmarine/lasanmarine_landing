@@ -1,7 +1,14 @@
+/* Project Index — the catalogue of vessels, read top to bottom.
+   Each project is one ruled row: photograph, what it is, its numbers. */
+
+.pi__bar {
+	@apply flex flex-wrap items-center justify-between;
+	gap: 12px 24px;
+	margin-bottom: clamp(18px, 2vw, 26px);
+}
 .pi__filters {
 	@apply flex flex-wrap;
 	gap: 8px;
-	margin-bottom: clamp(20px, 2.4vw, 28px);
 }
 .pi__filter {
 	@apply cursor-pointer border border-line bg-paper font-display font-semibold text-steel;
@@ -19,10 +26,15 @@
 .pi__filter[aria-pressed='true'] {
 	@apply border-marine bg-pale text-marine;
 }
-.pi__grid {
-	@apply grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
-	gap: clamp(20px, 2.4vw, 32px);
+.pi__count {
+	@apply m-0 text-mute;
+	font-size: 13.5px;
+	font-variant-numeric: tabular-nums;
+}
+
+/* The list is ruled, not carded: one hairline above, one under every row. */
+.pi__list {
+	@apply flex flex-col border-t border-line;
 }
 .pi__empty {
 	@apply text-mute;
@@ -33,6 +45,7 @@
 }
 
 /* --- one card ------------------------------------------------------- */
+/* Still used by the taxonomy archive and the sibling projects on a record. */
 .pj-card {
 	@apply flex min-w-0 flex-col text-navy;
 	gap: 14px;
@@ -80,4 +93,58 @@
 }
 .pj-card:hover .pj-card__more .btn__icon svg:nth-child(2) {
 	transform: translate(0, 0);
+}
+
+/* --- one row -------------------------------------------------------- */
+.pj-card--row {
+	@apply grid items-center border-b border-line text-navy;
+	grid-template-columns: clamp(128px, 15vw, 200px) minmax(0, 1fr) auto;
+	gap: clamp(16px, 2.4vw, 36px);
+	padding: clamp(14px, 1.6vw, 22px) 0;
+}
+.pj-card--row .pj-card__media {
+	@apply w-full;
+}
+.pj-card--row .pj-card__body {
+	gap: 5px;
+}
+.pj-card--row .pj-card__name {
+	font-size: clamp(17px, 1.5vw, 21px);
+}
+.pj-card--row .pj-card__meta {
+	font-size: 14px;
+}
+/* The whole row is the link; the mark only shows where it leads. Bare arrow,
+   no ring — on hover it slides out and a second one takes its place. */
+.pj-card__go {
+	@apply inline-flex flex-none items-center justify-center text-steel;
+	transition: color 220ms var(--ease);
+}
+.pj-card--row:hover .pj-card__go {
+	@apply text-marine;
+}
+.pj-card--row:hover .pj-card__go .btn__icon[data-dir='right'] svg:nth-child(1) {
+	transform: translateX(150%);
+}
+.pj-card--row:hover .pj-card__go .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
+}
+
+@media (max-width: 700px) {
+	.pj-card--row {
+		grid-template-columns: clamp(92px, 26vw, 132px) minmax(0, 1fr);
+		gap: 16px;
+	}
+	/* No room for the mark, and no need: the row is one large tap target. */
+	.pj-card--row .pj-card__go {
+		@apply hidden;
+	}
+}
+
+/* The taxonomy archive and the sibling projects on a record still lay their
+   cards on a grid. */
+.pi__grid {
+	@apply grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+	gap: clamp(20px, 2.4vw, 32px);
 }
