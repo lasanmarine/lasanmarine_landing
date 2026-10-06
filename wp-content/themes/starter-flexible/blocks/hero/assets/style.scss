@@ -22,14 +22,15 @@
 .hero__media img {
 	@apply h-full w-full object-cover;
 }
-/* The one allowed gradient, laid over the photograph. */
+/* Lighter than v1 so the sea shows through: navy where the type sits,
+   thinning to a marine-tinted wash on the far side. */
 .hero__scrim {
 	@apply pointer-events-none absolute inset-0;
 	background: linear-gradient(
 		103deg,
-		rgba(5, 18, 45, 0.94) 0%,
-		rgba(5, 18, 45, 0.78) 42%,
-		rgba(5, 18, 45, 0.3) 100%
+		rgba(6, 18, 45, 0.86) 0%,
+		rgba(8, 40, 92, 0.58) 45%,
+		rgba(10, 114, 200, 0.12) 100%
 	);
 }
 .hero__body {
@@ -67,14 +68,18 @@
 		visibility 0s;
 }
 .hero__headline {
-	@apply text-white;
+	@apply font-bold text-white;
 	max-width: 16em;
 	font-size: clamp(34px, 4.6vw, 64px);
 	line-height: 1.04;
 	letter-spacing: -0.035em;
 }
 .hero__headline span {
-	@apply text-marine-bright;
+	@apply text-aqua;
+	background: linear-gradient(92deg, var(--aqua) 0%, var(--marine-bright) 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 .hero__foot {
 	@apply grid items-end;
@@ -103,8 +108,8 @@
 .hero__dot {
 	@apply relative cursor-pointer overflow-hidden border-0 p-0;
 	width: clamp(38px, 5vw, 64px);
-	height: 3px;
-	border-radius: 2px;
+	height: 4px;
+	border-radius: 999px;
 	background: rgba(255, 255, 255, 0.26);
 	transition: background-color 240ms var(--ease);
 }
@@ -112,11 +117,11 @@
 	background: rgba(255, 255, 255, 0.42);
 }
 .hero__dot:focus-visible {
-	outline: 2px solid theme('colors.marine-bright');
+	outline: 2px solid theme('colors.aqua');
 	outline-offset: 4px;
 }
 .hero__dot-fill {
-	@apply absolute inset-y-0 left-0 bg-marine-bright;
+	@apply absolute inset-y-0 left-0 bg-aqua;
 	width: 100%;
 	transform: scaleX(0);
 	transform-origin: left;
