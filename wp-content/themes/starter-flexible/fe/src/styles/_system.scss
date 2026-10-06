@@ -90,7 +90,7 @@
 /* --- type --------------------------------------------------------------- */
 
 .display {
-	@apply font-display font-semibold;
+	@apply font-display font-bold;
 	font-size: clamp(38px, 5.2vw, 74px);
 	line-height: 1.02;
 	letter-spacing: -0.025em;
@@ -168,12 +168,12 @@
 	margin-top: 10px;
 }
 .prose ul > li::before {
-	@apply absolute bg-marine;
+	@apply absolute rounded-full bg-aqua;
 	content: '';
-	top: 0.72em;
+	top: 0.62em;
 	left: 4px;
 	width: 7px;
-	height: 1.5px;
+	height: 7px;
 }
 .prose ol > li::before {
 	@apply absolute font-display font-semibold text-marine;
@@ -197,7 +197,7 @@
 	@apply font-semibold text-navy;
 }
 .prose blockquote {
-	@apply border-l border-marine;
+	@apply border-l-4 border-aqua;
 	margin: 26px 0;
 	padding: 2px 0 2px 20px;
 	font-size: 17.5px;
@@ -231,16 +231,20 @@
 	@apply inline-flex cursor-pointer items-center justify-center border border-transparent bg-marine font-display font-semibold text-white;
 	gap: 10px;
 	height: 52px;
-	padding-inline: 24px;
-	border-radius: var(--r-md);
+	padding-inline: 26px;
+	border-radius: var(--r-pill);
 	font-size: 16px; /* same size as body copy (<p>) */
 	transition:
 		background 220ms ease,
 		color 200ms ease,
-		border-color 200ms ease;
+		border-color 200ms ease,
+		transform 220ms var(--ease),
+		box-shadow 220ms var(--ease);
 }
 .btn:hover {
 	@apply bg-navy text-white;
+	transform: translateY(-2px);
+	box-shadow: var(--lift);
 }
 .btn--lg {
 	height: 58px;
@@ -249,8 +253,7 @@
 }
 .btn--sm {
 	height: 44px;
-	padding-inline: 18px;
-	border-radius: var(--r-sm);
+	padding-inline: 20px;
 	font-size: 14px;
 }
 
@@ -306,6 +309,8 @@
 }
 .btn--ghost:hover {
 	@apply bg-transparent text-marine;
+	transform: none;
+	box-shadow: none;
 }
 .btn[disabled],
 .btn[aria-disabled='true'] {
@@ -322,12 +327,18 @@
 .band--navy .btn--secondary:hover,
 .band--navy-mid .btn--secondary:hover,
 .hero .btn--secondary:hover {
-	@apply border-marine text-marine-bright;
+	@apply border-aqua text-aqua;
+}
+/* On a navy field the solid turns aqua with navy type, and paper on hover. */
+.band--navy .btn:not(.btn--secondary):not(.btn--ghost),
+.band--navy-mid .btn:not(.btn--secondary):not(.btn--ghost),
+.hero .btn:not(.btn--secondary):not(.btn--ghost) {
+	@apply bg-aqua text-navy-deep;
 }
 .band--navy .btn:not(.btn--secondary):not(.btn--ghost):hover,
 .band--navy-mid .btn:not(.btn--secondary):not(.btn--ghost):hover,
 .hero .btn:not(.btn--secondary):not(.btn--ghost):hover {
-	@apply bg-white text-navy;
+	@apply bg-white text-navy-deep;
 }
 
 /* A text link underscored by the accent, drawn left to right. */
@@ -338,9 +349,9 @@
 	font-size: 14px;
 }
 .link::after {
-	@apply absolute bottom-0 left-0 w-full bg-marine;
+	@apply absolute bottom-0 left-0 w-full rounded-full bg-aqua;
 	content: '';
-	height: 1.5px;
+	height: 2px;
 	transform: scaleX(0);
 	transform-origin: left;
 	transition: transform 260ms ease;
@@ -398,25 +409,31 @@
 }
 
 .tag {
-	@apply inline-flex items-center border border-line text-navy;
-	padding: 6px 10px;
-	border-radius: var(--r-xs);
+	@apply inline-flex items-center border border-transparent bg-aqua-soft text-aqua-deep;
+	padding: 6px 12px;
+	border-radius: var(--r-pill);
 	font-size: 10.5px;
 	letter-spacing: 0.12em;
 }
 
 .card {
-	@apply border border-line p-5;
+	@apply border border-line bg-paper p-5;
 	border-radius: var(--r-lg);
-	transition: border-color 220ms ease;
+	transition:
+		border-color 220ms ease,
+		transform 260ms var(--ease),
+		box-shadow 260ms var(--ease);
 }
 .card:hover {
-	@apply border-marine;
+	@apply border-aqua;
+	transform: translateY(-4px);
+	box-shadow: var(--lift);
 }
 
-/* Image frames — square, never rounded; the picture scales inside on hover. */
+/* Image frames — rounded corners; the picture scales inside on hover. */
 .frame {
 	@apply relative overflow-hidden bg-tint;
+	border-radius: var(--r-lg);
 }
 .frame > img,
 .frame > .frame__inner {
@@ -528,12 +545,16 @@ a:hover .frame > img,
 	padding-left: 0;
 }
 .stat__value {
-	@apply font-display font-semibold leading-none text-navy;
+	@apply font-display font-bold leading-none text-navy;
 	font-size: clamp(42px, 4.4vw, 66px);
 	letter-spacing: -0.03em;
 }
 .stat__value span {
-	@apply text-marine;
+	@apply text-aqua-deep;
+}
+.band--navy .stat__value span,
+.band--navy-mid .stat__value span {
+	@apply text-aqua;
 }
 .stat__label {
 	@apply font-display font-semibold text-navy;

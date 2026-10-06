@@ -22,6 +22,9 @@
 	--navy-deep: #06122d;
 	--marine: #0a72c8;
 	--marine-bright: #4da3e8;
+	--aqua: #14c8c8;
+	--aqua-deep: #0a7f7d;
+	--aqua-soft: #e3f8f7;
 	--steel: #536173;
 	--mute: #637080;
 	--tint: #edf3f8;
@@ -30,10 +33,14 @@
 	--line-soft: #e9eff5;
 
 	/* Radii. */
-	--r-xs: 2px;
-	--r-sm: 3px;
-	--r-md: 5px;
-	--r-lg: 10px;
+	--r-xs: 4px;
+	--r-sm: 8px;
+	--r-md: 12px;
+	--r-lg: 20px;
+	--r-pill: 999px;
+
+	/* Lift — the one soft shadow cards rise on. */
+	--lift: 0 14px 34px -14px rgba(11, 27, 76, 0.22);
 
 	/* Rhythm — fluid, so these stay raw CSS. */
 	--gutter: clamp(20px, 2.4vw, 32px);
@@ -79,7 +86,7 @@ h1,
 h2,
 h3,
 h4 {
-	@apply m-0 font-display font-semibold text-navy;
+	@apply m-0 font-display font-bold text-navy;
 	line-height: 1.1;
 	letter-spacing: -0.02em;
 	text-wrap: pretty;
