@@ -7,7 +7,8 @@
  * reader never lands on a page that looks like it belongs to another site.
  *
  * @var array $args crumbs (array of ['label','url']), eyebrow, title, lead,
- *                  note, aside (pre-rendered HTML placed at the right)
+ *                  note, aside (pre-rendered HTML placed at the right),
+ *                  after (pre-rendered HTML under the copy, full width)
  * @package Starter_Flexible
  */
 
@@ -21,6 +22,7 @@ $title   = isset( $args['title'] ) ? (string) $args['title'] : '';
 $lead    = isset( $args['lead'] ) ? (string) $args['lead'] : '';
 $note    = isset( $args['note'] ) ? (string) $args['note'] : '';
 $aside   = isset( $args['aside'] ) ? (string) $args['aside'] : '';
+$after   = isset( $args['after'] ) ? (string) $args['after'] : '';
 ?>
 <header class="phead">
 	<span class="phead__scrim" aria-hidden="true"></span>
@@ -54,6 +56,10 @@ $aside   = isset( $args['aside'] ) ? (string) $args['aside'] : '';
 				<p class="phead__note"><?php echo esc_html( $note ); ?></p>
 			<?php endif; ?>
 		</div>
+
+		<?php if ( '' !== $after ) : ?>
+			<div class="phead__after"><?php echo $after; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built by the caller. ?></div>
+		<?php endif; ?>
 
 		<?php if ( '' !== $aside ) : ?>
 			<div class="phead__aside"><?php echo $aside; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built by the caller. ?></div>

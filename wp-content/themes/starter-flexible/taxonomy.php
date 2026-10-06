@@ -29,6 +29,46 @@ if ( $taxonomy ) {
 }
 $crumbs[] = array( 'label' => single_term_title( '', false ), 'url' => '' );
 
+// Every material and every use, as chips: a visitor on one term can step
+// sideways to the next without going back to the catalogue.
+ob_start();
+?>
+<div class="tax-filter">
+	<?php foreach ( array( 'project_material', 'project_use' ) as $filter_tax ) : ?>
+		<?php
+		$filter_terms = get_terms( array( 'taxonomy' => $filter_tax, 'hide_empty' => true ) );
+		$filter_obj   = get_taxonomy( $filter_tax );
+		if ( is_wp_error( $filter_terms ) || ! $filter_terms || ! $filter_obj ) {
+			continue;
+		}
+		?>
+		<div class="tax-filter__row">
+			<span class="tax-filter__label"><?php echo esc_html( (string) $filter_obj->labels->singular_name ); ?></span>
+			<div class="tax-filter__chips">
+				<?php foreach ( $filter_terms as $filter_term ) : ?>
+					<?php $is_current = $term instanceof WP_Term && $term->term_id === $filter_term->term_id; ?>
+					<a
+						class="tax-filter__chip"
+						href="<?php echo esc_url( (string) get_term_link( $filter_term ) ); ?>"
+						<?php echo $is_current ? 'aria-current="page"' : ''; ?>
+					>
+						<?php echo esc_html( $filter_term->name ); ?>
+						<span><?php echo esc_html( (string) $filter_term->count ); ?></span>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	<?php endforeach; ?>
+	<?php if ( '' !== $projects_url ) : ?>
+		<a class="link tax-filter__all" href="<?php echo esc_url( $projects_url ); ?>">
+			<?php esc_html_e( 'Tất cả dự án', 'starter-flexible' ); ?>
+			<?php echo starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore ?>
+		</a>
+	<?php endif; ?>
+</div>
+<?php
+$tax_filter = (string) ob_get_clean();
+
 get_template_part(
 	'template-parts/components/page-head',
 	null,
@@ -42,6 +82,7 @@ get_template_part(
 			_n( '%d dự án', '%d dự án', $count, 'starter-flexible' ),
 			$count
 		),
+		'after'   => $tax_filter,
 	)
 );
 ?>
@@ -70,7 +111,10 @@ get_template_part(
 				?>
 			</div>
 		<?php else : ?>
-			<p class="blog__empty"><?php esc_html_e( 'Chưa có dự án nào trong nhóm này.', 'starter-flexible' ); ?></p>
+			<div class="srch__empty">
+				<p class="srch__empty-title"><?php esc_html_e( 'Chưa có dự án nào trong nhóm này.', 'starter-flexible' ); ?></p>
+				<p class="srch__empty-note"><?php esc_html_e( 'Chọn một nhóm khác ở trên, hoặc xem toàn bộ danh mục dự án.', 'starter-flexible' ); ?></p>
+			</div>
 		<?php endif; ?>
 	</div>
 </div>

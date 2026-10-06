@@ -27,3 +27,5 @@
 /wp-content/backups
 /wp-content/upgrade-temp-backups
 local-xdebuginfo.php
+.claude/settings.local.json
+/output/sync/

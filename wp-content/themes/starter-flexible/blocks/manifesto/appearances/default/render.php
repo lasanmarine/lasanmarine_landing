@@ -19,11 +19,6 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<?php
-	if ( $data->has_label ) {
-		get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) );
-	}
-	?>
 	<div class="grid grid--auto manifesto">
 		<h2 class="h3"><?php echo esc_html( $data->heading ); ?></h2>
 		<div class="manifesto__body">

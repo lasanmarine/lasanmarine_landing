@@ -19,12 +19,6 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<?php if ( $data->has_label ) : ?>
-		<?php /* The band below is full-bleed, so the label needs its own gutter. */ ?>
-		<div class="container">
-			<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
-		</div>
-	<?php endif; ?>
 	<div class="band spotlight">
 		<div class="spotlight__media">
 			<?php

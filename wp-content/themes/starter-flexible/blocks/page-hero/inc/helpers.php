@@ -31,6 +31,15 @@ final class Starter_Flexible_Block_Page_Hero extends Starter_Flexible_Abstract_B
 		$image_id = (int) $data['image'];
 
 		$data['image_url']     = $image_id ? (string) wp_get_attachment_image_url( $image_id, 'full' ) : '';
+		// The page's opening picture: responsive sizes, fetched first.
+		$data['image_html']    = $image_id
+			? (string) wp_get_attachment_image(
+				$image_id,
+				'full',
+				false,
+				starter_flexible_image_priority_attrs( array( 'alt' => '', 'sizes' => '100vw' ) )
+			)
+			: '';
 		$data['heading_level'] = in_array( $data['heading_level'], array( 'h1', 'h2' ), true ) ? $data['heading_level'] : 'h1';
 		$data['height']        = $data['height'] > 0 ? min( 800, max( 200, (int) $data['height'] ) ) : 420;
 		$data['has_media']     = '' !== $data['image_url'] || '' !== trim( (string) $data['placeholder'] );

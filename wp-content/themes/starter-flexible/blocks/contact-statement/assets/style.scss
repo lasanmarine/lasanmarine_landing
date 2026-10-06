@@ -98,12 +98,12 @@ a.spec__value:hover {
 /* Below this the mascot stacks above the copy rather than shrinking away. */
 @media (max-width: 1024px) {
 	.cs__layout {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
 @media (max-width: 760px) {
 	.cs__inner {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 	.cs__mascot {
 		/* Stacked above the copy on a phone, so it sits in the flow again. */

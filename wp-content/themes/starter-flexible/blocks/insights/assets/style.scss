@@ -28,7 +28,8 @@
 	border-radius: 6px;
 }
 .in__badge:first-child {
-	@apply text-marine;
+	/* A shade under marine: the brand blue is 4.4:1 on the tint ground. */
+	color: #0862ad;
 }
 .in__title {
 	max-width: 20em;
@@ -106,4 +107,43 @@
 }
 .in__card:hover .in__card-more .btn__icon svg:nth-child(2) {
 	transform: translate(0, 0);
+}
+
+/* Phone: the smaller articles become compact rows — thumbnail beside the
+   headline — so four of them fit where one tall card did. */
+@media (max-width: 640px) {
+	.in__row {
+		gap: 0;
+		border-top: 1px solid var(--line);
+	}
+	.in__card {
+		@apply flex-row items-start border-b border-line;
+		gap: 14px;
+		padding-block: 16px;
+	}
+	.in__card-media {
+		flex: 0 0 34%;
+	}
+	.in__card-chip,
+	.in__card-more {
+		@apply hidden;
+	}
+	.in__card-body {
+		gap: 6px;
+	}
+	.in__card-title {
+		font-size: 16px;
+	}
+	.in__card-meta {
+		@apply border-t-0 pt-0;
+		font-size: 12.5px;
+	}
+	.in__badge {
+		font-size: 12.5px;
+	}
+}
+
+/* The "view all" link, on its own at the block's top right. */
+.in__more {
+	@apply flex justify-end;
 }

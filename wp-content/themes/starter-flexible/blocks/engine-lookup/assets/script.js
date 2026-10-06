@@ -238,7 +238,7 @@ document.querySelectorAll('[data-engines]').forEach((root) => {
 						const td = document.createElement('td');
 						const cell = document.createElement('div');
 						cell.className = 'el__cell';
-						const blank = value === null || value === undefined || value === '';
+						const blank = (value ?? '') === '';
 						const text = document.createElement('span');
 						text.textContent = blank ? '—' : String(value);
 						cell.append(text);

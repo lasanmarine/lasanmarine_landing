@@ -2,12 +2,9 @@
    track slides sideways rather than cross-fading, so the movement reads as
    "next in a row" and not "a new image appeared". */
 .ps__bar {
-	@apply flex flex-wrap items-end justify-between;
+	@apply flex flex-wrap items-end justify-end;
 	gap: 16px 32px;
 	margin-bottom: clamp(20px, 2.4vw, 32px);
-}
-.ps__bar .block-head {
-	margin-bottom: 0;
 }
 .ps__nav {
 	@apply flex flex-none items-center;
@@ -37,7 +34,7 @@
 }
 @media (max-width: 820px) {
 	.ps__slide {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
 .ps__media {
@@ -105,4 +102,16 @@
 .ps__dot[aria-selected='true'] {
 	@apply bg-marine;
 	width: 44px;
+}
+
+/* The bar stays 3px to the eye, but the button around it is a 44px target:
+   the visible bar is painted into the content box only. */
+.ps__dot {
+	box-sizing: content-box;
+	padding: 20px 0;
+	background-clip: content-box;
+}
+.ps__dots {
+	gap: 4px 8px;
+	margin-top: clamp(4px, 1vw, 10px);
 }

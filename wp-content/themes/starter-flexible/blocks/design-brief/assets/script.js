@@ -420,7 +420,7 @@ document.querySelectorAll('[data-design-brief]').forEach((form) => {
 				block.groups.forEach((group) => {
 					if (group.title) lines.push(`  · ${group.title}`);
 					group.rows.forEach((row) => {
-						lines.push(`    ${row.label}: ${row.value}${row.unit ? ' ' + row.unit : ''}`);
+						lines.push(`    ${row.label}: ${row.value}${row.unit ? ` ${row.unit}` : ''}`);
 					});
 				});
 			});
@@ -506,7 +506,7 @@ document.querySelectorAll('[data-design-brief]').forEach((form) => {
 								const rows = group.rows
 									.map(
 										(row) =>
-											`<tr><td class="k">${esc(row.label)}</td><td class="v">${esc(row.value)}${row.unit ? ' ' + esc(row.unit) : ''}</td></tr>`
+											`<tr><td class="k">${esc(row.label)}</td><td class="v">${esc(row.value)}${row.unit ? ` ${esc(row.unit)}` : ''}</td></tr>`
 									)
 									.join('');
 								return `${group.title ? `<h4>${esc(group.title)}</h4>` : ''}<table class="spec">${rows}</table>`;
@@ -521,7 +521,7 @@ document.querySelectorAll('[data-design-brief]').forEach((form) => {
 
 		return `<!doctype html>
 <html lang="vi"><head><meta charset="utf-8" />
-<title>Nhiệm vụ thư thiết kế${code ? ' ' + esc(code) : ''}</title>
+<title>Nhiệm vụ thư thiết kế${code ? ` ${esc(code)}` : ''}</title>
 <style>
 @page { size: A4; margin: 20mm 15mm 20mm 30mm; }
 * { box-sizing: border-box; }
@@ -569,7 +569,7 @@ table.spec tr { page-break-inside: avoid; }
 		<p class="nation">Cộng hòa xã hội chủ nghĩa Việt Nam</p>
 		<p class="motto">Độc lập - Tự do - Hạnh phúc</p>
 		<div class="rule rule--wide"></div>
-		<p class="place">${place ? esc(place) + ', ' : ''}${longDate(today)}</p>
+		<p class="place">${place ? `${esc(place)}, ` : ''}${longDate(today)}</p>
 	</td>
 </tr></table>
 

@@ -154,3 +154,40 @@ function starter_flexible_enqueue_targeted_admin_editor_scripts( WP_Screen $scre
 		2
 	);
 }
+
+/**
+ * Whether the current page renders a Contact Form 7 form: the enquiry and
+ * design-brief blocks embed one, and an editor may drop a shortcode or the
+ * form's own block into any page.
+ */
+function starter_flexible_page_has_form(): bool {
+	if ( array_intersect( array( 'enquiry-form', 'design-brief' ), starter_flexible_page_block_slugs() ) ) {
+		return true;
+	}
+
+	if ( is_singular() ) {
+		$content = (string) get_post_field( 'post_content', get_queried_object_id() );
+		return str_contains( $content, '[contact-form-7' ) || str_contains( $content, 'wp:contact-form-7' );
+	}
+
+	return false;
+}
+
+/**
+ * Contact Form 7 and its conditional-fields add-on load their CSS, their JS
+ * and jQuery on every page. Only a page with a form needs any of it; elsewhere
+ * those files are render-blocking weight for nothing.
+ */
+function starter_flexible_dequeue_unused_form_assets(): void {
+	if ( is_admin() || starter_flexible_page_has_form() ) {
+		return;
+	}
+
+	foreach ( array( 'contact-form-7', 'swv', 'wpcf7cf-scripts', 'wpcf7-recaptcha', 'google-recaptcha' ) as $handle ) {
+		wp_dequeue_script( $handle );
+	}
+	foreach ( array( 'contact-form-7', 'cf7cf-style' ) as $handle ) {
+		wp_dequeue_style( $handle );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'starter_flexible_dequeue_unused_form_assets', 100 );

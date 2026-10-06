@@ -53,7 +53,7 @@ if ( empty( $data->should_render ) ) {
 		</div>
 
 		<div class="pc__results" data-aos="fade-left" data-aos-delay="100">
-			<h3 class="pc__heading"><?php echo esc_html( $data->results_label ); ?></h3>
+			<h2 class="pc__heading"><?php echo esc_html( $data->results_label ); ?></h2>
 			<div class="pc__result-list" data-power-results aria-live="polite" aria-atomic="true">
 				<?php foreach ( $data->units as $unit ) : ?>
 					<div class="pc__result" data-power-row="<?php echo esc_attr( $unit['id'] ); ?>" data-aos="fade-up" data-aos-delay="<?php echo esc_attr( (string) $unit['delay'] ); ?>">

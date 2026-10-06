@@ -9,7 +9,7 @@
 }
 @media (max-width: 720px) {
 	.pc__grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
 .pc__inputs {
@@ -310,4 +310,12 @@
 }
 .pc__reset {
 	margin-top: 16px;
+}
+
+@media (max-width: 640px) {
+	.pc__precision {
+		width: 52px;
+		min-height: 40px;
+		font-size: 16px;
+	}
 }

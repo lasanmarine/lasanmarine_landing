@@ -104,36 +104,7 @@ get_template_part(
 				<?php
 				while ( have_posts() ) :
 					the_post();
-					$categories = array_values(
-						array_filter(
-							(array) get_the_category(),
-							static fn( WP_Term $term ): bool => 'bai-viet' !== $term->slug
-						)
-					);
-					?>
-					<article id="post-<?php the_ID(); ?>" <?php post_class( 'post-card' ); ?>>
-						<a class="post-card__link" href="<?php the_permalink(); ?>">
-							<span class="post-card__media">
-								<?php if ( has_post_thumbnail() ) : ?>
-									<?php the_post_thumbnail( 'large', array( 'class' => 'post-card__image', 'loading' => 'lazy' ) ); ?>
-								<?php else : ?>
-									<span class="post-card__placeholder" aria-hidden="true"></span>
-								<?php endif; ?>
-							</span>
-
-							<span class="post-card__body">
-								<span class="post-card__meta">
-									<?php if ( $categories ) : ?>
-										<span class="post-card__cat"><?php echo esc_html( $categories[0]->name ); ?></span>
-									<?php endif; ?>
-									<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'd.m.Y' ) ); ?></time>
-								</span>
-								<span class="post-card__title"><?php the_title(); ?></span>
-								<span class="post-card__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 24, '…' ) ); ?></span>
-							</span>
-						</a>
-					</article>
-					<?php
+					get_template_part( 'template-parts/components/post-card' );
 				endwhile;
 				?>
 			</div>

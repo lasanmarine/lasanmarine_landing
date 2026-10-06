@@ -247,7 +247,6 @@ function starter_flexible_render_bar_nav_markup(): void {
 			<?php echo $aria; // phpcs:ignore ?>
 		>
 			<?php echo esc_html( $item['label'] ); ?>
-			<?php echo starter_flexible_icon( 'chevronDown', 15, 'hdr__link-caret' ); // phpcs:ignore ?>
 		</a>
 		<?php
 	}
@@ -365,16 +364,92 @@ function starter_flexible_render_nav_overlay_markup( array $cta, array $contacts
 			<div class="container navx__grid">
 				<nav class="navx__primary" aria-label="<?php echo esc_attr( $is_english ? 'Primary' : 'Chính' ); ?>">
 					<?php foreach ( $tree as $i => $item ) : ?>
-						<a
-							href="<?php echo esc_url( $item['url'] ); ?>"
-							class="navx__item"
-							style="--i:<?php echo esc_attr( (string) $i ); ?>"
-							<?php echo $item['current'] ? 'aria-current="page"' : ''; ?>
-						>
-							<span class="navx__num"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
-							<span class="navx__label"><?php echo esc_html( $item['label'] ); ?></span>
-							<?php echo starter_flexible_icon( 'arrowUpRight', 22, 'navx__go' ); // phpcs:ignore ?>
-						</a>
+						<?php $sub_id = 'navx-sub-' . $item['id']; ?>
+						<div class="navx__row" style="--i:<?php echo esc_attr( (string) $i ); ?>">
+							<a
+								href="<?php echo esc_url( $item['url'] ); ?>"
+								class="navx__item"
+								<?php echo $item['current'] ? 'aria-current="page"' : ''; ?>
+							>
+								<span class="navx__label"><?php echo esc_html( $item['label'] ); ?></span>
+								<?php echo starter_flexible_icon( 'arrowUpRight', 22, 'navx__go' ); // phpcs:ignore ?>
+							</a>
+
+							<?php
+							/* Phones only: the whole row becomes this button, and the
+							   section's pages slide in as a page of their own. */
+							?>
+							<?php if ( ! empty( $item['children'] ) ) : ?>
+								<button
+									type="button"
+									class="navx__expand"
+									data-sub-toggle
+									aria-expanded="false"
+									aria-controls="<?php echo esc_attr( $sub_id ); ?>"
+								>
+									<span class="sr-only">
+										<?php
+										echo esc_html(
+											sprintf(
+												/* translators: %s: menu section name. */
+												$is_english ? 'Open %s' : 'Mở mục %s',
+												$item['label']
+											)
+										);
+										?>
+									</span>
+									<?php echo starter_flexible_icon( 'chevronRight', 24, 'navx__chev' ); // phpcs:ignore ?>
+								</button>
+
+								<div class="navx__sub" id="<?php echo esc_attr( $sub_id ); ?>" data-open="false" inert>
+									<div class="container navx__sub-in">
+										<div class="navx__sub-head">
+											<button type="button" class="navx__back" data-sub-back>
+												<?php echo starter_flexible_icon( 'chevronLeft', 24 ); // phpcs:ignore ?>
+												<span><?php echo esc_html( $is_english ? 'Back' : 'Quay lại' ); ?></span>
+											</button>
+											<p class="navx__sub-title"><?php echo esc_html( $item['label'] ); ?></p>
+										</div>
+
+										<p class="navx__sub-desc">
+											<?php
+											echo esc_html(
+												'' !== trim( $item['description'] )
+													? $item['description']
+													: sprintf(
+														/* translators: %s: menu section name. */
+														$is_english ? 'Browse everything in %s.' : 'Xem qua các trang trong mục %s.',
+														$item['label']
+													)
+											);
+											?>
+										</p>
+										<a class="navx__sub-all" href="<?php echo esc_url( $item['url'] ); ?>">
+											<?php echo esc_html( $is_english ? 'View all' : 'Xem tất cả' ); ?>
+											<?php echo starter_flexible_icon( 'arrow', 18 ); // phpcs:ignore ?>
+										</a>
+
+										<ul class="navx__sub-list">
+											<?php foreach ( $item['children'] as $child ) : ?>
+												<li>
+													<a href="<?php echo esc_url( $child['url'] ); ?>" class="navx__sub-link">
+														<span><?php echo esc_html( $child['label'] ); ?></span>
+														<?php echo starter_flexible_icon( 'chevronRight', 18 ); // phpcs:ignore ?>
+													</a>
+													<?php if ( ! empty( $child['children'] ) ) : ?>
+														<ul class="navx__sub-deep">
+															<?php foreach ( $child['children'] as $grandchild ) : ?>
+																<li><a href="<?php echo esc_url( $grandchild['url'] ); ?>"><?php echo esc_html( $grandchild['label'] ); ?></a></li>
+															<?php endforeach; ?>
+														</ul>
+													<?php endif; ?>
+												</li>
+											<?php endforeach; ?>
+										</ul>
+									</div>
+								</div>
+							<?php endif; ?>
+						</div>
 					<?php endforeach; ?>
 				</nav>
 

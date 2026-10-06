@@ -90,7 +90,7 @@ if ( empty( $data->should_render ) ) {
 		</div>
 
 		<div class="pc__results" data-aos="fade-left" data-aos-delay="100">
-			<h3 class="pc__heading"><?php echo esc_html( $data->results_label ); ?></h3>
+			<h2 class="pc__heading"><?php echo esc_html( $data->results_label ); ?></h2>
 			<div class="pc__result-list" aria-live="polite" aria-atomic="true">
 
 				<?php foreach ( $data->rows as $row ) : ?>

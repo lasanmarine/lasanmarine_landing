@@ -78,8 +78,8 @@
 }
 
 /* --- the bar's own nav ---
-   Top-level items stay in the bar; the ones with children carry a caret and
-   open a panel below it. Colour follows the bar, white over the hero and navy
+   Top-level items stay in the bar; the ones with children open a panel
+   below it. Colour follows the bar, white over the hero and navy
    once it sticks. */
 .hdr__nav {
 	@apply flex items-center justify-end font-display font-semibold;
@@ -116,12 +116,6 @@
 .hdr__link[aria-current='page']::after,
 .hdr__link[aria-expanded='true']::after {
 	transform: scaleX(1);
-}
-.hdr__link-caret {
-	transition: transform 320ms var(--ease);
-}
-.hdr__link[aria-expanded='true'] .hdr__link-caret {
-	transform: rotate(180deg);
 }
 
 .hdr__actions {
@@ -375,28 +369,31 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 .navx__primary {
 	@apply flex flex-col;
 }
-.navx__item {
-	@apply relative flex items-baseline border-t text-white;
+.navx__row {
+	@apply relative border-t;
 	border-color: rgba(255, 255, 255, 0.14);
-	gap: clamp(12px, 1.4vw, 22px);
-	padding-block: clamp(10px, 1.3vw, 18px);
-	padding-left: 0;
 	/* Rows arrive one after another, then the indent is the only motion left. */
 	transform: translateY(26px);
 	opacity: 0;
 	transition:
 		transform 620ms var(--ease),
-		opacity 440ms ease,
-		padding-left 380ms var(--ease);
-	transition-delay: calc(var(--i) * 58ms), calc(var(--i) * 58ms), 0ms;
+		opacity 440ms ease;
+	transition-delay: calc(var(--i) * 58ms);
 }
-.navx__item:last-child {
+.navx__row:last-child {
 	@apply border-b;
 	border-color: rgba(255, 255, 255, 0.14);
 }
-.navx[data-open='true'] .navx__item {
+.navx[data-open='true'] .navx__row {
 	transform: none;
 	opacity: 1;
+}
+.navx__item {
+	@apply relative flex items-baseline text-white;
+	gap: clamp(12px, 1.4vw, 22px);
+	padding-block: clamp(10px, 1.3vw, 18px);
+	padding-left: 0;
+	transition: padding-left 380ms var(--ease);
 }
 .navx__item:hover {
 	padding-left: clamp(10px, 1.2vw, 18px);
@@ -436,6 +433,12 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	text-decoration-color: var(--marine);
 	text-underline-offset: 8px;
 	text-decoration-thickness: 2px;
+}
+
+/* The phone accordion's parts; the wide overlay shows the columns instead. */
+.navx__expand,
+.navx__sub {
+	@apply hidden;
 }
 
 /* --- the second level: one column per group, all of them open --- */
@@ -484,7 +487,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 }
 
 /* Closing: everything leaves together, no stagger to sit through. */
-.navx:not([data-open='true']) .navx__item,
+.navx:not([data-open='true']) .navx__row,
 .navx:not([data-open='true']) .navx__band,
 .navx:not([data-open='true']) .navx__col,
 .navx:not([data-open='true']) .navx__wave path {
@@ -671,14 +674,14 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 .navx__social a:hover {
 	@apply text-white;
 }
+/* The same solid CTA the desktop bar carries. */
 .navx__cta {
-	@apply border text-white !important;
-	border-color: rgba(255, 255, 255, 0.28);
-	background: transparent;
+	height: 48px;
+	padding-inline: 24px;
+	border-radius: var(--r-md);
+	font-size: 13px;
 	letter-spacing: 0.08em;
-}
-.navx__cta:hover {
-	@apply border-marine bg-marine text-white !important;
+	text-transform: uppercase;
 }
 
 /* While the overlay is open the bar shares its ground, or a white rail cuts
@@ -689,7 +692,9 @@ html[data-nav-open='true'] .hdr__bar {
 	border-bottom-color: rgba(255, 255, 255, 0.14);
 	height: 92px;
 }
-html[data-nav-open='true'] .hdr__brand img {
+/* White while the overlay is open, even over a bar that had already stuck. */
+html[data-nav-open='true'] .hdr__bar .hdr__brand img,
+html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 	height: 34px;
 	filter: brightness(0) invert(1);
 }
@@ -712,30 +717,150 @@ html[data-nav-open='true'] .hdr__brand img {
 }
 
 @media (max-width: 1000px) {
-	/* The two bands stack: the list first, then every column under it. */
+	/* One list, thumb-sized: each section opens its own pages under its row
+	   instead of every column being stacked below the whole list. */
 	.navx__grid {
-		@apply block;
+		display: block;
 	}
 	.navx__secondary {
-		@apply border-l-0 border-t pl-0;
-		border-color: rgba(255, 255, 255, 0.14);
-		margin-top: clamp(24px, 4vw, 40px);
-		padding-top: clamp(24px, 4vw, 40px);
+		display: none;
+	}
+	.navx__scroll {
+		overscroll-behavior: contain;
+	}
+	.navx__row {
+		@apply items-center;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		column-gap: 12px;
+	}
+	.navx__item {
+		@apply items-center;
+		min-height: 64px;
+		padding-block: 12px;
+	}
+	.navx__item:hover {
+		padding-left: 0;
 	}
 	.navx__label {
-		font-size: clamp(26px, 5.2vw, 40px);
+		font-size: clamp(22px, 5.4vw, 32px);
+	}
+
+	/* A section with pages is a door, not a link: the whole row opens it. */
+	.navx__expand {
+		@apply absolute inset-0 flex cursor-pointer items-center justify-end border-0 bg-transparent p-0 text-white;
+		z-index: 1;
+	}
+	.navx__chev {
+		opacity: 0.7;
+		transition: transform 260ms var(--ease);
+	}
+	.navx__expand:active .navx__chev {
+		transform: translateX(4px);
+	}
+	.navx__row:has(.navx__expand) .navx__go {
+		display: none;
+	}
+
+	/* The section's own page slides in over the list, under the bar. Fixed,
+	   so it covers the whole overlay rather than the row it belongs to; the
+	   overlay's clip keeps it from ever showing outside the nav. */
+	.navx__sub {
+		@apply fixed overflow-y-auto bg-navy-deep;
+		inset: var(--hdr-h, 72px) 0 0;
+		z-index: 3;
+		display: block;
+		overscroll-behavior: contain;
+		transform: translateX(100%);
+		visibility: hidden;
+		transition:
+			transform 420ms var(--ease),
+			visibility 0ms linear 420ms;
+	}
+	.navx__sub[data-open='true'] {
+		transform: none;
+		visibility: visible;
+		transition-delay: 0ms;
+	}
+	.navx__sub-in {
+		@apply flex flex-col;
+		padding-block: 8px 40px;
+	}
+	.navx__sub-head {
+		@apply flex items-center justify-between border-b;
+		min-height: 64px;
+		gap: 16px;
+		border-color: rgba(255, 255, 255, 0.14);
+	}
+	.navx__back {
+		@apply inline-flex cursor-pointer items-center border-0 bg-transparent font-display font-semibold text-white;
+		min-height: 48px;
+		margin-left: -8px;
+		padding: 0 12px 0 4px;
+		gap: 4px;
+		font-size: 14px;
+		letter-spacing: 0.04em;
+		opacity: 0.8;
+	}
+	.navx__sub-title {
+		@apply m-0 truncate font-display font-semibold text-white;
+		font-size: clamp(20px, 5vw, 26px);
+		letter-spacing: -0.02em;
+	}
+	.navx__sub-desc {
+		@apply m-0 font-body;
+		margin-top: 22px;
+		font-size: 15px;
+		line-height: 1.6;
+		color: rgba(255, 255, 255, 0.6);
+	}
+	.navx__sub-all {
+		@apply inline-flex items-center self-start font-display font-semibold text-marine-bright;
+		min-height: 44px;
+		margin-top: 6px;
+		gap: 8px;
+		font-size: 15px;
+	}
+	.navx__sub-list {
+		@apply m-0 list-none p-0;
+		margin-top: 14px;
+		border-top: 1px solid rgba(255, 255, 255, 0.14);
+	}
+	.navx__sub-list > li {
+		border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+	}
+	.navx__sub-link {
+		@apply flex items-center justify-between font-display font-semibold text-white;
+		min-height: 58px;
+		gap: 16px;
+		font-size: 18px;
+		line-height: 1.3;
+	}
+	.navx__sub-link svg {
+		@apply flex-none;
+		opacity: 0.45;
+	}
+	.navx__sub-deep {
+		@apply m-0 list-none p-0;
+		padding-bottom: 10px;
+	}
+	.navx__sub-deep a {
+		@apply flex items-center font-body;
+		min-height: 44px;
+		padding-left: 14px;
+		border-left: 1px solid rgba(255, 255, 255, 0.16);
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.72);
+	}
+	.navx__sub-link:hover,
+	.navx__sub-deep a:hover {
+		@apply text-marine-bright;
 	}
 }
 
 @media (max-width: 720px) {
 	.navx__go {
 		@apply hidden;
-	}
-	.navx__secondary {
-		grid-template-columns: 1fr;
-	}
-	.navx__item:hover {
-		padding-left: 0;
 	}
 }
 
@@ -746,8 +871,55 @@ html[data-nav-open='true'] .hdr__brand img {
 	.hdr__menu-word {
 		@apply sr-only;
 	}
+	/* A 44px square, not the width of two short rules. */
+	.hdr__menu {
+		@apply justify-center;
+		min-width: 44px;
+		min-height: 44px;
+		margin-right: -8px;
+		padding: 10px;
+	}
+
+	/* Call, email and the CTA stay pinned under the thumb while the list
+	   scrolls above them. */
+	.navx__scroll {
+		padding-bottom: 0;
+	}
 	.navx__foot {
-		@apply flex-col items-start;
+		@apply sticky flex-col items-stretch;
+		bottom: 0;
+		z-index: 1;
+		margin-top: auto;
+		gap: 10px;
+		padding-block: 14px calc(14px + env(safe-area-inset-bottom));
+		background: #06122d;
+	}
+	.navx__reach {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+		gap: 8px;
+		font-size: 14px;
+	}
+	.navx__reach-item {
+		@apply justify-center rounded-full border text-white;
+		min-width: 0;
+		min-height: 48px;
+		padding-inline: 12px;
+		border-color: rgba(255, 255, 255, 0.22);
+	}
+	.navx__reach-item span {
+		@apply truncate;
+	}
+	.navx__foot-end {
+		@apply flex-col items-stretch;
+	}
+	/* The footer carries the social links; here they only crowd the thumb bar. */
+	.navx__social {
+		@apply hidden;
+	}
+	.navx__cta {
+		@apply justify-center;
+		min-height: 48px;
 	}
 }
 
@@ -756,7 +928,8 @@ html[data-nav-open='true'] .hdr__brand img {
 		gap: 2px 8px;
 		font-size: 14px;
 	}
-	.hdr__bar {
+	.hdr__bar,
+	html[data-nav-open='true'] .hdr__bar {
 		height: 72px;
 	}
 }
@@ -766,7 +939,8 @@ html[data-nav-open='true'] .hdr__brand img {
 	.hdr__panel,
 	.hdr__panel .navx__col,
 	.navx,
-	.navx__item,
+	.navx__row,
+	.navx__sub,
 	.navx__band,
 	.navx__col,
 	.navx__foot,

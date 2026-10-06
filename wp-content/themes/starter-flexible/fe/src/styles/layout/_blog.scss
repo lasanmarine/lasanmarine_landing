@@ -289,3 +289,449 @@
 .err__empty .btn {
 	margin-top: 8px;
 }
+
+/* --- page head: the full-width slot under the copy ------------------- */
+
+.phead__after {
+	@apply w-full;
+	flex-basis: 100%;
+}
+
+/* --- post card extras ------------------------------------------------ */
+
+.post-card__placeholder {
+	@apply flex items-center justify-center;
+}
+.post-card__placeholder img {
+	width: 38%;
+	height: auto;
+	opacity: 0.18;
+}
+.post-card__more {
+	@apply mt-auto inline-flex items-center font-display font-semibold text-marine;
+	gap: 8px;
+	padding-top: 4px;
+	font-size: 13.5px;
+}
+.post-card__link:hover .post-card__more .btn__icon svg:nth-child(1) {
+	transform: translateX(150%);
+}
+.post-card__link:hover .post-card__more .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
+}
+
+/* ==========================================================================
+   Search — one large field, tabs per kind, results grouped by kind.
+   ========================================================================== */
+
+.srch__form {
+	@apply relative flex items-center;
+	max-width: 760px;
+	margin-top: 6px;
+	padding: 6px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: var(--r-md);
+	background: rgba(255, 255, 255, 0.07);
+	transition:
+		border-color 200ms ease,
+		background 200ms ease;
+}
+.srch__form:focus-within {
+	@apply border-marine-bright;
+	background: rgba(255, 255, 255, 0.11);
+}
+.srch__form-icon {
+	@apply flex-none;
+	margin-left: 12px;
+	color: rgba(255, 255, 255, 0.6);
+}
+.srch__input {
+	@apply min-w-0 flex-1 border-0 bg-transparent font-body text-white outline-none;
+	padding: 12px 14px;
+	font-size: clamp(16px, 1.4vw, 18px);
+}
+.srch__input::placeholder {
+	color: rgba(255, 255, 255, 0.45);
+}
+.srch__input::-webkit-search-cancel-button {
+	filter: invert(1);
+}
+.srch__submit {
+	@apply flex-none;
+	min-height: 48px;
+}
+
+.srch__tabs {
+	@apply flex overflow-x-auto;
+	gap: 8px;
+	margin-top: 22px;
+	padding-bottom: 2px;
+	scrollbar-width: none;
+}
+.srch__tabs::-webkit-scrollbar {
+	display: none;
+}
+.srch__tabs a {
+	@apply inline-flex flex-none items-center border font-display font-semibold text-white;
+	min-height: 40px;
+	gap: 8px;
+	padding: 0 16px;
+	border-color: rgba(255, 255, 255, 0.2);
+	border-radius: 999px;
+	font-size: 14px;
+	transition:
+		border-color 200ms ease,
+		background 200ms ease;
+}
+.srch__tabs a span {
+	font-size: 12px;
+	font-variant-numeric: tabular-nums;
+	color: rgba(255, 255, 255, 0.55);
+}
+.srch__tabs a:hover {
+	border-color: rgba(255, 255, 255, 0.5);
+}
+.srch__tabs a[aria-current='page'] {
+	@apply border-white bg-white text-navy;
+}
+.srch__tabs a[aria-current='page'] span {
+	@apply text-marine;
+}
+
+.srch__group + .srch__group {
+	margin-top: clamp(48px, 6vw, 80px);
+}
+.srch__group-head {
+	@apply flex flex-wrap items-end justify-between border-b border-line;
+	gap: 8px 24px;
+	margin-bottom: clamp(22px, 2.6vw, 32px);
+	padding-bottom: 14px;
+}
+.srch__group-title {
+	@apply m-0 flex items-baseline font-display font-semibold text-navy;
+	gap: 10px;
+	font-size: clamp(22px, 2.2vw, 30px);
+	letter-spacing: -0.02em;
+}
+.srch__group-title span {
+	@apply font-body font-medium text-mute;
+	font-size: 15px;
+	letter-spacing: 0;
+}
+.srch__group-more {
+	@apply inline-flex items-center;
+	gap: 8px;
+	font-size: 14.5px;
+}
+.srch__grid.pi__grid,
+.srch__grid.blog__grid {
+	grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+}
+
+/* Pages read as rows: where the page sits, its name, a line of it. */
+.srch__rows {
+	@apply flex flex-col;
+	border-top: 1px solid var(--line);
+}
+.srch-row {
+	@apply flex items-center justify-between border-b border-line text-navy;
+	gap: 20px;
+	padding: clamp(16px, 1.8vw, 22px) 0;
+}
+.srch-row__body {
+	@apply flex min-w-0 flex-col;
+	gap: 5px;
+}
+.srch-row__trail {
+	@apply text-mute;
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.srch-row__title {
+	@apply font-display font-semibold;
+	font-size: clamp(17px, 1.5vw, 20px);
+	transition: color 200ms ease;
+}
+.srch-row:hover .srch-row__title {
+	@apply text-marine;
+}
+.srch-row__excerpt {
+	@apply text-steel;
+	font-size: 14.5px;
+	line-height: 1.6;
+}
+.srch-row__go {
+	@apply inline-flex flex-none text-steel;
+}
+.srch-row:hover .srch-row__go {
+	@apply text-marine;
+}
+.srch-row:hover .srch-row__go .btn__icon svg:nth-child(1) {
+	transform: translateX(150%);
+}
+.srch-row:hover .srch-row__go .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
+}
+
+.srch__empty {
+	@apply flex flex-col items-start bg-pale;
+	gap: 10px;
+	padding: clamp(28px, 4vw, 48px);
+	border-radius: var(--r-md);
+}
+.srch__empty-title {
+	@apply m-0 font-display font-semibold text-navy;
+	font-size: clamp(19px, 1.8vw, 24px);
+}
+.srch__empty-note {
+	@apply m-0 text-steel;
+	max-width: 52em;
+	font-size: 15px;
+	line-height: 1.65;
+}
+.srch__empty-links {
+	@apply flex flex-wrap;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+/* ==========================================================================
+   Project taxonomy — every material and use as chips in the header.
+   ========================================================================== */
+
+.tax-filter {
+	@apply flex flex-col items-start;
+	gap: 14px;
+	margin-top: 8px;
+}
+.tax-filter__row {
+	@apply flex w-full items-center;
+	gap: 14px;
+}
+.tax-filter__label {
+	@apply flex-none font-display font-semibold uppercase;
+	min-width: 88px;
+	font-size: 11.5px;
+	letter-spacing: 0.14em;
+	color: rgba(255, 255, 255, 0.5);
+}
+.tax-filter__chips {
+	@apply flex min-w-0 overflow-x-auto;
+	gap: 8px;
+	scrollbar-width: none;
+}
+.tax-filter__chips::-webkit-scrollbar {
+	display: none;
+}
+.tax-filter__chip {
+	@apply inline-flex flex-none items-center border text-white;
+	min-height: 38px;
+	gap: 8px;
+	padding: 0 14px;
+	border-color: rgba(255, 255, 255, 0.2);
+	border-radius: 999px;
+	font-size: 14px;
+	transition:
+		border-color 200ms ease,
+		background 200ms ease;
+}
+.tax-filter__chip span {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.5);
+}
+.tax-filter__chip:hover {
+	border-color: rgba(255, 255, 255, 0.5);
+}
+.tax-filter__chip[aria-current='page'] {
+	@apply border-white bg-white text-navy;
+}
+.tax-filter__chip[aria-current='page'] span {
+	@apply text-marine;
+}
+.tax-filter__all {
+	@apply inline-flex items-center text-marine-bright;
+	gap: 8px;
+	font-size: 14.5px;
+}
+
+@media (max-width: 720px) {
+	.phead__inner {
+		padding-block: 112px 40px;
+	}
+	.srch__submit {
+		padding-inline: 16px;
+	}
+	.tax-filter__row {
+		@apply flex-col items-start;
+		gap: 8px;
+	}
+	/* Chips scroll edge to edge on a phone rather than wrapping into a wall. */
+	.tax-filter__chips,
+	.srch__tabs {
+		width: calc(100% + 2 * var(--gutter, 20px));
+		margin-inline: calc(-1 * var(--gutter, 20px));
+		padding-inline: var(--gutter, 20px);
+	}
+	.blog__grid,
+	.srch__grid.pi__grid,
+	.srch__grid.blog__grid {
+		gap: 32px;
+	}
+}
+
+/* ==========================================================================
+   404 — the number over the swell, a search, the ways home.
+   ========================================================================== */
+
+.e404 {
+	@apply relative overflow-hidden bg-navy-deep text-white;
+	background:
+		radial-gradient(110% 80% at 85% 0%, rgba(10, 114, 200, 0.3), transparent 60%),
+		linear-gradient(to bottom, #0b1b4c 0%, #06122d 70%);
+}
+.e404__ground {
+	@apply pointer-events-none absolute inset-0;
+}
+.e404__wave {
+	@apply absolute w-full;
+	inset: auto 0 0;
+	height: clamp(260px, 42vw, 560px);
+}
+.e404__inner {
+	@apply relative items-center;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+	gap: clamp(24px, 5vw, 80px);
+	min-height: min(88vh, 860px);
+	padding-block: clamp(120px, 12vw, 170px) clamp(64px, 7vw, 110px);
+}
+/* The number is drawn as an outline so the swell reads through it. */
+.e404__code {
+	@apply m-0 select-none font-display font-bold;
+	font-size: clamp(120px, 20vw, 300px);
+	line-height: 0.85;
+	letter-spacing: -0.06em;
+	color: transparent;
+	-webkit-text-stroke: 2px rgba(58, 160, 240, 0.55);
+	background: linear-gradient(180deg, rgba(58, 160, 240, 0.28), rgba(58, 160, 240, 0) 75%);
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+.e404__copy {
+	@apply flex min-w-0 flex-col items-start;
+	gap: 16px;
+}
+.e404__title {
+	@apply m-0 font-display font-semibold text-white;
+	max-width: 16em;
+	font-size: clamp(30px, 3.8vw, 52px);
+	line-height: 1.08;
+	letter-spacing: -0.03em;
+	text-wrap: balance;
+}
+.e404__lead {
+	@apply m-0;
+	max-width: 36em;
+	font-size: clamp(15px, 1.3vw, 17px);
+	line-height: 1.7;
+	color: rgba(255, 255, 255, 0.72);
+}
+.e404__search {
+	@apply w-full;
+	margin-top: 8px;
+}
+.e404__actions {
+	@apply flex flex-wrap;
+	gap: 12px;
+	margin-top: 4px;
+}
+.e404__ghost {
+	@apply border text-white !important;
+	border-color: rgba(255, 255, 255, 0.3);
+	background: transparent;
+}
+.e404__ghost:hover {
+	@apply border-marine bg-marine !important;
+}
+
+.e404__ways {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+	gap: 14px;
+}
+.e404__way {
+	@apply flex items-center border border-line bg-white text-navy;
+	gap: 16px;
+	padding: 18px 20px;
+	border-radius: var(--r-md);
+	transition:
+		border-color 220ms ease,
+		box-shadow 220ms ease,
+		transform 220ms var(--ease);
+}
+.e404__way:hover {
+	@apply border-marine;
+	box-shadow: 0 14px 34px -22px rgba(6, 18, 45, 0.45);
+	transform: translateY(-2px);
+}
+.e404__way-icon {
+	@apply flex-none place-items-center bg-pale text-marine;
+	display: grid;
+	width: 48px;
+	height: 48px;
+	border-radius: var(--r-sm);
+	transition:
+		background 220ms ease,
+		color 220ms ease;
+}
+.e404__way:hover .e404__way-icon {
+	@apply bg-marine text-white;
+}
+.e404__way-body {
+	@apply flex min-w-0 flex-1 flex-col;
+	gap: 3px;
+}
+.e404__way-label {
+	@apply font-display font-semibold;
+	font-size: 17px;
+}
+.e404__way-note {
+	@apply text-steel;
+	font-size: 13.5px;
+}
+.e404__way-go {
+	@apply inline-flex flex-none text-mute;
+}
+.e404__way:hover .e404__way-go {
+	@apply text-marine;
+}
+.e404__way:hover .e404__way-go .btn__icon svg:nth-child(1) {
+	transform: translateX(150%);
+}
+.e404__way:hover .e404__way-go .btn__icon svg:nth-child(2) {
+	transform: translate(0, 0);
+}
+.e404__latest {
+	margin-top: clamp(56px, 7vw, 96px);
+}
+
+@media (max-width: 900px) {
+	.e404__inner {
+		grid-template-columns: minmax(0, 1fr);
+		min-height: 0;
+		gap: 8px;
+	}
+	.e404__code {
+		font-size: clamp(110px, 34vw, 200px);
+	}
+}
+@media (max-width: 520px) {
+	.e404__actions .btn {
+		flex: 1 1 100%;
+		justify-content: center;
+	}
+	.e404__way {
+		padding: 16px;
+	}
+}

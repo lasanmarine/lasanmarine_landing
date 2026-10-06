@@ -132,73 +132,131 @@ function starter_flexible_vite_script_tag_as_module( string $tag ): string {
 	return str_replace( '<script ', '<script type="module" ', $tag );
 }
 
+/**
+ * The ACF block slugs the current page actually renders.
+ *
+ * Read from the queried post's content (nested and reusable blocks included),
+ * plus the listings that draw a block's components straight from a template:
+ * the project cards and grid come from the Project Index block's stylesheet.
+ *
+ * @return array<int, string>
+ */
+function starter_flexible_page_block_slugs(): array {
+	static $slugs = null;
+	if ( null !== $slugs ) {
+		return $slugs;
+	}
+
+	$found   = array();
+	$collect = static function ( array $blocks ) use ( &$collect, &$found ): void {
+		foreach ( $blocks as $block ) {
+			$name = (string) ( $block['blockName'] ?? '' );
+			if ( str_starts_with( $name, 'acf/' ) ) {
+				$found[ substr( $name, 4 ) ] = true;
+			}
+			if ( 'core/block' === $name && ! empty( $block['attrs']['ref'] ) ) {
+				$collect( parse_blocks( (string) get_post_field( 'post_content', (int) $block['attrs']['ref'] ) ) );
+			}
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$collect( $block['innerBlocks'] );
+			}
+		}
+	};
+
+	if ( is_singular() ) {
+		$collect( parse_blocks( (string) get_post_field( 'post_content', get_queried_object_id() ) ) );
+	}
+
+	if ( is_singular( 'project' ) || is_tax( array( 'project_material', 'project_use' ) ) || is_search() || is_404() ) {
+		$found['project-index'] = true;
+	}
+
+	// The tools share one form vocabulary (`pc__*`, `field__*`) whose rules live
+	// in the Power Converter and Engine Lookup stylesheets.
+	$tools = array( 'power-converter', 'engine-lookup', 'shaft-diameter', 'design-brief', 'tool-shell' );
+	if ( array_intersect( $tools, array_keys( $found ) ) ) {
+		$found['power-converter'] = true;
+		$found['engine-lookup']   = true;
+	}
+
+	/**
+	 * Filters the block slugs whose assets load on this page.
+	 *
+	 * @param array<int, string> $slugs Block slugs, without the `acf/` prefix.
+	 */
+	$slugs = (array) apply_filters( 'starter_flexible_page_block_slugs', array_keys( $found ) );
+
+	return $slugs;
+}
+
 function starter_flexible_vite_enqueue_prod_assets_from_dist( string $dist_dir ): void {
 	$theme_dir = defined( 'STARTER_FLEXIBLE_THEME_DIR' ) ? STARTER_FLEXIBLE_THEME_DIR : get_stylesheet_directory();
 	$theme_uri = defined( 'STARTER_FLEXIBLE_THEME_URI' ) ? STARTER_FLEXIBLE_THEME_URI : get_stylesheet_directory_uri();
+	$used      = array_flip( starter_flexible_page_block_slugs() );
+
+	// A block's own files live under dist/blocks/{slug}/…; they load only on a
+	// page that renders that block. Everything else is site-wide.
+	$block_of = static function ( string $absolute_path ) use ( $dist_dir ): string {
+		$relative = ltrim( str_replace( DIRECTORY_SEPARATOR, '/', substr( $absolute_path, strlen( $dist_dir ) ) ), '/' );
+		return preg_match( '#^blocks/([^/]+)/#', $relative, $m ) ? $m[1] : '';
+	};
 
 	$css_files = starter_flexible_find_files_recursive( $dist_dir, array( 'css' ) );
 	$js_files  = starter_flexible_find_files_recursive( $dist_dir, array( 'js' ) );
-
 	sort( $css_files );
-	sort( $js_files );
 
-	// Enqueue CSS (preload + noscript for the first file).
-	foreach ( $css_files as $index => $absolute_path ) {
-		$relative_path = str_replace( $theme_dir, '', $absolute_path );
-		$handle        = 'starter-flexible-main-css' . ( $index ? '-' . $index : '' );
-
-		if ( 0 === $index ) {
-			add_action(
-				'wp_head',
-				static function () use ( $theme_uri, $relative_path ) {
-					echo '<link rel="preload" href="' . esc_url( $theme_uri . $relative_path ) . '" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n";
-					echo '<noscript><link rel="stylesheet" href="' . esc_url( $theme_uri . $relative_path ) . '"></noscript>' . "\n";
-				},
-				1
-			);
+	// Site-wide CSS as ordinary stylesheets; the used blocks' CSS is small, so
+	// it is inlined after them instead of costing one blocking request each.
+	$main_handle = '';
+	$inline_css  = '';
+	foreach ( $css_files as $absolute_path ) {
+		$block = $block_of( $absolute_path );
+		if ( '' !== $block ) {
+			if ( isset( $used[ $block ] ) ) {
+				$inline_css .= (string) file_get_contents( $absolute_path ) . "\n"; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local build file.
+			}
+			continue;
 		}
 
+		$handle = 'starter-flexible-' . sanitize_key( basename( $absolute_path, '.css' ) ) . '-css';
 		wp_enqueue_style(
 			$handle,
-			$theme_uri . $relative_path,
+			$theme_uri . str_replace( $theme_dir, '', $absolute_path ),
 			array(),
 			starter_flexible_file_version( $absolute_path )
 		);
+		if ( 'app' === basename( $absolute_path, '.css' ) || '' === $main_handle ) {
+			$main_handle = $handle;
+		}
+	}
+	if ( '' !== $inline_css && '' !== $main_handle ) {
+		wp_add_inline_style( $main_handle, $inline_css );
 	}
 
-	// Enqueue JS (vendor-like files first if present).
+	// JS: vendor first, then the app, then the used blocks' own scripts.
 	usort(
 		$js_files,
 		static function ( string $a, string $b ): int {
-			$an = basename( $a );
-			$bn = basename( $b );
-
-			if ( false !== strpos( $an, 'vendor' ) && false === strpos( $bn, 'vendor' ) ) {
-				return -1;
-			}
-
-			if ( false !== strpos( $bn, 'vendor' ) && false === strpos( $an, 'vendor' ) ) {
-				return 1;
-			}
-
-			return strcmp( $an, $bn );
+			$rank = static fn( string $f ): int => false !== strpos( basename( $f ), 'vendor' ) ? 0 : 1;
+			return $rank( $a ) <=> $rank( $b ) ?: strcmp( $a, $b );
 		}
 	);
 
 	$module_handles = array();
-
 	foreach ( $js_files as $index => $absolute_path ) {
-		$relative_path = str_replace( $theme_dir, '', $absolute_path );
-		$handle        = 0 === $index ? 'starter-flexible-theme-main' : 'starter-flexible-theme-main-' . $index;
+		$block = $block_of( $absolute_path );
+		if ( '' !== $block && ! isset( $used[ $block ] ) ) {
+			continue;
+		}
 
+		$handle = 0 === $index ? 'starter-flexible-theme-main' : 'starter-flexible-theme-main-' . $index;
 		wp_enqueue_script(
 			$handle,
-			$theme_uri . $relative_path,
+			$theme_uri . str_replace( $theme_dir, '', $absolute_path ),
 			array(),
 			starter_flexible_file_version( $absolute_path ),
 			true
 		);
-
 		$module_handles[] = $handle;
 	}
 

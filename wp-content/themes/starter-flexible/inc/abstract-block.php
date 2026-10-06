@@ -26,7 +26,6 @@ abstract class Starter_Flexible_Abstract_Block {
 		$data = $this->prepare( array_merge( $this->defaults(), starter_flexible_get_block_fields( $this->block ) ) );
 		$data['module_class'] = starter_flexible_build_module_class( $this->base_class(), (string) ( $data['custom_class'] ?? '' ) );
 		$data['anchor'] = (string) ( ! empty( $this->block['anchor'] ) ? $this->block['anchor'] : ( $data['anchor'] ?? '' ) );
-		$data['spacing_style'] = starter_flexible_module_spacing_style( $this->block );
 		$data['should_render'] = $data['should_render'] ?? true;
 
 		return (object) $data;

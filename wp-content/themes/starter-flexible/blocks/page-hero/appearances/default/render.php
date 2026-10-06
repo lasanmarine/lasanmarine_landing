@@ -22,7 +22,7 @@ if ( empty( $data->should_render ) ) {
 	<?php if ( $data->has_media ) : ?>
 		<div class="phero__media">
 			<?php if ( '' !== $data->image_url ) : ?>
-				<img src="<?php echo esc_url( $data->image_url ); ?>" alt="" decoding="async" />
+				<?php echo $data->image_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image(). ?>
 			<?php else : ?>
 				<span class="frame__placeholder"><?php echo esc_html( $data->placeholder ); ?></span>
 			<?php endif; ?>

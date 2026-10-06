@@ -38,3 +38,20 @@
 		grid-column: 1;
 	}
 }
+
+/* Phone: role and location stacked on the left, the arrow beside them. */
+@media (max-width: 640px) {
+	.jl__row {
+		gap: 4px 16px;
+		padding-block: 18px;
+	}
+	.jl__row > * {
+		grid-column: 1;
+		justify-self: start;
+	}
+	.jl__row > .jl__arrow {
+		grid-column: 2;
+		grid-row: 1 / span 3;
+		align-self: center;
+	}
+}

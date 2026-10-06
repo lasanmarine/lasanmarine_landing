@@ -138,3 +138,30 @@
 		transition-duration: 1ms !important;
 	}
 }
+
+/* Phone: the two actions share one width instead of two ragged ones. */
+@media (max-width: 520px) {
+	.hero__actions .btn {
+		flex: 1 1 100%;
+		justify-content: center;
+	}
+}
+
+/* The bar stays 3px to the eye inside a 43px-tall button, so a thumb can hit
+   it: the track is painted into the content box, the fill sits on the same
+   line. */
+.hero__dot {
+	box-sizing: content-box;
+	padding: 20px 0;
+	background-clip: content-box;
+	border-radius: 0;
+}
+.hero__dot-fill {
+	top: 20px;
+	bottom: auto;
+	height: 3px;
+}
+.hero__dots {
+	gap: 0 10px;
+	margin-top: clamp(0px, 0.6vw, 8px);
+}

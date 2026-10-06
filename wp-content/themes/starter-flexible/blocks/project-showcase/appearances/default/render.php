@@ -25,7 +25,6 @@ if ( empty( $data->should_render ) ) {
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<div class="container ps" data-showcase>
 		<div class="ps__bar">
-			<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
 			<?php if ( $data->has_navigation ) : ?>
 				<div class="ps__nav">
 					<span class="meta" data-ps-counter><?php echo esc_html( $data->count_label ); ?></span>

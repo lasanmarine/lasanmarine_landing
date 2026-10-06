@@ -127,18 +127,62 @@ export function initHeader() {
 	});
 
 	document.addEventListener('keydown', (e) => {
-		if (e.key === 'Escape' && isOpen()) setNav(false);
+		if (e.key !== 'Escape' || !isOpen()) return;
+		// Escape steps back one level: out of a section first, then the overlay.
+		if (openSub) closeSub();
+		else setNav(false);
+	});
+
+	// On a phone a section with pages opens them as a page of its own, slid in
+	// over the list; the back button (or Escape) returns to the list.
+	const subToggles = [...nav.querySelectorAll('[data-sub-toggle]')];
+	const behind = () => [...nav.querySelectorAll('.navx__item, [data-sub-toggle], .navx__foot')];
+	let openSub = null;
+
+	const closeSub = ({ focus = true } = {}) => {
+		if (!openSub) return;
+		const { btn, sub } = openSub;
+		sub.dataset.open = 'false';
+		sub.inert = true;
+		btn.setAttribute('aria-expanded', 'false');
+		behind().forEach((el) => (el.inert = false));
+		nav.dataset.subOpen = 'false';
+		openSub = null;
+		if (focus) btn.focus({ preventScroll: true });
+	};
+
+	const showSub = (btn) => {
+		const sub = document.getElementById(btn.getAttribute('aria-controls'));
+		if (!sub) return;
+		closeSub({ focus: false });
+		behind().forEach((el) => (el.inert = true));
+		sub.inert = false;
+		sub.dataset.open = 'true';
+		sub.scrollTop = 0;
+		btn.setAttribute('aria-expanded', 'true');
+		nav.dataset.subOpen = 'true';
+		openSub = { btn, sub };
+		sub.querySelector('[data-sub-back]')?.focus({ preventScroll: true });
+	};
+
+	subToggles.forEach((btn) => btn.addEventListener('click', () => showSub(btn)));
+	nav.querySelectorAll('[data-sub-back]').forEach((back) => back.addEventListener('click', () => closeSub()));
+
+	// Closing the overlay always lands back on the list next time.
+	toggle.addEventListener('click', () => {
+		if (!isOpen()) closeSub({ focus: false });
 	});
 
 	// Tab must not walk out of an open overlay and into the page behind it.
 	nav.addEventListener('keydown', (e) => {
 		if (e.key !== 'Tab' || !isOpen()) return;
 		const focusable = [...nav.querySelectorAll('a[href], button:not([disabled])')].filter(
-			(el) => el.offsetParent !== null,
+			// A closed drawer's links still have a box; visibility is what hides them.
+			(el) => el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden',
 		);
 		if (!focusable.length) return;
 		const first = focusable[0];
-		const last = focusable[focusable.length - 1];
+		const last = focusable.at(-1);
 		if (e.shiftKey && document.activeElement === first) {
 			e.preventDefault();
 			last.focus();

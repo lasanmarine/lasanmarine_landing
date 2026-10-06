@@ -23,7 +23,7 @@
 	--marine: #0a72c8;
 	--marine-bright: #4da3e8;
 	--steel: #536173;
-	--mute: #7b8794;
+	--mute: #637080;
 	--tint: #edf3f8;
 	--pale: #f5f8fc;
 	--line: #dce5ee;
@@ -111,4 +111,13 @@ textarea {
 	height: 1px;
 	margin: -1px;
 	clip: rect(0, 0, 0, 0);
+}
+
+/* iOS zooms the page into any field set below 16px; on a phone, never be. */
+@media (max-width: 640px) {
+	input:not([type='checkbox']):not([type='radio']),
+	select,
+	textarea {
+		font-size: max(16px, 1em);
+	}
 }

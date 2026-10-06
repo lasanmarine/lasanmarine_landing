@@ -15,7 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
 
 	<form class="db__form" data-design-brief novalidate>
 		<header class="db__intro">
@@ -282,7 +281,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php echo starter_flexible_icon( 'close', 16 ); // phpcs:ignore ?>
 			</button>
 
-			<h4 class="db__sub"><?php esc_html_e( 'Nhận dạng máy', 'starter-flexible' ); ?></h4>
+			<h3 class="db__sub"><?php esc_html_e( 'Nhận dạng máy', 'starter-flexible' ); ?></h3>
 			<?php
 			starter_flexible_design_brief_row(
 				array(
@@ -322,7 +321,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				array( 'cols' => 2 )
 			);
 
-			echo '<h4 class="db__sub">' . esc_html__( 'Thông số máy', 'starter-flexible' ) . '</h4>';
+			echo '<h3 class="db__sub">' . esc_html__( 'Thông số máy', 'starter-flexible' ) . '</h3>';
 			starter_flexible_design_brief_row(
 				array(
 					array( 'name' => 'engine_kw', 'label' => 'Công suất', 'type' => 'number', 'unit' => 'kW', 'attrs' => array( 'data-db-kw' => true ) ),
@@ -332,7 +331,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				array( 'cols' => 3, 'title' => 'Công suất & vòng quay' )
 			);
 
-			echo '<h4 class="db__sub">' . esc_html__( 'Trục chân vịt', 'starter-flexible' ) . '</h4>';
+			echo '<h3 class="db__sub">' . esc_html__( 'Trục chân vịt', 'starter-flexible' ) . '</h3>';
 			starter_flexible_design_brief_row(
 				array(
 					array(
@@ -361,7 +360,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				array( 'cols' => 3, 'title' => 'Kích thước trục' )
 			);
 
-			echo '<h4 class="db__sub">' . esc_html__( 'Chân vịt', 'starter-flexible' ) . '</h4>';
+			echo '<h3 class="db__sub">' . esc_html__( 'Chân vịt', 'starter-flexible' ) . '</h3>';
 			starter_flexible_design_brief_row(
 				array(
 					array( 'name' => 'prop_material', 'label' => 'Vật liệu chân vịt', 'type' => 'combo', 'options' => (array) $data->catalogs['propeller_materials'] ),
@@ -377,7 +376,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				array( 'cols' => 3, 'title' => 'Kích thước & khối lượng' )
 			);
 
-			echo '<h4 class="db__sub">' . esc_html__( 'Bệ máy', 'starter-flexible' ) . '</h4>';
+			echo '<h3 class="db__sub">' . esc_html__( 'Bệ máy', 'starter-flexible' ) . '</h3>';
 			starter_flexible_design_brief_row(
 				array(
 					array( 'name' => 'bed_gearbox_bolt', 'label' => 'Chân hộp số (bu lông)', 'type' => 'number', 'unit' => 'mm' ),

@@ -19,9 +19,6 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal data-project-index<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<?php if ( $data->has_label ) : ?>
-		<?php get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) ); ?>
-	<?php endif; ?>
 
 	<?php /* The filters and the tally sit on one line: what is being shown, and
 	         how much of it. The tally is rewritten by the script on every filter. */ ?>

@@ -126,7 +126,7 @@ if ( empty( $data->should_render ) ) {
 
 		<div class="pc__results" data-aos="fade-left" data-aos-delay="100">
 			<div class="el__head">
-				<h3 class="pc__heading"><?php echo esc_html( $data->labels['results'] ); ?></h3>
+				<h2 class="pc__heading"><?php echo esc_html( $data->labels['results'] ); ?></h2>
 				<span class="meta"><span data-el-count>0</span> <?php echo esc_html( $data->labels['rows_found'] ); ?></span>
 			</div>
 

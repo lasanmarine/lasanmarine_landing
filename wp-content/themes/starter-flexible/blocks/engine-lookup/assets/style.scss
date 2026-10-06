@@ -9,7 +9,8 @@
 }
 @media (max-width: 760px) {
 	.pc__grid.el__grid {
-		grid-template-columns: 1fr;
+		/* minmax(0, …): a bare 1fr track grows to the table's width. */
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
 .el__head {

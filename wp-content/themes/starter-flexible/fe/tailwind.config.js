@@ -18,7 +18,7 @@ export default {
 				marine: '#0a72c8',
 				'marine-bright': '#4da3e8',
 				steel: '#536173',
-				mute: '#7b8794',
+				mute: '#637080', // darkened from #7b8794 to clear 4.5:1 on white, pale and tint
 				tint: '#edf3f8',
 				pale: '#f5f8fc',
 				line: '#dce5ee',

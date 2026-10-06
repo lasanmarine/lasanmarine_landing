@@ -315,89 +315,6 @@ function starter_flexible_find_files_recursive( string $dir, array $extensions )
 }
 
 /**
- * Append the global "Spacing" tab (Padding Top / Padding Bottom) to a block
- * field group. Called for every block so the two controls exist everywhere
- * without touching each block's JSON.
- *
- * @param array<int, array<string, mixed>> $fields    Existing field definitions.
- * @param string                           $group_key Field group key, for unique field keys.
- *
- * @return array<int, array<string, mixed>>
- */
-function starter_flexible_append_spacing_fields( array $fields, string $group_key ): array {
-	$suffix = sanitize_key( str_replace( 'group_', '', $group_key ) );
-
-	foreach ( $fields as $field ) {
-		if ( isset( $field['name'] ) && 'padding_top' === $field['name'] ) {
-			return $fields; // Already added (e.g. group reloaded).
-		}
-	}
-
-	$common = array(
-		'type'          => 'number',
-		'append'        => 'px',
-		'min'           => 0,
-		'placeholder'   => __( 'Mặc định', 'starter-flexible' ),
-		'wrapper'       => array( 'width' => '50' ),
-	);
-
-	$fields[] = array(
-		'key'   => 'field_' . $suffix . '_spacing_tab',
-		'label' => __( 'Khoảng cách', 'starter-flexible' ),
-		'name'  => '',
-		'type'  => 'tab',
-		'placement' => 'top',
-	);
-	$fields[] = array_merge(
-		$common,
-		array(
-			'key'          => 'field_' . $suffix . '_padding_top',
-			'label'        => __( 'Padding Top', 'starter-flexible' ),
-			'name'         => 'padding_top',
-			'instructions' => __( 'Để trống để dùng khoảng cách mặc định của module.', 'starter-flexible' ),
-		)
-	);
-	$fields[] = array_merge(
-		$common,
-		array(
-			'key'   => 'field_' . $suffix . '_padding_bottom',
-			'label' => __( 'Padding Bottom', 'starter-flexible' ),
-			'name'  => 'padding_bottom',
-		)
-	);
-
-	return $fields;
-}
-
-/**
- * Build the inline style attribute (with leading space) that applies the
- * per-module Padding Top / Padding Bottom overrides, or '' when both are unset.
- */
-function starter_flexible_module_spacing_style( array $block ): string {
-	$read = static function ( string $name ) use ( $block ) {
-		if ( isset( $block['data'][ $name ] ) && '' !== $block['data'][ $name ] ) {
-			return $block['data'][ $name ];
-		}
-		$value = function_exists( 'get_field' ) ? get_field( $name ) : null;
-
-		return ( null === $value || '' === $value ) ? null : $value;
-	};
-
-	$rules = array();
-	$top   = $read( 'padding_top' );
-	$bot   = $read( 'padding_bottom' );
-
-	if ( is_numeric( $top ) ) {
-		$rules[] = 'padding-top:' . (float) $top . 'px';
-	}
-	if ( is_numeric( $bot ) ) {
-		$rules[] = 'padding-bottom:' . (float) $bot . 'px';
-	}
-
-	return $rules ? ' style="' . esc_attr( implode( ';', $rules ) ) . '"' : '';
-}
-
-/**
  * Decorate the first HTML tag of a block's rendered markup (the module wrapper
  * that carries $data->module_class): add the per-module `lasanmarine-<slug>`
  * hook class and, when set, the Padding Top / Padding Bottom inline style.
@@ -470,4 +387,67 @@ function starter_flexible_content_page_url( string $key, string $fallback_slug =
 	}
 
 	return (string) get_permalink( $id );
+}
+
+/**
+ * Claim the page's one "largest contentful paint" image slot.
+ *
+ * Returns true the first time it is asked on a request and false after: the
+ * first picture drawn (a hero, a page hero, a post photograph or the first card
+ * of a listing) is fetched eagerly at high priority, everything after it lazily.
+ */
+function starter_flexible_claim_lcp(): bool {
+	static $claimed = false;
+	if ( $claimed ) {
+		return false;
+	}
+	$claimed = true;
+	return true;
+}
+
+/**
+ * Loading attributes for an image, depending on whether it is the page's first.
+ *
+ * @param array<string, string> $attrs Extra attributes to merge in.
+ * @return array<string, string>
+ */
+function starter_flexible_image_priority_attrs( array $attrs = array() ): array {
+	$first = starter_flexible_claim_lcp();
+
+	return array_merge(
+		array(
+			'loading'       => $first ? 'eager' : 'lazy',
+			'fetchpriority' => $first ? 'high' : 'auto',
+			'decoding'      => 'async',
+		),
+		$attrs
+	);
+}
+
+/**
+ * The media library ID behind an uploads URL, including a resized copy's URL
+ * (`name-1024x768.jpg`) and a big image's `-scaled` original. 0 when the file
+ * is not a library attachment. Remembered for the request.
+ */
+function starter_flexible_attachment_id_from_url( string $url ): int {
+	static $cache = array();
+	if ( isset( $cache[ $url ] ) ) {
+		return $cache[ $url ];
+	}
+
+	$uploads = wp_get_upload_dir();
+	if ( '' === $url || ! str_starts_with( $url, (string) $uploads['baseurl'] ) ) {
+		return $cache[ $url ] = 0; // phpcs:ignore Squiz.PHP.DisallowMultipleAssignments
+	}
+
+	$id = attachment_url_to_postid( $url );
+	if ( ! $id ) {
+		$original = (string) preg_replace( '/-\d+x\d+(\.[a-z0-9]+)$/i', '$1', $url );
+		$id       = attachment_url_to_postid( $original );
+		if ( ! $id ) {
+			$id = attachment_url_to_postid( (string) preg_replace( '/(\.[a-z0-9]+)$/i', '-scaled$1', $original ) );
+		}
+	}
+
+	return $cache[ $url ] = (int) $id; // phpcs:ignore Squiz.PHP.DisallowMultipleAssignments
 }

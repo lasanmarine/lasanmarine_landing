@@ -18,3 +18,22 @@
 		@apply border-t-0 pt-0;
 	}
 }
+
+/* Two figures to a row on a phone, notes at full column width. */
+@media (max-width: 640px) {
+	.stats {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0 16px;
+	}
+	.stats .stat,
+	.stats .stat:first-child {
+		@apply border-t border-line;
+		padding: 18px 0;
+	}
+	.stats .stat:nth-child(-n + 2) {
+		@apply border-t-0 pt-0;
+	}
+	.stats .stat__note {
+		max-width: none;
+	}
+}

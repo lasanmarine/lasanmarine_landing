@@ -19,11 +19,6 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<?php
-	if ( $data->has_label ) {
-		get_template_part( 'template-parts/components/block-head', null, array( 'label' => $data->label ) );
-	}
-	?>
 	<div class="dc__filters" role="tablist" data-doc-filters>
 		<button type="button" class="dc__filter" data-doc-filter="all" data-active="true">
 			<?php echo esc_html( $data->all_label ); ?>

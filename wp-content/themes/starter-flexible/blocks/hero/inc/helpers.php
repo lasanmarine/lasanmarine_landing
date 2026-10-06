@@ -104,6 +104,9 @@ function starter_flexible_hero_slide( array $row, bool $first ): array {
 	// The hero is the largest thing on the page and the LCP element, so the
 	// original is served through the responsive sizes WordPress already has —
 	// but only the first slide is worth the browser's early attention.
+	if ( $first && $image_id ) {
+		starter_flexible_claim_lcp();
+	}
 	$image_html = $image_id
 		? (string) wp_get_attachment_image(
 			$image_id,

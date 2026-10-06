@@ -67,12 +67,25 @@
 		transition: height 320ms linear;
 	}
 	.pt__steps {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 	.pt__step {
 		padding: 0 0 0 32px;
 	}
 	.pt__dot {
 		top: 6px;
+	}
+}
+
+@media (max-width: 640px) {
+	.pt__steps {
+		gap: 28px;
+	}
+	.pt__title {
+		margin-top: 0;
+	}
+	.pt__desc {
+		max-width: none;
+		font-size: 14.5px;
 	}
 }

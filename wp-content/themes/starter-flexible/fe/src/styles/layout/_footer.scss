@@ -80,6 +80,8 @@
 }
 .ftr__specs .spec__label {
 	@apply text-white;
+	/* One label column, so every value starts on the same line. */
+	flex: 0 0 128px;
 	min-width: 0;
 	font-size: 15px;
 	opacity: 0.55;
@@ -89,7 +91,7 @@
 }
 .ftr__specs .spec__value {
 	/* Every value at one size — a long address wraps rather than shrinks. */
-	@apply flex flex-wrap items-center justify-end text-white;
+	@apply flex flex-wrap items-center justify-start text-white;
 	gap: 8px 10px;
 	font-size: clamp(16px, 1.3vw, 19px);
 	line-height: 1.4;
