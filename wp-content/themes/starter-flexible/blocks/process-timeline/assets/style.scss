@@ -1,176 +1,150 @@
+/* Process Timeline
+   Heading on the left, held in view while the steps run down the right on a
+   rail. The rail fills as the page scrolls; the step on the reading line is
+   the brand card, the ones above it are done (behaviour.js). */
+
+.pt--flow {
+	display: grid;
+	grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+	gap: clamp(32px, 6vw, 112px);
+	align-items: start;
+}
+.pt__aside {
+	position: sticky;
+	top: calc(var(--hdr-h, 76px) + 32px);
+}
 .pt__head {
-	@apply flex flex-col;
+	display: flex;
+	flex-direction: column;
 	gap: 16px;
 }
 .pt__heading {
-	@apply m-0;
-	max-width: 20em;
+	margin: 0;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 }
 .pt__intro {
-	max-width: 44em;
+	max-width: 36em;
 }
-.pt {
-	@apply relative;
+.pt__progress {
+	margin: 8px 0 0;
+	color: var(--mute);
+	font-size: 14px;
+	font-variant-numeric: tabular-nums;
+}
+.pt__progress span {
+	color: var(--navy);
+	font-family: var(--display);
+	font-size: clamp(28px, 2.6vw, 40px);
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+/* --- the rail and the steps ---------------------------------------------- */
+.pt__track {
+	position: relative;
+	padding-left: 44px;
 }
 .pt__rail,
 .pt__fill {
-	@apply absolute left-0 bg-line;
-	top: 5px;
-	height: 2px;
+	position: absolute;
+	left: 15px;
+	top: 12px;
+	width: 2px;
+	border-radius: 2px;
 }
 .pt__rail {
-	@apply w-full;
+	bottom: 12px;
+	background: var(--line-soft);
 }
 .pt__fill {
-	@apply w-0 bg-marine;
-	transition: width 320ms linear;
+	height: 0;
+	background: var(--grad-accent);
+	transition: height 160ms linear;
 }
 .pt__steps {
-	@apply grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
-	gap: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 .pt__step {
-	@apply relative;
-	padding-top: 32px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: clamp(20px, 2.4vw, 30px);
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	color: var(--navy);
+	transition:
+		background 420ms var(--ease),
+		box-shadow 420ms var(--ease),
+		color 300ms var(--ease),
+		transform 420ms var(--ease);
 }
 .pt__dot {
-	@apply absolute left-0 top-0 bg-line;
-	width: 12px;
-	height: 12px;
-	border-radius: 1px;
-	transition: background 400ms ease;
-}
-.pt--lit .pt__dot {
-	@apply bg-marine;
-}
-.pt__index {
-	@apply font-display font-semibold text-marine;
-	font-size: clamp(20px, 1.9vw, 26px);
-	letter-spacing: -0.02em;
+	position: absolute;
+	left: -36px;
+	top: clamp(24px, 2.6vw, 34px);
+	width: 16px;
+	height: 16px;
+	border-radius: 999px;
+	background: var(--paper);
+	box-shadow: inset 0 0 0 2px var(--line);
+	transition: background 300ms var(--ease), box-shadow 300ms var(--ease);
 }
 .pt__title {
-	@apply font-display font-semibold text-navy;
-	margin-top: 8px;
-	font-size: 19px;
+	font-family: var(--display);
+	font-size: clamp(18px, 1.5vw, 22px);
+	font-weight: 600;
+	letter-spacing: -0.01em;
 }
 .pt__desc {
-	@apply text-mute;
-	margin-top: 6px;
-	max-width: 16em;
-	font-size: 13px;
+	color: var(--steel);
+	font-size: 15px;
 	line-height: 1.65;
+	transition: color 300ms var(--ease);
 }
 
-@media (max-width: 640px) {
-	.pt__rail,
-	.pt__fill {
-		top: 0;
-		left: 5px;
-		width: 2px !important;
-		height: 100%;
-	}
-	.pt__fill {
-		height: 0;
-		transition: height 320ms linear;
-	}
-	.pt__steps {
+/* Done: the node fills in. */
+.pt__step.is-done .pt__dot {
+	background: var(--aqua);
+	box-shadow: none;
+}
+/* Active: the brand card. */
+.pt__step.is-active {
+	color: #fff;
+	background:
+		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.42), transparent 60%),
+		linear-gradient(155deg, var(--navy) 0%, #0d2f73 60%, var(--marine) 130%);
+	box-shadow: 0 26px 50px -28px rgba(6, 18, 45, 0.6);
+	transform: translateX(6px);
+}
+.pt__step.is-active .pt__desc {
+	color: rgba(255, 255, 255, 0.82);
+}
+.pt__step.is-active .pt__dot {
+	background: var(--aqua);
+	box-shadow: 0 0 0 6px rgba(20, 200, 200, 0.2);
+}
+
+@media (max-width: 860px) {
+	.pt--flow {
 		grid-template-columns: minmax(0, 1fr);
-	}
-	.pt__step {
-		padding: 0 0 0 32px;
-	}
-	.pt__dot {
-		top: 6px;
-	}
-}
-
-@media (max-width: 640px) {
-	.pt__steps {
 		gap: 28px;
 	}
-	.pt__title {
-		margin-top: 0;
+	.pt__aside {
+		position: static;
 	}
-	.pt__desc {
-		max-width: none;
-		font-size: 14.5px;
-	}
-}
-
-/* Tablet: two steps to a row; the rail only reads as one line, so it goes. */
-@media (max-width: 1024px) {
-	.pt__steps {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 28px 24px;
-	}
-	.pt__rail,
-	.pt__fill {
+	.pt__progress {
 		display: none;
 	}
 }
-@media (max-width: 520px) {
-	.pt__steps {
-		grid-template-columns: minmax(0, 1fr);
-	}
-}
-
-/* --- v2 light minimal: thin rail, aqua node dots ------------------------ */
-.pt__heading {
-	letter-spacing: -0.02em;
-	text-wrap: balance;
-}
-.pt__rail,
-.pt__fill {
-	top: 5px;
-	height: 1px;
-}
-.pt__fill {
-	@apply bg-aqua;
-}
-.pt__dot {
-	@apply rounded-full bg-paper;
-	width: 11px;
-	height: 11px;
-	box-shadow: inset 0 0 0 1.5px var(--line);
-	transition: background 400ms var(--ease), box-shadow 400ms var(--ease);
-}
-.pt--lit .pt__dot {
-	@apply bg-aqua;
-	box-shadow: 0 0 0 4px var(--aqua-soft);
-}
-.pt__index {
-	@apply text-aqua-deep;
-	font-size: 13px;
-	letter-spacing: 0.01em;
-	font-variant-numeric: tabular-nums;
-}
-.pt__title {
-	letter-spacing: -0.02em;
-	text-wrap: balance;
-}
-.pt__desc {
-	@apply text-steel;
-	font-size: 14px;
-}
-@media (max-width: 640px) {
-	.pt__rail,
-	.pt__fill {
-		top: 0;
-		left: 5px;
-		width: 1px !important;
-		height: 100%;
-	}
-	.pt__fill {
-		height: 0;
-	}
-}
 @media (prefers-reduced-motion: reduce) {
-	.pt__fill,
-	.pt__dot {
-		transition: none;
-	}
+	.pt__step,
+	.pt__fill { transition: none; }
+	.pt__step.is-active { transform: none; }
 }
-
-/* v2 polish: step copy uses its whole column. */
-.pt__desc { max-width: 26em; }

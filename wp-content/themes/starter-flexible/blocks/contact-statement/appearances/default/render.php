@@ -49,13 +49,17 @@ if ( empty( $data->should_render ) ) {
 							</a>
 							<?php if ( '' !== $data->zalo_href && ! $data->is_english ) : ?>
 								<a class="btn btn--lg btn--secondary cs__zalo" href="<?php echo esc_url( $data->zalo_href ); ?>" target="_blank" rel="noopener" data-cta="zalo">
-									<span class="cs__zalo-mark" aria-hidden="true">Zalo</span>
+									<?php echo starter_flexible_zalo_icon( 22, 'cs__zalo-mark' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									<?php esc_html_e( 'Nhắn Zalo', 'starter-flexible' ); ?>
 								</a>
 							<?php endif; ?>
 						</div>
 						<p class="cs__hint">
 							<?php echo esc_html( $data->is_english ? 'Send a photo of your drawing or vessel — we reply the same day.' : 'Gửi ảnh bản vẽ hoặc ảnh tàu qua Zalo để được tư vấn nhanh trong ngày.' ); ?>
+							<?php if ( '' !== $data->email_href ) : ?>
+								<br /><?php echo esc_html( $data->is_english ? 'Or email' : 'Hoặc email' ); ?>
+								<a class="cs__email" href="<?php echo esc_attr( $data->email_href ); ?>"><?php echo esc_html( trim( (string) $data->email ) ); ?></a>
+							<?php endif; ?>
 						</p>
 					<?php endif; ?>
 
@@ -67,8 +71,8 @@ if ( empty( $data->should_render ) ) {
 							array(
 								'href'  => $data->cta['url'],
 								'label' => $data->cta['label'],
-								'size'  => 'sm',
-								'class' => 'cs__cta btn--ghost',
+								'size'  => 'lg',
+								'class' => 'cs__cta btn--secondary',
 								'attrs' => '_blank' === $data->cta['target'] ? array( 'target' => '_blank', 'rel' => 'noopener' ) : array(),
 							)
 						);

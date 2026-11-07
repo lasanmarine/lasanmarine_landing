@@ -166,3 +166,17 @@
 .is-stacked .sa__row { padding-block: clamp(8px, 1.5vh, 22px); }
 .is-stacked .sa__children { margin-top: 6px; gap: 6px; }
 .is-stacked .sa__children > * { padding-block: 3px; font-size: 12.5px; }
+
+/* No photographs: the list is the whole block, its rows laid out as columns
+   with the same top rule. */
+.sa--text {
+	grid-template-columns: minmax(0, 1fr);
+}
+.sa--text .sa__list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+	column-gap: clamp(28px, 4vw, 56px);
+}
+.sa--text .sa__row {
+	align-items: start;
+}

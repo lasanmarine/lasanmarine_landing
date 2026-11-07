@@ -21,7 +21,7 @@ if ( empty( $data->should_render ) ) {
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<div class="<?php echo esc_attr( $data->column_class ); ?>">
 		<?php if ( $data->has_heading ) : ?>
-			<h2 class="h4 rt__heading"><?php echo esc_html( $data->heading ); ?></h2>
+			<h2 class="h3 rt__heading"><?php echo esc_html( $data->heading ); ?></h2>
 		<?php endif; ?>
 		<?php if ( $data->has_content ) : ?>
 			<div class="prose rt__body"><?php echo wp_kses_post( $data->content ); ?></div>

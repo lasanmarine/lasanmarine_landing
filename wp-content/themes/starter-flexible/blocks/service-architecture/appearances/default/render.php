@@ -28,7 +28,7 @@ if ( empty( $data->should_render ) ) {
 		<?php endif; ?>
 	</div>
 
-	<div class="sa" data-service-arch>
+	<div class="sa<?php echo $data->has_images ? '' : ' sa--text'; ?>" data-service-arch>
 		<div class="sa__list" data-reveal-stagger>
 			<?php foreach ( $data->items as $i => $item ) : ?>
 				<a
@@ -61,6 +61,7 @@ if ( empty( $data->should_render ) ) {
 			<?php endforeach; ?>
 		</div>
 
+		<?php if ( $data->has_images ) : ?>
 		<div class="sa__figure">
 			<?php foreach ( $data->items as $i => $item ) : ?>
 				<div class="sa__slide" data-service-slide data-i="<?php echo esc_attr( (string) $i ); ?>" data-active="<?php echo 0 === $i ? 'true' : 'false'; ?>">
@@ -78,5 +79,6 @@ if ( empty( $data->should_render ) ) {
 				</div>
 			<?php endforeach; ?>
 		</div>
+		<?php endif; ?>
 	</div>
 </section>

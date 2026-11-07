@@ -42,35 +42,44 @@ if ( empty( $data->should_render ) ) {
 			</button>
 		<?php endforeach; ?>
 	</div>
-	<div data-doc-list data-reveal-stagger="[data-doc-group]">
+	<div class="dc__grid" data-doc-list data-reveal-stagger="[data-doc-group]">
 		<?php foreach ( $data->items as $item ) : ?>
-			<div class="dc__row" data-doc-group="<?php echo esc_attr( (string) $item['group'] ); ?>">
-				<span class="dc__icon">
-					<?php echo starter_flexible_icon( 'file', 26 ); // phpcs:ignore ?>
-				</span>
-				<span class="dc__title"><?php echo esc_html( $item['title'] ); ?></span>
-				<span class="dc__size"><?php echo esc_html( $item['size'] ); ?></span>
-				<span class="dc__actions">
-					<?php if ( $item['is_pdf'] ) : ?>
-						<a class="btn btn--sm btn--secondary dc__view" href="<?php echo esc_url( $item['file'] ); ?>" target="_blank" rel="noopener">
-							<?php echo starter_flexible_icon( 'scan', 20 ); // phpcs:ignore ?>
-							<?php esc_html_e( 'Xem PDF', 'starter-flexible' ); ?>
-						</a>
+			<article class="dc__card" data-doc-group="<?php echo esc_attr( (string) $item['group'] ); ?>">
+				<div class="dc__meta">
+					<span class="dc__icon"><?php echo starter_flexible_icon( 'file', 22 ); // phpcs:ignore ?></span>
+					<?php if ( '' !== $item['year'] ) : ?>
+						<span class="dc__year"><?php echo esc_html( $item['year'] ); ?></span>
 					<?php endif; ?>
-					<?php if ( '' !== $item['file'] ) : ?>
-						<a class="btn btn--sm dc__dl" href="<?php echo esc_url( $item['file'] ); ?>" download>
-							<?php echo starter_flexible_icon_swap( 'download', 20 ); // phpcs:ignore ?>
-							<?php esc_html_e( 'Tải xuống', 'starter-flexible' ); ?>
-						</a>
-					<?php else : ?>
-						<?php /* No file attached yet — keep the slot, drop the affordance. */ ?>
-						<button type="button" class="btn btn--sm dc__dl is-inert" disabled>
-							<?php echo starter_flexible_icon( 'download', 20 ); // phpcs:ignore ?>
-							<?php esc_html_e( 'Tải xuống', 'starter-flexible' ); ?>
-						</button>
+					<?php if ( '' !== $item['source'] ) : ?>
+						<span class="dc__source"><?php echo esc_html( $item['source'] ); ?></span>
 					<?php endif; ?>
-				</span>
-			</div>
+				</div>
+				<h3 class="dc__title"><?php echo esc_html( $item['title'] ); ?></h3>
+				<div class="dc__foot">
+					<span class="dc__tag"><?php echo esc_html( $data->filters[ $item['group'] ] ?? '' ); ?></span>
+					<?php if ( '' !== $item['size'] ) : ?>
+						<span class="dc__size"><?php echo esc_html( $item['size'] ); ?></span>
+					<?php endif; ?>
+					<span class="dc__actions">
+						<?php if ( $item['is_pdf'] ) : ?>
+							<a class="btn btn--sm btn--secondary dc__view" href="<?php echo esc_url( $item['file'] ); ?>" target="_blank" rel="noopener">
+								<?php esc_html_e( 'Xem PDF', 'starter-flexible' ); ?>
+							</a>
+						<?php endif; ?>
+						<?php if ( '' !== $item['file'] ) : ?>
+							<a class="btn btn--sm dc__dl" href="<?php echo esc_url( $item['file'] ); ?>" download>
+								<?php esc_html_e( 'Tải xuống', 'starter-flexible' ); ?>
+								<?php echo starter_flexible_icon_swap( 'download', 18 ); // phpcs:ignore ?>
+							</a>
+						<?php else : ?>
+							<a class="link dc__ask" href="<?php echo esc_url( $data->contact_url ); ?>">
+								<?php esc_html_e( 'Liên hệ để nhận tài liệu', 'starter-flexible' ); ?>
+								<?php echo starter_flexible_icon_swap( 'arrow', 16 ); // phpcs:ignore ?>
+							</a>
+						<?php endif; ?>
+					</span>
+				</div>
+			</article>
 		<?php endforeach; ?>
 		<p class="dc__empty" data-doc-empty hidden><?php echo esc_html( $data->empty_text ); ?></p>
 	</div>

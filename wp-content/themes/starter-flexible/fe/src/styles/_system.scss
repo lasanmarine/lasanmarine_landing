@@ -45,7 +45,7 @@
 .band--pale {
 	@apply bg-surface;
 	color: var(--steel);
-	margin-inline: clamp(8px, 1.2vw, 20px);
+	margin-inline: var(--band-inset);
 	border-radius: var(--r-xl);
 }
 .band--navy-mid {
@@ -771,16 +771,17 @@ select.field__control {
 
 
 
-/* --- v2 polish: one left edge ------------------------------------------------
-   Inset panels sit `--inset` in from the viewport. Their container gives that
-   back (narrower max-width, smaller gutter) so text inside a panel starts on
-   exactly the same vertical line as text outside it, at every width. */
+/* --- panels: one edge -------------------------------------------------------
+   Every panel in the stream (heroes, bands, spotlight, CTA) lines up with the
+   container's content edge, the same edge as cards and grids outside it. Text
+   inside a panel gets the panel's own padding. */
 :root {
-	--inset: clamp(8px, 1.2vw, 20px);
+	--inset: var(--band-inset);
+	--panel-pad: clamp(24px, 4vw, 64px);
 }
 :is(.band--navy, .band--navy-mid, .band--pale, .phero, .phead, .post-hero, .project-single__hero) .container {
-	max-width: calc(1560px - 2 * var(--inset));
-	padding-inline: max(8px, calc(var(--gutter) - var(--inset)));
+	max-width: none;
+	padding-inline: var(--panel-pad);
 }
 .band--navy,
 .band--navy-mid,
@@ -909,12 +910,6 @@ a:hover .frame::after,
 	.btn { transition: none; }
 }
 
-/* --- v2: panels never outgrow the content shell -----------------------------
-   On very wide screens every inset panel stops at the shell width (1560px)
-   and centres, so it frames the content instead of the whole viewport. */
-html body :is(.band--navy, .band--navy-mid, .band--pale, .phero, .phead, .post-hero, .project-single__hero, .spotlight, .cb) {
-	margin-inline: max(var(--inset), calc((100% - 1560px) / 2));
-}
 .hero__split {
 	max-width: 1560px;
 	margin-inline: auto;
@@ -934,11 +929,6 @@ html body :is(.band--navy, .band--navy-mid, .band--pale, .phero, .phead, .post-h
 	background-clip: border-box;
 	transform-origin: 50% 0;
 	will-change: transform, opacity;
-}
-/* No dwell: snapping moves a whole sheet per wheel notch. The page-hero with
-   summary cards keeps one short stop to play its cards. */
-.block-stream.is-stacked > .lasanmarine-page-hero:has(.phero__cards) {
-	margin-bottom: 45vh;
 }
 /* Snapping drives the glide itself. */
 html.is-snapping { scroll-behavior: auto; }
@@ -1015,52 +1005,33 @@ body:has(.block-stream.is-stacked) { overflow-x: clip; }
 }
 .block-stream.is-stacked > .is-flow::after { content: none; }
 
-/* --- v2: sticky "on this page" bar (built by site/hero-cards.js) ------------ */
+/* --- "on this page": a second row of the header pill ----------------------
+   Mounted inside `.hdr__bar` (behaviours/onpage-nav.js). Collapsed until the
+   reader has scrolled past the hero, then it opens under the nav links and
+   the pill grows into a two-row panel; one surface, one shadow, no seam. */
 .onpage {
-	position: sticky;
-	top: calc(var(--hdr-h, 76px) + 6px);
-	z-index: 30;
-	height: 0;
-	pointer-events: none;
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 320ms var(--ease);
+}
+.onpage.is-shown {
+	grid-template-rows: 1fr;
 }
 .onpage__in {
-	display: flex;
-	align-items: center;
-	gap: 14px;
-	width: fit-content;
-	max-width: calc(100% - 2 * var(--gutter));
-	margin-inline: auto;
-	padding: 6px 6px 6px 18px;
-	border-radius: var(--r-pill);
-	background: rgba(255, 255, 255, 0.86);
-	-webkit-backdrop-filter: blur(14px) saturate(1.4);
-	backdrop-filter: blur(14px) saturate(1.4);
-	box-shadow: inset 0 0 0 1px var(--line-soft), 0 14px 32px -20px rgba(11, 27, 76, 0.35);
-	opacity: 0;
-	transform: translate3d(0, -10px, 0);
-	transition: opacity 280ms var(--ease), transform 360ms var(--ease);
-}
-.onpage.is-shown .onpage__in {
-	opacity: 1;
-	transform: none;
-	pointer-events: auto;
-}
-.onpage__label {
-	flex: none;
-	color: var(--mute);
-	font-size: 12.5px;
-	font-weight: 500;
+	min-height: 0;
+	overflow: hidden;
 }
 .onpage__list {
 	display: flex;
-	gap: 4px;
-	overflow-x: auto;
-	scrollbar-width: none;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 2px 6px;
+	padding: 4px clamp(14px, 1.6vw, 22px) 8px;
+	border-top: 1px solid var(--line-soft);
 }
-.onpage__list::-webkit-scrollbar { display: none; }
 .onpage__link {
-	flex: none;
-	padding: 8px 14px;
+	position: relative;
+	padding: 9px 12px;
 	border-radius: var(--r-pill);
 	color: var(--steel);
 	font-size: 13.5px;
@@ -1068,19 +1039,35 @@ body:has(.block-stream.is-stacked) { overflow-x: clip; }
 	white-space: nowrap;
 	transition: background 220ms var(--ease), color 220ms var(--ease);
 }
-.onpage__link:hover { background: var(--surface); color: var(--navy); }
+.onpage__link:hover {
+	background: var(--surface);
+	color: var(--navy);
+}
 .onpage__link.is-active {
 	background: var(--navy);
 	color: #fff;
 }
-/* Anchored sections land below the bar and the header. */
+/* The pill opens to fit both rows. */
+.hdr__bar:has(.onpage.is-shown) {
+	height: auto;
+}
+.hdr__bar.is-stuck:has(.onpage.is-shown) {
+	border-radius: var(--r-lg);
+}
+.hdr__bar:has(.onpage) .hdr__bar-inner {
+	height: 76px;
+}
+.hdr__bar.is-stuck:has(.onpage) .hdr__bar-inner {
+	height: 62px;
+}
+/* Anchored sections land below the header. */
 .block-stream > [id] { scroll-margin-top: calc(var(--hdr-h, 76px) + 72px); }
-@media (max-width: 760px) {
-	.onpage__label { display: none; }
-	.onpage__in { padding-left: 6px; width: auto; }
+@media (max-width: 1023px) {
+	/* Narrow screens have the menu overlay; the row would crowd the pill. */
+	.onpage { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-	.onpage__in { transition: none; }
+	.onpage { transition: none; }
 }
 
 /* --- v2: "Reduce motion" (footer toggle) ------------------------------------
@@ -1095,69 +1082,40 @@ html.reduce-motion *::after {
 	transition-delay: 0s !important;
 }
 html.reduce-motion .reveal-on [data-reveal],
-html.reduce-motion .reveal-on [data-reveal-item],
-html.reduce-motion .phero__card {
+html.reduce-motion .reveal-on [data-reveal-item] {
 	opacity: 1 !important;
 	transform: none !important;
 	filter: none !important;
 }
 
-/* --- v2 on-page bar, attached to the header -----------------------------------
-   Same width and left edge as the stuck header pill; quiet text tabs with an
-   aqua underline for the section in view. */
-.onpage {
-	top: calc(var(--hdr-h, 76px) - 2px);
+
+
+/* --- card sliders (behaviours/slider.js) -------------------------------------
+   A row of cards that scrolls sideways with snap points; the buttons sit at
+   the right, above the row. Overrides each block's own grid columns. */
+.slider-nav {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-bottom: 14px;
 }
-.onpage__in {
-	width: auto;
-	max-width: none;
-	margin-inline: max(var(--gutter), calc((100% - 1560px) / 2 + var(--gutter)));
-	justify-content: flex-start;
-	gap: 6px;
-	padding: 0 18px;
-	min-height: 46px;
-	border-radius: 0 0 var(--r-lg) var(--r-lg);
-	background: rgba(255, 255, 255, 0.9);
-	box-shadow: inset 0 1px 0 var(--line-soft), 0 12px 28px -22px rgba(11, 27, 76, 0.35);
+.slider-nav[hidden] { display: none; }
+.slider-nav .icon-btn:disabled { opacity: 0.35; cursor: default; }
+html body [data-slider].is-slider {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: none;
+	grid-template-rows: none;
+	grid-auto-columns: min(var(--slide-w, 380px), 86%);
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	padding-bottom: 6px;
 }
-.onpage__label {
-	padding-right: 12px;
-	margin-right: 4px;
-	border-right: 1px solid var(--line);
+html body [data-slider].is-slider::-webkit-scrollbar { display: none; }
+html body [data-slider].is-slider > * {
+	scroll-snap-align: start;
 }
-.onpage__link {
-	position: relative;
-	max-width: 24ch;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	padding: 13px 10px;
-	border-radius: 0;
-	background: none;
-	color: var(--steel);
-	font-weight: 500;
-}
-.onpage__link::after {
-	content: '';
-	position: absolute;
-	left: 10px;
-	right: 10px;
-	bottom: 6px;
-	height: 2px;
-	border-radius: 2px;
-	background: var(--grad-accent);
-	transform: scaleX(0);
-	transform-origin: left;
-	transition: transform 320ms var(--ease);
-}
-.onpage__link:hover { background: none; color: var(--navy); }
-.onpage__link.is-active {
-	background: none;
-	color: var(--navy);
-	font-weight: 600;
-}
-.onpage__link.is-active::after { transform: scaleX(1); }
-@media (max-width: 760px) {
-	.onpage__in { padding: 0 6px; margin-inline: 8px; }
-	.onpage__link { max-width: 20ch; }
-}
-@media (min-width: 761px) { .onpage__link { max-width: 34ch; } }
+.lasanmarine-capability-matrix [data-slider] { --slide-w: 340px; }
+.lasanmarine-insights [data-slider] { --slide-w: 340px; }

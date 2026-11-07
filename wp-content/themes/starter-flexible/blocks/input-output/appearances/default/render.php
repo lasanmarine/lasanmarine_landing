@@ -23,7 +23,7 @@ $last_index = count( $data->columns ) - 1;
 	<?php if ( $data->has_heading || $data->has_intro ) : ?>
 		<div class="io__intro">
 			<?php if ( $data->has_heading ) : ?>
-				<h2 class="h4"><?php echo esc_html( $data->heading ); ?></h2>
+				<h2 class="h3"><?php echo esc_html( $data->heading ); ?></h2>
 			<?php endif; ?>
 			<?php if ( $data->has_intro ) : ?>
 				<p class="copy"><?php echo esc_html( $data->intro ); ?></p>

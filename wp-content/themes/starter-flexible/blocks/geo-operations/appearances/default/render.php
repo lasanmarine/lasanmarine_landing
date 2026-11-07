@@ -25,7 +25,7 @@ if ( empty( $data->should_render ) ) {
 				<?php if ( $data->has_label ) : ?>
 					<span class="meta geo__label"><?php echo esc_html( $data->label ); ?></span>
 				<?php endif; ?>
-				<h2 class="h4 geo__heading"><?php echo esc_html( $data->heading ); ?></h2>
+				<h2 class="h3 geo__heading"><?php echo esc_html( $data->heading ); ?></h2>
 				<?php if ( $data->has_note ) : ?>
 					<p class="copy geo__note"><?php echo esc_html( $data->note ); ?></p>
 				<?php endif; ?>

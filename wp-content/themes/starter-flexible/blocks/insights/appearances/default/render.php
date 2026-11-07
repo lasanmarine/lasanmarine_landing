@@ -62,7 +62,7 @@ if ( empty( $data->should_render ) ) {
 		</div>
 	<?php endif; ?>
 
-	<div class="in__row" data-reveal-stagger>
+	<div class="in__row" data-slider data-slider-min="3" data-reveal-stagger>
 		<?php foreach ( $data->articles as $article ) : ?>
 			<a href="<?php echo esc_url( $article['url'] ); ?>" class="in__card">
 				<span class="in__card-media">

@@ -82,3 +82,68 @@
 @media (min-width: 1025px) {
 	.uc:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
+/* Balance: cards in a row share their row lines, so every title, context,
+   answer and link starts at the same height across the row — the rule above
+   each answer runs straight through the row instead of stepping. */
+@supports (grid-template-rows: subgrid) {
+	.uc {
+		row-gap: clamp(16px, 2vw, 24px);
+	}
+	.uc__case {
+		display: grid;
+		grid-row: span 4;
+		grid-template-rows: subgrid;
+		row-gap: 14px;
+	}
+	.uc__problem { grid-row: 1; }
+	.uc__context { grid-row: 2; }
+	.uc__solution { grid-row: 3; margin-top: 0; align-self: start; }
+	.uc__link { grid-row: 4; align-self: end; }
+}
+
+/* --- slider -----------------------------------------------------------------
+   One row of cases that scrolls sideways with snap points. The four row lines
+   stay on the track, so each card still lines up title, context, answer and
+   link with its neighbours (subgrid above). */
+.uc__bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	justify-content: space-between;
+	gap: 16px 32px;
+}
+.uc__nav {
+	display: flex;
+	gap: 10px;
+}
+.uc__nav .icon-btn:disabled {
+	opacity: 0.35;
+	cursor: default;
+}
+.uc--static .uc__nav {
+	display: none;
+}
+.lasanmarine-use-case .uc.uc--slider {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: none;
+	grid-template-rows: repeat(4, auto);
+	grid-auto-columns: min(460px, 86%);
+	column-gap: clamp(14px, 1.6vw, 22px);
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x mandatory;
+	scroll-padding-inline: 0;
+	scrollbar-width: none;
+	padding-bottom: 4px;
+}
+.uc.uc--slider::-webkit-scrollbar {
+	display: none;
+}
+.uc--slider > .uc__case {
+	scroll-snap-align: start;
+}
+@supports not (grid-template-rows: subgrid) {
+	.uc.uc--slider { grid-template-rows: auto; }
+}

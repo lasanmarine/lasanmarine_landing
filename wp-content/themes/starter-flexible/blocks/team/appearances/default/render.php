@@ -34,7 +34,7 @@ if ( empty( $data->should_render ) ) {
 		);
 		?>
 		<div>
-			<h2 class="h4 tm__heading"><?php echo esc_html( $data->heading ); ?></h2>
+			<h2 class="h3 tm__heading"><?php echo esc_html( $data->heading ); ?></h2>
 			<?php foreach ( $data->groups as $group ) : ?>
 				<?php if ( '' !== $group['name'] ) : ?>
 					<h3 class="tm__group"><?php echo esc_html( $group['name'] ); ?></h3>

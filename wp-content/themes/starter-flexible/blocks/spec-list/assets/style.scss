@@ -66,3 +66,17 @@
 	letter-spacing: -0.02em;
 	text-wrap: balance;
 }
+
+/* Balance: label and value sit side by side in fixed columns, so a short
+   value no longer hangs at the far right edge, away from its label; the
+   intro column is narrower than the data it introduces. */
+@media (min-width: 1025px) {
+	.sl { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+}
+@media (min-width: 521px) {
+	.sl .spec { justify-content: flex-start; }
+	.sl .spec__label { min-width: 0; flex: 0 0 38%; }
+}
+.sl .spec__label { font-size: 16px; }
+.sl .spec__value { text-align: left; flex: 1 1 auto; }
+.sl__note { font-size: 16px; }

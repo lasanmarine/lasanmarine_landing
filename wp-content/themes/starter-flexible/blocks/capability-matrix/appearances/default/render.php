@@ -22,7 +22,7 @@ if ( empty( $data->should_render ) ) {
 	<?php if ( $data->has_heading ) : ?>
 		<h2 class="h3 cm__heading"><?php echo esc_html( $data->heading ); ?></h2>
 	<?php endif; ?>
-	<div class="mesh cm" data-reveal-stagger>
+	<div class="mesh cm" data-slider data-slider-min="4" data-reveal-stagger>
 		<?php foreach ( $data->items as $item ) : ?>
 			<a
 				class="cm__cell"

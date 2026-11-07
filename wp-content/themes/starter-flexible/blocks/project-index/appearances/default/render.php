@@ -22,6 +22,13 @@ if ( empty( $data->should_render ) ) {
 
 	<?php /* The filters and the tally sit on one line: what is being shown, and
 	         how much of it. The tally is rewritten by the script on every filter. */ ?>
+	<?php $pi_en = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ); ?>
+	<label class="pi__search">
+		<span class="sr-only"><?php echo esc_html( $pi_en ? 'Search projects' : 'Tìm dự án' ); ?></span>
+		<?php echo starter_flexible_icon( 'search', 22 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<input type="search" data-pi-search placeholder="<?php echo esc_attr( $pi_en ? 'Search by name, vessel type, material, size…' : 'Tìm theo tên tàu, loại tàu, vật liệu, kích thước…' ); ?>" autocomplete="off" />
+	</label>
+
 	<div class="pi__bar">
 		<?php if ( $data->filters ) : ?>
 			<div class="pi__filters" role="group" aria-label="<?php esc_attr_e( 'Lọc dự án', 'starter-flexible' ); ?>">
@@ -39,9 +46,9 @@ if ( empty( $data->should_render ) ) {
 		</p>
 	</div>
 
-	<div class="pi__list" data-reveal-stagger>
+	<div class="pi__list pi__list--gallery" data-reveal-stagger>
 		<?php foreach ( $data->items as $item ) : ?>
-			<?php get_template_part( 'template-parts/components/project-card', null, array( 'item' => $item, 'filter_key' => $data->filter_key, 'variant' => 'row' ) ); ?>
+			<?php get_template_part( 'template-parts/components/project-card', null, array( 'item' => $item, 'filter_key' => $data->filter_key, 'variant' => 'gallery' ) ); ?>
 		<?php endforeach; ?>
 	</div>
 

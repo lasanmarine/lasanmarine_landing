@@ -44,8 +44,19 @@ final class Starter_Flexible_Block_Document_Center extends Starter_Flexible_Abst
 					continue;
 				}
 				$file = isset( $item['file'] ) ? (string) $item['file'] : '';
+				// "Title (Journal, 2024)": the source and year read as the
+				// card's meta line, the title on its own.
+				$source = '';
+				$year   = '';
+				if ( preg_match( '/^(.*\S)\s*\(([^()]*?)[,\s]+((?:19|20)\d{2})\)\s*$/u', $title, $m ) ) {
+					$title  = $m[1];
+					$source = trim( $m[2], " ,	" );
+					$year   = $m[3];
+				}
 				$rows[] = array(
 					'title'  => $title,
+					'source' => $source,
+					'year'   => $year,
 					'size'   => isset( $item['size'] ) ? (string) $item['size'] : '',
 					'file'   => $file,
 					// Only a PDF can be handed to the browser's own viewer.
@@ -58,14 +69,15 @@ final class Starter_Flexible_Block_Document_Center extends Starter_Flexible_Abst
 			}
 
 			$index     = count( $filters );
-			$filters[] = $name;
+			$filters[] = starter_flexible_document_center_sentence_case( $name );
 			foreach ( $rows as $row ) {
 				$row['group'] = $index;
 				$items[]      = $row;
 			}
 		}
 
-		$data['all_label']     = '' !== trim( (string) $data['all_label'] ) ? (string) $data['all_label'] : 'TẤT CẢ';
+		$data['all_label']     = starter_flexible_document_center_sentence_case( '' !== trim( (string) $data['all_label'] ) ? (string) $data['all_label'] : 'Tất cả' );
+		$data['contact_url']   = (string) home_url( function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ) ? '/en/contact/' : '/lien-he/' );
 		$data['filters']       = $filters;
 		$data['items']         = $items;
 		$data['has_label']     = '' !== trim( (string) $data['label'] );
@@ -81,4 +93,16 @@ final class Starter_Flexible_Block_Document_Center extends Starter_Flexible_Abst
 
 function starter_flexible_block_data_document_center( array $block ) {
 	return ( new Starter_Flexible_Block_Document_Center( $block ) )->data();
+}
+
+/** Labels typed in capitals read as sentence case, like every other filter. */
+function starter_flexible_document_center_sentence_case( string $text ): string {
+	$text = trim( $text );
+	if ( $text !== mb_strtoupper( $text, 'UTF-8' ) ) {
+		return $text;
+	}
+	$lower = mb_strtolower( $text, 'UTF-8' );
+	$keep  = array( 'r&d' => 'R&D', 'cfd' => 'CFD' );
+	$lower = str_replace( array_keys( $keep ), array_values( $keep ), $lower );
+	return mb_strtoupper( mb_substr( $lower, 0, 1, 'UTF-8' ), 'UTF-8' ) . mb_substr( $lower, 1, null, 'UTF-8' );
 }

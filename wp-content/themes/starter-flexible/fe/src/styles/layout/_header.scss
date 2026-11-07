@@ -2337,3 +2337,14 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 	font-size: 10.5px;
 	font-weight: 700;
 }
+
+/* Tucked away at the footer (behaviours/header.js); back on the first scroll up. */
+.hdr {
+	transition: transform 360ms var(--ease);
+}
+.hdr.is-tucked {
+	transform: translate3d(0, calc(-100% - 16px), 0);
+}
+html[data-nav-open='true'] .hdr.is-tucked {
+	transform: none;
+}

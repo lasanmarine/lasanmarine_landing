@@ -198,3 +198,11 @@ a.vf__card:hover .btn__icon svg:nth-child(2) {
 	backdrop-filter: blur(6px);
 	max-width: calc(100% - 40px);
 }
+
+/* Balance: the small tiles get a little more height and a title sized for
+   their width, so the caption reads on one or two short lines instead of
+   being squeezed inside its glass panel. */
+.vf { grid-auto-rows: minmax(210px, auto); }
+.vf__card:not(.vf__card--lead) .vf__title { font-size: clamp(16px, 1.25vw, 19px); }
+.vf__card:not(.vf__card--lead) .vf__desc { font-size: 13px; }
+.vf__intro { align-self: end; }

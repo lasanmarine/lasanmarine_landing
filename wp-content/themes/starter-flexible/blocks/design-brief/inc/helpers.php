@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once __DIR__ . '/schema.php';
+
 /** @return array<string, mixed> */
 function starter_flexible_design_brief_catalogs(): array {
 	static $cache = null;
@@ -88,9 +90,7 @@ final class Starter_Flexible_Block_Design_Brief extends Starter_Flexible_Abstrac
 		$data['has_intro']     = '' !== trim( (string) $data['intro'] );
 		$data['should_render'] = true;
 
-		$data['engines_json'] = $this->json( $data['engines'] );
-
-		$data['form_html'] = $data['cf7_id'] > 0 ? do_shortcode( sprintf( '[contact-form-7 id="%d"]', $data['cf7_id'] ) ) : '';
+				$data['form_html'] = $data['cf7_id'] > 0 ? do_shortcode( sprintf( '[contact-form-7 id="%d"]', $data['cf7_id'] ) ) : '';
 
 		// Dimensions are read one family at a time — hull, then each cabin deck —
 		// so a row on screen is a row a surveyor measures in one go.
@@ -157,7 +157,34 @@ final class Starter_Flexible_Block_Design_Brief extends Starter_Flexible_Abstrac
 			'tax'     => (string) starter_flexible_setting( 'tax_code', '' ),
 		);
 
-		$data['doc_json'] = $this->json( $data['doc'] );
+		// Rendered by the Svelte island in assets/island.svelte.
+		$data['props'] = array(
+			'heading'   => (string) $data['heading'],
+			'intro'     => $data['has_intro'] ? (string) $data['intro'] : '',
+			'schema'    => starter_flexible_design_brief_schema( $data ),
+			'catalogue' => $data['engines'],
+			'letterhead' => $data['doc'],
+			'canSend'   => $data['cf7_id'] > 0,
+			'labels'    => array(
+				'engine'        => __( 'Máy', 'starter-flexible' ),
+				'removeEngine'  => __( 'Xoá máy này', 'starter-flexible' ),
+				'addEngine'     => __( 'Thêm máy', 'starter-flexible' ),
+				'copy'          => __( 'Sao chép nhiệm vụ thư', 'starter-flexible' ),
+				'print'         => __( 'In / Lưu PDF', 'starter-flexible' ),
+				'send'          => __( 'Gửi về công ty', 'starter-flexible' ),
+				'clear'         => __( 'Xoá hết', 'starter-flexible' ),
+				'saved'         => __( 'Đã lưu nháp trên máy này', 'starter-flexible' ),
+				'comboHint'     => __( 'Nhập hoặc chọn bên dưới', 'starter-flexible' ),
+				'noPresets'     => __( 'Chưa có gợi ý.', 'starter-flexible' ),
+				'pickMakeFirst' => 'Nhập hoặc chọn hãng ở trên để thấy danh sách mã hiệu.',
+				'noModels'      => 'Không có mã hiệu nào cho hãng này — nhập tay ở ô trên.',
+			),
+			'icons'     => array(
+				'plus'  => starter_flexible_icon( 'plus', 17 ),
+				'close' => starter_flexible_icon( 'close', 16 ),
+				'arrow' => starter_flexible_icon_swap( 'arrow', 20 ),
+			),
+		);
 
 		return $data;
 	}
@@ -184,133 +211,6 @@ function starter_flexible_design_brief_option( $option ): array {
 		'label' => (string) ( $option['label'] ?? $option['value'] ?? '' ),
 		'data'  => (array) ( $option['data'] ?? array() ),
 	);
-}
-
-/**
- * One labelled control. `unit` prints a suffix inside the field, `hint` a line
- * under it; everything else is forwarded to the input.
- *
- * A `combo` is a plain text box with the catalogue laid out under it: type
- * anything, or click an entry and it is written into the box. Nothing is
- * locked to a list — a tỉnh or a máy that is not in the catalogue is typed.
- * The wrapper carries name / label / unit, which is all the script needs to
- * turn the form into JSON without walking back up to a `<label for>`.
- *
- * @param array<string, mixed> $args
- */
-function starter_flexible_design_brief_field( array $args ): void {
-	$name  = (string) ( $args['name'] ?? '' );
-	$type  = (string) ( $args['type'] ?? 'text' );
-	$id    = 'db-' . $name;
-	$label = (string) ( $args['label'] ?? '' );
-	$unit  = (string) ( $args['unit'] ?? '' );
-	$hint  = (string) ( $args['hint'] ?? '' );
-	$value = (string) ( $args['value'] ?? '' );
-
-	$attrs = '';
-	foreach ( (array) ( $args['attrs'] ?? array() ) as $key => $val ) {
-		$attrs .= true === $val ? ' ' . esc_attr( (string) $key ) : sprintf( ' %s="%s"', esc_attr( (string) $key ), esc_attr( (string) $val ) );
-	}
-
-	$classes = 'field db__field';
-	if ( ! empty( $args['wide'] ) ) {
-		$classes .= ' db__field--wide';
-	}
-	if ( 'combo' === $type ) {
-		$classes .= ' db__field--combo';
-	}
-	?>
-	<div class="<?php echo esc_attr( $classes ); ?>" data-db-field data-name="<?php echo esc_attr( $name ); ?>" data-label="<?php echo esc_attr( $label ); ?>"<?php echo '' !== $unit ? ' data-unit="' . esc_attr( $unit ) . '"' : ''; ?><?php echo 'combo' === $type ? $attrs : ''; // phpcs:ignore ?>>
-
-		<label class="field__label" for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label>
-
-		<?php if ( 'textarea' === $type ) : ?>
-			<textarea class="field__control" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" rows="3"<?php echo $attrs; // phpcs:ignore ?>><?php echo esc_textarea( $value ); ?></textarea>
-
-		<?php elseif ( 'combo' === $type ) : ?>
-			<div class="db__control">
-				<input
-					class="field__control"
-					id="<?php echo esc_attr( $id ); ?>"
-					name="<?php echo esc_attr( $name ); ?>"
-					type="text"
-					value="<?php echo esc_attr( $value ); ?>"
-					autocomplete="off"
-					data-db-input
-					placeholder="<?php echo esc_attr( (string) ( $args['placeholder'] ?? __( 'Nhập hoặc chọn bên dưới', 'starter-flexible' ) ) ); ?>"
-				/>
-			</div>
-			<div class="db__presets<?php echo ! empty( $args['scroll'] ) ? ' db__presets--scroll' : ''; ?>" data-db-presets>
-				<?php foreach ( (array) ( $args['options'] ?? array() ) as $raw ) : ?>
-					<?php
-					$option   = starter_flexible_design_brief_option( $raw );
-					$opt_data = '';
-					foreach ( $option['data'] as $dk => $dv ) {
-						$opt_data .= sprintf( ' data-%s="%s"', esc_attr( (string) $dk ), esc_attr( (string) $dv ) );
-					}
-					?>
-					<button
-						type="button"
-						class="db__preset"
-						data-value="<?php echo esc_attr( $option['label'] ); ?>"
-						data-code="<?php echo esc_attr( $option['value'] ); ?>"<?php echo $opt_data; // phpcs:ignore ?>
-					><?php echo esc_html( $option['label'] ); ?></button>
-				<?php endforeach; ?>
-				<?php if ( empty( $args['options'] ) ) : ?>
-					<p class="db__presets-empty"><?php echo esc_html( (string) ( $args['empty'] ?? __( 'Chưa có gợi ý.', 'starter-flexible' ) ) ); ?></p>
-				<?php endif; ?>
-			</div>
-
-		<?php else : ?>
-			<div class="db__control<?php echo '' !== $unit ? ' db__control--unit' : ''; ?>">
-				<input
-					class="field__control"
-					id="<?php echo esc_attr( $id ); ?>"
-					name="<?php echo esc_attr( $name ); ?>"
-					type="<?php echo esc_attr( $type ); ?>"
-					value="<?php echo esc_attr( $value ); ?>"
-					<?php echo 'number' === $type ? 'step="any" inputmode="decimal"' : ''; ?>
-					<?php echo $attrs; // phpcs:ignore ?>
-				/>
-				<?php if ( '' !== $unit ) : ?>
-					<span class="db__unit"><?php echo esc_html( $unit ); ?></span>
-				<?php endif; ?>
-			</div>
-		<?php endif; ?>
-
-		<?php if ( '' !== $hint ) : ?>
-			<span class="field__hint"><?php echo esc_html( $hint ); ?></span>
-		<?php endif; ?>
-	</div>
-	<?php
-}
-
-/**
- * One row of fields that belong together — the same measurement family, the
- * same piece of equipment — optionally titled.
- *
- * @param array<int, array<string, mixed>> $fields Field argument arrays.
- * @param array<string, mixed>             $args   `cols` (1–5) and `title`.
- */
-function starter_flexible_design_brief_row( array $fields, array $args = array() ): void {
-	$fields = array_values( array_filter( $fields ) );
-	if ( ! $fields ) {
-		return;
-	}
-	$cols  = max( 1, min( 5, (int) ( $args['cols'] ?? count( $fields ) ) ) );
-	$title = (string) ( $args['title'] ?? '' );
-	?>
-	<div class="db__row-group">
-		<?php if ( '' !== $title ) : ?>
-			<span class="db__row-title"><?php echo esc_html( $title ); ?></span>
-		<?php endif; ?>
-		<div class="db__row db__row--<?php echo (int) $cols; ?>">
-			<?php foreach ( $fields as $field ) : ?>
-				<?php starter_flexible_design_brief_field( (array) $field ); ?>
-			<?php endforeach; ?>
-		</div>
-	</div>
-	<?php
 }
 
 function starter_flexible_design_brief_options( array $rows, string $sep = ' · ' ): array {

@@ -70,6 +70,10 @@ final class Starter_Flexible_Block_Service_Architecture extends Starter_Flexible
 
 		$data['has_label'] = $this->has_text( $data['label'] );
 
+		// Without a single photograph the figure column would only show the
+		// placeholder logo; the list then takes the whole width instead.
+		$data['has_images'] = (bool) array_filter( array_column( (array) $data['items'], 'image_url' ) );
+
 		return $data;
 	}
 }

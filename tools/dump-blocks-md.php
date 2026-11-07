@@ -204,7 +204,7 @@ foreach ( $blocks as $slug => $config ) {
 	if ( ! empty( $config['supports']['jsx'] ) ) {
 		$traits[] = 'Nhận khối con (InnerBlocks)';
 	}
-	if ( is_file( $folder . '/assets/script.js' ) ) {
+	if ( is_file( $folder . '/assets/island.svelte' ) || is_file( $folder . '/assets/behaviour.js' ) ) {
 		$traits[] = 'Có JavaScript riêng';
 	}
 	if ( $traits ) {

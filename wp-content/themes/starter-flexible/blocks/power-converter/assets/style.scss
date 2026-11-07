@@ -322,6 +322,9 @@
 	font-size: 12.5px;
 }
 .pc__reset {
+	/* Reset is a secondary action: it should never outweigh the result. */
+	align-self: start;
+	width: auto;
 	margin-top: 16px;
 }
 

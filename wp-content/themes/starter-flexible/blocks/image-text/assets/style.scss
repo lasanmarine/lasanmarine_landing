@@ -62,3 +62,11 @@
 		grid-row: 2;
 	}
 }
+
+/* The picture supports the text, it does not dominate it: a narrower
+   column and a capped height. */
+@media (min-width: 900px) {
+	.it--even { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+	.it--even.it--flip { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+}
+.it__media .frame { max-height: min(56vh, 460px); }

@@ -169,7 +169,53 @@ a.spec__value:hover { @apply text-marine; }
 	font-size: 14px;
 	margin-top: -4px;
 }
-.cs .cs__cta { padding-inline: 0; }
 @media (max-width: 520px) {
 	.cs__actions .btn { flex: 1 1 100%; justify-content: center; }
 }
+
+/* Balance: the heading runs two lines, not three, and the contact column
+   carries real weight — each channel a label over a large value, stacked as
+   tall as the copy beside it rather than two small rows floating mid-panel. */
+.cs .cs__heading { max-width: 16em; }
+@media (min-width: 1025px) {
+	.cs__layout { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: center; }
+}
+.cs__contact { display: flex; flex-direction: column; gap: 0; }
+.cs__contact .spec {
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	padding-block: clamp(18px, 2vw, 28px);
+	border-top: 1px solid var(--line);
+	border-bottom: 0;
+}
+.cs__contact .spec:last-child { border-bottom: 1px solid var(--line); }
+.cs__contact .spec__leader { display: none; }
+.cs__contact .spec__label { font-size: 14px; }
+.cs__contact .spec__value {
+	text-align: left;
+	font-family: var(--display);
+	font-weight: 600;
+	font-size: clamp(22px, 2.2vw, 34px);
+	letter-spacing: -0.01em;
+}
+
+/* The real Zalo mark replaces the text badge. */
+.cs__zalo .cs__zalo-mark {
+	display: block;
+	height: auto;
+	padding: 0;
+	border-radius: 0;
+	background: none;
+}
+.cs__email {
+	color: var(--navy);
+	font-weight: 600;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+.cs__email:hover { color: var(--marine); }
+/* One column now the details are not repeated beside it. */
+.cs .cs__description { max-width: 52ch; }
+.cs .cs__heading { max-width: 18em; }
+.cs__cta { margin-top: 0; }

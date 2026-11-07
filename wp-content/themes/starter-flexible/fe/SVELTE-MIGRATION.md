@@ -2,6 +2,8 @@
 
 Ngày lập: 2026-11-07. Phạm vi: theme `starter-flexible`.
 
+> **Trạng thái 2026-11-07: đã thực hiện xong pha 0–5 trên nhánh `feat/svelte`.** Khác kế hoạch: behaviour là module JS thuần (không `$effect.root`), dùng `subscribe()` của store; code dùng chung tách vào `dist/core.js`; công cụ Vitest chưa có `@testing-library/svelte`, test phủ phần lõi thuần. Cách tổ chức hiện hành xem `fe/README.md`.
+
 ## 0. Tóm tắt
 
 | | |

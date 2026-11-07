@@ -252,3 +252,8 @@ textarea.form-control {
 .ef__intro { text-align: center; align-items: center; }
 /* Stacked layout: the heading no longer sticks, so it never rides over the form. */
 .ef__intro { position: static; top: auto; display: flex; flex-direction: column; gap: 10px; }
+
+/* The note belongs to the heading: a tight gap, no stacked margins. */
+.ef__intro { gap: 8px; }
+.ef__intro .h3, .ef__intro .ef__note { margin: 0; }
+.ef__intro .h3 { line-height: 1.1; }

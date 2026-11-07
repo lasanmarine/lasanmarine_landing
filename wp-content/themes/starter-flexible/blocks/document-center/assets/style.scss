@@ -11,7 +11,7 @@
 	padding: 6px 0;
 	border-bottom: 2px solid transparent;
 	font-size: clamp(14.5px, 1vw, 16.5px);
-	letter-spacing: 0.08em;
+	letter-spacing: 0;
 	transition:
 		color 200ms ease,
 		border-color 200ms ease;
@@ -170,3 +170,103 @@
 }
 .dc__dl.is-inert { opacity: 0.45; }
 .is-stacked .dc__row { padding-block: clamp(8px, 1.5vh, 18px); }
+
+/* --- publications as cards -------------------------------------------------
+   Year and source on top, the title, then the group, file size and the way
+   to the document at the foot. Two to a row; one on a phone. */
+.dc__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(420px, 100%), 1fr));
+	gap: clamp(12px, 1.4vw, 18px);
+}
+.dc__grid > .dc__empty {
+	grid-column: 1 / -1;
+}
+.dc__card {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: clamp(20px, 2.2vw, 28px);
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	transition: background 260ms var(--ease), box-shadow 260ms var(--ease), transform 260ms var(--ease);
+}
+.dc__card:hover {
+	background: var(--paper);
+	box-shadow: inset 0 0 0 1px var(--line-soft), 0 18px 40px -26px rgba(10, 114, 200, 0.45);
+	transform: translateY(-2px);
+}
+.dc__card[hidden] {
+	display: none;
+}
+.dc__meta {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--mute);
+	font-size: 13px;
+}
+.dc__card .dc__icon {
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 12px;
+	background: var(--paper);
+	color: var(--marine);
+}
+.dc__year {
+	font-family: var(--display);
+	font-weight: 700;
+	color: var(--navy);
+	font-size: 15px;
+	font-variant-numeric: tabular-nums;
+}
+.dc__source::before {
+	content: '·';
+	margin-right: 10px;
+}
+.dc__card .dc__title {
+	margin: 0;
+	font-family: var(--display);
+	font-weight: 600;
+	font-size: clamp(16.5px, 1.25vw, 19px);
+	line-height: 1.4;
+	color: var(--navy);
+	text-wrap: pretty;
+}
+.dc__foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 12px;
+	margin-top: auto;
+	padding-top: 6px;
+}
+.dc__tag {
+	padding: 4px 10px;
+	border-radius: var(--r-pill);
+	background: var(--paper);
+	color: var(--steel);
+	font-size: 12.5px;
+}
+.dc__card .dc__size {
+	color: var(--mute);
+	font-size: 12.5px;
+	padding: 0;
+	background: none;
+	box-shadow: none;
+}
+.dc__card .dc__actions {
+	display: flex;
+	gap: 8px;
+	margin-left: auto;
+}
+.dc__ask {
+	font-size: 14px;
+}
+/* Filters: plain tabs in sentence case. */
+.dc__filters .dc__filter {
+	text-transform: none;
+	letter-spacing: 0;
+}

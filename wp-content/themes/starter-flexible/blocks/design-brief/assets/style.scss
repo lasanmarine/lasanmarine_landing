@@ -11,28 +11,43 @@
 	gap: 10px;
 }
 
-/* A section is a heading over a rule — no card, no inner padding. The rule is
-   a pseudo-element rather than a border on the fieldset, which the browser
-   would break open to seat the legend in. */
+/* A section is a rule, then two columns: its name and note on the left (they
+   stay in view while the fields scroll past), the fields on the right. The
+   rule is a pseudo-element: a border on the fieldset would break open to seat
+   the legend. */
 .db__section {
-	@apply relative m-0 min-w-0 border-0 p-0;
-	padding-top: clamp(16px, 1.8vw, 24px);
+	@apply relative m-0 grid min-w-0 border-0 p-0;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 8px clamp(32px, 5vw, 88px);
+	padding-top: clamp(20px, 2vw, 28px);
 }
 .db__section::before {
 	@apply absolute left-0 top-0 w-full border-t border-line-soft;
 	content: '';
 }
+@media (min-width: 1024px) {
+	.db__section {
+		grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+	}
+	.db__section-head {
+		position: sticky;
+		top: calc(var(--hdr-h, 76px) + 24px);
+		align-self: start;
+	}
+}
+.db__section-body {
+	min-width: 0;
+}
 .db__legend {
-	@apply block w-full font-display font-semibold text-navy;
-	padding: 0;
-	margin: 0 0 4px;
+	@apply block font-display font-semibold text-navy;
+	margin: 0 0 6px;
 	font-size: 18px;
 	letter-spacing: -0.015em;
 	text-wrap: balance;
 }
 .db__note {
 	@apply text-mute;
-	margin: 0 0 18px;
+	margin: 0;
 	font-size: 13.5px;
 	line-height: 1.6;
 }
@@ -51,11 +66,14 @@
 .db__row-group {
 	margin-top: 16px;
 }
+.db__section-body > .db__row-group:first-child {
+	margin-top: 0;
+}
 .db__row-title {
 	@apply block font-display font-medium text-steel;
 	margin-bottom: 8px;
-	font-size: 12px;
-	letter-spacing: 0.1em;
+	font-size: 12.5px;
+	letter-spacing: 0;
 	text-transform: none;
 }
 /* Fields are as wide as what goes in them, not as wide as the page: a column
@@ -63,7 +81,7 @@
 .db__row {
 	@apply grid;
 	gap: 16px 20px;
-	grid-template-columns: repeat(var(--db-cols, 1), var(--db-track, minmax(0, 300px)));
+	grid-template-columns: repeat(var(--db-cols, 1), minmax(0, 1fr));
 	justify-content: start;
 }
 .db__row--1 {
@@ -80,7 +98,6 @@
 }
 .db__row--5 {
 	--db-cols: 5;
-	--db-track: minmax(0, 190px);
 }
 @media (max-width: 900px) {
 	.db__row--3,
@@ -92,26 +109,12 @@
 @media (max-width: 560px) {
 	.db__row {
 		--db-cols: 1 !important;
-		--db-track: minmax(0, 1fr);
 	}
-}
-/* A note wants room to be written in; a catalogue wants room to be read. */
-.db__row-group:has(textarea),
-.db__row-group:has(.db__field--combo) {
-	--db-track: minmax(0, 1fr);
-}
-.db__row-group:has(textarea) .db__row,
-.db__row-group:has(.db__field--combo) .db__row {
-	max-width: 940px;
 }
 .db__field--wide,
 .db__field--combo,
 .db__field:has(textarea) {
 	grid-column: 1 / -1;
-}
-.db__field--combo .field__control,
-.db__field:has(textarea) .field__control {
-	max-width: 620px;
 }
 .db .field__label {
 	@apply font-display font-semibold text-navy;

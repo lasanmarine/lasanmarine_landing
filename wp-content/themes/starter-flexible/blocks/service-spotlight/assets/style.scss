@@ -2,11 +2,15 @@
 	@apply grid overflow-hidden bg-surface;
 	grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
 	border-radius: var(--r-xl);
-	margin-inline: clamp(8px, 1.2vw, 20px);
+	margin-inline: var(--band-inset);
 }
 /* Light minimal: the panel sits on the quiet surface, never a navy slab. */
 .spotlight__panel.band--navy-mid {
+	/* The panel is a column of the spotlight, not a band of its own: no inset,
+	   no radius, or it shows as a second card with a seam against the photo. */
 	background: transparent;
+	margin: 0;
+	border-radius: 0;
 }
 .spotlight__media {
 	@apply relative;

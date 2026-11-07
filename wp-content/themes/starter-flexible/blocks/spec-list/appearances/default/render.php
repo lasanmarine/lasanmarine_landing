@@ -21,7 +21,7 @@ if ( empty( $data->should_render ) ) {
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<div class="sl">
 		<div class="sl__intro">
-			<h2 class="h4"><?php echo esc_html( $data->heading ); ?></h2>
+			<h2 class="h3"><?php echo esc_html( $data->heading ); ?></h2>
 			<?php if ( $data->has_note ) : ?>
 				<p class="sl__note"><?php echo esc_html( $data->note ); ?></p>
 			<?php endif; ?>

@@ -135,38 +135,6 @@
 .lasanmarine-capability-matrix .cm__cell:hover .cm__icon { background: rgba(255, 255, 255, 0.14); color: var(--aqua); box-shadow: none; }
 .lasanmarine-capability-matrix .cm__cell:hover::before { -webkit-text-fill-color: var(--aqua); background: none; }
 
-/* --- process-timeline: steps as numbered cards on a gradient rail --------- */
-.lasanmarine-process-timeline .pt__rail { background: var(--line-soft); }
-.lasanmarine-process-timeline .pt__fill { background: var(--grad-accent); }
-.lasanmarine-process-timeline .pt__steps { gap: 12px; }
-.lasanmarine-process-timeline .pt__step {
-	@extend %v3-card;
-	padding: 22px 22px 20px;
-	margin-top: 10px;
-}
-.lasanmarine-process-timeline .pt__step::before {
-	content: attr(data-index);
-	@extend %v3-num;
-	display: block;
-	margin-bottom: 10px;
-}
-.lasanmarine-process-timeline .pt__dot {
-	background: var(--paper);
-	box-shadow: inset 0 0 0 2px var(--line);
-}
-.lasanmarine-process-timeline .pt--lit .pt__dot {
-	background: var(--grad-accent);
-	box-shadow: 0 0 0 6px rgba(20, 200, 200, 0.18);
-}
-.lasanmarine-process-timeline .pt__title { font-size: 17px; }
-.lasanmarine-process-timeline .pt__desc { font-size: 14px; }
-.lasanmarine-process-timeline .pt__step:hover {
-	@extend %v3-card-hover;
-}
-.lasanmarine-process-timeline .pt__step:hover .pt__title { color: #fff; }
-.lasanmarine-process-timeline .pt__step:hover .pt__desc { color: rgba(255, 255, 255, 0.8); }
-.lasanmarine-process-timeline .pt__step:hover::before { -webkit-text-fill-color: var(--aqua); background: none; }
-
 /* --- accordion: questions as cards; the open one is the brand card -------- */
 .lasanmarine-accordion .ac__list { gap: 10px; }
 .lasanmarine-accordion .ac__item {
@@ -334,9 +302,70 @@
 
 @media (prefers-reduced-motion: reduce) {
 	.lasanmarine-value-grid .vg__cell:hover,
-	.lasanmarine-capability-matrix .cm__cell:hover,
-	.lasanmarine-process-timeline .pt__step:hover { transform: none; }
+	.lasanmarine-capability-matrix .cm__cell:hover { transform: none; }
 }
 html.reduce-motion .lasanmarine-value-grid .vg__cell:hover,
-html.reduce-motion .lasanmarine-capability-matrix .cm__cell:hover,
-html.reduce-motion .lasanmarine-process-timeline .pt__step:hover { transform: none; }
+html.reduce-motion .lasanmarine-capability-matrix .cm__cell:hover { transform: none; }
+
+
+/* --- no corner numbers; icons carry the card ------------------------------
+   Cards are not a numbered sequence, so the 01 / 02 / 03 counters are gone;
+   the icon is the card's mark, larger, centred in its tile. */
+.lasanmarine-value-grid .vg__cell::before,
+.lasanmarine-capability-matrix .cm__cell::before {
+	content: none;
+}
+.lasanmarine-value-grid .vg__icon,
+.lasanmarine-capability-matrix .cm__icon {
+	display: grid;
+	place-items: center;
+	flex: none;
+	width: 64px;
+	height: 64px;
+	border-radius: 18px;
+}
+.lasanmarine-value-grid .vg__icon svg,
+.lasanmarine-capability-matrix .cm__icon svg {
+	width: 32px;
+	height: 32px;
+}
+/* Sub-items read as a plain ticked list, not a stack of white bars. */
+.lasanmarine-capability-matrix .cm__children > * {
+	background: none;
+	padding-inline: 0;
+}
+
+/* --- fewer dividers ---------------------------------------------------------
+   Space and surface separate things already; a rule is kept only where it
+   helps reading (tables, the long brief form). */
+.lasanmarine-capability-matrix .cm__cta,
+.lasanmarine-insights .in__card-meta,
+.lasanmarine-use-case .uc__solution,
+.lasanmarine-input-output .io__col,
+.lasanmarine-project-showcase .ps__specs,
+.lasanmarine-project-showcase .ps__specs > div,
+.lasanmarine-service-architecture .sa__list,
+.lasanmarine-service-architecture .sa__row,
+.pc__result,
+.pc__actions {
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+.lasanmarine-service-architecture .sa__row::after { content: none; }
+
+/* Tool cards are a menu, not a read: shorter cards, three lines of text. */
+.lasanmarine-capability-matrix.cm--tools .cm__cell {
+	padding: clamp(18px, 1.8vw, 24px);
+}
+.lasanmarine-capability-matrix.cm--tools .cm__top { margin-bottom: 4px; }
+.lasanmarine-capability-matrix.cm--tools .cm__icon { width: 52px; height: 52px; border-radius: 14px; }
+.lasanmarine-capability-matrix.cm--tools .cm__icon svg { width: 26px; height: 26px; }
+.lasanmarine-capability-matrix.cm--tools .cm__name { font-size: clamp(18px, 1.5vw, 22px); }
+.lasanmarine-capability-matrix.cm--tools .cm__desc {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	font-size: 14.5px;
+}
+.lasanmarine-capability-matrix.cm--tools .cm__cta { padding-top: 10px; }

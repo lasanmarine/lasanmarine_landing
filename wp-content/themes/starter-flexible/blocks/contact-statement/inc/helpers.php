@@ -90,8 +90,11 @@ final class Starter_Flexible_Block_Contact_Statement extends Starter_Flexible_Ab
 				'href'  => 'mailto:' . trim( (string) $data['email'] ),
 			);
 		}
-		$data['contacts']    = $contacts;
-		$data['has_contact'] = array() !== $contacts;
+		// Phone and Zalo are the buttons, and the email sits under them, so the
+		// details are not repeated in a second column.
+		$data['contacts']    = array();
+		$data['has_contact'] = false;
+		$data['email_href']  = $data['has_email'] ? 'mailto:' . trim( (string) $data['email'] ) : '';
 		$data['should_render'] = '' !== trim( wp_strip_all_tags( (string) $data['heading'] ) ) || $data['has_phone'] || $data['has_email'];
 
 		return $data;

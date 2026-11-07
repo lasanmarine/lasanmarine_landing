@@ -21,9 +21,13 @@ if ( empty( $item['title'] ) ) {
 $filter_key = isset( $args['filter_key'] ) ? (string) $args['filter_key'] : 'materials';
 $terms      = isset( $item[ $filter_key ] ) && is_array( $item[ $filter_key ] ) ? $item[ $filter_key ] : array();
 $is_row     = isset( $args['variant'] ) && 'row' === $args['variant'];
+$is_gallery = isset( $args['variant'] ) && 'gallery' === $args['variant'];
+// The gallery keeps each picture's own shape, so cards differ in height and
+// the listing reads as a masonry wall rather than a uniform grid.
+$ratio = $is_row ? 'ratio-3-2' : ( $is_gallery ? '' : 'ratio-4-3' );
 ?>
 <a
-	class="pj-card<?php echo $is_row ? ' pj-card--row' : ''; ?>"
+	class="pj-card<?php echo $is_row ? ' pj-card--row' : ''; ?><?php echo $is_gallery ? ' pj-card--gallery' : ''; ?>"
 	href="<?php echo esc_url( $item['url'] ); ?>"
 	data-pi-item
 	data-terms="<?php echo esc_attr( implode( ' ', $terms ) ); ?>"
@@ -34,8 +38,8 @@ $is_row     = isset( $args['variant'] ) && 'row' === $args['variant'];
 			'template-parts/components/frame',
 			null,
 			array(
-				'ratio'       => $is_row ? 'ratio-3-2' : 'ratio-4-3',
-				'class'       => 'frame--zoom',
+				'ratio'       => $ratio,
+				'class'       => 'frame--zoom' . ( $is_gallery ? ' frame--natural' : '' ),
 				'src'         => $item['image_url'],
 				'alt'         => $item['title'],
 				'placeholder' => $item['placeholder'],
@@ -51,10 +55,19 @@ $is_row     = isset( $args['variant'] ) && 'row' === $args['variant'];
 		<?php if ( '' !== ( $item['work'] ?? '' ) ) : ?>
 			<span class="pj-card__work"><?php echo esc_html( $item['work'] ); ?></span>
 		<?php endif; ?>
-		<?php if ( '' !== ( $item['scope'] ?? '' ) ) : ?>
+		<?php if ( ! $is_gallery && '' !== ( $item['scope'] ?? '' ) ) : ?>
 			<span class="pj-card__scope"><?php echo esc_html( $item['scope'] ); ?></span>
 		<?php endif; ?>
-		<?php if ( '' !== $item['meta'] ) : ?>
+		<?php if ( $is_gallery && '' !== $item['meta'] ) : ?>
+			<span class="pj-card__specs">
+				<?php foreach ( array_filter( array_map( 'trim', explode( '·', $item['meta'] ) ) ) as $spec ) : ?>
+					<span><?php echo esc_html( $spec ); ?></span>
+				<?php endforeach; ?>
+				<?php if ( '' !== $item['year'] ) : ?>
+					<span><?php echo esc_html( $item['year'] ); ?></span>
+				<?php endif; ?>
+			</span>
+		<?php elseif ( '' !== $item['meta'] ) : ?>
 			<span class="pj-card__meta"><?php echo esc_html( $item['meta'] ); ?><?php echo '' !== $item['year'] ? esc_html( ' · ' . $item['year'] ) : ''; ?></span>
 		<?php endif; ?>
 

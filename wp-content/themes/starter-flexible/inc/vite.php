@@ -171,6 +171,10 @@ function starter_flexible_page_block_slugs(): array {
 		$found['project-index'] = true;
 	}
 
+	// What the page itself renders, before stylesheet dependencies are added:
+	// this is the list whose islands get preloaded.
+	$GLOBALS['starter_flexible_rendered_block_slugs'] = array_keys( $found );
+
 	// The tools share one form vocabulary (`pc__*`, `field__*`) whose rules live
 	// in the Power Converter and Engine Lookup stylesheets.
 	$tools = array( 'power-converter', 'engine-lookup', 'shaft-diameter', 'design-brief', 'tool-shell' );
@@ -202,7 +206,6 @@ function starter_flexible_vite_enqueue_prod_assets_from_dist( string $dist_dir )
 	};
 
 	$css_files = starter_flexible_find_files_recursive( $dist_dir, array( 'css' ) );
-	$js_files  = starter_flexible_find_files_recursive( $dist_dir, array( 'js' ) );
 	sort( $css_files );
 
 	// Site-wide CSS as ordinary stylesheets; the used blocks' CSS is small, so
@@ -233,46 +236,98 @@ function starter_flexible_vite_enqueue_prod_assets_from_dist( string $dist_dir )
 		wp_add_inline_style( $main_handle, $inline_css );
 	}
 
-	// JS: vendor first, then the app, then the used blocks' own scripts.
-	usort(
-		$js_files,
-		static function ( string $a, string $b ): int {
-			$rank = static fn( string $f ): int => false !== strpos( basename( $f ), 'vendor' ) ? 0 : 1;
-			return $rank( $a ) <=> $rank( $b ) ?: strcmp( $a, $b );
-		}
+	// JS: one module entry. Behaviours ship inside app.js; each tool block's
+	// Svelte island is a lazy chunk app.js imports when the page has its shell.
+	// Those chunks (and the shared runtime) are preloaded for the blocks this
+	// page renders, so the lazy import costs no extra round-trip.
+	$app = $dist_dir . '/app.js';
+	if ( ! is_file( $app ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'starter-flexible-theme-main',
+		$theme_uri . str_replace( $theme_dir, '', $app ),
+		array(),
+		starter_flexible_file_version( $app ),
+		true
 	);
 
-	$module_handles = array();
-	foreach ( $js_files as $index => $absolute_path ) {
-		$block = $block_of( $absolute_path );
-		if ( '' !== $block && ! isset( $used[ $block ] ) ) {
-			continue;
-		}
+	add_filter(
+		'script_loader_tag',
+		static function ( $tag, $handle ) {
+			return 'starter-flexible-theme-main' === $handle ? starter_flexible_vite_script_tag_as_module( (string) $tag ) : $tag;
+		},
+		10,
+		2
+	);
 
-		$handle = 0 === $index ? 'starter-flexible-theme-main' : 'starter-flexible-theme-main-' . $index;
-		wp_enqueue_script(
-			$handle,
-			$theme_uri . str_replace( $theme_dir, '', $absolute_path ),
-			array(),
-			starter_flexible_file_version( $absolute_path ),
-			true
-		);
-		$module_handles[] = $handle;
-	}
-
-	if ( $module_handles ) {
-		add_filter(
-			'script_loader_tag',
-			static function ( $tag, $handle ) use ( $module_handles ) {
-				if ( in_array( $handle, $module_handles, true ) ) {
-					return starter_flexible_vite_script_tag_as_module( (string) $tag );
+	$preload = starter_flexible_vite_island_preloads( $dist_dir, (array) ( $GLOBALS['starter_flexible_rendered_block_slugs'] ?? array_keys( $used ) ) );
+	if ( $preload ) {
+		add_action(
+			'wp_head',
+			static function () use ( $preload, $theme_uri, $theme_dir ) {
+				foreach ( $preload as $file ) {
+					printf(
+						"<link rel=\"modulepreload\" href=\"%s\" />
+",
+						esc_url( add_query_arg( 'ver', starter_flexible_file_version( $file ), $theme_uri . str_replace( $theme_dir, '', $file ) ) )
+					);
 				}
-				return $tag;
 			},
-			10,
-			2
+			5
 		);
 	}
+}
+
+/**
+ * The JS files a page's islands will import: vendor.js, then for every used
+ * block with an island its chunk and that chunk's own imports, read from
+ * Vite's manifest.
+ *
+ * @param array<int, string> $slugs Block slugs on the page.
+ * @return array<int, string> Absolute paths.
+ */
+function starter_flexible_vite_island_preloads( string $dist_dir, array $slugs ): array {
+	$manifest_file = $dist_dir . '/.vite/manifest.json';
+	if ( ! is_file( $manifest_file ) ) {
+		return array();
+	}
+	$manifest = json_decode( (string) file_get_contents( $manifest_file ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local build file.
+	if ( ! is_array( $manifest ) ) {
+		return array();
+	}
+
+	$files = array();
+	$walk  = static function ( string $key ) use ( &$walk, &$files, $manifest, $dist_dir ): void {
+		if ( empty( $manifest[ $key ]['file'] ) ) {
+			return;
+		}
+		// app.js is already the page's script.
+		if ( ! empty( $manifest[ $key ]['isEntry'] ) && 'app.js' === $manifest[ $key ]['file'] ) {
+			return;
+		}
+		$path = $dist_dir . '/' . $manifest[ $key ]['file'];
+		if ( isset( $files[ $path ] ) ) {
+			return;
+		}
+		$files[ $path ] = true;
+		foreach ( (array) ( $manifest[ $key ]['imports'] ?? array() ) as $import ) {
+			$walk( (string) $import );
+		}
+	};
+
+	foreach ( $slugs as $slug ) {
+		$walk( '../../blocks/' . $slug . '/assets/island.svelte' );
+	}
+	if ( ! $files ) {
+		return array();
+	}
+	if ( is_file( $dist_dir . '/vendor.js' ) ) {
+		$files = array( $dist_dir . '/vendor.js' => true ) + $files;
+	}
+
+	return array_keys( $files );
 }
 
 function starter_flexible_vite_enqueue_editor_styles(): void {

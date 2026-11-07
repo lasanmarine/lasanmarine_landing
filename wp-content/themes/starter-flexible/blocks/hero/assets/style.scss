@@ -424,3 +424,11 @@
 }
 /* The hero aligns itself to the shell; no panel inset on the section. */
 html body .block-stream > .lasanmarine-hero { margin-inline: 0; border-radius: 0; }
+
+/* Phone: the card sits under the photo in the flow; a drop shadow there only
+   reads as a grey band below it. */
+@media (max-width: 900px) {
+	.hero__body {
+		box-shadow: none;
+	}
+}

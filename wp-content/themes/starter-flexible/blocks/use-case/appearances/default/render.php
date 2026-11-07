@@ -18,18 +18,24 @@ if ( empty( $data->should_render ) ) {
 }
 
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<?php if ( $data->has_heading || $data->has_intro ) : ?>
-		<div class="uc__intro">
-			<?php if ( $data->has_heading ) : ?>
-				<h2 class="h4"><?php echo esc_html( $data->heading ); ?></h2>
-			<?php endif; ?>
-			<?php if ( $data->has_intro ) : ?>
-				<p class="copy"><?php echo esc_html( $data->intro ); ?></p>
-			<?php endif; ?>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" data-use-case data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
+	<div class="uc__bar">
+		<?php if ( $data->has_heading || $data->has_intro ) : ?>
+			<div class="uc__intro">
+				<?php if ( $data->has_heading ) : ?>
+					<h2 class="h3"><?php echo esc_html( $data->heading ); ?></h2>
+				<?php endif; ?>
+				<?php if ( $data->has_intro ) : ?>
+					<p class="copy"><?php echo esc_html( $data->intro ); ?></p>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
+		<div class="uc__nav">
+			<button type="button" class="icon-btn" data-uc-prev aria-label="<?php esc_attr_e( 'Trước', 'starter-flexible' ); ?>"><?php echo starter_flexible_icon( 'chevronLeft', 20 ); // phpcs:ignore ?></button>
+			<button type="button" class="icon-btn" data-uc-next aria-label="<?php esc_attr_e( 'Sau', 'starter-flexible' ); ?>"><?php echo starter_flexible_icon( 'chevronRight', 20 ); // phpcs:ignore ?></button>
 		</div>
-	<?php endif; ?>
-	<div class="uc" data-reveal-stagger>
+	</div>
+	<div class="uc uc--slider" data-uc-track data-reveal-stagger>
 		<?php foreach ( $data->items as $item ) : ?>
 			<article class="uc__case">
 				<h3 class="uc__problem"><?php echo esc_html( $item['problem'] ); ?></h3>

@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { writeFileSync, unlinkSync, readdirSync, existsSync } from 'fs';
@@ -7,127 +8,54 @@ import fullReload from 'vite-plugin-full-reload';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const themeRoot = resolve(__dirname, '..');
-const viteRoot = resolve(__dirname, 'src');
-const blocksSrcDir = resolve(themeRoot, 'blocks');
+const blocksDir = resolve(themeRoot, 'blocks');
 
 /**
- * Get all block asset entries from the theme-level blocks directory.
+ * One CSS entry per block: blocks/{slug}/assets/style.scss → dist/blocks/{slug}/assets/style.css.
+ * PHP inlines the ones a page renders (inc/vite.php). Scripts are no longer
+ * per-block entries: behaviours ship in app.js and islands are lazy chunks
+ * reached from it (fe/src/runtime).
  */
-function getBlockAssetsEntries() {
-	const entries = {};
-	const blocksPath = blocksSrcDir;
-
-	if (!existsSync(blocksPath)) {
-		return entries;
-	}
-
-	const blockFolders = readdirSync(blocksPath, { withFileTypes: true })
-		.filter(dirent => dirent.isDirectory())
-		.map(dirent => dirent.name);
-
-	blockFolders.forEach(blockName => {
-		const blockPath = resolve(blocksPath, blockName);
-		
-		// Block assets: blocks/{block-name}/assets/{script.js|style.scss}
-		const assetsDir = resolve(blockPath, 'assets');
-		if (existsSync(assetsDir)) {
-			const scriptFile = resolve(assetsDir, 'script.js');
-			const styleFile = resolve(assetsDir, 'style.scss');
-			
-			if (existsSync(scriptFile)) {
-				const entryKey = `blocks/${blockName}/script`;
-				entries[entryKey] = scriptFile;
-			}
-			
-			if (existsSync(styleFile)) {
-				const entryKey = `blocks/${blockName}/style`;
-				entries[entryKey] = styleFile;
-			}
-		}
-
-		// Appearance assets: blocks/{block-name}/appearances/{appearance}/assets/{script.js|style.scss}
-		const appearancesDir = resolve(blockPath, 'appearances');
-		if (existsSync(appearancesDir)) {
-			const appearanceFolders = readdirSync(appearancesDir, { withFileTypes: true })
-				.filter(dirent => dirent.isDirectory())
-				.map(dirent => dirent.name);
-
-			appearanceFolders.forEach(appearanceName => {
-				const appearanceAssetsDir = resolve(appearancesDir, appearanceName, 'assets');
-				if (existsSync(appearanceAssetsDir)) {
-					const scriptFile = resolve(appearanceAssetsDir, 'script.js');
-					const styleFile = resolve(appearanceAssetsDir, 'style.scss');
-					
-					if (existsSync(scriptFile)) {
-						const entryKey = `blocks/${blockName}/appearances/${appearanceName}/script`;
-						entries[entryKey] = scriptFile;
-					}
-					
-					if (existsSync(styleFile)) {
-						const entryKey = `blocks/${blockName}/appearances/${appearanceName}/style`;
-						entries[entryKey] = styleFile;
-					}
-				}
-			});
-		}
-	});
-
-	return entries;
-}
-
-const blockEntries = getBlockAssetsEntries();
-
-/**
- * Generate block styles SCSS file
- */
-function createBlockStylesContent() {
-	const files = glob.sync('blocks/*/assets/style.scss', {
-		cwd: themeRoot,
-		absolute: false,
-	});
-
-	if (!files.length) {
-		return '\n';
-	}
-
-	return (
-		files
-			.map((filePath) => {
-				const normalizedPath = filePath.replace(/\\/g, '/');
-				return `@forward '../../../${normalizedPath}';`;
-			})
-			.join('\n') + '\n'
+function blockStyleEntries() {
+	if (!existsSync(blocksDir)) return {};
+	return Object.fromEntries(
+		readdirSync(blocksDir, { withFileTypes: true })
+			.filter((d) => d.isDirectory() && existsSync(resolve(blocksDir, d.name, 'assets/style.scss')))
+			.map((d) => [`blocks/${d.name}/style`, resolve(blocksDir, d.name, 'assets/style.scss')]),
 	);
 }
 
+/** fe/src/styles/blocks.scss forwards every block stylesheet (dev + editor). */
 function generateBlockStyles() {
 	const outputFile = resolve(__dirname, 'src/styles/blocks.scss');
-
+	const write = () => {
+		const files = glob.sync('blocks/*/assets/style.scss', { cwd: themeRoot });
+		const content = files.length
+			? files.map((f) => `@forward '../../../${f.replace(/\\/g, '/')}';`).join('\n') + '\n'
+			: '\n';
+		writeFileSync(outputFile, content);
+	};
 	return {
 		name: 'generate-block-styles',
-		buildStart() {
-			const content = createBlockStylesContent();
-			writeFileSync(outputFile, content);
-		},
+		buildStart: write,
+		buildEnd: write,
 		handleHotUpdate({ file }) {
-			if (file.includes('blocks/') && file.endsWith('style.scss')) {
-				const content = createBlockStylesContent();
-				writeFileSync(outputFile, content);
-			}
-		},
-		buildEnd() {
-			const content = createBlockStylesContent();
-			writeFileSync(outputFile, content);
+			if (file.replace(/\\/g, '/').includes('blocks/') && file.endsWith('style.scss')) write();
 		},
 	};
 }
+
+/** A chunk's source module, as a theme-relative path with forward slashes. */
+const relToTheme = (id) => (id ? id.replace(/\\/g, '/').replace(themeRoot.replace(/\\/g, '/') + '/', '') : '');
 
 export default defineConfig({
 	root: resolve(__dirname, 'src'),
 	base: './',
 	resolve: {
 		alias: {
-			'@blocks': resolve(themeRoot, 'blocks'),
+			'@blocks': blocksDir,
+			$lib: resolve(__dirname, 'src/lib'),
+			$components: resolve(__dirname, 'src/components'),
 		},
 	},
 	build: {
@@ -136,141 +64,90 @@ export default defineConfig({
 		manifest: true,
 		minify: 'terser',
 		terserOptions: {
-			compress: {
-				drop_console: false,
-				drop_debugger: true,
-			},
-			format: {
-				comments: false,
-			},
+			compress: { drop_console: false, drop_debugger: true },
+			format: { comments: false },
 		},
 		cssMinify: true,
 		rollupOptions: {
 			input: {
 				main: resolve(__dirname, 'src/main.js'),
-				...blockEntries,
+				...blockStyleEntries(),
 			},
 			output: {
-				entryFileNames: (chunkInfo) => {
-					if (chunkInfo.name === 'main') {
-						return 'app.js';
-					}
-					if (chunkInfo.name.includes('blocks/')) {
-						const parts = chunkInfo.name.split('/');
-						const blockName = parts[1];
-						const assetType = parts[parts.length - 1];
-						if (parts.length === 4) {
-							const appearanceName = parts[2];
-							return `blocks/${blockName}/appearances/${appearanceName}/assets/${assetType}.js`;
-						}
-						return `blocks/${blockName}/assets/${assetType}.js`;
-					}
-					return '[name].js';
+				entryFileNames: (chunk) => {
+					if (chunk.name === 'main') return 'app.js';
+					const block = chunk.name.match(/^blocks\/([^/]+)\//);
+					return block ? `blocks/${block[1]}/assets/style.js` : '[name].js';
 				},
-				chunkFileNames: (chunkInfo) => {
-					if (chunkInfo.name === 'main') {
-						return 'vendor.js';
-					}
-					return '[name].js';
+				// Islands keep a path PHP can map back to a block slug:
+				//   blocks/{slug}/assets/island.svelte → dist/blocks/{slug}/assets/island.js
+				//   src/islands/{Name}.svelte          → dist/islands/{Name}.js
+				chunkFileNames: (chunk) => {
+					const src = relToTheme(chunk.facadeModuleId);
+					const block = src.match(/^blocks\/([^/]+)\/assets\/island\.svelte$/);
+					if (block) return `blocks/${block[1]}/assets/island.js`;
+					const site = src.match(/^fe\/src\/islands\/([^/]+)\.svelte$/);
+					if (site) return `islands/${site[1]}.js`;
+					if (chunk.name === 'vendor' || chunk.name === 'core') return `${chunk.name}.js`;
+					return 'chunks/[name]-[hash].js';
 				},
-				assetFileNames: (assetInfo) => {
-					if (assetInfo.name.endsWith('.css')) {
-						const name = assetInfo.names?.[0] || assetInfo.name;
-						if (name.includes('blocks/')) {
-							const parts = name.split('/');
-							const blockName = parts[1];
-							const assetType = parts[parts.length - 1].replace(/\.(scss|css)$/, '');
-							if (parts.length === 4) {
-								const appearanceName = parts[2];
-								return `blocks/${blockName}/appearances/${appearanceName}/assets/${assetType}.css`;
-							}
-							return `blocks/${blockName}/assets/${assetType}.css`;
-						}
-						// Only the main entry's own CSS is app.css; a dependency's
-						// stylesheet (AOS) keeps its own name rather than pushing
-						// the theme's out to app2.css.
+				assetFileNames: (asset) => {
+					const name = asset.names?.[0] || asset.name || '';
+					if (name.endsWith('.css')) {
+						const block = name.match(/^blocks\/([^/]+)\//);
+						if (block) return `blocks/${block[1]}/assets/style.css`;
+						// Only the main entry's own CSS is app.css.
 						return name.startsWith('main') ? 'app.css' : name;
 					}
-					return assetInfo.name;
+					return name;
 				},
+				// Nothing may import app.js itself: PHP loads it as app.js?ver=…,
+				// and a chunk importing plain app.js would make the browser run
+				// the entry a second time. So the code islands share with app.js
+				// (lib, components, runtime) goes into core.js.
 				manualChunks: (id) => {
-					if (id.includes('node_modules')) {
-						return 'vendor';
-					}
+					const src = id.split('\\').join('/');
+					if (src.includes('node_modules')) return 'vendor';
+					if (/\/fe\/src\/(lib|components)\//.test(src) || /\/fe\/src\/runtime\/islands\.js$/.test(src)) return 'core';
 				},
 			},
 		},
 	},
 	css: {
 		preprocessorOptions: {
-			scss: {
-				api: 'modern-compiler',
-				silenceDeprecations: ['legacy-js-api'],
-			},
+			scss: { api: 'modern-compiler', silenceDeprecations: ['legacy-js-api'] },
 		},
 	},
 	server: {
 		host: 'localhost',
 		port: 5173,
 		strictPort: true,
-		hmr: {
-			protocol: 'ws',
-			host: 'localhost',
-			port: 5173,
-		},
-		watch: {
-			usePolling: true,
-			ignored: ['**/node_modules/**', '**/dist/**'],
-		},
+		hmr: { protocol: 'ws', host: 'localhost', port: 5173 },
+		watch: { usePolling: true, ignored: ['**/node_modules/**', '**/dist/**'] },
 		cors: true,
-		fs: {
-			allow: [
-				themeRoot,
-			],
-		},
+		fs: { allow: [themeRoot] },
 	},
 	plugins: [
+		svelte({ compilerOptions: { runes: true } }),
 		generateBlockStyles(),
 		{
 			name: 'vite-dev-flag',
 			configureServer(server) {
-				server.httpServer?.once('listening', () => {
-					const flagFile = resolve(__dirname, '.vite-dev');
-					writeFileSync(flagFile, '');
-				});
+				server.httpServer?.once('listening', () => writeFileSync(resolve(__dirname, '.vite-dev'), ''));
 			},
 			buildEnd() {
-				const flagFile = resolve(__dirname, '.vite-dev');
 				try {
-					unlinkSync(flagFile);
-				} catch (e) {
-					// File doesn't exist, ignore
+					unlinkSync(resolve(__dirname, '.vite-dev'));
+				} catch {
+					/* not there */
 				}
 			},
 		},
-		{
-			name: 'block-assets-middleware',
-			configureServer(server) {
-				server.middlewares.use((req, res, next) => {
-					if (req.url.startsWith('/blocks/')) {
-						const match = req.url.match(/^\/blocks\/([^\/]+)\/(script|style)\.(js|scss|css)$/);
-						if (match) {
-							const [, blockName, assetType] = match;
-							const entryKey = `blocks/${blockName}/${assetType}`;
-							if (blockEntries[entryKey]) {
-								const filePath = blockEntries[entryKey];
-								const relativeFromViteRoot = filePath.replace(viteRoot + '\\', '').replace(viteRoot + '/', '').replace(/\\/g, '/');
-								req.url = '/' + relativeFromViteRoot;
-							}
-						}
-					}
-					next();
-				});
-			},
-		},
-		// Full reload plugin for PHP files
-		fullReload([
-			'../**/*.php', // Watch all PHP files in theme directory
-		]),
+		fullReload(['../**/*.php']),
 	],
+	test: {
+		root: __dirname,
+		include: ['tests/**/*.test.js'],
+		environment: 'jsdom',
+	},
 });

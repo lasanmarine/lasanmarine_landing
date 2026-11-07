@@ -24,6 +24,25 @@
       "instructions": "Nhãn ngắn dưới lead, cách nhau bởi dấu ·"
     },
     {
+      "key": "field_page_hero_actions",
+      "label": "Quick Links",
+      "name": "actions",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Thêm nút",
+      "instructions": "Nút đi nhanh tới phần quan trọng (vd. Xem các loại tàu có thể thực hiện). Nút đầu là nút chính. Để trống thì hero tự tạo: Liên hệ tư vấn + hai phần chính của trang.",
+      "max": 3,
+      "sub_fields": [
+        {
+          "key": "field_page_hero_action_link",
+          "label": "Link",
+          "name": "link",
+          "type": "link",
+          "return_format": "array"
+        }
+      ]
+    },
+    {
       "key": "field_page_hero_image",
       "label": "Background Image",
       "name": "image",

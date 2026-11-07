@@ -23,7 +23,7 @@ if ( empty( $data->should_render ) ) {
 		<?php if ( '' !== $data->heading || $data->has_note ) : ?>
 			<div class="ef__intro">
 				<?php if ( '' !== $data->heading ) : ?>
-					<h2 class="h4"><?php echo esc_html( $data->heading ); ?></h2>
+					<h2 class="h3"><?php echo esc_html( $data->heading ); ?></h2>
 				<?php endif; ?>
 				<?php if ( $data->has_note ) : ?>
 					<p class="copy ef__note"><?php echo esc_html( $data->note ); ?></p>

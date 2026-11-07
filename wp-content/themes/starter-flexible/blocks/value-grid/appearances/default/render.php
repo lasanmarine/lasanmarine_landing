@@ -22,7 +22,7 @@ if ( empty( $data->should_render ) ) {
 	<?php if ( '' !== trim( (string) $data->heading ) ) : ?>
 		<h2 class="h3 vg__heading"><?php echo esc_html( $data->heading ); ?></h2>
 	<?php endif; ?>
-	<div class="mesh vg" data-reveal-stagger>
+	<div class="mesh vg" data-slider data-slider-min="3" data-reveal-stagger>
 		<?php foreach ( $data->items as $item ) : ?>
 			<article class="vg__cell">
 				<span class="vg__icon"><?php echo starter_flexible_icon( $item['icon'], 40 ); // phpcs:ignore ?></span>

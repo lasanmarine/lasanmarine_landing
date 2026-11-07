@@ -61,16 +61,6 @@ $is_english   = function_exists( 'pll_current_language' ) && 'en' === pll_curren
 				</nav>
 
 				<div class="hdr__actions">
-					<?php if ( '' !== $phone ) : ?>
-						<?php $hdr_digits = preg_replace( '/\D/', '', $phone ); ?>
-						<a class="hdr__call" href="tel:<?php echo esc_attr( $hdr_digits ); ?>" data-cta="call">
-							<?php echo starter_flexible_icon( 'phone', 17 ); // phpcs:ignore ?>
-							<span><?php echo esc_html( $phone ); ?></span>
-						</a>
-						<?php if ( ! $is_english ) : ?>
-							<a class="hdr__zalo" href="https://zalo.me/<?php echo esc_attr( $hdr_digits ); ?>" target="_blank" rel="noopener" data-cta="zalo" aria-label="Nhắn Zalo <?php echo esc_attr( $phone ); ?>">Zalo</a>
-						<?php endif; ?>
-					<?php endif; ?>
 					<?php if ( '' !== $header_cta['url'] ) : ?>
 						<a href="<?php echo esc_url( $header_cta['url'] ); ?>" class="btn btn--sm hdr__cta">
 							<?php echo esc_html( $header_cta['label'] ); ?>

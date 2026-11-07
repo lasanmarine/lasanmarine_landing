@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Sheets: one screen each, with a fixed padding.
+   --------------------------------------------------------------------------
+   On a desktop with motion on, every block is a pinned sheet (stack.js,
+   `.is-stacked`) exactly one screen tall, with the same fixed space to its
+   edges. What a block does with that height depends on what it is:
+
+   - Pictures and panels grow to the sheet: a photo, a map or a coloured band
+     reads better large (spotlight, vessel finder, contact, geo,
+     page hero).
+   - Everything else keeps its natural size and sits in the middle of the
+     sheet: cards, lists, questions, forms and running text would only be
+     padded out by stretching.
+
+   Outside sheet mode (phones, reduced motion, short windows) nothing here
+   applies; a block taller than a screen scrolls as a flow sheet.
+   ========================================================================== */
+
+@media (min-width: 1024px) and (min-height: 640px) {
+	.block-stream.is-stacked {
+		--module-pad: 48px;
+	}
+
+	/* Every sheet is a screen tall; its content is centred in it. */
+	.block-stream.is-stacked > .block[class*='lasanmarine-']:not(.is-flow) {
+		min-height: var(--avail, calc(100svh - 76px));
+		justify-content: center;
+	}
+
+	/* Panels set in a sheet keep the same fixed space to the sheet edge. */
+	.block-stream.is-stacked > :is(.lasanmarine-contact-statement, .lasanmarine-geo-operations, .lasanmarine-service-spotlight, .lasanmarine-cta-banner):not(.is-flow) {
+		padding-block: var(--module-pad);
+	}
+
+	/* --- blocks that grow to the sheet ------------------------------------ */
+	.block-stream.is-stacked > :is(
+			.lasanmarine-service-spotlight,
+			.lasanmarine-vessel-finder,
+			.lasanmarine-contact-statement,
+			.lasanmarine-geo-operations
+		):not(.is-flow) {
+		justify-content: flex-start;
+	}
+	.block-stream.is-stacked > :is(
+			.lasanmarine-service-spotlight,
+			.lasanmarine-vessel-finder,
+			.lasanmarine-contact-statement,
+			.lasanmarine-geo-operations
+		):not(.is-flow) > :last-child {
+		flex: 1 1 auto;
+		min-height: 0;
+	}
+
+	/* Page hero: the opening panel fills the first screen under the header. */
+	.block-stream.is-stacked > .lasanmarine-page-hero {
+		min-height: calc(var(--avail, 100svh) - 104px - var(--module-pad));
+		margin-bottom: var(--module-pad);
+	}
+	.block-stream.is-stacked .phero__headline {
+		font-size: clamp(36px, min(4.2vw, 8vh), 76px);
+	}
+	.block-stream.is-stacked .phero__lead {
+		max-width: 720px;
+		font-size: clamp(16px, 2.1vh, 19px);
+	}
+
+	/* Service spotlight: photo and panel fill the band. */
+	.block-stream.is-stacked .lasanmarine-service-spotlight .spotlight {
+		height: 100%;
+		max-height: none;
+	}
+	.block-stream.is-stacked .spotlight__media {
+		min-height: 0;
+		height: 100%;
+	}
+
+	/* Vessel finder: the bento of photographs grows to the sheet. */
+	.block-stream.is-stacked .vf {
+		grid-auto-rows: 1fr;
+	}
+
+	/* Contact statement, geo operations: the band is the sheet. */
+	.block-stream.is-stacked :is(.lasanmarine-contact-statement .cs, .lasanmarine-geo-operations .band) {
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+	.block-stream.is-stacked :is(.cs__layout, .geo) {
+		width: 100%;
+	}
+	.block-stream.is-stacked .geo__plate {
+		height: min(68vh, 640px);
+	}
+}

@@ -26,12 +26,21 @@ if ( empty( $data->should_render ) ) {
 		<?php if ( $data->has_lead ) : ?>
 			<p class="copy phero__lead"><?php echo esc_html( $data->lead ); ?></p>
 		<?php endif; ?>
-		<?php if ( $data->tags ) : ?>
-			<ul class="phero__tags">
-				<?php foreach ( $data->tags as $tag ) : ?>
-					<li><?php echo esc_html( $tag ); ?></li>
+		<?php if ( $data->actions ) : ?>
+			<div class="phero__actions">
+				<?php foreach ( $data->actions as $action ) : ?>
+					<a
+						class="btn<?php echo $action['primary'] ? '' : ' btn--secondary'; ?> phero__action"
+						href="<?php echo esc_url( $action['url'] ); ?>"
+						<?php echo '_blank' === $action['target'] ? 'target="_blank" rel="noopener"' : ''; ?>
+						data-cta="hero"
+					>
+						<?php echo esc_html( $action['label'] ); ?>
+						<?php echo 0 === strpos( $action['url'], '#' ) ? starter_flexible_icon_swap( 'arrowDown', 18, 'down' ) : starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</a>
 				<?php endforeach; ?>
-			</ul>
+			</div>
 		<?php endif; ?>
+		<?php /* Tags are kept in the editor but no longer shown: the quick links above do that job. */ ?>
 	</div>
 </section>

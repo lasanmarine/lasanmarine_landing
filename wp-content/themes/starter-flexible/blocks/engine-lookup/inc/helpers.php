@@ -79,59 +79,73 @@ final class Starter_Flexible_Block_Engine_Lookup extends Starter_Flexible_Abstra
 		// Shares the Power Converter's shell (`pc`); `el` carries the table only.
 		$data['should_render'] = ! empty( $rows );
 
-		$labels    = $data['labels'];
-		$data['search_id'] = wp_unique_id( 'el-search-' );
+		$labels = $data['labels'];
 
-		/**
-		 * A from/to pair sharing one unit select — the unit's `value` is the factor
-		 * back to the dataset's units, applied in script.js.
-		 */
-		$data['ranges'] = array(
-			array(
-				'label'      => $labels['power_range'],
-				'min_hook'   => 'data-el-kw-min',
-				'max_hook'   => 'data-el-kw-max',
-				'unit_hook'  => 'data-el-kw-unit',
-				'unit_label' => __( 'Đơn vị công suất', 'starter-flexible' ),
-				'units'      => $data['power_units'],
-			),
-			array(
-				'label'      => $labels['rpm_range'],
-				'min_hook'   => 'data-el-rpm-min',
-				'max_hook'   => 'data-el-rpm-max',
-				'unit_hook'  => 'data-el-rpm-unit',
-				'unit_label' => __( 'Đơn vị vòng quay', 'starter-flexible' ),
-				'units'      => $data['rpm_units'],
-			),
-		);
-					$data['multis'] = array(
-			array(
-				'key'         => 'make',
-				'label'       => $labels['make'],
-				'placeholder' => $labels['all_makes'],
-				'search'      => $labels['search_make'],
-				'more'        => $labels['more_makes'],
-				'count'       => $labels['count_makes'],
-			),
-			array(
-				'key'         => 'model',
-				'label'       => $labels['model'],
-				'placeholder' => $labels['all_models'],
-				'search'      => $labels['search_model'],
-				'more'        => $labels['more_models'],
-				'count'       => $labels['count_models'],
-			),
+		// The copy buttons in the table are smaller than the calculators' ones.
+		$copy_sm  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="pc__copy-icon" style="flex:none" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>';
+		$check_sm = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="pc__copy-icon pc__copy-icon--done" style="flex:none" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>';
+
+		$multi = static fn( string $key, string $label, string $plural ): array => array(
+			'key'         => $key,
+			'id'          => wp_unique_id( 'el-' . $key . '-' ),
+			'label'       => $labels[ $key ],
+			'placeholder' => $labels[ 'all_' . $plural ],
+			'search'      => $labels[ 'search_' . $key ],
+			'more'        => $labels[ 'more_' . $plural ],
+			'count'       => $labels[ 'count_' . $plural ],
 		);
 
-		foreach ( $data['multis'] as &$multi ) { $multi['id'] = $this->unique_id( 'el-' . $multi['key'] . '-' ); }
-		unset( $multi );
-
-		$data['rows_json'] = $this->json( $data['rows'] );
+		// Rendered by the Svelte island in assets/island.svelte.
+		$data['props'] = array(
+			'moduleClass' => '',
+			'searchId'    => wp_unique_id( 'el-search-' ),
+			'rows'        => array_values( $rows ),
+			'perPage'     => $data['per_page'],
+			'modelSample' => $data['model_sample'],
+			'columns'     => $data['columns'],
+			'multis'      => array( $multi( 'make', $labels['make'], 'makes' ), $multi( 'model', $labels['model'], 'models' ) ),
+			// A from/to pair sharing one unit select; the unit's factor brings a
+			// filter value back to the dataset's units.
+			'ranges'      => array(
+				array(
+					'key'       => 'kw',
+					'label'     => $labels['power_range'],
+					'unitLabel' => __( 'Đơn vị công suất', 'starter-flexible' ),
+					'units'     => array_values( $data['power_units'] ),
+				),
+				array(
+					'key'       => 'rpm',
+					'label'     => $labels['rpm_range'],
+					'unitLabel' => __( 'Đơn vị vòng quay', 'starter-flexible' ),
+					'units'     => $data['rpm_units'],
+				),
+			),
+			'labels'      => $labels + array(
+				'prev' => __( 'Trước', 'starter-flexible' ),
+				'next' => __( 'Sau', 'starter-flexible' ),
+			),
+			'icons'       => starter_flexible_island_icons(
+				array(
+					'caret' => array( 'chevronDown', 16 ),
+					'arrow' => array( 'arrow', 17 ),
+					'sort'  => array( 'sort', 15, 'el__arrow-icon el__arrow-icon--idle' ),
+					'asc'   => array( 'arrowUp', 15, 'el__arrow-icon el__arrow-icon--asc' ),
+					'desc'  => array( 'arrowDown', 15, 'el__arrow-icon el__arrow-icon--desc' ),
+					'prev'  => array( 'chevronLeft', 18 ),
+					'next'  => array( 'chevronRight', 18 ),
+				)
+			) + array(
+				'copySm'  => $copy_sm,
+				'checkSm' => $check_sm,
+			),
+		);
 
 		return $data;
 	}
 }
 
 function starter_flexible_block_data_engine_lookup( array $block ) {
-	return ( new Starter_Flexible_Block_Engine_Lookup( $block ) )->data();
+	$data                       = ( new Starter_Flexible_Block_Engine_Lookup( $block ) )->data();
+	$data->props['moduleClass'] = $data->module_class;
+	return $data;
 }

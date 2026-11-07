@@ -1,0 +1,65 @@
+{
+	"origin": "http://localhost:49731",
+	"target": "https://lasanmarine.com",
+	"aliases": [
+		"https://dev.lasanmarine.com",
+		"http://dev.lasanmarine.com"
+	],
+	"start": [
+		"/",
+		"/en/home/",
+		"/sitemap_index.xml",
+		"/robots.txt"
+	],
+	"redirectsFrom": [
+		"/thiet-ke-tau/",
+		"/marine-rd/",
+		"/dich-vu-cntt/",
+		"/en/ship-design/",
+		"/en/research-development/",
+		"/en/software/",
+		"/nang-luc/thiet-ke-tau-ca/",
+		"/nang-luc/phuong-tien-thuy-noi-dia/",
+		"/en/capabilities/fishing-vessel-design/",
+		"/en/capabilities/inland-waterway-vessel-design/"
+	],
+	"exclude": [
+		"^/wp-admin",
+		"^/wp-login\\.php",
+		"^/wp-json",
+		"^/xmlrpc\\.php",
+		"/feed/?$",
+		"^/all-blocks",
+		"\\.zip$"
+	],
+	"preserve": [
+		"CNAME",
+		".nojekyll",
+		"mo-phong-on-dinh-tau",
+		"cong-cu/mo-phong-on-dinh-tau"
+	],
+	"copies": {
+		"/sitemap.xml": "/sitemap_index.xml",
+		"/sitemap-index.xml": "/sitemap_index.xml",
+		"/sitemap-0.xml": "/sitemap_index.xml"
+	},
+	"redirects": {
+		"/bai-viet/": "/tin-tuc/",
+		"/bai-viet/chuyen-hoan-nghe-tau-ca/": "/tin-tuc/nhung-luu-y-ky-thuat-khi-chuyen-hoan-nghe-cho-tau-ca/",
+		"/dich-vu/": "/nang-luc/",
+		"/dich-vu/thiet-ke-tau-moi/": "/nang-luc/thiet-ke-tau/",
+		"/du-an/tau-ca-vo-thep-24m/": "/du-an/",
+		"/en/": "/en/home/",
+		"/en/bai-viet/": "/en/insights/",
+		"/en/bai-viet/chuyen-hoan-nghe-tau-ca/": "/tin-tuc/nhung-luu-y-ky-thuat-khi-chuyen-hoan-nghe-cho-tau-ca/",
+		"/en/cong-cu/chuyen-doi-cong-suat/": "/cong-cu/chuyen-doi-cong-suat/",
+		"/en/cong-cu/kiem-tra-duong-kinh-truc-chan-vit/": "/cong-cu/kiem-tra-duong-kinh-truc-chan-vit/",
+		"/en/cong-cu/tra-cuu-dong-co/": "/cong-cu/tra-cuu-dong-co/",
+		"/en/dich-vu/": "/en/capabilities/",
+		"/en/dich-vu/thiet-ke-tau-moi/": "/en/capabilities/ship-design/",
+		"/en/du-an/": "/du-an/",
+		"/en/du-an/tau-ca-vo-thep-24m/": "/du-an/",
+		"/en/gioi-thieu/": "/en/about/",
+		"/en/lien-he/": "/en/contact/"
+	}
+}

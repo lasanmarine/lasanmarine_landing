@@ -18,10 +18,12 @@ Mọi khối cũng đều bật `anchor` — ô **HTML Anchor** của trình so�
 ## Mục lục
 
 - [LASAN — Accordion](#accordion) — `acf/accordion`
+- [LASAN — App Embed](#app-embed) — `acf/app-embed`
 - [LASAN — Capability Matrix](#capability-matrix) — `acf/capability-matrix`
 - [LASAN — Clients](#clients) — `acf/clients`
 - [LASAN — Contact Statement](#contact-statement) — `acf/contact-statement`
 - [LASAN — CTA Banner](#cta-banner) — `acf/cta-banner`
+- [LASAN — Deliverables](#deliverables) — `acf/deliverables`
 - [LASAN — Design Brief](#design-brief) — `acf/design-brief`
 - [LASAN — Document Center](#document-center) — `acf/document-center`
 - [LASAN — Engine Lookup](#engine-lookup) — `acf/engine-lookup`
@@ -53,6 +55,7 @@ Mọi khối cũng đều bật `anchor` — ô **HTML Anchor** của trình so�
 - [LASAN — Tool Shell](#tool-shell) — `acf/tool-shell`
 - [LASAN — Use Case](#use-case) — `acf/use-case`
 - [LASAN — Value Grid](#value-grid) — `acf/value-grid`
+- [LASAN — Vessel Finder](#vessel-finder) — `acf/vessel-finder`
 
 ---
 
@@ -74,6 +77,20 @@ Câu hỏi thường gặp hoặc thông tin mở rộng, mỗi mục một dòn
 | ↳ Title | `items[].title` | `text` |  |
 | ↳ Content | `items[].content` | `wysiwyg` |  |
 | Open First Item | `open_first` | `true_false` | Mặc định `1` |
+
+---
+
+<a id="app-embed"></a>
+## LASAN — App Embed
+
+`acf/app-embed` · `blocks/app-embed/` · field group `group_app_embed`
+
+Nhúng một ứng dụng mô phỏng (build tĩnh trong theme/apps) vào khung trang.
+
+| Field | Name | Type | Ghi chú |
+| --- | --- | --- | --- |
+| Ứng dụng | `app` | `select` | Chọn: `mo-phong-on-dinh-tau`, `suc-can-cong-suat` · **Bắt buộc** |
+| Tiêu đề khung (cho trình đọc màn hình) | `title` | `text` |  |
 
 ---
 
@@ -130,6 +147,7 @@ Lời kết trên nền navy với các lớp sóng chồng nhau.
 | Heading | `heading` | `wysiwyg` |  |
 | Description | `description` | `textarea` | Đoạn mô tả ngắn nằm dưới heading. |
 | Phone | `phone` | `text` |  |
+| Zalo | `zalo` | `text` | Số Zalo. Để trống thì dùng số điện thoại. |
 | Email | `email` | `email` |  |
 | CTA | `cta` | `link` | Trả về mảng `url` / `title` / `target` |
 | Mascot | `mascot` | `image` | Trả về `id` · Để trống thì dùng linh vật mặc định của theme. |
@@ -156,6 +174,26 @@ Dải kêu gọi hành động giữa hoặc cuối trang, không kèm điện t
 
 ---
 
+<a id="deliverables"></a>
+## LASAN — Deliverables
+
+`acf/deliverables` · `blocks/deliverables/` · field group `group_deliverables`
+
+Bạn nhận được gì: danh sách hạng mục bàn giao kèm định dạng và ghi chú thời gian.
+
+| Field | Name | Type | Ghi chú |
+| --- | --- | --- | --- |
+| Heading | `heading` | `text` |  |
+| Intro | `intro` | `textarea` |  |
+| Note label | `note_label` | `text` | Ví dụ: Thời gian |
+| Note | `note` | `textarea` |  |
+| Items | `items` | `repeater` | Repeater |
+| ↳ Title | `items[].title` | `text` |  |
+| ↳ Description | `items[].desc` | `text` |  |
+| ↳ Format | `items[].format` | `text` | Ví dụ: PDF · DWG |
+
+---
+
 <a id="design-brief"></a>
 ## LASAN — Design Brief
 
@@ -170,7 +208,10 @@ Form xây dựng nhiệm vụ thư thiết kế: thông tin chung, kích thướ
 | Nhãn block | `label` | `text` | Mặc định `NHIỆM VỤ THƯ` |
 | Tiêu đề | `heading` | `text` | Mặc định `Xây dựng nhiệm vụ thư thiết kế` |
 | Đoạn dẫn | `intro` | `textarea` |  |
-| Form Contact Form 7 | `cf7_form` | `post_object` | Nơi nhận nhiệm vụ thư. Form cần có các trường brief-code, brief-customer, brief-vessel, brief-email và brief-body. |
+| Form Contact Form 7 | `cf7_form` | `post_object` | Nơi nhận nhiệm vụ thư. Form cần có các trường brief-code, brief-customer, brief-vessel, brief-email, brief-body và brief-json (toàn bộ hồ sơ dưới dạng một khối JSON). |
+| Tên cơ quan trên văn bản in | `doc_org` | `text` | Để trống thì lấy Tên pháp lý trong Site Settings. |
+| Địa danh trên văn bản in | `doc_place` | `text` | Mặc định `Khánh Hòa` |
+| Ký hiệu văn bản | `doc_symbol` | `text` | Mặc định `NVT-LSM` · Phần sau dấu gạch chéo của số văn bản, ví dụ 12/NVT-LSM. |
 
 ---
 
@@ -186,6 +227,8 @@ Danh sách tài liệu, lọc phía client.
 | Field | Name | Type | Ghi chú |
 | --- | --- | --- | --- |
 | Block Label | `label` | `text` |  |
+| Heading | `heading` | `text` |  |
+| View all link | `view_all` | `link` | Trả về mảng `url` / `title` / `target` |
 | "All" Tab Label | `all_label` | `text` | Mặc định `TẤT CẢ` · Tab đầu tiên hiển thị toàn bộ tài liệu. |
 | Groups | `groups` | `repeater` | Repeater · Mỗi nhóm là một tab. Tài liệu nằm bên trong nhóm của nó. |
 | ↳ Group Name | `groups[].name` | `text` |  |
@@ -250,17 +293,26 @@ Bản đồ địa bàn hoạt động trên nền navy.
 
 Hero điện ảnh toàn màn: nền navy, nội dung neo đáy, đóng bằng sóng.
 
-> Căn `full` — băng tràn hết khổ
+> Căn `full` — băng tràn hết khổ · Có JavaScript riêng
 
 | Field | Name | Type | Ghi chú |
 | --- | --- | --- | --- |
-| Background Photo | `image` | `image` | Trả về `id` |
-| Headline | `headline` | `text` |  |
-| Headline Accent | `headline_accent` | `text` | Phần tô màu marine-bright giữa headline. |
-| Headline Tail | `headline_tail` | `text` |  |
-| Lead | `lead` | `textarea` |  |
+| Slides | `items` | `repeater` | Repeater · Mỗi dòng là một slide: ảnh nền, headline và lead riêng. Nút bấm dùng chung cho mọi slide. Để trống thì Hero dùng các trường đơn bên dưới. |
+| ↳ Background Photo | `items[].image` | `image` | Trả về `id` |
+| ↳ Headline | `items[].headline` | `text` |  |
+| ↳ Headline Accent | `items[].headline_accent` | `text` | Phần tô màu marine-bright giữa headline. |
+| ↳ Headline Tail | `items[].headline_tail` | `text` |  |
+| ↳ Lead | `items[].lead` | `textarea` |  |
+| Background Photo | `image` | `image` | Trả về `id` · Chỉ dùng khi Slides để trống. |
+| Eyebrow | `eyebrow` | `text` | Dòng nhỏ phía trên headline, ví dụ tên công ty. |
+| Headline | `headline` | `text` | Chỉ dùng khi Slides để trống. |
+| Headline Accent | `headline_accent` | `text` | Phần tô màu marine-bright giữa headline. Chỉ dùng khi Slides để trống. |
+| Headline Tail | `headline_tail` | `text` | Chỉ dùng khi Slides để trống. |
+| Subline | `subline` | `text` | Câu định vị ngắn ngay dưới headline. Chỉ dùng khi Slides để trống. |
+| Lead | `lead` | `textarea` | Chỉ dùng khi Slides để trống. |
 | Primary Button | `primary` | `link` | Trả về mảng `url` / `title` / `target` |
 | Secondary Button | `secondary` | `link` | Trả về mảng `url` / `title` / `target` |
+| Tự chuyển slide sau (giây) | `autoplay` | `number` | Mặc định `4` · 0 = không tự chuyển. Chỉ áp dụng khi có từ hai slide trở lên. |
 | Heading Level | `heading_level` | `select` | Chọn: `h1`, `h2` · Mặc định `h1` |
 
 ---
@@ -418,6 +470,7 @@ Hero rút gọn mở đầu các trang trong.
 | --- | --- | --- | --- |
 | Headline | `headline` | `text` |  |
 | Lead | `lead` | `textarea` |  |
+| Tags | `tags` | `text` | Nhãn ngắn dưới lead, cách nhau bởi dấu · |
 | Background Image | `image` | `image` | Trả về `id` |
 | Placeholder Text | `placeholder` | `text` | Hiện thay cho ảnh khi chưa chọn ảnh. |
 | Heading Level | `heading_level` | `select` | Chọn: `h1`, `h2` · Mặc định `h1` |
@@ -450,6 +503,8 @@ Thanh quy trình; vạch marine chạy dần khi cuộn qua.
 | Field | Name | Type | Ghi chú |
 | --- | --- | --- | --- |
 | Block Label | `label` | `text` | Mặc định `PROCESS TIMELINE` |
+| Heading | `heading` | `text` |  |
+| Intro | `intro` | `textarea` |  |
 | Steps | `steps` | `repeater` | Repeater |
 | ↳ Index | `steps[].index` | `text` |  |
 | ↳ Title | `steps[].title` | `text` |  |
@@ -490,7 +545,7 @@ Danh mục dự án lấy từ post type Dự án, lọc theo vật liệu và c
 | --- | --- | --- | --- |
 | Nhãn block | `label` | `text` | Mặc định `DỰ ÁN` |
 | Nhãn "tất cả" | `all_label` | `text` | Mặc định `TẤT CẢ` |
-| Lọc theo | `filter_by` | `select` | Chọn: `project_material`, `project_use`, `none` · Mặc định `project_material` |
+| Lọc theo | `filter_by` | `select` | Chọn: `project_work`, `project_material`, `project_use`, `none` · Mặc định `project_material` |
 | Số dự án tối đa | `limit` | `number` | Mặc định `24` |
 | Chữ khi rỗng | `empty_text` | `text` | Mặc định `Không có dự án nào.` |
 
@@ -508,6 +563,9 @@ Carousel điện ảnh trên nền navy sâu nhất.
 | Field | Name | Type | Ghi chú |
 | --- | --- | --- | --- |
 | Nhãn block | `label` | `text` | Mặc định `DỰ ÁN TIÊU BIỂU` |
+| Heading | `heading` | `text` |  |
+| Intro | `intro` | `textarea` |  |
+| View all link | `view_all` | `link` | Trả về mảng `url` / `title` / `target` |
 | Chọn dự án | `projects` | `relationship` | Tích chọn dự án từ post type Dự án. Ảnh, tên và thông số lấy thẳng từ hồ sơ dự án, không phải nhập lại. Để trống thì tự lấy các dự án mới nhất. |
 | Số dự án khi để trống | `limit` | `number` | Mặc định `5` |
 
@@ -603,6 +661,7 @@ Danh mục dịch vụ; rê chuột vào một dòng thì đổi ảnh bên cạ
 | ↳ Index | `items[].index` | `text` |  |
 | ↳ Name | `items[].name` | `text` |  |
 | ↳ Description | `items[].desc` | `textarea` |  |
+| ↳ Note | `items[].note` | `text` | Một câu nhấn nhỏ dưới mô tả (tuỳ chọn). |
 | ↳ Link | `items[].link` | `link` | Trả về mảng `url` / `title` / `target` |
 | ↳ Figure | `items[].image` | `image` | Trả về `id` |
 | ↳ Sub-services | `items[].children` | `repeater` | Repeater |
@@ -676,7 +735,9 @@ Danh sách nhân sự bên cạnh một chân dung tư liệu.
 | Placeholder Text | `placeholder` | `text` |  |
 | People | `people` | `repeater` | Repeater |
 | ↳ Name | `people[].name` | `text` |  |
+| ↳ Position | `people[].position` | `text` | Chức danh, ví dụ Giám đốc (tuỳ chọn). |
 | ↳ Role | `people[].role` | `text` |  |
+| ↳ Group | `people[].group` | `text` | Nhóm chuyên môn; người liền nhau cùng nhóm được xếp dưới một tiêu đề. |
 
 ---
 
@@ -705,6 +766,7 @@ Tình huống thật của khách: vấn đề, bối cảnh, cách xử lý.
 | Block Label | `label` | `text` |  |
 | Heading | `heading` | `text` |  |
 | Intro | `intro` | `textarea` |  |
+| Solution label | `solution_label` | `text` | Nhãn trước phần giải pháp, mặc định "Hướng xử lý". |
 | Items | `items` | `repeater` | Repeater |
 | ↳ Problem | `items[].problem` | `text` | Viết như lời khách nói ra, không phải tên dịch vụ. |
 | ↳ Context | `items[].context` | `textarea` |  |
@@ -723,10 +785,31 @@ Lưới giá trị/nguyên tắc có đánh số.
 | Field | Name | Type | Ghi chú |
 | --- | --- | --- | --- |
 | Block Label | `label` | `text` |  |
+| Heading | `heading` | `text` |  |
 | Items | `items` | `repeater` | Repeater |
 | ↳ Icon | `items[].icon` | `select` | Chọn: `ship`, `waves`, `ruler`, `wrench`, `compass`, `scan`, `gauge`, `award`, `calculator`, `link` · Mặc định `ship` |
 | ↳ Title | `items[].title` | `text` |  |
 | ↳ Description | `items[].desc` | `textarea` |  |
 | ↳ Link | `items[].link` | `link` | Trả về mảng `url` / `title` / `target` · Tuỳ chọn — hiện một liên kết nhỏ ở cuối ô. |
+
+---
+
+<a id="vessel-finder"></a>
+## LASAN — Vessel Finder
+
+`acf/vessel-finder` · `blocks/vessel-finder/` · field group `group_vessel_finder`
+
+Thẻ chọn loại tàu / dịch vụ, dẫn tới landing page tương ứng.
+
+| Field | Name | Type | Ghi chú |
+| --- | --- | --- | --- |
+| Heading | `heading` | `text` |  |
+| Intro | `intro` | `textarea` |  |
+| Items | `items` | `repeater` | Repeater |
+| ↳ Image | `items[].image` | `image` | Trả về `id` |
+| ↳ Icon (khi không có ảnh) | `items[].icon` | `select` | Chọn: `ship`, `waves`, `ruler`, `wrench`, `compass`, `file`, `award`, `gauge` · Mặc định `ship` |
+| ↳ Title | `items[].title` | `text` |  |
+| ↳ Description | `items[].desc` | `textarea` |  |
+| ↳ Link | `items[].link` | `link` | Trả về mảng `url` / `title` / `target` |
 
 ---
