@@ -46,3 +46,12 @@
 	font-size: 13.5px;
 	line-height: 1.5;
 }
+
+/* --- v2 light minimal ---------------------------------------------------- */
+.qt__quote {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.qt__quote::before { color: var(--aqua); }
+.qt__by { border-top-color: var(--line-soft); }
+.qt__photo { box-shadow: 0 0 0 1px var(--line-soft); }

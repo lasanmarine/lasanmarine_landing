@@ -12,7 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Starter_Flexible_Block_Use_Case extends Starter_Flexible_Abstract_Block {
 	protected function defaults(): array {
 		return array(
-			'label'        => '',
+			'label'          => '',
+			'solution_label' => '',
 			'heading'      => '',
 			'intro'        => '',
 			'items'        => array(),

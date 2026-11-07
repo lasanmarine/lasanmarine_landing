@@ -93,6 +93,10 @@ function starter_flexible_render_hero_button( array $link, string $variant, stri
 	if ( empty( $link ) ) {
 		return;
 	}
+	// A phone link reads as a call: phone icon instead of an arrow.
+	if ( 0 === strpos( (string) $link['url'], 'tel:' ) ) {
+		$icon = 'phone';
+	}
 	get_template_part( 'template-parts/components/button', null, array(
 		'href' => $link['url'], 'label' => $link['label'], 'size' => 'lg',
 		'variant' => $variant, 'icon' => $icon,

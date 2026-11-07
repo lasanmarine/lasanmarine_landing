@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta name="robots" content="noindex">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mô phỏng sức cản công suất tàu online | Lasan Marine</title>
+    <meta name="description" content="Mô phỏng sức cản công suất tàu miễn phí: canô lướt theo Savitsky, tàu khách theo Holtrop–Mennen; công suất kéo, công suất máy, % MCR. Xuất Word, Excel." />
+    <meta name="keywords" content="mô phỏng sức cản công suất, tính sức cản tàu, công suất tàu, sức cản canô, Savitsky, Holtrop Mennen, công suất máy chính, resistance and power calculator" />
+    <meta name="author" content="TS. Huỳnh Lê Hồng Thái – Lasan Marine" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#06122D" />
+    <link rel="canonical" href="https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/" />
+    <link rel="alternate" hreflang="vi" href="https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/" />
+    <link rel="alternate" hreflang="x-default" href="https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/" />
+
+    <link rel="icon" href="https://lasanmarine.com/wp-content/uploads/2026/09/cropped-apple-touch-icon-1-32x32.webp" sizes="32x32" />
+    <link rel="icon" href="https://lasanmarine.com/wp-content/uploads/2026/09/cropped-apple-touch-icon-1-192x192.webp" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://lasanmarine.com/wp-content/uploads/2026/09/cropped-apple-touch-icon-1-180x180.webp" />
+
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LASAN MARINE" />
+    <meta property="og:title" content="Mô phỏng sức cản công suất tàu online – Savitsky, Holtrop" />
+    <meta property="og:description" content="Tính sức cản và công suất canô, tàu khách cỡ nhỏ theo Savitsky và Holtrop–Mennen ngay trên trình duyệt. Miễn phí, xuất báo cáo Word, Excel." />
+    <meta property="og:url" content="https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/" />
+    <meta property="og:image" content="https://lasanmarine.com/wp-content/uploads/2026/09/social-card.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mô phỏng sức cản công suất tàu online – Savitsky, Holtrop" />
+    <meta name="twitter:description" content="Tính sức cản và công suất canô, tàu khách cỡ nhỏ theo Savitsky và Holtrop–Mennen ngay trên trình duyệt." />
+    <meta name="twitter:image" content="https://lasanmarine.com/wp-content/uploads/2026/09/social-card.webp" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/",
+          "url": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/",
+          "name": "Mô phỏng sức cản công suất tàu online | Lasan Marine",
+          "description": "Mô phỏng sức cản và công suất tàu miễn phí: canô lướt theo Savitsky, tàu khách cỡ nhỏ theo Holtrop–Mennen, công suất kéo PE, công suất máy PB và % MCR theo vận tốc.",
+          "inLanguage": "vi-VN",
+          "isPartOf": { "@id": "https://lasanmarine.com/#website" },
+          "about": { "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/#app" },
+          "mainEntity": { "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/#app" },
+          "breadcrumb": { "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/#breadcrumb" },
+          "primaryImageOfPage": { "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/#image" }
+        },
+        {
+          "@type": "ImageObject",
+          "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/#image",
+          "url": "https://lasanmarine.com/wp-content/uploads/2026/09/social-card.webp",
+          "width": 1200,
+          "height": 630
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/#app",
+          "name": "Mô phỏng sức cản & công suất tàu",
+          "alternateName": ["Mô phỏng sức cản công suất", "Tính sức cản và công suất tàu cao tốc cỡ nhỏ", "Ship resistance and power calculator"],
+          "url": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/",
+          "description": "Công cụ tính sức cản và công suất cho canô cao tốc và tàu khách cỡ nhỏ: phương pháp Savitsky (1964) cho thân lướt kèm sức cản tia nước, Holtrop–Mennen cho thân lượn sóng và bán lướt; quét vận tốc, công suất kéo PE, công suất máy PB, dự trữ biển, % MCR, chế độ chạy theo Fn∇; kiểm tra phạm vi áp dụng và giới hạn porpoising; xuất báo cáo Word, Excel.",
+          "applicationCategory": "EducationalApplication",
+          "applicationSubCategory": "Ship resistance and powering / Naval architecture",
+          "operatingSystem": "Windows, macOS, Linux, Android, iOS (trình duyệt web)",
+          "browserRequirements": "Requires JavaScript",
+          "inLanguage": ["vi", "en"],
+          "isAccessibleForFree": true,
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "VND" },
+          "featureList": [
+            "Sức cản canô lướt theo Savitsky (1964) và sức cản tia nước (2007)",
+            "Sức cản tàu khách cỡ nhỏ theo Holtrop–Mennen",
+            "Đồ thị sức cản và công suất theo vận tốc",
+            "Công suất kéo PE, công suất máy PB, dự trữ biển, % MCR",
+            "Kiểm tra phạm vi áp dụng và giới hạn porpoising",
+            "Xuất báo cáo Word và Excel"
+          ],
+          "author": { "@type": "Person", "name": "Huỳnh Lê Hồng Thái", "honorificPrefix": "TS." },
+          "publisher": { "@id": "https://lasanmarine.com/#organization" },
+          "image": { "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/#image" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://lasanmarine.com/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lasanmarine.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Công cụ", "item": "https://lasanmarine.com/cong-cu/" },
+            { "@type": "ListItem", "position": 3, "name": "Mô phỏng sức cản & công suất" }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lasanmarine.com/#website",
+          "url": "https://lasanmarine.com/",
+          "name": "LASAN MARINE",
+          "publisher": { "@id": "https://lasanmarine.com/#organization" },
+          "inLanguage": "vi"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://lasanmarine.com/#organization",
+          "name": "LASAN MARINE",
+          "legalName": "Công ty TNHH Lasan Marine",
+          "url": "https://lasanmarine.com/",
+          "email": "hello@lasanmarine.com",
+          "telephone": "+84834310781",
+          "logo": "https://lasanmarine.com/wp-content/uploads/2026/09/cropped-apple-touch-icon-1-192x192.webp"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      /* shown until the app mounts (and to crawlers / no-JS visitors); React replaces #root's content */
+      .seo { max-width: 760px; margin: 0 auto; padding: 48px 16px; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1a2433; }
+      .seo h1 { font-size: 28px; line-height: 1.25; margin: 0 0 12px; color: #06122D; }
+      .seo h2 { font-size: 19px; margin: 28px 0 8px; color: #06122D; }
+      .seo a { color: #0A72C8; }
+      .seo__loading { margin-top: 32px; color: #5b6b80; }
+      @media (prefers-color-scheme: dark) {
+        body { background: #1a1b1e; }
+        .seo, .seo h1, .seo h2 { color: #e6ebf2; }
+        .seo a { color: #5fb0f0; }
+      }
+
+      /* splash: the logo centred over the page while the app loads; only with
+         JavaScript (class "js" below), faded out and removed by src/main.jsx */
+      #splash { display: none; }
+      .js #splash {
+        position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 22px; background: #ffffff;
+        transition: opacity .35s ease, visibility .35s;
+      }
+      #splash.splash--hide { opacity: 0; visibility: hidden; }
+      .splash__logo { width: min(320px, 70vw); height: auto; animation: splash-in .5s ease-out both; }
+      .splash__bar { width: min(160px, 40vw); height: 3px; border-radius: 3px; overflow: hidden; background: #0A72C826; }
+      .splash__bar::before {
+        content: ""; display: block; width: 40%; height: 100%; border-radius: inherit; background: #0A72C8;
+        animation: splash-bar 1.1s ease-in-out infinite;
+      }
+      @keyframes splash-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+      @keyframes splash-bar { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+      @media (prefers-reduced-motion: reduce) {
+        .splash__logo, .splash__bar::before { animation: none; }
+      }
+      @media (prefers-color-scheme: dark) {
+        .js #splash { background: #242424; }
+        .splash__bar { background: #5fb0f026; }
+        .splash__bar::before { background: #5fb0f0; }
+      }
+    </style>
+    <script>document.documentElement.classList.add('js');</script>
+    <script type="module" crossorigin src="/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/assets/index-DTeJOi-g.js"></script>
+    <link rel="stylesheet" crossorigin href="/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/assets/index-E09c08Lx.css">
+  </head>
+  <body>
+    <div id="splash" aria-hidden="true">
+      <img class="splash__logo" src="/wp-content/themes/starter-flexible/apps/suc-can-cong-suat/assets/logo-BY5rt1EK.png" alt="" width="2932" height="415" />
+      <div class="splash__bar"></div>
+    </div>
+    <div id="root">
+      <main class="seo">
+        <h1>Mô phỏng sức cản &amp; công suất tàu cao tốc cỡ nhỏ</h1>
+        <p>
+          Công cụ <strong>mô phỏng sức cản công suất</strong> miễn phí của Lasan Marine, do TS. Huỳnh Lê Hồng Thái phát triển,
+          dành cho canô cao tốc và tàu khách cỡ nhỏ. Nhập kích thước thân tàu, lượng chiếm nước, góc vát đáy và vận tốc thiết kế;
+          công cụ quét vận tốc và vẽ ngay đường sức cản, công suất kéo P<sub>E</sub>, công suất máy P<sub>B</sub> và % MCR.
+        </p>
+        <h2>Phương pháp tính</h2>
+        <ul>
+          <li><strong>Canô lướt – Savitsky (1964)</strong>: cân bằng lực và mô men với góc trục đẩy, ma sát ITTC-57, sức cản tia nước (Savitsky–DeLorme–Datla 2007), gió và phần phụ.</li>
+          <li><strong>Tàu khách cỡ nhỏ – Holtrop–Mennen</strong>: R<sub>F</sub>(1+k<sub>1</sub>), sức cản sóng, đuôi transom, hệ số tương quan, phần phụ và gió.</li>
+          <li>Chế độ chạy theo số Froude thể tích Fn<sub>∇</sub> (lượn sóng, bán lướt, lướt); nước biển hoặc nước ngọt.</li>
+        </ul>
+        <h2>Kết quả</h2>
+        <ul>
+          <li>Đồ thị sức cản và công suất theo vận tốc, phân tách thành phần sức cản, sơ đồ lực trên thân lướt.</li>
+          <li>Kiểm tra phạm vi áp dụng của phương pháp và giới hạn porpoising.</li>
+          <li>Xuất báo cáo Word và Excel; giao diện tiếng Việt và tiếng Anh.</li>
+        </ul>
+        <p>
+          Kết quả dùng để ước tính sơ bộ công suất máy chính; thiết kế chính thức cần tính toán đầy đủ –
+          <a href="https://lasanmarine.com/nang-luc/thiet-ke-tau/">dịch vụ thiết kế tàu của Lasan Marine</a>.
+        </p>
+        <p>
+          Xem thêm: <a href="https://lasanmarine.com/cong-cu/mo-phong-on-dinh-tau/">mô phỏng ổn định tàu</a> ·
+          <a href="https://lasanmarine.com/cong-cu/chuyen-doi-cong-suat/">chuyển đổi công suất kW, HP, PS</a> ·
+          <a href="https://lasanmarine.com/cong-cu/">các công cụ tính toán khác</a>
+        </p>
+        <noscript><p><strong>Công cụ cần bật JavaScript để chạy.</strong></p></noscript>
+        <p class="seo__loading" aria-live="polite">Đang tải công cụ mô phỏng…</p>
+      </main>
+    </div>
+  </body>
+</html>

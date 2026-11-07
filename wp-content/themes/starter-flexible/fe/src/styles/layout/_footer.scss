@@ -4,10 +4,9 @@
    ========================================================================== */
 
 .ftr {
-	/* Picks up where the Contact Statement band leaves off (bg-navy, #0b1b4c)
+	/* Picks up where the Contact Statement band leaves off (bg-navy, #0a1638)
 	   and sinks to navy-deep, so the two sections read as one continuous field. */
-	@apply relative overflow-hidden bg-navy-deep;
-	background-image: linear-gradient(to bottom, #0b1b4c 0%, #06122d clamp(320px, 42vw, 620px));
+	@apply relative overflow-hidden bg-paper;
 }
 .ftr__wave {
 	/* Tall enough to pass behind the wordmark, which sits above it. */
@@ -20,8 +19,8 @@
 	/* One flex column: every gap between footer sections comes from `gap`,
 	   never from a margin on the section itself. */
 	@apply relative flex flex-col;
-	--ftr-gap: clamp(128px, 16vw, 264px);
-	padding-block: clamp(110px, 13vw, 190px) clamp(48px, 6vw, 96px);
+	--ftr-gap: clamp(56px, 8vw, 120px);
+	padding-block: clamp(64px, 8vw, 110px) clamp(40px, 5vw, 72px);
 	gap: var(--ftr-gap);
 }
 
@@ -32,16 +31,16 @@
 	gap: clamp(32px, 4vw, 64px);
 }
 .ftr__wordmark {
-	@apply text-white;
+	@apply text-navy;
 	font-size: clamp(38px, 6vw, 94px);
 	line-height: 0.98;
-	letter-spacing: -0.035em;
+	letter-spacing: -0.02em;
 }
 .ftr__wordmark span {
 	@apply text-marine;
 }
 .ftr__statement .link {
-	@apply justify-self-end text-white;
+	@apply justify-self-end text-navy;
 }
 .ftr__statement .link:hover {
 	@apply text-marine-bright;
@@ -65,7 +64,7 @@
 /* Section titles for the detail groups — they head a block of ruled rows, so
    they read a step above the values rather than level with them. */
 .ftr__group-title {
-	@apply font-display font-semibold text-white;
+	@apply font-display font-semibold text-navy;
 	font-size: clamp(20px, 1.9vw, 26px);
 	letter-spacing: -0.015em;
 }
@@ -76,10 +75,10 @@
 .ftr__specs .spec {
 	padding: 16px 0;
 	gap: 16px;
-	border-bottom-color: rgb(255 255 255 / 0.14);
+	border-bottom-color: rgba(11, 27, 76, 0.12);
 }
 .ftr__specs .spec__label {
-	@apply text-white;
+	@apply text-navy;
 	/* One label column, so every value starts on the same line. */
 	flex: 0 0 128px;
 	min-width: 0;
@@ -87,11 +86,11 @@
 	opacity: 0.55;
 }
 .ftr__specs .spec__leader {
-	background: rgb(255 255 255 / 0.14);
+	background: rgba(11, 27, 76, 0.12);
 }
 .ftr__specs .spec__value {
 	/* Every value at one size — a long address wraps rather than shrinks. */
-	@apply flex flex-wrap items-center justify-start text-white;
+	@apply flex flex-wrap items-center justify-start text-navy;
 	gap: 8px 10px;
 	font-size: clamp(16px, 1.3vw, 19px);
 	line-height: 1.4;
@@ -104,9 +103,9 @@
 	@apply inline-flex cursor-pointer items-center bg-none font-display font-semibold;
 	gap: 6px;
 	padding: 5px 11px;
-	border: 1px solid rgba(255, 255, 255, 0.22);
+	border: 1px solid rgba(11, 27, 76, 0.22);
 	border-radius: var(--r-sm);
-	color: rgba(255, 255, 255, 0.72);
+	color: rgba(83, 97, 115, 0.9);
 	font-size: 11.5px;
 	letter-spacing: 0.08em;
 	transition:
@@ -133,8 +132,8 @@
 	gap: 18px;
 }
 .ftr__map {
-	@apply w-full overflow-hidden bg-navy;
-	border: 1px solid rgba(255, 255, 255, 0.16);
+	@apply w-full overflow-hidden bg-pale;
+	border: 1px solid rgba(11, 27, 76, 0.16);
 	border-radius: var(--r-lg);
 }
 .ftr__map iframe {
@@ -142,14 +141,11 @@
 	@apply w-full border-0;
 	display: block;
 	aspect-ratio: 16 / 10;
-	filter: invert(0.92) hue-rotate(185deg) saturate(0.75) brightness(0.95) contrast(0.95);
+
 }
 .ftr__map-cta {
-	@apply text-white;
-	border-color: rgba(255, 255, 255, 0.34);
-}
-.ftr__map-cta:hover {
-	@apply border-marine text-marine-bright;
+	@apply text-navy;
+	border-color: rgba(11, 27, 76, 0.34);
 }
 
 /* The closing group: the menu on the full width, a rule, then the mark, the
@@ -162,7 +158,7 @@
 .ftr__end-row {
 	@apply flex flex-wrap items-center;
 	padding-top: 26px;
-	border-top: 1px solid rgba(255, 255, 255, 0.16);
+	border-top: 1px solid rgba(11, 27, 76, 0.16);
 	gap: 18px clamp(20px, 2.4vw, 36px);
 }
 .ftr__mark {
@@ -172,7 +168,7 @@
 	/* A shade taller than the header's, so the mark leads the row. */
 	@apply block w-auto;
 	height: 40px;
-	filter: brightness(0) invert(1);
+	filter: none;
 	opacity: 0.92;
 	transition: opacity 280ms var(--ease);
 }
@@ -183,7 +179,7 @@
 	@apply flex-none;
 	font-size: 15px;
 	letter-spacing: 0;
-	color: rgba(255, 255, 255, 0.74);
+	color: rgba(11, 27, 76, 0.74);
 }
 .ftr__end-aside {
 	/* Everything before it is read left to right; these two close the line. */
@@ -202,7 +198,7 @@
 	@apply relative font-display font-semibold;
 	padding-bottom: 4px;
 	font-size: clamp(15px, 1.3vw, 17px);
-	color: rgba(255, 255, 255, 0.72);
+	color: rgba(83, 97, 115, 0.9);
 }
 .ftr__menu a::after {
 	@apply absolute bg-marine;
@@ -214,7 +210,7 @@
 	transition: transform 280ms var(--ease);
 }
 .ftr__menu a:hover {
-	@apply text-white;
+	@apply text-navy;
 }
 .ftr__menu a:hover::after {
 	transform: scaleX(1);
@@ -256,11 +252,11 @@
 	padding: 0 8px;
 	font-size: 15px;
 	letter-spacing: 0;
-	color: rgba(255, 255, 255, 0.68);
+	color: rgba(83, 97, 115, 0.9);
 	opacity: 1;
 }
 .lang--footer .lang__item:hover {
-	@apply text-white;
+	@apply text-navy;
 }
 .lang--footer .lang__item.is-active {
 	@apply text-marine-bright;
@@ -273,7 +269,7 @@
 	padding-bottom: 3px;
 	font-size: 15px;
 	letter-spacing: 0;
-	color: rgba(255, 255, 255, 0.74);
+	color: rgba(11, 27, 76, 0.74);
 }
 .ftr__top::after {
 	@apply absolute bg-marine;
@@ -285,7 +281,7 @@
 	transition: transform 280ms var(--ease);
 }
 .ftr__top:hover {
-	@apply text-white;
+	@apply text-navy;
 }
 /* The icon swap keys off `.btn`/`.link`; this link is neither, so it opts in. */
 .ftr__top:hover .btn__icon[data-dir='up-right'] svg:nth-child(1) {
@@ -315,3 +311,226 @@
 	}
 }
 
+/* Tablet: the details take the full width, the map follows below. */
+@media (max-width: 1024px) {
+	.ftr__contact {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.ftr__map iframe {
+		aspect-ratio: 21 / 9;
+	}
+}
+
+
+
+
+/* ==========================================================================
+   v2 — the footer as a light surface panel: inset from the page edges,
+   rounded top corners, hairline rules, the swell kept faint behind the
+   wordmark.
+   ========================================================================== */
+
+.ftr {
+	margin-inline: 0;
+	border: 0;
+	border-top: 1px solid var(--line-soft);
+	border-radius: 0;
+	background: var(--paper);
+}
+.ftr__wave {
+	opacity: 0.18;
+}
+.ftr__wordmark {
+	font-weight: 600;
+	letter-spacing: -0.005em;
+}
+.ftr__wordmark span {
+	@apply text-marine;
+}
+.ftr__group-title {
+	letter-spacing: -0.02em;
+}
+.ftr__specs .spec,
+.ftr__specs .spec__leader {
+	border-bottom-color: var(--line);
+}
+.ftr__specs .spec__label {
+	@apply text-mute;
+	opacity: 1;
+}
+.ftr__specs a.spec__value:hover,
+.ftr__menu a:hover,
+.ftr__top:hover,
+.lang--footer .lang__item:hover {
+	@apply text-marine;
+}
+.ftr__copy {
+	border-color: var(--line);
+	border-radius: var(--r-pill);
+	background: var(--paper);
+	color: var(--steel);
+}
+.ftr__copy:hover,
+.ftr__copy[data-state='done'] {
+	@apply text-marine;
+	border-color: var(--marine);
+}
+.ftr__map {
+	border-color: var(--line);
+	border-radius: var(--r-lg);
+	background: var(--paper);
+}
+.ftr__map-cta {
+	border-color: var(--line);
+	background: var(--paper);
+}
+.ftr__end-row {
+	border-top-color: var(--line);
+}
+.ftr__menu a,
+.lang--footer .lang__item,
+.ftr__year,
+.ftr__top {
+	color: var(--steel);
+}
+.ftr__menu a::after,
+.ftr__top::after {
+	display: none;
+}
+.ftr__menu a {
+	transition: color 200ms var(--ease);
+}
+.lang--footer {
+	padding: 3px;
+	border: 1px solid var(--line);
+	border-radius: var(--r-pill);
+	background: var(--paper);
+	gap: 2px;
+}
+.lang--footer .lang__item {
+	padding: 4px 12px;
+	border-radius: var(--r-pill);
+	font-size: 13.5px;
+}
+.lang--footer .lang__item.is-active {
+	@apply bg-navy text-white;
+}
+
+@media (max-width: 600px) {
+	.ftr {
+		margin-inline: 6px;
+		border-radius: var(--r-lg) var(--r-lg) 0 0;
+	}
+}
+
+/* v2 polish: the sign-off reads as one confident line, not a three-line slab. */
+.ftr__wordmark {
+	font-size: clamp(32px, 4.2vw, 64px);
+	line-height: 1.05;
+	letter-spacing: -0.015em;
+}
+
+/* v2 polish: no decorative waves and no second "contact" link (the contact
+   band and the header already carry one); the sign-off runs on one line. */
+.ftr__wave { display: none; }
+.ftr__statement { grid-template-columns: minmax(0, 1fr); }
+.ftr__statement > .link { display: none; }
+.ftr__wordmark br { display: none; }
+.ftr__wordmark { font-size: clamp(28px, 4vw, 60px); }
+
+/* --- v2 signature: the sign-off as a brand moment ---------------------------
+   One line that runs the full width of the footer, sized to the viewport so
+   it always fills it edge to edge. "OCEANS" carries the marine→aqua current,
+   drifting slowly like light on water. */
+.ftr__wordmark {
+	display: block;
+	width: 100%;
+	margin: 0;
+	font-weight: 600;
+	/* The line measures ~16.8em; divide the container's inner width by that. */
+	font-size: calc((min(100vw, 1560px) - 2 * var(--gutter)) / 17);
+	line-height: 0.95;
+	letter-spacing: -0.035em;
+	white-space: nowrap;
+	color: var(--navy);
+}
+.ftr__wordmark span {
+	background: linear-gradient(
+		100deg,
+		var(--marine) 0%,
+		var(--aqua) 30%,
+		var(--marine) 60%,
+		var(--aqua) 90%
+	);
+	background-size: 250% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: ftr-current 9s linear infinite;
+}
+@keyframes ftr-current {
+	from { background-position: 0% 50%; }
+	to { background-position: -250% 50%; }
+}
+@media (max-width: 760px) {
+	.ftr__wordmark {
+		white-space: normal;
+		font-size: clamp(34px, 11vw, 64px);
+		line-height: 1;
+	}
+	.ftr__wordmark br { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.ftr__wordmark span { animation: none; }
+}
+
+/* v2: the sign-off sets left, one word group per line. */
+.ftr__wordmark {
+	width: auto;
+	white-space: normal;
+	text-align: left;
+	font-size: clamp(36px, 5.6vw, 96px);
+	line-height: 0.98;
+	letter-spacing: -0.035em;
+}
+.ftr__wordmark br { display: block; }
+
+/* Motion toggle — a quiet pill switch beside the language switch. */
+.ftr__motion {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 14px 7px 8px;
+	border: 1px solid var(--line);
+	border-radius: var(--r-pill);
+	background: var(--paper);
+	color: var(--steel);
+	font: inherit;
+	font-size: 13px;
+	cursor: pointer;
+	transition: border-color 200ms var(--ease), color 200ms var(--ease);
+}
+.ftr__motion:hover { border-color: var(--navy); color: var(--navy); }
+.ftr__motion-dot {
+	position: relative;
+	width: 28px;
+	height: 16px;
+	border-radius: 999px;
+	background: var(--line);
+	transition: background 200ms var(--ease);
+}
+.ftr__motion-dot::after {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 12px;
+	height: 12px;
+	border-radius: 999px;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(11, 27, 76, 0.25);
+	transition: transform 200ms var(--ease);
+}
+.ftr__motion[aria-pressed='true'] { color: var(--navy); }
+.ftr__motion[aria-pressed='true'] .ftr__motion-dot { background: var(--navy); }
+.ftr__motion[aria-pressed='true'] .ftr__motion-dot::after { transform: translateX(12px); }

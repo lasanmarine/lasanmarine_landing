@@ -28,6 +28,10 @@ $sizes       = isset( $args['sizes'] ) ? (string) $args['sizes'] : '(max-width: 
 if ( ! $image_id && '' !== $src ) {
 	$image_id = starter_flexible_attachment_id_from_url( $src );
 }
+// No alt passed: fall back to the one written in the media library.
+if ( '' === $alt && $image_id ) {
+	$alt = (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+}
 
 $image_html = $image_id
 	? (string) wp_get_attachment_image( $image_id, 'large', false, starter_flexible_image_priority_attrs( array( 'alt' => $alt, 'sizes' => $sizes ) ) )

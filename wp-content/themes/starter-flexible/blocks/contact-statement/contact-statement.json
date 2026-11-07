@@ -6,6 +6,7 @@
     { "key": "field_cs_heading", "label": "Heading", "name": "heading", "type": "wysiwyg", "tabs": "visual", "toolbar": "basic", "media_upload": 0 },
     { "key": "field_cs_description", "label": "Description", "name": "description", "type": "textarea", "rows": 3, "new_lines": "br", "instructions": "Đoạn mô tả ngắn nằm dưới heading." },
     { "key": "field_cs_phone", "label": "Phone", "name": "phone", "type": "text" },
+    { "key": "field_cs_zalo", "label": "Zalo", "name": "zalo", "type": "text", "instructions": "Số Zalo. Để trống thì dùng số điện thoại." },
     { "key": "field_cs_email", "label": "Email", "name": "email", "type": "email" },
     { "key": "field_cs_cta", "label": "CTA", "name": "cta", "type": "link", "return_format": "array" },
     { "key": "field_cs_mascot", "label": "Mascot", "name": "mascot", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "instructions": "Để trống thì dùng linh vật mặc định của theme." },

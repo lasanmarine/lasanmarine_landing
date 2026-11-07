@@ -1,0 +1,200 @@
+/* Vessel Finder — a bento of vessel types. The first card leads (2×2 on wide
+   screens); under the cursor a card turns into the navy brand card, the same
+   gesture as the mega menu. */
+.vf__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	justify-content: space-between;
+	gap: 12px 40px;
+}
+.vf__intro {
+	max-width: 36em;
+}
+.vf {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-auto-rows: minmax(190px, auto);
+	gap: 12px;
+}
+.vf__card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 18px;
+	min-height: 190px;
+	padding: 22px;
+	overflow: hidden;
+	isolation: isolate;
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	color: var(--navy);
+	transition:
+		background 360ms var(--ease),
+		box-shadow 360ms var(--ease),
+		transform 360ms var(--ease),
+		color 260ms var(--ease);
+}
+.vf__card--lead {
+	grid-column: span 2;
+	grid-row: span 2;
+	padding: 28px;
+}
+.vf__media {
+	display: block;
+}
+.vf__media img {
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 700ms var(--ease);
+}
+/* A card with a photo reads in white over a deep scrim. */
+.vf__card--photo {
+	color: #fff;
+	background: var(--navy);
+}
+.vf__card--photo::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(180deg, rgba(6, 18, 45, 0.05) 30%, rgba(6, 18, 45, 0.85) 100%);
+}
+.vf__icon {
+	display: grid;
+	place-items: center;
+	width: 52px;
+	height: 52px;
+	border-radius: 16px;
+	background: var(--paper);
+	color: var(--marine);
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+	transition:
+		background 260ms var(--ease),
+		color 260ms var(--ease);
+}
+.vf__body {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding-right: 44px;
+}
+.vf__title {
+	font-family: var(--display);
+	font-size: clamp(18px, 1.5vw, 21px);
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -0.01em;
+}
+.vf__card--lead .vf__title {
+	font-size: clamp(24px, 2.4vw, 34px);
+}
+.vf__desc {
+	color: var(--steel);
+	font-size: 14px;
+	line-height: 1.55;
+}
+.vf__card--photo .vf__desc {
+	color: rgba(255, 255, 255, 0.82);
+}
+.vf__go {
+	position: absolute;
+	right: 18px;
+	bottom: 18px;
+	display: grid;
+	place-items: center;
+	width: 38px;
+	height: 38px;
+	border-radius: 999px;
+	background: var(--paper);
+	color: var(--navy);
+	transition:
+		background 260ms var(--ease),
+		color 260ms var(--ease),
+		transform 300ms var(--ease);
+}
+
+/* Hover: the brand card. */
+a.vf__card:hover {
+	color: #fff;
+	background:
+		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.42), transparent 60%),
+		linear-gradient(155deg, var(--navy) 0%, #0d2f73 60%, var(--marine) 130%);
+	box-shadow: 0 26px 50px -28px rgba(6, 18, 45, 0.6);
+	transform: translateY(-3px);
+}
+a.vf__card:hover .vf__desc {
+	color: rgba(255, 255, 255, 0.8);
+}
+a.vf__card:hover .vf__icon {
+	background: rgba(255, 255, 255, 0.14);
+	color: var(--aqua);
+	box-shadow: none;
+}
+a.vf__card:hover .vf__go {
+	background: var(--aqua);
+	color: var(--navy);
+}
+a.vf__card:hover img {
+	transform: scale(1.04);
+}
+a.vf__card:hover .btn__icon svg:nth-child(1) {
+	transform: translate(150%, -150%);
+}
+a.vf__card:hover .btn__icon svg:nth-child(2) {
+	transform: none;
+}
+
+@media (max-width: 1024px) {
+	.vf {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.vf__card--lead {
+		grid-row: span 1;
+	}
+}
+@media (max-width: 560px) {
+	.vf {
+		grid-template-columns: minmax(0, 1fr);
+		grid-auto-rows: auto;
+	}
+	.vf__card,
+	.vf__card--lead {
+		grid-column: auto;
+		min-height: 140px;
+	}
+	.vf__card--lead {
+		min-height: 220px;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.vf__card,
+	.vf__media img,
+	.vf__go {
+		transition: none;
+	}
+	a.vf__card:hover {
+		transform: none;
+	}
+}
+
+/* Light photos (drawings on white) must still carry white type: a stronger,
+   taller scrim and a soft blur behind the text block. */
+.vf__card--photo::before {
+	background:
+		linear-gradient(180deg, rgba(6, 18, 45, 0.15) 0%, rgba(6, 18, 45, 0.55) 45%, rgba(6, 18, 45, 0.92) 100%);
+}
+.vf__card--photo .vf__body {
+	padding: 12px 14px;
+	margin: -12px -14px;
+	border-radius: var(--r-md);
+	background: rgba(6, 18, 45, 0.28);
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+	max-width: calc(100% - 40px);
+}

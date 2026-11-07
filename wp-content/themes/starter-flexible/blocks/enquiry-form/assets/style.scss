@@ -54,9 +54,9 @@
 .form-label {
 	/* Reads at body size (16.5px, same as .copy) rather than as a micro-label. */
 	@apply font-display font-semibold text-navy;
-	font-size: 16.5px;
+	font-size: 15.5px;
 	line-height: 1.5;
-	letter-spacing: 0;
+	letter-spacing: -0.01em;
 }
 /* CF7's autop drops <br> inside the label; they would double its height. */
 .form-label br {
@@ -78,15 +78,15 @@
 }
 
 .form-control {
-	@apply w-full border border-line bg-paper font-body text-navy outline-none;
-	min-height: 52px;
+	@apply w-full border border-line bg-surface font-body text-navy outline-none;
+	min-height: 54px;
 	padding: 13px 16px;
 	border-radius: var(--r-md);
 	font-size: 15px;
 	line-height: 1.5;
 	transition:
-		border-color 200ms ease,
-		box-shadow 200ms ease;
+		border-color 200ms var(--ease),
+		box-shadow 200ms var(--ease);
 }
 .form-control::placeholder {
 	@apply text-mute;
@@ -95,8 +95,8 @@
 	@apply border-mute;
 }
 .form-control:focus {
-	@apply border-marine;
-	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
+	@apply border-marine bg-paper;
+	box-shadow: var(--ring);
 }
 textarea.form-control {
 	@apply resize-y;
@@ -115,18 +115,21 @@ textarea.form-control {
 	@apply m-0;
 }
 .consult-form .wpcf7-list-item label {
-	@apply flex cursor-pointer items-center border border-line bg-paper font-body text-navy;
+	@apply flex cursor-pointer items-center border border-transparent bg-surface font-body text-navy;
 	gap: 10px;
-	padding: 12px 18px;
-	border-radius: var(--r-md);
+	padding: 10px 18px 10px 14px;
+	border-radius: var(--r-pill);
 	font-size: 15px;
 	transition:
-		border-color 200ms ease,
-		background 200ms ease,
-		color 200ms ease;
+		border-color 200ms var(--ease),
+		background 200ms var(--ease),
+		color 200ms var(--ease);
 }
 .consult-form .wpcf7-list-item label:hover {
-	@apply border-marine;
+	@apply border-line bg-paper;
+}
+.consult-form .wpcf7-list-item label:has(input:focus-visible) {
+	box-shadow: var(--ring);
 }
 .consult-form .wpcf7-list-item input[type='radio'],
 .consult-form .wpcf7-list-item input[type='checkbox'] {
@@ -135,22 +138,18 @@ textarea.form-control {
 	height: 17px;
 	border-radius: 50%;
 	transition:
-		border-color 200ms ease,
-		box-shadow 200ms ease;
+		border-color 200ms var(--ease),
+		box-shadow 200ms var(--ease);
 }
 .consult-form .wpcf7-list-item input[type='checkbox'] {
 	border-radius: 4px;
 }
 .consult-form .wpcf7-list-item input:checked {
-	@apply border-marine bg-marine;
-	box-shadow: inset 0 0 0 3px var(--paper);
-}
-.consult-form .wpcf7-list-item input:focus-visible {
-	@apply border-marine;
-	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.2);
+	@apply border-aqua bg-aqua;
+	box-shadow: inset 0 0 0 3px var(--navy);
 }
 .consult-form .wpcf7-list-item label:has(input:checked) {
-	@apply border-marine bg-pale text-marine;
+	@apply border-navy bg-navy text-white;
 }
 .consult-form .wpcf7-list-item-label {
 	@apply font-display font-semibold;
@@ -159,26 +158,27 @@ textarea.form-control {
 
 /* File input: dashed drop plate, native control kept but restyled. */
 .form-file {
-	@apply w-full cursor-pointer border border-dashed border-line bg-paper font-body text-mute;
+	@apply w-full cursor-pointer border border-dashed border-line bg-surface font-body text-mute;
 	padding: 20px;
-	border-radius: var(--r-md);
+	border-radius: var(--r-lg);
+	max-width: 100%;
 	font-size: 14.5px;
 	transition:
-		border-color 200ms ease,
-		background 200ms ease;
+		border-color 200ms var(--ease),
+		background 200ms var(--ease);
 }
 .form-file:hover {
-	@apply border-marine bg-pale;
+	@apply border-marine bg-paper;
 }
 .form-file::file-selector-button {
-	@apply mr-4 cursor-pointer border-none bg-marine font-display font-semibold text-white;
-	padding: 9px 16px;
-	border-radius: var(--r-sm);
+	@apply mr-4 cursor-pointer border-none bg-navy font-display font-semibold text-white;
+	padding: 9px 18px;
+	border-radius: var(--r-pill);
 	font-size: 13.5px;
-	transition: background 200ms ease;
+	transition: background 200ms var(--ease);
 }
 .form-file::file-selector-button:hover {
-	@apply bg-navy;
+	@apply bg-marine;
 }
 
 .form-actions {
@@ -187,15 +187,21 @@ textarea.form-control {
 	margin-top: 4px;
 }
 .form-submit {
-	@apply inline-flex cursor-pointer items-center justify-center border border-transparent bg-marine font-display font-semibold text-white;
+	@apply inline-flex cursor-pointer items-center justify-center border border-transparent bg-navy font-display font-semibold text-white;
 	height: 52px;
 	padding-inline: 28px;
-	border-radius: var(--r-md);
+	border-radius: var(--r-pill);
+	letter-spacing: -0.01em;
 	font-size: 16px;
-	transition: background 220ms ease;
+	transition: background 220ms var(--ease);
 }
 .form-submit:hover {
-	@apply bg-navy;
+	@apply bg-marine;
+	box-shadow: var(--lift);
+}
+.form-submit:focus-visible {
+	outline: none;
+	box-shadow: var(--ring);
 }
 .form-submit:disabled {
 	@apply cursor-not-allowed;
@@ -212,7 +218,7 @@ textarea.form-control {
 	border-color: #c0392b;
 }
 .consult-form .wpcf7-response-output {
-	@apply border border-line text-navy;
+	@apply border-0 bg-surface text-navy;
 	margin: 18px 0 0;
 	padding: 14px 18px;
 	border-radius: var(--r-md);
@@ -221,3 +227,28 @@ textarea.form-control {
 .consult-form .wpcf7-spinner {
 	@apply my-0;
 }
+
+/* Tablet: the intro above the form, the form at full width. */
+@media (max-width: 1024px) {
+	.ef {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.consult-form * {
+		transition: none !important;
+	}
+}
+
+/* v2 balance: heading above, the form centred under it — no tall empty
+   column beside the fields. */
+.ef {
+	grid-template-columns: minmax(0, 1fr);
+	max-width: 820px;
+	margin-inline: auto;
+	gap: 32px;
+}
+.ef__intro { text-align: center; align-items: center; }
+/* Stacked layout: the heading no longer sticks, so it never rides over the form. */
+.ef__intro { position: static; top: auto; display: flex; flex-direction: column; gap: 10px; }

@@ -52,14 +52,14 @@
 	gap: 26px;
 }
 .cs__heading {
-	@apply text-white;
+	@apply text-navy;
 	max-width: 14em;
 	font-size: clamp(28px, 3.4vw, 52px);
 	line-height: 1.06;
-	letter-spacing: -0.025em;
+	letter-spacing: -0.02em;
 }
 .cs__description {
-	@apply text-white;
+	@apply text-navy;
 	max-width: 44ch;
 	margin: -8px 0 0;
 	font-size: clamp(15px, 1.15vw, 17.5px);
@@ -70,19 +70,21 @@
 /* The shared `.spec` row is drawn for a light page — on the navy band the rule
    and the two text tones are re-tinted rather than re-built. */
 .cs__contact .spec {
-	border-bottom-color: rgb(255 255 255 / 0.16);
+	@apply justify-between;
+	border-bottom-color: rgba(11, 27, 76, 0.12);
 }
 .cs__contact .spec__label {
-	@apply text-white;
+	@apply text-navy;
 	min-width: 0;
 	font-size: clamp(16px, 1.3vw, 20px);
 	opacity: 0.72;
 }
 .cs__contact .spec__leader {
-	background: rgb(255 255 255 / 0.16);
+	background: rgba(11, 27, 76, 0.12);
 }
 .cs__contact .spec__value {
-	@apply text-white;
+	@apply text-right text-navy;
+	flex: 0 1 auto;
 	font-size: clamp(19px, 1.7vw, 26px);
 }
 .cs__contact {
@@ -113,4 +115,61 @@ a.spec__value:hover {
 	.cs__mascot img {
 		max-width: 280px;
 	}
+}
+/* The shared `.spec` stacks label over value here, so the value goes back to
+   the left edge under its label. */
+@media (max-width: 520px) {
+	.cs__contact .spec__value {
+		@apply text-left;
+	}
+}
+
+
+/* --- v2 light minimal ---------------------------------------------------- */
+.cs__waves { opacity: 0.18; }
+.cs__heading {
+	@apply font-semibold;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.cs__description { color: var(--steel); opacity: 1; }
+.cs__contact .spec { border-bottom-color: var(--line); }
+.cs__contact .spec__leader { background: var(--line); }
+.cs__contact .spec__label { color: var(--mute); opacity: 1; }
+a.spec__value { transition: color 200ms var(--ease); }
+a.spec__value:hover { @apply text-marine; }
+.cs__mascot img { max-width: min(420px, 100%); }
+
+/* v2 polish: no decorative waves; both columns start on the same line. */
+.cs__waves { display: none; }
+.cs__body,
+.cs__contact { align-self: center; }
+.cs .cs__heading { text-wrap: pretty; max-width: 10em; }
+
+/* v2: Call / Zalo are the primary actions; the old CTA steps back to a link. */
+.cs__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+.cs__zalo-mark {
+	display: inline-grid;
+	place-items: center;
+	height: 22px;
+	padding: 0 7px;
+	border-radius: 6px;
+	background: #0068ff;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0;
+}
+.cs__hint {
+	color: var(--mute);
+	font-size: 14px;
+	margin-top: -4px;
+}
+.cs .cs__cta { padding-inline: 0; }
+@media (max-width: 520px) {
+	.cs__actions .btn { flex: 1 1 100%; justify-content: center; }
 }

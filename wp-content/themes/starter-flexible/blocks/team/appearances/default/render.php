@@ -35,14 +35,24 @@ if ( empty( $data->should_render ) ) {
 		?>
 		<div>
 			<h2 class="h4 tm__heading"><?php echo esc_html( $data->heading ); ?></h2>
-			<div class="tm__list" data-reveal-stagger>
-				<?php foreach ( $data->people as $person ) : ?>
-					<div class="tm__row">
-						<span class="tm__name"><?php echo esc_html( $person['name'] ); ?></span>
-						<span class="tm__role"><?php echo esc_html( $person['role'] ); ?></span>
-					</div>
-				<?php endforeach; ?>
-			</div>
+			<?php foreach ( $data->groups as $group ) : ?>
+				<?php if ( '' !== $group['name'] ) : ?>
+					<h3 class="tm__group"><?php echo esc_html( $group['name'] ); ?></h3>
+				<?php endif; ?>
+				<div class="tm__list" data-reveal-stagger>
+					<?php foreach ( $group['people'] as $person ) : ?>
+						<div class="tm__row">
+							<span class="tm__who">
+								<span class="tm__name"><?php echo esc_html( $person['name'] ); ?></span>
+								<?php if ( '' !== $person['position'] ) : ?>
+									<span class="tm__position"><?php echo esc_html( $person['position'] ); ?></span>
+								<?php endif; ?>
+							</span>
+							<span class="tm__role"><?php echo esc_html( $person['role'] ); ?></span>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </section>

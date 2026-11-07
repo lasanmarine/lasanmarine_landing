@@ -38,7 +38,7 @@ if ( empty( $data->should_render ) ) {
 				<?php endif; ?>
 				<?php if ( $item['has_solution'] ) : ?>
 					<div class="uc__solution">
-						<span class="meta uc__solution-label"><?php esc_html_e( 'Hướng xử lý', 'starter-flexible' ); ?></span>
+						<span class="meta uc__solution-label"><?php echo esc_html( '' !== trim( (string) $data->solution_label ) ? $data->solution_label : ( function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ) ? 'Our approach' : __( 'Hướng xử lý', 'starter-flexible' ) ) ); ?></span>
 						<p><?php echo esc_html( $item['solution'] ); ?></p>
 					</div>
 				<?php endif; ?>

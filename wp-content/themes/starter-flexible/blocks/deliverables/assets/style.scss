@@ -1,0 +1,125 @@
+/* Deliverables — a navy brand tile (what you get, and how long) beside the
+   list of files the customer receives. */
+.dl {
+	display: grid;
+	grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+	gap: 12px;
+	align-items: stretch;
+}
+.dl__lead {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 24px;
+	padding: clamp(26px, 3vw, 44px);
+	overflow: hidden;
+	border-radius: var(--r-xl);
+	color: #fff;
+	background:
+		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.4), transparent 60%),
+		radial-gradient(90% 70% at 0% 100%, rgba(77, 163, 232, 0.3), transparent 60%),
+		linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+}
+.dl__lead-top {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+.dl__heading {
+	color: #fff;
+}
+.dl__intro {
+	color: rgba(255, 255, 255, 0.78);
+	font-size: 15.5px;
+	line-height: 1.7;
+}
+.dl__note {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 16px 18px;
+	border-radius: var(--r-md);
+	background: rgba(255, 255, 255, 0.1);
+	font-size: 15px;
+	line-height: 1.5;
+}
+.dl__note-label {
+	color: var(--aqua);
+	font-size: 12.5px;
+	font-weight: 600;
+}
+.dl__list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.dl__item {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 16px;
+	padding: 18px 20px;
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	transition:
+		background 260ms var(--ease),
+		box-shadow 260ms var(--ease);
+}
+.dl__item:hover {
+	background: var(--grad-surface);
+	box-shadow: inset 0 0 0 1px var(--line-soft), 0 16px 34px -24px rgba(10, 114, 200, 0.4);
+}
+.dl__check {
+	display: grid;
+	place-items: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 999px;
+	background: var(--paper);
+	color: var(--aqua-deep);
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+.dl__text {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.dl__title {
+	color: var(--navy);
+	font-family: var(--display);
+	font-size: 16.5px;
+	font-weight: 600;
+	line-height: 1.35;
+}
+.dl__desc {
+	color: var(--steel);
+	font-size: 14px;
+	line-height: 1.55;
+}
+.dl__format {
+	padding: 5px 10px;
+	border-radius: var(--r-pill);
+	background: var(--paper);
+	color: var(--mute);
+	font-size: 12px;
+	font-weight: 500;
+	white-space: nowrap;
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+@media (max-width: 900px) {
+	.dl {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+@media (max-width: 520px) {
+	.dl__item {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+	.dl__format {
+		grid-column: 2;
+		justify-self: start;
+	}
+}

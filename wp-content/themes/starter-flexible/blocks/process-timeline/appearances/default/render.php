@@ -19,12 +19,23 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
+	<?php if ( '' !== $data->heading || '' !== $data->intro ) : ?>
+		<div class="pt__head">
+			<?php if ( '' !== $data->heading ) : ?>
+				<h2 class="h3 pt__heading"><?php echo esc_html( $data->heading ); ?></h2>
+			<?php endif; ?>
+			<?php if ( '' !== $data->intro ) : ?>
+				<p class="copy pt__intro"><?php echo esc_html( $data->intro ); ?></p>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
+
 	<div class="pt" data-timeline>
 		<span class="pt__rail"></span>
 		<span class="pt__fill" data-timeline-fill></span>
 		<div class="pt__steps" data-reveal-stagger>
 			<?php foreach ( $data->steps as $step ) : ?>
-				<div class="pt__step">
+				<div class="pt__step" data-index="<?php echo esc_attr( (string) ( $step['index'] ?? '' ) ); ?>">
 					<span class="pt__dot"></span>
 					<div class="pt__title"><?php echo esc_html( $step['title'] ); ?></div>
 					<div class="pt__desc"><?php echo esc_html( $step['desc'] ); ?></div>

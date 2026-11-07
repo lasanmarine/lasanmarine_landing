@@ -6,6 +6,24 @@
 	gap: 16px 32px;
 	margin-bottom: clamp(20px, 2.4vw, 32px);
 }
+.ps__bar--head {
+	@apply justify-between;
+	margin-bottom: clamp(28px, 3vw, 44px);
+}
+.ps__head {
+	@apply flex min-w-0 flex-col items-start;
+	gap: 12px;
+	max-width: 40em;
+}
+.ps__heading {
+	@apply m-0;
+}
+.ps__intro {
+	@apply m-0;
+}
+.ps__all {
+	margin-top: 4px;
+}
 .ps__nav {
 	@apply flex flex-none items-center;
 	gap: 12px;
@@ -16,7 +34,7 @@
 
 .ps__viewport {
 	@apply overflow-hidden;
-	border-radius: var(--r-md);
+	border-radius: var(--r-xl);
 }
 .ps__track {
 	@apply flex;
@@ -38,8 +56,8 @@
 	}
 }
 .ps__media {
-	@apply overflow-hidden bg-tint;
-	border-radius: var(--r-md);
+	@apply overflow-hidden bg-surface;
+	border-radius: var(--r-lg);
 }
 
 .ps__body {
@@ -51,7 +69,7 @@
 	@apply font-display font-semibold text-navy;
 	max-width: 20ch;
 	font-size: clamp(22px, 2.4vw, 34px);
-	line-height: 1.2;
+	line-height: 1.15;
 	letter-spacing: -0.02em;
 	text-wrap: balance;
 }
@@ -59,19 +77,19 @@
 	@apply m-0 flex w-full flex-col;
 }
 .ps__specs > div {
-	@apply flex flex-wrap items-baseline border-b border-line;
+	@apply flex flex-wrap items-baseline border-b border-line-soft;
 	gap: 4px 18px;
 	padding-block: 10px;
 }
 .ps__specs > div:first-child {
-	@apply border-t border-line;
+	@apply border-t border-line-soft;
 }
 .ps__specs dt {
 	@apply flex-none text-mute;
 	width: 8.5em;
 	font-size: 12.5px;
 	letter-spacing: 0.1em;
-	text-transform: uppercase;
+	text-transform: none;
 }
 .ps__specs dd {
 	@apply m-0 min-w-0 flex-1 text-navy;
@@ -93,14 +111,14 @@
 	height: 3px;
 	border-radius: 2px;
 	transition:
-		background 220ms ease,
-		width 220ms ease;
+		background 300ms var(--ease),
+		width 300ms var(--ease);
 }
 .ps__dot:hover {
 	@apply bg-mute;
 }
 .ps__dot[aria-selected='true'] {
-	@apply bg-marine;
+	@apply bg-navy;
 	width: 44px;
 }
 
@@ -115,3 +133,46 @@
 	gap: 4px 8px;
 	margin-top: clamp(4px, 1vw, 10px);
 }
+
+/* v2 polish: drawings on white get a frame; specs read as quiet labels. */
+.ps__media {
+	position: relative;
+}
+.ps__media::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	border-radius: inherit;
+	box-shadow: inset 0 0 0 1px var(--line);
+}
+.ps__name {
+	max-width: none;
+}
+.ps__specs > div {
+	flex-wrap: nowrap;
+	padding-block: 12px;
+}
+.ps__specs dt {
+	width: 11em;
+	font-size: 13.5px;
+	letter-spacing: 0;
+	text-transform: none;
+}
+.ps__specs dd {
+	font-weight: 500;
+}
+
+/* Stacked mode: the drawing takes what the screen leaves, shown whole. */
+.is-stacked .ps__media .frame {
+	aspect-ratio: auto;
+	height: min(46vw, calc(var(--avail, 100svh) - 260px));
+	background: var(--paper);
+}
+.is-stacked .ps__media .frame > img { object-fit: contain; }
+.is-stacked .ps__specs > div { padding-block: clamp(6px, 1.2vh, 12px); }
+.is-stacked .ps__body { gap: clamp(10px, 1.8vh, 18px); }
+.is-stacked .ps__media .frame { height: min(42vw, calc(var(--avail, 100svh) - 360px)); }
+.is-stacked .lasanmarine-project-showcase .block,
+.is-stacked .ps__bar--head { gap: clamp(14px, 2.4vh, 32px); }
+.is-stacked .ps__media .frame { height: min(40vw, calc(var(--avail, 100svh) - 420px)); min-height: 240px; }

@@ -17,7 +17,7 @@
    neighbours edge to edge and carry their own inner padding. */
 .block-stream {
 	@apply flex flex-col;
-	--module-pad: clamp(55px, 7.8125vw, 100px);
+	--module-pad: clamp(56px, 6.5vw, 104px);
 }
 .block-stream > [class*='lasanmarine-'] {
 	padding-block: var(--module-pad);
@@ -36,17 +36,20 @@
 	gap: clamp(32px, 4vw, 56px);
 }
 
-/* Full-bleed bands. Spacing comes from the band's own padding, not margin. */
-.band--navy {
-	@apply bg-navy-deep;
-	color: rgba(255, 255, 255, 0.74);
+/* Full-bleed bands. Design mới: trắng hơi ngả xanh, hiện đại cá tính.
+   Tên class giữ nguyên để không phá markup, nhưng visual chuyển sang light. */
+/* v2 light minimal: a band is a quiet surface inset from the viewport edge
+   with large rounded corners, so the page reads as soft panels on white. */
+.band--navy,
+.band--navy-mid,
+.band--pale {
+	@apply bg-surface;
+	color: var(--steel);
+	margin-inline: clamp(8px, 1.2vw, 20px);
+	border-radius: var(--r-xl);
 }
 .band--navy-mid {
-	@apply bg-navy;
-	color: rgba(255, 255, 255, 0.74);
-}
-.band--pale {
-	@apply border-b border-t border-line-soft bg-pale;
+	background: linear-gradient(180deg, var(--surface) 0%, #fff 100%);
 }
 .band--navy h1,
 .band--navy h2,
@@ -56,7 +59,7 @@
 .band--navy-mid h2,
 .band--navy-mid h3,
 .band--navy-mid h4 {
-	@apply text-white;
+	@apply text-navy;
 }
 .band--pad {
 	padding-block: clamp(48px, 6vw, 96px);
@@ -79,25 +82,33 @@
 /* A hairline mesh. Each cell draws its own 1px rule, so a partly-filled last
    row leaves paper behind it rather than a stray block of border colour. */
 .mesh {
-	@apply grid gap-px p-px;
+	/* Raw `display`, not `@apply grid`: that would also pull in the `.grid`
+	   system class above, and its wide gap breaks the hairlines apart. */
+	@apply gap-px p-px;
+	display: grid;
+	overflow: hidden;
+	border-radius: var(--r-lg);
+	background: var(--line-soft);
 	grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
 }
 .mesh > * {
 	@apply bg-paper;
-	box-shadow: 0 0 0 1px var(--line);
 }
 
 /* --- type --------------------------------------------------------------- */
 
 .display {
-	@apply font-display font-bold;
-	font-size: clamp(38px, 5.2vw, 74px);
-	line-height: 1.02;
-	letter-spacing: -0.025em;
+	@apply font-display font-semibold;
+	font-size: clamp(38px, 5vw, 76px);
+	line-height: 1.08;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 }
 
 .h2 {
-	font-size: clamp(28px, 3vw, 46px);
+	font-size: clamp(30px, 3.4vw, 54px);
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 }
 .h3 {
 	font-size: clamp(26px, 3vw, 44px);
@@ -107,8 +118,9 @@
 }
 
 .lead {
-	@apply font-display font-medium text-navy;
-	font-size: clamp(19px, 1.6vw, 26px);
+	@apply font-display font-normal text-navy;
+	font-size: clamp(19px, 1.6vw, 25px);
+	letter-spacing: -0.01em;
 	line-height: 1.45;
 }
 
@@ -119,14 +131,24 @@
 	line-height: 1.8;
 }
 .band--navy .copy,
-.band--navy-mid .copy {
-	color: rgba(255, 255, 255, 0.7);
-}
+.band--navy-mid .copy { color: rgba(83, 97, 115, 0.95); }
 
 .meta {
-	@apply text-mute;
-	font-size: 12.5px;
-	letter-spacing: 0.14em;
+	@apply inline-flex items-center text-mute;
+	gap: 10px;
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+/* Eyebrow spark — the aqua dot that marks a section label. */
+.meta::before {
+	content: '';
+	flex: none;
+	width: 6px;
+	height: 6px;
+	border-radius: 999px;
+	background: var(--aqua);
 }
 
 /* Editorial copy out of the WYSIWYG. The editor emits bare <p>/<ul>/<h3>, so
@@ -211,24 +233,13 @@
 	margin-top: 0;
 }
 .band--navy .prose,
-.band--navy-mid .prose {
-	color: rgba(255, 255, 255, 0.7);
-}
-.band--navy .prose strong,
-.band--navy-mid .prose strong,
-.band--navy .prose h2,
-.band--navy .prose h3,
-.band--navy .prose h4,
-.band--navy-mid .prose h2,
-.band--navy-mid .prose h3,
-.band--navy-mid .prose h4 {
-	@apply text-white;
-}
+.band--navy-mid .prose { color: rgba(83, 97, 115, 0.95); }
+.band--navy .prose strong, .band--navy-mid .prose strong, .band--navy .prose h2, .band--navy .prose h3, .band--navy .prose h4, .band--navy-mid .prose h2, .band--navy-mid .prose h3, .band--navy-mid .prose h4 { @apply text-navy; }
 
 /* --- primitives --------------------------------------------------------- */
 
 .btn {
-	@apply inline-flex cursor-pointer items-center justify-center border border-transparent bg-marine font-display font-semibold text-white;
+	@apply inline-flex cursor-pointer items-center justify-center border border-transparent bg-navy font-display font-semibold text-white;
 	gap: 10px;
 	height: 52px;
 	padding-inline: 26px;
@@ -242,8 +253,8 @@
 		box-shadow 220ms var(--ease);
 }
 .btn:hover {
-	@apply bg-navy text-white;
-	transform: translateY(-2px);
+	/* Buttons keep their colours on hover — the lift and the icon swap carry it. */
+	@apply bg-marine text-white;
 	box-shadow: var(--lift);
 }
 .btn--lg {
@@ -298,17 +309,16 @@
 	.btn__icon svg { transition: none; }
 }
 .btn--secondary {
-	@apply border-navy bg-transparent text-navy;
+	@apply border-line bg-paper text-navy;
 }
 .btn--secondary:hover {
-	@apply border-marine bg-transparent text-marine;
+	@apply border-navy bg-paper text-navy;
 }
 .btn--ghost {
 	@apply bg-transparent text-navy;
 	padding-inline: 8px;
 }
 .btn--ghost:hover {
-	@apply bg-transparent text-marine;
 	transform: none;
 	box-shadow: none;
 }
@@ -317,28 +327,22 @@
 	@apply pointer-events-none;
 	opacity: 0.45;
 }
-/* On a navy field the outline borrows white, the solid inverts to paper. */
+/* Light bands: outline keeps brand navy (hero keeps its own rule below). */
 .band--navy .btn--secondary,
-.band--navy-mid .btn--secondary,
+.band--navy-mid .btn--secondary {
+	@apply text-navy;
+	border-color: rgba(11, 27, 76, 0.24);
+}
+/* Hero mới split nền sáng: dùng chung link/button sáng. */
 .hero .btn--secondary {
-	@apply text-white;
-	border-color: rgba(255, 255, 255, 0.34);
+	@apply text-navy;
+	border-color: rgba(11, 27, 76, 0.24);
 }
-.band--navy .btn--secondary:hover,
-.band--navy-mid .btn--secondary:hover,
-.hero .btn--secondary:hover {
-	@apply border-aqua text-aqua;
-}
-/* On a navy field the solid turns aqua with navy type, and paper on hover. */
-.band--navy .btn:not(.btn--secondary):not(.btn--ghost),
-.band--navy-mid .btn:not(.btn--secondary):not(.btn--ghost),
 .hero .btn:not(.btn--secondary):not(.btn--ghost) {
-	@apply bg-aqua text-navy-deep;
+	@apply bg-navy text-white;
 }
-.band--navy .btn:not(.btn--secondary):not(.btn--ghost):hover,
-.band--navy-mid .btn:not(.btn--secondary):not(.btn--ghost):hover,
 .hero .btn:not(.btn--secondary):not(.btn--ghost):hover {
-	@apply bg-white text-navy-deep;
+	@apply bg-marine;
 }
 
 /* A text link underscored by the accent, drawn left to right. */
@@ -369,20 +373,15 @@
 .link--lg {
 	font-size: 16px;
 }
-.band--navy .link,
-.band--navy-mid .link {
-	@apply text-white;
-}
-.band--navy .link:hover,
-.band--navy-mid .link:hover {
-	@apply text-marine-bright;
-}
+.band--navy .link, .band--navy-mid .link { @apply text-navy; }
+.band--navy .link:hover, .band--navy-mid .link:hover { @apply text-marine; }
 
 .icon-btn {
 	@apply inline-flex cursor-pointer items-center justify-center border border-line bg-none text-navy;
 	width: 46px;
 	height: 46px;
-	border-radius: var(--r-sm);
+	border-radius: var(--r-pill);
+	background: var(--paper);
 	transition:
 		border-color 200ms ease,
 		color 200ms ease;
@@ -398,26 +397,20 @@
 	width: 40px;
 	height: 40px;
 }
-.band--navy .icon-btn,
-.band--navy-mid .icon-btn {
-	@apply text-white;
-	border-color: rgba(255, 255, 255, 0.28);
-}
-.band--navy .icon-btn:hover:not(:disabled),
-.band--navy-mid .icon-btn:hover:not(:disabled) {
-	@apply border-marine text-marine-bright;
-}
+.band--navy .icon-btn, .band--navy-mid .icon-btn { @apply text-navy; border-color: rgba(11, 27, 76, 0.16); }
+.band--navy .icon-btn:hover:not(:disabled), .band--navy-mid .icon-btn:hover:not(:disabled) { @apply border-marine text-marine; }
 
 .tag {
 	@apply inline-flex items-center border border-transparent bg-aqua-soft text-aqua-deep;
 	padding: 6px 12px;
 	border-radius: var(--r-pill);
-	font-size: 10.5px;
-	letter-spacing: 0.12em;
+	font-size: 11.5px;
+	font-weight: 500;
+	letter-spacing: 0.04em;
 }
 
 .card {
-	@apply border border-line bg-paper p-5;
+	@apply border border-line-soft bg-paper p-6;
 	border-radius: var(--r-lg);
 	transition:
 		border-color 220ms ease,
@@ -425,8 +418,7 @@
 		box-shadow 260ms var(--ease);
 }
 .card:hover {
-	@apply border-aqua;
-	transform: translateY(-4px);
+	@apply border-line;
 	box-shadow: var(--lift);
 }
 
@@ -443,7 +435,7 @@
 a:hover > .frame > img,
 a:hover .frame > img,
 .frame--zoom:hover > img {
-	transform: scale(1.045);
+	transform: scale(1.035);
 }
 .frame__placeholder {
 	@apply absolute inset-0 grid justify-items-center p-5 text-center uppercase text-mute;
@@ -459,10 +451,7 @@ a:hover .frame > img,
 	background: no-repeat center / contain
 		url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzcyLjA5N3B0IiBoZWlnaHQ9IjEzOC4wMTJwdCIgdmlld0JveD0iMCAwIDM3Mi4wOTcgMTM4LjAxMiI+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAtMCI+CjxwYXRoIGNsaXAtcnVsZT0ibm9uemVybyIgZD0iTSA1MyAxOCBMIDM3MC4zMjgxMjUgMTggTCAzNzAuMzI4MTI1IDk5IEwgNTMgOTkgWiBNIDUzIDE4ICIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAtMSI+CjxwYXRoIGNsaXAtcnVsZT0ibm9uemVybyIgZD0iTSAwLjg3NSA5MCBMIDM2NiA5MCBMIDM2NiAxMzcuMDMxMjUgTCAwLjg3NSAxMzcuMDMxMjUgWiBNIDAuODc1IDkwICIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+CjxwYXRoIGZpbGwtcnVsZT0ibm9uemVybyIgZmlsbD0icmdiKDQuMjk5OTI3JSwgMTAuNTk4NzU1JSwgMjkuNzk4ODg5JSkiIGZpbGwtb3BhY2l0eT0iMSIgZD0iTSAxMjkuNzEwOTM4IDI3LjE2Nzk2OSBDIDEyOS43MTA5MzggMjcuMTY3OTY5IDE1Mi43NDYwOTQgMTUuMDYyNSAxOTYuODk0NTMxIDAgQyAxOTYuODk0NTMxIDAgMjMxLjAwNzgxMiAxMy4xMDU0NjkgMjMzLjg4NjcxOSAyNC43MzQzNzUgQyAyMzMuODg2NzE5IDI0LjczNDM3NSAxNDEuNTIzNDM4IDQ3LjU0Njg3NSAxMDYuMzA0Njg4IDYwLjM5NDUzMSBDIDEwNi4zMDQ2ODggNjAuMzk0NTMxIDE1My4wNDI5NjkgMzcuMjEwOTM4IDIxMS42NjQwNjIgMjAuOTY4NzUgQyAyMTEuNjY0MDYyIDIwLjk2ODc1IDIwMC4yOTI5NjkgMTIuMTgzNTk0IDE5NC45NzY1NjIgOC43ODUxNTYgQyAxOTQuOTc2NTYyIDguNzg1MTU2IDE1MC42Nzk2ODggMjAuOTY4NzUgMTI5LjcxMDkzOCAyNy4xNjc5NjkgIi8+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwLTApIj4KPHBhdGggZmlsbC1ydWxlPSJub256ZXJvIiBmaWxsPSJyZ2IoNC4yOTk5MjclLCAxMC41OTg3NTUlLCAyOS43OTg4ODklKSIgZmlsbC1vcGFjaXR5PSIxIiBkPSJNIDUzLjE0ODQzOCA5NC43MjY1NjIgQyA1My4xNDg0MzggOTQuNzI2NTYyIDIzMS44OTA2MjUgMzYuMDMxMjUgMzQzLjUyNzM0NCAzMy4zNzEwOTQgTCAzMDcuNDIxODc1IDk4LjkzMzU5NCBMIDM3MC4zMjgxMjUgMTguNzUzOTA2IEMgMzcwLjMyODEyNSAxOC43NTM5MDYgMzA4Ljk3MjY1NiAxOC45NzI2NTYgMjA3LjMwODU5NCA0My4xMTcxODggQyAxMDUuNjQwNjI1IDY3LjI2MTcxOSA1My4xNDg0MzggOTQuNzI2NTYyIDUzLjE0ODQzOCA5NC43MjY1NjIgIi8+CjwvZz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAtMSkiPgo8cGF0aCBmaWxsLXJ1bGU9Im5vbnplcm8iIGZpbGw9InJnYigzLjg5ODYyMSUsIDQ0LjY5OTA5NyUsIDc4LjM5OTY1OCUpIiBmaWxsLW9wYWNpdHk9IjEiIGQ9Ik0gMC44NzUgMTM3LjAzMTI1IEMgMC44NzUgMTM3LjAzMTI1IDgzLjkzMzU5NCAxMDcuMTI4OTA2IDE1Ny4yNSAxMDQuNDcyNjU2IEMgMjYzLjY0MDYyNSA5OS45Njg3NSAzMDMuODA0Njg4IDE1MC4zMjAzMTIgMzY1LjY3NTc4MSAxMDYuMDIzNDM4IEMgMzY1LjY3NTc4MSAxMDYuMDIzNDM4IDM1MC44MzU5MzggMTEzLjU1NDY4OCAzMjYuMzU5Mzc1IDExMy43NzM0MzggQyAyOTIuNjU2MjUgMTEzLjY1NjI1IDI2OS44Nzg5MDYgOTkuNDg4MjgxIDIzNy43NjE3MTkgOTQuMDYyNSBDIDIwNS42NDQ1MzEgODguNjMyODEyIDEwOC4yOTY4NzUgODAuNzczNDM4IDAuODc1IDEzNy4wMzEyNSAiLz4KPC9nPgo8L3N2Zz4K');
 }
-.band--navy .frame__placeholder,
-.band--navy-mid .frame__placeholder {
-	color: rgba(255, 255, 255, 0.45);
-}
+.band--navy .frame__placeholder, .band--navy-mid .frame__placeholder { color: rgba(83, 97, 115, 0.6); }
 
 .ratio-1-1 {
 	aspect-ratio: 1 / 1;
@@ -545,17 +534,15 @@ a:hover .frame > img,
 	padding-left: 0;
 }
 .stat__value {
-	@apply font-display font-bold leading-none text-navy;
-	font-size: clamp(42px, 4.4vw, 66px);
-	letter-spacing: -0.03em;
+	@apply font-display font-semibold leading-none text-navy;
+	font-size: clamp(44px, 5vw, 76px);
+	letter-spacing: -0.02em;
+	font-variant-numeric: tabular-nums;
 }
 .stat__value span {
 	@apply text-aqua-deep;
 }
-.band--navy .stat__value span,
-.band--navy-mid .stat__value span {
-	@apply text-aqua;
-}
+.band--navy .stat__value span, .band--navy-mid .stat__value span { @apply text-aqua-deep; }
 .stat__label {
 	@apply font-display font-semibold text-navy;
 	margin-top: 14px;
@@ -578,16 +565,16 @@ a:hover .frame > img,
 	gap: 8px;
 }
 .field__label {
-	@apply text-mute;
-	font-size: 10.5px;
-	letter-spacing: 0.14em;
+	@apply font-medium text-navy;
+	font-size: 13px;
+	letter-spacing: 0;
 }
 .field__req {
 	@apply text-marine;
 }
 .field__control {
-	@apply w-full border border-line bg-paper font-body text-navy outline-none;
-	min-height: 52px;
+	@apply w-full border border-line bg-surface font-body text-navy outline-none;
+	min-height: 54px;
 	padding: 13px 16px;
 	border-radius: var(--r-md);
 	font-size: 15px;
@@ -603,8 +590,8 @@ a:hover .frame > img,
 	@apply border-mute;
 }
 .field__control:focus {
-	@apply border-marine;
-	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
+	@apply border-marine bg-paper;
+	box-shadow: var(--ring);
 }
 .field__control:disabled {
 	@apply cursor-not-allowed;
@@ -630,7 +617,7 @@ select.field__control {
 
 /* File input: the native control is hidden behind a dashed drop plate. */
 .field__file {
-	@apply flex cursor-pointer flex-col items-center border border-dashed border-line bg-paper text-center;
+	@apply flex cursor-pointer flex-col items-center border border-dashed border-line bg-surface text-center;
 	gap: 6px;
 	padding: 26px 20px;
 	border-radius: var(--r-md);
@@ -649,7 +636,7 @@ select.field__control {
 }
 .field__file:focus-within {
 	@apply border-marine;
-	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
+	box-shadow: var(--ring);
 }
 .field__file-action {
 	@apply font-display font-semibold text-marine;
@@ -668,10 +655,12 @@ select.field__control {
 /* A block fades up as a whole; `data-reveal` takes a direction. */
 .reveal-on [data-reveal] {
 	@apply opacity-0;
-	transform: translateY(20px);
+	transform: translateY(24px);
+	filter: blur(6px);
 	transition:
-		opacity 700ms ease,
-		transform 700ms var(--ease);
+		opacity 900ms ease,
+		filter 900ms ease,
+		transform 900ms var(--ease);
 }
 .reveal-on [data-reveal='left'] {
 	transform: translateX(-28px);
@@ -687,6 +676,7 @@ select.field__control {
 }
 .reveal-on [data-reveal].is-revealed {
 	@apply opacity-100;
+	filter: none;
 	transform: none;
 }
 
@@ -703,23 +693,6 @@ select.field__control {
 .reveal-on [data-reveal-item].is-revealed {
 	@apply opacity-100;
 	transform: none;
-}
-
-/* Above the fold there is nothing to scroll into — those parts animate on
-   load instead, on the same curve so the page reads as one motion system. */
-[data-enter] {
-	animation: lasan-enter 820ms var(--ease) both;
-	animation-delay: calc(var(--enter-i, 0) * 110ms);
-}
-@keyframes lasan-enter {
-	from {
-		opacity: 0;
-		transform: translateY(26px);
-	}
-	to {
-		opacity: 1;
-		transform: none;
-	}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -746,3 +719,445 @@ select.field__control {
 	font-size: 13.5px;
 	letter-spacing: 0.04em;
 }
+
+
+/* --- phone tier ------------------------------------------------------------
+   The fluid clamps above bottom out at sizes meant for a small tablet; on a
+   phone the type steps down once more and the blocks sit closer together. */
+@media (max-width: 600px) {
+	.display {
+		font-size: 34px;
+	}
+	.h2 {
+		font-size: 26px;
+	}
+	.h3 {
+		font-size: 24px;
+		line-height: 1.2;
+	}
+	.h4 {
+		font-size: 20px;
+		line-height: 1.25;
+	}
+	.lead {
+		font-size: 17px;
+	}
+	.copy,
+	.prose {
+		font-size: 15.5px;
+		line-height: 1.7;
+	}
+	.prose h2,
+	.prose h3 {
+		margin-top: 28px;
+		font-size: 20px;
+	}
+	.prose h4 {
+		font-size: 17px;
+	}
+	.block {
+		gap: 24px;
+	}
+	.btn {
+		height: 48px;
+		padding-inline: 22px;
+		font-size: 15px;
+	}
+	.btn--lg {
+		height: 52px;
+		padding-inline: 24px;
+	}
+}
+
+
+
+/* --- v2 polish: one left edge ------------------------------------------------
+   Inset panels sit `--inset` in from the viewport. Their container gives that
+   back (narrower max-width, smaller gutter) so text inside a panel starts on
+   exactly the same vertical line as text outside it, at every width. */
+:root {
+	--inset: clamp(8px, 1.2vw, 20px);
+}
+:is(.band--navy, .band--navy-mid, .band--pale, .phero, .phead, .post-hero, .project-single__hero) .container {
+	max-width: calc(1560px - 2 * var(--inset));
+	padding-inline: max(8px, calc(var(--gutter) - var(--inset)));
+}
+.band--navy,
+.band--navy-mid,
+.band--pale,
+.phero {
+	margin-inline: var(--inset);
+}
+
+/* --- v2 gradients, site-wide ---------------------------------------------------
+   One family everywhere: navy → marine for actions, marine → aqua for accents,
+   aqua-soft → white for surfaces. Effects stay quiet and never move layout. */
+:root {
+	--grad-action: linear-gradient(120deg, var(--navy) 0%, #123a86 55%, var(--marine) 100%);
+	--grad-accent: linear-gradient(90deg, var(--marine) 0%, var(--aqua) 100%);
+	--grad-surface: linear-gradient(160deg, var(--aqua-soft) 0%, #fff 60%);
+	--grad-border: linear-gradient(135deg, var(--aqua) 0%, var(--marine-bright) 50%, transparent 85%);
+}
+
+/* Primary buttons: gradient fill with a light sweep on hover. */
+.btn:not(.btn--secondary):not(.btn--ghost) {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	background: var(--grad-action);
+	background-size: 160% 100%;
+	background-position: 0% 50%;
+	transition: background-position 520ms var(--ease), box-shadow 260ms var(--ease);
+}
+.btn:not(.btn--secondary):not(.btn--ghost)::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.22) 50%, transparent 70%);
+	transform: translateX(-120%);
+	transition: transform 700ms var(--ease);
+}
+.btn:not(.btn--secondary):not(.btn--ghost):hover {
+	background: var(--grad-action);
+	background-size: 160% 100%;
+	background-position: 100% 50%;
+	box-shadow: 0 14px 30px -14px rgba(10, 114, 200, 0.6);
+}
+.btn:not(.btn--secondary):not(.btn--ghost):hover::before { transform: translateX(120%); }
+
+/* Secondary buttons: gradient hairline on hover. */
+.btn--secondary { position: relative; }
+.btn--secondary::after {
+	content: '';
+	position: absolute;
+	inset: -1px;
+	padding: 1px;
+	border-radius: inherit;
+	background: var(--grad-accent);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	opacity: 0;
+	transition: opacity 260ms var(--ease);
+	pointer-events: none;
+}
+.btn--secondary:hover::after { opacity: 1; }
+
+/* Text links: the underline is the accent gradient. */
+.link::after { background: var(--grad-accent); }
+
+/* Section labels and stat suffixes take the accent gradient. */
+.meta::before { background: var(--grad-accent); }
+.stat__value span,
+.h2 em, .h3 em {
+	background: var(--grad-accent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/* Quiet panels: a soft aqua/marine glow in the corners. */
+.band--navy,
+.band--navy-mid,
+.band--pale {
+	background:
+		radial-gradient(60% 80% at 100% 0%, rgba(20, 200, 200, 0.08), transparent 70%),
+		radial-gradient(50% 70% at 0% 100%, rgba(10, 114, 200, 0.06), transparent 70%),
+		var(--surface);
+}
+
+/* Cards everywhere: gradient ground and glowing gradient border on hover. */
+:is(.card, .vg__cell, .uc__case, .tm__row, .cm--tools .cm__cell, .pj-card, .io__col, .in__card) {
+	position: relative;
+}
+:is(.card, .vg__cell, .uc__case, .tm__row, .cm--tools .cm__cell, .io__col)::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	padding: 1px;
+	border-radius: inherit;
+	background: var(--grad-border);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 320ms var(--ease);
+}
+:is(.card, .vg__cell, .uc__case, .tm__row, .cm--tools .cm__cell):hover {
+	background: var(--grad-surface);
+}
+:is(.card, .vg__cell, .uc__case, .tm__row, .cm--tools .cm__cell, .io__col):hover::after { opacity: 1; }
+
+/* Image frames: a faint gradient wash rises on hover. */
+.frame::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	background: linear-gradient(200deg, transparent 50%, rgba(10, 114, 200, 0.22));
+	opacity: 0;
+	transition: opacity 420ms var(--ease);
+}
+a:hover .frame::after,
+.frame--zoom:hover::after { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+	.btn::before { display: none; }
+	.btn { transition: none; }
+}
+
+/* --- v2: panels never outgrow the content shell -----------------------------
+   On very wide screens every inset panel stops at the shell width (1560px)
+   and centres, so it frames the content instead of the whole viewport. */
+html body :is(.band--navy, .band--navy-mid, .band--pale, .phero, .phead, .post-hero, .project-single__hero, .spotlight, .cb) {
+	margin-inline: max(var(--inset), calc((100% - 1560px) / 2));
+}
+.hero__split {
+	max-width: 1560px;
+	margin-inline: auto;
+}
+
+/* --- v2: full-screen stacking sheets (driven by site/stack.js) ------------
+   --fill (set by JS) adds equal transparent borders so a short block fills
+   one screen with its content centred, without touching its own padding.
+   margin-bottom is the dwell: the pinned sheet stays in full view for that
+   much scrolling before the next one starts to slide over it. */
+.block-stream.is-stacked > * {
+	position: sticky;
+	box-sizing: border-box;
+	border-top: var(--fill, 0px) solid transparent;
+	border-bottom: var(--fill, 0px) solid transparent;
+	background-color: var(--paper);
+	background-clip: border-box;
+	transform-origin: 50% 0;
+	will-change: transform, opacity;
+}
+/* No dwell: snapping moves a whole sheet per wheel notch. The page-hero with
+   summary cards keeps one short stop to play its cards. */
+.block-stream.is-stacked > .lasanmarine-page-hero:has(.phero__cards) {
+	margin-bottom: 45vh;
+}
+/* Snapping drives the glide itself. */
+html.is-snapping { scroll-behavior: auto; }
+/* An inset panel is the visible sheet; around it the page stays plain white. */
+.block-stream.is-stacked > :is(.band, .lasanmarine-page-hero, .lasanmarine-cta-banner, .lasanmarine-contact-statement) {
+	background-color: transparent;
+	box-shadow: 0 0 0 100vmax var(--paper);
+	clip-path: inset(0 -100vmax);
+}
+/* Opaque from the start: the sheet's own fade-in is dropped (its children
+   still arrive with their stagger). */
+.reveal-on .block-stream.is-stacked > [data-reveal],
+.reveal-on .block-stream.is-stacked > [data-reveal].is-revealed {
+	filter: none;
+	transition: none;
+}
+#main:has(.block-stream.is-stacked) { overflow-x: visible; }
+body:has(.block-stream.is-stacked) { overflow-x: clip; }
+
+/* --- v2: eyebrow labels retired ---------------------------------------------
+   No dot, no uppercase tracking: a label is plain small grey text. */
+.meta,
+.hero__eyebrow,
+.phead__eyebrow,
+.tm__group,
+.navx__col-eyebrow,
+.ps__specs dt {
+	text-transform: none;
+	letter-spacing: 0;
+	font-weight: 500;
+}
+.meta::before,
+.hero__eyebrow::before,
+.phead__eyebrow::before,
+.tm__group::before {
+	content: none;
+	display: none;
+}
+.meta,
+.hero__eyebrow { gap: 0; font-size: 13.5px; }
+.meta,
+.hero__eyebrow { gap: 0.3em; }
+
+/* --- v2: sheets sized to the screen (stacked mode only) ----------------------
+   Rhythm and media follow the viewport height so a presentation block fits
+   in the space under the bar. --avail is set by stack.js. */
+.block-stream.is-stacked {
+	--module-pad: clamp(28px, 5.5vh, 88px);
+}
+.block-stream.is-stacked .block {
+	gap: clamp(18px, 3.4vh, 48px);
+}
+.block-stream.is-stacked .h2,
+.block-stream.is-stacked .h3 {
+	font-size: clamp(28px, min(3.2vw, 5.2vh), 54px);
+}
+/* Long-read blocks scroll normally: never pinned, never covered early. */
+.block-stream.is-stacked > .is-flow {
+	position: relative;
+	top: auto !important;
+	border-top-width: 0;
+	border-bottom-width: 0;
+}
+/* The receding sheet is veiled in paper white, never made transparent, so
+   sheets further down the stack can't show through. */
+.block-stream.is-stacked > *::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 50;
+	pointer-events: none;
+	background: var(--paper);
+	opacity: var(--veil, 0);
+}
+.block-stream.is-stacked > .is-flow::after { content: none; }
+
+/* --- v2: sticky "on this page" bar (built by site/hero-cards.js) ------------ */
+.onpage {
+	position: sticky;
+	top: calc(var(--hdr-h, 76px) + 6px);
+	z-index: 30;
+	height: 0;
+	pointer-events: none;
+}
+.onpage__in {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	width: fit-content;
+	max-width: calc(100% - 2 * var(--gutter));
+	margin-inline: auto;
+	padding: 6px 6px 6px 18px;
+	border-radius: var(--r-pill);
+	background: rgba(255, 255, 255, 0.86);
+	-webkit-backdrop-filter: blur(14px) saturate(1.4);
+	backdrop-filter: blur(14px) saturate(1.4);
+	box-shadow: inset 0 0 0 1px var(--line-soft), 0 14px 32px -20px rgba(11, 27, 76, 0.35);
+	opacity: 0;
+	transform: translate3d(0, -10px, 0);
+	transition: opacity 280ms var(--ease), transform 360ms var(--ease);
+}
+.onpage.is-shown .onpage__in {
+	opacity: 1;
+	transform: none;
+	pointer-events: auto;
+}
+.onpage__label {
+	flex: none;
+	color: var(--mute);
+	font-size: 12.5px;
+	font-weight: 500;
+}
+.onpage__list {
+	display: flex;
+	gap: 4px;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+.onpage__list::-webkit-scrollbar { display: none; }
+.onpage__link {
+	flex: none;
+	padding: 8px 14px;
+	border-radius: var(--r-pill);
+	color: var(--steel);
+	font-size: 13.5px;
+	font-weight: 500;
+	white-space: nowrap;
+	transition: background 220ms var(--ease), color 220ms var(--ease);
+}
+.onpage__link:hover { background: var(--surface); color: var(--navy); }
+.onpage__link.is-active {
+	background: var(--navy);
+	color: #fff;
+}
+/* Anchored sections land below the bar and the header. */
+.block-stream > [id] { scroll-margin-top: calc(var(--hdr-h, 76px) + 72px); }
+@media (max-width: 760px) {
+	.onpage__label { display: none; }
+	.onpage__in { padding-left: 6px; width: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.onpage__in { transition: none; }
+}
+
+/* --- v2: "Reduce motion" (footer toggle) ------------------------------------
+   Same effect as the OS setting: no transitions, no entrance motion. */
+html.reduce-motion { scroll-behavior: auto; }
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+	animation-duration: 0.01ms !important;
+	animation-iteration-count: 1 !important;
+	transition-duration: 0.01ms !important;
+	transition-delay: 0s !important;
+}
+html.reduce-motion .reveal-on [data-reveal],
+html.reduce-motion .reveal-on [data-reveal-item],
+html.reduce-motion .phero__card {
+	opacity: 1 !important;
+	transform: none !important;
+	filter: none !important;
+}
+
+/* --- v2 on-page bar, attached to the header -----------------------------------
+   Same width and left edge as the stuck header pill; quiet text tabs with an
+   aqua underline for the section in view. */
+.onpage {
+	top: calc(var(--hdr-h, 76px) - 2px);
+}
+.onpage__in {
+	width: auto;
+	max-width: none;
+	margin-inline: max(var(--gutter), calc((100% - 1560px) / 2 + var(--gutter)));
+	justify-content: flex-start;
+	gap: 6px;
+	padding: 0 18px;
+	min-height: 46px;
+	border-radius: 0 0 var(--r-lg) var(--r-lg);
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: inset 0 1px 0 var(--line-soft), 0 12px 28px -22px rgba(11, 27, 76, 0.35);
+}
+.onpage__label {
+	padding-right: 12px;
+	margin-right: 4px;
+	border-right: 1px solid var(--line);
+}
+.onpage__link {
+	position: relative;
+	max-width: 24ch;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 13px 10px;
+	border-radius: 0;
+	background: none;
+	color: var(--steel);
+	font-weight: 500;
+}
+.onpage__link::after {
+	content: '';
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	bottom: 6px;
+	height: 2px;
+	border-radius: 2px;
+	background: var(--grad-accent);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 320ms var(--ease);
+}
+.onpage__link:hover { background: none; color: var(--navy); }
+.onpage__link.is-active {
+	background: none;
+	color: var(--navy);
+	font-weight: 600;
+}
+.onpage__link.is-active::after { transform: scaleX(1); }
+@media (max-width: 760px) {
+	.onpage__in { padding: 0 6px; margin-inline: 8px; }
+	.onpage__link { max-width: 20ch; }
+}
+@media (min-width: 761px) { .onpage__link { max-width: 34ch; } }

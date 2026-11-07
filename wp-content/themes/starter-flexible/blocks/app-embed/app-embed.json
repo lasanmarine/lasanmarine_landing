@@ -1,0 +1,10 @@
+{
+  "key": "group_app_embed",
+  "title": "App Embed",
+  "fields": [
+    { "key": "field_ae_app", "label": "Ứng dụng", "name": "app", "type": "select", "choices": { "mo-phong-on-dinh-tau": "Mô phỏng ổn định tàu", "suc-can-cong-suat": "Mô phỏng sức cản & công suất" }, "return_format": "value", "required": 1 },
+    { "key": "field_ae_title", "label": "Tiêu đề khung (cho trình đọc màn hình)", "name": "title", "type": "text" },
+    { "key": "field_ae_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/app-embed" }]]
+}

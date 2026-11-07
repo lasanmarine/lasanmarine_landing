@@ -16,8 +16,9 @@
 	--display: 'Manrope Variable', Manrope, system-ui, sans-serif;
 	--body: 'Be Vietnam Pro', system-ui, sans-serif;
 
-	/* Ink & ground. */
+	/* Ink & ground. Tone: cool white slightly blue, modern & edgy. */
 	--paper: #ffffff;
+	--surface: #f4f7fb;
 	--navy: #0b1b4c;
 	--navy-deep: #06122d;
 	--marine: #0a72c8;
@@ -27,25 +28,27 @@
 	--aqua-soft: #e3f8f7;
 	--steel: #536173;
 	--mute: #637080;
-	--tint: #edf3f8;
+	--tint: #eef3f8;
 	--pale: #f5f8fc;
-	--line: #dce5ee;
-	--line-soft: #e9eff5;
+	--line: #e3e9f0;
+	--line-soft: #eef2f7;
 
-	/* Radii. */
-	--r-xs: 4px;
-	--r-sm: 8px;
-	--r-md: 12px;
+	/* Radii — v2: soft, generous, consistent. */
+	--r-xs: 6px;
+	--r-sm: 10px;
+	--r-md: 14px;
 	--r-lg: 20px;
+	--r-xl: 28px;
 	--r-pill: 999px;
 
 	/* Lift — the one soft shadow cards rise on. */
-	--lift: 0 14px 34px -14px rgba(11, 27, 76, 0.22);
+	--lift: 0 1px 2px rgba(11, 27, 76, 0.04), 0 18px 40px -20px rgba(11, 27, 76, 0.18);
+	--ring: 0 0 0 4px rgba(10, 114, 200, 0.14);
 
 	/* Rhythm — fluid, so these stay raw CSS. */
-	--gutter: clamp(20px, 2.4vw, 32px);
-	--block-gap: clamp(56px, 7vw, 110px);
-	--ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+	--gutter: clamp(16px, 3vw, 40px);
+	--block-gap: clamp(64px, 9vw, 140px);
+	--ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* --- base --------------------------------------------------------------- */
@@ -58,6 +61,12 @@
 
 html {
 	@apply scroll-smooth;
+}
+
+/* Entrance animations start their elements off to the side; clip that here
+   so no page ever scrolls sideways (iOS ignores `overflow-x` on body). */
+#main {
+	overflow-x: clip;
 }
 
 body {
@@ -86,8 +95,8 @@ h1,
 h2,
 h3,
 h4 {
-	@apply m-0 font-display font-bold text-navy;
-	line-height: 1.1;
+	@apply m-0 font-display font-semibold text-navy;
+	line-height: 1.18;
 	letter-spacing: -0.02em;
 	text-wrap: pretty;
 }
@@ -128,3 +137,4 @@ textarea {
 		font-size: max(16px, 1em);
 	}
 }
+

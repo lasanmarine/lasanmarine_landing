@@ -14,6 +14,7 @@ final class Starter_Flexible_Block_Page_Hero extends Starter_Flexible_Abstract_B
 		return array(
 			'headline'      => '',
 			'lead'          => '',
+			'tags'          => '',
 			'image'         => 0,
 			'placeholder'   => '',
 			'heading_level' => 'h1',
@@ -44,6 +45,7 @@ final class Starter_Flexible_Block_Page_Hero extends Starter_Flexible_Abstract_B
 		$data['height']        = $data['height'] > 0 ? min( 800, max( 200, (int) $data['height'] ) ) : 420;
 		$data['has_media']     = '' !== $data['image_url'] || '' !== trim( (string) $data['placeholder'] );
 		$data['has_lead']      = '' !== trim( wp_strip_all_tags( (string) $data['lead'] ) );
+		$data['tags']          = array_values( array_filter( array_map( 'trim', explode( '·', (string) $data['tags'] ) ) ) );
 		$data['should_render'] = '' !== trim( wp_strip_all_tags( (string) $data['headline'] ) ) || $data['has_lead'];
 
 		return $data;

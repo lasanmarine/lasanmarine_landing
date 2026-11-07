@@ -276,7 +276,7 @@ function starter_flexible_render_bar_panels_markup(): void {
 						<p class="hdr__panel-lead"><?php echo esc_html( $item['description'] ); ?></p>
 					<?php endif; ?>
 					<a href="<?php echo esc_url( $item['url'] ); ?>" class="link hdr__panel-more">
-						<?php echo esc_html( __( 'Xem tất cả', 'starter-flexible' ) ); ?>
+						<?php echo esc_html( function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ) ? 'View all' : 'Xem tất cả' ); ?>
 						<?php echo starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore ?>
 					</a>
 				</div>
@@ -351,7 +351,7 @@ function starter_flexible_render_nav_overlay_markup( array $cta, array $contacts
 					<path
 						d="M-60 <?php echo esc_attr( (string) $y ); ?> C300 <?php echo esc_attr( (string) ( $y + 44 ) ); ?> 560 <?php echo esc_attr( (string) ( $y - 30 ) ); ?> 860 <?php echo esc_attr( (string) ( $y + 8 ) ); ?> C1120 <?php echo esc_attr( (string) ( $y + 40 ) ); ?> 1300 <?php echo esc_attr( (string) ( $y + 52 ) ); ?> 1520 <?php echo esc_attr( (string) ( $y + 30 ) ); ?>"
 						fill="none"
-						stroke="#0A72C8"
+						stroke="#0066FF"
 						stroke-width="<?php echo esc_attr( number_format( max( 2.2 - $i * 0.16, 0.8 ), 2, '.', '' ) ); ?>"
 						stroke-opacity="<?php echo esc_attr( number_format( max( 0.5 - $i * 0.06, 0.06 ), 3, '.', '' ) ); ?>"
 						style="--i:<?php echo esc_attr( (string) $i ); ?>"
@@ -481,6 +481,12 @@ function starter_flexible_render_nav_overlay_markup( array $cta, array $contacts
 							<?php echo starter_flexible_icon( 'phone', 17 ); // phpcs:ignore ?>
 							<span><?php echo esc_html( $phone ); ?></span>
 						</a>
+						<?php if ( ! $is_english ) : ?>
+							<a class="navx__reach-item navx__reach-item--zalo" href="https://zalo.me/<?php echo esc_attr( preg_replace( '/\D/', '', $phone ) ); ?>" target="_blank" rel="noopener" data-cta="zalo">
+								<span class="navx__zalo-mark" aria-hidden="true">Zalo</span>
+								<span>Nhắn Zalo</span>
+							</a>
+						<?php endif; ?>
 					<?php endif; ?>
 					<?php if ( '' !== $email ) : ?>
 						<a class="navx__reach-item" href="mailto:<?php echo esc_attr( $email ); ?>">
@@ -718,3 +724,4 @@ JS
 	);
 }
 add_action( 'admin_enqueue_scripts', 'starter_flexible_menu_image_admin_assets' );
+

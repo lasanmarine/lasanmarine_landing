@@ -52,8 +52,9 @@
         },
         {
             "key": "field_pj_tonnage",
-            "label": "Trọng tải (T)",
+            "label": "Trọng tải / Lượng chiếm nước (T) — ghi rõ đại lượng",
             "name": "tonnage",
+            "instructions": "Ví dụ: 388,02 T trọng tải (DWT) hoặc lượng chiếm nước thiết kế. Hãy ghi rõ đây là DWT hay Displacement để khách không hiểu nhầm.",
             "type": "number",
             "step": "any"
         },
@@ -89,6 +90,40 @@
             "name": "status",
             "type": "text",
             "instructions": "Ví dụ: Đã duyệt Đăng kiểm, Đã thi công hoàn thiện"
+        },
+        {
+            "key": "field_pj_requirement",
+            "label": "Yêu cầu dự án",
+            "name": "requirement",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": "",
+            "instructions": "Bài toán kỹ thuật ban đầu: chủ phương tiện cần gì. Không ghi thông tin khách hàng nhạy cảm."
+        },
+        {
+            "key": "field_pj_scope",
+            "label": "Phạm vi LASAN MARINE thực hiện",
+            "name": "scope",
+            "type": "textarea",
+            "rows": 5,
+            "new_lines": "",
+            "instructions": "Mỗi dòng một hạng mục. Ghi đúng phần đã làm, kể cả khi chỉ một phần. 3 dòng đầu hiện trên thẻ dự án."
+        },
+        {
+            "key": "field_pj_highlight",
+            "label": "Điểm kỹ thuật đáng chú ý",
+            "name": "highlight",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_pj_result",
+            "label": "Kết quả",
+            "name": "result",
+            "type": "textarea",
+            "rows": 2,
+            "new_lines": ""
         },
         {
             "key": "field_pj_gallery",

@@ -31,12 +31,17 @@ if ( empty( $data->should_render ) ) {
 				<?php echo '_blank' === $item['target'] ? 'target="_blank" rel="noopener"' : ''; ?>
 			>
 				<div class="cm__top">
-					<?php echo starter_flexible_icon( $item['icon'], 34 ); // phpcs:ignore ?>
+					<span class="cm__icon"><?php echo starter_flexible_icon( $item['icon'], 34 ); // phpcs:ignore ?></span>
+					<?php if ( '' !== $item['index'] ) : ?>
+						<span class="cm__index" aria-hidden="true"><?php echo esc_html( $item['index'] ); ?></span>
+					<?php endif; ?>
 				</div>
 				<?php /* Items sit under the block heading when there is one, else directly under the page's. */ ?>
 				<?php $cm_tag = $data->has_heading ? 'h3' : 'h2'; ?>
 				<<?php echo $cm_tag; // phpcs:ignore ?> class="cm__name"><?php echo esc_html( $item['name'] ); ?></<?php echo $cm_tag; // phpcs:ignore ?>>
-				<p class="cm__desc"><?php echo esc_html( $item['desc'] ); ?></p>
+				<?php if ( '' !== trim( (string) $item['desc'] ) ) : ?>
+					<p class="cm__desc"><?php echo esc_html( $item['desc'] ); ?></p>
+				<?php endif; ?>
 				<?php if ( $item['has_cta'] ) : ?>
 					<span class="cm__cta">
 						<?php echo esc_html( $item['cta'] ); ?>

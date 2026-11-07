@@ -21,11 +21,11 @@
 	gap: 10px;
 }
 .in__badge {
-	@apply flex items-center border border-line-soft bg-tint;
+	@apply flex items-center bg-surface;
 	gap: 6px;
-	padding: 6px 12px;
+	padding: 6px 14px;
 	font-size: 12px;
-	border-radius: 6px;
+	border-radius: var(--r-pill);
 }
 .in__badge:first-child {
 	/* A shade under marine: the brand blue is 4.4:1 on the tint ground. */
@@ -34,7 +34,8 @@
 .in__title {
 	max-width: 20em;
 	line-height: 1.14;
-	letter-spacing: -0.015em;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 }
 .in__excerpt {
 	max-width: 32em;
@@ -57,16 +58,16 @@
 	gap: 14px;
 }
 .in__card-media {
-	@apply relative block overflow-hidden bg-tint;
-	border-radius: var(--r-sm);
+	@apply relative block overflow-hidden bg-surface;
+	border-radius: var(--r-lg);
 }
 .in__card-chip {
-	@apply absolute font-display font-semibold text-white;
+	@apply absolute font-display font-semibold text-navy;
 	top: 12px;
 	left: 12px;
-	padding: 5px 10px;
-	border-radius: var(--r-xs);
-	background: rgba(6, 18, 45, 0.72);
+	padding: 5px 12px;
+	border-radius: var(--r-pill);
+	background: rgba(255, 255, 255, 0.88);
 	backdrop-filter: blur(6px);
 	font-size: 11px;
 	letter-spacing: 0.1em;
@@ -78,15 +79,16 @@
 .in__card-title {
 	@apply font-display font-semibold;
 	font-size: clamp(17px, 1.4vw, 20px);
-	line-height: 1.35;
-	letter-spacing: -0.01em;
-	transition: color 200ms ease;
+	line-height: 1.3;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+	transition: color 260ms var(--ease);
 }
 .in__card:hover .in__card-title {
 	@apply text-marine;
 }
 .in__card-meta {
-	@apply flex flex-wrap items-center border-t border-line text-mute;
+	@apply flex flex-wrap items-center border-t border-line-soft text-mute;
 	gap: 6px 14px;
 	padding-top: 8px;
 	font-size: 13px;

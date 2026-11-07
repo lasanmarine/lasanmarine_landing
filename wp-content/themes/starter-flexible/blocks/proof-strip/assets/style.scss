@@ -19,7 +19,7 @@
 .ps__value {
 	@apply font-display font-semibold leading-none text-navy;
 	font-size: clamp(32px, 3.2vw, 46px);
-	letter-spacing: -0.03em;
+	letter-spacing: -0.02em;
 }
 .ps__label {
 	@apply font-display font-semibold text-navy;
@@ -49,4 +49,14 @@
 	.ps__item:first-child {
 		@apply border-t-0 pt-0;
 	}
+}
+
+/* --- v2 light minimal ---------------------------------------------------- */
+.ps__item { border-color: var(--line); }
+.ps__value { letter-spacing: -0.02em; }
+.ps__label { @apply font-medium; }
+.ps__item--link .ps__value,
+.ps__item--link .ps__label { transition: color 200ms var(--ease); }
+@media (max-width: 640px) {
+	.ps__item { border-color: var(--line); }
 }

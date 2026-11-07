@@ -11,9 +11,10 @@
 .is__caption {
 	@apply text-mute;
 	display: block;
-	margin-top: 10px;
+	margin-top: 12px;
 	font-size: 12.5px;
-	letter-spacing: 0.12em;
+	letter-spacing: 0.04em;
+	line-height: 1.5;
 }
 .is__note {
 	/* `.block`'s flex gap already spaces this off the grid. */

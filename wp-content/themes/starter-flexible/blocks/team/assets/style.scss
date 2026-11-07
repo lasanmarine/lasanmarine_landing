@@ -29,3 +29,79 @@
 	@apply text-mute;
 	font-size: 14px;
 }
+
+/* A group's subheading: a small caps label over its rule. */
+.tm__group {
+	@apply m-0 font-display font-semibold text-aqua-deep;
+	margin-top: 36px;
+	font-size: 12.5px;
+	letter-spacing: 0.01em;
+}
+.tm__group + .tm__list {
+	margin-top: 12px;
+}
+.tm__who {
+	@apply flex flex-wrap items-baseline;
+	gap: 4px 12px;
+}
+.tm__position {
+	@apply font-display font-semibold text-marine;
+	font-size: 14px;
+}
+
+/* --- v2 light minimal: rows become soft bento cards ---------------------- */
+.tm__heading {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.tm__list {
+	@apply grid border-0;
+	grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+	gap: 12px;
+}
+.tm__row {
+	@apply flex-col items-start justify-start border-0 bg-surface;
+	gap: 6px;
+	padding: clamp(18px, 2vw, 24px);
+	border-radius: var(--r-lg);
+	transition: background 240ms var(--ease), box-shadow 240ms var(--ease);
+}
+.tm__row:hover {
+	@apply bg-paper;
+	box-shadow: inset 0 0 0 1px var(--line), var(--lift);
+}
+.tm__name {
+	letter-spacing: -0.02em;
+}
+.tm__position {
+	@apply text-navy;
+}
+.tm__group {
+	@apply inline-flex items-center font-body font-medium text-mute;
+	gap: 10px;
+	font-size: 12px;
+	letter-spacing: 0.01em;
+}
+.tm__group::before {
+	@apply flex-none rounded-full bg-aqua;
+	content: '';
+	width: 6px;
+	height: 6px;
+}
+@media (prefers-reduced-motion: reduce) {
+	.tm__row {
+		transition: none;
+	}
+}
+
+/* v2 balance: with no team photo the empty placeholder frame goes, and the
+   people take the full width. Position always sits under the name. */
+.tm:has(> .frame .frame__placeholder) { grid-template-columns: minmax(0, 1fr); }
+.tm > .frame:has(.frame__placeholder) { display: none; }
+.tm__who { display: flex; flex-direction: column; gap: 2px; }
+.tm__position {
+	font-size: 12.5px;
+	font-weight: 500;
+	color: var(--aqua-deep);
+}
+.tm__list { grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); }

@@ -14,20 +14,21 @@
 }
 
 .hdr__strip {
-	/* Padding, not a fixed height: the notice must be free to wrap on a phone. */
-	@apply bg-navy-deep;
+	/* Padding, not a fixed height: the notice must be free to wrap on a phone.
+	   Light, no background — transparent over the page. */
+	@apply bg-transparent;
 	padding-block: 8px;
 }
 /* Reads as body copy, not as a micro-label: body face, body size, white. */
 .hdr__strip-inner {
-	@apply flex flex-wrap items-baseline justify-center text-center font-body font-normal text-white;
+	@apply flex flex-wrap items-baseline justify-center text-center font-body font-normal text-navy;
 	gap: 4px 10px;
 	font-size: 16px;
 	line-height: 1.5;
 	letter-spacing: normal;
 }
 .hdr__strip-inner a {
-	@apply font-medium text-white underline;
+	@apply font-medium text-navy underline;
 	text-decoration-color: var(--marine);
 	text-underline-offset: 3px;
 	text-decoration-thickness: 1.5px;
@@ -41,7 +42,7 @@
 	   white. Once it sticks it becomes a white rail and the ink turns navy.
 	   The colour is set here, not per element, so the nav, the actions and
 	   the menu control can never fall out of step. */
-	@apply border-b border-transparent bg-transparent text-white;
+	@apply border-b border-transparent bg-transparent text-navy;
 	height: 92px;
 	transition:
 		background 300ms ease,
@@ -49,12 +50,12 @@
 		color 300ms ease,
 		border-color 300ms ease;
 }
-/* Once the page scrolls the bar becomes an opaque white rail. */
+/* Once the page scrolls — still light, no background. Transparent rail. */
 .hdr__bar.is-stuck {
 	@apply border-b-line text-navy;
 	height: 74px;
-	background: rgba(255, 255, 255, 0.96);
-	backdrop-filter: blur(12px);
+	background: transparent;
+	backdrop-filter: none;
 }
 .hdr__bar-inner {
 	/* Brand on the left; the nav and the actions travel together on the
@@ -69,7 +70,7 @@
 .hdr__brand img {
 	@apply w-auto;
 	height: 34px;
-	filter: brightness(0) invert(1);
+	filter: none;
 	transition: filter 300ms ease;
 }
 .hdr__bar.is-stuck .hdr__brand img {
@@ -89,7 +90,7 @@
 	color: inherit;
 }
 .hdr__link {
-	@apply relative inline-flex items-center uppercase;
+	@apply relative inline-flex items-center;
 	gap: 5px;
 	padding: 8px 0;
 	color: inherit;
@@ -125,7 +126,7 @@
 
 .hdr__cta {
 	height: 48px;
-	text-transform: uppercase;
+	text-transform: none;
 	padding-inline: 24px;
 	border-radius: var(--r-md);
 	letter-spacing: 0.08em;
@@ -137,29 +138,32 @@
    into the nav, so it stays legible on both grounds and while the overlay is
    open (where the bar is navy again). */
 .hdr__menu {
-	@apply hidden cursor-pointer items-center border-none bg-transparent font-display font-semibold uppercase;
+	@apply hidden cursor-pointer items-center border-none bg-transparent font-display font-semibold;
 	gap: 12px;
 	padding: 8px 2px 8px 10px;
 	font-size: 13px;
-	letter-spacing: 0.12em;
+	letter-spacing: 0.01em;
 	color: inherit;
 }
 .hdr__menu-word {
-	/* Both words stack in one clipped box, so the swap has nothing to reflow. */
+	/* Both words stack in one clipped box, so the swap has nothing to reflow.
+	   Box and line share one height, tall enough for Vietnamese marks (Ó, Đ). */
 	@apply relative block overflow-hidden;
-	height: 1.15em;
+	height: 1.4em;
 	min-width: 3.4em;
 	text-align: right;
 }
 .hdr__menu-word span {
 	@apply block;
+	line-height: 1.4em;
 	transition: transform 420ms var(--ease);
 }
 .hdr__menu-word [data-word-close] {
-	@apply absolute inset-x-0 top-0;
+	/* Waits one line below "Menu", out of the clipped box, until the swap. */
+	@apply absolute inset-x-0 top-full;
 }
 .hdr__menu[aria-expanded='true'] .hdr__menu-word span {
-	transform: translateY(-1.15em);
+	transform: translateY(-1.4em);
 }
 
 .hdr__menu-icon {
@@ -207,7 +211,7 @@
 	@apply pointer-events-auto;
 }
 .hdr__panel {
-	@apply invisible absolute inset-x-0 top-0 overflow-hidden bg-navy-deep text-white;
+	@apply invisible absolute inset-x-0 top-0 overflow-hidden bg-paper text-navy;
 	/* One wipe from the bar downwards, so the panel reads as being pulled out
 	   of the header rather than fading in over the page. */
 	clip-path: inset(0 0 100% 0);
@@ -243,22 +247,33 @@
 	@apply font-display font-semibold text-marine-bright;
 	font-size: clamp(28px, 2.4vw, 42px);
 	line-height: 1.1;
-	letter-spacing: -0.025em;
+	letter-spacing: -0.02em;
 }
 .hdr__panel-lead {
 	@apply font-body;
 	max-width: 22em;
 	font-size: 14px;
 	line-height: 1.6;
-	color: rgba(255, 255, 255, 0.42);
+	color: rgba(83, 97, 115, 0.7);
 }
+/* "View all" reads as a button: an outlined pill, its arrow swapping on hover. */
 .hdr__panel-more {
-	margin-top: 12px;
-	font-size: 15px;
-	color: rgba(255, 255, 255, 0.6);
+	@apply inline-flex items-center text-navy;
+	gap: 10px;
+	margin-top: 20px;
+	height: 50px;
+	padding: 0 24px;
+	border: 1px solid rgba(11, 27, 76, 0.2);
+	border-radius: var(--r-pill);
+	font-size: 16px;
+	transition: transform 220ms var(--ease);
+}
+.hdr__panel-more::after {
+	display: none;
 }
 .hdr__panel-more:hover {
-	@apply text-marine-bright;
+	@apply text-navy;
+	transform: translateY(-2px);
 }
 .hdr__panel-cols {
 	@apply grid;
@@ -288,12 +303,12 @@
 /* An open panel puts a navy field under the bar, so the bar joins it. */
 html[data-panel-open='true'] .hdr__bar,
 html[data-panel-open='true'] .hdr__bar.is-stuck {
-	@apply bg-navy-deep text-white;
+	@apply bg-paper text-navy;
 	backdrop-filter: none;
 	border-bottom-color: transparent;
 }
 html[data-panel-open='true'] .hdr__bar .hdr__brand img {
-	filter: brightness(0) invert(1);
+	filter: none;
 }
 
 /* ==========================================================================
@@ -303,7 +318,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 .navx {
 	/* Sits under the bar rather than over it, so the brand and the control
 	   that opened the overlay stay in place and in reach. */
-	@apply fixed overflow-hidden bg-navy-deep text-white;
+	@apply fixed overflow-hidden bg-paper text-navy;
 	inset: var(--hdr-h, 92px) 0 0;
 	z-index: 190;
 	/* One wipe, from the top edge down. Opacity alone reads as a fade-in
@@ -331,7 +346,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	inset: 0;
 	background:
 		radial-gradient(120% 90% at 78% 8%, rgba(10, 114, 200, 0.28), transparent 62%),
-		linear-gradient(to bottom, #0b1b4c 0%, #06122d 62%);
+		linear-gradient(to bottom, #0a1638 0%, #040d24 62%);
 }
 .navx__wave {
 	@apply absolute w-full;
@@ -371,7 +386,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 }
 .navx__row {
 	@apply relative border-t;
-	border-color: rgba(255, 255, 255, 0.14);
+	border-color: rgba(11, 27, 76, 0.12);
 	/* Rows arrive one after another, then the indent is the only motion left. */
 	transform: translateY(26px);
 	opacity: 0;
@@ -382,14 +397,14 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 }
 .navx__row:last-child {
 	@apply border-b;
-	border-color: rgba(255, 255, 255, 0.14);
+	border-color: rgba(11, 27, 76, 0.12);
 }
 .navx[data-open='true'] .navx__row {
 	transform: none;
 	opacity: 1;
 }
 .navx__item {
-	@apply relative flex items-baseline text-white;
+	@apply relative flex items-baseline text-navy;
 	gap: clamp(12px, 1.4vw, 22px);
 	padding-block: clamp(10px, 1.3vw, 18px);
 	padding-left: 0;
@@ -402,8 +417,8 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 .navx__num {
 	@apply flex-none font-display font-semibold;
 	font-size: 12px;
-	letter-spacing: 0.14em;
-	color: rgba(255, 255, 255, 0.34);
+	letter-spacing: 0.01em;
+	color: rgba(11, 27, 76, 0.2);
 	transition: color 240ms ease;
 }
 .navx__item:hover .navx__num {
@@ -413,7 +428,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	@apply font-display font-semibold;
 	font-size: clamp(26px, 3.4vw, 50px);
 	line-height: 1.05;
-	letter-spacing: -0.03em;
+	letter-spacing: -0.02em;
 }
 .navx__go {
 	@apply ml-auto flex-none self-center;
@@ -448,16 +463,16 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
 	gap: clamp(20px, 2.4vw, 40px);
 	padding-left: clamp(20px, 2.6vw, 44px);
-	border-left: 1px solid rgba(255, 255, 255, 0.14);
+	border-left: 1px solid rgba(11, 27, 76, 0.12);
 }
 /* The band's name, when every column below shares one parent. */
 .navx__band {
-	@apply font-display font-semibold uppercase;
+	@apply font-display font-semibold;
 	grid-column: 1 / -1;
 	margin-bottom: -6px;
 	font-size: 11px;
-	letter-spacing: 0.16em;
-	color: rgba(255, 255, 255, 0.36);
+	letter-spacing: 0.01em;
+	color: rgba(83, 97, 115, 0.6);
 	transform: translateY(16px);
 	opacity: 0;
 	transition:
@@ -514,10 +529,10 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 }
 
 .navx__col-eyebrow {
-	@apply font-display font-semibold uppercase;
+	@apply font-display font-semibold;
 	font-size: 11px;
-	letter-spacing: 0.16em;
-	color: rgba(255, 255, 255, 0.32);
+	letter-spacing: 0.01em;
+	color: rgba(11, 27, 76, 0.2);
 }
 /* The group's own name is the heading of its column — set large, in the
    accent, and unruled. The arrow only appears under the cursor. */
@@ -530,7 +545,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	transition: color 240ms ease;
 }
 .navx__col-name:hover {
-	@apply text-white;
+	@apply text-navy;
 }
 /* The arrow sits clear of the last letter and only lights under the cursor.
    `.btn__icon` is the swap wrapper: two glyphs in a clipped box, the front one
@@ -563,7 +578,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	max-width: 22em;
 	font-size: 14.5px;
 	line-height: 1.6;
-	color: rgba(255, 255, 255, 0.45);
+	color: rgba(83, 97, 115, 0.6);
 }
 
 /* A column of leaf destinations: the same large accent type as a group's
@@ -585,7 +600,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	transition: color 240ms ease;
 }
 .navx__biglist a:hover {
-	@apply text-white;
+	@apply text-navy;
 }
 /* auto-fit collapses the tracks a lone list column does not fill, so it would
    otherwise stretch the full width of the panel. */
@@ -615,7 +630,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 		opacity 220ms ease;
 }
 .navx__sublist a:hover {
-	@apply text-white;
+	@apply text-navy;
 	opacity: 1;
 }
 
@@ -624,7 +639,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 
 .navx__foot {
 	@apply flex flex-wrap items-center justify-between border-t;
-	border-color: rgba(255, 255, 255, 0.14);
+	border-color: rgba(11, 27, 76, 0.12);
 	padding-top: clamp(16px, 2vw, 26px);
 	gap: 16px 32px;
 	transform: translateY(20px);
@@ -650,7 +665,7 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 .navx__reach-item {
 	@apply inline-flex items-center;
 	gap: 8px;
-	color: rgba(255, 255, 255, 0.68);
+	color: rgba(83, 97, 115, 0.8);
 	transition: color 220ms ease;
 }
 .navx__reach-item:hover {
@@ -668,11 +683,11 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 .navx__social a {
 	@apply inline-flex items-center;
 	gap: 5px;
-	color: rgba(255, 255, 255, 0.6);
+	color: rgba(83, 97, 115, 0.7);
 	transition: color 220ms ease;
 }
 .navx__social a:hover {
-	@apply text-white;
+	@apply text-navy;
 }
 /* The same solid CTA the desktop bar carries. */
 .navx__cta {
@@ -681,22 +696,22 @@ html[data-panel-open='true'] .hdr__bar .hdr__brand img {
 	border-radius: var(--r-md);
 	font-size: 13px;
 	letter-spacing: 0.08em;
-	text-transform: uppercase;
+	text-transform: none;
 }
 
 /* While the overlay is open the bar shares its ground, or a white rail cuts
    across the top of the navy field. */
 html[data-nav-open='true'] .hdr__bar {
-	@apply bg-navy-deep text-white;
+	@apply bg-paper text-navy;
 	backdrop-filter: none;
-	border-bottom-color: rgba(255, 255, 255, 0.14);
+	border-bottom-color: rgba(11, 27, 76, 0.12);
 	height: 92px;
 }
 /* White while the overlay is open, even over a bar that had already stuck. */
 html[data-nav-open='true'] .hdr__bar .hdr__brand img,
 html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 	height: 34px;
-	filter: brightness(0) invert(1);
+	filter: none;
 }
 
 
@@ -745,10 +760,14 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 	.navx__label {
 		font-size: clamp(22px, 5.4vw, 32px);
 	}
+	/* The list is the page here, so the current section needs no underline. */
+	.navx__item[aria-current='page'] .navx__label {
+		text-decoration: none;
+	}
 
 	/* A section with pages is a door, not a link: the whole row opens it. */
 	.navx__expand {
-		@apply absolute inset-0 flex cursor-pointer items-center justify-end border-0 bg-transparent p-0 text-white;
+		@apply absolute inset-0 flex cursor-pointer items-center justify-end border-0 bg-transparent p-0 text-navy;
 		z-index: 1;
 	}
 	.navx__chev {
@@ -766,7 +785,7 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 	   so it covers the whole overlay rather than the row it belongs to; the
 	   overlay's clip keeps it from ever showing outside the nav. */
 	.navx__sub {
-		@apply fixed overflow-y-auto bg-navy-deep;
+		@apply fixed overflow-y-auto bg-paper;
 		inset: var(--hdr-h, 72px) 0 0;
 		z-index: 3;
 		display: block;
@@ -790,10 +809,10 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 		@apply flex items-center justify-between border-b;
 		min-height: 64px;
 		gap: 16px;
-		border-color: rgba(255, 255, 255, 0.14);
+		border-color: rgba(11, 27, 76, 0.12);
 	}
 	.navx__back {
-		@apply inline-flex cursor-pointer items-center border-0 bg-transparent font-display font-semibold text-white;
+		@apply inline-flex cursor-pointer items-center border-0 bg-transparent font-display font-semibold text-navy;
 		min-height: 48px;
 		margin-left: -8px;
 		padding: 0 12px 0 4px;
@@ -803,7 +822,7 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 		opacity: 0.8;
 	}
 	.navx__sub-title {
-		@apply m-0 truncate font-display font-semibold text-white;
+		@apply m-0 truncate font-display font-semibold text-navy;
 		font-size: clamp(20px, 5vw, 26px);
 		letter-spacing: -0.02em;
 	}
@@ -812,7 +831,7 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 		margin-top: 22px;
 		font-size: 15px;
 		line-height: 1.6;
-		color: rgba(255, 255, 255, 0.6);
+		color: rgba(83, 97, 115, 0.7);
 	}
 	.navx__sub-all {
 		@apply inline-flex items-center self-start font-display font-semibold text-marine-bright;
@@ -824,13 +843,13 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 	.navx__sub-list {
 		@apply m-0 list-none p-0;
 		margin-top: 14px;
-		border-top: 1px solid rgba(255, 255, 255, 0.14);
+		border-top: 1px solid rgba(11, 27, 76, 0.12);
 	}
 	.navx__sub-list > li {
-		border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+		border-bottom: 1px solid rgba(11, 27, 76, 0.12);
 	}
 	.navx__sub-link {
-		@apply flex items-center justify-between font-display font-semibold text-white;
+		@apply flex items-center justify-between font-display font-semibold text-navy;
 		min-height: 58px;
 		gap: 16px;
 		font-size: 18px;
@@ -848,9 +867,9 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 		@apply flex items-center font-body;
 		min-height: 44px;
 		padding-left: 14px;
-		border-left: 1px solid rgba(255, 255, 255, 0.16);
+		border-left: 1px solid rgba(11, 27, 76, 0.12);
 		font-size: 15px;
-		color: rgba(255, 255, 255, 0.72);
+		color: rgba(83, 97, 115, 0.8);
 	}
 	.navx__sub-link:hover,
 	.navx__sub-deep a:hover {
@@ -892,7 +911,7 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 		margin-top: auto;
 		gap: 10px;
 		padding-block: 14px calc(14px + env(safe-area-inset-bottom));
-		background: #06122d;
+		background: #040d24;
 	}
 	.navx__reach {
 		display: grid;
@@ -901,11 +920,11 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 		font-size: 14px;
 	}
 	.navx__reach-item {
-		@apply justify-center rounded-full border text-white;
+		@apply justify-center rounded-full border text-navy;
 		min-width: 0;
 		min-height: 48px;
 		padding-inline: 12px;
-		border-color: rgba(255, 255, 255, 0.22);
+		border-color: rgba(11, 27, 76, 0.2);
 	}
 	.navx__reach-item span {
 		@apply truncate;
@@ -953,4 +972,1368 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 	.navx {
 		clip-path: none;
 	}
+}
+
+/* On a phone the brand gives the bar's controls room to breathe. */
+@media (max-width: 760px) {
+	.hdr__brand img,
+	.hdr__bar.is-stuck .hdr__brand img,
+	html[data-nav-open='true'] .hdr__bar .hdr__brand img,
+	html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
+		height: 26px;
+	}
+}
+
+
+
+
+/* ==========================================================================
+   v2 — light minimal chrome (2026).
+   A floating white bar with a frosted ground; once the page scrolls it
+   tightens into a rounded pill inset from the edges. Pill hover states on
+   the nav, a navy pill CTA, rounded panels lifted off the page, and a clean
+   white sheet for the phone menu. Selectors and JS hooks are unchanged.
+   ========================================================================== */
+
+.hdr {
+	padding-top: 0;
+	transition: padding 320ms var(--ease);
+}
+.hdr__strip {
+	padding-block: 6px;
+	border-bottom: 1px solid var(--line-soft);
+	background: var(--surface);
+}
+.hdr__strip-inner {
+	font-size: 14px;
+}
+
+.hdr__bar {
+	height: 76px;
+	margin-inline: 0;
+	border: 1px solid transparent;
+	border-bottom-color: var(--line-soft);
+	background: rgba(255, 255, 255, 0.8);
+	-webkit-backdrop-filter: saturate(1.6) blur(16px);
+	backdrop-filter: saturate(1.6) blur(16px);
+	transition:
+		background 320ms var(--ease),
+		height 320ms var(--ease),
+		margin 320ms var(--ease),
+		border-radius 320ms var(--ease),
+		border-color 320ms var(--ease),
+		box-shadow 320ms var(--ease);
+}
+.hdr__bar.is-stuck {
+	height: 62px;
+	margin: 10px var(--gutter) 0;
+	border-color: var(--line);
+	border-radius: var(--r-pill);
+	background: rgba(255, 255, 255, 0.82);
+	-webkit-backdrop-filter: saturate(1.6) blur(16px);
+	backdrop-filter: saturate(1.6) blur(16px);
+	box-shadow: var(--lift);
+}
+/* Inside the pill the container's own gutter would double up. */
+.hdr__bar.is-stuck .hdr__bar-inner {
+	padding-inline: clamp(14px, 1.6vw, 22px);
+	max-width: none;
+}
+.hdr__bar-inner {
+	gap: 20px;
+}
+.hdr__brand {
+	@apply flex flex-none items-center;
+}
+.hdr__brand img {
+	height: 30px;
+	transition: height 320ms var(--ease);
+}
+.hdr__bar.is-stuck .hdr__brand img {
+	height: 26px;
+}
+
+/* Nav: sentence case, pill hover instead of the underline. */
+.hdr__nav {
+	gap: 2px;
+	font-size: 14.5px;
+	letter-spacing: -0.005em;
+}
+.hdr__link {
+	padding: 8px 14px;
+	border-radius: var(--r-pill);
+	text-transform: none;
+	transition:
+		background 220ms var(--ease),
+		color 220ms var(--ease);
+}
+.hdr__link::after {
+	display: none;
+}
+.hdr__link:hover,
+.hdr__link:focus-visible,
+.hdr__link[aria-expanded='true'] {
+	background: var(--surface);
+	color: var(--marine);
+}
+.hdr__link[aria-current='page'] {
+	background: var(--surface);
+	color: var(--navy);
+}
+.hdr__link:focus-visible {
+	outline: none;
+	box-shadow: var(--ring);
+}
+
+.hdr__cta {
+	height: 42px;
+	padding-inline: 18px 14px;
+	border-radius: var(--r-pill);
+	text-transform: none;
+	letter-spacing: -0.005em;
+	font-size: 14px;
+}
+
+.hdr__menu {
+	height: 42px;
+	padding: 0 14px;
+	border: 1px solid var(--line);
+	border-radius: var(--r-pill);
+	background: var(--paper);
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 14px;
+	transition:
+		border-color 220ms var(--ease),
+		background 220ms var(--ease);
+}
+.hdr__menu:hover {
+	border-color: var(--navy);
+}
+.hdr__menu-icon,
+.hdr__menu-icon span,
+.hdr__menu-icon span:last-child,
+.hdr__menu:hover .hdr__menu-icon span:last-child {
+	width: 20px;
+}
+.hdr__menu-icon span:last-child {
+	width: 13px;
+}
+
+/* --- dropdown panels: a rounded white sheet lifted off the page --- */
+.hdr__panels {
+	padding-inline: var(--gutter);
+}
+.hdr__panel {
+	inset-inline: var(--gutter);
+	top: 10px;
+	max-width: 1320px;
+	margin-inline: auto;
+	border: 1px solid var(--line);
+	border-radius: var(--r-lg);
+	background: var(--paper);
+	box-shadow: var(--lift);
+	clip-path: inset(0 0 100% 0 round var(--r-lg));
+	transform: translateY(-6px);
+	transition:
+		clip-path 420ms var(--ease),
+		opacity 220ms ease,
+		transform 420ms var(--ease),
+		visibility 0ms linear 420ms;
+}
+.hdr__panel[data-open='true'] {
+	clip-path: inset(0 0 0 0 round var(--r-lg));
+	transform: none;
+	transition:
+		clip-path 420ms var(--ease),
+		opacity 200ms ease,
+		transform 420ms var(--ease),
+		visibility 0ms linear 0ms;
+}
+.hdr__panel-in {
+	padding: clamp(28px, 3vw, 44px);
+	max-width: none;
+}
+.hdr__panel-title {
+	@apply text-navy;
+	font-size: clamp(24px, 2vw, 32px);
+	letter-spacing: -0.02em;
+}
+.hdr__panel-lead {
+	color: var(--steel);
+}
+.hdr__panel-more {
+	height: 44px;
+	padding: 0 20px;
+	border-color: var(--line);
+	font-size: 14.5px;
+	transition:
+		border-color 220ms var(--ease),
+		background 220ms var(--ease);
+}
+.hdr__panel-more:hover {
+	transform: none;
+	border-color: var(--navy);
+	background: var(--surface);
+}
+/* The bar keeps its frosted look while a panel is open. */
+html[data-panel-open='true'] .hdr__bar {
+	background: rgba(255, 255, 255, 0.92);
+	border-bottom-color: var(--line-soft);
+}
+html[data-panel-open='true'] .hdr__bar.is-stuck {
+	border-color: var(--line);
+}
+
+/* Shared column type, used by panels and the wide overlay. */
+.navx__col-media {
+	border-radius: var(--r-md);
+}
+.navx__col-media img {
+	opacity: 1;
+}
+.navx__col-eyebrow {
+	color: var(--mute);
+}
+.navx__col-name,
+.navx__biglist a {
+	@apply text-navy;
+	letter-spacing: -0.02em;
+}
+.navx__col-name:hover,
+.navx__biglist a:hover {
+	@apply text-marine;
+}
+.navx__col-desc {
+	color: var(--steel);
+}
+.navx__sublist a {
+	@apply text-steel;
+	opacity: 1;
+}
+.navx__sublist a:hover {
+	@apply text-marine;
+}
+
+/* --- the overlay: a clean white sheet --- */
+.navx {
+	background: var(--paper);
+}
+.navx__ground {
+	background: linear-gradient(to bottom, var(--paper) 0%, var(--paper) 55%, var(--surface) 100%);
+}
+/* The swell stays, quietly, at the foot of the sheet. */
+.navx__wave {
+	opacity: 0.35;
+}
+.navx__row,
+.navx__row:last-child,
+.navx__secondary,
+.navx__foot {
+	border-color: var(--line-soft);
+}
+.navx__num {
+	color: var(--mute);
+	opacity: 0.6;
+}
+.navx__item:hover .navx__num {
+	@apply text-marine;
+	opacity: 1;
+}
+.navx__label {
+	letter-spacing: -0.02em;
+}
+.navx__item:hover .navx__label {
+	@apply text-marine;
+}
+.navx__label {
+	transition: color 220ms var(--ease);
+}
+.navx__reach-item,
+.navx__social a {
+	color: var(--steel);
+}
+.navx__reach-item:hover,
+.navx__social a:hover {
+	@apply text-marine;
+}
+.navx__cta {
+	height: 46px;
+	border-radius: var(--r-pill);
+	text-transform: none;
+	letter-spacing: -0.005em;
+	font-size: 14.5px;
+}
+/* The bar sits flush over the sheet while the overlay is open. */
+html[data-nav-open='true'] .hdr__bar,
+html[data-nav-open='true'] .hdr__bar.is-stuck {
+	height: 76px;
+	margin: 0;
+	border-color: transparent;
+	border-bottom-color: var(--line-soft);
+	border-radius: 0;
+	box-shadow: none;
+	background: var(--paper);
+}
+html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__bar-inner {
+	padding-inline: var(--gutter);
+}
+html[data-nav-open='true'] .hdr__bar .hdr__brand img,
+html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
+	height: 30px;
+}
+
+@media (max-width: 1000px) {
+	.navx__sub {
+		background: var(--paper);
+	}
+	.navx__sub-head,
+	.navx__sub-list,
+	.navx__sub-list > li,
+	.navx__sub-deep a {
+		border-color: var(--line-soft);
+	}
+	.navx__sub-desc,
+	.navx__sub-deep a {
+		color: var(--steel);
+	}
+	.navx__sub-all,
+	.navx__sub-link:hover,
+	.navx__sub-deep a:hover {
+		@apply text-marine;
+	}
+	.navx__sub-link {
+		letter-spacing: -0.02em;
+	}
+	.navx__label {
+		font-size: clamp(26px, 7vw, 36px);
+	}
+}
+
+@media (max-width: 720px) {
+	.hdr__menu {
+		min-width: 44px;
+		min-height: 44px;
+		margin-right: 0;
+		padding: 0;
+	}
+	.navx__foot {
+		background: rgba(255, 255, 255, 0.94);
+		-webkit-backdrop-filter: blur(12px);
+		backdrop-filter: blur(12px);
+	}
+	.navx__reach-item {
+		border-color: var(--line);
+		color: var(--navy);
+	}
+}
+
+@media (max-width: 600px) {
+	.hdr__bar,
+	html[data-nav-open='true'] .hdr__bar,
+	html[data-nav-open='true'] .hdr__bar.is-stuck {
+		height: 64px;
+	}
+	.hdr__bar.is-stuck {
+		height: 56px;
+		margin: 8px 12px 0;
+	}
+	.hdr__bar.is-stuck .hdr__bar-inner {
+		padding-inline: 14px 6px;
+	}
+}
+
+@media (max-width: 760px) {
+	.hdr__brand img,
+	.hdr__bar.is-stuck .hdr__brand img,
+	html[data-nav-open='true'] .hdr__bar .hdr__brand img,
+	html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
+		height: 24px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hdr,
+	.hdr__bar,
+	.hdr__brand img,
+	.hdr__link,
+	.hdr__menu,
+	.hdr__panel-more {
+		transition-duration: 1ms !important;
+	}
+}
+
+/* --- v2 polish: dropdown panels sized to their content ----------------------
+   A panel is only as wide as what it holds and hangs from the right edge,
+   under the nav — no half-empty strip. "View all" is dropped: the parent
+   item already goes there. All links share one size. */
+@media (min-width: 1025px) {
+	.hdr__panel {
+		left: auto;
+		right: var(--gutter);
+		width: max-content;
+		max-width: calc(100% - 2 * var(--gutter));
+		margin-inline: 0;
+	}
+	.hdr__panel-in {
+		grid-template-columns: 220px max-content;
+		gap: clamp(28px, 3vw, 48px);
+		padding: 28px 32px 32px;
+	}
+	.hdr__panel-intro {
+		padding-right: clamp(28px, 3vw, 48px);
+		border-right: 1px solid var(--line-soft);
+		align-self: stretch;
+	}
+	.hdr__panel-title {
+		font-size: 20px;
+		line-height: 1.25;
+	}
+	.hdr__panel-lead {
+		font-size: 13.5px;
+	}
+	.hdr__panel-more {
+		display: none;
+	}
+	.hdr__panel-cols {
+		display: flex;
+		gap: clamp(28px, 3vw, 48px);
+	}
+	.hdr__panel .navx__col {
+		width: 230px;
+	}
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a {
+		font-family: var(--body);
+		font-size: 14.5px;
+		font-weight: 400;
+		line-height: 1.45;
+		letter-spacing: 0;
+		color: var(--steel);
+	}
+	.hdr__panel .navx__biglist a:hover,
+	.hdr__panel .navx__sublist a:hover {
+		color: var(--marine);
+	}
+	.hdr__panel .navx__col-name {
+		font-size: 15.5px;
+		letter-spacing: -0.01em;
+	}
+	.hdr__panel .navx__col-desc {
+		font-size: 13px;
+	}
+}
+
+/* --- v2 signature mega menu --------------------------------------------------
+   The intro becomes a brand tile: deep navy into marine with an aqua glow,
+   white type. Links glide right on hover behind a short aqua lead-in; the
+   columns arrive one after another as the panel opens. */
+@media (min-width: 1025px) {
+	.hdr__panel-in {
+		grid-template-columns: 260px max-content;
+		padding: 10px 32px 10px 10px;
+		align-items: stretch;
+	}
+	.hdr__panel-intro {
+		position: relative;
+		overflow: hidden;
+		justify-content: flex-end;
+		min-height: 220px;
+		padding: 28px 26px;
+		border: 0;
+		border-radius: calc(var(--r-lg) - 6px);
+		background:
+			radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.45), transparent 55%),
+			radial-gradient(90% 70% at 0% 100%, rgba(77, 163, 232, 0.35), transparent 60%),
+			linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+		isolation: isolate;
+	}
+	/* A single wave line — the logo's stroke — across the tile. */
+	.hdr__panel-intro::before {
+		content: '';
+		position: absolute;
+		inset: auto -10% 46% -10%;
+		height: 60px;
+		z-index: -1;
+		opacity: 0.35;
+		background: no-repeat center / 100% 100%
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 40 C80 10 160 10 240 32 S360 54 400 20' fill='none' stroke='%2314c8c8' stroke-width='1.5'/%3E%3C/svg%3E");
+	}
+	.hdr__panel-title {
+		color: #fff;
+		font-size: 26px;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+	}
+	.hdr__panel-lead {
+		color: rgba(255, 255, 255, 0.72);
+		font-size: 13.5px;
+		line-height: 1.6;
+	}
+	.hdr__panel-cols {
+		padding-block: 26px 22px;
+		align-self: center;
+	}
+
+	/* Links: glide in behind an aqua lead-in. */
+	.hdr__panel .navx__biglist,
+	.hdr__panel .navx__sublist {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a {
+		position: relative;
+		display: flex;
+		align-items: center;
+		padding: 7px 10px 7px 0;
+		color: var(--navy);
+		font-size: 15px;
+		transition: color 220ms var(--ease), transform 320ms var(--ease);
+	}
+	.hdr__panel .navx__biglist a::before,
+	.hdr__panel .navx__sublist a::before {
+		content: '';
+		position: absolute;
+		left: -18px;
+		top: 50%;
+		width: 12px;
+		height: 2px;
+		border-radius: 2px;
+		background: var(--aqua);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 320ms var(--ease);
+	}
+	.hdr__panel .navx__biglist a:hover,
+	.hdr__panel .navx__sublist a:hover {
+		color: var(--marine);
+		transform: translateX(16px);
+	}
+	.hdr__panel .navx__biglist a:hover::before,
+	.hdr__panel .navx__sublist a:hover::before {
+		transform: scaleX(1);
+	}
+	.hdr__panel .navx__biglist .btn__icon { display: none; }
+
+	.hdr__panel .navx__col-name {
+		color: var(--navy);
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.hdr__panel .navx__col-desc {
+		color: var(--mute);
+		margin-bottom: 10px;
+	}
+
+	/* Entrance: tile first, then the columns in sequence. */
+	.hdr__panel-intro {
+		transform: translateY(10px);
+		opacity: 0;
+		transition: transform 520ms var(--ease), opacity 360ms ease;
+	}
+	.hdr__panel[data-open='true'] .hdr__panel-intro {
+		transform: none;
+		opacity: 1;
+		transition-delay: 60ms;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a,
+	.hdr__panel-intro { transition: none; transform: none; }
+}
+@media (min-width: 1025px) {
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a { flex-direction: row; justify-content: flex-start; text-align: left; width: 100%; }
+	.hdr__panel .navx__sublist li,
+	.hdr__panel .navx__biglist li { text-align: left; }
+	.hdr__panel-lead { font-weight: 300; -webkit-font-smoothing: antialiased; }
+	.hdr__panel-intro::before { inset: 18% -10% auto -10%; }
+}
+
+/* --- v2 menu fixes -----------------------------------------------------------
+   1. The panel hangs from the header's content edge, not the viewport, so on
+      a wide screen it lines up with the CTA above it.
+   2. Columns share rows (subgrid): every name, description and list starts
+      on the same line however long its neighbours' titles are.
+   3. The brand tile is as tall as the content and centres its copy. */
+@media (min-width: 1025px) {
+	.hdr__panel {
+		right: max(var(--gutter), calc((100vw - 1560px) / 2 + var(--gutter)));
+		max-width: min(1200px, calc(100vw - 2 * var(--gutter)));
+	}
+	.hdr__panel-in {
+		grid-template-columns: 240px minmax(0, max-content);
+	}
+	.hdr__panel-intro {
+		justify-content: center;
+		min-height: 0;
+	}
+	.hdr__panel-intro::before {
+		inset: auto -10% 10px -10%;
+	}
+	.hdr__panel-cols {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: 220px;
+		grid-template-rows: auto auto 1fr;
+		column-gap: 36px;
+		align-self: stretch;
+		padding-block: 24px;
+	}
+	.hdr__panel .navx__col {
+		display: grid;
+		grid-row: span 3;
+		grid-template-rows: subgrid;
+		row-gap: 0;
+		width: auto;
+		align-content: start;
+	}
+	.hdr__panel .navx__col--list {
+		grid-row: 1 / span 3;
+		align-self: center;
+	}
+	.hdr__panel .navx__col-name {
+		align-self: end;
+		line-height: 1.3;
+	}
+	.hdr__panel .navx__col-desc {
+		margin: 6px 0 14px;
+		line-height: 1.55;
+	}
+	.hdr__panel .navx__col-media,
+	.hdr__panel .navx__col-eyebrow {
+		display: none;
+	}
+}
+
+/* --- v2: the brand tile is a link ---------------------------------------------
+   "View all" stretches over the whole tile (invisible), and a small arrow chip
+   in the corner says it can be opened. */
+@media (min-width: 1025px) {
+	.hdr__panel-intro { cursor: pointer; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease); }
+	.hdr__panel-intro:hover { box-shadow: 0 18px 40px -18px rgba(6, 18, 45, 0.55); }
+	.hdr__panel .hdr__panel-more {
+		display: flex;
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-radius: inherit;
+		background: transparent;
+		color: transparent;
+		font-size: 0;
+		justify-content: flex-end;
+		align-items: flex-start;
+	}
+	.hdr__panel .hdr__panel-more:hover { background: transparent; }
+	.hdr__panel .hdr__panel-more .btn__icon {
+		margin: 16px;
+		width: 34px !important;
+		height: 34px !important;
+		padding: 8px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.14);
+		color: #fff;
+		transition: background 240ms var(--ease);
+	}
+	.hdr__panel .hdr__panel-more .btn__icon svg { inset: 8px; width: 18px; height: 18px; }
+	.hdr__panel-intro:hover .hdr__panel-more .btn__icon { background: var(--aqua); color: var(--navy); }
+	.hdr__panel-intro:hover .hdr__panel-more .btn__icon svg:nth-child(1) { transform: translateX(150%); }
+	.hdr__panel-intro:hover .hdr__panel-more .btn__icon svg:nth-child(2) { transform: none; }
+}
+
+/* --- v2 mobile menu -----------------------------------------------------------
+   The list fills the sheet with numbered rows; contacts sit right under it as
+   full rows (no truncated pills); a sub-menu opens with its title as the
+   heading and its "view all" as a navy brand tile. */
+@media (max-width: 1024px) {
+	.navx__wave,
+	.navx__ground svg { display: none; }
+	.navx__primary { counter-reset: navx; padding-top: 8px; }
+	.navx__row { border-color: var(--line-soft); }
+	.navx__item {
+		align-items: center;
+		gap: 14px;
+		padding-block: 18px;
+	}
+	.navx__item::before {
+		counter-increment: navx;
+		content: counter(navx, decimal-leading-zero);
+		flex: none;
+		width: 26px;
+		color: var(--aqua-deep);
+		font-family: var(--body);
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		font-variant-numeric: tabular-nums;
+	}
+	.navx__label {
+		font-size: clamp(26px, 7.4vw, 32px);
+		font-weight: 600;
+		letter-spacing: -0.02em;
+	}
+	/* The expand button covers the whole row; only its chevron gets a disc. */
+	.navx__chev {
+		box-sizing: content-box;
+		width: 18px;
+		height: 18px;
+		padding: 11px;
+		border-radius: 999px;
+		background: var(--surface);
+		opacity: 1;
+	}
+
+	/* Contacts: stacked full rows, nothing cut off. */
+	.navx__reach {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 8px;
+	}
+	.navx__reach-item {
+		justify-content: flex-start;
+		width: 100%;
+		min-width: 0;
+		height: 52px;
+		padding-inline: 18px;
+		border-radius: var(--r-md);
+		background: var(--surface);
+		border: 0;
+		font-size: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	/* Sub-menu: left-aligned heading, brand tile for "view all". */
+	.navx__sub-head {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 14px;
+		border: 0;
+	}
+	.navx__sub-title {
+		order: 2;
+		font-size: 30px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		text-align: left;
+	}
+	.navx__sub-desc { margin-top: 4px; }
+	.navx__sub-all {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		margin-block: 18px 10px;
+		padding: 18px 20px;
+		border-radius: var(--r-lg);
+		background:
+			radial-gradient(120% 120% at 100% 0%, rgba(20, 200, 200, 0.4), transparent 55%),
+			linear-gradient(160deg, var(--navy), var(--navy-deep));
+		color: #fff;
+		font-family: var(--display);
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.navx__sub-all:hover { color: #fff; }
+	.navx__sub-link {
+		padding-block: 16px;
+		font-size: 18px;
+	}
+	.navx__sub-deep { padding: 0 0 12px; }
+	.navx__sub-deep a {
+		display: block;
+		padding: 7px 0 7px 14px;
+		border-left: 1px solid var(--line);
+		color: var(--steel);
+		font-size: 15px;
+	}
+}
+
+/* --- v2: group headings in panels ---------------------------------------------
+   A column without a description is a group (e.g. News topics): its name is a
+   small label with the aqua spark, set off from its links by a hairline. The
+   hover arrow on any column name is small and sits right after the text,
+   without shifting anything. */
+@media (min-width: 1025px) {
+	.hdr__panel .navx__col-name {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		justify-self: start;
+	}
+	.hdr__panel .navx__col-name .btn__icon {
+		width: 14px !important;
+		height: 14px !important;
+		margin: 0;
+	}
+	.hdr__panel .navx__col-name:hover { color: var(--marine); }
+
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name {
+		gap: 10px;
+		width: 100%;
+		padding-bottom: 12px;
+		margin-bottom: 10px;
+		border-bottom: 1px solid var(--line-soft);
+		color: var(--mute);
+		font-family: var(--body);
+		font-size: 11.5px;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		text-transform: none;
+	}
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name::before {
+		content: '';
+		flex: none;
+		width: 6px;
+		height: 6px;
+		border-radius: 999px;
+		background: var(--aqua);
+	}
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name:hover {
+		color: var(--navy);
+	}
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name .btn__icon {
+		margin-left: auto;
+	}
+}
+@media (min-width: 1025px) {
+	.hdr__panel-cols { grid-auto-columns: 236px; }
+	.hdr__panel .navx__col { min-width: 0; }
+	.hdr__panel-in { width: max-content; }
+}
+
+/* v2 fix: plain flex columns (subgrid mis-sized the panel). Rows still line
+   up: names reserve two lines (text sits on the bottom one), descriptions
+   reserve three. */
+@media (min-width: 1025px) {
+	.hdr__panel-cols {
+		display: flex;
+		gap: 36px;
+	}
+	.hdr__panel .navx__col {
+		display: flex;
+		flex-direction: column;
+		flex: none;
+		width: 236px;
+	}
+	.hdr__panel .navx__col:has(.navx__col-desc) .navx__col-name {
+		min-height: calc(2 * 1.3em);
+		align-items: flex-end;
+	}
+	.hdr__panel .navx__col-desc {
+		min-height: calc(3 * 1.55em);
+	}
+}
+@media (min-width: 1025px) {
+	.hdr__panel .navx__col-name {
+		display: flex;
+		justify-content: flex-start;
+		align-self: stretch;
+		text-align: left;
+	}
+}
+
+/* --- v2 menu, final -----------------------------------------------------------
+   Position: measured from the panels strip itself (100%), which spans exactly
+   what the header bar spans — 100vw counted the scrollbar and drifted.
+   Right side: each group is a card. At rest it is a quiet surface; under the
+   cursor it lifts to white with an aqua rule on top, and each link gets a
+   sliding arrow. */
+@media (min-width: 1025px) {
+	.hdr__panels { padding-inline: 0; }
+	.hdr__panel {
+		right: max(var(--gutter), calc((100% - 1560px) / 2 + var(--gutter)));
+		max-width: calc(100% - 2 * var(--gutter));
+	}
+	.hdr__panel-in {
+		grid-template-columns: 250px max-content;
+		gap: 10px;
+		padding: 10px;
+	}
+	.hdr__panel-cols {
+		gap: 10px;
+		padding: 0;
+		align-self: stretch;
+	}
+	.hdr__panel .navx__col,
+	.hdr__panel .navx__col--list {
+		position: relative;
+		width: 250px;
+		padding: 22px 22px 18px;
+		border-radius: calc(var(--r-lg) - 6px);
+		background: var(--surface);
+		align-self: stretch;
+		transition: background 260ms var(--ease), box-shadow 260ms var(--ease);
+	}
+	.hdr__panel .navx__col::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 22px;
+		right: 22px;
+		height: 2px;
+		border-radius: 0 0 2px 2px;
+		background: var(--aqua);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 380ms var(--ease);
+	}
+	.hdr__panel .navx__col:hover {
+		background: var(--paper);
+		box-shadow: inset 0 0 0 1px var(--line-soft), 0 18px 40px -24px rgba(11, 27, 76, 0.35);
+	}
+	.hdr__panel .navx__col:hover::before { transform: scaleX(1); }
+
+	/* Head: name + description, reserved heights keep cards level. */
+	.hdr__panel .navx__col:has(.navx__col-desc) .navx__col-name {
+		min-height: 0;
+		align-items: flex-start;
+	}
+	.hdr__panel .navx__col-name {
+		font-family: var(--display);
+		font-size: 16.5px;
+		font-weight: 600;
+		line-height: 1.3;
+		color: var(--navy);
+		min-height: calc(2 * 1.3em);
+	}
+	.hdr__panel .navx__col-desc {
+		min-height: calc(3 * 1.55em);
+		margin: 6px 0 12px;
+		padding-bottom: 12px;
+		border-bottom: 1px solid var(--line);
+		color: var(--mute);
+		font-size: 12.5px;
+	}
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name {
+		min-height: 0;
+		border-bottom-color: var(--line);
+	}
+
+	/* Links: full-width rows, arrow slides in from the left of the edge. */
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a {
+		justify-content: space-between;
+		gap: 10px;
+		padding: 8px 10px;
+		margin-inline: -10px;
+		width: calc(100% + 20px);
+		border-radius: 8px;
+		font-size: 14.5px;
+		line-height: 1.4;
+		color: var(--navy);
+		transform: none;
+	}
+	.hdr__panel .navx__biglist a::before,
+	.hdr__panel .navx__sublist a::before { content: none; }
+	.hdr__panel .navx__biglist a::after,
+	.hdr__panel .navx__sublist a::after {
+		content: '';
+		flex: none;
+		width: 14px;
+		height: 14px;
+		opacity: 0;
+		transform: translateX(-6px);
+		background: no-repeat center / contain
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a72c8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+		transition: opacity 220ms var(--ease), transform 300ms var(--ease);
+	}
+	.hdr__panel .navx__biglist a:hover,
+	.hdr__panel .navx__sublist a:hover {
+		background: var(--surface);
+		color: var(--marine);
+		transform: none;
+	}
+	.hdr__panel .navx__col:hover .navx__biglist a:hover,
+	.hdr__panel .navx__col:hover .navx__sublist a:hover { background: var(--aqua-soft); }
+	.hdr__panel .navx__biglist a:hover::after,
+	.hdr__panel .navx__sublist a:hover::after {
+		opacity: 1;
+		transform: none;
+	}
+}
+@media (min-width: 1025px) and (prefers-reduced-motion: reduce) {
+	.hdr__panel .navx__col::before,
+	.hdr__panel .navx__biglist a::after,
+	.hdr__panel .navx__sublist a::after { transition: none; }
+}
+@media (min-width: 1025px) {
+	.hdr__panel .navx__col,
+	.hdr__panel .navx__col--list { width: 272px; }
+	.hdr__panel .navx__col:has(.navx__col-desc) .navx__col-name { min-height: calc(2 * 1.3em); align-items: flex-start; }
+	.hdr__panel .navx__col-desc { min-height: calc(3 * 1.55em + 12px); }
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a { position: relative; padding-right: 30px; font-size: 14px; }
+	.hdr__panel .navx__biglist a::after,
+	.hdr__panel .navx__sublist a::after { position: absolute; right: 10px; top: 50%; margin-top: -7px; }
+}
+
+/* v2: the column name behaves like its links — on hover it becomes a filled
+   row with the same sliding arrow (the small diagonal icon is retired). */
+@media (min-width: 1025px) {
+	.hdr__panel .navx__col-name {
+		position: relative;
+		margin-inline: -10px;
+		width: calc(100% + 20px);
+		padding: 8px 34px 8px 10px;
+		border-radius: 10px;
+		transition: background 220ms var(--ease), color 220ms var(--ease);
+	}
+	.hdr__panel .navx__col-name .btn__icon { display: none; }
+	.hdr__panel .navx__col-name::after {
+		content: '';
+		position: absolute;
+		right: 10px;
+		top: 50%;
+		width: 16px;
+		height: 16px;
+		margin-top: -8px;
+		opacity: 0;
+		transform: translateX(-6px);
+		background: no-repeat center / contain
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a72c8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+		transition: opacity 220ms var(--ease), transform 300ms var(--ease);
+	}
+	.hdr__panel .navx__col-name:hover {
+		background: var(--aqua-soft);
+		color: var(--marine);
+	}
+	.hdr__panel .navx__col-name:hover::after {
+		opacity: 1;
+		transform: none;
+	}
+	/* Group labels keep their dot and hairline; the hover fill sits above it. */
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name {
+		padding-block: 8px;
+		margin-bottom: 10px;
+		border-bottom: 0;
+		box-shadow: 0 1px 0 var(--line);
+		border-radius: 10px 10px 0 0;
+	}
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name:hover {
+		box-shadow: none;
+		border-radius: 10px;
+	}
+}
+@media (min-width: 1025px) and (prefers-reduced-motion: reduce) {
+	.hdr__panel .navx__col-name::after { transition: none; }
+}
+
+/* --- v2 effects: gradients & motion in the mega menu ------------------------- */
+@media (min-width: 1025px) {
+	/* Brand tile: a slow ocean current of navy, marine and aqua. */
+	.hdr__panel-intro {
+		background:
+			radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.5), transparent 55%),
+			linear-gradient(135deg, #06122d 0%, #0b1b4c 35%, #0a4f96 70%, #0b1b4c 100%);
+		background-size: 100% 100%, 300% 300%;
+		animation: hdr-current 14s ease-in-out infinite alternate;
+	}
+	@keyframes hdr-current {
+		from { background-position: 0 0, 0% 30%; }
+		to { background-position: 0 0, 100% 70%; }
+	}
+
+	/* Cards: aqua-tinted gradient ground and a glowing gradient border. */
+	.hdr__panel .navx__col::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		padding: 1px;
+		border-radius: inherit;
+		background: linear-gradient(135deg, var(--aqua) 0%, var(--marine-bright) 50%, transparent 85%);
+		-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 320ms var(--ease);
+	}
+	.hdr__panel .navx__col:hover {
+		background: linear-gradient(160deg, var(--aqua-soft) 0%, #fff 55%);
+		box-shadow: 0 22px 44px -26px rgba(10, 114, 200, 0.45);
+	}
+	.hdr__panel .navx__col:hover::after { opacity: 1; }
+	.hdr__panel .navx__col::before {
+		background: linear-gradient(90deg, var(--aqua), var(--marine-bright));
+	}
+
+	/* Column name: gradient type on hover. */
+	.hdr__panel .navx__col-name:hover {
+		background: linear-gradient(90deg, rgba(20, 200, 200, 0.14), rgba(77, 163, 232, 0.08));
+	}
+	.hdr__panel .navx__col-name:hover > span {
+		background: linear-gradient(90deg, var(--marine), var(--aqua-deep));
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	/* Links: a gradient wash sweeps in from the left. */
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a {
+		background-image: linear-gradient(90deg, rgba(20, 200, 200, 0.16), rgba(77, 163, 232, 0.06) 70%, transparent);
+		background-repeat: no-repeat;
+		background-size: 0% 100%;
+		transition: background-size 360ms var(--ease), color 220ms var(--ease);
+	}
+	.hdr__panel .navx__biglist a:hover,
+	.hdr__panel .navx__sublist a:hover,
+	.hdr__panel .navx__col:hover .navx__biglist a:hover,
+	.hdr__panel .navx__col:hover .navx__sublist a:hover {
+		background-color: transparent;
+		background-size: 100% 100%;
+	}
+}
+@media (min-width: 1025px) and (prefers-reduced-motion: reduce) {
+	.hdr__panel-intro { animation: none; }
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a { transition: none; }
+}
+@media (min-width: 1025px) {
+	.hdr__panel .navx__biglist a:hover,
+	.hdr__panel .navx__sublist a:hover,
+	.hdr__panel .navx__col:hover .navx__biglist a:hover,
+	.hdr__panel .navx__col:hover .navx__sublist a:hover {
+		background-image: linear-gradient(90deg, rgba(20, 200, 200, 0.18), rgba(77, 163, 232, 0.08) 70%, transparent);
+		background-repeat: no-repeat;
+	}
+}
+
+/* v2 fix: the stuck pill keeps to the page's content width, so the bar, its
+   panels and the page all share one right edge on any screen. */
+.hdr__bar.is-stuck {
+	margin-inline: max(var(--gutter), calc((100% - 1560px) / 2 + var(--gutter)));
+}
+
+/* v2: group labels retired — every column name uses one style, uppercase or
+   not, with or without a description. */
+@media (min-width: 1025px) {
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name {
+		gap: 0;
+		margin-bottom: 12px;
+		padding: 8px 34px 8px 10px;
+		border-bottom: 0;
+		box-shadow: none;
+		border-radius: 10px;
+		color: var(--navy);
+		font-family: var(--display);
+		font-size: 16.5px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		text-transform: none;
+	}
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name::before { content: none; }
+	.hdr__panel .navx__col:not(:has(.navx__col-desc)) .navx__col-name:hover {
+		color: var(--marine);
+		box-shadow: none;
+	}
+}
+
+/* v2: cards grow to their longest line so names and links never wrap (wide
+   screens); the hover arrow grows as it slides in. */
+@media (min-width: 1360px) {
+	.hdr__panel .navx__col,
+	.hdr__panel .navx__col--list {
+		width: max-content;
+		min-width: 250px;
+		max-width: 380px;
+	}
+	.hdr__panel .navx__col-name,
+	.hdr__panel .navx__biglist a,
+	.hdr__panel .navx__sublist a {
+		white-space: nowrap;
+	}
+	.hdr__panel .navx__col:has(.navx__col-desc) .navx__col-name { min-height: 0; }
+	.hdr__panel .navx__col-desc { min-height: calc(2 * 1.55em + 12px); }
+}
+@media (min-width: 1025px) {
+	.hdr__panel .navx__col-name::after,
+	.hdr__panel .navx__biglist a::after,
+	.hdr__panel .navx__sublist a::after {
+		transform: translateX(-6px) scale(0.8);
+	}
+	.hdr__panel .navx__col-name:hover::after,
+	.hdr__panel .navx__biglist a:hover::after,
+	.hdr__panel .navx__sublist a:hover::after {
+		transform: translateX(0) scale(1.35);
+	}
+}
+
+/* v2: no aqua rule across the top of a hovered card. */
+@media (min-width: 1025px) {
+	.hdr__panel .navx__col::before { content: none; }
+}
+
+/* --- v2: hovered card turns into a brand card --------------------------------
+   Deep navy → marine with an aqua glow, white type; the card lifts a little.
+   Links stay legible: light text, aqua arrow, a frosted row under the cursor. */
+@media (min-width: 1025px) {
+	.hdr__panel .navx__col {
+		transition: background 360ms var(--ease), box-shadow 360ms var(--ease), transform 360ms var(--ease);
+	}
+	.hdr__panel .navx__col:hover {
+		background:
+			radial-gradient(120% 70% at 100% 0%, rgba(20, 200, 200, 0.42), transparent 60%),
+			linear-gradient(155deg, var(--navy) 0%, #0d2f73 55%, var(--marine) 120%);
+		box-shadow: 0 24px 48px -24px rgba(6, 18, 45, 0.6);
+		transform: translateY(-3px);
+	}
+	.hdr__panel .navx__col:hover::after { opacity: 0; }
+	.hdr__panel .navx__col:hover .navx__col-name,
+	.hdr__panel .navx__col:hover .navx__col-name > span { color: #fff; -webkit-text-fill-color: #fff; }
+	.hdr__panel .navx__col:hover .navx__col-desc {
+		color: rgba(255, 255, 255, 0.7);
+		border-bottom-color: rgba(255, 255, 255, 0.16);
+	}
+	.hdr__panel .navx__col:hover .navx__biglist a,
+	.hdr__panel .navx__col:hover .navx__sublist a { color: rgba(255, 255, 255, 0.86); }
+
+	.hdr__panel .navx__col:hover .navx__col-name:hover,
+	.hdr__panel .navx__col:hover .navx__biglist a:hover,
+	.hdr__panel .navx__col:hover .navx__sublist a:hover {
+		background: rgba(255, 255, 255, 0.12);
+		color: #fff;
+	}
+	.hdr__panel .navx__col:hover .navx__col-name:hover > span {
+		background: none;
+		-webkit-text-fill-color: #fff;
+	}
+	.hdr__panel .navx__col:hover .navx__col-name::after,
+	.hdr__panel .navx__col:hover .navx__biglist a::after,
+	.hdr__panel .navx__col:hover .navx__sublist a::after {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314c8c8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+	}
+}
+@media (min-width: 1025px) and (prefers-reduced-motion: reduce) {
+	.hdr__panel .navx__col:hover { transform: none; }
+}
+
+/* v2 mobile menu alignment: labels start on the logo's edge (no number
+   column), and the row chevrons share the close button's size and edge. */
+@media (max-width: 1024px) {
+	.navx__item::before { content: none; display: none; }
+	.navx__item { gap: 0; }
+	.navx__chev {
+		width: 20px;
+		height: 20px;
+		padding: 12px;
+	}
+	.navx__expand { padding-right: 0; }
+}
+
+/* --- v2 mobile menu, in the mega menu's language ------------------------------
+   Each top-level item is a soft surface card; pressed, it turns into the navy
+   brand card (as the desktop cards do under the cursor). */
+@media (max-width: 1024px) {
+	.navx__primary {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding-top: 14px;
+	}
+	.navx__row {
+		border: 0;
+		border-radius: var(--r-lg);
+		background: var(--surface);
+		overflow: hidden;
+		transition: background 260ms var(--ease), box-shadow 260ms var(--ease);
+	}
+	.navx__row:last-child { border: 0; }
+	.navx__item {
+		padding: 18px 64px 18px 20px;
+	}
+	.navx__label {
+		font-size: clamp(22px, 6.2vw, 28px);
+	}
+	.navx__chev {
+		margin-right: 10px;
+		background: var(--paper);
+		box-shadow: inset 0 0 0 1px var(--line-soft);
+	}
+	.navx__row:active,
+	.navx__row:has(.navx__item[aria-current='page']) {
+		background:
+			radial-gradient(120% 90% at 100% 0%, rgba(20, 200, 200, 0.4), transparent 60%),
+			linear-gradient(155deg, var(--navy) 0%, #0d2f73 60%, var(--marine) 130%);
+		box-shadow: 0 18px 36px -22px rgba(6, 18, 45, 0.6);
+	}
+	.navx__row:active .navx__label,
+	.navx__row:has(.navx__item[aria-current='page']) .navx__label { color: #fff; }
+	.navx__row:active .navx__chev,
+	.navx__row:has(.navx__item[aria-current='page']) .navx__chev {
+		background: rgba(255, 255, 255, 0.14);
+		box-shadow: none;
+		color: #fff;
+	}
+
+	/* Sub-menu: links as soft cards too, the "view all" stays the brand tile. */
+	.navx__sub-list { display: flex; flex-direction: column; gap: 8px; }
+	.navx__sub-list > li {
+		border-radius: var(--r-lg);
+		background: var(--surface);
+		padding: 4px 16px 8px;
+	}
+	.navx__sub-link { border: 0; padding-block: 14px 8px; font-weight: 600; }
+	.navx__sub-deep a { border-left-color: var(--line); }
+
+	/* Contacts and CTA keep one corner radius with the cards. */
+	.navx__reach-item { border-radius: var(--r-lg); }
+}
+
+/* Keyboard focus on a menu card: a ring, not the pressed (navy) state. */
+@media (max-width: 1024px) {
+	.navx__row:has(:focus-visible) { box-shadow: 0 0 0 2px var(--marine); }
+}
+
+/* --- v2: Call & Zalo in the bar (the conversion customers use first) --------- */
+.hdr__actions { gap: 10px; }
+.hdr__call {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 8px 6px;
+	color: var(--navy);
+	font-family: var(--display);
+	font-size: 14.5px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+.hdr__call:hover { color: var(--marine); }
+.hdr__zalo {
+	display: inline-grid;
+	place-items: center;
+	height: 36px;
+	padding: 0 12px;
+	border-radius: var(--r-pill);
+	background: #0068ff;
+	color: #fff;
+	font-size: 12.5px;
+	font-weight: 700;
+	transition: background 200ms var(--ease), transform 200ms var(--ease);
+}
+.hdr__zalo:hover { background: #0052cc; color: #fff; }
+@media (max-width: 1280px) { .hdr__call span { display: none; } }
+@media (max-width: 1024px) { .hdr__call, .hdr__zalo { display: none; } }
+
+.navx__zalo-mark {
+	display: inline-grid;
+	place-items: center;
+	height: 20px;
+	padding: 0 6px;
+	border-radius: 6px;
+	background: #0068ff;
+	color: #fff;
+	font-size: 10.5px;
+	font-weight: 700;
 }

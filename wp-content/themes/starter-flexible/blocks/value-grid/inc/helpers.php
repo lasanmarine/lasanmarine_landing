@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Starter_Flexible_Block_Value_Grid extends Starter_Flexible_Abstract_Block {
 	protected function defaults(): array {
-		return array( 'label' => '', 'items' => array(), 'custom_class' => '' );
+		return array( 'label' => '', 'heading' => '', 'items' => array(), 'custom_class' => '' );
 	}
 
 	protected function base_class(): string {

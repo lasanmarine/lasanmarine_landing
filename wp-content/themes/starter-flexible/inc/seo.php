@@ -38,8 +38,12 @@ function starter_flexible_schema_organization( $graph ) {
 
 	$org_id     = home_url( '/#organization' );
 	$is_english = starter_flexible_seo_is_english();
-	$name       = (string) starter_flexible_setting( 'site_name', get_bloginfo( 'name' ) );
-	$legal_name = (string) starter_flexible_setting( 'legal_name', '' );
+	// The short brand Google should show as the site name; the registered name
+	// goes in legalName. (The Site Settings names are display text for the
+	// header and footer, in capitals, so they are not used here.)
+	$name       = (string) get_bloginfo( 'name' );
+	$legal_name = 'Công ty TNHH Lasan Marine';
+	$alt_names  = array( $legal_name, 'Lasan Marine' );
 	$phone      = (string) starter_flexible_setting( 'phone', '' );
 	$email      = (string) starter_flexible_setting( 'email', '' );
 	$address    = (string) starter_flexible_setting( 'address', '' );
@@ -58,7 +62,8 @@ function starter_flexible_schema_organization( $graph ) {
 	$org = array(
 		'@type'       => array( 'Organization', 'ProfessionalService' ),
 		'@id'         => $org_id,
-		'name'        => $name,
+		'name'          => $name,
+		'alternateName' => $alt_names,
 		'url'         => home_url( '/' ),
 		'logo'        => array(
 			'@type' => 'ImageObject',
@@ -108,7 +113,9 @@ function starter_flexible_schema_organization( $graph ) {
 			$has_org     = true;
 		}
 		if ( in_array( 'WebSite', $types, true ) ) {
-			$graph[ $i ]['publisher'] = array( '@id' => $org_id );
+			$graph[ $i ]['name']          = $name;
+			$graph[ $i ]['alternateName'] = $alt_names;
+			$graph[ $i ]['publisher']     = array( '@id' => $org_id );
 			if ( empty( $piece['description'] ) ) {
 				$graph[ $i ]['description'] = $org['description'];
 			}
@@ -203,3 +210,134 @@ foreach ( array( 'wpseo_metadesc', 'wpseo_opengraph_desc', 'wpseo_twitter_descri
 		}
 	);
 }
+
+/**
+ * Pages served as static apps beside WordPress (not WordPress pages), so Yoast
+ * cannot list them itself: added to the page sitemap by path.
+ *
+ * @return string[] Site-relative paths.
+ */
+function starter_flexible_static_app_paths(): array {
+	// The simulators are WordPress pages now (app embedded via acf/app-embed),
+	// so Yoast lists them itself; nothing to add by hand.
+	return array();
+}
+
+add_filter(
+	'wpseo_sitemap_page_content',
+	static function ( string $content ): string {
+		foreach ( starter_flexible_static_app_paths() as $path ) {
+			$content .= "\t<url>\n\t\t<loc>" . esc_url( home_url( $path ) ) . "</loc>\n\t</url>\n";
+		}
+		return $content;
+	}
+);
+
+/* -------------------------------------------------------------------------
+ * v2 SEO additions.
+ * ---------------------------------------------------------------------- */
+
+/**
+ * og:title falls back to the SEO title (not the bare page name, e.g. "Trang chủ")
+ * when no social title was written by hand.
+ */
+add_filter(
+	'wpseo_opengraph_title',
+	static function ( $title ) {
+		if ( ! is_singular() || starter_flexible_has_yoast_meta( 'opengraph-title' ) ) {
+			return $title;
+		}
+		$seo_title = (string) get_post_meta( get_queried_object_id(), '_yoast_wpseo_title', true );
+		if ( '' === $seo_title || ! function_exists( 'wpseo_replace_vars' ) ) {
+			return $title;
+		}
+		return wpseo_replace_vars( $seo_title, get_queried_object() );
+	},
+	20
+);
+
+/**
+ * hreflang x-default → the Vietnamese version (the site's default language).
+ */
+add_filter(
+	'pll_rel_hreflang_attributes',
+	static function ( $hreflangs ) {
+		if ( is_array( $hreflangs ) && isset( $hreflangs['vi'] ) && ! isset( $hreflangs['x-default'] ) ) {
+			$hreflangs['x-default'] = $hreflangs['vi'];
+		}
+		return $hreflangs;
+	}
+);
+
+/**
+ * The ACF blocks of the current page, parsed once.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function starter_flexible_seo_page_blocks(): array {
+	static $blocks = null;
+	if ( null === $blocks ) {
+		$post   = is_singular() ? get_post( get_queried_object_id() ) : null;
+		$blocks = $post ? parse_blocks( (string) $post->post_content ) : array();
+	}
+	return $blocks;
+}
+
+/**
+ * FAQPage from the page's accordion blocks, and Service for capability pages.
+ *
+ * @param array<int, array<string, mixed>> $graph Schema graph pieces.
+ * @return array<int, array<string, mixed>>
+ */
+function starter_flexible_schema_page_extras( $graph ) {
+	if ( ! is_array( $graph ) || ! is_singular( 'page' ) ) {
+		return $graph;
+	}
+	$url = get_permalink( get_queried_object_id() );
+
+	// FAQ: every accordion item with a question and an answer.
+	$faq = array();
+	foreach ( starter_flexible_seo_page_blocks() as $block ) {
+		if ( 'acf/accordion' !== ( $block['blockName'] ?? '' ) ) {
+			continue;
+		}
+		$data  = (array) ( $block['attrs']['data'] ?? array() );
+		$count = (int) ( $data['items'] ?? 0 );
+		for ( $i = 0; $i < $count; $i++ ) {
+			$q = trim( wp_strip_all_tags( (string) ( $data[ "items_{$i}_title" ] ?? '' ) ) );
+			$a = trim( wp_strip_all_tags( (string) ( $data[ "items_{$i}_content" ] ?? '' ) ) );
+			if ( '' !== $q && '' !== $a ) {
+				$faq[] = array(
+					'@type'          => 'Question',
+					'name'           => $q,
+					'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $a ),
+				);
+			}
+		}
+	}
+	if ( $faq ) {
+		$graph[] = array(
+			'@type'      => 'FAQPage',
+			'@id'        => $url . '#faq',
+			'mainEntity' => $faq,
+		);
+	}
+
+	// Service: pages under the capabilities section.
+	$path = (string) wp_parse_url( (string) $url, PHP_URL_PATH );
+	if ( preg_match( '#/(nang-luc|capabilities)/.+#', $path ) ) {
+		$desc    = (string) get_post_meta( get_queried_object_id(), '_yoast_wpseo_metadesc', true );
+		$graph[] = array(
+			'@type'       => 'Service',
+			'@id'         => $url . '#service',
+			'name'        => wp_strip_all_tags( get_the_title( get_queried_object_id() ) ),
+			'description' => $desc,
+			'url'         => $url,
+			'provider'    => array( '@id' => home_url( '/#organization' ) ),
+			'areaServed'  => array( '@type' => 'Country', 'name' => 'Vietnam' ),
+		);
+	}
+
+	return $graph;
+}
+add_filter( 'wpseo_schema_graph', 'starter_flexible_schema_page_extras', 30 );

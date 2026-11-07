@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/deliverables",
+    "title": "LASAN — Deliverables",
+    "description": "Bạn nhận được gì: danh sách hạng mục bàn giao kèm định dạng và ghi chú thời gian.",
+    "category": "flexible-blocks",
+    "icon": "yes-alt",
+    "keywords": ["deliverables", "scope", "documents"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

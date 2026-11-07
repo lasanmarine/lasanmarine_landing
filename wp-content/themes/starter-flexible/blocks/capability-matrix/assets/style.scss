@@ -17,8 +17,12 @@
 .cm__top {
 	@apply flex items-center justify-between text-navy;
 }
+.cm__icon {
+	@apply flex;
+}
+/* The number only shows in the tool directory below. */
 .cm__index {
-	@apply font-display font-semibold text-marine;
+	@apply hidden font-display font-semibold text-marine;
 	font-size: clamp(22px, 2vw, 28px);
 	letter-spacing: -0.02em;
 }
@@ -60,3 +64,177 @@
 	width: 6px;
 	height: 6px;
 }
+
+/* --- Tool directory (`cm--tools` in the block's Custom Class) ---------------
+   Each tool is a card of its own rather than a cell of the hairline mesh: two
+   to a row, the icon set on a tinted tile and the tool's number opposite. */
+.cm--tools .cm {
+	@apply gap-5 p-0;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 760px) {
+	.cm--tools .cm {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+.cm--tools .cm__cell {
+	@apply border border-line;
+	gap: 14px;
+	padding: clamp(26px, 3vw, 40px);
+	border-radius: var(--r-lg);
+	box-shadow: none;
+	transition:
+		border-color 220ms ease,
+		transform 260ms var(--ease),
+		box-shadow 260ms var(--ease);
+}
+.cm--tools .cm__cell:hover {
+	@apply border-aqua bg-paper;
+	transform: translateY(-4px);
+	box-shadow: var(--lift);
+}
+.cm--tools .cm__top {
+	@apply items-start;
+	margin-bottom: 10px;
+}
+.cm--tools .cm__icon {
+	@apply items-center justify-center bg-pale text-marine;
+	width: 64px;
+	height: 64px;
+	border-radius: var(--r-md);
+	transition: background 220ms ease, color 220ms ease;
+}
+.cm--tools .cm__cell:hover .cm__icon {
+	@apply bg-marine text-white;
+}
+.cm--tools .cm__index {
+	@apply block text-line;
+	font-size: clamp(30px, 3vw, 44px);
+	line-height: 1;
+	transition: color 220ms ease;
+}
+.cm--tools .cm__cell:hover .cm__index {
+	@apply text-aqua;
+}
+.cm--tools .cm__name {
+	font-size: clamp(22px, 1.9vw, 26px);
+}
+.cm--tools .cm__desc {
+	max-width: 44ch;
+}
+.cm--tools .cm__cta {
+	@apply border-t border-line-soft;
+	margin-top: auto;
+	padding-top: 20px;
+}
+@media (max-width: 600px) {
+	.cm__cell {
+		gap: 10px;
+		padding: 20px;
+	}
+	.cm__name {
+		font-size: 19px;
+	}
+	.cm__desc {
+		font-size: 14.5px;
+		line-height: 1.65;
+	}
+	.cm--tools .cm {
+		gap: 14px;
+	}
+	.cm--tools .cm__cell {
+		padding: 22px;
+	}
+	.cm--tools .cm__icon {
+		width: 52px;
+		height: 52px;
+	}
+	.cm--tools .cm__index {
+		font-size: 28px;
+	}
+	.cm--tools .cm__name {
+		font-size: 20px;
+	}
+}
+
+/* Tablet: two cells to a row, an odd last cell across the whole row. */
+@media (min-width: 601px) and (max-width: 1024px) {
+	.cm {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.cm > :last-child:nth-child(odd) {
+		grid-column: 1 / -1;
+	}
+}
+
+/* --- v2 light minimal ---------------------------------------------------- */
+.cm__heading,
+.cm__name {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.cm__cell {
+	transition: background 240ms var(--ease);
+}
+.cm__cell:hover {
+	@apply bg-surface;
+}
+.cm__index {
+	font-variant-numeric: tabular-nums;
+}
+.cm__children li::before {
+	@apply bg-aqua;
+}
+.cm--tools .cm__cell {
+	@apply border-line-soft;
+	transition:
+		border-color 240ms var(--ease),
+		background 240ms var(--ease),
+		box-shadow 240ms var(--ease);
+}
+.cm--tools .cm__cell:hover {
+	@apply border-line bg-paper;
+	transform: none;
+}
+.cm--tools .cm__icon {
+	@apply bg-surface;
+	border-radius: var(--r-sm);
+}
+.cm--tools .cm__cell:hover .cm__icon {
+	@apply bg-navy text-white;
+}
+.cm--tools .cm__cell:hover .cm__index {
+	@apply text-aqua-deep;
+}
+@media (prefers-reduced-motion: reduce) {
+	.cm__cell,
+	.cm--tools .cm__cell,
+	.cm--tools .cm__icon {
+		transition: none;
+	}
+}
+
+/* v2 fix: card variants are separate cards — drop the shared hairline mesh
+   ground, which otherwise shows as a grey frame between them. */
+.cm--tools .mesh.cm {
+	padding: 0;
+	overflow: visible;
+	border-radius: 0;
+	background: transparent;
+}
+
+/* v2 balance: the card reads top to bottom — what it is, what it covers,
+   then where to go. Decorative index numbers on tool cards are dropped. */
+.cm__cell { display: flex; flex-direction: column; }
+.cm__cta { order: 10; margin-top: auto; padding-top: 18px; }
+.cm__children { margin-bottom: 4px; }
+.cm__index { display: none; }
+
+/* Stacked mode: cards tighten with the screen height. */
+.is-stacked .cm__cell { padding-block: clamp(16px, 2.6vh, 32px); }
+.is-stacked .cm__cta { padding-top: clamp(8px, 1.6vh, 18px); }
+.is-stacked .cm__cell { padding-block: clamp(12px, 2vh, 28px); }
+.is-stacked .cm__desc { margin-bottom: 0; }
+/* No decorative numerals on tool cards (beats the older variant rule). */
+.lasanmarine-capability-matrix .cm__index,
+.cm--tools .cm__index { display: none; }

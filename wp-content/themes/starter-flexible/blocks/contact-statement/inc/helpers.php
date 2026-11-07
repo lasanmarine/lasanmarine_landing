@@ -17,6 +17,7 @@ final class Starter_Flexible_Block_Contact_Statement extends Starter_Flexible_Ab
 			'description'  => '',
 			'phone'        => '',
 			'email'        => '',
+			'zalo'         => '',
 			'cta'          => array(),
 			'mascot'       => 0,
 			'custom_class' => '',
@@ -68,12 +69,16 @@ final class Starter_Flexible_Block_Contact_Statement extends Starter_Flexible_Ab
 		$data['has_phone']     = '' !== trim( (string) $data['phone'] );
 		$data['has_email']     = '' !== trim( (string) $data['email'] );
 		$data['phone_href']    = 'tel:' . preg_replace( '/\s/', '', (string) $data['phone'] );
+		// Calling or messaging on Zalo is how customers reach us first.
+		$zalo_digits          = preg_replace( '/\D/', '', '' !== trim( (string) $data['zalo'] ) ? (string) $data['zalo'] : (string) $data['phone'] );
+		$data['zalo_href']    = '' !== $zalo_digits ? 'https://zalo.me/' . $zalo_digits : '';
+		$data['is_english']   = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 
 		// The contact details read as a ruled spec list beside the statement.
 		$contacts = array();
 		if ( $data['has_phone'] ) {
 			$contacts[] = array(
-				'label' => __( 'Điện thoại', 'starter-flexible' ),
+				'label' => function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ) ? 'Phone' : __( 'Điện thoại', 'starter-flexible' ),
 				'value' => trim( (string) $data['phone'] ),
 				'href'  => $data['phone_href'],
 			);

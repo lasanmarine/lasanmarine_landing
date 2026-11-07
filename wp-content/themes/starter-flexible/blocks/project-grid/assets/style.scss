@@ -7,14 +7,17 @@
 	gap: 6px;
 }
 .pg__tag {
-	@apply text-marine;
-	font-size: 12.5px;
-	letter-spacing: 0.14em;
+	@apply font-display font-semibold text-aqua-deep;
+	font-size: 11.5px;
+	letter-spacing: 0.01em;
 }
 .pg__name {
 	@apply font-display font-semibold;
 	font-size: clamp(18px, 1.7vw, 24px);
 	line-height: 1.2;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+	transition: color 260ms var(--ease);
 }
 .pg__item:hover .pg__name {
 	@apply text-marine;

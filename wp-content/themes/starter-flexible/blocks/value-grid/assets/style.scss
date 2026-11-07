@@ -32,3 +32,65 @@
 .vg__link:hover .btn__icon svg:nth-child(2) {
 	transform: translate(0, 0);
 }
+
+/* Tablet: two cells to a row, an odd last cell across the whole row. */
+@media (min-width: 601px) and (max-width: 1024px) {
+	.vg {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.vg > :last-child:nth-child(odd) {
+		grid-column: 1 / -1;
+	}
+}
+
+.vg__heading {
+	@apply m-0;
+	max-width: 20em;
+}
+
+/* --- v2 light minimal: bento cards instead of a hairline mesh ------------ */
+.mesh.vg {
+	@apply gap-4 p-0;
+	overflow: visible;
+	border-radius: 0;
+	background: none;
+}
+.mesh.vg > .vg__cell {
+	@apply bg-surface;
+	border-radius: var(--r-lg);
+	transition: background 260ms var(--ease), box-shadow 260ms var(--ease);
+}
+.mesh.vg > .vg__cell:hover {
+	@apply bg-paper;
+	box-shadow: inset 0 0 0 1px var(--line), var(--lift);
+}
+.vg__icon {
+	@apply flex items-center justify-center bg-paper;
+	width: 52px;
+	height: 52px;
+	border-radius: var(--r-sm);
+}
+.vg__icon svg,
+.vg__icon img {
+	max-width: 28px;
+	max-height: 28px;
+}
+.vg__title,
+.vg__heading {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.vg__link {
+	@apply text-navy;
+	font-size: 14px;
+	transition: color 240ms var(--ease);
+}
+.vg__link:hover,
+.vg__cell:hover .vg__link {
+	@apply text-marine;
+}
+@media (prefers-reduced-motion: reduce) {
+	.mesh.vg > .vg__cell {
+		transition: none;
+	}
+}

@@ -10,7 +10,6 @@
 	max-width: 800px;
 }
 .si__label {
-	@apply uppercase;
 }
 .si__heading {
 	text-wrap: balance;
@@ -25,3 +24,10 @@
 .si__cta {
 	margin-top: clamp(10px, 1.2vw, 18px);
 }
+
+/* --- v2 light minimal ---------------------------------------------------- */
+.si__heading {
+	@apply font-semibold;
+	letter-spacing: -0.02em;
+}
+.si__body { @apply text-steel; }

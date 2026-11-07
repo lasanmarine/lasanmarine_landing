@@ -13,16 +13,18 @@
 	}
 }
 .pc__inputs {
-	@apply grid;
+	@apply grid border border-line-soft bg-paper;
 	gap: 22px;
+	padding: clamp(20px, 2.4vw, 32px);
+	border-radius: var(--r-xl);
 	align-content: start;
 }
 /* Labels read at the same weight as the Liên hệ form's — bold and navy,
    not the small uppercase micro-label the shared `.field` component uses. */
 .pc .field__label {
 	@apply font-display font-semibold text-navy;
-	font-size: 16.5px;
-	letter-spacing: 0;
+	font-size: 15.5px;
+	letter-spacing: -0.01em;
 }
 /* A value and its unit read as one control: the field takes the room left over,
    the unit select sizes to its longest label. */
@@ -59,8 +61,8 @@
 	gap: 12px;
 }
 .pc__multi-trigger[aria-expanded='true'] {
-	@apply border-marine;
-	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
+	@apply border-marine bg-paper;
+	box-shadow: var(--ring);
 }
 .pc__multi-value {
 	@apply min-w-0 flex-1 truncate;
@@ -70,18 +72,18 @@
 }
 .pc__multi-caret {
 	@apply flex-none text-mute;
-	transition: transform 200ms ease;
+	transition: transform 200ms var(--ease);
 }
 .pc__multi-trigger[aria-expanded='true'] .pc__multi-caret {
 	transform: rotate(180deg);
 }
 .pc__multi-pop {
-	@apply absolute z-20 flex flex-col border border-line bg-paper;
+	@apply absolute z-20 flex flex-col border border-line-soft bg-paper;
 	inset-inline: 0;
-	top: calc(100% + 6px);
+	top: calc(100% + 8px);
 	padding: 10px;
-	border-radius: var(--r-md);
-	box-shadow: 0 18px 40px rgba(11, 27, 76, 0.14);
+	border-radius: var(--r-lg);
+	box-shadow: var(--lift);
 }
 .pc__multi-pop[hidden] {
 	@apply hidden;
@@ -112,10 +114,10 @@
 	padding: 8px 10px;
 	border-radius: var(--r-sm);
 	font-size: 14.5px;
-	transition: background 160ms ease;
+	transition: background 160ms var(--ease);
 }
 .pc__multi-option:hover {
-	@apply bg-pale;
+	@apply bg-surface;
 }
 .pc__multi-option input {
 	@apply m-0 flex-none cursor-pointer appearance-none border border-mute bg-paper;
@@ -126,8 +128,8 @@
 	background-repeat: no-repeat;
 	background-size: 13px;
 	transition:
-		border-color 200ms ease,
-		background-color 200ms ease;
+		border-color 200ms var(--ease),
+		background-color 200ms var(--ease);
 }
 .pc__multi-option input:checked {
 	@apply border-marine bg-marine;
@@ -135,7 +137,7 @@
 }
 .pc__multi-option input:focus-visible {
 	@apply border-marine;
-	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.2);
+	box-shadow: var(--ring);
 }
 .pc__multi-empty {
 	@apply text-mute;
@@ -143,7 +145,7 @@
 	font-size: 13.5px;
 }
 .pc__multi-foot {
-	@apply flex justify-end border-t border-line;
+	@apply flex justify-end border-t border-line-soft;
 	margin-top: 8px;
 	padding-top: 8px;
 }
@@ -151,7 +153,7 @@
 	@apply cursor-pointer border-none bg-none font-display font-semibold text-mute;
 	padding: 4px 6px;
 	font-size: 13px;
-	transition: color 200ms ease;
+	transition: color 200ms var(--ease);
 }
 .pc__multi-clear:hover {
 	@apply text-marine;
@@ -166,20 +168,22 @@
 	margin-bottom: 10px;
 	padding: 0;
 }
+/* Segmented pills: quiet surface chips, the picked one fills navy. */
 .pc__choices {
 	@apply flex flex-wrap;
-	gap: 10px;
+	gap: 8px;
 }
 .pc__choice {
-	@apply m-0 flex cursor-pointer items-center border border-line bg-paper font-display font-semibold text-navy;
+	@apply m-0 flex cursor-pointer items-center border border-transparent bg-surface font-display font-semibold text-navy;
 	gap: 10px;
-	padding: 12px 18px;
-	border-radius: var(--r-md);
+	padding: 10px 18px 10px 14px;
+	border-radius: var(--r-pill);
+	max-width: 100%;
 	font-size: 14.5px;
 	transition:
-		border-color 200ms ease,
-		background 200ms ease,
-		color 200ms ease;
+		border-color 200ms var(--ease),
+		background 200ms var(--ease),
+		color 200ms var(--ease);
 }
 .pc__choice input {
 	@apply m-0 flex-none cursor-pointer appearance-none border border-mute bg-paper;
@@ -187,34 +191,42 @@
 	height: 17px;
 	border-radius: 50%;
 	transition:
-		border-color 200ms ease,
-		box-shadow 200ms ease;
+		border-color 200ms var(--ease),
+		box-shadow 200ms var(--ease);
 }
 .pc__choice input:checked {
-	@apply border-marine bg-marine;
-	box-shadow: inset 0 0 0 3px var(--paper);
+	@apply border-aqua bg-aqua;
+	box-shadow: inset 0 0 0 3px var(--navy);
 }
-.pc__choice input:focus-visible {
-	@apply border-marine;
-	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.2);
+.pc__choice:has(input:focus-visible) {
+	box-shadow: var(--ring);
 }
 .pc__choice:hover {
-	@apply border-marine;
+	@apply border-line bg-paper;
 }
 .pc__choice:has(input:checked) {
-	@apply border-marine bg-pale text-marine;
+	@apply border-navy bg-navy text-white;
 }
+/* Result card: the calm surface panel; it lifts a touch while you work in it. */
 .pc__results {
-	@apply bg-pale;
-	padding: clamp(20px, 2vw, 28px);
-	border-radius: var(--r-md);
+	@apply bg-surface;
+	padding: clamp(20px, 2.4vw, 32px);
+	border-radius: var(--r-xl);
+	transition: box-shadow 260ms var(--ease);
+}
+.pc:focus-within .pc__results,
+.pc__results:hover {
+	box-shadow: var(--lift);
 }
 .pc__heading {
+	@apply font-display font-semibold text-navy;
 	font-size: 16px;
+	letter-spacing: -0.01em;
+	text-wrap: balance;
 	margin-bottom: 8px;
 }
 .pc__result {
-	@apply flex items-baseline justify-between border-b border-line;
+	@apply flex items-baseline justify-between border-b border-line-soft;
 	gap: 12px 24px;
 	padding-block: 18px;
 	flex-wrap: wrap;
@@ -226,8 +238,9 @@
 }
 .pc__result-value {
 	@apply font-display font-semibold text-navy;
-	font-size: clamp(24px, 2.5vw, 32px);
-	line-height: 1.2;
+	font-size: clamp(26px, 2.8vw, 36px);
+	line-height: 1.15;
+	letter-spacing: -0.02em;
 	font-variant-numeric: tabular-nums;
 	margin-left: auto;
 	text-align: right;
@@ -259,8 +272,8 @@
 	height: 38px;
 	border-radius: var(--r-sm);
 	transition:
-		background 180ms ease,
-		color 180ms ease;
+		background 180ms var(--ease),
+		color 180ms var(--ease);
 }
 .pc__copy:hover {
 	@apply bg-paper text-navy;
@@ -295,14 +308,14 @@
 	padding: 4px 2px;
 	border-radius: var(--r-sm);
 	font-size: 13px;
-	transition: border-color 200ms ease;
+	transition: border-color 200ms var(--ease);
 }
 .pc__precision:hover {
 	@apply border-mute;
 }
 .pc__precision:focus {
 	@apply border-marine;
-	box-shadow: 0 0 0 3px rgba(10, 114, 200, 0.14);
+	box-shadow: var(--ring);
 }
 .pc__error {
 	color: #b42318;
@@ -317,5 +330,22 @@
 		width: 52px;
 		min-height: 40px;
 		font-size: 16px;
+	}
+}
+
+.pc__result:last-child {
+	border-bottom: 0;
+}
+@media (max-width: 400px) {
+	.pc__inputs,
+	.pc__results {
+		padding: 18px 16px;
+		border-radius: var(--r-lg);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.pc *,
+	.pc__results {
+		transition: none !important;
 	}
 }

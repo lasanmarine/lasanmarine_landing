@@ -51,6 +51,7 @@ final class Starter_Flexible_Block_Service_Architecture extends Starter_Flexible
 				'index'     => isset( $item['index'] ) ? (string) $item['index'] : '',
 				'name'      => $name,
 				'desc'      => isset( $item['desc'] ) ? (string) $item['desc'] : '',
+				'note'      => isset( $item['note'] ) ? trim( (string) $item['note'] ) : '',
 				'url'       => isset( $link['url'] ) ? (string) $link['url'] : '',
 				'target'    => ! empty( $link['target'] ) ? (string) $link['target'] : '_self',
 				'image_url' => $image_id ? (string) wp_get_attachment_image_url( $image_id, 'large' ) : '',

@@ -95,3 +95,78 @@
 		justify-content: flex-start;
 	}
 }
+
+.dc__head {
+	@apply flex flex-wrap items-end justify-between;
+	gap: 16px 32px;
+}
+.dc__heading {
+	@apply m-0;
+	max-width: 22em;
+}
+
+/* --- v2 light minimal: pill filters, hairline rows ----------------------- */
+.dc__heading {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.dc__filters {
+	gap: 8px;
+}
+.dc__filter {
+	@apply bg-surface;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-radius: 999px;
+	font-size: 13.5px;
+	letter-spacing: 0.02em;
+	transition:
+		color 240ms var(--ease),
+		background 240ms var(--ease),
+		border-color 240ms var(--ease);
+}
+.dc__filter:hover {
+	@apply border-line bg-paper;
+}
+.dc__filter[data-active='true'] {
+	@apply border-navy bg-navy text-white;
+}
+.dc__row {
+	@apply border-line-soft;
+	margin-inline: 0;
+	padding-inline: clamp(10px, 1.4vw, 18px);
+	border-radius: var(--r-md);
+	transition: background 240ms var(--ease), border-color 240ms var(--ease);
+}
+.dc__row:hover {
+	@apply border-transparent bg-surface;
+}
+.dc__title {
+	letter-spacing: -0.02em;
+}
+.dc__size {
+	font-variant-numeric: tabular-nums;
+}
+@media (prefers-reduced-motion: reduce) {
+	.dc__row,
+	.dc__filter,
+	.dc__view svg {
+		transition: none;
+	}
+}
+
+/* v2 polish: filters in sentence case like every other filter; download is a
+   clear outline button, not a greyed-out one. */
+.dc__filter {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 13.5px;
+}
+.dc__dl:not(.is-inert) {
+	@apply border-line bg-paper text-navy;
+}
+.dc__dl:not(.is-inert):hover {
+	@apply border-navy bg-paper text-navy;
+}
+.dc__dl.is-inert { opacity: 0.45; }
+.is-stacked .dc__row { padding-block: clamp(8px, 1.5vh, 18px); }

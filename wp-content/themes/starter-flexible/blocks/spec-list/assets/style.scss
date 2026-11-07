@@ -19,3 +19,50 @@
 		@apply static;
 	}
 }
+
+/* Label hugs the left edge, value the right — the pair reads across the row. */
+.sl .spec {
+	@apply justify-between;
+}
+.sl .spec__value {
+	@apply text-right;
+	flex: 0 1 auto;
+}
+/* The shared `.spec` stacks label over value here, so the value goes back to
+   the left edge under its label. */
+@media (max-width: 520px) {
+	.sl .spec__value {
+		@apply text-left;
+	}
+}
+
+/* Values read at body-copy scale; 26px only suited a wide column. */
+.sl .spec__value {
+	font-size: clamp(17px, 1.6vw, 22px);
+}
+/* Tablet: heading above the rows, so the rows get the full width. */
+@media (max-width: 1024px) {
+	.sl {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 20px;
+	}
+	.sl__intro {
+		position: static;
+	}
+}
+
+/* --- v2 light minimal: softer hairlines, tabular values ----------------- */
+.sl > * {
+	min-width: 0;
+}
+.sl .spec {
+	border-color: var(--line-soft);
+}
+.sl .spec__value {
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.02em;
+}
+.sl__intro .h4 {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}

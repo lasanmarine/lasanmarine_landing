@@ -11,20 +11,20 @@
 	gap: 8px;
 }
 .pi__filter {
-	@apply cursor-pointer border border-line bg-paper font-display font-semibold text-steel;
-	padding: 9px 16px;
-	border-radius: var(--r-md);
+	@apply cursor-pointer border border-line-soft bg-surface font-display font-semibold text-steel;
+	padding: 9px 18px;
+	border-radius: var(--r-pill);
 	font-size: 13.5px;
 	transition:
-		border-color 200ms ease,
-		background 200ms ease,
-		color 200ms ease;
+		border-color 260ms var(--ease),
+		background 260ms var(--ease),
+		color 260ms var(--ease);
 }
 .pi__filter:hover {
-	@apply border-marine text-marine;
+	@apply border-line text-marine;
 }
 .pi__filter[aria-pressed='true'] {
-	@apply border-marine bg-pale text-marine;
+	@apply border-navy bg-navy text-white;
 }
 .pi__count {
 	@apply m-0 text-mute;
@@ -34,7 +34,7 @@
 
 /* The list is ruled, not carded: one hairline above, one under every row. */
 .pi__list {
-	@apply flex flex-col border-t border-line;
+	@apply flex flex-col border-t border-line-soft;
 }
 .pi__empty {
 	@apply text-mute;
@@ -54,25 +54,26 @@
 	@apply hidden;
 }
 .pj-card__media {
-	@apply relative block overflow-hidden bg-tint;
-	border-radius: var(--r-sm);
+	@apply relative block overflow-hidden bg-surface;
+	border-radius: var(--r-lg);
 }
 .pj-card__body {
 	@apply flex min-w-0 flex-col;
 	gap: 6px;
 }
 .pj-card__tag {
-	@apply text-mute;
+	@apply font-display font-semibold text-aqua-deep;
 	font-size: 11.5px;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
+	letter-spacing: 0.01em;
+	text-transform: none;
 }
 .pj-card__name {
 	@apply font-display font-semibold;
 	font-size: 17px;
-	line-height: 1.35;
-	letter-spacing: -0.01em;
-	transition: color 200ms ease;
+	line-height: 1.3;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+	transition: color 260ms var(--ease);
 }
 .pj-card:hover .pj-card__name {
 	@apply text-marine;
@@ -97,10 +98,18 @@
 
 /* --- one row -------------------------------------------------------- */
 .pj-card--row {
-	@apply grid items-center border-b border-line text-navy;
+	@apply grid items-center border-b border-line-soft text-navy;
 	grid-template-columns: clamp(128px, 15vw, 200px) minmax(0, 1fr) auto;
 	gap: clamp(16px, 2.4vw, 36px);
-	padding: clamp(14px, 1.6vw, 22px) 0;
+	padding: clamp(14px, 1.6vw, 22px) clamp(0px, 1vw, 14px);
+	border-radius: var(--r-lg);
+	transition: background 320ms var(--ease);
+}
+.pj-card--row:hover {
+	@apply bg-surface;
+}
+.pj-card--row .pj-card__media {
+	border-radius: var(--r-md);
 }
 .pj-card--row .pj-card__media {
 	@apply w-full;
@@ -147,4 +156,27 @@
 	@apply grid;
 	grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
 	gap: clamp(20px, 2.4vw, 32px);
+}
+/* What LASAN MARINE did on the vessel reads before its figures. */
+.pj-card__work {
+	@apply font-display font-semibold text-marine;
+	font-size: 14px;
+}
+.pj-card__scope {
+	@apply text-steel;
+	font-size: 13.5px;
+	line-height: 1.5;
+}
+
+/* v2 polish: line drawings on white need a frame to sit on the page. */
+.pj-card__media {
+	position: relative;
+}
+.pj-card__media::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	border-radius: inherit;
+	box-shadow: inset 0 0 0 1px var(--line);
 }

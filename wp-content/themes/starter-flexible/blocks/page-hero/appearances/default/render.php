@@ -19,23 +19,19 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" style="--phero-h:<?php echo esc_attr( (string) $data->height ); ?>px"<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<?php if ( $data->has_media ) : ?>
-		<div class="phero__media">
-			<?php if ( '' !== $data->image_url ) : ?>
-				<?php echo $data->image_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_get_attachment_image(). ?>
-			<?php else : ?>
-				<span class="frame__placeholder"><?php echo esc_html( $data->placeholder ); ?></span>
-			<?php endif; ?>
-		</div>
-	<?php endif; ?>
-	<span class="phero__scrim"></span>
 	<div class="container phero__body">
-		<div data-enter style="--enter-i:0">
+		<div>
 			<<?php echo esc_attr( $data->heading_level ); ?> class="phero__headline"><?php echo esc_html( $data->headline ); ?></<?php echo esc_attr( $data->heading_level ); ?>>
 		</div>
 		<?php if ( $data->has_lead ) : ?>
-			<p class="copy phero__lead" data-enter style="--enter-i:1"><?php echo esc_html( $data->lead ); ?></p>
+			<p class="copy phero__lead"><?php echo esc_html( $data->lead ); ?></p>
+		<?php endif; ?>
+		<?php if ( $data->tags ) : ?>
+			<ul class="phero__tags">
+				<?php foreach ( $data->tags as $tag ) : ?>
+					<li><?php echo esc_html( $tag ); ?></li>
+				<?php endforeach; ?>
+			</ul>
 		<?php endif; ?>
 	</div>
-	<?php get_template_part( 'template-parts/components/wave' ); ?>
 </section>

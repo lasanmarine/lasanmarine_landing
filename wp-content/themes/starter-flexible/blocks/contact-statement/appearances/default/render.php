@@ -41,6 +41,24 @@ if ( empty( $data->should_render ) ) {
 						<p class="cs__description"><?php echo wp_kses_post( $data->description ); ?></p>
 					<?php endif; ?>
 
+					<?php if ( $data->has_phone ) : ?>
+						<div class="cs__actions">
+							<a class="btn btn--lg cs__call" href="<?php echo esc_attr( $data->phone_href ); ?>" data-cta="call">
+								<?php echo starter_flexible_icon( 'phone', 20 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo esc_html( ( $data->is_english ? 'Call ' : 'Gọi ' ) . trim( (string) $data->phone ) ); ?>
+							</a>
+							<?php if ( '' !== $data->zalo_href && ! $data->is_english ) : ?>
+								<a class="btn btn--lg btn--secondary cs__zalo" href="<?php echo esc_url( $data->zalo_href ); ?>" target="_blank" rel="noopener" data-cta="zalo">
+									<span class="cs__zalo-mark" aria-hidden="true">Zalo</span>
+									<?php esc_html_e( 'Nhắn Zalo', 'starter-flexible' ); ?>
+								</a>
+							<?php endif; ?>
+						</div>
+						<p class="cs__hint">
+							<?php echo esc_html( $data->is_english ? 'Send a photo of your drawing or vessel — we reply the same day.' : 'Gửi ảnh bản vẽ hoặc ảnh tàu qua Zalo để được tư vấn nhanh trong ngày.' ); ?>
+						</p>
+					<?php endif; ?>
+
 					<?php
 					if ( $data->has_cta ) {
 						get_template_part(
@@ -49,8 +67,8 @@ if ( empty( $data->should_render ) ) {
 							array(
 								'href'  => $data->cta['url'],
 								'label' => $data->cta['label'],
-								'size'  => 'lg',
-								'class' => 'cs__cta',
+								'size'  => 'sm',
+								'class' => 'cs__cta btn--ghost',
 								'attrs' => '_blank' === $data->cta['target'] ? array( 'target' => '_blank', 'rel' => 'noopener' ) : array(),
 							)
 						);

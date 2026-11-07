@@ -1,0 +1,342 @@
+/* ==========================================================================
+   v3 — one visual language for the older blocks, matching the new ones
+   (vessel-finder, deliverables, mega menu): soft surface cards with large
+   radii, a gradient numeral, the navy brand card under the cursor, and photos
+   framed with a glass caption. Loaded after blocks.scss so it wins.
+   ========================================================================== */
+
+/* --- shared card recipe --------------------------------------------------- */
+%v3-card {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	box-shadow: none;
+	transition:
+		background 360ms var(--ease),
+		box-shadow 360ms var(--ease),
+		transform 360ms var(--ease),
+		color 260ms var(--ease);
+}
+%v3-card-hover {
+	color: #fff;
+	background:
+		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.42), transparent 60%),
+		linear-gradient(155deg, var(--navy) 0%, #0d2f73 60%, var(--marine) 130%);
+	box-shadow: 0 26px 50px -28px rgba(6, 18, 45, 0.6);
+	transform: translateY(-3px);
+}
+%v3-num {
+	font-family: var(--display);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	background: var(--grad-accent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/* --- value-grid: three pillars as brand-ready cards ---------------------- */
+.lasanmarine-value-grid .vg {
+	gap: 12px;
+	padding: 0;
+	background: none;
+	border-radius: 0;
+	overflow: visible;
+}
+.lasanmarine-value-grid .vg__cell {
+	@extend %v3-card;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	min-height: 240px;
+	padding: 26px 26px 24px;
+	counter-increment: vg;
+}
+.lasanmarine-value-grid .vg { counter-reset: vg; }
+.lasanmarine-value-grid .vg__cell::before {
+	content: counter(vg, decimal-leading-zero);
+	position: absolute;
+	right: 22px;
+	top: 18px;
+	@extend %v3-num;
+	font-size: 15px;
+}
+.lasanmarine-value-grid .vg__icon {
+	display: grid;
+	place-items: center;
+	width: 52px;
+	height: 52px;
+	border-radius: 16px;
+	background: var(--paper);
+	color: var(--marine);
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+	transition: background 260ms var(--ease), color 260ms var(--ease);
+}
+.lasanmarine-value-grid .vg__icon svg { width: 26px; height: 26px; }
+.lasanmarine-value-grid .vg__title { font-size: 19px; letter-spacing: -0.01em; }
+.lasanmarine-value-grid .vg__desc { font-size: 14.5px; line-height: 1.6; color: var(--steel); }
+.lasanmarine-value-grid .vg__link { margin-top: auto; color: var(--navy); }
+.lasanmarine-value-grid .vg__cell::after { content: none; }
+.lasanmarine-value-grid .vg__cell:hover {
+	@extend %v3-card-hover;
+}
+.lasanmarine-value-grid .vg__cell:hover .vg__desc { color: rgba(255, 255, 255, 0.8); }
+.lasanmarine-value-grid .vg__cell:hover .vg__title,
+.lasanmarine-value-grid .vg__cell:hover .vg__link { color: #fff; }
+.lasanmarine-value-grid .vg__cell:hover .vg__icon { background: rgba(255, 255, 255, 0.14); color: var(--aqua); box-shadow: none; }
+.lasanmarine-value-grid .vg__cell:hover::before { -webkit-text-fill-color: var(--aqua); background: none; }
+
+/* --- capability-matrix: same cards (solution areas, tools) ---------------- */
+.lasanmarine-capability-matrix .cm {
+	gap: 12px;
+	padding: 0;
+	background: none;
+	border-radius: 0;
+	overflow: visible;
+	counter-reset: cm;
+}
+.lasanmarine-capability-matrix .cm__cell {
+	@extend %v3-card;
+	padding: 26px;
+	counter-increment: cm;
+}
+.lasanmarine-capability-matrix .cm__cell::before {
+	content: counter(cm, decimal-leading-zero);
+	position: absolute;
+	right: 22px;
+	top: 18px;
+	@extend %v3-num;
+	font-size: 15px;
+}
+.lasanmarine-capability-matrix .cm__cell::after { content: none; }
+.lasanmarine-capability-matrix .cm__icon {
+	width: 52px;
+	height: 52px;
+	border-radius: 16px;
+	background: var(--paper);
+	color: var(--marine);
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+.lasanmarine-capability-matrix .cm__children > * {
+	border-color: transparent;
+	background: var(--paper);
+}
+.lasanmarine-capability-matrix .cm__cell:hover {
+	@extend %v3-card-hover;
+}
+.lasanmarine-capability-matrix .cm__cell:hover .cm__name,
+.lasanmarine-capability-matrix .cm__cell:hover .cm__cta,
+.lasanmarine-capability-matrix .cm__cell:hover .cm__children > * { color: #fff; }
+.lasanmarine-capability-matrix .cm__cell:hover .cm__desc { color: rgba(255, 255, 255, 0.8); }
+.lasanmarine-capability-matrix .cm__cell:hover .cm__children > * { background: rgba(255, 255, 255, 0.12); }
+.lasanmarine-capability-matrix .cm__cell:hover .cm__icon { background: rgba(255, 255, 255, 0.14); color: var(--aqua); box-shadow: none; }
+.lasanmarine-capability-matrix .cm__cell:hover::before { -webkit-text-fill-color: var(--aqua); background: none; }
+
+/* --- process-timeline: steps as numbered cards on a gradient rail --------- */
+.lasanmarine-process-timeline .pt__rail { background: var(--line-soft); }
+.lasanmarine-process-timeline .pt__fill { background: var(--grad-accent); }
+.lasanmarine-process-timeline .pt__steps { gap: 12px; }
+.lasanmarine-process-timeline .pt__step {
+	@extend %v3-card;
+	padding: 22px 22px 20px;
+	margin-top: 10px;
+}
+.lasanmarine-process-timeline .pt__step::before {
+	content: attr(data-index);
+	@extend %v3-num;
+	display: block;
+	margin-bottom: 10px;
+}
+.lasanmarine-process-timeline .pt__dot {
+	background: var(--paper);
+	box-shadow: inset 0 0 0 2px var(--line);
+}
+.lasanmarine-process-timeline .pt--lit .pt__dot {
+	background: var(--grad-accent);
+	box-shadow: 0 0 0 6px rgba(20, 200, 200, 0.18);
+}
+.lasanmarine-process-timeline .pt__title { font-size: 17px; }
+.lasanmarine-process-timeline .pt__desc { font-size: 14px; }
+.lasanmarine-process-timeline .pt__step:hover {
+	@extend %v3-card-hover;
+}
+.lasanmarine-process-timeline .pt__step:hover .pt__title { color: #fff; }
+.lasanmarine-process-timeline .pt__step:hover .pt__desc { color: rgba(255, 255, 255, 0.8); }
+.lasanmarine-process-timeline .pt__step:hover::before { -webkit-text-fill-color: var(--aqua); background: none; }
+
+/* --- accordion: questions as cards; the open one is the brand card -------- */
+.lasanmarine-accordion .ac__list { gap: 10px; }
+.lasanmarine-accordion .ac__item {
+	@extend %v3-card;
+	padding: 0;
+}
+.lasanmarine-accordion .ac__item[open],
+.lasanmarine-accordion .ac__item:has(.ac__trigger[aria-expanded='true']) {
+	color: #fff;
+	background:
+		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.42), transparent 60%),
+		linear-gradient(155deg, var(--navy) 0%, #0d2f73 60%, var(--marine) 130%);
+	box-shadow: 0 26px 50px -28px rgba(6, 18, 45, 0.6);
+}
+.lasanmarine-accordion .ac__trigger { padding: 20px 22px; }
+.lasanmarine-accordion .ac__title { font-size: 17px; }
+.lasanmarine-accordion .ac__item[open] .ac__title,
+.lasanmarine-accordion .ac__item:has([aria-expanded='true']) .ac__title { color: #fff; }
+.lasanmarine-accordion .ac__item[open] .ac__body,
+.lasanmarine-accordion .ac__item:has([aria-expanded='true']) .ac__body { color: rgba(255, 255, 255, 0.84); }
+.lasanmarine-accordion .ac__panel { padding: 0 22px 22px; }
+.lasanmarine-accordion .ac__sign {
+	background: var(--paper);
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+.lasanmarine-accordion .ac__item[open] .ac__sign,
+.lasanmarine-accordion .ac__item:has([aria-expanded='true']) .ac__sign { background: var(--aqua); color: var(--navy); }
+.lasanmarine-accordion .ac__item:not([open]):hover { background: var(--grad-surface); box-shadow: inset 0 0 0 1px var(--line-soft); }
+
+/* --- service-spotlight: deliverables as a glass list over the photo -------- */
+.lasanmarine-service-spotlight .spotlight {
+	border-radius: var(--r-xl);
+	background: var(--navy);
+	color: #fff;
+}
+.lasanmarine-service-spotlight .spotlight__media::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(6, 18, 45, 0) 40%, rgba(6, 18, 45, 0.6) 100%);
+	pointer-events: none;
+}
+.lasanmarine-service-spotlight .spotlight__panel.band--navy-mid {
+	background:
+		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.32), transparent 60%),
+		linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+	color: #fff;
+}
+.lasanmarine-service-spotlight .spotlight__heading,
+.lasanmarine-service-spotlight .spotlight__panel .copy { color: #fff; }
+.lasanmarine-service-spotlight .spotlight__panel .copy { color: rgba(255, 255, 255, 0.78); }
+.lasanmarine-service-spotlight .spotlight__caption { color: var(--aqua); }
+.lasanmarine-service-spotlight .spotlight__items { display: flex; flex-direction: column; gap: 8px; }
+.lasanmarine-service-spotlight .spotlight__items li {
+	border: 0;
+	padding: 12px 16px;
+	border-radius: var(--r-md);
+	background: rgba(255, 255, 255, 0.08);
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+	color: #fff;
+	transition: background 240ms var(--ease);
+}
+.lasanmarine-service-spotlight .spotlight__items li:hover { background: rgba(255, 255, 255, 0.16); }
+.lasanmarine-service-spotlight .spotlight__items li::before { background: var(--aqua); }
+.lasanmarine-service-spotlight .spotlight__panel .btn { background: #fff; color: var(--navy); }
+.lasanmarine-service-spotlight .spotlight__panel .btn:hover { background: var(--aqua); color: var(--navy); }
+
+/* --- document-center: publications as cards with a year/journal badge ----- */
+.lasanmarine-document-center .dc__filter.is-active,
+.lasanmarine-document-center .dc__filter[aria-pressed='true'] { background: var(--navy); color: #fff; }
+.lasanmarine-document-center .dc__row {
+	@extend %v3-card;
+	margin-bottom: 8px;
+	padding: 16px 18px;
+	border: 0;
+}
+.lasanmarine-document-center .dc__row:hover { background: var(--grad-surface); box-shadow: inset 0 0 0 1px var(--line-soft), 0 16px 34px -24px rgba(10, 114, 200, 0.4); transform: none; }
+.lasanmarine-document-center .dc__icon {
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 12px;
+	background: var(--paper);
+	color: var(--marine);
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+.lasanmarine-document-center .dc__title { font-weight: 600; }
+.lasanmarine-document-center .dc__size {
+	padding: 4px 10px;
+	border-radius: var(--r-pill);
+	background: var(--paper);
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+	font-size: 12px;
+}
+
+/* --- geo-operations: sonar plate on navy ------------------------------------ */
+.lasanmarine-geo-operations .band--navy {
+	background:
+		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.26), transparent 60%),
+		linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+	color: rgba(255, 255, 255, 0.82);
+}
+.lasanmarine-geo-operations .band--navy h2,
+.lasanmarine-geo-operations .band--navy h3,
+.lasanmarine-geo-operations .geo__heading { color: #fff; }
+.lasanmarine-geo-operations .geo__note { color: rgba(255, 255, 255, 0.78); }
+.lasanmarine-geo-operations .geo__label { color: var(--aqua); }
+.lasanmarine-geo-operations .geo__list > * {
+	border-radius: var(--r-pill);
+	background: rgba(255, 255, 255, 0.08);
+	color: #fff;
+}
+.lasanmarine-geo-operations .geo__list > [data-active='true'],
+.lasanmarine-geo-operations .geo__list > .is-active,
+.lasanmarine-geo-operations .geo__list > *:hover { background: var(--aqua); color: var(--navy); }
+.lasanmarine-geo-operations .geo__plate {
+	background:
+		radial-gradient(circle at 50% 50%, rgba(20, 200, 200, 0.12), transparent 60%),
+		rgba(255, 255, 255, 0.04);
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.lasanmarine-geo-operations .geo__grid { opacity: 0.18; }
+.lasanmarine-geo-operations .geo__land { fill: rgba(255, 255, 255, 0.14); stroke: rgba(255, 255, 255, 0.35); }
+.lasanmarine-geo-operations .geo__island { fill: rgba(255, 255, 255, 0.3); }
+.lasanmarine-geo-operations .geo__pin-dot { fill: var(--aqua); }
+.lasanmarine-geo-operations .geo__pin-halo { stroke: var(--aqua); }
+.lasanmarine-geo-operations .geo__pin text,
+.lasanmarine-geo-operations .geo__plate text { fill: rgba(255, 255, 255, 0.85); }
+
+/* --- image-text: photo with a glass caption chip ---------------------------- */
+.lasanmarine-image-text .it__media {
+	position: relative;
+	border-radius: var(--r-xl);
+	overflow: hidden;
+}
+.lasanmarine-image-text .it__media::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: linear-gradient(200deg, transparent 55%, rgba(6, 18, 45, 0.35));
+}
+.lasanmarine-image-text .it__body .btn,
+.lasanmarine-image-text .it__body .link { margin-top: 6px; }
+
+/* --- project-showcase: drawing on a graph-paper plate ------------------------ */
+.lasanmarine-project-showcase .ps__media .frame {
+	background:
+		linear-gradient(rgba(11, 27, 76, 0.06) 1px, transparent 1px) 0 0 / 24px 24px,
+		linear-gradient(90deg, rgba(11, 27, 76, 0.06) 1px, transparent 1px) 0 0 / 24px 24px,
+		var(--surface);
+	border-radius: var(--r-xl);
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+.lasanmarine-project-showcase .ps__media .frame::after { content: none; }
+.lasanmarine-project-showcase .ps__media .frame > img { object-fit: contain; padding: 18px; }
+.lasanmarine-project-showcase .ps__specs > div { border: 0; padding: 10px 14px; border-radius: 10px; background: var(--surface); margin-bottom: 6px; }
+.lasanmarine-project-showcase .ps__specs > div:first-child { border: 0; }
+.lasanmarine-project-showcase .ps__dot.is-active { background: var(--grad-accent); }
+
+/* --- spec-list (company details): quiet rows in a card ----------------------- */
+.lasanmarine-spec-list .spec { border-color: transparent; padding: 14px 16px; border-radius: 10px; background: var(--surface); margin-bottom: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+	.lasanmarine-value-grid .vg__cell:hover,
+	.lasanmarine-capability-matrix .cm__cell:hover,
+	.lasanmarine-process-timeline .pt__step:hover { transform: none; }
+}
+html.reduce-motion .lasanmarine-value-grid .vg__cell:hover,
+html.reduce-motion .lasanmarine-capability-matrix .cm__cell:hover,
+html.reduce-motion .lasanmarine-process-timeline .pt__step:hover { transform: none; }

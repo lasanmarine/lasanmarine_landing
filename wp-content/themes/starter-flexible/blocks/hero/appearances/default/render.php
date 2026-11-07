@@ -29,7 +29,8 @@ $slide_label = __( 'Slide %d', 'starter-flexible' );
 	<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>
 	<?php if ( $data->is_slider ) : ?> data-hero data-hero-autoplay="<?php echo esc_attr( (string) $data->autoplay ); ?>"<?php endif; ?>
 >
-	<?php if ( $data->has_media ) : ?>
+	<div class="container hero__split">
+		<?php if ( $data->has_media ) : ?>
 		<div class="hero__media">
 			<?php foreach ( $data->slides as $i => $slide ) : ?>
 				<?php if ( '' !== $slide['image_html'] ) : ?>
@@ -39,11 +40,13 @@ $slide_label = __( 'Slide %d', 'starter-flexible' );
 				<?php endif; ?>
 			<?php endforeach; ?>
 		</div>
-	<?php endif; ?>
-	<span class="hero__scrim"></span>
+		<?php endif; ?>
 
-	<div class="container hero__body">
-		<div class="hero__headlines" data-enter style="--enter-i:0">
+	<div class="hero__body">
+		<?php if ( '' !== $data->eyebrow ) : ?>
+			<p class="hero__eyebrow"><?php echo esc_html( $data->eyebrow ); ?></p>
+		<?php endif; ?>
+		<div class="hero__headlines">
 			<?php foreach ( $data->slides as $i => $slide ) : ?>
 				<?php
 				// One h1 to a page: the slides behind the first are the same
@@ -67,10 +70,13 @@ $slide_label = __( 'Slide %d', 'starter-flexible' );
 				?></<?php echo esc_attr( $tag ); ?>>
 			<?php endforeach; ?>
 		</div>
+		<?php if ( '' !== $data->subline ) : ?>
+			<p class="hero__subline"><?php echo esc_html( $data->subline ); ?></p>
+		<?php endif; ?>
 
 		<div class="hero__foot">
 			<?php if ( $data->has_lead ) : ?>
-				<div class="hero__leads" data-enter style="--enter-i:1">
+				<div class="hero__leads">
 					<?php foreach ( $data->slides as $i => $slide ) : ?>
 						<p class="copy hero__lead<?php echo 0 === $i ? ' is-current' : ''; ?>" data-hero-panel="<?php echo esc_attr( (string) $i ); ?>" aria-hidden="<?php echo 0 === $i ? 'false' : 'true'; ?>"><?php echo esc_html( $slide['lead'] ); ?></p>
 					<?php endforeach; ?>
@@ -78,7 +84,7 @@ $slide_label = __( 'Slide %d', 'starter-flexible' );
 			<?php endif; ?>
 
 			<?php if ( $data->has_actions ) : ?>
-				<div class="hero__actions" data-enter style="--enter-i:2">
+				<div class="hero__actions">
 					<?php
 					starter_flexible_render_hero_button( $data->primary, 'primary', 'arrow' );
 					starter_flexible_render_hero_button( $data->secondary, 'secondary', 'arrowUpRight' );
@@ -88,7 +94,7 @@ $slide_label = __( 'Slide %d', 'starter-flexible' );
 		</div>
 
 		<?php if ( $data->is_slider ) : ?>
-			<div class="hero__dots" role="tablist" aria-label="<?php esc_attr_e( 'Chọn slide', 'starter-flexible' ); ?>" data-enter style="--enter-i:3">
+			<div class="hero__dots" role="tablist" aria-label="<?php esc_attr_e( 'Chọn slide', 'starter-flexible' ); ?>">
 				<?php foreach ( $data->slides as $i => $slide ) : ?>
 					<button
 						type="button"
@@ -104,6 +110,5 @@ $slide_label = __( 'Slide %d', 'starter-flexible' );
 			</div>
 		<?php endif; ?>
 	</div>
-
-	<?php get_template_part( 'template-parts/components/wave' ); ?>
+	</div>
 </section>

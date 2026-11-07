@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Starter_Flexible_Block_Process_Timeline extends Starter_Flexible_Abstract_Block {
 	protected function defaults(): array {
-		return array( 'label' => 'PROCESS TIMELINE', 'steps' => array(), 'custom_class' => '' );
+		return array( 'label' => 'PROCESS TIMELINE', 'heading' => '', 'intro' => '', 'steps' => array(), 'custom_class' => '' );
 	}
 
 	protected function base_class(): string {
@@ -34,6 +34,8 @@ final class Starter_Flexible_Block_Process_Timeline extends Starter_Flexible_Abs
 			);
 		}
 
+		$data['heading']       = trim( (string) $data['heading'] );
+		$data['intro']         = trim( (string) $data['intro'] );
 		$data['steps']         = $steps;
 		$data['should_render'] = ! empty( $steps );
 

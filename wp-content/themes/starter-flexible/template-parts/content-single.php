@@ -54,16 +54,9 @@ get_template_part(
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'post-single' ); ?>>
 
-	<?php /* The photograph carries the title and the byline, so the article
-	         opens on the subject rather than on a stack of labels. */ ?>
-	<header class="post-hero<?php echo has_post_thumbnail() ? '' : ' post-hero--flat'; ?>">
-		<?php if ( has_post_thumbnail() ) : ?>
-			<div class="post-hero__media">
-				<?php the_post_thumbnail( 'full', starter_flexible_image_priority_attrs( array( 'sizes' => '100vw' ) ) ); ?>
-			</div>
-			<span class="post-hero__scrim" aria-hidden="true"></span>
-		<?php endif; ?>
-
+	<?php /* The title reads on a plain navy field; the photograph follows as
+	         its own figure, lifted over the band's edge. */ ?>
+	<header class="post-hero<?php echo has_post_thumbnail() ? ' post-hero--media' : ''; ?>">
 		<div class="container post-hero__inner">
 			<nav class="phead__crumbs" aria-label="<?php esc_attr_e( 'Đường dẫn', 'starter-flexible' ); ?>">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Trang chủ', 'starter-flexible' ); ?></a>
@@ -72,11 +65,13 @@ get_template_part(
 					<a href="<?php echo esc_url( $news_url ); ?>"><?php esc_html_e( 'Tin tức', 'starter-flexible' ); ?></a>
 				<?php endif; ?>
 			</nav>
-			<div class="post-hero__badges">
-				<?php foreach ( $post_categories as $category ) : ?>
-					<a class="post-hero__cat" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
-				<?php endforeach; ?>
-			</div>
+			<?php if ( $post_categories ) : ?>
+				<div class="post-hero__badges">
+					<?php foreach ( $post_categories as $category ) : ?>
+						<a class="post-hero__cat" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 
 			<h1 class="post-hero__title"><?php the_title(); ?></h1>
 
@@ -85,11 +80,25 @@ get_template_part(
 					<span class="post-hero__avatar" aria-hidden="true"><?php echo esc_html( $author_initial ); ?></span>
 					<?php echo esc_html( $author_name ); ?>
 				</li>
-				<li><time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></time></li>
-				<li><?php printf( esc_html__( '%d phút đọc', 'starter-flexible' ), $reading_time ); ?></li>
+				<li>
+					<?php echo starter_flexible_icon( 'calendar', 16 ); // phpcs:ignore ?>
+					<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></time>
+				</li>
+				<li>
+					<?php echo starter_flexible_icon( 'clock', 16 ); // phpcs:ignore ?>
+					<?php printf( esc_html__( '%d phút đọc', 'starter-flexible' ), $reading_time ); ?>
+				</li>
 			</ul>
 		</div>
 	</header>
+
+	<?php if ( has_post_thumbnail() ) : ?>
+		<div class="container">
+			<figure class="post-cover">
+				<?php the_post_thumbnail( 'full', starter_flexible_image_priority_attrs( array( 'sizes' => '(min-width: 1280px) 1200px, 100vw' ) ) ); ?>
+			</figure>
+		</div>
+	<?php endif; ?>
 
 	<div class="container post-single__layout">
 		<aside class="post-single__aside">
@@ -110,14 +119,20 @@ get_template_part(
 			<div class="post-share">
 				<span class="post-share__label"><?php esc_html_e( 'Chia sẻ', 'starter-flexible' ); ?></span>
 				<div class="post-share__row">
-					<a class="post-share__btn" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo esc_attr( $share_url ); ?>" target="_blank" rel="noopener">Facebook</a>
-					<a class="post-share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo esc_attr( $share_url ); ?>" target="_blank" rel="noopener">LinkedIn</a>
+					<a class="post-share__btn" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo esc_attr( $share_url ); ?>" target="_blank" rel="noopener">
+						<?php echo starter_flexible_icon( 'share', 16 ); // phpcs:ignore ?>
+						Facebook
+					</a>
+					<a class="post-share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo esc_attr( $share_url ); ?>" target="_blank" rel="noopener">
+						<?php echo starter_flexible_icon( 'share', 16 ); // phpcs:ignore ?>
+						LinkedIn
+					</a>
 					<button
 						type="button"
 						class="post-share__btn"
 						data-copy="<?php echo esc_attr( (string) get_permalink() ); ?>"
 						data-copied="<?php esc_attr_e( 'Đã chép', 'starter-flexible' ); ?>"
-					><span data-copy-label><?php esc_html_e( 'Chép link', 'starter-flexible' ); ?></span></button>
+					><?php echo starter_flexible_icon( 'link', 16 ); // phpcs:ignore ?><span data-copy-label><?php esc_html_e( 'Chép link', 'starter-flexible' ); ?></span></button>
 				</div>
 			</div>
 		</aside>
@@ -141,7 +156,7 @@ get_template_part(
 
 			<?php if ( ! empty( $post_tags ) ) : ?>
 				<footer class="post-single__footer">
-					<span class="post-single__tags-label"><?php esc_html_e( 'Thẻ', 'starter-flexible' ); ?></span>
+					<span class="post-single__tags-label"><?php echo starter_flexible_icon( 'tag', 16 ); // phpcs:ignore ?><?php esc_html_e( 'Thẻ', 'starter-flexible' ); ?></span>
 					<div class="post-single__tags">
 						<?php foreach ( $post_tags as $tag ) : ?>
 							<a class="post-single__tag" href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>">

@@ -29,15 +29,24 @@ if ( empty( $data->should_render ) ) {
 					'ratio'       => '',
 					'class'       => 'frame--zoom',
 					'src'         => $data->image_url,
+					'alt'         => $data->heading,
 					'placeholder' => $data->placeholder,
 					'caption'     => $data->caption,
 				)
 			);
 			?>
+			<?php if ( '' !== trim( (string) $data->caption ) ) : ?>
+				<p class="spotlight__caption"><?php echo esc_html( $data->caption ); ?></p>
+			<?php endif; ?>
+			<?php if ( '' !== trim( (string) $data->label ) ) : ?>
+				<p class="spotlight__label"><?php echo esc_html( $data->label ); ?></p>
+			<?php endif; ?>
 		</div>
 		<div class="spotlight__panel band--navy-mid">
 			<h3 class="h4 spotlight__heading"><?php echo esc_html( $data->heading ); ?></h3>
-			<p class="copy"><?php echo esc_html( $data->body ); ?></p>
+			<?php if ( '' !== trim( (string) $data->body ) ) : ?>
+				<p class="copy"><?php echo esc_html( $data->body ); ?></p>
+			<?php endif; ?>
 			<ul class="spotlight__items" data-reveal-stagger>
 				<?php foreach ( $data->items as $item ) : ?>
 					<li><?php echo esc_html( $item ); ?></li>

@@ -86,6 +86,27 @@ function starter_flexible_register_project_post_type(): void {
 			)
 		)
 	);
+
+	// The kind of work LASAN MARINE did on the vessel — what the projects page
+	// filters by. Not browsable on its own, so no archive or URL.
+	register_taxonomy(
+		'project_work',
+		'project',
+		array_merge(
+			$shared,
+			array(
+				'labels'             => array(
+					'name'          => __( 'Loại công việc', 'starter-flexible' ),
+					'singular_name' => __( 'Loại công việc', 'starter-flexible' ),
+					'menu_name'     => __( 'Loại công việc', 'starter-flexible' ),
+				),
+				'public'             => false,
+				'publicly_queryable' => false,
+				'show_ui'            => true,
+				'rewrite'            => false,
+			)
+		)
+	);
 }
 add_action( 'init', 'starter_flexible_register_project_post_type' );
 
@@ -127,6 +148,16 @@ add_action( 'init', 'starter_flexible_maybe_flush_rewrites', 20 );
  *
  * @return array<string, mixed>
  */
+/**
+ * A one-item-per-line text field as a list of its non-empty lines.
+ *
+ * @param string $text Field value.
+ * @return string[]
+ */
+function starter_flexible_project_lines( string $text ): array {
+	return array_values( array_filter( array_map( 'trim', preg_split( '/\R/', $text ) ) ) );
+}
+
 function starter_flexible_project_card( WP_Post $post ): array {
 	$field = static function ( string $name ) use ( $post ) {
 		return function_exists( 'get_field' ) ? get_field( $name, $post->ID ) : get_post_meta( $post->ID, $name, true );
@@ -137,17 +168,16 @@ function starter_flexible_project_card( WP_Post $post ): array {
 	};
 
 	$dims = array_filter( array( $number( $field( 'lmax' ) ), $number( $field( 'bmax' ) ), $number( $field( 'depth' ) ) ) );
-	$meta = array_filter(
-		array(
-			$dims ? implode( ' × ', $dims ) . ' m' : '',
-			'' !== $number( $field( 'tonnage' ) ) ? $number( $field( 'tonnage' ) ) . ' T' : '',
-			'' !== $number( $field( 'power_kw' ), 0 ) ? $number( $field( 'power_kw' ), 0 ) . ' kW' : '',
-		)
-	);
+	$dims_str = $dims ? implode( ' × ', $dims ) . ' m' : '';
+	$tonnage_str = '' !== $number( $field( 'tonnage' ) ) ? $number( $field( 'tonnage' ) ) . ' T' : '';
+	$power_str = '' !== $number( $field( 'power_kw' ), 0 ) ? $number( $field( 'power_kw' ), 0 ) . ' kW' : '';
+	$meta = array_filter( array( $dims_str, $tonnage_str, $power_str ) );
 
 	$materials = wp_get_post_terms( $post->ID, 'project_material', array( 'fields' => 'names' ) );
 	$uses      = wp_get_post_terms( $post->ID, 'project_use', array( 'fields' => 'names' ) );
-	$tags      = array_merge( is_array( $materials ) ? $materials : array(), is_array( $uses ) ? $uses : array() );
+	$tags      = array_merge( is_array( $uses ) ? $uses : array(), is_array( $materials ) ? $materials : array() );
+	$works     = wp_get_post_terms( $post->ID, 'project_work', array( 'fields' => 'names' ) );
+	$scope     = starter_flexible_project_lines( (string) $field( 'scope' ) );
 
 	$image_id = (int) get_post_thumbnail_id( $post->ID );
 
@@ -158,11 +188,19 @@ function starter_flexible_project_card( WP_Post $post ): array {
 		'image_url'   => $image_id ? (string) wp_get_attachment_image_url( $image_id, 'large' ) : '',
 		'placeholder' => (string) ( $field( 'vessel_no' ) ?: get_the_title( $post ) ),
 		'tag'         => implode( ' · ', $tags ),
+		'dims'        => $dims_str,
+		'tonnage'     => $tonnage_str,
+		'power'       => $power_str,
+		'materials_str' => is_array( $materials ) ? implode( ', ', $materials ) : '',
+		'uses_str'      => is_array( $uses ) ? implode( ', ', $uses ) : '',
 		'meta'        => implode( ' · ', $meta ),
 		'region'      => (string) $field( 'region' ),
 		'location'    => (string) $field( 'location' ),
 		'year'        => (string) $field( 'year' ),
 		'status'      => (string) $field( 'status' ),
+		'work'        => is_array( $works ) ? implode( ' · ', $works ) : '',
+		'scope'       => implode( ' · ', array_slice( $scope, 0, 3 ) ),
+		'works'       => array_values( (array) wp_get_post_terms( $post->ID, 'project_work', array( 'fields' => 'slugs' ) ) ),
 		'materials'   => array_values( (array) wp_get_post_terms( $post->ID, 'project_material', array( 'fields' => 'slugs' ) ) ),
 		'uses'        => array_values( (array) wp_get_post_terms( $post->ID, 'project_use', array( 'fields' => 'slugs' ) ) ),
 	);

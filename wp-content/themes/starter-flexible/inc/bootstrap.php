@@ -21,12 +21,15 @@ if ( ! defined( 'STARTER_FLEXIBLE_THEME_VERSION' ) ) {
 }
 
 require_once __DIR__ . '/helpers.php';
+require_once __DIR__ . '/i18n.php';
 require_once __DIR__ . '/icons.php';
+require_once __DIR__ . '/font-preload.php';
 require_once __DIR__ . '/vite.php';
 require_once __DIR__ . '/assets.php';
 require_once __DIR__ . '/media.php';
 require_once __DIR__ . '/media-webp.php';
 require_once __DIR__ . '/site-settings.php';
+require_once __DIR__ . '/cf7-fix.php';
 require_once __DIR__ . '/navigation.php';
 require_once __DIR__ . '/post-types.php';
 require_once __DIR__ . '/theme.php';

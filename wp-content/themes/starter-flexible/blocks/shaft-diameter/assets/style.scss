@@ -4,8 +4,9 @@
    a plain unit pill and wraps as a block of its own. */
 .sd .pc__choice {
 	@apply items-center;
-	padding: 12px 16px;
+	padding: 12px 20px 12px 16px;
 	gap: 12px;
+	border-radius: var(--r-lg);
 }
 .sd__choice-text {
 	@apply flex min-w-0 flex-col;
@@ -18,7 +19,7 @@
 .sd__choice-text em {
 	@apply not-italic text-mute;
 	font-size: 12.5px;
-	transition: color 200ms ease;
+	transition: color 200ms var(--ease);
 }
 /* Tách bằng khoảng trắng và màu, không kẻ vạch — như mọi cặp nhãn/giá trị
    khác trên site. */
@@ -27,7 +28,7 @@
 	padding-left: 16px;
 	font-size: 14.5px;
 	font-variant-numeric: tabular-nums;
-	transition: color 200ms ease;
+	transition: color 200ms var(--ease);
 }
 .sd .pc__choice:has(input:checked) .sd__choice-text em,
 .sd .pc__choice:has(input:checked) .sd__choice-k {

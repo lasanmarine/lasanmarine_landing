@@ -19,6 +19,19 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
+	<?php if ( '' !== $data->heading || '' !== $data->view_all_url ) : ?>
+		<div class="dc__head">
+			<?php if ( '' !== $data->heading ) : ?>
+				<h2 class="h3 dc__heading"><?php echo esc_html( $data->heading ); ?></h2>
+			<?php endif; ?>
+			<?php if ( '' !== $data->view_all_url ) : ?>
+				<a class="link link--fixed link--lg" href="<?php echo esc_url( $data->view_all_url ); ?>">
+					<?php echo esc_html( $data->view_all_text ); ?>
+					<?php echo starter_flexible_icon( 'arrow' ); // phpcs:ignore ?>
+				</a>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
 	<div class="dc__filters" role="tablist" data-doc-filters>
 		<button type="button" class="dc__filter" data-doc-filter="all" data-active="true">
 			<?php echo esc_html( $data->all_label ); ?>

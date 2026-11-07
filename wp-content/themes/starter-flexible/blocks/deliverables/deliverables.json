@@ -1,0 +1,20 @@
+{
+  "key": "group_deliverables",
+  "title": "Deliverables",
+  "fields": [
+    { "key": "field_dl_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_dl_intro", "label": "Intro", "name": "intro", "type": "textarea", "rows": 3, "new_lines": "" },
+    { "key": "field_dl_note_label", "label": "Note label", "name": "note_label", "type": "text", "instructions": "Ví dụ: Thời gian" },
+    { "key": "field_dl_note", "label": "Note", "name": "note", "type": "textarea", "rows": 2, "new_lines": "" },
+    {
+      "key": "field_dl_items", "label": "Items", "name": "items", "type": "repeater", "layout": "table", "button_label": "Thêm hạng mục",
+      "sub_fields": [
+        { "key": "field_dl_item_title", "label": "Title", "name": "title", "type": "text" },
+        { "key": "field_dl_item_desc", "label": "Description", "name": "desc", "type": "text" },
+        { "key": "field_dl_item_format", "label": "Format", "name": "format", "type": "text", "instructions": "Ví dụ: PDF · DWG" }
+      ]
+    },
+    { "key": "field_dl_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/deliverables" }]]
+}

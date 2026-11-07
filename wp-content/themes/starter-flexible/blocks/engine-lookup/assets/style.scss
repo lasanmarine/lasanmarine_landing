@@ -14,7 +14,7 @@
 	}
 }
 .el__head {
-	@apply flex flex-wrap items-baseline justify-between border-b border-line;
+	@apply flex flex-wrap items-baseline justify-between border-b border-line-soft;
 	gap: 8px 16px;
 	padding-bottom: 12px;
 }
@@ -36,9 +36,9 @@
 	@apply flex w-full cursor-pointer items-center border-none bg-none text-left font-display font-semibold text-navy;
 	gap: 6px;
 	padding: 14px 12px 14px 0;
-	font-size: 16px;
-	letter-spacing: 0;
-	transition: color 200ms ease;
+	font-size: 15px;
+	letter-spacing: -0.01em;
+	transition: color 200ms var(--ease);
 }
 .el__table th button:hover,
 .el__table th[aria-sort] button {
@@ -65,6 +65,7 @@
 }
 .el__table td {
 	@apply border-b border-line-soft text-steel;
+	font-variant-numeric: tabular-nums;
 	padding: 8px 12px 8px 0;
 }
 .el__cell {
@@ -79,9 +80,9 @@
 	width: 28px;
 	height: 28px;
 	transition:
-		background 180ms ease,
-		color 180ms ease,
-		opacity 160ms ease;
+		background 180ms var(--ease),
+		color 180ms var(--ease),
+		opacity 160ms var(--ease);
 }
 .el__table tbody tr:hover .el__copy,
 .el__copy:focus-visible,
@@ -95,6 +96,14 @@
 }
 .el__table tbody tr:hover td {
 	@apply bg-paper;
+}
+.el__table tbody tr:hover td:first-child {
+	border-top-left-radius: var(--r-sm);
+	border-bottom-left-radius: var(--r-sm);
+}
+.el__table tbody tr:hover td:last-child {
+	border-top-right-radius: var(--r-sm);
+	border-bottom-right-radius: var(--r-sm);
 }
 .el__table td:first-child,
 .el__table td:nth-child(2) {

@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Starter_Flexible_Block_Project_Showcase extends Starter_Flexible_Abstract_Block {
 	protected function defaults(): array {
-		return array( 'label' => 'DỰ ÁN TIÊU BIỂU', 'projects' => array(), 'limit' => 5, 'custom_class' => '' );
+		return array( 'label' => 'DỰ ÁN TIÊU BIỂU', 'heading' => '', 'intro' => '', 'view_all' => array(), 'projects' => array(), 'limit' => 5, 'custom_class' => '' );
 	}
 
 	protected function base_class(): string {
@@ -52,13 +52,19 @@ final class Starter_Flexible_Block_Project_Showcase extends Starter_Flexible_Abs
 			// The carousel's three caption slots, filled from the spec sheet:
 			// dimensions, weight and power, then where and in what state.
 			$items[] = array(
-				'name'        => $card['title'],
-				'location'    => $card['meta'],
-				'year'        => trim( implode( ' · ', array_filter( array( $card['location'], $card['year'] ) ) ) ),
-				'service'     => '' !== $card['status'] ? $card['status'] : $card['tag'],
-				'placeholder' => $card['placeholder'],
-				'image_url'   => $card['image_url'],
-				'url'         => $card['url'],
+				'name'          => $card['title'],
+				'dims'          => $card['dims'] ?? '',
+				'tonnage'       => $card['tonnage'] ?? '',
+				'power'         => $card['power'] ?? '',
+				'materials_str' => $card['materials_str'] ?? '',
+				'uses_str'      => $card['uses_str'] ?? '',
+				'location'      => $card['location'] ?? '',
+				'year'          => $card['year'] ?? '',
+				'scope'         => $card['scope'] ?? '',
+				'service'       => trim( implode( ' · ', array_filter( array( $card['work'], $card['scope'] ) ) ) ) ?: $card['tag'],
+				'placeholder'   => $card['placeholder'],
+				'image_url'     => $card['image_url'],
+				'url'           => $card['url'],
 			);
 		}
 
@@ -68,11 +74,23 @@ final class Starter_Flexible_Block_Project_Showcase extends Starter_Flexible_Abs
 		$data['should_render'] = ! empty( $items );
 
 		$data['has_navigation'] = count( $data['items'] ) > 1;
+		$data['heading']        = trim( (string) $data['heading'] );
+		$data['intro']          = trim( (string) $data['intro'] );
+		$view_all               = is_array( $data['view_all'] ) ? $data['view_all'] : array();
+		$data['view_all_url']   = isset( $view_all['url'] ) ? (string) $view_all['url'] : '';
+		$data['view_all_label'] = isset( $view_all['title'] ) ? (string) $view_all['title'] : '';
+		$data['has_head']       = '' !== $data['heading'] || '' !== $data['intro'] || '' !== $data['view_all_url'];
+		$is_english             = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 		foreach ( $data['items'] as &$item ) {
 		$rows = array(
-			__( 'Kích thước', 'starter-flexible' ) => $item['location'],
-			__( 'Địa bàn', 'starter-flexible' )    => $item['year'],
-			__( 'Trạng thái', 'starter-flexible' ) => $item['service'],
+			( $is_english ? 'Dimensions (L×B×D)' : __( 'Kích thước (Dài×Rộng×Cao)', 'starter-flexible' ) ) => $item['dims'] ?? '',
+			( $is_english ? 'Tonnage' : __( 'Trọng tải', 'starter-flexible' ) ) => $item['tonnage'] ?? '',
+			( $is_english ? 'Main engine power' : __( 'Công suất máy chính', 'starter-flexible' ) ) => $item['power'] ?? '',
+			( $is_english ? 'Use / Function' : __( 'Công dụng', 'starter-flexible' ) ) => $item['uses_str'] ?? '',
+			( $is_english ? 'Hull material' : __( 'Vật liệu vỏ', 'starter-flexible' ) ) => $item['materials_str'] ?? '',
+			( $is_english ? 'Location' : __( 'Địa phương', 'starter-flexible' ) ) => $item['location'] ?? '',
+			( $is_english ? 'Year' : __( 'Năm thực hiện', 'starter-flexible' ) ) => $item['year'] ?? '',
+			( $is_english ? 'Scope carried out by LASAN MARINE' : __( 'Phạm vi LASAN MARINE thực hiện', 'starter-flexible' ) ) => $item['scope'] ?? '',
 		);
 		$item['specs'] = array_filter( $rows, fn( $value ): bool => $this->has_text( $value ) );
 		}

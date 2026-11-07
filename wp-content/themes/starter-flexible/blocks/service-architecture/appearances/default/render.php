@@ -40,7 +40,12 @@ if ( empty( $data->should_render ) ) {
 				>
 					<span>
 						<span class="sa__name"><?php echo esc_html( $item['name'] ); ?></span>
-						<span class="sa__desc"><?php echo esc_html( $item['desc'] ); ?></span>
+						<?php if ( '' !== trim( $item['desc'] ) ) : ?>
+							<span class="sa__desc"><?php echo esc_html( $item['desc'] ); ?></span>
+						<?php endif; ?>
+						<?php if ( '' !== $item['note'] ) : ?>
+							<span class="sa__note"><?php echo esc_html( $item['note'] ); ?></span>
+						<?php endif; ?>
 						<?php if ( ! empty( $item['children'] ) ) : ?>
 							<span class="sa__children">
 								<?php foreach ( $item['children'] as $child ) : ?>

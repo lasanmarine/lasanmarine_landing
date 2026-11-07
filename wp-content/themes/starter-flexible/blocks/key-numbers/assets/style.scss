@@ -37,3 +37,31 @@
 		max-width: none;
 	}
 }
+
+/* --- v2 light minimal: bento tiles on the quiet surface ------------------ */
+.lasanmarine-key-numbers .stats {
+	gap: clamp(10px, 1.2vw, 16px);
+}
+.lasanmarine-key-numbers .stats .stat {
+	@apply bg-paper;
+	border: 0;
+	border-radius: var(--r-lg);
+	padding: clamp(20px, 2.4vw, 32px);
+	transition: box-shadow 240ms var(--ease), transform 240ms var(--ease);
+}
+.lasanmarine-key-numbers .stats .stat:hover {
+	box-shadow: var(--lift);
+	transform: translateY(-2px);
+}
+@media (max-width: 640px) {
+	.lasanmarine-key-numbers .stats { gap: 10px; }
+	.lasanmarine-key-numbers .stats .stat,
+	.lasanmarine-key-numbers .stats .stat:first-child,
+	.lasanmarine-key-numbers .stats .stat:nth-child(-n + 2) {
+		border: 0;
+		padding: 18px 16px;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.lasanmarine-key-numbers .stats .stat:hover { transform: none; }
+}

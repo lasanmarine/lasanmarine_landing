@@ -1,0 +1,20 @@
+{
+  "key": "group_vessel_finder",
+  "title": "Vessel Finder",
+  "fields": [
+    { "key": "field_vf_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_vf_intro", "label": "Intro", "name": "intro", "type": "textarea", "rows": 2, "new_lines": "" },
+    {
+      "key": "field_vf_items", "label": "Items", "name": "items", "type": "repeater", "layout": "block", "button_label": "Thêm loại tàu",
+      "sub_fields": [
+        { "key": "field_vf_item_image", "label": "Image", "name": "image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all" },
+        { "key": "field_vf_item_icon", "label": "Icon (khi không có ảnh)", "name": "icon", "type": "select", "choices": { "ship": "ship", "waves": "waves", "ruler": "ruler", "wrench": "wrench", "compass": "compass", "file": "file", "award": "award", "gauge": "gauge" }, "default_value": "ship", "return_format": "value" },
+        { "key": "field_vf_item_title", "label": "Title", "name": "title", "type": "text" },
+        { "key": "field_vf_item_desc", "label": "Description", "name": "desc", "type": "textarea", "rows": 2, "new_lines": "" },
+        { "key": "field_vf_item_link", "label": "Link", "name": "link", "type": "link", "return_format": "array" }
+      ]
+    },
+    { "key": "field_vf_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/vessel-finder" }]]
+}

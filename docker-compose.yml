@@ -28,6 +28,7 @@ services:
     volumes:
       - .:/var/www/html
       - ./docker/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
+      - ./docker/loopback.conf:/etc/apache2/conf-enabled/loopback.conf:ro
     ports:
       - "49731:80"
 

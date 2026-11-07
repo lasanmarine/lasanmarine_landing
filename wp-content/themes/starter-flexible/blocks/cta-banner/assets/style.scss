@@ -16,13 +16,13 @@
 	gap: 12px;
 }
 .cb__label {
-	@apply uppercase text-marine;
+	@apply text-marine;
 }
 .cb__heading {
 	max-width: 18em;
 	font-size: clamp(26px, 2.8vw, 42px);
 	line-height: 1.1;
-	letter-spacing: -0.025em;
+	letter-spacing: -0.02em;
 	text-wrap: balance;
 }
 .cb__content {
@@ -35,7 +35,7 @@
 }
 /* Trên nền navy, nhãn nhỏ sáng lên để vẫn đọc được. */
 .cb--navy .cb__label {
-	@apply text-marine-bright;
+	@apply text-marine;
 }
 
 @media (max-width: 720px) {
@@ -46,3 +46,23 @@
 		@apply w-full;
 	}
 }
+
+
+/* --- v2 light minimal: a quiet rounded panel ----------------------------- */
+.cb {
+	@apply bg-surface;
+	margin-inline: clamp(8px, 1.2vw, 20px);
+	border-radius: var(--r-xl);
+	padding-block: clamp(48px, 6vw, 96px);
+}
+.cb--outline {
+	@apply bg-paper;
+	border: 1px solid var(--line-soft);
+}
+.cb__label,
+.cb--navy .cb__label { color: var(--mute); }
+.cb__heading {
+	@apply font-semibold text-navy;
+	letter-spacing: -0.02em;
+}
+.cb__content { @apply text-steel; }

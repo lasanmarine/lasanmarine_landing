@@ -10,19 +10,24 @@
 	gap: clamp(16px, 2vw, 28px);
 }
 .uc__case {
-	@apply flex flex-col border border-line bg-paper;
+	@apply flex flex-col bg-surface;
 	gap: 14px;
-	padding: clamp(24px, 2.6vw, 38px);
-	border-radius: var(--r-lg);
-	transition: border-color 220ms ease;
+	padding: clamp(24px, 2.8vw, 42px);
+	border-radius: var(--r-xl);
+	transition:
+		background 320ms var(--ease),
+		box-shadow 320ms var(--ease);
 }
 .uc__case:hover {
-	@apply border-marine;
+	@apply bg-paper;
+	box-shadow: var(--lift);
 }
 .uc__problem {
 	max-width: 22em;
 	font-size: clamp(19px, 1.7vw, 23px);
-	line-height: 1.3;
+	line-height: 1.25;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 }
 .uc__context {
 	@apply text-steel;
@@ -31,14 +36,14 @@
 }
 /* Câu trả lời tách khỏi bối cảnh bằng một đường kẻ mảnh, không bằng nền màu. */
 .uc__solution {
-	@apply mt-auto flex flex-col border-t border-line-soft;
+	@apply mt-auto flex flex-col border-t border-line;
 	gap: 8px;
 	padding-top: 18px;
 }
 /* .meta giãn chữ 0.14em cho nhãn toàn chữ hoa; ở đây là một nhãn thường nên
    trả lại khoảng cách chữ bình thường. */
 .uc__solution-label {
-	@apply font-display font-semibold text-marine;
+	@apply font-display font-semibold text-aqua-deep;
 	font-size: 13px;
 	letter-spacing: 0;
 }
@@ -60,4 +65,20 @@
 .uc__case:hover .uc__link .btn__icon svg:nth-child(2),
 .uc__link:hover .btn__icon svg:nth-child(2) {
 	transform: translate(0, 0);
+}
+/* Never more than two to a row: three would strand the fourth case alone. */
+@media (min-width: 761px) {
+	.uc {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+/* Stacked mode: cards tighten with the screen height. */
+.is-stacked .uc__case { padding: clamp(18px, 3vh, 40px) clamp(20px, 2.4vw, 40px); gap: clamp(8px, 1.4vh, 14px); }
+.is-stacked .uc { gap: clamp(10px, 1.8vh, 20px); }
+.is-stacked .uc__case { padding-block: clamp(14px, 2.4vh, 36px); }
+
+/* Three cases sit in one row instead of leaving a lone card. */
+@media (min-width: 1025px) {
+	.uc:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

@@ -10,18 +10,46 @@
             "default_value": "DỰ ÁN TIÊU BIỂU"
         },
         {
+            "key": "field_ps_heading",
+            "label": "Heading",
+            "name": "heading",
+            "type": "text"
+        },
+        {
+            "key": "field_ps_intro",
+            "label": "Intro",
+            "name": "intro",
+            "type": "textarea",
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_ps_view_all",
+            "label": "View all link",
+            "name": "view_all",
+            "type": "link",
+            "return_format": "array"
+        },
+        {
             "key": "field_ps_projects",
             "label": "Chọn dự án",
             "name": "projects",
             "type": "relationship",
             "instructions": "Tích chọn dự án từ post type Dự án. Ảnh, tên và thông số lấy thẳng từ hồ sơ dự án, không phải nhập lại. Để trống thì tự lấy các dự án mới nhất.",
-            "post_type": ["project"],
-            "filters": ["search", "taxonomy"],
+            "post_type": [
+                "project"
+            ],
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
             "taxonomy": [],
             "return_format": "id",
             "min": 0,
             "max": 12,
-            "elements": ["featured_image"]
+            "elements": [
+                "featured_image"
+            ]
         },
         {
             "key": "field_ps_limit",
@@ -39,5 +67,13 @@
             "type": "text"
         }
     ],
-    "location": [[{ "param": "block", "operator": "==", "value": "acf/project-showcase" }]]
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/project-showcase"
+            }
+        ]
+    ]
 }

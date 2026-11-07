@@ -25,7 +25,7 @@
 .cl__name {
 	@apply font-display font-semibold;
 	font-size: 15px;
-	letter-spacing: 0.16em;
+	letter-spacing: 0.01em;
 }
 
 /* Two logos to a row on a phone: one per row turns a strip into a scroll. */
@@ -46,3 +46,24 @@
 		letter-spacing: 0.1em;
 	}
 }
+
+/* --- v2 light minimal: hairline mesh in a rounded frame ------------------ */
+.cl {
+	gap: 1px;
+	padding: 1px;
+	overflow: hidden;
+	border-radius: var(--r-lg);
+	background: var(--line-soft);
+}
+.cl__cell {
+	@apply bg-paper;
+	border: 0;
+	transition: color 240ms var(--ease), background 240ms var(--ease);
+}
+.cl__cell:hover { @apply bg-surface; }
+.cl__logo {
+	filter: grayscale(1);
+	opacity: 0.7;
+	transition: filter 240ms var(--ease), opacity 240ms var(--ease);
+}
+.cl__cell:hover .cl__logo { filter: none; opacity: 1; }

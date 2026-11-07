@@ -48,13 +48,19 @@ $is_row     = isset( $args['variant'] ) && 'row' === $args['variant'];
 			<span class="pj-card__tag"><?php echo esc_html( $item['tag'] ); ?></span>
 		<?php endif; ?>
 		<span class="pj-card__name"><?php echo esc_html( $item['title'] ); ?></span>
+		<?php if ( '' !== ( $item['work'] ?? '' ) ) : ?>
+			<span class="pj-card__work"><?php echo esc_html( $item['work'] ); ?></span>
+		<?php endif; ?>
+		<?php if ( '' !== ( $item['scope'] ?? '' ) ) : ?>
+			<span class="pj-card__scope"><?php echo esc_html( $item['scope'] ); ?></span>
+		<?php endif; ?>
 		<?php if ( '' !== $item['meta'] ) : ?>
-			<span class="pj-card__meta"><?php echo esc_html( $item['meta'] ); ?></span>
+			<span class="pj-card__meta"><?php echo esc_html( $item['meta'] ); ?><?php echo '' !== $item['year'] ? esc_html( ' · ' . $item['year'] ) : ''; ?></span>
 		<?php endif; ?>
 
 		<?php if ( ! $is_row ) : ?>
 			<span class="pj-card__more">
-				<?php esc_html_e( 'Xem hồ sơ', 'starter-flexible' ); ?>
+				<?php esc_html_e( 'Xem dự án', 'starter-flexible' ); ?>
 				<?php echo starter_flexible_icon_swap( 'arrow', 16 ); // phpcs:ignore ?>
 			</span>
 		<?php endif; ?>

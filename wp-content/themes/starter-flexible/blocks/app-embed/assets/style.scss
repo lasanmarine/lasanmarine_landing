@@ -1,0 +1,21 @@
+/* App Embed — the simulator sits in a rounded frame that fills most of the
+   viewport, so the app's own layout gets a real screen to work with. */
+.ae {
+	@apply flex flex-col items-end;
+	gap: 14px;
+}
+.ae__frame {
+	display: block;
+	width: 100%;
+	height: max(640px, calc(100vh - 140px));
+	border: 1px solid var(--line);
+	border-radius: var(--r-xl);
+	background: var(--paper);
+	box-shadow: var(--lift);
+}
+@media (max-width: 760px) {
+	.ae__frame {
+		height: max(560px, calc(100svh - 110px));
+		border-radius: var(--r-lg);
+	}
+}

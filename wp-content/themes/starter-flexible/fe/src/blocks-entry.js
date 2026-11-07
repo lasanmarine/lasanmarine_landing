@@ -14,6 +14,10 @@ import { initWaves } from './site/waves';
 import { initPostProgress } from './site/post-progress';
 import { initAos } from './site/aos';
 import { initToc } from './site/toc';
+import { initHeroCards } from './site/hero-cards';
+import { initMotionToggle } from './site/motion';
+import { initAnalytics } from './site/analytics';
+import { initStack } from './site/stack';
 
 if (import.meta.env.DEV) {
 	// Production builds/enqueues independent block entries. The dev server only
@@ -39,4 +43,8 @@ onDomReady(() => {
 	initPostProgress();
 	initAos();
 	initToc();
+	initMotionToggle();
+	initHeroCards();
+	initStack();
+	initAnalytics();
 });

@@ -55,3 +55,35 @@
 		align-self: center;
 	}
 }
+
+/* --- v2 light minimal: hairline rows in a rounded container -------------- */
+.jl {
+	@apply overflow-hidden border border-line-soft;
+	border-radius: var(--r-lg);
+}
+.jl__row {
+	@apply border-line-soft;
+	padding-left: clamp(16px, 2vw, 28px);
+	transition: background 240ms var(--ease);
+}
+.jl__row:last-child {
+	@apply border-b-0;
+}
+.jl__row:hover {
+	@apply bg-surface;
+}
+.jl__role {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.jl__row:hover .jl__role {
+	@apply text-marine;
+}
+.jl__arrow {
+	@apply text-navy;
+}
+@media (prefers-reduced-motion: reduce) {
+	.jl__row {
+		transition: none;
+	}
+}

@@ -18,7 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<form class="db__form" data-design-brief novalidate>
 		<header class="db__intro">
-			<h2 class="h3"><?php echo esc_html( $data->heading ); ?></h2>
+			<?php if ( '' !== trim( (string) $data->heading ) ) : ?>
+				<h2 class="h3"><?php echo esc_html( $data->heading ); ?></h2>
+			<?php endif; ?>
 			<?php if ( $data->has_intro ) : ?>
 				<p class="copy"><?php echo esc_html( $data->intro ); ?></p>
 			<?php endif; ?>

@@ -80,3 +80,66 @@
 		@apply static;
 	}
 }
+
+/* --- v2 light minimal: soft rounded rows on surface, round +/- icon ------ */
+.ac__list {
+	@apply flex flex-col;
+	gap: 10px;
+}
+.ac__item,
+.ac__item:last-child {
+	@apply border-0 bg-surface;
+	border-radius: var(--r-md);
+	transition: background 240ms var(--ease), box-shadow 240ms var(--ease);
+}
+.ac__item:has([aria-expanded='true']) {
+	@apply bg-paper;
+	box-shadow: inset 0 0 0 1px var(--line), var(--lift);
+}
+.ac__trigger {
+	@apply items-center;
+	padding: clamp(16px, 1.8vw, 22px) clamp(18px, 2vw, 26px);
+	transition: color 240ms var(--ease);
+}
+.ac__title {
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.ac__sign {
+	@apply rounded-full bg-paper;
+	width: 32px;
+	height: 32px;
+	margin-top: 0;
+	box-shadow: inset 0 0 0 1px var(--line);
+	transition: background 240ms var(--ease), box-shadow 240ms var(--ease);
+}
+.ac__sign::before,
+.ac__sign::after {
+	@apply bg-navy;
+	left: 50%;
+	width: 12px;
+	height: 1.5px;
+	margin-left: -6px;
+}
+.ac__trigger:hover .ac__sign {
+	box-shadow: inset 0 0 0 1px var(--marine);
+}
+.ac__trigger[aria-expanded='true'] .ac__sign {
+	@apply bg-navy;
+	box-shadow: none;
+}
+.ac__trigger[aria-expanded='true'] .ac__sign::before,
+.ac__trigger[aria-expanded='true'] .ac__sign::after {
+	@apply bg-white;
+}
+.ac__body {
+	padding: 0 clamp(18px, 2vw, 26px) clamp(18px, 2vw, 26px);
+}
+@media (prefers-reduced-motion: reduce) {
+	.ac__item,
+	.ac__sign,
+	.ac__sign::before,
+	.ac__sign::after {
+		transition: none;
+	}
+}

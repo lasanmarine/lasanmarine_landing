@@ -66,14 +66,14 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 	<footer class="ftr">
 		<svg viewBox="0 0 1440 420" preserveAspectRatio="none" class="ftr__wave" data-wave="1.2" aria-hidden="true">
 			<?php foreach ( $waves as $wave ) : ?>
-				<path d="<?php echo esc_attr( $wave['d'] ); ?>" fill="none" stroke="#0A72C8" stroke-width="<?php echo esc_attr( $wave['width'] ); ?>" stroke-opacity="<?php echo esc_attr( $wave['opacity'] ); ?>" />
+				<path d="<?php echo esc_attr( $wave['d'] ); ?>" fill="none" stroke="#0066FF" stroke-width="<?php echo esc_attr( $wave['width'] ); ?>" stroke-opacity="<?php echo esc_attr( $wave['opacity'] ); ?>" />
 			<?php endforeach; ?>
 		</svg>
 
 		<div class="container ftr__inner">
 			<div class="ftr__statement">
 				<?php /* The wordmark is part of the brand, not copy — English in both locales. */ ?>
-				<h2 class="ftr__wordmark" lang="en">
+				<p class="ftr__wordmark" lang="en">
 					<?php
 					$last = count( $wordmark_lines ) - 1;
 					foreach ( $wordmark_lines as $i => $line ) {
@@ -81,10 +81,10 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 							echo '<span>' . esc_html( $line ) . '</span>';
 							continue;
 						}
-						echo esc_html( $line ) . '<br />';
+						echo esc_html( $line ) . ' <br />'; // The space survives when the break is hidden.
 					}
 					?>
-				</h2>
+				</p>
 				<?php if ( '' !== $footer_cta['url'] ) : ?>
 					<a href="<?php echo esc_url( $footer_cta['url'] ); ?>" class="link link--fixed">
 						<?php echo esc_html( $footer_cta['label'] ); ?>
@@ -267,6 +267,11 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 
 					<div class="ftr__end-aside">
 						<?php get_template_part( 'template-parts/components/lang-switch', null, array( 'class' => 'lang--footer' ) ); ?>
+						<?php /* Motion toggle (WCAG 2.3.3): turns off scroll effects; remembered per browser. */ ?>
+						<button type="button" class="ftr__motion" data-motion-toggle aria-pressed="false">
+							<span class="ftr__motion-dot" aria-hidden="true"></span>
+							<?php echo esc_html( $is_english ? 'Reduce motion' : 'Giảm hiệu ứng' ); ?>
+						</button>
 						<?php /* A link, not a button: the row carries no boxes. */ ?>
 						<a href="#top" class="ftr__top">
 							<?php echo esc_html( $is_english ? 'Back to top' : 'Lên đầu trang' ); ?>
@@ -282,3 +287,4 @@ for ( $i = 0; $i < $wave_lines; $i++ ) {
 </body>
 
 </html>
+

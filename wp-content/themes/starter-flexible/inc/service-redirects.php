@@ -14,6 +14,15 @@ add_action( 'template_redirect', function () {
 	if ( ! $target && isset( $_GET['page_id'] ) ) {
 		$target = $redirects['ids'][ absint( $_GET['page_id'] ) ] ?? 0;
 	}
+	// Merged categories: old archive path → the term it was folded into.
+	$term_id = $redirects['terms'][ $path ] ?? 0;
+	if ( $term_id ) {
+		$link = get_term_link( (int) $term_id );
+		if ( ! is_wp_error( $link ) ) {
+			wp_safe_redirect( $link, 301, 'Lasan Category Merge' );
+			exit;
+		}
+	}
 	if ( $target && 'publish' === get_post_status( $target ) ) {
 		$url = get_permalink( $target );
 		if ( untrailingslashit( (string) wp_parse_url( $url, PHP_URL_PATH ) ) !== $path ) {

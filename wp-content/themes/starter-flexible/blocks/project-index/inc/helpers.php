@@ -42,7 +42,7 @@ final class Starter_Flexible_Block_Project_Index extends Starter_Flexible_Abstra
 		$taxonomy = (string) $data['filter_by'];
 		$filters  = array();
 		if ( 'none' !== $taxonomy && $items ) {
-			$key  = 'project_use' === $taxonomy ? 'uses' : 'materials';
+			$key  = array( 'project_use' => 'uses', 'project_work' => 'works' )[ $taxonomy ] ?? 'materials';
 			$seen = array();
 			foreach ( $items as $item ) {
 				foreach ( $item[ $key ] as $slug ) {
@@ -55,13 +55,15 @@ final class Starter_Flexible_Block_Project_Index extends Starter_Flexible_Abstra
 					$filters[] = array( 'slug' => $slug, 'name' => $term->name );
 				}
 			}
-			usort( $filters, static fn( array $a, array $b ): int => strcmp( $a['name'], $b['name'] ) );
+			// Work types read in the order of the job; the rest alphabetically.
+			$order = array( 'dong-moi' => 1, 'cai-hoan' => 2, 'tinh-toan-ho-so' => 3 );
+			usort( $filters, static fn( array $a, array $b ): int => ( $order[ $a['slug'] ] ?? 9 ) <=> ( $order[ $b['slug'] ] ?? 9 ) ?: strcmp( $a['name'], $b['name'] ) );
 		}
 
 		$data['count_label']   = __( 'dự án', 'starter-flexible' );
 		$data['items']         = $items;
 		$data['filters']       = $filters;
-		$data['filter_key']    = 'project_use' === $taxonomy ? 'uses' : 'materials';
+		$data['filter_key']    = array( 'project_use' => 'uses', 'project_work' => 'works' )[ $taxonomy ] ?? 'materials';
 		$data['has_label']     = '' !== trim( (string) $data['label'] );
 		$data['should_render'] = ! empty( $items );
 

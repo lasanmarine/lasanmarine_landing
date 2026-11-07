@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/app-embed",
+    "title": "LASAN — App Embed",
+    "description": "Nhúng một ứng dụng mô phỏng (build tĩnh trong theme/apps) vào khung trang.",
+    "category": "flexible-blocks",
+    "icon": "welcome-widgets-menus",
+    "keywords": ["app", "simulator", "embed", "tool"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

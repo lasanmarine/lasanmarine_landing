@@ -123,3 +123,20 @@ function starter_flexible_lasan_meta_description(): void {
 	}
 }
 add_action( 'wp_head', 'starter_flexible_lasan_meta_description', 2 );
+
+/**
+ * Drop the head links that only make sense on a live WordPress server — the
+ * REST API, XML-RPC, RSS feeds, oEmbed discovery and the shortlink. The site is
+ * published as a static export, where every one of them would be a dead link.
+ */
+function starter_flexible_trim_head(): void {
+	remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+	remove_action( 'template_redirect', 'rest_output_link_header', 11 );
+	remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+	remove_action( 'wp_head', 'rsd_link' );
+	remove_action( 'wp_head', 'feed_links', 2 );
+	remove_action( 'wp_head', 'feed_links_extra', 3 );
+	remove_action( 'wp_head', 'wp_shortlink_wp_head', 10 );
+	remove_action( 'template_redirect', 'wp_shortlink_header', 11 );
+}
+add_action( 'after_setup_theme', 'starter_flexible_trim_head' );

@@ -33,14 +33,28 @@ final class Starter_Flexible_Block_Team extends Starter_Flexible_Abstract_Block 
 				continue;
 			}
 			$people[] = array(
-				'name' => $name,
-				'role' => isset( $person['role'] ) ? (string) $person['role'] : '',
+				'name'     => $name,
+				'position' => isset( $person['position'] ) ? trim( (string) $person['position'] ) : '',
+				'role'     => isset( $person['role'] ) ? (string) $person['role'] : '',
+				'group'    => isset( $person['group'] ) ? trim( (string) $person['group'] ) : '',
 			);
 		}
 
 		$image_id = (int) $data['image'];
 
+		// Consecutive people sharing a group sit under one subheading.
+		$groups = array();
+		foreach ( $people as $person ) {
+			$last = count( $groups ) - 1;
+			if ( $last >= 0 && $groups[ $last ]['name'] === $person['group'] ) {
+				$groups[ $last ]['people'][] = $person;
+			} else {
+				$groups[] = array( 'name' => $person['group'], 'people' => array( $person ) );
+			}
+		}
+
 		$data['people']        = $people;
+		$data['groups']        = $groups;
 		$data['image_url']     = $image_id ? (string) wp_get_attachment_image_url( $image_id, 'large' ) : '';
 		$data['should_render'] = ! empty( $people ) || '' !== trim( (string) $data['heading'] );
 

@@ -60,6 +60,13 @@
       "instructions": "Chỉ dùng khi Slides để trống."
     },
     {
+      "key": "field_hero_eyebrow",
+      "label": "Eyebrow",
+      "name": "eyebrow",
+      "type": "text",
+      "instructions": "Dòng nhỏ phía trên headline, ví dụ tên công ty."
+    },
+    {
       "key": "field_hero_headline",
       "label": "Headline",
       "name": "headline",
@@ -79,6 +86,13 @@
       "name": "headline_tail",
       "type": "text",
       "instructions": "Chỉ dùng khi Slides để trống."
+    },
+    {
+      "key": "field_hero_subline",
+      "label": "Subline",
+      "name": "subline",
+      "type": "text",
+      "instructions": "Câu định vị ngắn ngay dưới headline. Chỉ dùng khi Slides để trống."
     },
     {
       "key": "field_hero_lead",

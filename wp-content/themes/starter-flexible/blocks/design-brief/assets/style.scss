@@ -19,7 +19,7 @@
 	padding-top: clamp(16px, 1.8vw, 24px);
 }
 .db__section::before {
-	@apply absolute left-0 top-0 w-full border-t border-line;
+	@apply absolute left-0 top-0 w-full border-t border-line-soft;
 	content: '';
 }
 .db__legend {
@@ -27,7 +27,8 @@
 	padding: 0;
 	margin: 0 0 4px;
 	font-size: 18px;
-	letter-spacing: -0.01em;
+	letter-spacing: -0.015em;
+	text-wrap: balance;
 }
 .db__note {
 	@apply text-mute;
@@ -39,8 +40,8 @@
 	@apply font-display font-semibold text-steel;
 	margin: 26px 0 6px;
 	font-size: 12.5px;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
+	letter-spacing: 0.01em;
+	text-transform: none;
 }
 
 /* --- rows -------------------------------------------------------------- */
@@ -55,7 +56,7 @@
 	margin-bottom: 8px;
 	font-size: 12px;
 	letter-spacing: 0.1em;
-	text-transform: uppercase;
+	text-transform: none;
 }
 /* Fields are as wide as what goes in them, not as wide as the page: a column
    is capped and the row packs to the left instead of stretching. */
@@ -135,7 +136,7 @@
 	pointer-events: none;
 }
 .db .field__control[readonly] {
-	@apply bg-pale text-steel;
+	@apply bg-surface text-steel;
 	cursor: default;
 }
 
@@ -150,31 +151,33 @@
 }
 /* Hundreds of engine models: that one list scrolls. */
 .db__presets--scroll {
-	@apply overflow-y-auto border border-line;
+	@apply overflow-y-auto bg-surface;
 	max-height: 208px;
-	padding: 10px;
-	border-radius: var(--r-md);
+	padding: 12px;
+	border-radius: var(--r-lg);
 }
 .db__preset {
 	@apply cursor-pointer border border-line bg-paper text-steel;
-	padding: 6px 12px;
-	border-radius: var(--r-sm);
+	padding: 6px 14px;
+	border-radius: var(--r-pill);
+	max-width: 100%;
+	overflow-wrap: anywhere;
 	font-size: 13.5px;
 	line-height: 1.3;
 	transition:
-		border-color 160ms ease,
-		background-color 160ms ease,
-		color 160ms ease;
+		border-color 160ms var(--ease),
+		background-color 160ms var(--ease),
+		color 160ms var(--ease);
 }
 .db__preset:hover {
 	@apply border-marine text-marine;
 }
 .db__preset.is-picked {
-	@apply border-marine bg-marine text-white;
+	@apply border-navy bg-navy text-white;
 }
 .db__preset:focus-visible {
-	outline: 2px solid theme('colors.marine-bright');
-	outline-offset: 2px;
+	outline: none;
+	box-shadow: var(--ring);
 }
 .db__presets-empty {
 	@apply m-0 text-mute;
@@ -190,26 +193,26 @@
 	margin-top: 14px;
 }
 .db__engine {
-	@apply relative m-0 min-w-0 border-0 border-l-2 border-line p-0;
+	@apply relative m-0 min-w-0 border-0 border-l-2 border-line-soft p-0;
 	padding-left: clamp(14px, 1.6vw, 22px);
 }
 .db__engine-title {
-	@apply block w-full font-display font-semibold text-marine;
+	@apply block w-full font-display font-semibold text-navy;
 	padding: 0;
 	margin: 0;
 	font-size: 15px;
-	letter-spacing: 0.02em;
+	letter-spacing: -0.01em;
 }
 .db__engine-remove {
 	@apply absolute cursor-pointer border border-line bg-paper text-mute;
 	top: 0;
 	right: 0;
 	display: inline-flex;
-	padding: 6px;
-	border-radius: var(--r-sm);
+	padding: 7px;
+	border-radius: var(--r-pill);
 	transition:
-		border-color 200ms ease,
-		color 200ms ease;
+		border-color 200ms var(--ease),
+		color 200ms var(--ease);
 }
 .db__engine-remove:hover {
 	@apply border-marine text-marine;
@@ -220,7 +223,7 @@
 
 /* --- actions ----------------------------------------------------------- */
 .db__actions {
-	@apply flex flex-wrap items-center border-t border-line;
+	@apply flex flex-wrap items-center border-t border-line-soft;
 	gap: 12px 16px;
 	padding-top: 20px;
 }
@@ -240,14 +243,14 @@
 	@apply hidden;
 }
 .db__cf7 .wpcf7-response-output {
-	@apply border border-line text-navy;
+	@apply border-0 bg-surface text-navy;
 	margin: 16px 0 0;
 	padding: 12px 16px;
 	border-radius: var(--r-sm);
 	font-size: 14px;
 }
 .db__cf7 form.sent .wpcf7-response-output {
-	@apply border-marine text-marine;
+	@apply bg-aqua-soft text-aqua-deep;
 }
 
 /* "In / Lưu PDF" prints an administrative document from its own iframe, so the
@@ -271,5 +274,11 @@
 	}
 	.db .field__control {
 		border-color: #bbb;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.db * {
+		transition: none !important;
 	}
 }

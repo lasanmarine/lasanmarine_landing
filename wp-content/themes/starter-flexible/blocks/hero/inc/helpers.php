@@ -20,6 +20,8 @@ final class Starter_Flexible_Block_Hero extends Starter_Flexible_Abstract_Block 
 		return array(
 			'items'           => array(),
 			'image'           => 0,
+			'eyebrow'         => '',
+			'subline'         => '',
 			'headline'        => '',
 			'headline_accent' => '',
 			'headline_tail'   => '',
@@ -64,6 +66,8 @@ final class Starter_Flexible_Block_Hero extends Starter_Flexible_Abstract_Block 
 		}
 
 		$data['slides']    = $slides;
+		$data['eyebrow']   = trim( (string) $data['eyebrow'] );
+		$data['subline']   = trim( (string) $data['subline'] );
 		$data['primary']   = starter_flexible_hero_link( $data['primary'] );
 		$data['secondary'] = starter_flexible_hero_link( $data['secondary'] );
 
@@ -113,7 +117,7 @@ function starter_flexible_hero_slide( array $row, bool $first ): array {
 			'full',
 			false,
 			array(
-				'alt'           => '',
+				'alt'           => (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true ),
 				'sizes'         => '100vw',
 				'fetchpriority' => $first ? 'high' : 'low',
 				'loading'       => $first ? 'eager' : 'lazy',

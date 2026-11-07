@@ -2,7 +2,7 @@
 /**
  * The template for displaying all pages.
  *
- * Pages are built from the LASAN blocks, and several of them are full-bleed
+ * Pages are built from the LASAN MARINE blocks, and several of them are full-bleed
  * bands that supply their own `.container`. So the content is printed bare:
  * header.php has already opened <main>, and any wrapper here would both nest a
  * second <main> and pin the navy bands to the content column.

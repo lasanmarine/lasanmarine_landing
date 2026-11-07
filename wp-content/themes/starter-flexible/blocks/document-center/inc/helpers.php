@@ -13,6 +13,8 @@ final class Starter_Flexible_Block_Document_Center extends Starter_Flexible_Abst
 	protected function defaults(): array {
 		return array(
 			'label'        => '',
+			'heading'      => '',
+			'view_all'     => array(),
 			'all_label'    => 'TẤT CẢ',
 			'groups'       => array(),
 			'empty_text'   => 'Không có kết quả.',
@@ -67,6 +69,10 @@ final class Starter_Flexible_Block_Document_Center extends Starter_Flexible_Abst
 		$data['filters']       = $filters;
 		$data['items']         = $items;
 		$data['has_label']     = '' !== trim( (string) $data['label'] );
+		$data['heading']       = trim( (string) $data['heading'] );
+		$view_all              = is_array( $data['view_all'] ) ? $data['view_all'] : array();
+		$data['view_all_url']  = isset( $view_all['url'] ) ? (string) $view_all['url'] : '';
+		$data['view_all_text'] = isset( $view_all['title'] ) ? (string) $view_all['title'] : '';
 		$data['should_render'] = ! empty( $items );
 
 		return $data;

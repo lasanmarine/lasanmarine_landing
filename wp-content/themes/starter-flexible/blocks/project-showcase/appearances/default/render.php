@@ -24,7 +24,23 @@ if ( empty( $data->should_render ) ) {
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<div class="container ps" data-showcase>
-		<div class="ps__bar">
+		<div class="ps__bar<?php echo $data->has_head ? ' ps__bar--head' : ''; ?>">
+			<?php if ( $data->has_head ) : ?>
+				<div class="ps__head">
+					<?php if ( '' !== $data->heading ) : ?>
+						<h2 class="h3 ps__heading"><?php echo esc_html( $data->heading ); ?></h2>
+					<?php endif; ?>
+					<?php if ( '' !== $data->intro ) : ?>
+						<p class="copy ps__intro"><?php echo esc_html( $data->intro ); ?></p>
+					<?php endif; ?>
+					<?php if ( '' !== $data->view_all_url ) : ?>
+						<a class="link link--fixed ps__all" href="<?php echo esc_url( $data->view_all_url ); ?>">
+							<?php echo esc_html( '' !== $data->view_all_label ? $data->view_all_label : __( 'Xem tất cả dự án', 'starter-flexible' ) ); ?>
+							<?php echo starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore ?>
+						</a>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
 			<?php if ( $data->has_navigation ) : ?>
 				<div class="ps__nav">
 					<span class="meta" data-ps-counter><?php echo esc_html( $data->count_label ); ?></span>

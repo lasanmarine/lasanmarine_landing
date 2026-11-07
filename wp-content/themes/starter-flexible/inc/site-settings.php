@@ -223,25 +223,28 @@ function starter_flexible_setting( string $name, $default = '' ) {
 
 	$value = get_field( $name, 'option' );
 
+		// Hide legal links that point to contact instead of policy content.
+		if ( 'legal_links' === $name && is_array( $value ) ) {
+			$value = array_values( array_filter( $value, static function ( $row ): bool {
+				$url = isset( $row['link']['url'] ) ? (string) $row['link']['url'] : '';
+				return '' !== $url && false === strpos( $url, '/lien-he' ) && false === strpos( $url, '/contact' );
+			} ) );
+		}
+
 	if ( function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ) ) {
 		$english = array(
-			'announcement_text' => 'The 2026 price list is now available',
-			'announcement_cta'  => array( 'title' => 'View now!', 'url' => home_url( '/en/capabilities/' ), 'target' => '_self' ),
+			// The English site runs without the announcement bar or bank details.
+			'announcement_text' => '',
+			'announcement_cta'  => array(),
+			'bank'              => array(),
 			'header_cta'        => array( 'title' => 'Contact', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ),
 			'footer_cta'        => array( 'title' => 'Start a project', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ),
 			'address'           => 'No. 03 Tran Lu Street, Bac Nha Trang Ward, Khanh Hoa Province, Vietnam',
 			'legal_name'        => 'LASAN MARINE COMPANY LIMITED',
-			'legal_links'       => array(
-				array( 'link' => array( 'title' => 'Privacy', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ) ),
-				array( 'link' => array( 'title' => 'Terms', 'url' => home_url( '/en/contact/' ), 'target' => '_self' ) ),
-			),
+			'legal_links'       => array(),
 		);
 		if ( array_key_exists( $name, $english ) ) {
 			$value = $english[ $name ];
-		}
-		if ( 'bank' === $name && is_array( $value ) ) {
-			$value['holder'] = 'LASAN MARINE COMPANY LIMITED';
-			$value['name']   = 'Techcombank – Ma Vong Branch';
 		}
 	}
 

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/vessel-finder",
+    "title": "LASAN — Vessel Finder",
+    "description": "Thẻ chọn loại tàu / dịch vụ, dẫn tới landing page tương ứng.",
+    "category": "flexible-blocks",
+    "icon": "screenoptions",
+    "keywords": ["vessel", "service", "cards", "bento"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}
