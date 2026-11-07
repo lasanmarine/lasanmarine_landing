@@ -107,6 +107,9 @@ function starter_flexible_header_menu_tree(): array {
 			'image'       => starter_flexible_menu_item_image( $item ),
 			'current'     => '/' === $path ? $current === $path : str_starts_with( $current, $path ),
 			'children'    => $children,
+			// `nav-intro` (menu item CSS class): the item is a plain link whose
+			// hover panel carries only its short introduction, no link lists.
+			'intro_only'  => in_array( 'nav-intro', (array) $item->classes, true ),
 		);
 	}
 
@@ -262,9 +265,10 @@ function starter_flexible_render_bar_panels_markup(): void {
 		if ( empty( $item['children'] ) ) {
 			continue;
 		}
+		$intro_only = ! empty( $item['intro_only'] );
 		?>
 		<div
-			class="hdr__panel"
+			class="hdr__panel<?php echo $intro_only ? ' hdr__panel--intro' : ''; ?>"
 			id="hdr-panel-<?php echo esc_attr( (string) $item['id'] ); ?>"
 			data-panel="<?php echo esc_attr( (string) $item['id'] ); ?>"
 			data-open="false"
@@ -281,6 +285,7 @@ function starter_flexible_render_bar_panels_markup(): void {
 					</a>
 				</div>
 
+				<?php if ( ! $intro_only ) : ?>
 				<div class="hdr__panel-cols">
 					<?php
 					$split = starter_flexible_nav_split_children( $item['children'] );
@@ -295,6 +300,7 @@ function starter_flexible_render_bar_panels_markup(): void {
 					}
 					?>
 				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 		<?php
@@ -327,6 +333,9 @@ function starter_flexible_render_nav_overlay_markup( array $cta, array $contacts
 	// parent it came from — the whole second level, flattened but not orphaned.
 	$columns = array();
 	foreach ( $tree as $item ) {
+		if ( ! empty( $item['intro_only'] ) ) {
+			continue;
+		}
 		$split = starter_flexible_nav_split_children( $item['children'] );
 
 		if ( ! empty( $split['loose'] ) ) {
@@ -379,7 +388,7 @@ function starter_flexible_render_nav_overlay_markup( array $cta, array $contacts
 							/* Phones only: the whole row becomes this button, and the
 							   section's pages slide in as a page of their own. */
 							?>
-							<?php if ( ! empty( $item['children'] ) ) : ?>
+							<?php if ( ! empty( $item['children'] ) && empty( $item['intro_only'] ) ) : ?>
 								<button
 									type="button"
 									class="navx__expand"
@@ -648,7 +657,7 @@ function starter_flexible_menu_item_image_field( $item_id ): void {
 		<span class="description">
 			<?php esc_html_e( 'Bỏ trống để dùng ảnh đại diện của trang được liên kết.', 'starter-flexible' ); ?>
 		</span>
-		<img src="<?php echo esc_url( (string) $thumb ); ?>" alt="" data-menu-image-thumb style="<?php echo '' === (string) $thumb ? 'display:none;' : ''; ?>max-width:120px;height:auto;margin-top:6px;display:block" />
+		<img src="<?php echo esc_url( (string) $thumb ); ?>" alt="" data-menu-image-thumb style="<?php echo '' === (string) $thumb ? 'display:none;' : ''; ?>max-width:120px;height:auto;padding-top:6px;display:block" />
 	</p>
 	<?php
 }

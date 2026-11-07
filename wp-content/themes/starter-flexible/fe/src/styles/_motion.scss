@@ -1,0 +1,88 @@
+/* ==========================================================================
+   Scroll-linked motion (Apple-style).
+   --------------------------------------------------------------------------
+   These run on CSS scroll timelines (`animation-timeline: view()`), so the
+   browser drives them on the compositor in lockstep with the scroll: no
+   script per frame, no lag behind the finger. Only transform, opacity and
+   clip-path change. Browsers without scroll timelines, readers who asked
+   for less motion and the footer "reduce motion" toggle get the still page.
+   ========================================================================== */
+
+@supports (animation-timeline: view()) {
+	@media (prefers-reduced-motion: no-preference) {
+		/* (Heroes are pinned sheets: stack.js already sets them back as the
+		   next sheet covers them, so they get no motion of their own here.) */
+
+		/* --- large pictures open from a framed card to their full size ------- */
+		html:not(.reduce-motion) :is(
+				.spotlight__media img,
+				.lasanmarine-image-text .frame,
+				.lasanmarine-image-story .frame,
+				.geo__plate
+			) {
+			animation: lm-open-frame linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 40%;
+		}
+
+		/* --- card pictures: a slight zoom that settles as the card arrives --- */
+		html:not(.reduce-motion) :is(.ps__media, .pj-card__media, .in__card-media) img {
+			animation: lm-settle linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 50%;
+		}
+
+		/* --- contact band: its aqua glow swells while it crosses the screen -- */
+		html:not(.reduce-motion) .cs::after {
+			content: '';
+			position: absolute;
+			inset: -20% -10% auto auto;
+			z-index: 0;
+			width: 70%;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background: radial-gradient(closest-side, rgba(20, 200, 200, 0.22), transparent 70%);
+			pointer-events: none;
+			animation: lm-glow linear both;
+			animation-timeline: view();
+			animation-range: entry 0% exit 100%;
+		}
+		.cs > :not(.cs__waves) { position: relative; z-index: 1; }
+	}
+}
+
+@keyframes lm-open-frame {
+	from {
+		clip-path: inset(7% 7% round 40px);
+		scale: 0.96;
+	}
+	to {
+		clip-path: inset(0 0 round var(--r-xl, 28px));
+		scale: 1;
+	}
+}
+@keyframes lm-settle {
+	from {
+		scale: 1.12;
+	}
+	to {
+		scale: 1;
+	}
+}
+@keyframes lm-glow {
+	from {
+		translate: 10% 10%;
+		scale: 0.5;
+		opacity: 0.3;
+	}
+	50% {
+		translate: 0 0;
+		scale: 1;
+		opacity: 1;
+	}
+	to {
+		translate: -10% 20%;
+		scale: 0.8;
+		opacity: 0.4;
+	}
+}

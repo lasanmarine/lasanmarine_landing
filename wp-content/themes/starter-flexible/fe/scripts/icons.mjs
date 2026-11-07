@@ -38,6 +38,7 @@ const icons = {
 	award: 'check-badge',
 	check: 'check-circle',
 	close: 'x-mark',
+	expand: 'arrows-pointing-out',
 	plus: 'plus',
 	calculator: 'calculator',
 	copy: 'document-duplicate',

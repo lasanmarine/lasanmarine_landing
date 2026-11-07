@@ -6,13 +6,18 @@ import { on, cleanupAll } from '$lib/dom';
 
 export const selector = '[data-accordion]';
 
-const TIMING = { duration: 320, easing: 'cubic-bezier(0.2, 0.6, 0.2, 1)' };
+const TIMING = { duration: 360, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' };
 
 function animateHeight(panel, from, to) {
-	panel.style.overflow = 'hidden';
-	const anim = panel.animate([{ height: `${from}px` }, { height: `${to}px` }], TIMING);
-	const done = () => (panel.style.overflow = '');
-	return anim.finished.then(done, done);
+	panel.getAnimations().forEach((a) => a.cancel());
+	const anim = panel.animate(
+		[
+			{ height: `${from}px`, opacity: from ? 1 : 0 },
+			{ height: `${to}px`, opacity: to ? 1 : 0 },
+		],
+		TIMING,
+	);
+	return anim.finished.catch(() => {});
 }
 
 function open(panel) {
@@ -25,8 +30,7 @@ function close(panel) {
 		panel.hidden = true;
 		return;
 	}
-	panel.getAnimations().forEach((a) => a.cancel());
-	animateHeight(panel, panel.scrollHeight, 0).then(() => {
+	animateHeight(panel, panel.offsetHeight, 0).then(() => {
 		// Reopened while closing? Then it stays.
 		if (panel.dataset.state !== 'open') panel.hidden = true;
 	});

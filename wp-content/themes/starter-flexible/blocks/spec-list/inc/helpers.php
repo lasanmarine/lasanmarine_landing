@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Starter_Flexible_Block_Spec_List extends Starter_Flexible_Abstract_Block {
 	protected function defaults(): array {
-		return array( 'heading' => '', 'note' => '', 'rows' => array(), 'custom_class' => '' );
+		return array( 'heading' => '', 'heading_level' => 'h2', 'note' => '', 'rows' => array(), 'custom_class' => '' );
 	}
 
 	protected function base_class(): string {
@@ -30,6 +30,7 @@ final class Starter_Flexible_Block_Spec_List extends Starter_Flexible_Abstract_B
 			$rows[] = array( 'label' => $label, 'value' => $value );
 		}
 
+		$data['heading_tag']   = 'h1' === $data['heading_level'] ? 'h1' : 'h2';
 		$data['rows']          = $rows;
 		$data['has_note']      = '' !== trim( (string) $data['note'] );
 		$data['should_render'] = ! empty( $rows ) || '' !== trim( (string) $data['heading'] );

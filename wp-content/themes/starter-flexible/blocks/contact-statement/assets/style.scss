@@ -38,8 +38,9 @@
 	max-width: 60ch;
 }
 .cs__mascot {
-	@apply flex justify-center self-end;
-	margin: 0 0 calc(var(--cs-pad) * -1);
+	@apply relative flex justify-center self-end;
+	/* Bleeds into the panel's bottom padding. */
+	top: var(--cs-pad);
 }
 .cs__mascot img {
 	@apply h-auto w-full;
@@ -61,7 +62,6 @@
 .cs__description {
 	@apply text-navy;
 	max-width: 44ch;
-	margin: -8px 0 0;
 	font-size: clamp(15px, 1.15vw, 17.5px);
 	line-height: 1.65;
 	opacity: 0.78;
@@ -93,9 +93,7 @@
 a.spec__value:hover {
 	@apply text-marine-bright;
 }
-.cs__cta {
-	margin-top: 4px;
-}
+
 
 /* Below this the mascot stacks above the copy rather than shrinking away. */
 @media (max-width: 1024px) {
@@ -167,7 +165,6 @@ a.spec__value:hover { @apply text-marine; }
 .cs__hint {
 	color: var(--mute);
 	font-size: 14px;
-	margin-top: -4px;
 }
 @media (max-width: 520px) {
 	.cs__actions .btn { flex: 1 1 100%; justify-content: center; }

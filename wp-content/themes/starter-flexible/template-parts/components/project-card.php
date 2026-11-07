@@ -32,6 +32,7 @@ $ratio = $is_row ? 'ratio-3-2' : ( $is_gallery ? '' : 'ratio-4-3' );
 	data-pi-item
 	data-terms="<?php echo esc_attr( implode( ' ', $terms ) ); ?>"
 >
+	<?php if ( $is_gallery ) : ?><span class="pj-card__in"><?php endif; ?>
 	<span class="pj-card__media">
 		<?php
 		get_template_part(
@@ -43,6 +44,7 @@ $ratio = $is_row ? 'ratio-3-2' : ( $is_gallery ? '' : 'ratio-4-3' );
 				'src'         => $item['image_url'],
 				'alt'         => $item['title'],
 				'placeholder' => $item['placeholder'],
+				'sizes'       => $is_gallery ? '(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 440px' : '(max-width: 760px) 92vw, 33vw',
 			)
 		);
 		?>
@@ -78,6 +80,7 @@ $ratio = $is_row ? 'ratio-3-2' : ( $is_gallery ? '' : 'ratio-4-3' );
 			</span>
 		<?php endif; ?>
 	</span>
+	<?php if ( $is_gallery ) : ?></span><?php endif; ?>
 
 	<?php if ( $is_row ) : ?>
 		<?php /* The whole row is the link; this only shows where it leads. */ ?>

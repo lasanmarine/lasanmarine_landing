@@ -21,9 +21,6 @@
 .si__body li::before {
 	@apply hidden;
 }
-.si__cta {
-	margin-top: clamp(10px, 1.2vw, 18px);
-}
 
 /* --- v2 light minimal ---------------------------------------------------- */
 .si__heading {

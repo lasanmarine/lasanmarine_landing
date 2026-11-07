@@ -418,7 +418,8 @@
 
 @media (max-width: 600px) {
 	.ftr {
-		margin-inline: 6px;
+		width: calc(100% - 12px);
+		margin-inline: auto;
 		border-radius: var(--r-lg) var(--r-lg) 0 0;
 	}
 }

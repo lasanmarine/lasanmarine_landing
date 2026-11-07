@@ -25,6 +25,8 @@ function starter_flexible_insights_post_data( WP_Post $post, bool $featured = fa
 		'image_url'   => $image_id ? (string) wp_get_attachment_image_url( $image_id, $featured ? 'large' : 'medium_large' ) : '',
 		'placeholder' => (string) ( get_post_meta( $post->ID, '_lasan_image_placeholder', true ) ?: get_the_title( $post ) ),
 		'kind'        => $kind,
+		'kind_name'   => $category instanceof WP_Term ? (string) $category->name : '',
+		'terms'       => implode( ' ', array_map( static fn( WP_Term $t ): string => $t->slug, $categories ) ),
 		'date'        => get_the_date( 'd/m/Y', $post ),
 		'author'      => get_the_author_meta( 'display_name', (int) $post->post_author ),
 		'minutes'     => $minutes,
@@ -45,6 +47,7 @@ final class Starter_Flexible_Block_Insights extends Starter_Flexible_Abstract_Bl
 			'featured_post'  => 0,
 			'category'       => 0,
 			'posts_per_page' => 6,
+			'layout'         => 'row',
 			'custom_class'   => '',
 		);
 	}
@@ -90,6 +93,33 @@ final class Starter_Flexible_Block_Insights extends Starter_Flexible_Abstract_Bl
 		$data['has_featured']  = '' !== $data['featured']['title'];
 		$data['should_render'] = $data['has_featured'] || ! empty( $data['articles'] );
 		$data['has_heading'] = $this->has_text( $data['heading'] );
+
+		// Index layout: every article, searchable and filtered by topic, the
+		// same way the project index lists vessels.
+		$data['is_index'] = 'index' === $data['layout'];
+		if ( $data['is_index'] ) {
+			unset( $query_args['post__not_in'] );
+			$query_args['posts_per_page'] = 60;
+			$all     = get_posts( $query_args );
+			$filters = array();
+			foreach ( $all as $post ) {
+				foreach ( get_the_category( $post->ID ) as $term ) {
+					if ( (int) $term->term_id !== $category_id ) {
+						$filters[ $term->slug ] = (string) $term->name;
+					}
+				}
+			}
+			asort( $filters );
+			$en                    = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
+			$data['articles']      = array_map( static fn( WP_Post $post ): array => starter_flexible_insights_post_data( $post ), $all );
+			$data['filters']       = $filters;
+			$data['has_featured']  = false;
+			$data['all_label']     = $en ? 'All' : 'Tất cả';
+			$data['count_label']   = $en ? 'articles' : 'bài viết';
+			$data['empty_text']    = $en ? 'No article matches.' : 'Không có bài viết phù hợp.';
+			$data['search_label']  = $en ? 'Search by title, topic…' : 'Tìm theo tiêu đề, chủ đề, nội dung…';
+			$data['should_render'] = ! empty( $data['articles'] );
+		}
 
 		$data['aside'] = '';
 		if ( $data['has_view_all'] ) {

@@ -1,6 +1,6 @@
 .geo__label {
 	display: block;
-	margin-bottom: 10px;
+	padding-bottom: 10px;
 	color: rgba(83, 97, 115, 0.7);
 }
 
@@ -14,14 +14,14 @@
 	line-height: 1.14;
 }
 .geo__note {
-	margin-top: 16px;
+	padding-top: 16px;
 	font-size: 15px;
 }
 
 .geo__list {
 	@apply flex list-none flex-wrap;
-	margin: 28px 0 0;
-	padding: 0;
+	margin: 0;
+	padding: 28px 0 0;
 	gap: 8px;
 }
 .geo__list button {

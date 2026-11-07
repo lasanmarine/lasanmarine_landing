@@ -19,3 +19,43 @@
 		border-radius: var(--r-lg);
 	}
 }
+
+/* Full screen (behaviour.js): the app takes the whole screen. */
+.ae.is-full {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	background: var(--paper);
+}
+.ae.is-full .ae__frame {
+	width: 100%;
+	height: 100%;
+	max-height: none;
+	border: 0;
+	border-radius: 0;
+	aspect-ratio: auto;
+}
+.ae.is-full .ae__open { display: none; }
+.ae__close {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	height: 40px;
+	padding: 0 14px;
+	border: 0;
+	border-radius: var(--r-pill);
+	background: var(--navy);
+	color: #fff;
+	font: inherit;
+	font-size: 13.5px;
+	cursor: pointer;
+}
+.ae__close[hidden] { display: none; }
+html.has-app-full { overflow: hidden; }

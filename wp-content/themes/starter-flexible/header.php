@@ -81,15 +81,16 @@ $is_english   = function_exists( 'pll_current_language' ) && 'en' === pll_curren
 							<span data-word-close><?php echo esc_html( $is_english ? 'Close' : 'Đóng' ); ?></span>
 						</span>
 						<span class="hdr__menu-icon" aria-hidden="true"><span></span><span></span></span>
+						<span class="hdr__menu-x" aria-hidden="true"><?php echo starter_flexible_icon( 'close', 22 ); // phpcs:ignore ?></span>
 						<span class="sr-only"><?php echo esc_html( $is_english ? 'Open menu' : 'Mở menu' ); ?></span>
 					</button>
 				</div>
 			</div>
-		</div>
 
-		<?php /* One full-bleed strip below the bar: four columns need the width. */ ?>
-		<div class="hdr__panels" data-panels>
-			<?php starter_flexible_render_bar_panels(); ?>
+			<?php /* The panels hang from the bar itself, so they keep its width and move with it. */ ?>
+			<div class="hdr__panels" data-panels>
+				<?php starter_flexible_render_bar_panels(); ?>
+			</div>
 		</div>
 	</header>
 

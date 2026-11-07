@@ -15,7 +15,11 @@ export default function analytics() {
 	// Scroll depth, each threshold once per page view.
 	const marks = [25, 50, 75, 100];
 	const sent = new Set();
-	let offScroll = viewport.subscribe(({ scrollY, height }) => {
+	// The first call runs inside subscribe() (a short page is already at
+	// 100%), before offScroll is assigned: declare it first, unsubscribe after.
+	let offScroll = null;
+	let done = false;
+	offScroll = viewport.subscribe(({ scrollY, height }) => {
 		const max = document.documentElement.scrollHeight - height;
 		const pct = max > 0 ? (scrollY / max) * 100 : 100;
 		marks.forEach((m) => {
@@ -24,11 +28,18 @@ export default function analytics() {
 				track('scroll_depth', { percent: m });
 			}
 		});
-		if (sent.size === marks.length && offScroll) {
-			offScroll();
-			offScroll = null;
+		if (sent.size === marks.length) {
+			done = true;
+			if (offScroll) {
+				offScroll();
+				offScroll = null;
+			}
 		}
 	});
+	if (done && offScroll) {
+		offScroll();
+		offScroll = null;
+	}
 
 	// Sections seen (half on screen), once each.
 	const blocks = [...document.querySelectorAll('.block-stream > [class*="lasanmarine-"]')];

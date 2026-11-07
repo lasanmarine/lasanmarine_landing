@@ -121,11 +121,10 @@
 .io__arrow {
 	@apply rounded-full bg-paper text-navy;
 	z-index: 1;
-	top: 50%;
+	top: calc(50% - 16px);
 	right: calc(clamp(24px, 3vw, 44px) / -2 - 16px);
 	width: 32px;
 	height: 32px;
-	margin-top: -16px;
 	box-shadow: inset 0 0 0 1px var(--line);
 }
 @media (max-width: 820px) {
@@ -133,9 +132,7 @@
 		top: auto;
 		right: auto;
 		bottom: calc(clamp(24px, 3vw, 44px) / -2 - 16px);
-		left: 50%;
-		margin-top: 0;
-		margin-left: -16px;
+		left: calc(50% - 16px);
 	}
 }
 
@@ -151,7 +148,7 @@
 	z-index: 2;
 	width: var(--io-arrow);
 	height: var(--io-arrow);
-	margin-top: calc(var(--io-arrow) / -2);
+	top: calc(50% - var(--io-arrow) / 2);
 	right: calc(clamp(24px, 3vw, 44px) / -2 - var(--io-arrow) / 2);
 	background: var(--grad-action);
 	color: #fff;
@@ -184,9 +181,7 @@
 @media (max-width: 820px) {
 	.io__arrow {
 		right: auto;
-		left: 50%;
-		margin-left: calc(var(--io-arrow) / -2);
-		margin-top: 0;
+		left: calc(50% - var(--io-arrow) / 2);
 		bottom: calc(clamp(24px, 3vw, 44px) / -2 - var(--io-arrow) / 2);
 		top: auto;
 	}

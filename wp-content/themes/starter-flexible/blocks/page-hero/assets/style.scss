@@ -4,7 +4,6 @@
 .phero {
 	@apply relative flex items-center overflow-hidden;
 	min-height: var(--phero-h, 420px);
-	margin-top: 104px;
 	border-radius: var(--r-xl);
 	background:
 		radial-gradient(55% 90% at 8% 0%, rgba(20, 200, 200, 0.22), transparent 65%),
@@ -16,8 +15,13 @@
 	background-origin: border-box;
 	background-repeat: no-repeat;
 }
+/* The stream, not the panel, clears the fixed header: the panel sits just
+   under it with the same small gap as the page edge. */
+.block-stream:has(> .lasanmarine-page-hero:first-child) {
+	padding-top: calc(var(--hdr-h, 76px) + 12px);
+}
 @media (max-width: 900px) {
-	.phero { margin-top: 84px; }
+	.block-stream:has(> .lasanmarine-page-hero:first-child) { padding-top: calc(var(--hdr-h, 64px) + 10px); }
 }
 
 .phero__body {
@@ -49,7 +53,7 @@
 .phero__tags {
 	@apply m-0 flex list-none flex-wrap justify-center p-0;
 	gap: 8px;
-	margin-top: 4px;
+	padding-top: 4px;
 }
 .phero__tags li {
 	@apply bg-paper font-display font-medium text-navy;
@@ -64,5 +68,10 @@
 .phero__actions {
 	@apply flex flex-wrap justify-center;
 	gap: 10px;
-	margin-top: 8px;
+	padding-top: 8px;
+}
+/* Phone: the quick links stack as one column of equal buttons. */
+@media (max-width: 600px) {
+	.phero__actions { flex-direction: column; align-items: stretch; width: 100%; }
+	.phero__action { justify-content: center; text-align: center; }
 }

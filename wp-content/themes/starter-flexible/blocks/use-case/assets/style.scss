@@ -147,3 +147,39 @@
 @supports not (grid-template-rows: subgrid) {
 	.uc.uc--slider { grid-template-rows: auto; }
 }
+
+/* Room above and below the cards so the active card's lift and border are
+   not clipped by the scroller. */
+.lasanmarine-use-case .uc.uc--slider {
+	padding-block: 14px 28px;
+}
+/* Heading bar and the row are spaced by the pin's gap. */
+.uc__pin {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(24px, 3vw, 40px);
+}
+
+/* Scrubbed by the page scroll (behaviour.js): the block is taller by the
+   row's run, the content pins under the header and the row moves sideways. */
+/* The run is a spacer inside the content box (behaviour.js): a sticky child
+   can only travel within its parent's content box, so padding would not give
+   it room. */
+.uc__run {
+	flex: none;
+	height: var(--uc-run, 0px);
+}
+.uc--scrub .uc__pin {
+	position: sticky;
+	top: calc(var(--hdr-h, 76px) + 104px);
+}
+.uc--scrub .uc.uc--slider {
+	overflow-x: hidden;
+	scroll-snap-type: none;
+	scroll-behavior: auto;
+}
+/* The card leaving on the left fades out instead of being sliced. */
+.uc--scrub .uc.uc--slider {
+	-webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32px);
+	mask-image: linear-gradient(90deg, transparent 0, #000 32px);
+}

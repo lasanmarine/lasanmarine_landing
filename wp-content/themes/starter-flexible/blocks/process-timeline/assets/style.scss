@@ -1,7 +1,7 @@
 /* Process Timeline
-   Heading on the left, held in view while the steps run down the right on a
-   rail. The rail fills as the page scrolls; the step on the reading line is
-   the brand card, the ones above it are done (behaviour.js). */
+   Heading on the left, the steps run down the right on a
+   rail. The rail fills as the page scrolls and the nodes it has reached
+   fill in (behaviour.js). */
 
 .pt--flow {
 	display: grid;
@@ -10,8 +10,7 @@
 	align-items: start;
 }
 .pt__aside {
-	position: sticky;
-	top: calc(var(--hdr-h, 76px) + 32px);
+	position: static;
 }
 .pt__head {
 	display: flex;
@@ -25,19 +24,6 @@
 }
 .pt__intro {
 	max-width: 36em;
-}
-.pt__progress {
-	margin: 8px 0 0;
-	color: var(--mute);
-	font-size: 14px;
-	font-variant-numeric: tabular-nums;
-}
-.pt__progress span {
-	color: var(--navy);
-	font-family: var(--display);
-	font-size: clamp(28px, 2.6vw, 40px);
-	font-weight: 600;
-	letter-spacing: -0.02em;
 }
 
 /* --- the rail and the steps ---------------------------------------------- */
@@ -79,11 +65,6 @@
 	border-radius: var(--r-lg);
 	background: var(--surface);
 	color: var(--navy);
-	transition:
-		background 420ms var(--ease),
-		box-shadow 420ms var(--ease),
-		color 300ms var(--ease),
-		transform 420ms var(--ease);
 }
 .pt__dot {
 	position: absolute;
@@ -109,26 +90,15 @@
 	transition: color 300ms var(--ease);
 }
 
-/* Done: the node fills in. */
-.pt__step.is-done .pt__dot {
+/* Passed: the node fills in and the title takes the brand colour. No card
+   moves or changes colour — the rail alone shows where the reader is. */
+.pt__step.is-done .pt__dot,
+.pt__step.is-active .pt__dot {
 	background: var(--aqua);
 	box-shadow: none;
 }
-/* Active: the brand card. */
-.pt__step.is-active {
-	color: #fff;
-	background:
-		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.42), transparent 60%),
-		linear-gradient(155deg, var(--navy) 0%, #0d2f73 60%, var(--marine) 130%);
-	box-shadow: 0 26px 50px -28px rgba(6, 18, 45, 0.6);
-	transform: translateX(6px);
-}
-.pt__step.is-active .pt__desc {
-	color: rgba(255, 255, 255, 0.82);
-}
 .pt__step.is-active .pt__dot {
-	background: var(--aqua);
-	box-shadow: 0 0 0 6px rgba(20, 200, 200, 0.2);
+	box-shadow: 0 0 0 5px rgba(20, 200, 200, 0.18);
 }
 
 @media (max-width: 860px) {
@@ -139,12 +109,19 @@
 	.pt__aside {
 		position: static;
 	}
-	.pt__progress {
-		display: none;
-	}
 }
 @media (prefers-reduced-motion: reduce) {
 	.pt__step,
 	.pt__fill { transition: none; }
 	.pt__step.is-active { transform: none; }
+}
+
+/* Scrubbed by the page (behaviour.js): the timeline pins under the header
+   while the rail fills; the fill follows the scroll directly. */
+.is-scrub > .pt--flow {
+	position: sticky;
+	top: calc(var(--hdr-h, 76px) + 104px);
+}
+.is-scrub .pt__fill {
+	transition: none;
 }

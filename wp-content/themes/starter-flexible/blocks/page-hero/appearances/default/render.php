@@ -34,9 +34,10 @@ if ( empty( $data->should_render ) ) {
 						href="<?php echo esc_url( $action['url'] ); ?>"
 						<?php echo '_blank' === $action['target'] ? 'target="_blank" rel="noopener"' : ''; ?>
 						data-cta="hero"
+						<?php echo empty( $action['fullscreen'] ) ? '' : 'data-app-fullscreen'; ?>
 					>
 						<?php echo esc_html( $action['label'] ); ?>
-						<?php echo 0 === strpos( $action['url'], '#' ) ? starter_flexible_icon_swap( 'arrowDown', 18, 'down' ) : starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php echo ! empty( $action['fullscreen'] ) ? starter_flexible_icon( 'expand', 18 ) : ( 0 === strpos( $action['url'], '#' ) ? starter_flexible_icon_swap( 'arrowDown', 18, 'down' ) : starter_flexible_icon_swap( 'arrow', 18 ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</a>
 				<?php endforeach; ?>
 			</div>

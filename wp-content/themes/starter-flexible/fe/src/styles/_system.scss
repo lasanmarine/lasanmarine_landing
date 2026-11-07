@@ -45,7 +45,9 @@
 .band--pale {
 	@apply bg-surface;
 	color: var(--steel);
-	margin-inline: var(--band-inset);
+	/* Inset from the page edge by width, centred. */
+	width: calc(100% - 2 * var(--band-inset));
+	margin-inline: auto;
 	border-radius: var(--r-xl);
 }
 .band--navy-mid {
@@ -158,25 +160,35 @@
 	font-size: 16.5px;
 	line-height: 1.8;
 }
-.prose > * + * {
-	margin-top: 18px;
+/* Paragraphs, lists and headings are spaced by the column's gap; headings
+   add room above themselves with padding. */
+.prose {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+.prose > * {
+	margin: 0;
 }
 .prose h2,
 .prose h3 {
 	@apply font-display font-semibold text-navy;
-	margin-top: 34px;
+	padding-top: 16px;
 	font-size: 24px;
 	line-height: 1.25;
 }
 .prose h4 {
 	@apply font-display font-semibold text-navy;
-	margin-top: 28px;
+	padding-top: 10px;
 	font-size: 19px;
 	line-height: 1.35;
 }
 .prose ul,
 .prose ol {
 	@apply pl-0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 	list-style: none;
 }
 .prose ol {
@@ -185,9 +197,6 @@
 .prose li {
 	@apply relative;
 	padding-left: 26px;
-}
-.prose li + li {
-	margin-top: 10px;
 }
 .prose ul > li::before {
 	@apply absolute rounded-full bg-aqua;
@@ -220,7 +229,7 @@
 }
 .prose blockquote {
 	@apply border-l-4 border-aqua;
-	margin: 26px 0;
+	margin: 0;
 	padding: 2px 0 2px 20px;
 	font-size: 17.5px;
 	line-height: 1.7;
@@ -545,14 +554,14 @@ a:hover .frame > img,
 .band--navy .stat__value span, .band--navy-mid .stat__value span { @apply text-aqua-deep; }
 .stat__label {
 	@apply font-display font-semibold text-navy;
-	margin-top: 14px;
+	padding-top: 14px;
 	font-size: 15px;
 	line-height: 1.4;
 	letter-spacing: 0;
 }
 .stat__note {
 	@apply text-mute;
-	margin-top: 6px;
+	padding-top: 6px;
 	max-width: 18em;
 	font-size: 13px;
 	line-height: 1.6;
@@ -653,14 +662,14 @@ select.field__control {
 /* --- reveal ------------------------------------------------------------- */
 
 /* A block fades up as a whole; `data-reveal` takes a direction. */
+/* Opacity and transform only (no blur): both stay on the compositor, so the
+   entrance never costs a repaint. Apple's long ease-out: fast in, soft stop. */
 .reveal-on [data-reveal] {
 	@apply opacity-0;
-	transform: translateY(24px);
-	filter: blur(6px);
+	transform: translateY(28px);
 	transition:
-		opacity 900ms ease,
-		filter 900ms ease,
-		transform 900ms var(--ease);
+		opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+		transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-on [data-reveal='left'] {
 	transform: translateX(-28px);
@@ -676,7 +685,6 @@ select.field__control {
 }
 .reveal-on [data-reveal].is-revealed {
 	@apply opacity-100;
-	filter: none;
 	transform: none;
 }
 
@@ -684,11 +692,11 @@ select.field__control {
    reveal.js numbers them; the delay is derived from that index. */
 .reveal-on [data-reveal-item] {
 	@apply opacity-0;
-	transform: translateY(22px);
+	transform: translateY(32px) scale(0.985);
 	transition:
-		opacity 640ms ease,
-		transform 640ms var(--ease);
-	transition-delay: calc(var(--reveal-i, 0) * 70ms);
+		opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+		transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+	transition-delay: calc(var(--reveal-i, 0) * 60ms);
 }
 .reveal-on [data-reveal-item].is-revealed {
 	@apply opacity-100;
@@ -713,7 +721,6 @@ select.field__control {
    collapsing to nothing in the editor. It never reaches the front end. */
 .module-placeholder {
 	@apply border border-dashed border-line bg-pale text-center text-mute;
-	margin: 12px;
 	padding: 32px 20px;
 	border-radius: var(--r-md);
 	font-size: 13.5px;
@@ -749,7 +756,7 @@ select.field__control {
 	}
 	.prose h2,
 	.prose h3 {
-		margin-top: 28px;
+		padding-top: 10px;
 		font-size: 20px;
 	}
 	.prose h4 {
@@ -787,7 +794,8 @@ select.field__control {
 .band--navy-mid,
 .band--pale,
 .phero {
-	margin-inline: var(--inset);
+	width: calc(100% - 2 * var(--inset));
+	margin-inline: auto;
 }
 
 /* --- v2 gradients, site-wide ---------------------------------------------------
@@ -928,7 +936,6 @@ a:hover .frame::after,
 	background-color: var(--paper);
 	background-clip: border-box;
 	transform-origin: 50% 0;
-	will-change: transform, opacity;
 }
 /* Snapping drives the glide itself. */
 html.is-snapping { scroll-behavior: auto; }
@@ -1025,9 +1032,9 @@ body:has(.block-stream.is-stacked) { overflow-x: clip; }
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
+	justify-content: center;
 	gap: 2px 6px;
-	padding: 4px clamp(14px, 1.6vw, 22px) 8px;
-	border-top: 1px solid var(--line-soft);
+	padding: 2px clamp(14px, 1.6vw, 22px) 10px;
 }
 .onpage__link {
 	position: relative;
@@ -1048,17 +1055,22 @@ body:has(.block-stream.is-stacked) { overflow-x: clip; }
 	color: #fff;
 }
 /* The pill opens to fit both rows. */
+@media (min-width: 1024px) {
 .hdr__bar:has(.onpage.is-shown) {
 	height: auto;
 }
 .hdr__bar.is-stuck:has(.onpage.is-shown) {
 	border-radius: var(--r-lg);
 }
+}
+/* Wide screens only: on a phone the pill keeps its own height. */
+@media (min-width: 1024px) {
 .hdr__bar:has(.onpage) .hdr__bar-inner {
 	height: 76px;
 }
 .hdr__bar.is-stuck:has(.onpage) .hdr__bar-inner {
 	height: 62px;
+}
 }
 /* Anchored sections land below the header. */
 .block-stream > [id] { scroll-margin-top: calc(var(--hdr-h, 76px) + 72px); }
@@ -1097,7 +1109,6 @@ html.reduce-motion .reveal-on [data-reveal-item] {
 	display: flex;
 	justify-content: flex-end;
 	gap: 10px;
-	margin-bottom: 14px;
 }
 .slider-nav[hidden] { display: none; }
 .slider-nav .icon-btn:disabled { opacity: 0.35; cursor: default; }
@@ -1119,3 +1130,286 @@ html body [data-slider].is-slider > * {
 }
 .lasanmarine-capability-matrix [data-slider] { --slide-w: 340px; }
 .lasanmarine-insights [data-slider] { --slide-w: 340px; }
+
+/* --- mega panels hang from the bar ------------------------------------------
+   The strip lives inside `.hdr__bar` (header.php): it takes the bar's width —
+   the full rail at the top of the page, the pill once it sticks — sits right
+   under it, and moves with it when the header tucks away. */
+html body .hdr__bar {
+	position: relative;
+}
+html body .hdr__bar > .hdr__panels {
+	position: absolute;
+	inset: 100% 0 auto;
+	padding-inline: 0;
+}
+html body .hdr__bar > .hdr__panels .hdr__panel {
+	/* Sized to its content, hanging from the bar's right edge. */
+	left: auto;
+	right: var(--gutter);
+	top: 8px;
+	max-width: calc(100% - 2 * var(--gutter));
+	margin-inline: 0;
+}
+html body .hdr__bar.is-stuck > .hdr__panels .hdr__panel {
+	right: 0;
+	max-width: 100%;
+}
+/* Intro-only panels (Giới thiệu, Dự án): a short card under the item, no
+   link lists. */
+html body .hdr__bar > .hdr__panels .hdr__panel--intro {
+	/* Set under its own menu item by header.js. */
+	left: var(--intro-x, auto);
+	right: auto;
+	width: min(440px, calc(100vw - 2 * var(--gutter)));
+}
+html body .hdr__panel--intro .hdr__panel-in {
+	display: block;
+	padding: 10px;
+}
+html body .hdr__panel--intro .hdr__panel-intro {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 12px;
+}
+html body .hdr__panel--intro .hdr__panel-title {
+	font-size: 22px;
+}
+
+/* --- second rows of the pill: search dock and reading bar -------------------
+   Same mechanics as the on-page row: collapsed to nothing, they open under
+   the nav links and the pill grows into a two-row panel. */
+.hdr-dock {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 320ms var(--ease);
+}
+.hdr-dock.is-shown {
+	grid-template-rows: 1fr;
+}
+.hdr-dock__in {
+	min-height: 0;
+	overflow: hidden;
+}
+.hdr-dock__row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 2px clamp(14px, 1.6vw, 22px) 12px;
+}
+.hdr-dock__search {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+	height: 44px;
+	padding: 0 16px;
+	border-radius: var(--r-pill);
+	background: var(--surface);
+	color: var(--mute);
+}
+.hdr-dock__search svg {
+	flex: none;
+	width: 18px;
+	height: 18px;
+}
+.hdr-dock__search input {
+	flex: 1;
+	min-width: 0;
+	border: 0;
+	outline: 0;
+	background: none;
+	color: var(--navy);
+	font: inherit;
+	font-size: 14.5px;
+}
+.hdr-dock__search:focus-within {
+	box-shadow: inset 0 0 0 1.5px var(--marine);
+}
+.hdr-dock__chips {
+	display: flex;
+	flex: none;
+	gap: 6px;
+}
+.hdr-dock__chip {
+	height: 40px;
+	padding: 0 16px;
+	border: 0;
+	border-radius: var(--r-pill);
+	background: var(--surface);
+	color: var(--steel);
+	font: inherit;
+	font-size: 13.5px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background 200ms var(--ease), color 200ms var(--ease);
+}
+.hdr-dock__chip:hover {
+	color: var(--navy);
+}
+.hdr-dock__chip[aria-pressed='true'] {
+	background: var(--navy);
+	color: #fff;
+}
+.hdr__bar:has(.hdr-dock.is-shown),
+.hdr__bar:has(.reading-bar--docked:not([hidden])) {
+	height: auto;
+}
+.hdr__bar.is-stuck:has(.hdr-dock.is-shown),
+.hdr__bar.is-stuck:has(.reading-bar--docked:not([hidden])) {
+	border-radius: var(--r-lg);
+}
+/* Wide screens only: on a phone the pill keeps its own height. */
+@media (min-width: 1024px) {
+.hdr__bar:has(.hdr-dock, .reading-bar--docked) .hdr__bar-inner {
+	height: 76px;
+}
+.hdr__bar.is-stuck:has(.hdr-dock, .reading-bar--docked) .hdr__bar-inner {
+	height: 62px;
+}
+}
+/* The dock and the on-page links never share the pill. */
+.hdr__bar:has(.hdr-dock.is-shown) .onpage {
+	display: none;
+}
+
+/* Reading bar as the pill's second row: the title on the left, the progress
+   as a hairline along the pill's bottom edge. */
+html body .reading-bar.reading-bar--docked {
+	position: relative;
+	inset: auto;
+	z-index: auto;
+	border: 0;
+	background: none;
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
+	overflow: hidden;
+	border-radius: 0 0 var(--r-lg) var(--r-lg);
+}
+html body .reading-bar--docked .reading-bar__inner {
+	max-width: none;
+	padding: 0 clamp(14px, 1.6vw, 22px) 14px;
+}
+html body .reading-bar--docked .reading-bar__rail {
+	inset: auto 0 0;
+	height: 3px;
+	background: transparent;
+}
+@media (max-width: 1023px) {
+	.hdr-dock__chips { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.hdr-dock { transition: none; }
+}
+html body .hdr__panel--intro .hdr__panel-intro {
+	width: 100%;
+	max-width: none;
+}
+/* The intro panel is the navy card itself: no white sheet around it. */
+html body .hdr__bar > .hdr__panels .hdr__panel--intro {
+	border: 0;
+	background: none;
+	box-shadow: 0 24px 48px -24px rgba(6, 18, 45, 0.45);
+	border-radius: var(--r-lg);
+}
+html body .hdr__bar > .hdr__panels .hdr__panel--intro .hdr__panel-in {
+	padding: 0;
+}
+html body .hdr__panel--intro .hdr__panel-intro {
+	min-height: 0;
+	border-radius: var(--r-lg);
+}
+
+/* --- full-screen tool page (page-app.php) ----------------------------------
+   The tool's own address: a slim bar, then the app filling the screen. */
+.app-page {
+	overflow: hidden;
+	background: var(--paper);
+}
+.appx {
+	display: flex;
+	flex-direction: column;
+	height: 100svh;
+}
+.appx__bar {
+	display: flex;
+	flex: none;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	height: 36px;
+	padding: 0 clamp(12px, 2vw, 24px);
+	background: var(--navy);
+}
+.appx__link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: rgba(255, 255, 255, 0.86);
+	font-size: 13px;
+	font-weight: 500;
+	white-space: nowrap;
+}
+.appx__link:hover {
+	color: #fff;
+}
+.appx__frame {
+	flex: 1;
+	width: 100%;
+	min-height: 0;
+	border: 0;
+}
+.appx__empty {
+	padding: 40px;
+}
+
+/* The first screen never waits for the reveal script: the opening block and
+   everything in it paint at once (it is the page's largest paint). */
+.reveal-on .block-stream > :first-child,
+.reveal-on .block-stream > :first-child [data-reveal],
+.reveal-on .block-stream > :first-child [data-reveal-item] {
+	opacity: 1;
+	transform: none;
+	transition: none;
+}
+
+/* A page that opens without a hero still starts below the fixed header. */
+.block-stream:not(:has(> :is(.lasanmarine-hero, .lasanmarine-page-hero):first-child)) {
+	padding-top: calc(var(--hdr-h, 76px) + 16px);
+}
+
+/* Every sheet is opaque edge to edge in stack mode, the hero included, so a
+   sheet sliding over never shows a half-covered one through its gaps. */
+.block-stream.is-stacked > .lasanmarine-hero {
+	background-color: var(--paper);
+	box-shadow: 0 0 0 100vmax var(--paper);
+	clip-path: inset(0 -100vmax);
+}
+
+/* --- mobile fixes (2026-11-08) --------------------------------------------- */
+/* A button whose label wraps grows with it instead of spilling out of a fixed
+   52px pill. */
+.btn {
+	height: auto;
+	min-height: 52px;
+	padding-block: 12px;
+	line-height: 1.3;
+	text-align: left;
+}
+.btn.btn--sm {
+	min-height: 44px;
+	padding-block: 8px;
+}
+/* A band nested in another block fills its slot (the page inset is only for
+   bands that sit on the page itself). */
+.spotlight__panel.band--navy-mid,
+:is(.spotlight, .cs__layout, .geo) .band--navy,
+:is(.spotlight, .cs__layout, .geo) .band--navy-mid {
+	width: 100%;
+}
+/* The stuck pill stays white over dark sections instead of turning grey. */
+.hdr__bar.is-stuck {
+	background: rgba(255, 255, 255, 0.96);
+}

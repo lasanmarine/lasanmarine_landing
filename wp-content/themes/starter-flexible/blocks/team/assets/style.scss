@@ -14,7 +14,6 @@
 }
 .tm__list {
 	@apply border-t border-line;
-	margin-top: 28px;
 }
 .tm__row {
 	@apply flex flex-wrap items-baseline justify-between border-b border-line;
@@ -33,12 +32,18 @@
 /* A group's subheading: a small caps label over its rule. */
 .tm__group {
 	@apply m-0 font-display font-semibold text-aqua-deep;
-	margin-top: 36px;
+	padding-top: 24px;
 	font-size: 12.5px;
 	letter-spacing: 0.01em;
 }
-.tm__group + .tm__list {
-	margin-top: 12px;
+/* Heading, group labels and lists are spaced by the column's gap. */
+.tm > div:last-child {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.tm__heading {
+	padding-bottom: 16px;
 }
 .tm__who {
 	@apply flex flex-wrap items-baseline;

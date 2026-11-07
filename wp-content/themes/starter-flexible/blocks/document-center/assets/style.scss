@@ -2,9 +2,10 @@
 	@apply flex flex-wrap;
 	gap: 26px;
 	padding-bottom: 2px;
-	/* The real gap here is `.block`'s flex gap, not padding: pull the list back
-	   up so tabs sit ~1/3 of that distance above the first row. */
-	margin-bottom: calc(clamp(32px, 4vw, 56px) * -0.7);
+}
+/* Tabs sit close above the list: the block's own gap is tighter here. */
+.lasanmarine-document-center {
+	gap: clamp(16px, 1.8vw, 24px);
 }
 .dc__filter {
 	@apply cursor-pointer border-none bg-none font-display font-semibold text-mute;
@@ -27,9 +28,7 @@
 	@apply grid items-center border-b border-line;
 	grid-template-columns: auto 1fr auto auto;
 	gap: clamp(12px, 2vw, 28px);
-	padding: 20px 2px;
-	margin-inline: -2px;
-	padding-inline: 2px;
+	padding: 20px 0;
 	border-radius: var(--r-sm);
 	transition:
 		background 200ms ease,
@@ -224,7 +223,7 @@
 }
 .dc__source::before {
 	content: '·';
-	margin-right: 10px;
+	padding-right: 10px;
 }
 .dc__card .dc__title {
 	margin: 0;

@@ -20,14 +20,14 @@ import { on, cleanupAll } from '../lib/dom';
 export const selector = '.block-stream';
 export const order = 90; // after the header has published --hdr-h
 
-const MQ = '(min-width: 768px)';
-const EASE = 0.12;
+const MQ = '(min-width: 1024px) and (min-height: 640px)'; // same as _sheets.scss
 const GLIDE_MS = 900;
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 export default function stack(stream) {
 	if (!window.matchMedia) return null;
-	const SNAP = document.body.classList.contains('home');
+	// Soft snapping is off everywhere: the home page scrolls like the others.
+	const SNAP = false;
 	const mq = window.matchMedia(MQ);
 	const cards = [...stream.children].filter((el) => el.offsetHeight > 0);
 	if (cards.length < 2) return null;
@@ -54,10 +54,20 @@ export default function stack(stream) {
 		stream.classList.toggle('is-stacked', active);
 		document.documentElement.classList.toggle('is-snapping', active);
 		cards.forEach(reset);
+		stream.style.paddingTop = '';
 		stops = [];
 		if (!active) return;
 		const vh = window.innerHeight;
 		const hdr = hdrH();
+		// The first sheet is pinned at the bar's foot; if the stream starts under
+		// the bar, pad it so that is also where the sheet sits in the flow —
+		// otherwise the next sheet starts a bar-height too early and covers the
+		// first one's bottom edge.
+		// (A stream that already clears the bar with its own top padding, as
+		// on a page that opens with the page hero, needs nothing.)
+		const lead = parseFloat(getComputedStyle(stream).paddingTop) || 0;
+		const natural = stream.getBoundingClientRect().top + window.scrollY + lead;
+		if (natural < hdr) stream.style.paddingTop = `${lead + hdr - natural}px`;
 		const avail = vh - hdr;
 		stream.style.setProperty('--avail', `${avail}px`);
 
@@ -68,26 +78,31 @@ export default function stack(stream) {
 			const flow = h > avail + 2;
 			el.classList.toggle('is-flow', flow);
 			el.style.zIndex = String(i + 1);
-			if (flow) return;
+			if (flow) {
+				// A long sheet scrolls through, then holds with its end on the
+				// bottom of the screen for the dwell (the stream's gap) while the
+				// next one slides over it.
+				el.style.top = `${Math.round(vh - h)}px`;
+				return;
+			}
 			el.style.setProperty('--fill', `${Math.max(0, (avail - h) / 2).toFixed(1)}px`);
 			el.style.top = `${hdr}px`;
 		});
 
 		// Pass 2: flow positions (sticky boxes report stuck positions, so walk).
-		let y = stream.getBoundingClientRect().top + window.scrollY;
+		// Sheets are spaced by the stream's gap, never by margins.
+		const sc = getComputedStyle(stream);
+		const gapY = parseFloat(sc.rowGap) || 0;
+		let y = stream.getBoundingClientRect().top + window.scrollY + (parseFloat(sc.paddingTop) || 0);
 		cards.forEach((el, i) => {
 			const h = el.offsetHeight;
-			const cs = getComputedStyle(el);
-			const mb = parseFloat(cs.marginBottom) || 0;
-			y += parseFloat(cs.marginTop) || 0;
 			const top = Math.max(0, y - hdr);
 			if (el.classList.contains('is-flow')) {
 				stops.push({ y: top, flowEnd: Math.max(top, y + h - vh) });
 			} else {
 				stops.push({ y: i === 0 ? 0 : top });
-				if (i === 0 && mb > 0) stops.push({ y: Math.round(mb * 0.9) }); // hero cards
 			}
-			y += h + mb;
+			y += h + gapY;
 		});
 		const max = document.documentElement.scrollHeight - vh;
 		stops.push({ y: max }); // the footer
@@ -98,6 +113,7 @@ export default function stack(stream) {
 		state.forEach((s) => {
 			s.cur = 0;
 			s.target = 0;
+			s.drawn = false;
 		});
 		targets();
 		kick();
@@ -110,7 +126,11 @@ export default function stack(stream) {
 		cards.forEach((el, i) => {
 			const next = cards[i + 1];
 			if (!next) return;
-			const top = next.getBoundingClientRect().top;
+			// Measure where the next sheet sits in the flow, not where its own
+			// recede transform has nudged it (translateY up to 36px).
+			const n = state[i + 1];
+			const np = n ? n.cur * n.cur * (3 - 2 * n.cur) : 0;
+			const top = next.getBoundingClientRect().top - np * 36;
 			const start = vh * 0.6;
 			state[i].target = Math.min(1, Math.max(0, (start - top) / Math.max(1, start - hdr)));
 		});
@@ -122,19 +142,21 @@ export default function stack(stream) {
 		let moving = false;
 		cards.forEach((el, i) => {
 			const s = state[i];
-			const d = s.target - s.cur;
-			if (Math.abs(d) > 0.0005) {
-				s.cur += d * EASE;
-				moving = true;
-			} else {
-				s.cur = s.target;
-			}
+			// Locked to the scroll (no trailing ease): the sheet moves exactly
+			// with the finger or wheel, like Apple's scroll-linked pages.
+			if (s.cur === s.target && s.drawn) return;
+			s.cur = s.target;
+			s.drawn = true;
 			const p = s.cur * s.cur * (3 - 2 * s.cur);
-			el.style.transform = p ? `translate3d(0, ${(p * 36).toFixed(2)}px, 0) scale(${(1 - p * 0.1).toFixed(4)})` : '';
+			el.style.transform = p ? `translate3d(0, ${(p * 36).toFixed(2)}px, 0) scale(${(1 - p * 0.08).toFixed(4)})` : '';
 			el.style.setProperty('--veil', p.toFixed(3));
+			// Only sheets that are moving get a compositor layer.
+			el.style.willChange = p > 0 && p < 1 ? 'transform' : '';
 			// Fully covered: take it out of the picture, so it can't show through
 			// the gap a long (flow) sheet leaves when it scrolls away.
-			el.style.visibility = s.cur > 0.995 ? 'hidden' : '';
+			// (The pinned next sheet sits a few px under the bar, so a covered
+			// sheet tops out just short of 1; count 0.97 as covered.)
+			el.style.visibility = p > 0.97 ? 'hidden' : '';
 		});
 		if (moving) kick();
 	}
@@ -227,7 +249,26 @@ export default function stack(stream) {
 
 	measure();
 
+	// A block that grows after load (a filter shows more cards, a question
+	// opens, a late image) must be re-sized, or it stays pinned as a one-screen
+	// sheet and the next sheet covers what no longer fits. Watch the content,
+	// not the sheet itself, whose centring borders measure() rewrites.
+	let lastSizes = new Map();
+	const grown = new ResizeObserver((entries) => {
+		let changed = false;
+		for (const e of entries) {
+			const h = Math.round(e.contentRect.height);
+			if (lastSizes.get(e.target) !== h) {
+				if (lastSizes.has(e.target)) changed = true;
+				lastSizes.set(e.target, h);
+			}
+		}
+		if (changed) onResize();
+	});
+	cards.forEach((card) => [...card.children].forEach((child) => grown.observe(child)));
+
 	return cleanupAll([
+		() => grown.disconnect(),
 		viewport.subscribe((snap) => (snap.resized ? onResize() : onScroll(snap)), { immediate: false }),
 		...['wheel', 'touchstart', 'keydown'].map((ev) => on(window, ev, takeOver, { passive: true })),
 		on(
@@ -260,6 +301,7 @@ export default function stack(stream) {
 			clearTimeout(idle);
 			clearTimeout(resizeTimer);
 			cards.forEach(reset);
+			stream.style.paddingTop = '';
 			stream.classList.remove('is-stacked');
 		},
 	]);

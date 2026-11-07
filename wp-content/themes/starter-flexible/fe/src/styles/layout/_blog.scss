@@ -177,7 +177,7 @@
 }
 .post-card__cat::after {
 	content: '·';
-	margin-left: 10px;
+	padding-left: 10px;
 	color: var(--mute);
 }
 .post-card__title {
@@ -199,7 +199,7 @@
 /* --- pagination ------------------------------------------------------ */
 
 .blog__pagination {
-	margin-top: clamp(40px, 5vw, 64px);
+	padding-top: clamp(40px, 5vw, 64px);
 }
 .blog__pagination .nav-links {
 	@apply flex flex-wrap items-center justify-center;
@@ -289,7 +289,7 @@
 	font-size: 15px;
 }
 .err__empty .btn {
-	margin-top: 8px;
+	translate: 0 8px;
 }
 
 /* --- page head: the full-width slot under the copy ------------------- */
@@ -329,7 +329,6 @@
 .srch__form {
 	@apply relative flex items-center;
 	max-width: 760px;
-	margin-top: 6px;
 	padding: 6px;
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: var(--r-md);
@@ -344,7 +343,7 @@
 }
 .srch__form-icon {
 	@apply flex-none;
-	margin-left: 12px;
+	translate: 12px 0;
 	color: rgba(255, 255, 255, 0.6);
 }
 .srch__input {
@@ -366,7 +365,7 @@
 .srch__tabs {
 	@apply flex overflow-x-auto;
 	gap: 8px;
-	margin-top: 22px;
+	padding-top: 22px;
 	padding-bottom: 2px;
 	scrollbar-width: none;
 }
@@ -401,12 +400,11 @@
 }
 
 .srch__group + .srch__group {
-	margin-top: clamp(48px, 6vw, 80px);
+	padding-top: clamp(48px, 6vw, 80px);
 }
 .srch__group-head {
 	@apply flex flex-wrap items-end justify-between border-b border-line;
 	gap: 8px 24px;
-	margin-bottom: clamp(22px, 2.6vw, 32px);
 	padding-bottom: 14px;
 }
 .srch__group-title {
@@ -495,7 +493,7 @@
 .srch__empty-links {
 	@apply flex flex-wrap;
 	gap: 10px;
-	margin-top: 10px;
+	padding-top: 10px;
 }
 
 /* ==========================================================================
@@ -505,7 +503,7 @@
 .tax-filter {
 	@apply flex flex-col items-start;
 	gap: 14px;
-	margin-top: 8px;
+	padding-top: 8px;
 }
 .tax-filter__row {
 	@apply flex w-full items-center;
@@ -572,7 +570,7 @@
 	.tax-filter__chips,
 	.srch__tabs {
 		width: calc(100% + 2 * var(--gutter, 20px));
-		margin-inline: calc(-1 * var(--gutter, 20px));
+		translate: calc(-1 * var(--gutter, 20px)) 0;
 		padding-inline: var(--gutter, 20px);
 	}
 	.blog__grid,
@@ -644,7 +642,8 @@
    ========================================================================== */
 
 .phead {
-	margin-inline: clamp(8px, 1.4vw, 20px);
+	width: calc(100% - 2 * clamp(8px, 1.4vw, 20px));
+	margin-inline: auto;
 	border: 1px solid var(--line-soft);
 	border-top: 0;
 	border-radius: 0 0 var(--r-xl) var(--r-xl);
@@ -815,7 +814,7 @@
 
 @media (max-width: 600px) {
 	.phead {
-		margin-inline: 6px;
+		width: calc(100% - 12px);
 		border-radius: 0 0 var(--r-lg) var(--r-lg);
 	}
 }
@@ -867,16 +866,17 @@
 
 /* v2 fix: start below the fixed header, rounded on all corners. */
 .phead {
-	margin-top: 104px;
 	border-radius: var(--r-xl);
 }
 .phead__inner {
 	padding-block: clamp(44px, 5vw, 72px);
 }
 @media (max-width: 900px) {
-	.phead { margin-top: 84px; }
+	:has(> .phead) { padding-top: 84px; }
 }
-.phead { margin-inline: var(--inset); }
+.phead { width: calc(100% - 2 * var(--inset)); margin-inline: auto; }
+/* The page head clears the fixed header by its parent's padding. */
+:has(> .phead) { padding-top: 104px; }
 
 /* v2: centred sub-page head. */
 .phead__inner {

@@ -36,10 +36,6 @@ if ( empty( $data->should_render ) ) {
 				<?php if ( '' !== $data->intro ) : ?>
 					<p class="copy pt__intro"><?php echo esc_html( $data->intro ); ?></p>
 				<?php endif; ?>
-				<p class="pt__progress" aria-hidden="true">
-					<?php echo esc_html( function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ) ? 'Step' : 'Bước' ); ?>
-					<span data-timeline-current>1</span> / <?php echo (int) $pt_total; ?>
-				</p>
 			</div>
 		</div>
 

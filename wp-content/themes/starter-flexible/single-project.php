@@ -134,7 +134,7 @@ while ( have_posts() ) :
 					<p class="project-single__lead"><?php echo esc_html( get_the_excerpt() ); ?></p>
 				<?php endif; ?>
 
-				<?php $service_page = (string) get_post_meta( get_the_ID(), 'lm_service_page', true ); ?>
+				<?php $service_page = (string) get_post_meta( get_the_ID(), 'lm_service_page', true ); $is_english = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' ); ?>
 				<?php if ( '' !== $service_page && ! $is_english ) : ?>
 					<a class="link link--fixed project-single__service" href="<?php echo esc_url( $service_page ); ?>">
 						<?php esc_html_e( 'Xem dịch vụ thiết kế loại tàu này', 'starter-flexible' ); ?>

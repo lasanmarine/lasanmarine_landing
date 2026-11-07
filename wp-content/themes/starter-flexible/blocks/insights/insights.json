@@ -77,6 +77,18 @@
             "step": 1
         },
         {
+            "key": "field_in_layout",
+            "label": "Bố cục",
+            "name": "layout",
+            "type": "select",
+            "choices": {
+                "row": "Hàng bài viết (slider)",
+                "index": "Danh mục: tìm kiếm, lọc theo chủ đề, lưới so le"
+            },
+            "default_value": "row",
+            "return_format": "value"
+        },
+        {
             "key": "field_in_custom_class",
             "label": "CSS class tùy chỉnh",
             "name": "custom_class",

@@ -183,4 +183,6 @@ return array(
 	'Đọc bài' => 'Read post',
 	'Đội ngũ kỹ thuật LASAN MARINE — thiết kế tàu, hồ sơ đăng kiểm và nghiên cứu thủy động lực.' => 'LASAN MARINE engineering team — ship design, classification documentation and hydrodynamics research.',
 	'Ảnh preview trong menu' => 'Menu preview image',
+	'Khách hàng' => 'Client',
+	'Máy' => 'Engines',
 );

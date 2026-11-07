@@ -35,8 +35,7 @@
 	"preserve": [
 		"CNAME",
 		".nojekyll",
-		"mo-phong-on-dinh-tau",
-		"cong-cu/mo-phong-on-dinh-tau"
+		"mo-phong-on-dinh-tau"
 	],
 	"copies": {
 		"/sitemap.xml": "/sitemap_index.xml",
@@ -61,5 +60,8 @@
 		"/en/du-an/tau-ca-vo-thep-24m/": "/du-an/",
 		"/en/gioi-thieu/": "/en/about/",
 		"/en/lien-he/": "/en/contact/"
+	},
+	"dirs": {
+		"wp-content/themes/starter-flexible/apps": "wp-content/themes/starter-flexible/apps"
 	}
 }

@@ -25,7 +25,8 @@ function starter_flexible_enqueue_frontend_assets(): void {
 	// Manrope and Be Vietnam Pro are bundled by Vite (see fe/src/styles/_base.scss),
 	// so there is no webfont host to call out to.
 	starter_flexible_vite_enqueue_assets();
-	starter_flexible_enqueue_theme_style();
+	// style.css holds only the theme header comment (all CSS is built by
+	// Vite), so it is not loaded: one render-blocking request fewer.
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

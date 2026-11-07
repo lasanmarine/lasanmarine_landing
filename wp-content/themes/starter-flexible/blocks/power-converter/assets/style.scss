@@ -95,7 +95,7 @@
 }
 .pc__multi-note {
 	@apply text-mute;
-	margin-top: 8px;
+	padding-top: 8px;
 	font-size: 12.5px;
 	line-height: 1.5;
 }
@@ -104,7 +104,7 @@
 }
 .pc__multi-list {
 	@apply flex flex-col overflow-y-auto;
-	margin-top: 8px;
+	padding-top: 8px;
 	max-height: 240px;
 	gap: 2px;
 }
@@ -146,7 +146,6 @@
 }
 .pc__multi-foot {
 	@apply flex justify-end border-t border-line-soft;
-	margin-top: 8px;
 	padding-top: 8px;
 }
 .pc__multi-clear {
@@ -165,8 +164,7 @@
 	border: 0;
 }
 .pc__units legend {
-	margin-bottom: 10px;
-	padding: 0;
+	padding: 0 0 10px;
 }
 /* Segmented pills: quiet surface chips, the picked one fills navy. */
 .pc__choices {
@@ -223,7 +221,7 @@
 	font-size: 16px;
 	letter-spacing: -0.01em;
 	text-wrap: balance;
-	margin-bottom: 8px;
+	padding-bottom: 8px;
 }
 .pc__result {
 	@apply flex items-baseline justify-between border-b border-line-soft;
@@ -299,7 +297,6 @@
 }
 .pc__note {
 	@apply flex flex-wrap items-center;
-	margin-top: 16px;
 	gap: 6px;
 }
 .pc__precision {
@@ -325,7 +322,6 @@
 	/* Reset is a secondary action: it should never outweigh the result. */
 	align-self: start;
 	width: auto;
-	margin-top: 16px;
 }
 
 @media (max-width: 640px) {

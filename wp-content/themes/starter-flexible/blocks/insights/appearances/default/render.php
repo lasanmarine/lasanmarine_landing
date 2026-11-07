@@ -17,6 +17,74 @@ if ( empty( $data->should_render ) ) {
 	return;
 }
 
+if ( ! empty( $data->is_index ) ) :
+	?>
+<section class="<?php echo esc_attr( $data->module_class ); ?> in--index" data-reveal data-project-index<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
+	<?php if ( $data->has_heading ) : ?>
+		<h2 class="h3 in__heading"><?php echo esc_html( $data->heading ); ?></h2>
+	<?php endif; ?>
+	<label class="pi__search" data-merge-search>
+		<span class="sr-only"><?php echo esc_html( $data->search_label ); ?></span>
+		<?php echo starter_flexible_icon( 'search', 22 ); // phpcs:ignore ?>
+		<input type="search" data-pi-search placeholder="<?php echo esc_attr( $data->search_label ); ?>" autocomplete="off" />
+	</label>
+
+	<div class="pi__bar">
+		<?php if ( $data->filters ) : ?>
+			<div class="pi__filters" role="group" aria-label="<?php echo esc_attr( $data->count_label ); ?>">
+				<button type="button" class="pi__filter" data-pi-filter="" aria-pressed="true"><?php echo esc_html( $data->all_label ); ?></button>
+				<?php foreach ( $data->filters as $slug => $name ) : ?>
+					<button type="button" class="pi__filter" data-pi-filter="<?php echo esc_attr( $slug ); ?>" aria-pressed="false"><?php echo esc_html( $name ); ?></button>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+		<p class="pi__count" data-pi-count data-label="<?php echo esc_attr( $data->count_label ); ?>" aria-live="polite">
+			<?php echo esc_html( count( $data->articles ) . ' ' . $data->count_label ); ?>
+		</p>
+	</div>
+
+	<div class="pi__list pi__list--gallery in__gallery">
+		<?php foreach ( $data->articles as $i => $article ) : ?>
+			<a href="<?php echo esc_url( $article['url'] ); ?>" class="in__card in__card--tile" data-pi-item data-terms="<?php echo esc_attr( $article['terms'] ); ?>">
+				<span class="in__tile">
+				<span class="in__card-media">
+					<?php
+					get_template_part(
+						'template-parts/components/frame',
+						null,
+						array(
+							// Alternate the picture shape so the columns fall unevenly.
+							'ratio'       => array( 'ratio-4-3', 'ratio-1-1', 'ratio-16-10' )[ $i % 3 ],
+							'class'       => 'frame--zoom',
+							'src'         => $article['image_url'],
+							'alt'         => $article['title'],
+							'placeholder' => $article['title'],
+							'sizes'       => '(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 440px',
+						)
+					);
+					?>
+					<?php if ( '' !== $article['kind'] ) : ?>
+						<span class="in__card-chip"><?php echo esc_html( $article['kind'] ); ?></span>
+					<?php endif; ?>
+				</span>
+				<span class="in__card-body">
+					<span class="in__card-title"><?php echo esc_html( $article['title'] ); ?></span>
+					<span class="in__card-excerpt"><?php echo esc_html( $article['excerpt'] ); ?></span>
+					<span class="in__card-meta">
+						<span><?php echo esc_html( $article['date'] ); ?></span>
+						<span><?php printf( esc_html__( '%d phút đọc', 'starter-flexible' ), (int) $article['minutes'] ); ?></span>
+					</span>
+				</span>
+				</span>
+			</a>
+		<?php endforeach; ?>
+	</div>
+
+	<p class="pi__empty" data-pi-empty hidden><?php echo esc_html( $data->empty_text ); ?></p>
+</section>
+	<?php
+	return;
+endif;
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
@@ -76,6 +144,7 @@ if ( empty( $data->should_render ) ) {
 							'src'         => $article['image_url'],
 							'alt'         => $article['title'],
 							'placeholder' => $article['title'],
+							'sizes'       => '(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 440px',
 						)
 					);
 					?>

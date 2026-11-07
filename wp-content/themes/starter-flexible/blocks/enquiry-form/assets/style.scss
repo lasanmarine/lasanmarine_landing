@@ -20,7 +20,7 @@
 	}
 }
 .ef__note {
-	margin-top: 16px;
+	padding-top: 16px;
 	font-size: 14.5px;
 }
 .ef__form {
@@ -67,7 +67,7 @@
 }
 .form-hint {
 	@apply text-mute;
-	margin: -2px 0 2px;
+	padding-bottom: 2px;
 	font-size: 12.5px;
 	line-height: 1.6;
 }
@@ -184,7 +184,7 @@ textarea.form-control {
 .form-actions {
 	@apply flex flex-wrap items-center;
 	gap: 14px;
-	margin-top: 4px;
+	padding-top: 4px;
 }
 .form-submit {
 	@apply inline-flex cursor-pointer items-center justify-center border border-transparent bg-navy font-display font-semibold text-white;
@@ -210,8 +210,8 @@ textarea.form-control {
 
 /* CF7 feedback: inline errors under the field, the summary as a bordered note. */
 .consult-form .wpcf7-not-valid-tip {
-	@apply text-marine;
-	margin-top: 6px;
+	@apply block text-marine;
+	padding-top: 6px;
 	font-size: 13px;
 }
 .consult-form .wpcf7-not-valid {
@@ -219,7 +219,7 @@ textarea.form-control {
 }
 .consult-form .wpcf7-response-output {
 	@apply border-0 bg-surface text-navy;
-	margin: 18px 0 0;
+	margin: 0;
 	padding: 14px 18px;
 	border-radius: var(--r-md);
 	font-size: 14.5px;
@@ -257,3 +257,17 @@ textarea.form-control {
 .ef__intro { gap: 8px; }
 .ef__intro .h3, .ef__intro .ef__note { margin: 0; }
 .ef__intro .h3 { line-height: 1.1; }
+
+/* Space above the form's reply comes from the form's gap. */
+.consult-form form {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+/* Phone: the intro reads left like the fields under it, and the send button
+   spans the column so it is easy to hit with a thumb. */
+@media (max-width: 760px) {
+	.ef__intro { text-align: left; align-items: flex-start; }
+	.consult-form .wpcf7-submit,
+	.consult-form .form-actions .btn { width: 100%; justify-content: center; }
+}

@@ -43,7 +43,7 @@ if ( empty( $data->should_render ) ) {
 			<?php endif; ?>
 				<span class="vf__media">
 					<?php if ( $item['image_id'] ) : ?>
-						<?php echo wp_get_attachment_image( $item['image_id'], 'large', false, array( 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 760px) 100vw, 40vw' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php echo wp_get_attachment_image( $item['image_id'], 'large', false, array( 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => 0 === $i ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 50vw, 25vw' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<?php else : ?>
 						<span class="vf__icon"><?php echo starter_flexible_icon( $item['icon'], 28 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					<?php endif; ?>

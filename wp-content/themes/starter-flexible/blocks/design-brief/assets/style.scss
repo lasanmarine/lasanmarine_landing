@@ -36,11 +36,14 @@
 	}
 }
 .db__section-body {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
 	min-width: 0;
 }
 .db__legend {
 	@apply block font-display font-semibold text-navy;
-	margin: 0 0 6px;
+	padding-bottom: 6px;
 	font-size: 18px;
 	letter-spacing: -0.015em;
 	text-wrap: balance;
@@ -53,7 +56,7 @@
 }
 .db__sub {
 	@apply font-display font-semibold text-steel;
-	margin: 26px 0 6px;
+	padding: 26px 0 6px;
 	font-size: 12.5px;
 	letter-spacing: 0.01em;
 	text-transform: none;
@@ -63,15 +66,9 @@
 
 /* One family of fields: a title, then the fields side by side. Columns fold to
    two, then one, so a five-across row of bed dimensions stays readable. */
-.db__row-group {
-	margin-top: 16px;
-}
-.db__section-body > .db__row-group:first-child {
-	margin-top: 0;
-}
 .db__row-title {
 	@apply block font-display font-medium text-steel;
-	margin-bottom: 8px;
+	padding-bottom: 8px;
 	font-size: 12.5px;
 	letter-spacing: 0;
 	text-transform: none;
@@ -150,7 +147,7 @@
 .db__presets {
 	@apply flex flex-wrap;
 	gap: 8px;
-	margin-top: 4px;
+	padding-top: 4px;
 }
 /* Hundreds of engine models: that one list scrolls. */
 .db__presets--scroll {
@@ -193,7 +190,6 @@
 .db__engines {
 	@apply flex flex-col;
 	gap: 28px;
-	margin-top: 14px;
 }
 .db__engine {
 	@apply relative m-0 min-w-0 border-0 border-l-2 border-line-soft p-0;
@@ -221,7 +217,7 @@
 	@apply border-marine text-marine;
 }
 .db__add {
-	margin-top: 22px;
+	align-self: flex-start;
 }
 
 /* --- actions ----------------------------------------------------------- */
@@ -247,7 +243,7 @@
 }
 .db__cf7 .wpcf7-response-output {
 	@apply border-0 bg-surface text-navy;
-	margin: 16px 0 0;
+	margin: 0;
 	padding: 12px 16px;
 	border-radius: var(--r-sm);
 	font-size: 14px;
@@ -284,4 +280,11 @@
 	.db * {
 		transition: none !important;
 	}
+}
+
+/* Space above the form's reply comes from the form's gap. */
+.db__cf7 form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
 }

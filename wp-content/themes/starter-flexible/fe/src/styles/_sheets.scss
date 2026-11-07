@@ -21,10 +21,28 @@
 		--module-pad: 48px;
 	}
 
+	/* Sheets are opaque, edge to edge: a sheet sliding up hides the one it
+	   covers completely, instead of letting it show through its margins.
+	   (A spread shadow paints the full width; clip-path keeps it from
+	   spilling above or below.) */
+	.block-stream.is-stacked > .block[class*='lasanmarine-'] {
+		background-color: var(--paper);
+		box-shadow: 0 0 0 100vmax var(--paper);
+		clip-path: inset(0 -100vmax);
+	}
+
 	/* Every sheet is a screen tall; its content is centred in it. */
 	.block-stream.is-stacked > .block[class*='lasanmarine-']:not(.is-flow) {
 		min-height: var(--avail, calc(100svh - 76px));
 		justify-content: center;
+	}
+
+	/* Dwell: a pinned sheet holds the screen for a further quarter screen of
+	   scrolling before the next one starts to slide over it, so a reader has
+	   time to take it in instead of seeing it pass in a flick. It is the
+	   stream's gap (stack.js reads it), not a margin on the sheets. */
+	.block-stream.is-stacked {
+		row-gap: 28vh;
 	}
 
 	/* Panels set in a sheet keep the same fixed space to the sheet edge. */
@@ -54,7 +72,6 @@
 	/* Page hero: the opening panel fills the first screen under the header. */
 	.block-stream.is-stacked > .lasanmarine-page-hero {
 		min-height: calc(var(--avail, 100svh) - 104px - var(--module-pad));
-		margin-bottom: var(--module-pad);
 	}
 	.block-stream.is-stacked .phero__headline {
 		font-size: clamp(36px, min(4.2vw, 8vh), 76px);

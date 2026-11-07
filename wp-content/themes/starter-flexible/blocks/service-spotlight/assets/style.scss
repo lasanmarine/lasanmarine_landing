@@ -2,7 +2,8 @@
 	@apply grid overflow-hidden bg-surface;
 	grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
 	border-radius: var(--r-xl);
-	margin-inline: var(--band-inset);
+	width: calc(100% - 2 * var(--band-inset));
+	margin-inline: auto;
 }
 /* Light minimal: the panel sits on the quiet surface, never a navy slab. */
 .spotlight__panel.band--navy-mid {

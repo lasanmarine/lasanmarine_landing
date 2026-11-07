@@ -49,8 +49,7 @@
 }
 .cm__children {
 	@apply flex list-none flex-col border-t border-line-soft;
-	margin: 4px 0 0;
-	padding: 14px 0 0;
+	padding: 18px 0 0;
 	gap: 8px;
 }
 .cm__children li {
@@ -95,7 +94,7 @@
 }
 .cm--tools .cm__top {
 	@apply items-start;
-	margin-bottom: 10px;
+	padding-bottom: 10px;
 }
 .cm--tools .cm__icon {
 	@apply items-center justify-center bg-pale text-marine;
@@ -227,7 +226,7 @@
    then where to go. Decorative index numbers on tool cards are dropped. */
 .cm__cell { display: flex; flex-direction: column; }
 .cm__cta { order: 10; margin-top: auto; padding-top: 18px; }
-.cm__children { margin-bottom: 4px; }
+.cm__children { padding-bottom: 4px; }
 .cm__index { display: none; }
 
 /* Stacked mode: cards tighten with the screen height. */

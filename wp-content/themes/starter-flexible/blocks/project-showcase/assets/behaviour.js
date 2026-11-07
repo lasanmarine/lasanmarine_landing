@@ -1,38 +1,38 @@
-// Project Showcase — a stack of cards that pin as the page scrolls.
+// Project Showcase — a heading beside a rail of project cards.
 //
-// The pinning is CSS (position: sticky). This only adds depth: as the next
-// card slides up over a pinned one, the pinned card eases back (a little
-// smaller, a little dimmer) through `--cover`, 0 → 1.
-import { viewport } from '$lib/stores/viewport.svelte.js';
-import { motion } from '$lib/stores/motion.svelte.js';
-import { clamp } from '$lib/format';
+// On a desktop with motion on, the block pins under the header and the page
+// scroll slides the row sideways: as far as the reader scrolls, so far the
+// row moves, until the last card reaches the left edge; then the page moves
+// on (lib/scrub). Elsewhere the row is a native swipe/scroll strip.
+import { scrub } from '$lib/scrub';
 
 export const selector = '[data-showcase-stack]';
+export const order = 50; // before stack.js sizes the sheets
 
-export default function showcaseStack(root) {
+export default function showcaseSlider(root) {
+	const pin = root.querySelector('[data-ps-pin]');
+	const row = root.querySelector('.ps__stack');
 	const cards = [...root.querySelectorAll('[data-ps-card]')];
-	if (cards.length < 2) return null;
+	if (!pin || !row || cards.length < 2) return null;
 
-	const draw = () => {
-		if (!motion.allowed) {
-			cards.forEach((c) => c.style.removeProperty('--cover'));
-			return;
-		}
-		cards.forEach((card, i) => {
-			const next = cards[i + 1];
-			if (!next) return;
-			const a = card.getBoundingClientRect();
-			const b = next.getBoundingClientRect();
-			// 0 when the next card is a full card-height below, 1 when it lies on top.
-			const cover = clamp(1 - (b.top - a.top) / Math.max(1, a.height), 0, 1);
-			card.style.setProperty('--cover', cover.toFixed(3));
-		});
-	};
+	const max = () => Math.max(0, row.scrollWidth - row.clientWidth);
 
-	const offScroll = viewport.subscribe(draw);
-	const offMotion = motion.subscribe(draw);
-	return () => {
-		offScroll();
-		offMotion();
-	};
+	return scrub(root, {
+		pin,
+		reset: () => {
+			row.style.paddingRight = '';
+			row.scrollLeft = 0;
+			root.style.removeProperty('--p');
+		},
+		run: () => {
+			// Room after the last card so it can travel to the left edge.
+			const last = cards[cards.length - 1];
+			row.style.paddingRight = `${Math.max(0, row.clientWidth - last.offsetWidth)}px`;
+			return max() * 1.2;
+		},
+		progress: (p) => {
+			row.scrollLeft = p * max();
+			root.style.setProperty('--p', p.toFixed(3));
+		},
+	});
 }

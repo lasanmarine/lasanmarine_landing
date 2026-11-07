@@ -131,7 +131,6 @@
 .lasanmarine-capability-matrix .cm__cell:hover .cm__cta,
 .lasanmarine-capability-matrix .cm__cell:hover .cm__children > * { color: #fff; }
 .lasanmarine-capability-matrix .cm__cell:hover .cm__desc { color: rgba(255, 255, 255, 0.8); }
-.lasanmarine-capability-matrix .cm__cell:hover .cm__children > * { background: rgba(255, 255, 255, 0.12); }
 .lasanmarine-capability-matrix .cm__cell:hover .cm__icon { background: rgba(255, 255, 255, 0.14); color: var(--aqua); box-shadow: none; }
 .lasanmarine-capability-matrix .cm__cell:hover::before { -webkit-text-fill-color: var(--aqua); background: none; }
 
@@ -155,14 +154,18 @@
 .lasanmarine-accordion .ac__item:has([aria-expanded='true']) .ac__title { color: #fff; }
 .lasanmarine-accordion .ac__item[open] .ac__body,
 .lasanmarine-accordion .ac__item:has([aria-expanded='true']) .ac__body { color: rgba(255, 255, 255, 0.84); }
-.lasanmarine-accordion .ac__panel { padding: 0 22px 22px; }
+/* Padding sits inside the body, not on the panel, so the height animation
+   runs smoothly from 0; the answer lines up with the question text. */
+.lasanmarine-accordion .ac__panel { padding: 0; overflow: hidden; }
+.lasanmarine-accordion .ac__body { padding: 0 64px 22px 22px; max-width: none; }
+.lasanmarine-accordion .ac__item { transition: background 320ms var(--ease), box-shadow 320ms var(--ease), color 320ms var(--ease); }
 .lasanmarine-accordion .ac__sign {
 	background: var(--paper);
 	box-shadow: inset 0 0 0 1px var(--line-soft);
 }
 .lasanmarine-accordion .ac__item[open] .ac__sign,
 .lasanmarine-accordion .ac__item:has([aria-expanded='true']) .ac__sign { background: var(--aqua); color: var(--navy); }
-.lasanmarine-accordion .ac__item:not([open]):hover { background: var(--grad-surface); box-shadow: inset 0 0 0 1px var(--line-soft); }
+.lasanmarine-accordion .ac__item:not([open]):not(:has([aria-expanded='true'])):hover { background: var(--grad-surface); box-shadow: inset 0 0 0 1px var(--line-soft); }
 
 /* --- service-spotlight: deliverables as a glass list over the photo -------- */
 .lasanmarine-service-spotlight .spotlight {
@@ -208,7 +211,6 @@
 .lasanmarine-document-center .dc__filter[aria-pressed='true'] { background: var(--navy); color: #fff; }
 .lasanmarine-document-center .dc__row {
 	@extend %v3-card;
-	margin-bottom: 8px;
 	padding: 16px 18px;
 	border: 0;
 }
@@ -280,7 +282,7 @@
 	background: linear-gradient(200deg, transparent 55%, rgba(6, 18, 45, 0.35));
 }
 .lasanmarine-image-text .it__body .btn,
-.lasanmarine-image-text .it__body .link { margin-top: 6px; }
+.lasanmarine-image-text .it__body .link { padding-top: 6px; }
 
 /* --- project-showcase: drawing on a graph-paper plate ------------------------ */
 .lasanmarine-project-showcase .ps__media .frame {
@@ -293,12 +295,14 @@
 }
 .lasanmarine-project-showcase .ps__media .frame::after { content: none; }
 .lasanmarine-project-showcase .ps__media .frame > img { object-fit: contain; padding: 18px; }
-.lasanmarine-project-showcase .ps__specs > div { border: 0; padding: 10px 14px; border-radius: 10px; background: var(--surface); margin-bottom: 6px; }
+.lasanmarine-project-showcase .ps__specs > div { border: 0; padding: 10px 14px; border-radius: 10px; background: var(--surface); }
+.lasanmarine-project-showcase .ps__specs { display: flex; flex-direction: column; gap: 6px; }
 .lasanmarine-project-showcase .ps__specs > div:first-child { border: 0; }
 .lasanmarine-project-showcase .ps__dot.is-active { background: var(--grad-accent); }
 
 /* --- spec-list (company details): quiet rows in a card ----------------------- */
-.lasanmarine-spec-list .spec { border-color: transparent; padding: 14px 16px; border-radius: 10px; background: var(--surface); margin-bottom: 6px; }
+.lasanmarine-spec-list .spec { border-color: transparent; padding: 14px 16px; border-radius: 10px; background: var(--surface); }
+.lasanmarine-spec-list .sl > div:last-child { display: flex; flex-direction: column; gap: 6px; }
 
 @media (prefers-reduced-motion: reduce) {
 	.lasanmarine-value-grid .vg__cell:hover,
@@ -357,7 +361,7 @@ html.reduce-motion .lasanmarine-capability-matrix .cm__cell:hover { transform: n
 .lasanmarine-capability-matrix.cm--tools .cm__cell {
 	padding: clamp(18px, 1.8vw, 24px);
 }
-.lasanmarine-capability-matrix.cm--tools .cm__top { margin-bottom: 4px; }
+.lasanmarine-capability-matrix.cm--tools .cm__top { padding-bottom: 4px; }
 .lasanmarine-capability-matrix.cm--tools .cm__icon { width: 52px; height: 52px; border-radius: 14px; }
 .lasanmarine-capability-matrix.cm--tools .cm__icon svg { width: 26px; height: 26px; }
 .lasanmarine-capability-matrix.cm--tools .cm__name { font-size: clamp(18px, 1.5vw, 22px); }
@@ -369,3 +373,59 @@ html.reduce-motion .lasanmarine-capability-matrix .cm__cell:hover { transform: n
 	font-size: 14.5px;
 }
 .lasanmarine-capability-matrix.cm--tools .cm__cta { padding-top: 10px; }
+
+
+/* --- bare icons (testa feedback) ---------------------------------------------
+   The icon is the mark itself: no tile, no ring, just a larger glyph in the
+   brand colour; on the dark hover card it turns aqua. */
+html body .lasanmarine-value-grid .vg__icon,
+html body .lasanmarine-capability-matrix .cm__icon,
+html body .lasanmarine-capability-matrix.cm--tools .cm__icon {
+	display: flex;
+	justify-content: flex-start;
+	align-self: flex-start;
+	width: auto;
+	height: auto;
+	padding: 0;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+	color: var(--marine);
+}
+html body .lasanmarine-value-grid .vg__icon :is(svg, img),
+html body .lasanmarine-capability-matrix .cm__icon :is(svg, img),
+html body .lasanmarine-capability-matrix.cm--tools .cm__icon :is(svg, img) {
+	width: 48px;
+	height: 48px;
+	max-width: none;
+	max-height: none;
+	stroke-width: 1.4;
+}
+html body .lasanmarine-value-grid .vg__cell:hover .vg__icon,
+html body .lasanmarine-capability-matrix .cm__cell:hover .cm__icon,
+html body .lasanmarine-capability-matrix.cm--tools .cm__cell:hover .cm__icon {
+	background: none;
+	color: var(--aqua);
+}
+/* The sub-list is a plain ticked list on every card state: no bars, no rule. */
+html body .lasanmarine-capability-matrix .cm__children {
+	border-top: 0;
+	padding-top: 6px;
+}
+html body .lasanmarine-capability-matrix .cm__children > *,
+html body .lasanmarine-capability-matrix .cm__cell:hover .cm__children > * {
+	background: none;
+	border: 0;
+	padding: 0;
+	box-shadow: none;
+}
+html body .lasanmarine-capability-matrix .cm__cell:hover .cm__children li::before {
+	background: var(--aqua);
+}
+
+/* Document rows are spaced by their list's gap. */
+.lasanmarine-document-center :has(> .dc__row) {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}

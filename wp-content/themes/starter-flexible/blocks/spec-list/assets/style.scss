@@ -9,7 +9,7 @@
 }
 .sl__note {
 	@apply text-steel;
-	margin-top: 16px;
+	padding-top: 16px;
 	max-width: 26em;
 	font-size: 14.5px;
 	line-height: 1.75;
@@ -80,3 +80,7 @@
 .sl .spec__label { font-size: 16px; }
 .sl .spec__value { text-align: left; flex: 1 1 auto; }
 .sl__note { font-size: 16px; }
+a.spec__value {
+	color: var(--marine);
+	font-weight: 600;
+}

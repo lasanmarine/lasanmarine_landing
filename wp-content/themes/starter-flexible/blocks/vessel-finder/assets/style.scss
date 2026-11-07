@@ -191,7 +191,6 @@ a.vf__card:hover .btn__icon svg:nth-child(2) {
 }
 .vf__card--photo .vf__body {
 	padding: 12px 14px;
-	margin: -12px -14px;
 	border-radius: var(--r-md);
 	background: rgba(6, 18, 45, 0.28);
 	-webkit-backdrop-filter: blur(6px);
@@ -206,3 +205,30 @@ a.vf__card:hover .btn__icon svg:nth-child(2) {
 .vf__card:not(.vf__card--lead) .vf__title { font-size: clamp(16px, 1.25vw, 19px); }
 .vf__card:not(.vf__card--lead) .vf__desc { font-size: 13px; }
 .vf__intro { align-self: end; }
+
+/* Heading and intro read as one column on the left. */
+.vf__head {
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 12px;
+}
+.vf__intro { align-self: flex-start; max-width: 40em; }
+
+/* The arrow sits inside the caption panel, beside the text, so it can never
+   overlap the copy or the card's edge on any width. */
+.vf__card .vf__body {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	column-gap: 12px;
+	align-items: end;
+}
+.vf__card .vf__body > :not(.vf__go) {
+	grid-column: 1;
+}
+.vf__card .vf__go {
+	position: static;
+	grid-column: 2;
+	grid-row: 1 / span 3;
+	align-self: end;
+}

@@ -218,6 +218,13 @@ if (saved.size < 50) {
 	await rm(stage, { recursive: true, force: true });
 	process.exit(1);
 }
+// Whole folders copied as they are: built apps load their chunks at run time,
+// so the crawler cannot follow them. Paths are relative to the repo root.
+for (const [to, from] of Object.entries(config.dirs || {})) {
+	const src = resolve(here, '..', from);
+	if (existsSync(src)) await cp(src, join(stage, to), { recursive: true });
+	else console.warn(`dir skipped: ${from} not found`);
+}
 for (const keep of config.preserve) {
 	const src = join(outDir, keep);
 	if (existsSync(src)) await cp(src, join(stage, keep), { recursive: true });

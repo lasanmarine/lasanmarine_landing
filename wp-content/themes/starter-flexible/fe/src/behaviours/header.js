@@ -16,9 +16,12 @@ export default function header(root) {
 /* ---- height + sticky ---------------------------------------------------- */
 
 function measure(root) {
-	// The on-page row opens inside the header pill as the reader scrolls; it
-	// overlays the page rather than pushing sheets, so it is not counted.
-	const sync = () => viewport.setHeaderHeight(root.offsetHeight - (root.querySelector('.onpage')?.offsetHeight ?? 0));
+	// The second rows of the pill (on-page links, search dock, reading bar)
+	// open as the reader scrolls; they overlay the page rather than pushing
+	// sheets, so they are not counted.
+	const ROWS = '.onpage, .hdr-dock, .reading-bar--docked';
+	const extra = () => [...root.querySelectorAll(ROWS)].reduce((h, el) => h + el.offsetHeight, 0);
+	const sync = () => viewport.setHeaderHeight(root.offsetHeight - extra());
 	sync();
 	const ro = new ResizeObserver(sync);
 	ro.observe(root);
@@ -35,23 +38,28 @@ function stickyBar() {
 	// The bar turns opaque once the page has scrolled past the hero's top.
 	// Reaching the footer, it slides away so the footer has the whole screen;
 	// the first scroll back up brings it straight back.
+	// Direction is read from the distance travelled since it last changed, not
+	// per frame: a slow trackpad scroll moves under a pixel a frame and would
+	// otherwise never count as a direction at all.
+	let dir = 0;
 	return viewport.subscribe(({ scrollY, height }) => {
 		bar.classList.toggle('is-stuck', scrollY > 24);
-		const down = scrollY > lastY + 1;
-		const up = scrollY < lastY - 1;
+		const d = scrollY - lastY;
+		if (Math.abs(d) >= 6) {
+			dir = Math.sign(d);
+			lastY = scrollY;
+		}
 		const atFooter = !!footer && footer.getBoundingClientRect().top < height * 0.85;
-		if (up || !atFooter) header.classList.remove('is-tucked');
-		else if (down && atFooter) header.classList.add('is-tucked');
-		lastY = scrollY;
+		if (!atFooter || dir < 0) header.classList.remove('is-tucked');
+		else if (dir > 0) header.classList.add('is-tucked');
 	});
 }
 
 /* ---- the bar's dropdown panels ------------------------------------------ */
 
-// An item with a panel is a switch, not a destination: hover or focus opens
-// it, a click toggles it, and the section's own page is reached through the
-// "Xem tất cả" link inside the panel. A touch device, which has no hover,
-// still reaches the children through the click.
+// Hover or focus on an item opens its panel; a click goes to the section's
+// page. A touch device, which has no hover, opens the panel on the first tap
+// and follows the link on the second.
 function panels() {
 	const strip = document.querySelector('[data-panels]');
 	const triggers = $$(document, '[data-panel-open]');
@@ -66,6 +74,15 @@ function panels() {
 		current = id;
 		items.forEach((p) => (p.dataset.open = String(p.dataset.panel === id)));
 		triggers.forEach((t) => t.setAttribute('aria-expanded', String(t.dataset.panelOpen === id)));
+		// A short intro card sits under the item that opened it.
+		const panel = items.find((p) => p.dataset.panel === id);
+		const trigger = triggers.find((t) => t.dataset.panelOpen === id);
+		if (panel?.classList.contains('hdr__panel--intro') && trigger) {
+			const box = strip.getBoundingClientRect();
+			const t = trigger.getBoundingClientRect();
+			const w = Math.min(440, box.width);
+			panel.style.setProperty('--intro-x', `${Math.max(0, Math.min(t.left - box.left - 16, box.width - w))}px`);
+		}
 		strip.dataset.open = String(Boolean(id));
 		document.documentElement.setAttribute('data-panel-open', String(Boolean(id)));
 	};
@@ -83,10 +100,13 @@ function panels() {
 		return [
 			on(trigger, 'pointerenter', (e) => e.pointerType !== 'touch' && show(id)),
 			on(trigger, 'focus', () => show(id)),
+			// A click goes to the section's page. Only a touch, which has no
+			// hover, opens the panel first; the second tap then follows the link.
+			on(trigger, 'pointerdown', (e) => (trigger._touch = e.pointerType === 'touch')),
 			on(trigger, 'click', (e) => {
+				if (!trigger._touch || current === id) return;
 				e.preventDefault();
-				if (current === id) hide();
-				else show(id);
+				show(id);
 			}),
 		];
 	});

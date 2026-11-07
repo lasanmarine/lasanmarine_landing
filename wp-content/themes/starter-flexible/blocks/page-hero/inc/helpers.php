@@ -74,7 +74,40 @@ final class Starter_Flexible_Block_Page_Hero extends Starter_Flexible_Abstract_B
 				'primary' => ! $out,
 			);
 		}
-		return $out ? array_slice( $out, 0, 3 ) : $this->auto_actions();
+		$out = $out ? array_slice( $out, 0, 3 ) : $this->auto_actions();
+
+		// A page built around an embedded app (app-embed) leads with opening
+		// that app full screen, in place, on this same URL.
+		if ( has_block( 'acf/app-embed', (int) get_the_ID() ) ) {
+			$en = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
+			foreach ( $out as &$action ) {
+				$action['primary'] = false;
+			}
+			unset( $action );
+			// The introduction page of a tool whose own address is the
+			// full-screen app (page-app.php) leads there instead.
+			$parent = (int) wp_get_post_parent_id( (int) get_the_ID() );
+			$to_app = $parent && 'page-app.php' === get_page_template_slug( $parent );
+			array_unshift(
+				$out,
+				$to_app
+					? array(
+						'url'     => (string) get_permalink( $parent ),
+						'label'   => $en ? 'Open the tool' : 'Mở công cụ',
+						'target'  => '',
+						'primary' => true,
+					)
+					: array(
+						'url'        => '#app',
+						'label'      => $en ? 'Open full screen' : 'Mở toàn màn hình',
+						'target'     => '',
+						'primary'    => true,
+						'fullscreen' => true,
+					)
+			);
+			$out = array_slice( $out, 0, 3 );
+		}
+		return $out;
 	}
 
 	/** @return array<int, array{url: string, label: string, target: string, primary: bool}> */
@@ -83,22 +116,15 @@ final class Starter_Flexible_Block_Page_Hero extends Starter_Flexible_Abstract_B
 		if ( ! $post_id ) {
 			return array();
 		}
-		$en = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
-
 		// Sections worth a shortcut, most useful first. The label comes from
 		// the block's own heading.
-		$priority = array( 'vessel-finder', 'project-showcase', 'project-index', 'use-case', 'service-architecture', 'capability-matrix', 'tool-shell', 'document-center', 'insights', 'deliverables', 'process-timeline' );
+		$priority = array( 'vessel-finder', 'project-showcase', 'project-index', 'use-case', 'service-architecture', 'capability-matrix', 'tool-shell', 'document-center', 'insights', 'deliverables', 'input-output', 'process-timeline', 'service-spotlight', 'value-grid', 'geo-operations', 'image-text', 'spec-list', 'accordion' );
 		$found    = array();
-		$contact  = '';
 		foreach ( parse_blocks( (string) get_post_field( 'post_content', $post_id ) ) as $block ) {
 			$slug = str_replace( 'acf/', '', (string) ( $block['blockName'] ?? '' ) );
 			$data = (array) ( $block['attrs']['data'] ?? array() );
 			$head = trim( wp_strip_all_tags( (string) ( $data['heading'] ?? '' ) ) );
 			$id   = (string) ( $block['attrs']['anchor'] ?? '' );
-			if ( 'contact-statement' === $slug ) {
-				$contact = '' !== $id ? $id : ( '' !== $head ? starter_flexible_page_hero_slug( $head ) : '' );
-				continue;
-			}
 			$rank = array_search( $slug, $priority, true );
 			if ( false === $rank || '' === $head ) {
 				continue;
@@ -112,16 +138,13 @@ final class Starter_Flexible_Block_Page_Hero extends Starter_Flexible_Abstract_B
 		}
 		ksort( $found );
 
-		$contact_url = '' !== $contact ? '#' . $contact : (string) home_url( $en ? '/en/contact/' : '/lien-he/' );
-		$actions     = array(
-			array(
-				'url'     => $contact_url,
-				'label'   => $en ? 'Talk to an engineer' : 'Liên hệ tư vấn',
-				'target'  => '',
-				'primary' => true,
-			),
-		);
-		return array_merge( $actions, array_slice( array_values( $found ), 0, 2 ) );
+		// The shortcuts name what the page holds; contact already sits in the
+		// header and at the foot of the page.
+		$actions = array_slice( array_values( $found ), 0, 3 );
+		if ( $actions ) {
+			$actions[0]['primary'] = true;
+		}
+		return $actions;
 	}
 }
 

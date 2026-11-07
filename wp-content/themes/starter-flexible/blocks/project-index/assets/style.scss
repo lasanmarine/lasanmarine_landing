@@ -4,7 +4,6 @@
 .pi__bar {
 	@apply flex flex-wrap items-center justify-between;
 	gap: 12px 24px;
-	margin-bottom: clamp(18px, 2vw, 26px);
 }
 .pi__filters {
 	@apply flex flex-wrap;
@@ -187,7 +186,6 @@
 	align-items: center;
 	gap: 14px;
 	width: 100%;
-	margin-bottom: 18px;
 	padding: 0 22px;
 	min-height: 60px;
 	border-radius: var(--r-pill);
@@ -218,14 +216,19 @@
 	columns: 3 300px;
 	column-gap: clamp(14px, 1.6vw, 22px);
 	border-top: 0;
-	margin-top: 8px;
+	padding-top: 8px;
 }
+/* In a column wall there is no row gap: the card is a transparent shell whose
+   bottom padding spaces the wall, and its inner box is the visible card. */
 .pj-card--gallery {
+	display: block;
+	break-inside: avoid;
+	padding-bottom: clamp(14px, 1.6vw, 22px);
+}
+.pj-card--gallery > .pj-card__in {
 	display: flex;
 	flex-direction: column;
 	gap: 14px;
-	break-inside: avoid;
-	margin-bottom: clamp(14px, 1.6vw, 22px);
 	padding: 12px 12px 18px;
 	border-radius: var(--r-xl);
 	background: var(--surface);
@@ -233,7 +236,7 @@
 	transition: background 260ms var(--ease), box-shadow 260ms var(--ease), transform 260ms var(--ease);
 }
 .pj-card--gallery[hidden] { display: none; }
-.pj-card--gallery:hover {
+.pj-card--gallery:hover > .pj-card__in {
 	background: var(--paper);
 	box-shadow: inset 0 0 0 1px var(--line-soft), 0 22px 44px -28px rgba(10, 114, 200, 0.45);
 	transform: translateY(-3px);
@@ -265,7 +268,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 6px;
-	margin-top: 2px;
+	padding-top: 2px;
 }
 .pj-card__specs span {
 	padding: 4px 10px;
@@ -276,4 +279,12 @@
 	font-variant-numeric: tabular-nums;
 }
 .pj-card--gallery:hover .pj-card__specs span { background: var(--surface); }
-.pj-card--gallery .pj-card__more { margin-top: 4px; }
+.pj-card--gallery .pj-card__more { padding-top: 4px; }
+
+/* Search, filters and the wall are spaced by the block's own gap. */
+.lasanmarine-project-index,
+.in--index {
+	gap: clamp(16px, 1.8vw, 24px);
+}
+/* Darker teal on the pale card: passes WCAG AA at this size. */
+.pj-card__tag { color: #066664; }
