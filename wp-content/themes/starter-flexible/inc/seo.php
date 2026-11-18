@@ -47,11 +47,14 @@ function starter_flexible_schema_organization( $graph ) {
 	$brand      = (string) get_bloginfo( 'name' );
 	$titles     = (array) get_option( 'wpseo_titles', array() );
 	$name       = trim( (string) ( $titles['website_name'] ?? '' ) ) ?: $brand;
-	$legal_name = 'Công ty TNHH LASAN MARINE';
+	$legal_name = 'Công ty TNHH Lasan Marine';
+	// Every way people type the name, so a search for any of them — "Lasan
+	// Marine" as two words, the capitalised logo form, the domain's one word,
+	// the English company name — resolves to this organisation.
 	$alt_names  = array_values(
 		array_unique(
 			array_filter(
-				array( trim( (string) ( $titles['alternate_website_name'] ?? '' ) ), $brand, $legal_name ),
+				array( trim( (string) ( $titles['alternate_website_name'] ?? '' ) ), 'Lasan Marine', 'LASAN MARINE', 'lasanmarine', 'Lasan Marine Co., Ltd.', $brand, $legal_name ),
 				static fn( $n ) => '' !== $n && $n !== $name
 			)
 		)
@@ -66,7 +69,9 @@ function starter_flexible_schema_organization( $graph ) {
 	$same_as = array();
 	foreach ( (array) starter_flexible_setting( 'social', array() ) as $row ) {
 		$link = starter_flexible_link( $row['link'] ?? array() );
-		if ( '' !== $link['url'] ) {
+		// Only real profiles elsewhere: a link back to this site is not one.
+		$host = (string) wp_parse_url( (string) $link['url'], PHP_URL_HOST );
+		if ( '' !== $host && $host !== (string) wp_parse_url( home_url(), PHP_URL_HOST ) ) {
 			$same_as[] = $link['url'];
 		}
 	}
@@ -84,12 +89,12 @@ function starter_flexible_schema_organization( $graph ) {
 		),
 		'image'       => array( '@id' => home_url( '/#logo' ) ),
 		'description' => $is_english
-			? 'Naval architecture firm in Nha Trang, Vietnam: fishing vessel, support vessel and passenger boat design, conversions, stability and structural calculations, and class/registry approval documents.'
-			: 'Công ty thiết kế tàu tại Nha Trang, Khánh Hòa: thiết kế tàu cá, tàu hậu cần thủy sản, cano chở khách; hoán cải, tính toán ổn định, kết cấu và hoàn thiện hồ sơ thiết kế, đăng kiểm.',
+			? 'Lasan Marine Co., Ltd. is a naval architecture and marine software firm in Nha Trang, Vietnam: fishing vessel, support vessel and passenger boat design, conversions, stability and structural calculations, approval documents, and marine engineering software development.'
+			: 'Công ty TNHH Lasan Marine là công ty thiết kế tàu và phần mềm hàng hải tại Nha Trang, Khánh Hòa: thiết kế tàu cá, tàu hậu cần thủy sản, cano chở khách; hoán cải, tính toán ổn định, kết cấu, hồ sơ thiết kế, đăng kiểm và phát triển phần mềm chuyên ngành hàng hải.',
 		'areaServed'  => array( '@type' => 'Country', 'name' => 'Vietnam' ),
 		'knowsAbout'  => $is_english
-			? array( 'Ship design', 'Fishing vessel design', 'Vessel conversion', 'Stability calculation', 'Hull structure', 'Marine R&D', 'CFD simulation' )
-			: array( 'Thiết kế tàu', 'Thiết kế tàu cá', 'Thiết kế tàu vỏ thép', 'Thiết kế tàu composite', 'Hoán cải tàu cá', 'Hồ sơ đăng kiểm tàu cá', 'Tính toán ổn định tàu', 'Mô phỏng CFD' ),
+			? array( 'Ship design', 'Naval architecture', 'Fishing vessel design', 'Vessel conversion', 'Stability calculation', 'Hull structure', 'Marine R&D', 'CFD simulation', 'Marine engineering software development', 'Software outsourcing' )
+			: array( 'Thiết kế tàu', 'Thiết kế tàu cá', 'Thiết kế tàu vỏ thép', 'Thiết kế tàu composite', 'Hoán cải tàu cá', 'Hồ sơ đăng kiểm tàu cá', 'Tính toán ổn định tàu', 'Mô phỏng CFD', 'Phần mềm chuyên ngành hàng hải', 'Gia công phần mềm' ),
 	);
 
 	if ( '' !== $legal_name ) {
@@ -185,15 +190,16 @@ function starter_flexible_project_seo(): ?array {
 	$material   = is_array( $materials ) && $materials ? mb_strtolower( (string) $materials[0] ) : '';
 
 	// The material joins the title only when the vessel's name does not already say it.
-	$suffix = ( '' !== $material && false === mb_stripos( $card['title'], $material ) ) ? ' tàu vỏ ' . $material : '';
+	$suffix = ( '' !== $material && false === mb_stripos( $card['title'], $material ) ) ? ' vỏ ' . $material : '';
+	// "<content> | Company": the site's title pattern (see tools/content/*.json).
 	$title  = $is_english
-		? sprintf( '%s — Vessel Design Documents | LASAN MARINE', $card['title'] )
-		: sprintf( '%s — Hồ sơ thiết kế%s | LASAN MARINE', $card['title'], $suffix );
+		? sprintf( '%s Design | Lasan Marine Co., Ltd.', $card['title'] )
+		: sprintf( 'Thiết kế %s%s | Công ty TNHH Lasan Marine', mb_strtolower( mb_substr( $card['title'], 0, 1 ) ) . mb_substr( $card['title'], 1 ), $suffix );
 
 	$facts = implode( ', ', array_filter( array( $card['tag'], $card['meta'], $card['location'] ) ) );
 	$tail  = $is_english
-		? 'Design, conversion and approval drawings by LASAN MARINE.'
-		: 'Thiết kế, hoán cải và hồ sơ đăng kiểm: LASAN MARINE.';
+		? 'Design, conversion and approval drawings by Lasan Marine.'
+		: 'Thiết kế, hoán cải và hồ sơ đăng kiểm: Lasan Marine.';
 	$head  = $card['title'] . ( '' !== $facts ? ': ' . $facts : '' ) . '.';
 
 	// The facts give way before the closing line does: it carries the keywords.

@@ -5,8 +5,8 @@
 	"lang": "vi",
 	"parent": "service_01",
 	"seo": {
-		"title": "Thiết kế tàu cá vỏ thép xa bờ, bản vẽ & hồ sơ | LASAN MARINE",
-		"description": "Thiết kế tàu cá vỏ thép đóng mới, tàu khai thác xa bờ và tàu hậu cần: bản vẽ, tính toán ổn định, kết cấu và hồ sơ đăng kiểm. Gọi hoặc Zalo 0834 310 781."
+		"title": "Thiết kế tàu cá vỏ thép xa bờ | Công ty TNHH Lasan Marine",
+		"description": "Thiết kế tàu cá vỏ thép đóng mới, tàu hậu cần nghề cá theo QCVN 91, 92:2025/BNNMT: bản vẽ, bản tính, hồ sơ thẩm định. Gọi hoặc Zalo 0834 310 781."
 	},
 	"blocks": [
 		{
@@ -14,19 +14,13 @@
 			"fields": {
 				"headline": "Thiết kế tàu cá vỏ thép: bản vẽ, tính toán và hồ sơ đăng kiểm",
 				"heading_level": "h1",
-				"lead": "Thiết kế đóng mới tàu cá vỏ thép khai thác xa bờ và tàu hậu cần thủy sản, từ kích thước chính, tuyến hình đến bộ hồ sơ trình thẩm tra. Hồ sơ đúng quy chuẩn ngay từ đầu, hạn chế phải sửa đi sửa lại.",
+				"lead": "Lasan Marine thiết kế tàu cá vỏ thép đóng mới cho chủ tàu, hợp tác xã và xưởng đóng tàu: tàu khai thác xa bờ và tàu dịch vụ hậu cần nghề cá. Bộ hồ sơ gồm bản vẽ và bản tính theo QCVN 91:2025/BNNMT hoặc QCVN 92:2025/BNNMT tùy chiều dài tàu, sẵn sàng trình thẩm định.",
 				"height": 420,
 				"actions": [
 					{
 						"link": {
-							"label": "Tàu cá vỏ thép đã thiết kế",
-							"url": "#tau-ca-vo-thep-da-thiet-ke"
-						}
-					},
-					{
-						"link": {
-							"label": "Những tình huống chủ tàu hay gặp",
-							"url": "#nhung-tinh-huong-chu-tau-hay-gap"
+							"label": "Quy chuẩn áp dụng",
+							"url": "#tau-cua-ban-ap-dung-quy-chuan-nao"
 						}
 					},
 					{
@@ -34,8 +28,25 @@
 							"label": "Bạn nhận được gì",
 							"url": "#ban-nhan-duoc-gi"
 						}
+					},
+					{
+						"link": {
+							"label": "Câu hỏi thường gặp",
+							"url": "#cau-hoi-thuong-gap-ve-thiet-ke-tau-ca-vo"
+						}
 					}
 				]
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"label": "",
+				"heading": "Tàu của bạn áp dụng quy chuẩn nào?",
+				"content": "<p>Từ 10/3/2026, thiết kế và đóng tàu cá áp dụng hai quy chuẩn mới ban hành kèm Thông tư 57/2025/TT-BNNMT:</p><ul><li><strong>QCVN 92:2025/BNNMT</strong> cho tàu cá có chiều dài lớn nhất từ 12 m đến dưới 24 m. Quy chuẩn này thay QCVN 02-35:2021/BNNPTNT.</li><li><strong>QCVN 91:2025/BNNMT</strong> cho tàu cá có chiều dài lớn nhất từ 24 m trở lên.</li></ul><p>Tàu cá từ 12 m trở lên phải có hồ sơ thiết kế kỹ thuật được thẩm định trước khi đóng mới (Điều 15 Thông tư 02/2026/TT-BNNMT). Tàu dưới 24 m do cơ sở đăng kiểm tàu cá loại I hoặc loại II thẩm định; tàu từ 24 m trở lên do cơ sở loại I thẩm định.</p><p>Chủ tàu cũng cần <strong>văn bản chấp thuận đóng mới</strong> của cơ quan quản lý thủy sản cấp tỉnh (tờ khai Mẫu số 12.TC, Điều 43 Nghị định 41/2026/NĐ-CP). Cơ quan này xét theo hạn ngạch giấy phép khai thác của tỉnh, và không chấp thuận đóng mới tàu làm nghề lưới kéo hoặc lưới rê thu ngừ.</p><p><em>Căn cứ: <a href=\"https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/9/81-vbhn-bnnmt.signed.pdf\" rel=\"noopener\" target=\"_blank\">Thông tư 02/2026/TT-BNNMT</a> (văn bản hợp nhất 81/VBHN-BNNMT, gồm sửa đổi của Thông tư 33/2026/TT-BNNMT), Nghị định 41/2026/NĐ-CP và <a href=\"https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/9/57-bnnmt.pdf\" rel=\"noopener\" target=\"_blank\">Thông tư 57/2025/TT-BNNMT</a>. Cập nhật tháng 11/2026. Quy định có thể thay đổi; hãy hỏi lại chúng tôi hoặc cơ quan quản lý trước khi nộp hồ sơ.</em></p>",
+				"align": "left",
+				"width": "medium",
+				"custom_class": ""
 			}
 		},
 		{
@@ -47,29 +58,38 @@
 				"items": [
 					{
 						"problem": "Muốn đóng tàu mới nhưng chưa có phương án",
-						"context": "Mới có ý tưởng về nghề, cỡ tàu và vùng khai thác.",
-						"solution": "Đề xuất kích thước chính, bố trí chung và công suất máy phù hợp nghề; lập nhiệm vụ thư làm cơ sở thiết kế.",
+						"context": "Mới có ý tưởng về nghề, cỡ tàu, vùng khai thác và ngân sách.",
+						"solution": "Đề xuất kích thước chính, bố trí chung và công suất máy phù hợp nghề; lập nhiệm vụ thư làm cơ sở thiết kế. Bạn có thể tự điền trước bằng công cụ nhiệm vụ thư.",
 						"link": {
-							"label": "Lập nhiệm vụ thư",
+							"label": "Lập nhiệm vụ thư thiết kế",
 							"page": "design_brief"
 						}
 					},
 					{
+						"problem": "Đóng tàu dịch vụ hậu cần nghề cá",
+						"context": "Tàu thu mua, chở cá, cấp đá, nhiên liệu cho tàu khai thác; cần hầm lớn và sức chở cao.",
+						"solution": "Bố trí hầm hàng, tính ổn định ở các trạng thái chở hàng, kết cấu thân tàu và hệ động lực theo tải trọng thực tế.",
+						"link": {
+							"label": "Xem tàu hậu cần BV-99889-TS",
+							"url": "/du-an/tau-hau-can-bv-99889-ts/"
+						}
+					},
+					{
 						"problem": "Hồ sơ bị trả về sửa nhiều lần",
-						"context": "Thiếu bản tính, bản vẽ chưa khớp hoặc chưa đúng quy chuẩn hiện hành.",
-						"solution": "Rà soát toàn bộ hồ sơ, bổ sung bản tính ổn định, kết cấu, máy và chỉnh bản vẽ theo yêu cầu thẩm tra.",
+						"context": "Thiếu bản tính, bản vẽ không khớp nhau hoặc chưa theo quy chuẩn mới.",
+						"solution": "Rà soát toàn bộ hồ sơ, bổ sung bản tính ổn định, kết cấu, máy và chỉnh bản vẽ theo góp ý thẩm định.",
 						"link": {
 							"label": "Xem dịch vụ hồ sơ đăng kiểm",
 							"page": "approval_docs"
 						}
 					},
 					{
-						"problem": "Cần tính lại khi đổi máy hoặc tăng tải",
-						"context": "Thay máy lớn hơn, lắp thêm thiết bị, thay đổi bố trí hầm.",
-						"solution": "Kiểm tra lại ổn định, sức cản – công suất, chân vịt và hệ trục; cập nhật bản vẽ liên quan.",
+						"problem": "Phân vân giữa vỏ thép và composite",
+						"context": "Cỡ tàu, nghề, xưởng gần nơi bạn và kế hoạch đóng một hay nhiều chiếc đều ảnh hưởng đến lựa chọn.",
+						"solution": "So sánh hai phương án theo cùng yêu cầu khai thác trước khi bạn quyết định.",
 						"link": {
-							"label": "Thử công cụ tính nhanh",
-							"page": "tools"
+							"label": "Xem thiết kế tàu composite",
+							"page": "design_composite"
 						}
 					}
 				],
@@ -80,13 +100,13 @@
 			"type": "deliverables",
 			"fields": {
 				"heading": "Bạn nhận được gì",
-				"intro": "Bộ hồ sơ thiết kế tàu cá vỏ thép đầy đủ để đóng mới và trình thẩm tra.",
-				"note_label": "Thời gian",
-				"note": "Thời gian được thống nhất khi báo giá, tùy loại tàu, phạm vi công việc và hồ sơ hiện có. Bạn biết trước mốc bàn giao từng phần.",
+				"intro": "Bộ hồ sơ thiết kế tàu cá vỏ thép để xưởng thi công và trình thẩm định.",
+				"note_label": "Chi phí và thời gian phụ thuộc vào",
+				"note": "Chiều dài và loại tàu, quy chuẩn áp dụng; yêu cầu khai thác đã rõ hay cần lập phương án từ đầu; có dùng lại tuyến hình, mẫu tàu sẵn có không; mức độ chi tiết bản vẽ mà xưởng cần. Chúng tôi báo giá và mốc bàn giao từng phần trước khi làm.",
 				"items": [
 					{
 						"title": "Bản vẽ thiết kế kỹ thuật",
-						"desc": "Tuyến hình, bố trí chung, kết cấu, hệ động lực, hệ thống",
+						"desc": "Tuyến hình, bố trí chung, kết cấu thân tàu, hệ động lực, hệ trục, hệ thống",
 						"format": "PDF · DWG"
 					},
 					{
@@ -95,13 +115,13 @@
 						"format": "PDF"
 					},
 					{
-						"title": "Hồ sơ trình thẩm tra",
-						"desc": "Đủ thành phần theo yêu cầu đăng kiểm tàu cá",
+						"title": "Hồ sơ trình thẩm định",
+						"desc": "Đủ thành phần theo yêu cầu cơ sở đăng kiểm tàu cá",
 						"format": "PDF"
 					},
 					{
-						"title": "Giải trình khi thẩm tra",
-						"desc": "Phối hợp sửa đổi đến khi hồ sơ được duyệt",
+						"title": "Giải trình khi thẩm định",
+						"desc": "Sửa theo góp ý đến khi hồ sơ được duyệt",
 						"format": ""
 					}
 				],
@@ -111,26 +131,65 @@
 		{
 			"type": "process-timeline",
 			"fields": {
-				"heading": "Làm việc với chúng tôi thế nào?",
+				"heading": "Các bước thiết kế tàu cá vỏ thép",
 				"intro": "",
 				"steps": [
 					{
-						"title": "Gửi thông tin qua Zalo hoặc điện thoại",
-						"desc": "Loại tàu, kích thước dự kiến, vùng hoạt động và ảnh hoặc hồ sơ hiện có."
+						"title": "1. Chủ tàu gửi yêu cầu",
+						"desc": "Nghề khai thác, cỡ tàu mong muốn, vùng hoạt động, máy dự kiến, xưởng sẽ đóng. Gửi qua Zalo 0834 310 781 hoặc điền nhiệm vụ thư."
 					},
 					{
-						"title": "Khảo sát và báo giá",
-						"desc": "Xác định phạm vi, hạng mục bàn giao và mốc thời gian, báo giá rõ từng phần."
+						"title": "2. Lasan Marine lập phương án và báo giá",
+						"desc": "Đề xuất kích thước chính, bố trí, công suất; thống nhất hạng mục bàn giao."
 					},
 					{
-						"title": "Thiết kế và tính toán",
-						"desc": "Triển khai bản vẽ, bản tính bằng công cụ chuyên ngành và công cụ tự phát triển."
+						"title": "3. Chủ tàu xin văn bản chấp thuận đóng mới",
+						"desc": "Nộp tờ khai Mẫu số 12.TC tại cơ quan quản lý thủy sản cấp tỉnh. Chúng tôi cung cấp thông số kỹ thuật để khai."
 					},
 					{
-						"title": "Thẩm tra và bàn giao",
-						"desc": "Phối hợp giải trình khi thẩm tra, cập nhật hồ sơ và bàn giao bản cuối."
+						"title": "4. Thiết kế và tính toán",
+						"desc": "Lập bản vẽ, bản tính theo QCVN 91 hoặc QCVN 92:2025/BNNMT; xưởng góp ý để bản vẽ dễ thi công."
+					},
+					{
+						"title": "5. Thẩm định và bàn giao",
+						"desc": "Hồ sơ được trình cơ sở đăng kiểm tàu cá; chúng tôi giải trình đến khi được cấp Giấy chứng nhận thẩm định thiết kế, rồi bàn giao bản cuối cho chủ tàu và xưởng."
 					}
 				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp về thiết kế tàu cá vỏ thép",
+				"intro": "",
+				"items": [
+					{
+						"title": "Tàu cá vỏ thép 24 m áp dụng quy chuẩn nào?",
+						"content": "<p>Tàu có chiều dài lớn nhất từ 24 m trở lên áp dụng QCVN 91:2025/BNNMT và do cơ sở đăng kiểm tàu cá loại I thẩm định. Tàu từ 12 m đến dưới 24 m áp dụng QCVN 92:2025/BNNMT. Cả hai có hiệu lực từ 10/3/2026.</p>"
+					},
+					{
+						"title": "Tôi chưa có bản vẽ gì thì bắt đầu thế nào?",
+						"content": "<p>Chỉ cần cho biết nghề khai thác, cỡ tàu mong muốn, vùng hoạt động và ngân sách dự kiến. Chúng tôi đề xuất phương án và lập nhiệm vụ thư. Bạn có thể điền trước <a href=\"{{page:design_brief}}\">nhiệm vụ thư thiết kế</a> trên website.</p>"
+					},
+					{
+						"title": "Chi phí thiết kế tàu cá vỏ thép phụ thuộc vào gì?",
+						"content": "<p>Chiều dài và loại tàu, quy chuẩn áp dụng, yêu cầu đã rõ hay cần lập phương án từ đầu, và phạm vi bàn giao (trọn bộ hay một phần). Gửi thông tin tàu để nhận báo giá theo đúng phạm vi.</p>"
+					},
+					{
+						"title": "Có cần văn bản chấp thuận trước khi đóng mới không?",
+						"content": "<p>Có. Chủ tàu nộp tờ khai Mẫu số 12.TC tại cơ quan quản lý thủy sản cấp tỉnh (Điều 43 Nghị định 41/2026/NĐ-CP). Sau khi có văn bản chấp thuận, chủ tàu phải hoàn thành đăng ký tàu đóng mới trong 12 tháng. Không được chấp thuận đóng mới tàu lưới kéo, lưới rê thu ngừ.</p>"
+					},
+					{
+						"title": "Hồ sơ thiết kế tàu cá vỏ thép gồm những gì?",
+						"content": "<p>Thường gồm thuyết minh, tuyến hình, bố trí chung, kết cấu, hệ động lực, hệ trục, hệ thống, trang thiết bị an toàn và các bản tính thủy tĩnh, ổn định, mạn khô, kết cấu, sức cản – công suất. Danh mục cụ thể tùy quy chuẩn áp dụng và loại tàu. Xem thêm ở trang <a href=\"{{page:approval_docs}}\">hồ sơ đăng kiểm tàu cá</a>.</p>"
+					},
+					{
+						"title": "Lỗi nào hay khiến hồ sơ bị trả về?",
+						"content": "<p>Số liệu giữa bản vẽ và bản tính không khớp; bản tính ổn định thiếu trạng thái tải; máy, trục, chân vịt chọn không đồng bộ; còn tính theo QCVN 02-35:2021 đã bị thay thế. Chúng tôi kiểm tra các điểm này trước khi trình, và tính bằng <a href=\"{{page:tools}}\">công cụ do chính chúng tôi viết</a> để số liệu đi cùng một nguồn.</p>"
+					}
+				],
+				"open_first": 1,
 				"custom_class": ""
 			}
 		},
@@ -138,7 +197,7 @@
 			"type": "project-showcase",
 			"fields": {
 				"heading": "Tàu cá vỏ thép đã thiết kế",
-				"intro": "",
+				"intro": "Tàu khai thác và tàu hậu cần thủy sản vỏ thép dài từ 26 m đến 34,86 m.",
 				"view_all": {
 					"label": "Xem tất cả dự án",
 					"page": "projects"
@@ -153,37 +212,10 @@
 			}
 		},
 		{
-			"type": "accordion",
-			"fields": {
-				"heading": "Câu hỏi thường gặp",
-				"intro": "",
-				"items": [
-					{
-						"title": "Tôi chưa có bản vẽ gì thì bắt đầu thế nào?",
-						"content": "<p>Chỉ cần cho biết nghề khai thác, cỡ tàu mong muốn, vùng hoạt động và ngân sách dự kiến. Chúng tôi sẽ đề xuất phương án và lập nhiệm vụ thư làm cơ sở thiết kế.</p>"
-					},
-					{
-						"title": "Thiết kế tàu cá vỏ thép mất bao lâu?",
-						"content": "<p>Tùy cỡ tàu, mức độ hoàn thiện của yêu cầu và hồ sơ hiện có. Mốc thời gian từng phần được thống nhất khi báo giá.</p>"
-					},
-					{
-						"title": "Hồ sơ có dùng để trình đăng kiểm được không?",
-						"content": "<p>Có. Hồ sơ được lập theo quy chuẩn và yêu cầu đăng kiểm tàu cá hiện hành, và chúng tôi phối hợp giải trình khi thẩm tra.</p>"
-					},
-					{
-						"title": "Có thể gửi thông tin qua Zalo không?",
-						"content": "<p>Có. Gửi ảnh tàu, bản vẽ cũ hoặc mô tả qua Zalo 0834 310 781 để được tư vấn nhanh.</p>"
-					}
-				],
-				"open_first": 1,
-				"custom_class": ""
-			}
-		},
-		{
 			"type": "contact-statement",
 			"fields": {
 				"heading": "<p>Bạn đang chuẩn bị đóng tàu cá vỏ thép?</p>",
-				"description": "Gọi hoặc nhắn Zalo cho chúng tôi loại nghề, cỡ tàu và vùng khai thác. Chúng tôi phản hồi phương án và báo giá rõ ràng.",
+				"description": "Gọi hoặc nhắn Zalo cho chúng tôi nghề khai thác, cỡ tàu, vùng hoạt động và xưởng dự kiến. Chúng tôi phản hồi phương án và báo giá theo phạm vi.",
 				"phone": "0834 310 781",
 				"email": "hello@lasanmarine.com",
 				"cta": {

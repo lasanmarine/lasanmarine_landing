@@ -4,14 +4,14 @@
 	"slug": "nang-luc",
 	"lang": "vi",
 	"seo": {
-		"title": "Năng lực thiết kế tàu, R&D và phần mềm | LASAN MARINE",
-		"description": "LASAN MARINE tập trung vào thiết kế tàu và phát triển thêm hai hướng dịch vụ là nghiên cứu và phát triển (R&D) cùng phần mềm."
+		"title": "Năng lực thiết kế tàu & phần mềm | Công ty TNHH Lasan Marine",
+		"description": "Lasan Marine tập trung vào thiết kế tàu và phát triển thêm hai hướng dịch vụ là nghiên cứu và phát triển (R&D) cùng phần mềm."
 	},
 	"blocks": [
 		{
 			"type": "page-hero",
 			"fields": {
-				"headline": "Năng lực kỹ thuật và giải pháp của LASAN MARINE",
+				"headline": "Năng lực kỹ thuật và giải pháp của Lasan Marine",
 				"heading_level": "h1",
 				"lead": "Thiết kế tàu là chuyên môn cốt lõi. Bên cạnh đó, chúng tôi thực hiện nghiên cứu kỹ thuật và phát triển các giải pháp số từ những nhu cầu thực tế trong quá trình làm việc.",
 				"height": 420,

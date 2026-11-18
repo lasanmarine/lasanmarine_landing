@@ -5,8 +5,8 @@
 	"lang": "vi",
 	"parent": "service_rnd",
 	"seo": {
-		"title": "Công trình nghiên cứu tàu thủy đã công bố | LASAN MARINE",
-		"description": "Các bài báo khoa học về mô phỏng dòng chảy quanh thân tàu, chân vịt và bánh lái, xâm thực và kết cấu tàu cá do đội ngũ LASAN MARINE công bố."
+		"title": "Công trình nghiên cứu tàu thủy | Công ty TNHH Lasan Marine",
+		"description": "Các bài báo khoa học về mô phỏng dòng chảy quanh thân tàu, chân vịt và bánh lái, xâm thực và kết cấu tàu cá do đội ngũ Lasan Marine công bố."
 	},
 	"blocks": [
 		{
@@ -14,7 +14,7 @@
 			"fields": {
 				"headline": "Công trình đã công bố",
 				"heading_level": "h1",
-				"lead": "Toàn bộ bài báo, báo cáo và chương sách của đội ngũ LASAN MARINE, ưu tiên các nghiên cứu về tàu thủy.",
+				"lead": "Toàn bộ bài báo, báo cáo và chương sách của đội ngũ Lasan Marine, ưu tiên các nghiên cứu về tàu thủy.",
 				"height": 320,
 				"actions": [
 					{

@@ -5,8 +5,8 @@
 	"lang": "en",
 	"translation_of": "home",
 	"seo": {
-		"title": "Naval Architecture Company in Vietnam | LASAN MARINE",
-		"description": "Naval architecture firm in Nha Trang, Vietnam: fishing vessel and passenger boat design, conversions, stability calculations and approval documents."
+		"title": "Lasan Marine Co., Ltd. – Naval Architecture & Marine Software",
+		"description": "Naval architecture and marine software firm in Nha Trang, Vietnam: fishing vessel and passenger boat design, approval documents, custom engineering software."
 	},
 	"blocks": [
 		{
@@ -17,14 +17,14 @@
 						"image": {
 							"media": "look-up-look-down-photography-pl-vqprmpzi-unsplash"
 						},
-						"headline": "Fishing vessel and passenger boat design, and approval documents",
+						"headline": "Lasan Marine designs fishing vessels, passenger boats and approval documents",
 						"headline_accent": "fast and to the rules.",
 						"headline_tail": "",
-						"lead": "From new-build drawings and conversions to plan-approval documents — complete design, calculated with tools we build ourselves."
+						"lead": "From new-build drawings and conversions to plan-approval documents, calculated with engineering software we write ourselves. The same team builds custom software for naval architects and shipyards."
 					}
 				],
 				"eyebrow": "",
-				"subline": "A naval architecture firm in Nha Trang, Vietnam, working with owners and shipyards nationwide.",
+				"subline": "Lasan Marine Co., Ltd. is a naval architecture and marine software firm in Nha Trang, Vietnam, working with owners, shipyards and engineering firms in Vietnam and overseas.",
 				"heading_level": "h1",
 				"primary": {
 					"url": "tel:+84834310781",
@@ -104,7 +104,7 @@
 		{
 			"type": "value-grid",
 			"fields": {
-				"heading": "Why owners work with LASAN MARINE",
+				"heading": "Why owners work with Lasan Marine",
 				"items": [
 					{
 						"title": "We know fishing vessels and the approval process",
@@ -137,6 +137,58 @@
 			}
 		},
 		{
+			"type": "capability-matrix",
+			"fields": {
+				"heading": "Software for naval architects and shipyards",
+				"items": [
+					{
+						"index": "01",
+						"name": "Engineering calculation tools",
+						"desc": "Stability, hydrostatics, resistance and power, and structural calculations that also generate the calculation document.",
+						"link": {
+							"label": "Marine engineering software",
+							"page": "service_03_en"
+						},
+						"children": [],
+						"icon": "calculator"
+					},
+					{
+						"index": "02",
+						"name": "CAD plugins and automation",
+						"desc": "Rhino/Grasshopper plugins, AutoCAD automation and Maxsurf batch runs for the repetitive steps in design work.",
+						"link": {
+							"label": "Marine engineering software",
+							"page": "service_03_en"
+						},
+						"children": [],
+						"icon": "compass"
+					},
+					{
+						"index": "03",
+						"name": "Web apps for yards and design offices",
+						"desc": "Estimating, material take-off and BOM, drawing and document control built around your own workflow.",
+						"link": {
+							"label": "Marine engineering software",
+							"page": "service_03_en"
+						},
+						"children": [],
+						"icon": "link"
+					},
+					{
+						"index": "04",
+						"name": "AI agents and workflow automation",
+						"desc": "Rule and standard look-up, drafting of routine technical documents and data extraction, with an engineer in the loop.",
+						"link": {
+							"label": "Marine engineering software",
+							"page": "service_03_en"
+						},
+						"children": [],
+						"icon": "scan"
+					}
+				]
+			}
+		},
+		{
 			"type": "project-showcase",
 			"fields": {
 				"heading": "Selected projects",
@@ -154,11 +206,28 @@
 			}
 		},
 		{
+			"type": "cta-banner",
+			"fields": {
+				"heading": "Outsourcing design or software work to Vietnam?",
+				"content": "We work remotely in English from Nha Trang (UTC+7), in your templates and standards. We sign an NDA before you share details, and the code and design work we produce for you is yours.",
+				"primary_cta": {
+					"label": "Ship design outsourcing",
+					"page": "service_01_en"
+				},
+				"secondary_cta": {
+					"label": "Software development",
+					"page": "service_03_en"
+				},
+				"theme": "pale",
+				"custom_class": ""
+			}
+		},
+		{
 			"type": "contact-statement",
 			"fields": {
-				"heading": "<p>Planning a new build or a conversion?</p>",
-				"description": "Call us with the vessel type, target size and the documents you have. We reply with a concept and a clear quote.",
-				"phone": "0834 310 781",
+				"heading": "<p>Planning a new build, a conversion or a software tool?</p>",
+				"description": "Send us the vessel type, target size and the documents you have, or describe the task you want automated. We reply with a clear scope and quote.",
+				"phone": "+84 834 310 781",
 				"email": "hello@lasanmarine.com",
 				"cta": {
 					"label": "Send a request",

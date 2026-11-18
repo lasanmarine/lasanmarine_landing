@@ -23,8 +23,13 @@ ini_set( 'display_errors', 'stderr' );
 // Polylang reads these on load and notices when a CLI leaves them unset.
 $_SERVER['HTTP_HOST']   = $_SERVER['HTTP_HOST'] ?? ( parse_url( getenv( 'WP_HOME' ) ?: 'http://localhost', PHP_URL_HOST ) ?: 'localhost' );
 $_SERVER['REQUEST_URI'] = $_SERVER['REQUEST_URI'] ?? '/';
+if ( str_starts_with( (string) getenv( 'WP_HOME' ), 'https://' ) ) {
+	$_SERVER['HTTPS'] = 'on'; // permalinks and Polylang links come out as https
+}
 
-$root = dirname( __DIR__ );
+// The WordPress root: the repository's own by default; WP_PATH when the
+// tools run from outside a site's web root (on the server: ~/lasan-tools).
+$root = getenv( 'WP_PATH' ) ?: dirname( __DIR__ );
 require_once $root . '/wp-load.php';
 require_once __DIR__ . '/lib/content.php';
 
@@ -157,6 +162,13 @@ switch ( $command ) {
 				}
 				lasan_content_apply( $doc, $problems, false );
 			}
+		}
+
+		// A page cache (Cache Enabler on production) clears itself when a post
+		// is saved, but titles, descriptions and menus change without a save
+		// (unchanged posts are skipped): clear it whenever content was applied.
+		if ( ! $dry_run ) {
+			do_action( 'cache_enabler_clear_complete_cache' );
 		}
 
 		if ( $problems ) {

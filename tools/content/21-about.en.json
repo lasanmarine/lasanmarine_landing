@@ -5,8 +5,8 @@
 	"lang": "en",
 	"translation_of": "about",
 	"seo": {
-		"title": "About LASAN MARINE | Ship Design, R&D & Software",
-		"description": "Ship design is the discipline at the centre of LASAN MARINE. Our R&D and software work grew from real technical and workflow problems in practice."
+		"title": "About Us: Ship Design & Software | Lasan Marine Co., Ltd.",
+		"description": "Ship design is the discipline at the centre of Lasan Marine. Our R&D and software work grew from real technical and workflow problems in practice."
 	},
 	"blocks": [
 		{
@@ -14,7 +14,7 @@
 			"fields": {
 				"headline": "Ship design is our core expertise",
 				"heading_level": "h1",
-				"lead": "LASAN MARINE designs newbuilds and conversions, carries out engineering calculations and completes technical documentation for vessels. From problems that arise in that work, we have built R&D and digital solutions for real-world use.",
+				"lead": "Lasan Marine Co., Ltd. (Nha Trang, Vietnam) designs newbuilds and conversions, carries out engineering calculations and completes technical documentation for vessels. From problems that arise in that work, we have built R&D and digital solutions for real-world use.",
 				"height": 420,
 				"actions": [
 					{
@@ -101,11 +101,11 @@
 				"rows": [
 					{
 						"label": "Company name",
-						"value": "LASAN MARINE COMPANY LIMITED"
+						"value": "Lasan Marine COMPANY LIMITED"
 					},
 					{
 						"label": "International name",
-						"value": "LASAN MARINE CO., LTD."
+						"value": "Lasan Marine CO., LTD."
 					},
 					{
 						"label": "Tax code",

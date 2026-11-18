@@ -5,28 +5,28 @@
 	"lang": "vi",
 	"parent": "capabilities",
 	"seo": {
-		"title": "Thiết kế tàu, cải hoán và hồ sơ đăng kiểm | LASAN MARINE",
-		"description": "Dịch vụ thiết kế tàu gồm đóng mới, cải hoán, các nhóm tính toán thủy tĩnh, ổn định, kết cấu, sức cản, hệ động lực và hồ sơ phục vụ thẩm tra, đăng kiểm."
+		"title": "Dịch vụ thiết kế tàu thủy, hoán cải | Công ty TNHH Lasan Marine",
+		"description": "Dịch vụ thiết kế tàu cá, tàu khách theo yêu cầu: đóng mới, hoán cải, thay máy, bản tính và hồ sơ thẩm định đăng kiểm. Gọi hoặc Zalo 0834 310 781."
 	},
 	"blocks": [
 		{
 			"type": "page-hero",
 			"fields": {
-				"headline": "Thiết kế tàu từ yêu cầu khai thác đến hồ sơ kỹ thuật",
+				"headline": "Dịch vụ thiết kế tàu: đóng mới, hoán cải và hồ sơ đăng kiểm",
 				"heading_level": "h1",
-				"lead": "LASAN MARINE thực hiện thiết kế đóng mới, cải hoán và các hạng mục tính toán chuyên biệt. Tùy tình trạng dự án, chúng tôi có thể triển khai toàn bộ hồ sơ hoặc chỉ thực hiện những bản tính, bản vẽ và tài liệu còn thiếu.",
+				"lead": "Lasan Marine nhận thiết kế tàu theo yêu cầu cho chủ tàu cá, hợp tác xã, xưởng đóng tàu và đơn vị khai thác tàu du lịch: tàu cá vỏ thép, composite, gỗ, tàu khách, cano. Bạn có thể đặt trọn bộ hồ sơ để thẩm định, hoặc chỉ những bản tính, bản vẽ còn thiếu.",
 				"height": 420,
 				"actions": [
 					{
 						"link": {
-							"label": "Dự án thiết kế tiêu biểu",
-							"url": "#du-an-thiet-ke-tieu-bieu"
+							"label": "Bạn đang ở giai đoạn nào?",
+							"url": "#ban-dang-o-giai-doan-nao"
 						}
 					},
 					{
 						"link": {
-							"label": "Bạn đang ở giai đoạn nào?",
-							"url": "#ban-dang-o-giai-doan-nao"
+							"label": "Cần giấy tờ gì?",
+							"url": "#dong-moi-cai-hoan-sua-chua-can-giay-to-g"
 						}
 					},
 					{
@@ -43,43 +43,82 @@
 			"fields": {
 				"heading": "Bạn đang ở giai đoạn nào?",
 				"intro": "",
-				"solution_label": "Chúng tôi có thể thực hiện",
+				"solution_label": "Chúng tôi có thể làm",
 				"items": [
 					{
 						"problem": "Tôi đang chuẩn bị đóng một tàu mới",
-						"context": "Bạn đã xác định loại tàu, công năng, vùng hoạt động hoặc một số giới hạn chính nhưng chưa có phương án kỹ thuật hoàn chỉnh.",
-						"solution": "Phát triển kích thước chính, tuyến hình, bố trí chung, kết cấu và hệ động lực; sau đó triển khai các bản tính, bản vẽ và hồ sơ theo phạm vi đã thống nhất.",
+						"context": "Bạn đã biết loại tàu, nghề hoặc tuyến khai thác, vùng hoạt động nhưng chưa có phương án kỹ thuật.",
+						"solution": "Đề xuất kích thước chính, tuyến hình, bố trí chung, kết cấu và hệ động lực, rồi lập bản vẽ, bản tính và hồ sơ trình thẩm định.",
 						"link": {
-							"label": "Xây dựng nhiệm vụ thư",
+							"label": "Lập nhiệm vụ thư thiết kế",
 							"page": "design_brief"
 						}
 					},
 					{
-						"problem": "Tôi cần cải hoán một tàu đang khai thác",
-						"context": "Kéo dài thân · Nâng cabin · Đổi công năng · Thay máy · Lắp thêm thiết bị",
-						"solution": "Rà soát hồ sơ và hiện trạng để xác định những phần bị ảnh hưởng, từ đó kiểm tra lại tính toán và cập nhật các bản vẽ cần thiết.",
+						"problem": "Tôi cần hoán cải, chuyển nghề hoặc thay máy",
+						"context": "Kéo dài thân · Nâng cabin · Chuyển nghề · Thay máy chính · Đổi vùng hoạt động",
+						"solution": "Khảo sát tàu, xác định phần bị ảnh hưởng, tính lại ổn định, kết cấu, máy – chân vịt – trục và lập hồ sơ cải hoán.",
 						"link": {
-							"label": "Trao đổi phương án cải hoán",
-							"page": "contact"
+							"label": "Xem dịch vụ hoán cải tàu cá",
+							"page": "design_conversion"
 						}
 					},
 					{
 						"problem": "Tôi chỉ cần một hạng mục tính toán",
-						"context": "Không nhất thiết phải triển khai lại toàn bộ hồ sơ.",
-						"solution": "Thực hiện độc lập các bài toán như thủy tĩnh, ổn định, sức cản, công suất máy, chân vịt, hệ trục hoặc kết cấu.",
+						"context": "Không nhất thiết phải làm lại cả bộ hồ sơ.",
+						"solution": "Làm riêng các bài toán thủy tĩnh, ổn định, sức cản, công suất máy, chân vịt, hệ trục hoặc kết cấu.",
 						"link": {
 							"label": "Gửi bài toán cần tính",
 							"page": "contact"
 						}
 					},
 					{
-						"problem": "Tôi đã có hồ sơ nhưng còn thiếu một số hạng mục",
-						"context": "Một số bản tính, bản vẽ hoặc tài liệu chưa đủ cho mục tiêu thẩm tra, đăng kiểm hoặc hoàn công.",
-						"solution": "Kiểm tra bộ hồ sơ hiện có, xác định những phần còn thiếu và bổ sung các bản tính, bản vẽ hoặc tài liệu cần thiết.",
+						"problem": "Tôi đã có hồ sơ nhưng bị yêu cầu bổ sung",
+						"context": "Một số bản tính, bản vẽ còn thiếu hoặc chưa đúng quy chuẩn để thẩm định, đăng kiểm hay hoàn công.",
+						"solution": "Rà soát bộ hồ sơ hiện có, chỉ ra phần thiếu và bổ sung đúng phần đó.",
 						"link": {
-							"label": "Gửi hồ sơ hiện có",
-							"page": "contact"
+							"label": "Xem dịch vụ hồ sơ đăng kiểm",
+							"page": "approval_docs"
 						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "spec-list",
+			"fields": {
+				"heading": "Đóng mới, cải hoán, sửa chữa: cần giấy tờ gì?",
+				"heading_level": "h2",
+				"note": "Áp dụng cho tàu cá theo Thông tư 02/2026/TT-BNNMT, Nghị định 41/2026/NĐ-CP và QCVN 91, 92:2025/BNNMT (áp dụng từ 10/3/2026). Cập nhật tháng 11/2026; hỏi lại chúng tôi trước khi nộp hồ sơ.",
+				"rows": [
+					{
+						"label": "Đóng mới tàu cá từ 12 m",
+						"value": "Văn bản chấp thuận đóng mới của cơ quan quản lý thủy sản cấp tỉnh (tờ khai Mẫu 12.TC) và hồ sơ thiết kế kỹ thuật được thẩm định trước khi đóng."
+					},
+					{
+						"label": "Cải hoán: thay máy chính, chuyển nghề, đổi kích thước, công dụng, vùng hoạt động",
+						"value": "Văn bản chấp thuận cải hoán và hồ sơ thiết kế cải hoán được thẩm định trước khi thi công."
+					},
+					{
+						"label": "Sửa chữa đưa tàu về trạng thái ban đầu",
+						"value": "Là sửa chữa phục hồi, không phải cải hoán; tàu được đăng kiểm giám sát khi sửa chữa."
+					},
+					{
+						"label": "Tàu gỗ đóng theo mẫu truyền thống",
+						"value": "Hồ sơ thiết kế mẫu đã được cơ sở đăng kiểm tàu cá sao duyệt."
+					},
+					{
+						"label": "Tàu cá dưới 12 m",
+						"value": "Không bắt buộc đăng kiểm; phải lắp trang thiết bị an toàn theo Phụ lục III Thông tư 02/2026/TT-BNNMT."
+					},
+					{
+						"label": "Tàu từ 12 m đến dưới 24 m / từ 24 m",
+						"value": "Thiết kế theo QCVN 92:2025/BNNMT / QCVN 91:2025/BNNMT."
+					},
+					{
+						"label": "Tàu khách, cano du lịch",
+						"value": "Duyệt bởi cơ quan đăng kiểm phương tiện thủy nội địa hoặc tàu biển, theo quy chuẩn tương ứng với vùng hoạt động."
 					}
 				],
 				"custom_class": ""
@@ -125,12 +164,12 @@
 						"note": "",
 						"link": {
 							"label": "",
-							"page": "contact"
+							"page": "design_conversion"
 						},
 						"image": "",
 						"children": [
 							{
-								"name": "Thay đổi công năng"
+								"name": "Chuyển đổi nghề, đổi công dụng"
 							},
 							{
 								"name": "Kéo dài thân, nâng mạn, thay đổi kích thước"
@@ -139,7 +178,7 @@
 								"name": "Nâng cabin, gia cố và lắp thiết bị"
 							},
 							{
-								"name": "Thay máy, hệ trục hoặc hệ thống lái"
+								"name": "Thay máy chính, hệ trục, chân vịt"
 							}
 						]
 					},
@@ -149,7 +188,7 @@
 						"note": "",
 						"link": {
 							"label": "",
-							"page": "contact"
+							"page": "approval_docs"
 						},
 						"image": "",
 						"children": [
@@ -180,7 +219,7 @@
 				},
 				"caption": "Bản tính · Bản vẽ · Tài liệu kỹ thuật",
 				"heading": "Bạn sẽ nhận được gì?",
-				"body": "Nội dung bàn giao được thống nhất trước khi triển khai. Tùy dự án, kết quả có thể gồm:",
+				"body": "Nội dung bàn giao được thống nhất trước khi làm. Tùy dự án, kết quả có thể gồm:",
 				"items": [
 					{
 						"text": "Bản tính kỹ thuật"
@@ -206,26 +245,67 @@
 			}
 		},
 		{
+			"type": "value-grid",
+			"fields": {
+				"label": "",
+				"heading": "Vì sao chủ tàu làm việc với Lasan Marine",
+				"items": [
+					{
+						"icon": "calculator",
+						"title": "Tính bằng công cụ tự viết",
+						"desc": "Chúng tôi vừa thiết kế tàu vừa viết phần mềm tính toán, nên thử được nhiều phương án máy, chân vịt, bố trí trước khi chốt, và số liệu giữa bản vẽ với bản tính đi cùng một nguồn.",
+						"link": {
+							"label": "Dùng thử công cụ",
+							"page": "tools"
+						}
+					},
+					{
+						"icon": "award",
+						"title": "Theo quy chuẩn mới nhất",
+						"desc": "Hồ sơ lập theo quy chuẩn đang áp dụng, gồm QCVN 91, 92:2025/BNNMT cho tàu cá. Chúng tôi giải trình phần mình làm khi thẩm định.",
+						"link": {
+							"label": "Hồ sơ đăng kiểm",
+							"page": "approval_docs"
+						}
+					},
+					{
+						"icon": "compass",
+						"title": "Văn phòng tại Nha Trang, Khánh Hòa",
+						"desc": "Nhận thông tin qua Zalo, điện thoại, email. Các tàu đã thiết kế nằm ở nhiều tỉnh, từ Nghệ An đến Bà Rịa – Vũng Tàu.",
+						"link": {
+							"label": "Xem dự án",
+							"page": "projects"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
 			"type": "process-timeline",
 			"fields": {
-				"heading": "Quy trình triển khai",
+				"heading": "Quy trình thiết kế: ai làm việc gì",
 				"intro": "",
 				"steps": [
 					{
-						"title": "Xem yêu cầu và hồ sơ",
-						"desc": "Xác định mục tiêu, dữ liệu đầu vào và phạm vi công việc."
+						"title": "1. Bạn gửi yêu cầu và giấy tờ hiện có",
+						"desc": "Loại tàu, nghề hoặc tuyến khai thác, kích thước dự kiến, ảnh tàu, bản vẽ cũ nếu có. Gọi hoặc Zalo 0834 310 781, hoặc điền nhiệm vụ thư."
 					},
 					{
-						"title": "Phát triển phương án",
-						"desc": "Kiểm tra kích thước, tuyến hình, bố trí và các tính toán cơ sở."
+						"title": "2. Chúng tôi xác định phạm vi và báo giá",
+						"desc": "Nói rõ phải làm những bản vẽ, bản tính nào, bạn nhận được gì và mốc bàn giao từng phần."
 					},
 					{
-						"title": "Triển khai hồ sơ",
-						"desc": "Thực hiện bản tính, bản vẽ và tài liệu theo phạm vi thống nhất."
+						"title": "3. Bạn lo giấy tờ với cơ quan quản lý",
+						"desc": "Với tàu cá đóng mới, cải hoán: xin văn bản chấp thuận ở cơ quan quản lý thủy sản cấp tỉnh. Chúng tôi cung cấp thông số kỹ thuật để khai."
 					},
 					{
-						"title": "Phối hợp thẩm tra",
-						"desc": "Giải trình và cập nhật phần hồ sơ chúng tôi thực hiện khi có phản hồi chuyên môn."
+						"title": "4. Chúng tôi thiết kế và tính toán",
+						"desc": "Lập bản vẽ, bản tính theo quy chuẩn áp dụng; trao đổi với xưởng để bản vẽ dễ thi công."
+					},
+					{
+						"title": "5. Thẩm định và bàn giao",
+						"desc": "Hồ sơ được trình cơ quan đăng kiểm; chúng tôi giải trình, sửa theo góp ý đến khi được duyệt và bàn giao bản cuối."
 					}
 				],
 				"custom_class": ""
@@ -235,7 +315,7 @@
 			"type": "project-showcase",
 			"fields": {
 				"heading": "Dự án thiết kế tiêu biểu",
-				"intro": "",
+				"intro": "Tàu hậu cần, tàu cá vỏ thép và cano chở khách chúng tôi đã thiết kế, lập hồ sơ.",
 				"view_all": {
 					"label": "Xem tất cả dự án",
 					"page": "projects"
@@ -250,23 +330,31 @@
 		{
 			"type": "accordion",
 			"fields": {
-				"heading": "Câu hỏi thường gặp",
+				"heading": "Câu hỏi thường gặp về dịch vụ thiết kế tàu",
 				"intro": "",
 				"items": [
 					{
-						"title": "Tôi chưa có đầy đủ hồ sơ thì có thể bắt đầu không?",
-						"content": "<p>Có. Chỉ cần gửi thông tin và tài liệu hiện có.</p>"
+						"title": "Tôi chưa có đầy đủ hồ sơ thì có bắt đầu được không?",
+						"content": "<p>Được. Chỉ cần gửi thông tin và giấy tờ đang có. Chúng tôi cho biết cần bổ sung gì trước khi bắt đầu.</p>"
 					},
 					{
-						"title": "Thời gian thực hiện phụ thuộc vào gì?",
-						"content": "<p>Loại tàu, phạm vi công việc, tình trạng dữ liệu đầu vào và mức độ thẩm tra.</p>"
+						"title": "Giá thiết kế tàu cá phụ thuộc vào gì?",
+						"content": "<p>Loại và chiều dài tàu, đóng mới hay cải hoán, mức độ thay đổi, hồ sơ hiện có đến đâu, có phải khảo sát tàu không, và phạm vi bàn giao (trọn bộ hay một phần). Gửi thông tin tàu để nhận báo giá theo đúng phạm vi.</p>"
 					},
 					{
-						"title": "LASAN MARINE có hỗ trợ trong quá trình đăng kiểm không?",
-						"content": "<p>Có, đối với phần hồ sơ do chúng tôi thực hiện.</p>"
+						"title": "Thời gian thiết kế phụ thuộc vào gì?",
+						"content": "<p>Phạm vi công việc, độ đầy đủ của dữ liệu đầu vào, thời gian chủ tàu xin văn bản chấp thuận và số vòng góp ý khi thẩm định. Mốc bàn giao từng phần được thống nhất khi báo giá.</p>"
+					},
+					{
+						"title": "Thay máy tàu cá có phải làm hồ sơ không?",
+						"content": "<p>Có. Thay đổi máy chính được tính là cải hoán theo Thông tư 02/2026/TT-BNNMT. Xem trang <a href=\"{{page:design_conversion}}\">hoán cải tàu cá, chuyển đổi nghề, thay máy</a>.</p>"
+					},
+					{
+						"title": "Lasan Marine có hỗ trợ trong quá trình thẩm định không?",
+						"content": "<p>Có. Chúng tôi giải trình và sửa theo góp ý đối với phần hồ sơ do chúng tôi thực hiện, đến khi được duyệt.</p>"
 					}
 				],
-				"open_first": 0,
+				"open_first": 1,
 				"custom_class": ""
 			}
 		},
@@ -274,7 +362,7 @@
 			"type": "contact-statement",
 			"fields": {
 				"heading": "<p>Bạn không cần chuẩn bị đầy đủ hồ sơ trước khi liên hệ</p>",
-				"description": "Hãy gửi loại tàu, yêu cầu cần xử lý và những tài liệu hiện có. Chúng tôi sẽ xem thông tin và trao đổi những phần cần bổ sung trước khi triển khai.",
+				"description": "Gửi loại tàu, việc cần làm và giấy tờ hiện có qua Zalo 0834 310 781. Chúng tôi xem và cho biết những gì cần bổ sung trước khi triển khai.",
 				"phone": "0834 310 781",
 				"email": "hello@lasanmarine.com",
 				"cta": {

@@ -4,14 +4,14 @@
 	"slug": "du-an",
 	"lang": "vi",
 	"seo": {
-		"title": "Dự án thiết kế tàu đã thực hiện | LASAN MARINE",
-		"description": "Danh mục dự án LASAN MARINE gồm nhiều loại phương tiện, vật liệu thân vỏ và dải công suất khác nhau, giúp tham khảo trước khi trao đổi dự án mới."
+		"title": "Dự án thiết kế tàu đã thực hiện | Công ty TNHH Lasan Marine",
+		"description": "Danh mục dự án Lasan Marine gồm nhiều loại phương tiện, vật liệu thân vỏ và dải công suất khác nhau, giúp tham khảo trước khi trao đổi dự án mới."
 	},
 	"blocks": [
 		{
 			"type": "page-hero",
 			"fields": {
-				"headline": "Một số phương tiện và hồ sơ LASAN MARINE đã tham gia thực hiện",
+				"headline": "Một số phương tiện và hồ sơ Lasan Marine đã tham gia thực hiện",
 				"heading_level": "h1",
 				"lead": "Các dự án bao gồm thiết kế đóng mới, cải hoán, tính toán kỹ thuật và hoàn thiện hồ sơ cho nhiều loại phương tiện, vật liệu và điều kiện khai thác khác nhau.",
 				"height": 420,

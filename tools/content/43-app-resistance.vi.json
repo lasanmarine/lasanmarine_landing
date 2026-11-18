@@ -6,7 +6,7 @@
 	"parent": "tools",
 	"template": "page-app.php",
 	"seo": {
-		"title": "Mô phỏng sức cản công suất tàu online | LASAN MARINE",
+		"title": "Tính sức cản và công suất tàu | Công ty TNHH Lasan Marine",
 		"description": "Mô phỏng sức cản công suất tàu miễn phí: canô lướt theo Savitsky, tàu khách theo Holtrop–Mennen; công suất kéo, công suất máy, % MCR. Xuất Word, Excel."
 	},
 	"blocks": [

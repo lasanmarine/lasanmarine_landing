@@ -5,16 +5,16 @@
 	"lang": "vi",
 	"parent": "capabilities",
 	"seo": {
-		"title": "Phần mềm chuyên ngành hàng hải & AI agent | LASAN MARINE",
-		"description": "Phát triển phần mềm chuyên ngành hàng hải, web app theo yêu cầu và AI agent bởi đội ngũ hiểu nghiệp vụ thiết kế và đóng tàu."
+		"title": "Phần mềm chuyên ngành hàng hải | Công ty TNHH Lasan Marine",
+		"description": "Phần mềm chuyên ngành hàng hải cho nhà máy đóng tàu, văn phòng thiết kế: dự toán, quản lý vật tư, bản vẽ, công cụ tính toán, tự động hoá thiết kế tàu, AI."
 	},
 	"blocks": [
 		{
 			"type": "page-hero",
 			"fields": {
-				"headline": "Phần mềm chuyên ngành hàng hải, web app và AI agent",
+				"headline": "Phần mềm chuyên ngành hàng hải cho nhà máy đóng tàu và văn phòng thiết kế",
 				"heading_level": "h1",
-				"lead": "Chúng tôi là đơn vị thiết kế tàu viết phần mềm, nên hiểu nghiệp vụ trước khi viết code. Nhận phát triển web, ứng dụng web theo yêu cầu, tích hợp AI agent và những phần mềm kỹ thuật có độ khó cao mà đơn vị outsource thông thường khó nắm được nghiệp vụ.",
+				"lead": "Công ty TNHH Lasan Marine nhận gia công phần mềm kỹ thuật cho ngành tàu: công cụ tính ổn định, sức cản, kết cấu và soạn thuyết minh; tự động hoá thiết kế tàu trên Rhino/Grasshopper, AutoCAD, Maxsurf; phần mềm dự toán, quản lý vật tư, bản vẽ và hồ sơ đăng kiểm; AI agent hỗ trợ soạn hồ sơ. Chúng tôi là kỹ sư thiết kế tàu, nên hiểu việc của bạn trước khi viết code.",
 				"height": 420,
 				"actions": [
 					{
@@ -31,132 +31,71 @@
 					},
 					{
 						"link": {
-							"label": "Từ công việc thực tế đến phần mềm",
-							"url": "#tu-cong-viec-thuc-te-den-phan-mem"
+							"label": "Công cụ dùng thử ngay",
+							"url": "#cong-cu-da-lam-dung-thu-ngay"
 						}
 					}
 				]
-			}
-		},
-		{
-			"type": "value-grid",
-			"fields": {
-				"heading": "Vì sao chọn một đội ngũ hiểu nghiệp vụ",
-				"items": [
-					{
-						"title": "Hiểu nghiệp vụ đóng tàu và kỹ thuật",
-						"desc": "Đội ngũ trực tiếp thiết kế tàu, dùng công cụ mình viết hằng ngày, nên trao đổi bằng ngôn ngữ của kỹ sư, không phải dịch yêu cầu qua nhiều lớp.",
-						"link": [],
-						"icon": "ship"
-					},
-					{
-						"title": "Làm được bài toán khó",
-						"desc": "Tính toán thủy tĩnh, ổn định, sức cản, xử lý mô hình 3D, xuất bản vẽ và thuyết minh tự động, những phần cần cả kiến thức chuyên ngành lẫn lập trình.",
-						"link": [],
-						"icon": "calculator"
-					},
-					{
-						"title": "Đã dùng thật trước khi bàn giao",
-						"desc": "Nhiều công cụ được phát triển và kiểm chứng trong chính công việc thiết kế của công ty trước khi đóng gói cho khách hàng.",
-						"link": {
-							"label": "Xem công cụ đang chạy",
-							"page": "tools"
-						},
-						"icon": "gauge"
-					}
-				]
-			}
-		},
-		{
-			"type": "input-output",
-			"fields": {
-				"heading": "Từ công việc thực tế đến phần mềm",
-				"intro": "Nhiều công việc kỹ thuật và vận hành vẫn phụ thuộc vào bảng tính, tài liệu rời, thao tác lặp lại hoặc dữ liệu nằm ở nhiều nơi. Khi những vấn đề này xuất hiện trong quá trình làm việc, chúng tôi xem xét cách chuẩn hóa quy trình và xây dựng công cụ phù hợp.",
-				"input_title": "Vấn đề thường gặp",
-				"input": [
-					{
-						"text": "Dữ liệu phân tán"
-					},
-					{
-						"text": "Thao tác lặp lại"
-					},
-					{
-						"text": "Tính toán thủ công"
-					},
-					{
-						"text": "Nhiều tài liệu khó khai thác"
-					}
-				],
-				"process_title": "Cách tiếp cận",
-				"process": [
-					{
-						"text": "Hiểu công việc hiện tại"
-					},
-					{
-						"text": "Chuẩn hóa quy trình và dữ liệu"
-					},
-					{
-						"text": "Chọn công cụ phù hợp"
-					}
-				],
-				"output_title": "Giải pháp",
-				"output": [
-					{
-						"text": "Hệ thống quản lý"
-					},
-					{
-						"text": "Tự động hóa"
-					},
-					{
-						"text": "Công cụ kỹ thuật"
-					},
-					{
-						"text": "AI và xử lý dữ liệu"
-					}
-				],
-				"custom_class": ""
 			}
 		},
 		{
 			"type": "use-case",
 			"fields": {
 				"heading": "Bạn đang gặp vấn đề gì?",
-				"intro": "",
-				"solution_label": "",
+				"intro": "Đây là những việc nhà máy và văn phòng thiết kế thường làm thủ công, lặp lại ở mỗi con tàu.",
+				"solution_label": "Phần mềm có thể làm",
 				"items": [
 					{
-						"problem": "Tôi đang quản lý dữ liệu bằng nhiều file rời",
-						"context": "Khi thông tin nằm trong Excel, Word, thư mục mạng hoặc nhiều hệ thống riêng lẻ, chúng tôi có thể xây dựng một hệ thống tập trung để nhập, tìm kiếm, cập nhật và kiểm soát dữ liệu.",
-						"solution": "",
+						"problem": "Dự toán, báo giá một con tàu mất nhiều ngày",
+						"context": "Mỗi lần chủ tàu hỏi giá lại phải dựng bảng tính từ đầu: khối lượng thép, vật tư, máy, nhân công.",
+						"solution": "Công cụ dự toán từ thông số chính và định mức của chính nhà máy, ra bảng giá và cấu phần chi phí trong vài thao tác, lưu lại để so sánh giữa các tàu.",
 						"link": {
-							"label": "Trao đổi bài toán",
+							"label": "Trao đổi bài toán dự toán",
 							"page": "contact"
 						}
 					},
 					{
-						"problem": "Một công việc đang phải làm lặp đi lặp lại",
-						"context": "Những bước nhập liệu, tính toán, tạo biểu mẫu, xuất báo cáo hoặc luân chuyển dữ liệu có thể được chuẩn hóa và tự động hóa.",
-						"solution": "",
+						"problem": "Bóc khối lượng thép, vật tư bằng tay từ bản vẽ",
+						"context": "Bóc khối lượng tôn, thép hình, ống, sơn dễ sót và mỗi người làm một kiểu.",
+						"solution": "Tự động bóc khối lượng từ mô hình hoặc bản vẽ CAD, xuất bảng vật tư (BOM) theo mẫu của bạn.",
 						"link": {
-							"label": "Trao đổi bài toán",
+							"label": "Trao đổi bài toán bóc khối lượng",
 							"page": "contact"
 						}
 					},
 					{
-						"problem": "Tôi cần một phần mềm theo quy trình riêng",
-						"context": "Chúng tôi phân tích quy trình hiện tại, xác định dữ liệu, người sử dụng và các bước xử lý trước khi thiết kế hệ thống.",
-						"solution": "",
+						"problem": "Vật tư theo dõi bằng nhiều file Excel",
+						"context": "Không biết vật tư nào đã mua, đã xuất cho tàu nào, còn tồn bao nhiêu; số liệu giữa kho, kỹ thuật và kế toán lệch nhau.",
+						"solution": "Phần mềm quản lý vật tư cho nhà máy đóng tàu: đề xuất, mua, nhập, xuất theo từng tàu, cả nhóm cùng xem một số liệu.",
 						"link": {
-							"label": "Trao đổi bài toán",
+							"label": "Trao đổi bài toán vật tư",
 							"page": "contact"
 						}
 					},
 					{
-						"problem": "Tôi muốn ứng dụng AI nhưng chưa rõ nên dùng ở đâu",
-						"context": "Chúng tôi xem xét dữ liệu và quy trình trước khi xác định AI có thực sự cần thiết hay không, sau đó mới lựa chọn cách triển khai phù hợp.",
-						"solution": "",
+						"problem": "Bản vẽ, hồ sơ đăng kiểm lẫn phiên bản",
+						"context": "Không rõ bản nào đã gửi đăng kiểm, ý kiến thẩm định đã sửa đến đâu, bản nào đang dùng ngoài xưởng.",
+						"solution": "Hệ thống quản lý bản vẽ và hồ sơ: phiên bản, trạng thái duyệt, ý kiến đăng kiểm và phản hồi, phân quyền theo người dùng.",
 						"link": {
-							"label": "Trao đổi bài toán",
+							"label": "Trao đổi bài toán hồ sơ",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Tính toán theo quy chuẩn bằng bảng tính khó kiểm soát",
+						"context": "Bảng tính ổn định, mạn khô, kết cấu do nhiều người sửa qua nhiều năm, chỉ một người hiểu công thức.",
+						"solution": "Công cụ tính toán có phương pháp rõ ràng, được kiểm thử với kết quả đối chứng, tự xuất thuyết minh tính toán.",
+						"link": {
+							"label": "Trao đổi công cụ tính toán",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Soạn hồ sơ, tra quy chuẩn chiếm nhiều thời gian",
+						"context": "Kỹ sư mất nhiều giờ để tìm điều khoản, soạn thuyết minh lặp lại, chép số liệu từ tài liệu kỹ thuật.",
+						"solution": "AI agent tra cứu trong bộ quy chuẩn, tài liệu bạn cung cấp, soạn nháp hồ sơ và trích số liệu; kỹ sư kiểm tra trước khi dùng.",
+						"link": {
+							"label": "Trao đổi về AI",
 							"page": "contact"
 						}
 					}
@@ -171,47 +110,198 @@
 				"items": [
 					{
 						"index": "01",
-						"name": "Website & ứng dụng web theo yêu cầu",
-						"desc": "",
+						"name": "Công cụ tính toán kỹ thuật",
+						"desc": "Ổn định, thủy tĩnh, sức cản và công suất, kết cấu; công cụ chạy trên máy, trên web hoặc dạng script, xuất luôn thuyết minh tính toán.",
 						"link": {
 							"label": "Trao đổi dự án",
 							"page": "contact"
 						},
-						"children": [],
-						"icon": "link"
+						"children": [
+							{
+								"name": "Thủy tĩnh và tiêu chuẩn ổn định"
+							},
+							{
+								"name": "Sức cản, công suất máy"
+							},
+							{
+								"name": "Kiểm tra kết cấu"
+							},
+							{
+								"name": "Xuất thuyết minh ra Word, Excel, PDF"
+							}
+						],
+						"icon": "calculator"
 					},
 					{
 						"index": "02",
-						"name": "Tích hợp AI agent",
-						"desc": "",
+						"name": "Plugin CAD và tự động hoá thiết kế tàu",
+						"desc": "Plugin, script cho chính phần mềm kỹ sư của bạn đang dùng, để những bước dựng hình, vẽ lặp lại chạy theo quy tắc thay vì thao tác tay.",
 						"link": {
 							"label": "Trao đổi dự án",
 							"page": "contact"
 						},
-						"children": [],
-						"icon": "scan"
+						"children": [
+							{
+								"name": "Rhino, Grasshopper"
+							},
+							{
+								"name": "AutoCAD: tự động vẽ, xuất bảng"
+							},
+							{
+								"name": "Maxsurf: chạy hàng loạt trường hợp tải"
+							},
+							{
+								"name": "Trao đổi dữ liệu giữa các phần mềm"
+							}
+						],
+						"icon": "compass"
 					},
 					{
 						"index": "03",
-						"name": "Phần mềm kỹ thuật chuyên ngành",
-						"desc": "",
+						"name": "Phần mềm quản lý cho nhà máy đóng tàu",
+						"desc": "Ứng dụng web theo đúng quy trình của nhà máy, văn phòng thiết kế; dùng trên máy tính và điện thoại.",
 						"link": {
 							"label": "Trao đổi dự án",
 							"page": "contact"
+						},
+						"children": [
+							{
+								"name": "Dự toán, báo giá"
+							},
+							{
+								"name": "Bóc khối lượng, quản lý vật tư"
+							},
+							{
+								"name": "Quản lý bản vẽ và hồ sơ đăng kiểm"
+							},
+							{
+								"name": "Phân quyền cho từng bộ phận"
+							}
+						],
+						"icon": "link"
+					},
+					{
+						"index": "04",
+						"name": "AI agent và tự động hoá quy trình",
+						"desc": "AI xử lý phần đọc, tìm và soạn nháp quanh công việc kỹ thuật; kỹ sư vẫn là người quyết định.",
+						"link": {
+							"label": "Trao đổi dự án",
+							"page": "contact"
+						},
+						"children": [
+							{
+								"name": "Tra cứu quy chuẩn, quy phạm"
+							},
+							{
+								"name": "Soạn nháp hồ sơ, thuyết minh"
+							},
+							{
+								"name": "Trích số liệu từ tài liệu kỹ thuật"
+							},
+							{
+								"name": "Bước kiểm tra của kỹ sư trong quy trình"
+							}
+						],
+						"icon": "scan"
+					}
+				]
+			}
+		},
+		{
+			"type": "value-grid",
+			"fields": {
+				"heading": "Vì sao chọn kỹ sư đóng tàu viết phần mềm",
+				"items": [
+					{
+						"title": "Hiểu nghiệp vụ, không cần phiên dịch",
+						"desc": "Bạn nói về đường cong GZ, trường hợp tải, khoảng sườn hay bóc khối lượng tôn với chính người viết code, không qua nhiều lớp trung gian.",
+						"link": [],
+						"icon": "ship"
+					},
+					{
+						"title": "Kỹ sư thiết kế tàu kiểm tra kết quả",
+						"desc": "Công thức, đơn vị, tiêu chuẩn áp dụng và các trường hợp đặc biệt đều được kỹ sư thiết kế tàu rà soát, không chỉ dựa vào kiểm thử phần mềm.",
+						"link": [],
+						"icon": "award"
+					},
+					{
+						"title": "Đã dùng thật trong công việc thiết kế",
+						"desc": "Nhiều công cụ được viết và kiểm chứng trong chính công việc thiết kế của công ty. Một số đang chạy miễn phí trên website để bạn tự đánh giá.",
+						"link": {
+							"label": "Xem công cụ đang chạy",
+							"page": "tools"
+						},
+						"icon": "gauge"
+					}
+				]
+			}
+		},
+		{
+			"type": "capability-matrix",
+			"fields": {
+				"heading": "Công cụ đã làm, dùng thử ngay",
+				"items": [
+					{
+						"index": "01",
+						"name": "Mô phỏng ổn định tàu",
+						"desc": "Bài toán: kiểm tra nhanh ổn định ở giai đoạn sơ bộ. Công cụ: tính đường cong GZ, GM, góc lật trên trình duyệt, kiểm tra tiêu chí cơ bản theo IS Code 2008, xuất báo cáo Word và Excel.",
+						"link": {
+							"label": "Mở công cụ",
+							"page": "app_stability"
+						},
+						"children": [],
+						"icon": "waves"
+					},
+					{
+						"index": "02",
+						"name": "Sức cản và công suất",
+						"desc": "Bài toán: chọn công suất máy cho cano, tàu khách cỡ nhỏ. Công cụ: ước tính sức cản và công suất theo Savitsky, Holtrop–Mennen trên dải tốc độ.",
+						"link": {
+							"label": "Mở công cụ",
+							"page": "app_resistance"
+						},
+						"children": [],
+						"icon": "gauge"
+					},
+					{
+						"index": "03",
+						"name": "Mô phỏng kết cấu tàu vỏ thép 3D",
+						"desc": "Bài toán: giải thích kết cấu và trình tự lắp ráp thân tàu. Công cụ: mô hình 3D chi tiết, panel, phân đoạn, tổng đoạn; đi vào trong tàu, xem trình tự lắp ráp và làm bài thực hành có chấm điểm.",
+						"link": {
+							"label": "Mở công cụ",
+							"page": "app_structure"
 						},
 						"children": [],
 						"icon": "ship"
 					},
 					{
 						"index": "04",
-						"name": "Tự động hóa & tích hợp",
-						"desc": "",
+						"name": "Trục chân vịt, động cơ, công suất",
+						"desc": "Bài toán: kiểm tra nhanh khi chọn máy. Công cụ: kiểm tra sơ bộ đường kính trục chân vịt, tra cứu động cơ thủy, chuyển đổi kW, HP, CV.",
 						"link": {
-							"label": "Trao đổi dự án",
-							"page": "contact"
+							"label": "Mở công cụ tính trục",
+							"page": "tool_shaft"
+						},
+						"children": [
+							{
+								"name": "Tra cứu động cơ"
+							},
+							{
+								"name": "Chuyển đổi công suất"
+							}
+						],
+						"icon": "ruler"
+					},
+					{
+						"index": "05",
+						"name": "Ứng dụng nhiệm vụ thư thiết kế",
+						"desc": "Bài toán: yêu cầu thiết kế ban đầu thiếu, rời rạc. Công cụ: biểu mẫu nhiệm vụ thư có cấu trúc, tự lưu nháp trên trình duyệt, xuất văn bản để gửi hoặc in.",
+						"link": {
+							"label": "Mở ứng dụng",
+							"page": "design_brief"
 						},
 						"children": [],
-						"icon": "gauge"
+						"icon": "compass"
 					}
 				]
 			}
@@ -223,20 +313,74 @@
 				"intro": "",
 				"steps": [
 					{
-						"title": "Hiểu công việc hiện tại",
-						"desc": "Xác định người dùng, dữ liệu, thao tác và vấn đề cần giải quyết."
+						"title": "Khảo sát",
+						"desc": "Trao đổi qua Zalo, điện thoại hoặc gặp trực tiếp; xem quy trình, file và dữ liệu đang dùng. Ký thỏa thuận bảo mật nếu bạn cần trước khi gửi tài liệu."
 					},
 					{
-						"title": "Chuẩn hóa yêu cầu",
-						"desc": "Xác định phạm vi, chức năng, dữ liệu và kết quả cần đạt."
+						"title": "Đặc tả và báo giá",
+						"desc": "Thống nhất đầu vào, đầu ra, phương pháp tính, trường hợp đối chứng và tiêu chí nghiệm thu, kèm báo giá theo phạm vi."
 					},
 					{
-						"title": "Xây dựng và kiểm thử",
-						"desc": "Phát triển theo từng phần có thể kiểm tra và sử dụng sớm."
+						"title": "Phát triển từng phần",
+						"desc": "Bàn giao từng phần chạy được để người dùng thử trên công việc thật và góp ý sớm."
 					},
 					{
-						"title": "Triển khai và hoàn thiện",
-						"desc": "Đưa vào môi trường thực tế, xử lý phản hồi và hoàn thiện quy trình sử dụng."
+						"title": "Đối chiếu và nghiệm thu",
+						"desc": "So kết quả với tính toán tay, phần mềm bạn đang dùng hoặc hồ sơ đã được duyệt; chênh lệch được giải thích bằng văn bản."
+					},
+					{
+						"title": "Bàn giao và bảo trì",
+						"desc": "Bàn giao phần mềm, mã nguồn, tài liệu, đào tạo; hỗ trợ bảo trì, cập nhật nếu bạn cần."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "input-output",
+			"fields": {
+				"heading": "Từ công việc thực tế đến phần mềm",
+				"intro": "Chúng tôi bắt đầu từ cách đội của bạn đang làm và những kết quả bạn đã tin cậy, kết thúc bằng phần mềm bạn sở hữu và dùng được hằng ngày.",
+				"input_title": "Bạn cung cấp",
+				"input": [
+					{
+						"text": "Bảng tính, biểu mẫu đang dùng"
+					},
+					{
+						"text": "Kết quả tính toán đối chứng"
+					},
+					{
+						"text": "Bản vẽ, mô hình mẫu"
+					},
+					{
+						"text": "Quy chuẩn, định mức đang áp dụng"
+					}
+				],
+				"process_title": "Chúng tôi làm",
+				"process": [
+					{
+						"text": "Viết đặc tả để hai bên thống nhất"
+					},
+					{
+						"text": "Phát triển từng phần, dùng thử sớm"
+					},
+					{
+						"text": "Đối chiếu với kết quả đối chứng"
+					}
+				],
+				"output_title": "Bạn nhận",
+				"output": [
+					{
+						"text": "Phần mềm và mã nguồn"
+					},
+					{
+						"text": "Bộ kiểm thử, biên bản đối chiếu"
+					},
+					{
+						"text": "Tài liệu hướng dẫn"
+					},
+					{
+						"text": "Đào tạo người dùng"
 					}
 				],
 				"custom_class": ""
@@ -249,27 +393,27 @@
 				"image": {
 					"media": "thisisengineering-w_ze6qlkqka-unsplash"
 				},
-				"caption": "Giải pháp số",
-				"heading": "Kết quả bàn giao có thể gồm",
-				"body": "Phạm vi triển khai, hạ tầng, tích hợp và hình thức bàn giao được thống nhất theo từng dự án. Công nghệ được lựa chọn theo yêu cầu hệ thống và môi trường triển khai.",
+				"caption": "Phần mềm · Đối chiếu · Bàn giao",
+				"heading": "Kết quả bàn giao",
+				"body": "Phạm vi bàn giao được ghi trong đặc tả. Tùy dự án, bạn nhận:",
 				"items": [
 					{
 						"text": "Phần mềm hoặc công cụ theo phạm vi thống nhất"
 					},
 					{
-						"text": "Hệ thống dữ liệu"
+						"text": "Toàn bộ mã nguồn, thuộc quyền sở hữu của bạn"
 					},
 					{
-						"text": "Tài khoản và phân quyền"
+						"text": "Bộ kiểm thử và biên bản đối chiếu kết quả"
 					},
 					{
-						"text": "Tài liệu hướng dẫn sử dụng"
+						"text": "Tài liệu hướng dẫn sử dụng và vận hành"
 					},
 					{
-						"text": "Hướng dẫn vận hành và triển khai"
+						"text": "Đào tạo cho người dùng"
 					},
 					{
-						"text": "Tích hợp với hệ thống khác nếu có"
+						"text": "Bảo trì, cập nhật nếu cần"
 					}
 				],
 				"cta": {
@@ -280,14 +424,53 @@
 			}
 		},
 		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp",
+				"intro": "",
+				"items": [
+					{
+						"title": "Chi phí làm phần mềm được tính thế nào?",
+						"content": "<p>Theo phạm vi công việc. Sau buổi khảo sát, chúng tôi gửi đặc tả và báo giá trọn gói cho phần việc đã rõ. Với việc cần làm dần theo nhu cầu, có thể tính theo thời gian thực hiện và báo cáo định kỳ.</p>"
+					},
+					{
+						"title": "Nhà máy tôi có quy trình riêng, có làm theo được không?",
+						"content": "<p>Được. Phần mềm được viết theo quy trình, biểu mẫu và định mức của chính đơn vị bạn, không bắt bạn đổi cách làm theo một phần mềm đóng gói sẵn.</p>"
+					},
+					{
+						"title": "Công cụ tính toán có theo quy chuẩn không?",
+						"content": "<p>Công cụ được xây theo quy chuẩn, quy phạm mà đơn vị bạn áp dụng và bạn nêu trong đặc tả. Kết quả được đối chiếu với tính toán tay, phần mềm đang dùng hoặc hồ sơ đã được duyệt trước khi bàn giao.</p>"
+					},
+					{
+						"title": "Mã nguồn thuộc về ai?",
+						"content": "<p>Thuộc về bạn. Mã nguồn, tài liệu viết cho dự án được bàn giao đầy đủ và ghi rõ trong hợp đồng, nên sau này bạn có thể tự bảo trì hoặc thuê đơn vị khác.</p>"
+					},
+					{
+						"title": "Bản vẽ, dữ liệu của chúng tôi có được bảo mật không?",
+						"content": "<p>Có. Chúng tôi ký thỏa thuận bảo mật trước khi nhận tài liệu nếu bạn cần. Dữ liệu chỉ dùng cho dự án của bạn, chỉ người tham gia dự án được xem, và được trả lại hoặc xóa khi kết thúc nếu bạn yêu cầu.</p>"
+					},
+					{
+						"title": "Sau khi bàn giao có hỗ trợ không?",
+						"content": "<p>Có. Chúng tôi sửa lỗi, cập nhật khi quy chuẩn hoặc phần mềm CAD đổi phiên bản, bổ sung tính năng theo thỏa thuận bảo trì hoặc theo từng hạng mục mới.</p>"
+					},
+					{
+						"title": "Bắt đầu như thế nào?",
+						"content": "<p>Nhắn Zalo hoặc gọi 0834 310 781, hoặc gửi email hello@lasanmarine.com, mô tả ngắn công việc đang tốn thời gian và gửi kèm một file mẫu nếu có. Chúng tôi hẹn lịch khảo sát và đề xuất cách làm.</p>"
+					}
+				],
+				"open_first": 0,
+				"custom_class": ""
+			}
+		},
+		{
 			"type": "contact-statement",
 			"fields": {
-				"heading": "<p>Có một công việc bạn muốn làm gọn hơn?</p>",
-				"description": "Hãy mô tả quy trình hiện tại, dữ liệu đang sử dụng và phần việc đang tốn nhiều thời gian. LASAN MARINE sẽ xem xét liệu phần mềm hoặc tự động hóa có phù hợp hay không.",
+				"heading": "<p>Có một việc đội của bạn đang làm tay ở mỗi con tàu?</p>",
+				"description": "Nhắn Zalo hoặc gọi cho chúng tôi, mô tả quy trình hiện tại, dữ liệu đang dùng và phần việc tốn nhiều thời gian nhất. Lasan Marine sẽ xem phần mềm hoặc tự động hoá có phù hợp hay không.",
 				"phone": "0834 310 781",
 				"email": "hello@lasanmarine.com",
 				"cta": {
-					"label": "Trao đổi bài toán",
+					"label": "Gửi yêu cầu",
 					"page": "contact"
 				},
 				"zalo": "0834310781",

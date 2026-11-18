@@ -7,7 +7,7 @@
 	"parent": "tools_en",
 	"template": "page-app.php",
 	"seo": {
-		"title": "Ship Resistance & Power Calculator Online | LASAN MARINE",
+		"title": "Ship Resistance & Power Calculator | Lasan Marine Co., Ltd.",
 		"description": "Free resistance and power calculator for speedboats and small passenger vessels (Savitsky, Holtrop–Mennen): effective power, brake power and % MCR."
 	},
 	"blocks": [

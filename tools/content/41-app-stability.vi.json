@@ -6,7 +6,7 @@
 	"parent": "tools",
 	"template": "page-app.php",
 	"seo": {
-		"title": "Mô phỏng ổn định tàu online – Đường cong GZ | LASAN MARINE",
+		"title": "Mô phỏng ổn định tàu – đường cong GZ | Công ty TNHH Lasan Marine",
 		"description": "Mô phỏng ổn định tàu miễn phí: đường cong cánh tay đòn GZ, GM, góc lật, mặt cắt nghiêng 3D, kiểm tra IS Code 2008 và xuất báo cáo Word, Excel."
 	},
 	"blocks": [

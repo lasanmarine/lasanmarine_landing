@@ -24,7 +24,7 @@ if ( 'cli' !== PHP_SAPI ) {
 	exit( 1 );
 }
 
-$root = dirname( __DIR__, 2 );
+$root = getenv( 'WP_PATH' ) ?: dirname( __DIR__, 2 );
 $home = getenv( 'WP_HOME' ) ?: 'http://localhost';
 $_SERVER['HTTP_HOST']   = $_SERVER['HTTP_HOST'] ?? ( parse_url( $home, PHP_URL_HOST ) . ( parse_url( $home, PHP_URL_PORT ) ? ':' . parse_url( $home, PHP_URL_PORT ) : '' ) );
 $_SERVER['REQUEST_URI'] = $_SERVER['REQUEST_URI'] ?? '/';
@@ -304,10 +304,10 @@ if ( $card && ! $dry ) {
  * the WordPress site title and an alternate name.
  * ---------------------------------------------------------------------- */
 $site_names = array(
-	'website_name'           => 'Công ty TNHH LASAN MARINE',
-	'alternate_website_name' => 'LASAN MARINE',
-	'company_name'           => 'Công ty TNHH LASAN MARINE',
-	'company_alternate_name' => 'LASAN MARINE',
+	'website_name'           => 'Công ty TNHH Lasan Marine', // see also tools/seo-settings.php
+	'alternate_website_name' => 'Lasan Marine',
+	'company_name'           => 'Công ty TNHH Lasan Marine',
+	'company_alternate_name' => 'Lasan Marine',
 );
 foreach ( $site_names as $k => $v ) {
 	printf( "  %-22s %s\n", $k, $v );

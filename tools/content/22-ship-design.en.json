@@ -6,34 +6,34 @@
 	"translation_of": "service_01",
 	"parent": "capabilities_en",
 	"seo": {
-		"title": "Ship Design & Vessel Conversion Services | LASAN MARINE",
-		"description": "Ship design for newbuilds and conversions: hull form, hydrostatics, stability, resistance, structures, propulsion, shafting and technical drawings."
+		"title": "Ship Design Outsourcing from Vietnam | Lasan Marine Co., Ltd.",
+		"description": "Ship design outsourcing to Vietnam: concept, basic and detail design of fishing vessels, passenger boats and small craft, calculations and approval drawings."
 	},
 	"blocks": [
 		{
 			"type": "page-hero",
 			"fields": {
-				"headline": "Ship design from operating requirements to technical documentation",
+				"headline": "Ship design outsourcing in Vietnam for fishing vessels, passenger boats and small craft",
 				"heading_level": "h1",
-				"lead": "LASAN MARINE handles newbuild and conversion design and specialist calculations. Depending on where your project stands, we can deliver the full package or only the calculations, drawings and documents still missing.",
+				"lead": "Lasan Marine Co., Ltd. is a naval architecture office in Nha Trang, Vietnam. Shipyards, owners and design firms outsource concept, basic and detail design to us, together with the calculations and drawings needed for plan approval, delivered remotely in the formats your team works with.",
 				"height": 420,
 				"actions": [
 					{
 						"link": {
-							"label": "Featured design projects",
-							"url": "#featured-design-projects"
-						}
-					},
-					{
-						"link": {
-							"label": "Where is your project now?",
-							"url": "#where-is-your-project-now"
-						}
-					},
-					{
-						"link": {
 							"label": "Scope of work",
 							"url": "#scope-of-work"
+						}
+					},
+					{
+						"link": {
+							"label": "Working with us remotely",
+							"url": "#working-with-us-remotely"
+						}
+					},
+					{
+						"link": {
+							"label": "Our process",
+							"url": "#our-process"
 						}
 					}
 				]
@@ -47,8 +47,17 @@
 				"solution_label": "What we can do",
 				"items": [
 					{
+						"problem": "My design office has more work than engineers",
+						"context": "You need extra naval architecture capacity for a project or a busy period without hiring.",
+						"solution": "Take on a defined package, such as a hull form, a set of calculations or a series of drawings, to your templates and drawing standards, with your engineers reviewing and signing off.",
+						"link": {
+							"label": "Discuss extra capacity",
+							"page": "contact_en"
+						}
+					},
+					{
 						"problem": "I'm preparing to build a new vessel",
-						"context": "You know the vessel type, function, operating area or key constraints, but there is no complete technical design yet.",
+						"context": "You know the vessel type, mission, operating area and key constraints, but there is no complete technical design yet.",
 						"solution": "Develop principal dimensions, hull form, general arrangement, structure and propulsion, then produce the calculations, drawings and documents within the agreed scope.",
 						"link": {
 							"label": "Discuss a newbuild",
@@ -57,28 +66,19 @@
 					},
 					{
 						"problem": "I need to convert a vessel in service",
-						"context": "Lengthening · Raised cabin · Change of function · Re-engining · New equipment",
-						"solution": "Review the documents and current condition to find what the change affects, then recheck the calculations and update the drawings needed.",
+						"context": "Lengthening · Raised deckhouse · Change of service · Re-engining · New equipment",
+						"solution": "Review the existing documents and the vessel's condition to find what the change affects, then recheck the calculations and update the drawings needed.",
 						"link": {
 							"label": "Discuss a conversion",
 							"page": "contact_en"
 						}
 					},
 					{
-						"problem": "I only need one calculation",
-						"context": "There is no need to redo the whole package.",
-						"solution": "Carry out hydrostatics, stability, resistance, engine power, propeller, shafting or structural calculations on their own.",
+						"problem": "I only need the calculations",
+						"context": "The design exists; you need an independent calculation or a missing item for approval.",
+						"solution": "Hydrostatics, intact stability, resistance and power, propeller, shafting or structural calculations, delivered as a standalone report.",
 						"link": {
 							"label": "Send your calculation request",
-							"page": "contact_en"
-						}
-					},
-					{
-						"problem": "I have documents but some items are missing",
-						"context": "Some calculations, drawings or documents are not yet enough for plan approval, classification or as-built records.",
-						"solution": "Review the existing package, identify what is missing and add the calculations, drawings or documents required.",
-						"link": {
-							"label": "Send your existing documents",
 							"page": "contact_en"
 						}
 					}
@@ -97,8 +97,8 @@
 				},
 				"items": [
 					{
-						"name": "Newbuild design",
-						"desc": "",
+						"name": "Concept design",
+						"desc": "From your operating requirements to a design you can price and decide on.",
 						"note": "",
 						"link": {
 							"label": "",
@@ -107,22 +107,19 @@
 						"image": "",
 						"children": [
 							{
-								"name": "Principal dimensions, hull form, general arrangement"
+								"name": "Principal dimensions and hull form"
 							},
 							{
-								"name": "Hull structure and systems"
+								"name": "Preliminary general arrangement"
 							},
 							{
-								"name": "Propulsion, propeller and equipment"
-							},
-							{
-								"name": "Documentation for plan approval and classification"
+								"name": "Weight, stability and power estimates"
 							}
 						]
 					},
 					{
-						"name": "Conversion design",
-						"desc": "",
+						"name": "Basic design",
+						"desc": "The design developed and calculated to the level required for plan approval.",
 						"note": "",
 						"link": {
 							"label": "",
@@ -131,22 +128,22 @@
 						"image": "",
 						"children": [
 							{
-								"name": "Change of function"
+								"name": "Lines plan and general arrangement"
 							},
 							{
-								"name": "Lengthening, freeboard raising, dimension changes"
+								"name": "Midship section and hull structure"
 							},
 							{
-								"name": "Raised cabins, strengthening and new equipment"
+								"name": "Machinery, propeller and shafting"
 							},
 							{
-								"name": "Engine, shafting or steering changes"
+								"name": "Hydrostatics, stability and freeboard"
 							}
 						]
 					},
 					{
-						"name": "Calculations and documentation",
-						"desc": "",
+						"name": "Detail design",
+						"desc": "Drawings the yard can build from, consistent with the approved design.",
 						"note": "",
 						"link": {
 							"label": "",
@@ -155,18 +152,79 @@
 						"image": "",
 						"children": [
 							{
-								"name": "Hydrostatics, stability and damage stability"
+								"name": "Structural detail drawings"
+							},
+							{
+								"name": "Outfitting and system drawings"
+							},
+							{
+								"name": "Material lists"
+							}
+						]
+					},
+					{
+						"name": "Calculations and approval documents",
+						"desc": "Standalone calculations, plan-approval packages and as-built records.",
+						"note": "",
+						"link": {
+							"label": "",
+							"page": "approval_docs_en"
+						},
+						"image": "",
+						"children": [
+							{
+								"name": "Intact stability and damage stability"
 							},
 							{
 								"name": "Resistance, power, propeller and shafting"
 							},
 							{
-								"name": "Structure"
+								"name": "Structural calculations"
 							},
 							{
-								"name": "As-built records and technical documents"
+								"name": "Responses to reviewers' comments"
 							}
 						]
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"heading": "Working with us remotely",
+				"content": "<h3>Communication and time zone</h3>\n<p>We work in English by email, chat and video call from Nha Trang, Vietnam (UTC+7). Our afternoon overlaps the European morning, our morning overlaps the afternoon in Australia and New Zealand, and Japan and Korea are two hours ahead. Drawings are reviewed in scheduled calls, and comments can be exchanged as marked-up PDFs.</p>\n<h3>Your standards, your templates</h3>\n<p>Send us your title blocks, layer conventions, drawing standards and report templates and we work to them, so our drawings drop straight into your package. If you have none, we use our own and agree them with you on the first drawing.</p>\n<h3>Rules and approval</h3>\n<p>We design to the rules that apply to the vessel: in Vietnam, the national technical regulations (QCVN) for fishing vessels, inland and passenger craft, which we work with on our own projects; abroad, the class rules or flag requirements named in your contract. Tell us the rules at the start and we confirm how we will work with them before quoting.</p>\n<h3>Confidentiality</h3>\n<p>We sign an NDA before you share drawings or models. Design work produced for you is delivered to you in full, and your files are used only for your project.</p>",
+				"align": "left",
+				"width": "medium",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "Our process",
+				"intro": "",
+				"steps": [
+					{
+						"title": "Brief and documents",
+						"desc": "You send the requirements and any existing drawings; we sign an NDA if needed and agree the rules, templates and file formats."
+					},
+					{
+						"title": "Scope and quote",
+						"desc": "A written scope with the list of deliverables, the input data we still need and a delivery schedule."
+					},
+					{
+						"title": "Design and calculations",
+						"desc": "Work in stages with a review call at each one, so changes are made early rather than at the end."
+					},
+					{
+						"title": "Deliver the package",
+						"desc": "Calculations, drawings and documents in the agreed formats, with native files as well as PDFs."
+					},
+					{
+						"title": "Support approval",
+						"desc": "We answer reviewers' technical comments and update the documents we prepared until they are approved."
 					}
 				],
 				"custom_class": ""
@@ -181,22 +239,25 @@
 				},
 				"caption": "Calculations · Drawings · Technical documents",
 				"heading": "What will you receive?",
-				"body": "Deliverables are agreed before work starts. Depending on the project, they can include:",
+				"body": "Deliverables and file formats are agreed before work starts. Depending on the project, they include:",
 				"items": [
 					{
-						"text": "Engineering calculations"
+						"text": "Drawings as native CAD files (DWG) and PDF"
 					},
 					{
-						"text": "Design drawings"
+						"text": "Calculation reports in PDF, with editable files where agreed"
 					},
 					{
-						"text": "Technical descriptions, manuals and documents"
+						"text": "3D hull models in a format agreed at the start"
+					},
+					{
+						"text": "Technical specifications and descriptions"
 					},
 					{
 						"text": "Documents for plan approval, classification or as-built records"
 					},
 					{
-						"text": "Technical responses for the work we prepare"
+						"text": "Written responses to reviewers' comments on our work"
 					}
 				],
 				"cta": {
@@ -207,37 +268,14 @@
 			}
 		},
 		{
-			"type": "process-timeline",
-			"fields": {
-				"heading": "Our process",
-				"intro": "",
-				"steps": [
-					{
-						"title": "Review the brief and documents",
-						"desc": "Define the goal, the input data and the scope of work."
-					},
-					{
-						"title": "Develop the design",
-						"desc": "Check dimensions, hull form, arrangement and baseline calculations."
-					},
-					{
-						"title": "Produce the package",
-						"desc": "Calculations, drawings and documents within the agreed scope."
-					},
-					{
-						"title": "Support plan approval",
-						"desc": "Respond to technical comments and update the documents we prepared."
-					}
-				],
-				"custom_class": ""
-			}
-		},
-		{
 			"type": "project-showcase",
 			"fields": {
 				"heading": "Featured design projects",
 				"intro": "",
-				"view_all": [],
+				"view_all": {
+					"label": "See all projects",
+					"page": "projects_en"
+				},
 				"projects": [
 					"tau-hau-can-bv-99889-ts",
 					"tau-ca-vo-thep-qna-91312-ts",
@@ -252,16 +290,32 @@
 				"intro": "",
 				"items": [
 					{
-						"title": "Can we start if I don't have complete documents?",
-						"content": "<p>Yes. Just send the information and documents you have.</p>"
+						"title": "Which vessel types do you design?",
+						"content": "<p>Steel and FRP fishing vessels, fishery support vessels, passenger boats, tourist speedboats and other small craft, both newbuilds and conversions. If your vessel falls outside this range, describe it and we will tell you honestly whether it is a good fit.</p>"
+					},
+					{
+						"title": "Which rules and standards do you work to?",
+						"content": "<p>The rules that apply to the vessel and are named in the contract. Our own projects are designed and approved under Vietnamese national technical regulations (QCVN). For other class rules or flag requirements, tell us which edition applies and we confirm before quoting.</p>"
+					},
+					{
+						"title": "Can you work to our drawing standards and templates?",
+						"content": "<p>Yes. Send your title blocks, layers and report templates and we use them from the first drawing, so our work fits into your package without rework.</p>"
+					},
+					{
+						"title": "How do we communicate across time zones?",
+						"content": "<p>In English, by email, chat and scheduled video calls. We are on UTC+7, which overlaps the European morning, the afternoon in Australia and New Zealand, and most of the working day in Japan and Korea.</p>"
+					},
+					{
+						"title": "Who owns the drawings and calculations?",
+						"content": "<p>The design work produced for you is delivered to you in full, with native files, as agreed in the contract. We sign an NDA before you share drawings or models.</p>"
+					},
+					{
+						"title": "Can we start if we don't have complete documents?",
+						"content": "<p>Yes. Send the information and documents you have, or fill in our <a href=\"/en/design-brief/\">design brief</a>. We tell you what else is needed before work begins.</p>"
 					},
 					{
 						"title": "What does the timeline depend on?",
-						"content": "<p>The vessel type, the scope of work, the state of the input data and the level of plan approval.</p>"
-					},
-					{
-						"title": "Does LASAN MARINE support the classification process?",
-						"content": "<p>Yes, for the documents we prepare.</p>"
+						"content": "<p>The vessel type, the scope of work, the state of the input data and the approval route. The delivery schedule is part of the quote, so you know each date in advance.</p>"
 					}
 				],
 				"open_first": 0,
@@ -272,8 +326,8 @@
 			"type": "contact-statement",
 			"fields": {
 				"heading": "<p>You don’t need a complete package before you get in touch</p>",
-				"description": "Send the vessel type, what needs doing and the documents you have. We will review them and tell you what else is needed before work begins.",
-				"phone": "0834 310 781",
+				"description": "Send the vessel type, what needs doing, the rules that apply and the documents you have. We will review them and reply with the scope, the missing inputs and a schedule.",
+				"phone": "+84 834 310 781",
 				"email": "hello@lasanmarine.com",
 				"cta": {
 					"label": "Send project details",

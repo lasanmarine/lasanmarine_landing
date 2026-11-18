@@ -43,7 +43,7 @@ if ( 'cli' !== PHP_SAPI ) {
 	exit( 1 );
 }
 
-$root = dirname( __DIR__, 2 );
+$root = getenv( 'WP_PATH' ) ?: dirname( __DIR__, 2 );
 $home = getenv( 'WP_HOME' ) ?: 'http://localhost';
 $_SERVER['HTTP_HOST']   = $_SERVER['HTTP_HOST'] ?? ( parse_url( $home, PHP_URL_HOST ) . ( parse_url( $home, PHP_URL_PORT ) ? ':' . parse_url( $home, PHP_URL_PORT ) : '' ) );
 $_SERVER['REQUEST_URI'] = $_SERVER['REQUEST_URI'] ?? '/wp-admin/';

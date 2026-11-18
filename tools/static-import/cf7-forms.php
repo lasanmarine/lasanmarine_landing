@@ -13,7 +13,7 @@
 
 $_SERVER['HTTP_HOST']   = $_SERVER['HTTP_HOST'] ?? ( parse_url( getenv( 'WP_HOME' ) ?: 'http://localhost', PHP_URL_HOST ) . ( parse_url( getenv( 'WP_HOME' ) ?: '', PHP_URL_PORT ) ? ':' . parse_url( getenv( 'WP_HOME' ), PHP_URL_PORT ) : '' ) );
 $_SERVER['REQUEST_URI'] = '/';
-require dirname( __DIR__, 2 ) . '/wp-load.php';
+require ( getenv( 'WP_PATH' ) ?: dirname( __DIR__, 2 ) ) . '/wp-load.php';
 
 if ( ! class_exists( 'WPCF7_ContactForm' ) ) {
 	fwrite( STDERR, "Contact Form 7 chưa bật\n" );

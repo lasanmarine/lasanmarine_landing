@@ -4,8 +4,8 @@
 	"slug": "gioi-thieu",
 	"lang": "vi",
 	"seo": {
-		"title": "Giới thiệu LASAN MARINE | Thiết kế tàu, R&D và phần mềm",
-		"description": "Chuyên môn chính của LASAN MARINE là thiết kế tàu. Từ công việc thực tế, công ty phát triển thêm R&D và phần mềm thành hai hướng dịch vụ riêng."
+		"title": "Về chúng tôi: thiết kế tàu & phần mềm | Công ty TNHH Lasan Marine",
+		"description": "Chuyên môn chính của Lasan Marine là thiết kế tàu. Từ công việc thực tế, công ty phát triển thêm R&D và phần mềm thành hai hướng dịch vụ riêng."
 	},
 	"blocks": [
 		{
@@ -13,7 +13,7 @@
 			"fields": {
 				"headline": "Chuyên môn cốt lõi của chúng tôi là thiết kế tàu",
 				"heading_level": "h1",
-				"lead": "LASAN MARINE thực hiện thiết kế đóng mới, cải hoán, tính toán kỹ thuật và hoàn thiện hồ sơ cho các phương tiện thủy. Từ những bài toán phát sinh trong quá trình làm việc, chúng tôi phát triển thêm năng lực R&D và các giải pháp số phục vụ công việc thực tế.",
+				"lead": "Công ty TNHH Lasan Marine (Nha Trang, Khánh Hòa) thực hiện thiết kế đóng mới, cải hoán, tính toán kỹ thuật và hoàn thiện hồ sơ cho các phương tiện thủy. Từ những bài toán phát sinh trong quá trình làm việc, chúng tôi phát triển thêm năng lực R&D và các giải pháp số phục vụ công việc thực tế.",
 				"height": 420,
 				"actions": [
 					{
@@ -104,7 +104,7 @@
 					},
 					{
 						"label": "Tên quốc tế",
-						"value": "LASAN MARINE CO., LTD."
+						"value": "Lasan Marine CO., LTD."
 					},
 					{
 						"label": "Mã số thuế",

@@ -600,6 +600,26 @@ function lasan_content_term_ids( string $taxonomy, array $specs ): array {
 	return array_values( array_filter( $ids ) );
 }
 
+/**
+ * Whether saving $postarr would change nothing on the existing post it names
+ * (title, slug, content, excerpt, status, parent, order, author, date).
+ *
+ * @param array<string, mixed> $postarr
+ */
+function lasan_content_unchanged( array $postarr ): bool {
+	$id = (int) ( $postarr['ID'] ?? 0 );
+	$post = $id ? get_post( $id, ARRAY_A ) : null;
+	if ( ! $post ) {
+		return false;
+	}
+	foreach ( array( 'post_title', 'post_name', 'post_content', 'post_excerpt', 'post_status', 'post_parent', 'menu_order', 'post_author', 'post_date_gmt' ) as $field ) {
+		if ( array_key_exists( $field, $postarr ) && (string) $postarr[ $field ] !== (string) $post[ $field ] ) {
+			return false;
+		}
+	}
+	return true;
+}
+
 /** The page carrying this importer key, preferring the language being applied. */
 function lasan_content_find_page_by_key( string $key ): int {
 	return lasan_content_pick(
@@ -719,7 +739,10 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 		$postarr['post_parent'] = $parent;
 	}
 
-	$id = wp_insert_post( wp_slash( $postarr ), true );
+	// Unchanged pages are not saved again: a save bumps post_modified, and
+	// with it every sitemap's lastmod — applying all files used to tell Google
+	// the whole site had just been rewritten.
+	$id = lasan_content_unchanged( $postarr ) ? (int) $existing : wp_insert_post( wp_slash( $postarr ), true );
 	if ( is_wp_error( $id ) ) {
 		$problems[] = $key . ': ' . $id->get_error_message();
 		return 0;
@@ -738,6 +761,8 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 		update_post_meta( $id, '_yoast_wpseo_metadesc', $description );
 		if ( isset( $seo['og_title'] ) ) {
 			update_post_meta( $id, '_yoast_wpseo_opengraph-title', (string) $seo['og_title'] );
+		} else {
+			delete_post_meta( $id, '_yoast_wpseo_opengraph-title' ); // falls back to the title
 		}
 	}
 
@@ -870,7 +895,7 @@ function lasan_content_apply_posts( array $doc, array &$problems, bool $dry_run 
 				$problems[] = "{$slug}: không có user `{$entry['author']}`";
 			}
 		}
-		$id = (int) wp_insert_post( wp_slash( $postarr ), true );
+		$id = lasan_content_unchanged( $postarr ) ? (int) $postarr['ID'] : (int) wp_insert_post( wp_slash( $postarr ), true );
 		if ( ! $id ) {
 			$problems[] = "{$slug}: không lưu được";
 			continue;

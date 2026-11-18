@@ -5,14 +5,14 @@
 	"lang": "en",
 	"translation_of": "capabilities",
 	"seo": {
-		"title": "Ship Design, R&D & Software Capabilities | LASAN MARINE",
+		"title": "Naval Architecture & Software Services | Lasan Marine Co., Ltd.",
 		"description": "Ship design experience, marine research work and custom software capabilities across vessel design, simulation, measurement and digital systems."
 	},
 	"blocks": [
 		{
 			"type": "page-hero",
 			"fields": {
-				"headline": "Engineering capabilities and solutions at LASAN MARINE",
+				"headline": "Engineering capabilities and solutions at Lasan Marine",
 				"heading_level": "h1",
 				"lead": "Ship design is our core expertise. Alongside it, we carry out engineering research and builds digital solutions from real needs that arise in the work.",
 				"height": 420,

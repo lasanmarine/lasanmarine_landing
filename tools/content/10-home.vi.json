@@ -5,8 +5,8 @@
 	"lang": "vi",
 	"front_page": true,
 	"seo": {
-		"title": "Công ty thiết kế tàu cá, tàu khách & hồ sơ đăng kiểm | LASAN MARINE",
-		"description": "Công ty thiết kế tàu tại Nha Trang: thiết kế tàu cá vỏ thép, composite, tàu khách, hoán cải và hồ sơ đăng kiểm. Nhanh, đúng quy chuẩn. Gọi 0834 310 781."
+		"title": "Công ty TNHH Lasan Marine – Thiết kế tàu & phần mềm hàng hải",
+		"description": "Công ty thiết kế tàu tại Nha Trang, Khánh Hòa: tàu cá vỏ thép, composite, tàu khách, hoán cải, hồ sơ đăng kiểm cho chủ tàu và xưởng đóng tàu. Gọi 0834 310 781."
 	},
 	"blocks": [
 		{
@@ -17,14 +17,14 @@
 						"image": {
 							"media": "look-up-look-down-photography-pl-vqprmpzi-unsplash"
 						},
-						"headline": "Thiết kế tàu cá, tàu khách và hồ sơ đăng kiểm",
+						"headline": "Lasan Marine thiết kế tàu cá, tàu khách và hồ sơ đăng kiểm",
 						"headline_accent": "nhanh, đúng quy chuẩn.",
 						"headline_tail": "",
-						"lead": "Từ bản vẽ đóng mới, hoán cải chuyển nghề đến hồ sơ thẩm tra, chúng tôi làm trọn và tính toán bằng công cụ tự phát triển. Gọi hoặc nhắn Zalo để được tư vấn trong ngày."
+						"lead": "Công ty thiết kế tàu ở Nha Trang, Khánh Hòa. Chúng tôi lập bản vẽ đóng mới, hoán cải chuyển nghề, thay máy và hồ sơ thẩm định cho chủ tàu, hợp tác xã và xưởng đóng tàu. Gọi hoặc nhắn Zalo 0834 310 781."
 					}
 				],
 				"eyebrow": "",
-				"subline": "Công ty thiết kế tàu tại Nha Trang, làm việc với chủ tàu và xưởng đóng tàu khắp cả nước.",
+				"subline": "Công ty TNHH Lasan Marine, 03 Trần Lư, phường Bắc Nha Trang, Khánh Hòa. Ngoài thiết kế tàu, chúng tôi viết phần mềm chuyên ngành cho xưởng đóng tàu và văn phòng thiết kế.",
 				"heading_level": "h1",
 				"primary": {
 					"url": "tel:0834310781",
@@ -41,14 +41,14 @@
 			"type": "vessel-finder",
 			"fields": {
 				"heading": "Bạn cần thiết kế loại tàu nào?",
-				"intro": "Chọn đúng nhu cầu để xem phạm vi công việc, hồ sơ bàn giao và dự án tương tự.",
+				"intro": "Chọn đúng nhu cầu để xem việc chúng tôi làm, giấy tờ cần có, hồ sơ bàn giao và dự án tương tự.",
 				"items": [
 					{
 						"image": {
 							"media": "tau-ca-vo-thep-na-95678-ts"
 						},
 						"title": "Tàu cá vỏ thép",
-						"desc": "Đóng mới tàu khai thác xa bờ và tàu hậu cần thủy sản.",
+						"desc": "Đóng mới tàu khai thác xa bờ và tàu hậu cần nghề cá theo QCVN 91, 92:2025.",
 						"link": {
 							"label": "",
 							"page": "design_steel"
@@ -59,7 +59,7 @@
 							"media": "tau-ca-composite-kh-95177-ts"
 						},
 						"title": "Tàu composite",
-						"desc": "Tàu cá FRP thay tàu gỗ, cano và xuồng cao tốc.",
+						"desc": "Tàu cá composite thay tàu gỗ, cano và xuồng FRP.",
 						"link": {
 							"label": "",
 							"page": "design_composite"
@@ -70,7 +70,7 @@
 							"media": "images"
 						},
 						"title": "Hoán cải, chuyển nghề",
-						"desc": "Kéo dài thân, nâng cabin, thay máy, đổi nghề khai thác.",
+						"desc": "Chuyển đổi nghề, thay máy, kéo dài thân, nâng cabin.",
 						"link": {
 							"label": "",
 							"page": "design_conversion"
@@ -81,7 +81,7 @@
 							"media": "cano-lam-hai"
 						},
 						"title": "Tàu khách, cano du lịch",
-						"desc": "Cano tham quan, tàu khách, phương tiện thủy nội địa.",
+						"desc": "Cano du lịch, tàu khách, tàu tham quan.",
 						"link": {
 							"label": "",
 							"page": "design_passenger"
@@ -92,7 +92,7 @@
 							"media": "alexander-grey-tn57ji3cewi-unsplash"
 						},
 						"title": "Hồ sơ đăng kiểm",
-						"desc": "Bổ sung bản tính, bản vẽ, thẩm tra và hoàn công.",
+						"desc": "Lập mới, bổ sung theo góp ý thẩm định, hồ sơ hoàn công.",
 						"link": {
 							"label": "",
 							"page": "approval_docs"
@@ -102,13 +102,31 @@
 			}
 		},
 		{
+			"type": "cta-banner",
+			"fields": {
+				"label": "Phần mềm chuyên ngành",
+				"heading": "Phần mềm cho xưởng đóng tàu và văn phòng thiết kế",
+				"content": "Dịch vụ thứ hai của chúng tôi: công cụ tính toán, dự toán, quản lý vật tư và hồ sơ, plugin CAD và AI agent cho ngành tàu. Người viết phần mềm cũng là người thiết kế tàu, nên hiểu bài toán của bạn mà không cần phiên dịch.",
+				"primary_cta": {
+					"label": "Xem dịch vụ phần mềm",
+					"page": "service_03"
+				},
+				"secondary_cta": {
+					"label": "Dùng thử công cụ miễn phí",
+					"page": "tools"
+				},
+				"theme": "pale",
+				"custom_class": ""
+			}
+		},
+		{
 			"type": "value-grid",
 			"fields": {
-				"heading": "Vì sao chủ tàu chọn LASAN MARINE",
+				"heading": "Vì sao chủ tàu chọn Lasan Marine",
 				"items": [
 					{
-						"title": "Hiểu tàu cá và quy trình đăng kiểm",
-						"desc": "Hồ sơ lập đúng quy chuẩn ngay từ đầu, giải trình rõ ràng khi thẩm tra, hạn chế phải sửa đi sửa lại.",
+						"title": "Hiểu tàu cá và thủ tục đăng kiểm",
+						"desc": "Hồ sơ lập theo quy chuẩn đang áp dụng, gồm QCVN 91, 92:2025/BNNMT. Chúng tôi chỉ rõ chủ tàu cần giấy tờ gì và giải trình phần mình làm khi thẩm định.",
 						"link": {
 							"label": "Hồ sơ đăng kiểm",
 							"page": "approval_docs"
@@ -116,22 +134,22 @@
 						"icon": "award"
 					},
 					{
-						"title": "Nhanh, báo giá rõ ràng",
-						"desc": "Thống nhất phạm vi, hạng mục bàn giao và mốc thời gian trước khi làm. Bạn biết mình nhận được gì, khi nào.",
-						"link": {
-							"label": "Nhận báo giá",
-							"page": "contact"
-						},
-						"icon": "gauge"
-					},
-					{
-						"title": "Quy trình đã được tối ưu hóa",
-						"desc": "Chúng tôi áp dụng nhiều kỹ thuật, bao gồm công nghệ thông tin và tiên phong triển khai mô hình AI First, để rút ngắn thời gian và kiểm chứng phương án trước khi đóng.",
+						"title": "Tính bằng công cụ tự viết",
+						"desc": "Vừa thiết kế tàu vừa viết phần mềm, chúng tôi thử được nhiều phương án máy, chân vịt, bố trí trước khi chốt, và số liệu bản vẽ, bản tính đi cùng một nguồn.",
 						"link": {
 							"label": "Xem công cụ",
 							"page": "tools"
 						},
 						"icon": "calculator"
+					},
+					{
+						"title": "Văn phòng tại Nha Trang, Khánh Hòa",
+						"desc": "Nhận thông tin qua Zalo, điện thoại, email; báo giá rõ phạm vi và mốc bàn giao trước khi làm. Các tàu đã thiết kế nằm ở nhiều tỉnh, từ Nghệ An đến Bà Rịa – Vũng Tàu.",
+						"link": {
+							"label": "Nhận báo giá",
+							"page": "contact"
+						},
+						"icon": "compass"
 					}
 				]
 			}
@@ -140,7 +158,7 @@
 			"type": "project-showcase",
 			"fields": {
 				"heading": "Dự án tiêu biểu",
-				"intro": "Một số tàu cá, tàu hậu cần và cano chở khách chúng tôi đã thiết kế và hoàn thiện hồ sơ.",
+				"intro": "Tàu cá, tàu hậu cần và cano chở khách chúng tôi đã thiết kế và hoàn thiện hồ sơ, ở Khánh Hòa, Quảng Nam, Bình Thuận, Bà Rịa – Vũng Tàu và Nghệ An.",
 				"view_all": {
 					"label": "Xem tất cả dự án",
 					"page": "projects"
@@ -209,8 +227,8 @@
 		{
 			"type": "contact-statement",
 			"fields": {
-				"heading": "<p>Bạn đang chuẩn bị đóng mới hoặc hoán cải tàu?</p>",
-				"description": "Gọi hoặc nhắn Zalo cho chúng tôi loại tàu, kích thước dự kiến và hồ sơ hiện có. Chúng tôi phản hồi phương án và báo giá rõ ràng.",
+				"heading": "<p>Bạn đang chuẩn bị đóng mới, hoán cải hoặc thay máy?</p>",
+				"description": "Gọi hoặc nhắn Zalo cho chúng tôi loại tàu, kích thước dự kiến và giấy tờ hiện có. Chúng tôi phản hồi phương án, những giấy tờ cần chuẩn bị và báo giá theo phạm vi.",
 				"phone": "0834 310 781",
 				"email": "hello@lasanmarine.com",
 				"cta": {

@@ -7,7 +7,7 @@
 	"parent": "tools_en",
 	"template": "page-app.php",
 	"seo": {
-		"title": "Ship Stability Calculator Online — GZ Curve | LASAN MARINE",
+		"title": "Ship Stability Calculator – GZ Curve | Lasan Marine Co., Ltd.",
 		"description": "Free online ship stability calculator: GZ righting-arm curve, GM, angle of vanishing stability and IS Code 2008 checks, with Word and Excel reports."
 	},
 	"blocks": [

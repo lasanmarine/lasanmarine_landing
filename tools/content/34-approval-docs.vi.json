@@ -1,32 +1,26 @@
 {
 	"key": "approval_docs",
-	"title": "Lập hồ sơ đăng kiểm tàu cá, thẩm tra & hoàn công",
+	"title": "Lập hồ sơ đăng kiểm tàu cá, thẩm định & hoàn công",
 	"slug": "ho-so-dang-kiem",
 	"lang": "vi",
 	"parent": "capabilities",
 	"seo": {
-		"title": "Lập hồ sơ đăng kiểm tàu cá, thẩm tra & hoàn công | LASAN MARINE",
-		"description": "Lập và hoàn thiện hồ sơ đăng kiểm tàu cá: bổ sung bản tính, bản vẽ, hồ sơ thẩm tra thiết kế, hoàn công. Hồ sơ đúng ngay từ đầu. Gọi hoặc Zalo 0834 310 781."
+		"title": "Hồ sơ thiết kế đăng kiểm tàu cá | Công ty TNHH Lasan Marine",
+		"description": "Lập hồ sơ thiết kế tàu cá để thẩm định, đăng kiểm: làm trọn bộ, bổ sung theo góp ý, hồ sơ hoàn công, đúng QCVN mới. Gọi hoặc Zalo 0834 310 781."
 	},
 	"blocks": [
 		{
 			"type": "page-hero",
 			"fields": {
-				"headline": "Lập hồ sơ đăng kiểm tàu cá: thẩm tra, hoàn công, bổ sung",
+				"headline": "Lập hồ sơ đăng kiểm tàu cá: thẩm định, hoàn công, bổ sung",
 				"heading_level": "h1",
-				"lead": "Bạn không cần làm lại toàn bộ hồ sơ. Chúng tôi rà soát, chỉ ra phần còn thiếu hoặc chưa đúng quy chuẩn, rồi bổ sung bản tính, bản vẽ để hồ sơ được duyệt.",
+				"lead": "Lasan Marine lập và hoàn thiện hồ sơ thiết kế tàu cá để trình cơ sở đăng kiểm tàu cá thẩm định: làm trọn bộ, bổ sung phần còn thiếu theo góp ý, hoặc lập hồ sơ hoàn công sau khi đóng. Nếu chỉ thiếu vài bản tính, bản vẽ, bạn không cần làm lại cả bộ.",
 				"height": 420,
 				"actions": [
 					{
 						"link": {
-							"label": "Một số hồ sơ đã thực hiện",
-							"url": "#mot-so-ho-so-da-thuc-hien"
-						}
-					},
-					{
-						"link": {
-							"label": "Những tình huống hay gặp",
-							"url": "#nhung-tinh-huong-hay-gap"
+							"label": "Hồ sơ gồm những gì?",
+							"url": "#ho-so-thiet-ke-tau-ca-gom-nhung-gi-ai-th"
 						}
 					},
 					{
@@ -34,8 +28,25 @@
 							"label": "Bạn nhận được gì",
 							"url": "#ban-nhan-duoc-gi"
 						}
+					},
+					{
+						"link": {
+							"label": "Câu hỏi thường gặp",
+							"url": "#cau-hoi-thuong-gap-ve-ho-so-dang-kiem-ta"
+						}
 					}
 				]
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"label": "",
+				"heading": "Hồ sơ thiết kế tàu cá gồm những gì, ai thẩm định?",
+				"content": "<p>Theo Điều 15 Thông tư 02/2026/TT-BNNMT, tàu cá có chiều dài lớn nhất từ 12 m trở lên phải có <strong>hồ sơ thiết kế kỹ thuật được thẩm định</strong> trước khi đóng mới hoặc cải hoán. Hồ sơ nộp thẩm định gồm đơn đề nghị theo Mẫu số 01.BĐ và <strong>03 bộ hồ sơ thiết kế tàu</strong>; việc thẩm định thực hiện theo đề nghị của đơn vị thiết kế. Đạt yêu cầu thì được cấp Giấy chứng nhận thẩm định thiết kế (Mẫu số 02.BĐ) và đóng dấu thẩm định vào tài liệu thiết kế.</p><h3>Ai thẩm định?</h3><ul><li>Cơ sở đăng kiểm tàu cá <strong>loại I</strong>: mọi cỡ tàu.</li><li>Cơ sở <strong>loại II</strong>: tàu có chiều dài lớn nhất dưới 24 m.</li><li>Cơ sở <strong>loại III</strong>: tàu có chiều dài lớn nhất dưới 15 m.</li></ul><h3>Bộ hồ sơ thiết kế thường gồm</h3><ul><li>Thuyết minh chung; tuyến hình; bố trí chung.</li><li>Kết cấu thân tàu và bản tính kết cấu.</li><li>Bản tính thủy tĩnh, ổn định, mạn khô.</li><li>Hệ động lực, hệ trục, chân vịt; bản tính sức cản – công suất.</li><li>Hệ thống tàu, trang bị điện, trang thiết bị an toàn, cứu sinh, cứu hỏa.</li></ul><p>Danh mục cụ thể tùy loại tàu và quy chuẩn áp dụng: QCVN 92:2025/BNNMT cho tàu từ 12 m đến dưới 24 m, QCVN 91:2025/BNNMT cho tàu từ 24 m trở lên (áp dụng từ 10/3/2026). Tàu gỗ đóng mới theo mẫu truyền thống cần hồ sơ thiết kế mẫu đã được cơ sở đăng kiểm tàu cá sao duyệt. Tàu dưới 12 m không bắt buộc đăng kiểm nhưng phải lắp trang thiết bị an toàn theo Phụ lục III cùng Thông tư.</p><p><em>Căn cứ: <a href=\"https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/9/81-vbhn-bnnmt.signed.pdf\" rel=\"noopener\" target=\"_blank\">Thông tư 02/2026/TT-BNNMT</a> (văn bản hợp nhất 81/VBHN-BNNMT, gồm sửa đổi của Thông tư 33/2026/TT-BNNMT), Nghị định 41/2026/NĐ-CP và <a href=\"https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/9/57-bnnmt.pdf\" rel=\"noopener\" target=\"_blank\">Thông tư 57/2025/TT-BNNMT</a>. Cập nhật tháng 11/2026. Quy định có thể thay đổi; hãy hỏi lại chúng tôi hoặc cơ quan quản lý trước khi nộp hồ sơ.</em></p>",
+				"align": "left",
+				"width": "medium",
+				"custom_class": ""
 			}
 		},
 		{
@@ -47,16 +58,25 @@
 				"items": [
 					{
 						"problem": "Hồ sơ bị yêu cầu bổ sung",
-						"context": "Cơ quan thẩm tra trả lại với danh sách góp ý.",
-						"solution": "Đọc góp ý, bổ sung đúng hạng mục còn thiếu và giải trình từng điểm.",
+						"context": "Cơ sở đăng kiểm trả lại kèm danh sách góp ý.",
+						"solution": "Đọc góp ý, bổ sung đúng hạng mục còn thiếu và giải trình từng điểm, không làm lại cả bộ.",
 						"link": {
 							"label": "Gửi hồ sơ cần xem",
 							"page": "contact"
 						}
 					},
 					{
+						"problem": "Cần làm hồ sơ thiết kế từ đầu",
+						"context": "Tàu sắp đóng mới hoặc cải hoán nhưng chưa có hồ sơ thiết kế.",
+						"solution": "Lập trọn bộ bản vẽ, bản tính theo quy chuẩn đang áp dụng và trình thẩm định.",
+						"link": {
+							"label": "Xem thiết kế tàu cá vỏ thép",
+							"page": "design_steel"
+						}
+					},
+					{
 						"problem": "Cần hồ sơ hoàn công sau khi đóng",
-						"context": "Tàu đóng xong có sai khác so với thiết kế.",
+						"context": "Tàu đóng xong có sai khác so với thiết kế đã thẩm định.",
 						"solution": "Cập nhật bản vẽ, bản tính theo thực tế thi công và lập hồ sơ hoàn công.",
 						"link": {
 							"label": "Trao đổi hồ sơ hoàn công",
@@ -66,10 +86,10 @@
 					{
 						"problem": "Chỉ cần một bản tính",
 						"context": "Ví dụ ổn định, mạn khô, kết cấu hoặc hệ trục.",
-						"solution": "Thực hiện riêng hạng mục cần thiết, không phải làm lại cả bộ.",
+						"solution": "Làm riêng hạng mục cần thiết. Muốn hiểu bản tính ổn định nói gì, hãy đọc bài hướng dẫn đọc thông báo ổn định.",
 						"link": {
-							"label": "Thử mô phỏng ổn định",
-							"page": "app_stability"
+							"label": "Đọc: cách đọc thông báo ổn định",
+							"url": "/tin-tuc/cach-doc-va-su-dung-thong-bao-on-dinh-stability-booklet/"
 						}
 					}
 				],
@@ -81,8 +101,8 @@
 			"fields": {
 				"heading": "Bạn nhận được gì",
 				"intro": "Đúng phần hồ sơ bạn cần, đủ để trình và được duyệt.",
-				"note_label": "Thời gian",
-				"note": "Thời gian được thống nhất khi báo giá, tùy loại tàu, phạm vi công việc và hồ sơ hiện có. Bạn biết trước mốc bàn giao từng phần.",
+				"note_label": "Chi phí và thời gian phụ thuộc vào",
+				"note": "Chiều dài và loại tàu; làm trọn bộ hay chỉ bổ sung; hồ sơ hiện có đầy đủ và rõ ràng đến đâu; số góp ý cần xử lý; có phải khảo sát tàu thực tế không. Chúng tôi báo giá và mốc bàn giao sau khi xem hồ sơ.",
 				"items": [
 					{
 						"title": "Rà soát hồ sơ hiện có",
@@ -90,17 +110,17 @@
 						"format": "PDF"
 					},
 					{
-						"title": "Bản tính bổ sung",
+						"title": "Bản tính lập mới hoặc bổ sung",
 						"desc": "Ổn định, mạn khô, kết cấu, máy, hệ trục…",
 						"format": "PDF"
 					},
 					{
-						"title": "Bản vẽ bổ sung hoặc hiệu chỉnh",
-						"desc": "Theo góp ý thẩm tra hoặc thực tế thi công",
+						"title": "Bản vẽ lập mới hoặc hiệu chỉnh",
+						"desc": "Theo góp ý thẩm định hoặc thực tế thi công",
 						"format": "PDF · DWG"
 					},
 					{
-						"title": "Giải trình với cơ quan thẩm tra",
+						"title": "Giải trình với cơ sở đăng kiểm",
 						"desc": "Phối hợp đến khi hồ sơ được duyệt",
 						"format": ""
 					}
@@ -111,26 +131,76 @@
 		{
 			"type": "process-timeline",
 			"fields": {
-				"heading": "Làm việc với chúng tôi thế nào?",
+				"heading": "Các bước làm hồ sơ với chúng tôi",
 				"intro": "",
 				"steps": [
 					{
-						"title": "Gửi thông tin qua Zalo hoặc điện thoại",
-						"desc": "Loại tàu, kích thước dự kiến, vùng hoạt động và ảnh hoặc hồ sơ hiện có."
+						"title": "1. Chủ tàu gửi hồ sơ hiện có",
+						"desc": "Bản vẽ, bản tính, giấy tờ tàu và văn bản góp ý (nếu có). Chụp ảnh gửi qua Zalo 0834 310 781 cũng được."
 					},
 					{
-						"title": "Khảo sát và báo giá",
-						"desc": "Xác định phạm vi, hạng mục bàn giao và mốc thời gian, báo giá rõ từng phần."
+						"title": "2. Lasan Marine rà soát và báo giá",
+						"desc": "Chỉ ra phần thiếu hoặc chưa đúng quy chuẩn, đề xuất phạm vi cần làm."
 					},
 					{
-						"title": "Thiết kế và tính toán",
-						"desc": "Triển khai bản vẽ, bản tính bằng công cụ chuyên ngành và công cụ tự phát triển."
+						"title": "3. Lập hoặc bổ sung hồ sơ",
+						"desc": "Làm bản tính, bản vẽ theo phạm vi đã thống nhất; kiểm tra số liệu khớp nhau giữa các tài liệu."
 					},
 					{
-						"title": "Thẩm tra và bàn giao",
-						"desc": "Phối hợp giải trình khi thẩm tra, cập nhật hồ sơ và bàn giao bản cuối."
+						"title": "4. Thẩm định và bàn giao",
+						"desc": "Hồ sơ được trình cơ sở đăng kiểm phù hợp; chúng tôi giải trình phần mình làm đến khi được duyệt và bàn giao bản cuối."
 					}
 				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp về hồ sơ đăng kiểm tàu cá",
+				"intro": "",
+				"items": [
+					{
+						"title": "Hồ sơ đăng kiểm tàu cá gồm những gì?",
+						"content": "<p>Để thẩm định thiết kế: đơn đề nghị theo Mẫu số 01.BĐ và 03 bộ hồ sơ thiết kế tàu (Điều 15 Thông tư 02/2026/TT-BNNMT). Bộ hồ sơ thiết kế thường gồm thuyết minh, bản vẽ tuyến hình, bố trí, kết cấu, hệ động lực, hệ thống và các bản tính ổn định, mạn khô, kết cấu, công suất.</p>"
+					},
+					{
+						"title": "Ai thẩm định thiết kế tàu cá?",
+						"content": "<p>Cơ sở đăng kiểm tàu cá: loại I thẩm định mọi cỡ tàu, loại II thẩm định tàu dưới 24 m, loại III thẩm định tàu dưới 15 m.</p>"
+					},
+					{
+						"title": "Tàu cá dưới 12 m có phải đăng kiểm không?",
+						"content": "<p>Không bắt buộc đăng kiểm, nhưng phải lắp trang thiết bị an toàn khi hoạt động theo Phụ lục III Thông tư 02/2026/TT-BNNMT. Tàu từ 12 m trở lên thì phải đăng kiểm.</p>"
+					},
+					{
+						"title": "Tàu gỗ đóng theo mẫu truyền thống có cần thiết kế không?",
+						"content": "<p>Cần hồ sơ thiết kế mẫu đã được cơ sở đăng kiểm tàu cá sao duyệt. Mẫu tàu truyền thống là mẫu được xây dựng thành hồ sơ thiết kế đã thẩm định và được UBND cấp tỉnh công bố.</p>"
+					},
+					{
+						"title": "Tôi chỉ cần bổ sung một phần hồ sơ được không?",
+						"content": "<p>Được. Chúng tôi chỉ làm đúng hạng mục còn thiếu, không bắt buộc làm lại cả bộ.</p>"
+					},
+					{
+						"title": "Hồ sơ hoàn công khác hồ sơ thiết kế thế nào?",
+						"content": "<p>Hồ sơ hoàn công thể hiện tàu như đã đóng thực tế; các sai khác so với thiết kế được cập nhật vào bản vẽ và bản tính.</p>"
+					},
+					{
+						"title": "Hồ sơ hoán cải, thay máy có gì khác?",
+						"content": "<p>Ngoài hồ sơ thiết kế cải hoán được thẩm định, chủ tàu cần văn bản chấp thuận cải hoán của cơ quan quản lý thủy sản cấp tỉnh. Xem chi tiết ở trang <a href=\"{{page:design_conversion}}\">hoán cải tàu cá, chuyển đổi nghề</a>.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"label": "",
+				"heading": "Những lỗi hay khiến hồ sơ bị trả về",
+				"content": "<p>Chúng tôi rà các điểm này trước khi trình, vì mỗi lần bị trả là thêm một vòng sửa và nộp lại:</p><ul><li>Thiếu đơn đề nghị hoặc không đủ số bộ hồ sơ.</li><li>Số liệu không thống nhất giữa bản vẽ, bản tính và thuyết minh.</li><li>Tính theo quy chuẩn đã bị thay thế (ví dụ QCVN 02-35:2021/BNNPTNT).</li><li>Bản tính ổn định thiếu trạng thái tải, hoặc trọng lượng tàu không ước tính đúng.</li><li>Bản vẽ kết cấu thiếu quy cách cơ cấu, kích thước chi tiết.</li><li>Máy, trục, chân vịt chọn không đồng bộ với nhau.</li><li>Trang thiết bị an toàn không phù hợp vùng hoạt động và số người trên tàu.</li><li>Giải trình góp ý chưa đủ, sửa chỗ này làm lệch chỗ khác.</li></ul><p>Chúng tôi tính bằng công cụ do chính mình viết, nên số liệu giữa bản vẽ và bản tính đi cùng một nguồn. Bạn có thể dùng thử <a href=\"{{page:app_stability}}\">mô phỏng ổn định tàu</a> và <a href=\"{{page:tool_shaft}}\">kiểm tra đường kính trục chân vịt</a> để ước tính trước.</p>",
+				"align": "left",
+				"width": "medium",
 				"custom_class": ""
 			}
 		},
@@ -151,33 +221,10 @@
 			}
 		},
 		{
-			"type": "accordion",
-			"fields": {
-				"heading": "Câu hỏi thường gặp",
-				"intro": "",
-				"items": [
-					{
-						"title": "Tôi chỉ cần bổ sung một phần hồ sơ được không?",
-						"content": "<p>Được. Chúng tôi chỉ làm đúng hạng mục còn thiếu, không bắt buộc làm lại toàn bộ.</p>"
-					},
-					{
-						"title": "Hồ sơ hoàn công khác hồ sơ thiết kế thế nào?",
-						"content": "<p>Hồ sơ hoàn công phản ánh tàu như đã đóng thực tế; các sai khác so với thiết kế được cập nhật vào bản vẽ và bản tính.</p>"
-					},
-					{
-						"title": "Có hỗ trợ khi thẩm tra không?",
-						"content": "<p>Có, chúng tôi phối hợp giải trình phần hồ sơ do chúng tôi thực hiện đến khi được duyệt.</p>"
-					}
-				],
-				"open_first": 1,
-				"custom_class": ""
-			}
-		},
-		{
 			"type": "contact-statement",
 			"fields": {
 				"heading": "<p>Hồ sơ của bạn đang vướng ở đâu?</p>",
-				"description": "Chụp danh sách góp ý hoặc hồ sơ hiện có gửi qua Zalo. Chúng tôi xem và cho biết cần bổ sung gì.",
+				"description": "Chụp văn bản góp ý hoặc hồ sơ hiện có gửi qua Zalo 0834 310 781. Chúng tôi xem và cho biết cần bổ sung gì, làm trong phạm vi nào.",
 				"phone": "0834 310 781",
 				"email": "hello@lasanmarine.com",
 				"cta": {
