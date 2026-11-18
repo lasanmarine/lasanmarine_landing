@@ -22,13 +22,16 @@ export function scrub(root, { pin, run, progress, reset = () => {} }) {
 	spacer.setAttribute('aria-hidden', 'true');
 	let active = false;
 	let distance = 0;
+	let pinTop = 0; // the pin's sticky offset, read once per layout
+	let pinH = 0;
 
 	const drive = () => {
 		if (!active) return;
 		// The spacer stays in the flow, so it shows where the pin would be
 		// without sticking; how far the pin has been held is the difference.
-		const natural = spacer.getBoundingClientRect().top - pin.offsetHeight;
-		const travelled = (parseFloat(getComputedStyle(pin).top) || 0) - natural;
+		// One layout read per frame; the pin's own size and offset are cached.
+		const natural = spacer.getBoundingClientRect().top - pinH;
+		const travelled = pinTop - natural;
 		progress(clamp(travelled / Math.max(distance, 1), 0, 1));
 	};
 
@@ -45,6 +48,8 @@ export function scrub(root, { pin, run, progress, reset = () => {} }) {
 			spacer.style.height = `${distance}px`;
 			pin.after(spacer);
 			root.classList.add('is-scrub');
+			pinTop = parseFloat(getComputedStyle(pin).top) || 0;
+			pinH = pin.offsetHeight;
 		}
 		drive();
 	};

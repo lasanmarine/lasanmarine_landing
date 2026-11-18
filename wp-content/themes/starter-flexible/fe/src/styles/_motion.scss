@@ -51,15 +51,31 @@
 	}
 }
 
+/* Scale only: a clip-path animation is repainted on the main thread on every
+   scroll frame, which a phone cannot keep up with. */
 @keyframes lm-open-frame {
 	from {
-		clip-path: inset(7% 7% round 40px);
-		scale: 0.96;
+		scale: 0.9;
 	}
 	to {
-		clip-path: inset(0 0 round var(--r-xl, 28px));
 		scale: 1;
 	}
+}
+
+/* Endless decorative loops rest while off screen (behaviours/offscreen.js). */
+.is-offscreen,
+.is-offscreen::before,
+.is-offscreen::after,
+.is-offscreen * {
+	animation-play-state: paused;
+}
+
+/* Per-frame values written by scripts. Registered as non-inheriting, so a
+   change restyles the one element that uses it instead of its whole subtree. */
+@property --veil {
+	syntax: '<number>';
+	inherits: false;
+	initial-value: 0;
 }
 @keyframes lm-settle {
 	from {

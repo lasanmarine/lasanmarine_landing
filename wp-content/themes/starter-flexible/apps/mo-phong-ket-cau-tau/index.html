@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mô phỏng kết cấu tàu vỏ thép</title>
+  <link rel="icon" href="data:," />
+  <script type="module" crossorigin src="./assets/index-B3epW4nm.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C-yZ7hxh.css">
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <div class="brand">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a3 3 0 0 1 1 5.83V10h4v2h-4v7.93A8 8 0 0 0 19.93 14H18l3-4 3 4h-2.05A10 10 0 0 1 2.05 14H0l3-4 3 4H4.07A8 8 0 0 0 11 19.93V12H7v-2h4V7.83A3 3 0 0 1 12 2Zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/></svg>
+        <div><b>MÔ PHỎNG KẾT CẤU TÀU VỎ THÉP</b><span>Chi tiết → Panel → Cụm chi tiết → Phân đoạn → Tổng đoạn → Đấu nối thành tàu</span></div>
+      </div>
+      <div class="seg" id="camModes">
+        <button data-mode="orbit" class="on" title="Xoay – thu phóng quanh tàu (chuột trái/phải/cuộn)">Quan sát ngoài</button>
+        <button data-mode="walk" title="Di chuyển tự do bên trong tàu (W A S D, Q/E)">Đi trong tàu</button>
+        <button data-mode="tour" title="Camera tự động di chuyển theo tuyến">Tham quan tự động</button>
+      </div>
+      <select id="viewPreset" title="Góc nhìn có sẵn"></select>
+      <button id="helpBtn" class="icon" title="Hướng dẫn sử dụng">?</button>
+    </header>
+
+    <aside id="sidebar">
+      <nav class="tabs" id="tabs">
+        <button data-tab="tree" class="on">Cấu trúc</button>
+        <button data-tab="asm">Lắp ráp</button>
+        <button data-tab="view">Hiển thị</button>
+        <button data-tab="lab">Thực hành</button>
+        <button data-tab="glo">Thuật ngữ</button>
+      </nav>
+      <section class="tab on" id="tab-tree"></section>
+      <section class="tab" id="tab-asm"></section>
+      <section class="tab" id="tab-view"></section>
+      <section class="tab" id="tab-lab"></section>
+      <section class="tab" id="tab-glo"></section>
+    </aside>
+
+    <main id="viewport">
+      <div id="loading"><div class="spin"></div><p>Đang dựng mô hình kết cấu tàu…</p></div>
+      <div id="scopeBadge" class="hidden"></div>
+      <div id="hoverTip" class="hidden"></div>
+      <div id="crosshair" class="hidden"></div>
+      <div id="walkHint" class="hidden"></div>
+      <div id="tourBar" class="hidden"></div>
+      <div id="stageBar" class="hidden"></div>
+      <div id="infoPanel" class="hidden"></div>
+      <div id="scenarioPanel" class="hidden"></div>
+      <div id="toast" class="hidden"></div>
+    </main>
+  </div>
+  <div id="modal" class="hidden"></div>
+</body>
+</html>

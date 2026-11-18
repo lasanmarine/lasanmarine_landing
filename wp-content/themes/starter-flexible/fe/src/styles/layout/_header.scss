@@ -2026,6 +2026,12 @@ html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__brand img {
 			linear-gradient(135deg, #06122d 0%, #0b1b4c 35%, #0a4f96 70%, #0b1b4c 100%);
 		background-size: 100% 100%, 300% 300%;
 		animation: hdr-current 14s ease-in-out infinite alternate;
+		/* background-position animates on the main thread: let it run only
+		   while its panel is open, not behind every scroll of the page. */
+		animation-play-state: paused;
+	}
+	.hdr__panel[data-open='true'] .hdr__panel-intro {
+		animation-play-state: running;
 	}
 	@keyframes hdr-current {
 		from { background-position: 0 0, 0% 30%; }

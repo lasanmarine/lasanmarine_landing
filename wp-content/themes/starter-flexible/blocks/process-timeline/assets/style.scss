@@ -44,9 +44,12 @@
 	background: var(--line-soft);
 }
 .pt__fill {
-	height: 0;
+	/* Scaled by behaviour.js, with no transition: the rail follows the scroll
+	   exactly instead of trailing it, and never causes layout. */
+	height: 100%;
+	transform: scaleY(0);
+	transform-origin: 50% 0;
 	background: var(--grad-accent);
-	transition: height 160ms linear;
 }
 .pt__steps {
 	display: flex;

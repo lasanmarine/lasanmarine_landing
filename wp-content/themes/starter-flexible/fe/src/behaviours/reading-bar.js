@@ -19,16 +19,29 @@ export default function readingBar(bar) {
 		bar.classList.add('reading-bar--docked');
 	}
 
-	const off = viewport.subscribe(({ scrollY, height }) => {
-		const start = article.offsetTop;
-		const distance = article.offsetHeight - height;
+	// The article's place on the page is measured when the layout changes, not
+	// on every scroll frame; the fill is scaled (a transform, so no layout).
+	let start = 0;
+	let span = 0;
+	const measure = () => {
+		start = article.offsetTop;
+		span = article.offsetHeight;
+	};
+	const ro = new ResizeObserver(measure);
+	ro.observe(article);
+	measure();
+
+	const off = viewport.subscribe(({ scrollY, height, resized }) => {
+		if (resized) measure();
+		const distance = span - height;
 		const progress = distance > 0 ? (scrollY - start) / distance : 0;
-		fill.style.width = `${clamp(progress * 100, 0, 100)}%`;
+		fill.style.transform = `scaleX(${clamp(progress, 0, 1).toFixed(4)})`;
 		const shown = scrollY > start + 80;
 		if (shown === bar.hidden) bar.hidden = !shown;
 	});
 	return () => {
 		off();
+		ro.disconnect();
 		bar.classList.remove('reading-bar--docked');
 		home?.insertBefore(bar, next);
 	};

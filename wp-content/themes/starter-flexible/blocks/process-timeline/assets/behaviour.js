@@ -50,7 +50,7 @@ export default function timeline(pin) {
 			const from = at(i);
 			const to = i + 1 < steps.length ? at(i + 1) : 1;
 			const h = p >= 1 ? 1 : from + (to - from) * f;
-			fill.style.height = `${(h * 100).toFixed(2)}%`;
+			fill.style.transform = `scaleY(${h.toFixed(4)})`;
 			mark(Math.min(steps.length - 1, Math.round(pos)), true);
 		},
 	});
@@ -60,7 +60,7 @@ export default function timeline(pin) {
 		const r = track.getBoundingClientRect();
 		if (r.bottom < -height || r.top > height * 2) return;
 		const line = height * 0.55;
-		fill.style.height = `${clamp((line - r.top) / Math.max(r.height, 1), 0, 1) * 100}%`;
+		fill.style.transform = `scaleY(${clamp((line - r.top) / Math.max(r.height, 1), 0, 1).toFixed(4)})`;
 		let active = 0;
 		steps.forEach((step, i) => {
 			if (step.getBoundingClientRect().top <= line) active = i;

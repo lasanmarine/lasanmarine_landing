@@ -137,9 +137,9 @@ export default function stack(stream) {
 	}
 
 	function frame() {
+		if (raf) cancelAnimationFrame(raf);
 		raf = 0;
 		if (!active) return;
-		let moving = false;
 		cards.forEach((el, i) => {
 			const s = state[i];
 			// Locked to the scroll (no trailing ease): the sheet moves exactly
@@ -158,7 +158,6 @@ export default function stack(stream) {
 			// sheet tops out just short of 1; count 0.97 as covered.)
 			el.style.visibility = p > 0.97 ? 'hidden' : '';
 		});
-		if (moving) kick();
 	}
 	const kick = () => {
 		if (!raf) raf = requestAnimationFrame(frame);
@@ -229,8 +228,11 @@ export default function stack(stream) {
 	}
 
 	const onScroll = ({ scrollY: y }) => {
+		// The viewport store already calls this inside an animation frame: draw
+		// now. Waiting for another frame would leave the sheets one frame behind
+		// the scroll, which reads as a shudder.
 		targets();
-		kick();
+		frame();
 		if (!selfScroll) {
 			if (Math.abs(y - lastY) > 0.5) dir = Math.sign(y - lastY);
 			clearTimeout(idle);

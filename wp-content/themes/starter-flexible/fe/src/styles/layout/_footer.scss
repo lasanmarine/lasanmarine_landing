@@ -468,8 +468,7 @@
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	animation: ftr-current 9s linear infinite;
-}
-@keyframes ftr-current {
+}@keyframes ftr-current {
 	from { background-position: 0% 50%; }
 	to { background-position: -250% 50%; }
 }

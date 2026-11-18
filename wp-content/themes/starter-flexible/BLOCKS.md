@@ -89,7 +89,7 @@ Nhúng một ứng dụng mô phỏng (build tĩnh trong theme/apps) vào khung 
 
 | Field | Name | Type | Ghi chú |
 | --- | --- | --- | --- |
-| Ứng dụng | `app` | `select` | Chọn: `mo-phong-on-dinh-tau`, `suc-can-cong-suat` · **Bắt buộc** |
+| Ứng dụng | `app` | `select` | Chọn: `mo-phong-on-dinh-tau`, `suc-can-cong-suat`, `mo-phong-ket-cau-tau` · **Bắt buộc** |
 | Tiêu đề khung (cho trình đọc màn hình) | `title` | `text` |  |
 
 ---

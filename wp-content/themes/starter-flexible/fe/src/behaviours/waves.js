@@ -20,8 +20,8 @@ export default function waves(svg) {
 	const draw = ({ height: vh }) => {
 		if (!allowed) return;
 		const rect = svg.getBoundingClientRect();
-		// Well outside the viewport: no work, no layout thrash.
-		if (rect.bottom < -vh || rect.top > vh * 2) return;
+		// Hidden (display: none), or well outside the viewport: no work.
+		if (!rect.width || rect.bottom < 0 || rect.top > vh) return;
 		const progress = (rect.top + rect.height / 2 - vh / 2) / vh; // -1 above, 0 centred, +1 below
 		paths.forEach((path, i) => {
 			const phase = i * 0.55;

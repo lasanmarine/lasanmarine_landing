@@ -21,7 +21,18 @@ function measure(root) {
 	// sheets, so they are not counted.
 	const ROWS = '.onpage, .hdr-dock, .reading-bar--docked';
 	const extra = () => [...root.querySelectorAll(ROWS)].reduce((h, el) => h + el.offsetHeight, 0);
-	const sync = () => viewport.setHeaderHeight(root.offsetHeight - extra());
+	const bar = root.querySelector('[data-hdr-bar]');
+	let width = -1;
+	// What the page lays itself out against is the header at rest. Once the
+	// bar is stuck it reshapes into the pill over a transition; following that
+	// frame by frame rewrote --hdr-h on <html> (a restyle of the whole page)
+	// and re-measured every pinned sheet just as the reader started to scroll.
+	// So while stuck, only a change of window width is taken as a new layout.
+	const sync = () => {
+		if (bar?.classList.contains('is-stuck') && width === window.innerWidth) return;
+		width = window.innerWidth;
+		viewport.setHeaderHeight(root.offsetHeight - extra());
+	};
 	sync();
 	const ro = new ResizeObserver(sync);
 	ro.observe(root);

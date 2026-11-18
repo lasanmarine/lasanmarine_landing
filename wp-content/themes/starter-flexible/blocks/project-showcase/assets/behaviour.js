@@ -15,6 +15,10 @@ export default function showcaseSlider(root) {
 	const cards = [...root.querySelectorAll('[data-ps-card]')];
 	if (!pin || !row || cards.length < 2) return null;
 
+	// --p is set on the bar that draws it, not on the block: a custom property
+	// inherits, so on the block every scroll frame would restyle all the cards.
+	const bar = root.querySelector('.ps__progress span') ?? root;
+	let limit = 0; // measured once per layout, not on every scroll frame
 	const max = () => Math.max(0, row.scrollWidth - row.clientWidth);
 
 	return scrub(root, {
@@ -22,17 +26,18 @@ export default function showcaseSlider(root) {
 		reset: () => {
 			row.style.paddingRight = '';
 			row.scrollLeft = 0;
-			root.style.removeProperty('--p');
+			bar.style.removeProperty('--p');
 		},
 		run: () => {
 			// Room after the last card so it can travel to the left edge.
 			const last = cards[cards.length - 1];
 			row.style.paddingRight = `${Math.max(0, row.clientWidth - last.offsetWidth)}px`;
-			return max() * 1.2;
+			limit = max();
+			return limit * 1.2;
 		},
 		progress: (p) => {
-			row.scrollLeft = p * max();
-			root.style.setProperty('--p', p.toFixed(3));
+			row.scrollLeft = p * limit;
+			bar.style.setProperty('--p', p.toFixed(3));
 		},
 	});
 }

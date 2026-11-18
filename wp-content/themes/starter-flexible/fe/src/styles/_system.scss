@@ -101,22 +101,22 @@
 
 .display {
 	@apply font-display font-semibold;
-	font-size: clamp(38px, 5vw, 76px);
+	font-size: clamp(34px, 4vw, 60px);
 	line-height: 1.08;
 	letter-spacing: -0.02em;
 	text-wrap: balance;
 }
 
 .h2 {
-	font-size: clamp(30px, 3.4vw, 54px);
+	font-size: clamp(26px, 2.5vw, 40px);
 	letter-spacing: -0.02em;
 	text-wrap: balance;
 }
 .h3 {
-	font-size: clamp(26px, 3vw, 44px);
+	font-size: clamp(23px, 2.1vw, 32px);
 }
 .h4 {
-	font-size: clamp(22px, 2.3vw, 34px);
+	font-size: clamp(20px, 1.7vw, 26px);
 }
 
 .lead {
@@ -733,13 +733,13 @@ select.field__control {
    phone the type steps down once more and the blocks sit closer together. */
 @media (max-width: 600px) {
 	.display {
-		font-size: 34px;
+		font-size: 30px;
 	}
 	.h2 {
-		font-size: 26px;
+		font-size: 24px;
 	}
 	.h3 {
-		font-size: 24px;
+		font-size: 22px;
 		line-height: 1.2;
 	}
 	.h4 {
@@ -990,7 +990,7 @@ body:has(.block-stream.is-stacked) { overflow-x: clip; }
 }
 .block-stream.is-stacked .h2,
 .block-stream.is-stacked .h3 {
-	font-size: clamp(28px, min(3.2vw, 5.2vh), 54px);
+	font-size: clamp(26px, min(2.5vw, 4.4vh), 40px);
 }
 /* Long-read blocks scroll normally: never pinned, never covered early. */
 .block-stream.is-stacked > .is-flow {
@@ -1008,6 +1008,8 @@ body:has(.block-stream.is-stacked) { overflow-x: clip; }
 	z-index: 50;
 	pointer-events: none;
 	background: var(--paper);
+	/* --veil does not inherit (_motion.scss), so the veil asks for it. */
+	--veil: inherit;
 	opacity: var(--veil, 0);
 }
 .block-stream.is-stacked > .is-flow::after { content: none; }
