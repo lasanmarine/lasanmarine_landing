@@ -440,3 +440,26 @@ html body .block-stream > .lasanmarine-hero { width: 100%; border-radius: 0; }
 		box-shadow: none;
 	}
 }
+
+/* --- motion (MOTION.md: hero) ------------------------------------------------
+   No entrance: the hero is the first screen (FCP/LCP) and first-paint
+   content does not animate in (site rule). Interaction only: */
+/* Slide change: the incoming headline and lead cross-fade in with a short
+   rise; the outgoing ones only fade, and drop back to the start of the rise
+   once they are invisible. The photographs cross-fade (above). */
+.hero__headline,
+.hero__lead {
+	translate: 0 12px;
+	transition:
+		opacity 420ms var(--ease),
+		visibility 420ms step-end,
+		translate 0s linear 420ms;
+}
+.hero__headline.is-current,
+.hero__lead.is-current {
+	translate: none;
+	transition:
+		opacity 420ms var(--ease) 90ms,
+		visibility 0s,
+		translate var(--spring-out-ms) var(--spring-out) 90ms;
+}

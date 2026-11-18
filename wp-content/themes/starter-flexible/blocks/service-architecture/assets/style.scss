@@ -183,3 +183,25 @@
 .sa--text .sa__row {
 	align-items: start;
 }
+
+/* --- motion (MOTION.md: service-architecture) ----------------------------
+   Entrance: the layers stack up from the bottom — the last row lands first
+   and each one above settles onto it (reveal kit; behaviour.js reverses the
+   order). Hover: the row's soft fill and its arrow travelling on the soft
+   spring. */
+.lasanmarine-service-architecture {
+	--reveal-y: 24px;
+	--reveal-scale: 0.98;
+	--reveal-origin: 50% 100%;
+}
+.reveal-on .lasanmarine-service-architecture .sa__row[data-reveal-item]:not(.reveal-instant) {
+	transition:
+		opacity calc(var(--reveal-ms, var(--spring-out-ms)) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms, var(--spring-out-ms)) var(--spring-out) var(--reveal-delay, 0ms),
+		background 320ms var(--ease);
+}
+.sa__arrow {
+	transition:
+		transform var(--spring-soft-ms) var(--spring-soft),
+		color 320ms var(--ease);
+}

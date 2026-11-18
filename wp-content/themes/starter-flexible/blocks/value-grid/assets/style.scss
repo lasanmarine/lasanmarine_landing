@@ -94,3 +94,66 @@
 		transition: none;
 	}
 }
+
+/* --- motion (MOTION.md: value-grid) -------------------------------------------
+   Entrance: the cells rise as a diagonal wave (`data-reveal-order="grid"`),
+   growing from their foot; once its cell has landed, each icon pops from .6
+   on the soft spring (its delay is the cell's own `--reveal-delay`, which the
+   kit sets on the cell and the icon inherits).
+   Hover: the cell lifts and turns into the brand card (_v3-blocks.scss), its
+   icon nudges up. The lift is `translate`, not `transform`, so it never waits
+   for — or fights — the entrance, which owns opacity/transform and its
+   stagger delay. */
+.lasanmarine-value-grid {
+	--reveal-y: 24px;
+	--reveal-scale: 0.96;
+	--reveal-origin: 50% 100%;
+	--reveal-ms: var(--spring-out-ms);
+}
+.lasanmarine-value-grid .vg .vg__cell {
+	transition:
+		opacity calc(var(--reveal-ms) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms) var(--spring-out) var(--reveal-delay, 0ms),
+		translate var(--spring-soft-ms) var(--spring-soft),
+		background 360ms var(--ease),
+		box-shadow 360ms var(--ease),
+		color 260ms var(--ease);
+}
+.lasanmarine-value-grid .vg .vg__cell:hover {
+	transform: none;
+	translate: 0 -3px;
+}
+.lasanmarine-value-grid .vg__cell .vg__icon {
+	transition:
+		scale var(--spring-soft-ms) var(--spring-soft) calc(var(--reveal-delay, 0ms) + 260ms),
+		opacity 200ms var(--ease) calc(var(--reveal-delay, 0ms) + 260ms),
+		translate var(--spring-soft-ms) var(--spring-soft),
+		background 260ms var(--ease),
+		color 260ms var(--ease);
+}
+.reveal-on .lasanmarine-value-grid .vg__cell:not(.is-revealed) .vg__icon {
+	opacity: 0;
+	scale: 0.6;
+}
+.lasanmarine-value-grid .vg__cell:hover .vg__icon {
+	translate: 0 -4px;
+}
+/* Never hidden where the entrance does not run: the first screen (the kit
+   paints it at once), reduced motion (the kit drops `reveal-on`; the footer
+   toggle is the html class). */
+.reveal-on .block-stream > .lasanmarine-value-grid:first-child .vg__cell .vg__icon,
+html.reduce-motion.reveal-on .lasanmarine-value-grid .vg__cell .vg__icon {
+	opacity: 1;
+	scale: none;
+	transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.lasanmarine-value-grid .vg .vg__cell:hover,
+	.lasanmarine-value-grid .vg__cell:hover .vg__icon {
+		translate: none;
+	}
+}
+html.reduce-motion .lasanmarine-value-grid .vg .vg__cell:hover,
+html.reduce-motion .lasanmarine-value-grid .vg__cell:hover .vg__icon {
+	translate: none;
+}

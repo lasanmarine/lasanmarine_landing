@@ -1,0 +1,37 @@
+{
+	"key": "insights_en",
+	"title": "Marine Engineering Insights and Articles",
+	"slug": "insights",
+	"lang": "en",
+	"translation_of": "insights",
+	"seo": {
+		"title": "Marine Engineering Insights and Articles | LASAN MARINE",
+		"description": "Read marine engineering insights on hull form, structures, propulsion and vessel documentation. Explore practical topics before discussing your next project."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Articles",
+				"heading_level": "h1",
+				"lead": "",
+				"height": 300,
+				"actions": []
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Contact us</p>",
+				"description": "",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Full contact details",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
+}

@@ -1,132 +1,71 @@
 {
-  "key": "projects_en",
-  "title": "Projects",
-  "slug": "projects",
-  "lang": "en",
-  "translation_of": "projects",
-  "seo": {
-    "title": "Ship Design Projects | LASAN MARINE",
-    "description": "Explore selected vessel-design work across different vessel types, hull materials, dimensions and power ranges."
-  },
-  "blocks": [
-    {
-      "type": "page-hero",
-      "fields": {
-        "headline": "Past work is the clearest way to show what we have actually designed",
-        "lead": "The project record below covers different vessel types, hull materials and size ranges. If you are considering a new vessel or conversion, similar projects are often the fastest way to understand where our experience is relevant.",
-        "placeholder": "Ship design projects",
-        "heading_level": "h1",
-        "height": 420,
-        "custom_class": "",
-        "image": 230
-      }
-    },
-    {
-      "type": "proof-strip",
-      "fields": {
-        "items": [
-          {
-            "value": "300+",
-            "label": "Vessel design packages",
-            "note": "Based on the current project record"
-          },
-          {
-            "value": "24",
-            "label": "Composite vessels"
-          },
-          {
-            "value": "5",
-            "label": "Steel vessels"
-          },
-          {
-            "value": "2",
-            "label": "High-speed inland passenger craft"
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "image-text",
-      "fields": {
-        "heading": "BV-99889-TS Offshore Fisheries Support Vessel · Lmax 34.86 m",
-        "content": "BV-99889-TS is a steel-hull fisheries support vessel with an overall length of 34.86 m and a recorded deadweight of 388 t. It sits among the larger offshore-support vessel design packages in our current project record.",
-        "placeholder": "BV-99889-TS offshore fisheries support vessel",
-        "caption": "Steel hull · Technical design package",
-        "image_position": "right",
-        "split": "even",
-        "ratio": "ratio-16-9",
-        "cta": {
-          "label": "Explore ship design",
-          "page": "service_01"
-        },
-        "custom_class": "",
-        "image": 535
-      }
-    },
-    {
-      "type": "project-index",
-      "anchor": "project-list",
-      "fields": {
-        "label": "Project index",
-        "all_label": "ALL",
-        "filter_by": "project_material",
-        "limit": 24,
-        "empty_text": "No projects in this group yet.",
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "spec-list",
-      "fields": {
-        "heading": "Range represented in the current project record",
-        "note": "These figures summarise the vessel data currently recorded in the project catalogue and give a quick sense of the sizes and power ranges the team has worked with.",
-        "rows": [
-          {
-            "label": "Maximum length Lmax",
-            "value": "7.00 – 34.86 m"
-          },
-          {
-            "label": "Maximum breadth Bmax",
-            "value": "2.20 – 7.40 m"
-          },
-          {
-            "label": "Moulded depth D",
-            "value": "1.25 – 3.70 m"
-          },
-          {
-            "label": "Deadweight",
-            "value": "0.73 – 388.02 t"
-          },
-          {
-            "label": "Main-engine power",
-            "value": "85 – 1,452 kW"
-          },
-          {
-            "label": "Hull materials",
-            "value": "Wood · Steel · Composite"
-          },
-          {
-            "label": "Vessel use",
-            "value": "Fishing · Fisheries support · Passenger transport"
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "contact-statement",
-      "fields": {
-        "heading": "Every new vessel comes with its own constraints",
-        "description": "Send the vessel type, hull material, expected dimensions or operating mission. We will compare it with the work already in our project record and explain where that experience is relevant.",
-        "phone": "+84 834 310 781",
-        "email": "hello@lasanmarine.com",
-        "cta": {
-          "label": "Discuss your vessel",
-          "page": "contact"
-        },
-        "custom_class": ""
-      }
-    }
-  ]
+	"key": "projects_en",
+	"title": "Projects",
+	"slug": "projects",
+	"lang": "en",
+	"translation_of": "projects",
+	"seo": {
+		"title": "Ship Design Projects | LASAN MARINE",
+		"description": "Explore selected vessel-design work across different vessel types, hull materials, dimensions and power ranges."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Our completed projects show the scope of work we take on",
+				"heading_level": "h1",
+				"lead": "The portfolio below covers the vessel types, hull materials and size ranges we have designed or documented. Projects similar to your needs give a clearer picture of our relevant experience.",
+				"height": 420,
+				"actions": [
+					{
+						"link": {
+							"label": "Fisheries logistics vessel BV-99889-TS · Lmax 34.86 m",
+							"url": "#fisheries-logistics-vessel-bv-99889-ts-l"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "image-text",
+			"fields": {
+				"heading": "Fisheries logistics vessel BV-99889-TS · Lmax 34.86 m",
+				"content": "<p>BV-99889-TS is a steel-hull fisheries logistics vessel with a length overall of 34.86 m and a deadweight of 388 t. It is one of the packages we have prepared for offshore fisheries logistics vessels.</p>",
+				"cta": {
+					"label": "Explore ship design",
+					"page": "service_01_en"
+				},
+				"image": {
+					"media": "tau_ca_vo_thep_lvtu"
+				},
+				"image_position": "right",
+				"split": "even",
+				"ratio": "ratio-16-9"
+			}
+		},
+		{
+			"type": "project-index",
+			"fields": {
+				"all_label": "All",
+				"empty_text": "No projects in this group yet.",
+				"filter_by": "project_material",
+				"custom_class": ""
+			},
+			"anchor": "portfolio"
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Every new project has its own requirements</p>",
+				"description": "Send us the vessel type, hull material, expected dimensions or function. Drawing on our completed projects, we will discuss what we can take on and the issues to watch.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Discuss your project",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
 }

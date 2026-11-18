@@ -46,7 +46,7 @@ if ( empty( $data->should_render ) ) {
 		</p>
 	</div>
 
-	<div class="pi__list pi__list--gallery">
+	<div class="pi__list pi__list--gallery" data-reveal-stagger="[data-pi-item]" data-reveal-order="grid">
 		<?php foreach ( $data->items as $item ) : ?>
 			<?php get_template_part( 'template-parts/components/project-card', null, array( 'item' => $item, 'filter_key' => $data->filter_key, 'variant' => 'gallery' ) ); ?>
 		<?php endforeach; ?>

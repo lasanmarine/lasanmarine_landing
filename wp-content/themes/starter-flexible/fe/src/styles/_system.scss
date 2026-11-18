@@ -667,9 +667,11 @@ select.field__control {
 .reveal-on [data-reveal] {
 	@apply opacity-0;
 	transform: translateY(28px);
+	/* A launched, critically damped spring (_easing.scss): fast in, no
+	   overshoot. Opacity is done well before the movement settles. */
 	transition:
-		opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
-		transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+		opacity calc(var(--spring-out-ms) * 0.8) var(--spring-out),
+		transform var(--spring-out-ms) var(--spring-out);
 }
 .reveal-on [data-reveal='left'] {
 	transform: translateX(-28px);
@@ -688,15 +690,25 @@ select.field__control {
 	transform: none;
 }
 
+/* Already on screen when the page loaded: shown as painted, no entrance. */
+.reveal-on :is([data-reveal], [data-reveal-item]).reveal-instant {
+	transition: none !important;
+}
+
 /* Children of a `data-reveal-stagger` container arrive one after another.
    reveal.js numbers them; the delay is derived from that index. */
 .reveal-on [data-reveal-item] {
 	@apply opacity-0;
-	transform: translateY(32px) scale(0.985);
+	/* Each block sets its own entrance with these (see _choreography.scss):
+	   where an item comes from, how small it starts, how long it takes. */
+	transform: translate(var(--reveal-x, 0px), var(--reveal-y, 32px)) scale(var(--reveal-scale, 0.985)) rotate(var(--reveal-rotate, 0deg));
+	transform-origin: var(--reveal-origin, 50% 50%);
 	transition:
-		opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
-		transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
-	transition-delay: calc(var(--reveal-i, 0) * 60ms);
+		opacity calc(var(--reveal-ms, var(--spring-out-ms)) * 0.78) var(--reveal-ease, var(--spring-out)),
+		transform var(--reveal-ms, var(--spring-out-ms)) var(--reveal-ease, var(--spring-out));
+	/* reveal.js sets the delay: d(i) = max·(1 − e^(−i·step/max)), so a long
+	   list starts at the same pace but never keeps its last item waiting. */
+	transition-delay: var(--reveal-delay, 0ms);
 }
 .reveal-on [data-reveal-item].is-revealed {
 	@apply opacity-100;
@@ -940,10 +952,16 @@ a:hover .frame::after,
 /* Snapping drives the glide itself. */
 html.is-snapping { scroll-behavior: auto; }
 /* An inset panel is the visible sheet; around it the page stays plain white. */
+/* (The paper around a sheet narrower than the screen is `--bleed` wide,
+   measured by stack.js — see _sheets.scss.) */
 .block-stream.is-stacked > :is(.band, .lasanmarine-page-hero, .lasanmarine-cta-banner, .lasanmarine-contact-statement) {
 	background-color: transparent;
-	box-shadow: 0 0 0 100vmax var(--paper);
-	clip-path: inset(0 -100vmax);
+	box-shadow: none;
+	clip-path: none;
+}
+.block-stream.is-stacked > :is(.band, .lasanmarine-page-hero, .lasanmarine-cta-banner, .lasanmarine-contact-statement)[style*='--bleed'] {
+	box-shadow: 0 0 0 var(--bleed) var(--paper);
+	clip-path: inset(0 calc(-1 * var(--bleed)));
 }
 /* Opaque from the start: the sheet's own fade-in is dropped (its children
    still arrive with their stagger). */
@@ -1074,8 +1092,8 @@ body:has(.block-stream.is-stacked) { overflow-x: clip; }
 	height: 62px;
 }
 }
-/* Anchored sections land below the header. */
-.block-stream > [id] { scroll-margin-top: calc(var(--hdr-h, 76px) + 72px); }
+/* (Anchored sections land below the header: html's scroll-padding-top,
+   _base.scss.) */
 @media (max-width: 1023px) {
 	/* Narrow screens have the menu overlay; the row would crowd the pill. */
 	.onpage { display: none; }
@@ -1095,8 +1113,8 @@ html.reduce-motion *::after {
 	transition-duration: 0.01ms !important;
 	transition-delay: 0s !important;
 }
-html.reduce-motion .reveal-on [data-reveal],
-html.reduce-motion .reveal-on [data-reveal-item] {
+html.reduce-motion.reveal-on [data-reveal],
+html.reduce-motion.reveal-on [data-reveal-item] {
 	opacity: 1 !important;
 	transform: none !important;
 	filter: none !important;
@@ -1325,7 +1343,7 @@ html body .hdr__panel--intro .hdr__panel-intro {
 }
 
 /* --- full-screen tool page (page-app.php) ----------------------------------
-   The tool's own address: a slim bar, then the app filling the screen. */
+   The tool's own address: the app filling the screen. */
 .app-page {
 	overflow: hidden;
 	background: var(--paper);
@@ -1334,28 +1352,6 @@ html body .hdr__panel--intro .hdr__panel-intro {
 	display: flex;
 	flex-direction: column;
 	height: 100svh;
-}
-.appx__bar {
-	display: flex;
-	flex: none;
-	align-items: center;
-	justify-content: space-between;
-	gap: 12px;
-	height: 36px;
-	padding: 0 clamp(12px, 2vw, 24px);
-	background: var(--navy);
-}
-.appx__link {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	color: rgba(255, 255, 255, 0.86);
-	font-size: 13px;
-	font-weight: 500;
-	white-space: nowrap;
-}
-.appx__link:hover {
-	color: #fff;
 }
 .appx__frame {
 	flex: 1;
@@ -1386,8 +1382,10 @@ html body .hdr__panel--intro .hdr__panel-intro {
    sheet sliding over never shows a half-covered one through its gaps. */
 .block-stream.is-stacked > .lasanmarine-hero {
 	background-color: var(--paper);
-	box-shadow: 0 0 0 100vmax var(--paper);
-	clip-path: inset(0 -100vmax);
+}
+.block-stream.is-stacked > .lasanmarine-hero[style*='--bleed'] {
+	box-shadow: 0 0 0 var(--bleed) var(--paper);
+	clip-path: inset(0 calc(-1 * var(--bleed)));
 }
 
 /* --- mobile fixes (2026-11-08) --------------------------------------------- */

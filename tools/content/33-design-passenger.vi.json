@@ -1,0 +1,191 @@
+{
+	"key": "design_passenger",
+	"title": "Thiết kế tàu khách, cano du lịch & phương tiện thủy nội địa",
+	"slug": "tau-khach-cano",
+	"lang": "vi",
+	"parent": "service_01",
+	"seo": {
+		"title": "Thiết kế tàu khách, cano du lịch & phương tiện thủy nội địa | LASAN MARINE",
+		"description": "Thiết kế tàu khách, cano du lịch, tàu tham quan và phương tiện thủy nội địa: bố trí ghế, ổn định, cứu sinh và hồ sơ đăng kiểm. Gọi hoặc Zalo 0834 310 781."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Thiết kế tàu khách, cano du lịch và phương tiện thủy nội địa",
+				"heading_level": "h1",
+				"lead": "Tàu chở khách cần an toàn trước hết: ổn định khi khách dồn một bên, đủ trang thiết bị cứu sinh và bố trí thoát hiểm hợp lý. Chúng tôi thiết kế để tàu được duyệt nhanh và khai thác hiệu quả.",
+				"height": 420,
+				"actions": [
+					{
+						"link": {
+							"label": "Cano chở khách đã thiết kế",
+							"url": "#cano-cho-khach-da-thiet-ke"
+						}
+					},
+					{
+						"link": {
+							"label": "Những nhu cầu thường gặp",
+							"url": "#nhung-nhu-cau-thuong-gap"
+						}
+					},
+					{
+						"link": {
+							"label": "Bạn nhận được gì",
+							"url": "#ban-nhan-duoc-gi"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Những nhu cầu thường gặp",
+				"intro": "",
+				"solution_label": "Chúng tôi xử lý",
+				"items": [
+					{
+						"problem": "Cano đưa đón khách tham quan đảo",
+						"context": "Cần chạy nhanh, êm, chở đúng số khách đăng ký.",
+						"solution": "Tuyến hình lướt, bố trí ghế, tính ổn định và chọn máy theo tốc độ khai thác.",
+						"link": {
+							"label": "Thử mô phỏng sức cản",
+							"page": "app_resistance"
+						}
+					},
+					{
+						"problem": "Tàu tham quan, nhà hàng nổi",
+						"context": "Không gian rộng, nhiều tầng, đông khách.",
+						"solution": "Bố trí chung, ổn định với khách dồn mạn, trang thiết bị an toàn và thoát hiểm.",
+						"link": {
+							"label": "Trao đổi phương án",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Phương tiện thủy nội địa",
+						"context": "Đò ngang, phà nhỏ, xuồng dịch vụ trên sông, hồ.",
+						"solution": "Thiết kế và hồ sơ theo quy chuẩn phương tiện thủy nội địa.",
+						"link": {
+							"label": "Gửi yêu cầu",
+							"page": "contact"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "Bạn nhận được gì",
+				"intro": "Hồ sơ thiết kế tàu khách đầy đủ để đóng mới và đăng kiểm.",
+				"note_label": "Thời gian",
+				"note": "Thời gian được thống nhất khi báo giá, tùy loại tàu, phạm vi công việc và hồ sơ hiện có. Bạn biết trước mốc bàn giao từng phần.",
+				"items": [
+					{
+						"title": "Bố trí chung, bố trí ghế khách",
+						"desc": "Lối đi, thoát hiểm, khu vực tiện ích",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Bản tính ổn định",
+						"desc": "Gồm trạng thái khách dồn một mạn",
+						"format": "PDF"
+					},
+					{
+						"title": "Trang thiết bị an toàn, cứu sinh",
+						"desc": "Theo quy chuẩn và số khách",
+						"format": "PDF"
+					},
+					{
+						"title": "Kết cấu, máy, hồ sơ trình thẩm tra",
+						"desc": "Giải trình đến khi được duyệt",
+						"format": "PDF · DWG"
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "Làm việc với chúng tôi thế nào?",
+				"intro": "",
+				"steps": [
+					{
+						"title": "Gửi thông tin qua Zalo hoặc điện thoại",
+						"desc": "Loại tàu, kích thước dự kiến, vùng hoạt động và ảnh hoặc hồ sơ hiện có."
+					},
+					{
+						"title": "Khảo sát và báo giá",
+						"desc": "Xác định phạm vi, hạng mục bàn giao và mốc thời gian, báo giá rõ từng phần."
+					},
+					{
+						"title": "Thiết kế và tính toán",
+						"desc": "Triển khai bản vẽ, bản tính bằng công cụ chuyên ngành và công cụ tự phát triển."
+					},
+					{
+						"title": "Thẩm tra và bàn giao",
+						"desc": "Phối hợp giải trình khi thẩm tra, cập nhật hồ sơ và bàn giao bản cuối."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Cano chở khách đã thiết kế",
+				"intro": "",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
+				},
+				"projects": [
+					"cano-lam-hai",
+					"cano-clc-02"
+				]
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp",
+				"intro": "",
+				"items": [
+					{
+						"title": "Thiết kế tàu khách cần lưu ý gì nhất?",
+						"content": "<p>Ổn định khi khách dồn về một mạn, đủ phương tiện cứu sinh theo số khách và lối thoát hiểm. Đây là các điểm thẩm tra xem kỹ nhất.</p>"
+					},
+					{
+						"title": "Có thiết kế cano composite chở khách không?",
+						"content": "<p>Có, phần lớn cano chở khách chúng tôi thiết kế là vỏ composite.</p>"
+					},
+					{
+						"title": "Tôi có thể gửi yêu cầu qua Zalo không?",
+						"content": "<p>Có. Gửi số khách, tuyến khai thác và tốc độ mong muốn qua Zalo 0834 310 781.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn cần tàu khách hoặc cano du lịch?</p>",
+				"description": "Gọi hoặc nhắn Zalo số khách, tuyến khai thác và tốc độ mong muốn. Chúng tôi đề xuất phương án phù hợp.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu qua form",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

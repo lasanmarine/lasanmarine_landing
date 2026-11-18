@@ -159,12 +159,26 @@
 	height: 24px;
 	animation: io-nudge 1.6s var(--ease) infinite;
 }
-.io__arrow::after {
+/* The ring that pulses out of the badge. It used to be an animated
+   box-shadow spread (a repaint every frame); it is now a disc the size of the
+   badge that scales out and fades, seen through a fixed ring-shaped mask —
+   the same annulus, growing from the badge's edge to 14px, on the
+   compositor. Scale 40/26 = the badge radius plus the old 14px spread. */
+.io__pulse {
+	position: absolute;
+	inset: -14px;
+	border-radius: 50%;
+	pointer-events: none;
+	-webkit-mask: radial-gradient(circle closest-side, transparent calc(var(--io-arrow) / 2), #000 calc(var(--io-arrow) / 2));
+	mask: radial-gradient(circle closest-side, transparent calc(var(--io-arrow) / 2), #000 calc(var(--io-arrow) / 2));
+}
+.io__pulse::before {
 	content: '';
 	position: absolute;
-	inset: 0;
-	border-radius: inherit;
-	box-shadow: 0 0 0 0 rgba(20, 200, 200, 0.45);
+	inset: 14px;
+	border-radius: 50%;
+	background: rgb(20, 200, 200);
+	opacity: 0;
 	animation: io-pulse 2.4s ease-out infinite;
 }
 .io__col:hover .io__arrow {
@@ -175,8 +189,8 @@
 	50% { transform: translateX(4px); }
 }
 @keyframes io-pulse {
-	0% { box-shadow: 0 0 0 0 rgba(20, 200, 200, 0.45); }
-	70%, 100% { box-shadow: 0 0 0 14px rgba(20, 200, 200, 0); }
+	0% { opacity: 0.45; transform: scale(1); }
+	70%, 100% { opacity: 0; transform: scale(1.5385); } /* (26 + 14) / 26 */
 }
 @media (max-width: 820px) {
 	.io__arrow {
@@ -188,7 +202,46 @@
 }
 @media (prefers-reduced-motion: reduce) {
 	.io__arrow svg,
-	.io__arrow::after { animation: none; }
+	.io__pulse::before { animation: none; }
 }
 html.reduce-motion .io__arrow svg,
-html.reduce-motion .io__arrow::after { animation: none; }
+html.reduce-motion .io__pulse::before { animation: none; }
+
+/* --- motion (MOTION.md: input-output) ---------------------------------------
+   Entrance, left to right: the input column, then the arrow, then the next
+   column — the order the work flows in. The columns rise in turn, spaced
+   wider than the kit's 60ms step so each one lands before the next starts;
+   each arrow pops (scale + fade, soft spring) between the column it leaves
+   and the one it points to. The arrow uses `scale`, not `transform`: on a
+   phone its transform turns it to point down. */
+.lasanmarine-input-output {
+	--reveal-y: 24px;
+	--reveal-scale: 1;
+	--io-beat: 3; /* column delay = the kit's stagger delay × this */
+}
+.reveal-on .lasanmarine-input-output .io__col[data-reveal-item] {
+	transition-delay: calc(var(--reveal-delay, 0ms) * var(--io-beat));
+}
+.reveal-on .io__col[data-reveal-item] .io__arrow {
+	opacity: 0;
+	scale: 0.6;
+	transition:
+		opacity var(--spring-snappy-ms) var(--spring-snappy),
+		scale var(--spring-soft-ms) var(--spring-soft);
+	transition-delay: calc(var(--reveal-delay, 0ms) * var(--io-beat) + 220ms);
+}
+.reveal-on .io__col[data-reveal-item].is-revealed .io__arrow {
+	opacity: 1;
+	scale: 1;
+}
+/* On screen at load: shown as painted, the arrow too (the kit's
+   reveal-instant only holds back the column's own transition). */
+.reveal-on .io__col.reveal-instant .io__arrow {
+	transition: none;
+}
+/* reveal-on sits on <html> itself, so both spellings are needed. */
+html.reduce-motion.reveal-on .io__arrow,
+html.reduce-motion.reveal-on .io__arrow {
+	opacity: 1 !important;
+	scale: none !important;
+}

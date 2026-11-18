@@ -1,270 +1,289 @@
 {
-  "key": "service_01",
-  "title": "Thiết kế tàu",
-  "slug": "thiet-ke-tau",
-  "lang": "vi",
-  "seo": {
-    "title": "Thiết kế tàu, cải hoán và hồ sơ đăng kiểm | LASAN MARINE",
-    "description": "Dịch vụ thiết kế tàu gồm đóng mới, cải hoán, các nhóm tính toán thủy tĩnh, ổn định, kết cấu, sức cản, hệ động lực và hồ sơ phục vụ thẩm tra, đăng kiểm."
-  },
-  "blocks": [
-    {
-      "type": "page-hero",
-      "fields": {
-        "headline": "Thiết kế tàu từ yêu cầu khai thác đến hồ sơ kỹ thuật",
-        "lead": "Chúng tôi thực hiện thiết kế tàu đóng mới, cải hoán và các nhóm tính toán chuyên biệt. Có dự án cần một bộ hồ sơ hoàn chỉnh, nhưng cũng có dự án chỉ cần bổ sung một số bản tính, bản vẽ hoặc tài liệu để tiếp tục thẩm tra, đăng kiểm, thi công hoặc hoàn công.",
-        "placeholder": "Thiết kế tàu",
-        "heading_level": "h1",
-        "height": 420,
-        "custom_class": "",
-        "image": 585
-      }
-    },
-    {
-      "type": "use-case",
-      "fields": {
-        "heading": "Mỗi dự án cần những phần việc khác nhau",
-        "intro": "Một tàu đóng mới, một phương án cải hoán và một yêu cầu tính toán riêng sẽ cần những phần việc khác nhau. Chúng tôi xem mục tiêu của dự án và hồ sơ hiện có để xác định phần nào cần thực hiện trước.",
-        "items": [
-          {
-            "problem": "Tôi cần xây dựng phương án cho một tàu mới từ yêu cầu khai thác",
-            "context": "Đã có loại tàu, công năng, vùng hoạt động hoặc một số giới hạn chính nhưng chưa có phương án kỹ thuật hoàn chỉnh.",
-            "solution": "Từ những yêu cầu khai thác ban đầu, chúng tôi phát triển kích thước chính, tuyến hình, bố trí, kết cấu và hệ động lực theo phần việc đã thống nhất. Khi phương án đã rõ, LASAN tiếp tục các bước tính toán và triển khai hồ sơ chi tiết.",
-            "link": {
-              "label": "Xây dựng nhiệm vụ thư",
-              "page": "design_brief"
-            }
-          },
-          {
-            "problem": "Tàu đang khai thác cần kéo dài, nâng cabin hoặc đổi công năng",
-            "context": "Thay đổi kích thước, tải trọng, bố trí hoặc thiết bị có thể kéo theo thay đổi về ổn định, kết cấu và hệ thống.",
-            "solution": "Chúng tôi rà soát hồ sơ và hiện trạng phương tiện để xác định những hạng mục bị ảnh hưởng bởi phương án thay đổi. Sau khi xem xét, LASAN xác định những phần cần kiểm tra lại và những bản vẽ hoặc tính toán cần cập nhật.",
-            "link": {
-              "label": "Trao đổi phương án cải hoán",
-              "page": "contact"
-            }
-          },
-          {
-            "problem": "Tôi chỉ cần kiểm tra một nhóm tính toán",
-            "context": "Dự án đã có phương án nhưng cần làm rõ ổn định, sức cản, công suất máy, chân vịt, đường kính trục hoặc độ bền kết cấu.",
-            "solution": "Chúng tôi có thể thực hiện riêng từng nhóm tính toán. Khách hàng vẫn có đủ số liệu để xem xét phương án mà không phải làm lại những phần hồ sơ đã có.",
-            "link": {
-              "label": "Gửi bài toán cần tính",
-              "page": "contact"
-            }
-          },
-          {
-            "problem": "Hồ sơ đã có nhưng còn thiếu phần để thẩm tra, đăng kiểm hoặc hoàn công",
-            "context": "Một số bản tính, bản vẽ hoặc tài liệu chưa đầy đủ cho mục tiêu sử dụng tiếp theo.",
-            "solution": "Chúng tôi kiểm tra bộ hồ sơ hiện có, bổ sung những bản tính hoặc bản vẽ còn thiếu và phối hợp giải trình đối với phần hồ sơ do mình thực hiện.",
-            "link": {
-              "label": "Gửi hồ sơ hiện có",
-              "page": "contact"
-            }
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "service-architecture",
-      "fields": {
-        "heading": "Tùy tình trạng dự án, chúng tôi có thể tham gia toàn bộ hoặc một phần công việc",
-        "caption": "Chúng tôi có thể tham gia từ giai đoạn xây dựng phương án đến khi hoàn thiện hồ sơ chi tiết. Nếu dự án đã có sẵn dữ liệu, bản vẽ hoặc một phần hồ sơ, chúng tôi có thể chỉ thực hiện những hạng mục còn thiếu.",
-        "view_all": "Xem dự án đã thực hiện",
-        "view_all_link": {
-          "label": "Xem dự án đã thực hiện",
-          "page": "projects"
-        },
-        "items": [
-          {
-            "index": "01",
-            "name": "Thiết kế đóng mới",
-            "desc": "LASAN phát triển phương án từ yêu cầu khai thác, sau đó triển khai các bản tính, bản vẽ và tài liệu kỹ thuật cần thiết cho quá trình chuẩn bị đóng tàu.",
-            "link": {
-              "label": "Trao đổi dự án đóng mới",
-              "page": "contact"
-            },
-            "children": [
-              {
-                "name": "Kích thước chính, tuyến hình và bố trí chung"
-              },
-              {
-                "name": "Kết cấu thân tàu và bố trí hệ thống"
-              },
-              {
-                "name": "Hệ động lực, chân vịt và thiết bị liên quan"
-              },
-              {
-                "name": "Tài liệu phục vụ thẩm tra và đăng kiểm"
-              }
-            ]
-          },
-          {
-            "index": "02",
-            "name": "Thiết kế cải hoán",
-            "desc": "LASAN kiểm tra những phần có thể bị ảnh hưởng khi phương tiện thay đổi công năng, kích thước, tải trọng, bố trí hoặc thiết bị.",
-            "link": {
-              "label": "Trao đổi dự án cải hoán",
-              "page": "contact"
-            },
-            "children": [
-              {
-                "name": "Đổi nghề hoặc thay đổi công năng khai thác"
-              },
-              {
-                "name": "Kéo dài thân vỏ, nâng mạn hoặc thay đổi kích thước chính"
-              },
-              {
-                "name": "Nâng cabin, gia cố boong và lắp thiết bị mới"
-              },
-              {
-                "name": "Thay đổi máy chính, hệ trục hoặc hệ thống lái"
-              }
-            ]
-          },
-          {
-            "index": "03",
-            "name": "Tính toán và hoàn thiện hồ sơ kỹ thuật",
-            "desc": "LASAN thực hiện các nhóm tính toán hoặc bổ sung tài liệu để khách hàng tiếp tục kiểm tra phương án, hoàn công, thẩm tra hoặc đăng kiểm.",
-            "link": {
-              "label": "Gửi yêu cầu tính toán",
-              "page": "contact"
-            },
-            "children": [
-              {
-                "name": "Thủy tĩnh, ổn định, chống chìm và thử nghiêng"
-              },
-              {
-                "name": "Sức cản, công suất máy, chân vịt và hệ trục"
-              },
-              {
-                "name": "Tính toán và kiểm tra kết cấu"
-              },
-              {
-                "name": "Hồ sơ hoàn công và tài liệu kỹ thuật liên quan"
-              }
-            ]
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "service-spotlight",
-      "fields": {
-        "placeholder": "Hồ sơ thiết kế tàu",
-        "caption": "Bản tính · Bản vẽ · Tài liệu kỹ thuật",
-        "heading": "Trước khi bắt đầu, hai bên trao đổi rõ những gì sẽ bàn giao",
-        "body": "Tùy mục đích sử dụng, dự án có thể cần một bộ hồ sơ hoàn chỉnh hoặc chỉ một nhóm bản tính, bản vẽ hay tài liệu bổ sung. Hai bên trao đổi trước về nội dung bàn giao để khách hàng biết rõ mình sẽ nhận được gì và phần nào không nằm trong công việc đã thống nhất.",
-        "items": [
-          {
-            "text": "Bản tính thủy tĩnh, ổn định, sức cản, kết cấu và hệ động lực theo phần việc đã thống nhất"
-          },
-          {
-            "text": "Bản vẽ bố trí, kết cấu, hệ thống và các chi tiết kỹ thuật liên quan"
-          },
-          {
-            "text": "Thuyết minh, sổ tay, hồ sơ hoàn công hoặc tài liệu phục vụ thẩm tra"
-          },
-          {
-            "text": "Phối hợp giải trình và hiệu chỉnh đối với phần hồ sơ LASAN đảm nhận"
-          }
-        ],
-        "cta": {
-          "label": "Trao đổi về hồ sơ cần thực hiện",
-          "page": "contact"
-        },
-        "custom_class": "",
-        "image": 586
-      }
-    },
-    {
-      "type": "process-timeline",
-      "fields": {
-        "label": "Quy trình triển khai",
-        "steps": [
-          {
-            "index": "01",
-            "title": "Trao đổi yêu cầu và xem hồ sơ hiện có",
-            "desc": "Chúng tôi xem yêu cầu, hồ sơ hiện có và mục đích sử dụng của kết quả. Hai bên sau đó thống nhất phần việc sẽ thực hiện trước khi đi vào các tính toán chi tiết."
-          },
-          {
-            "index": "02",
-            "title": "Phát triển và kiểm tra phương án",
-            "desc": "LASAN kiểm tra các thông số chính, tuyến hình, bố trí và những tính toán cơ sở trước khi triển khai hồ sơ chi tiết, qua đó hạn chế các thay đổi lớn ở giai đoạn sau."
-          },
-          {
-            "index": "03",
-            "title": "Triển khai bản tính và bản vẽ",
-            "desc": "LASAN triển khai bản tính và bản vẽ theo phần việc đã thống nhất và theo quy chuẩn áp dụng cho loại phương tiện tương ứng."
-          },
-          {
-            "index": "04",
-            "title": "Phối hợp thẩm tra và xử lý phản hồi",
-            "desc": "Chúng tôi giải trình và cập nhật phần hồ sơ do mình thực hiện khi có ý kiến chuyên môn trong quá trình thẩm tra hoặc triển khai."
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "project-showcase",
-      "fields": {
-        "label": "Dự án thiết kế tiêu biểu",
-        "projects": [
-          "tau-hau-can-bv-99889-ts",
-          "tau-ca-vo-thep-qna-91312-ts",
-          "cano-lam-hai"
-        ],
-        "limit": 3,
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "accordion",
-      "fields": {
-        "heading": "Một số câu hỏi thường gặp trước khi bắt đầu dự án thiết kế",
-        "intro": "Bạn không cần có một bộ hồ sơ hoàn chỉnh để bắt đầu trao đổi. Các câu hỏi dưới đây giải thích thêm về dữ liệu đầu vào, phần việc chúng tôi có thể thực hiện và cách hai bên phối hợp trong quá trình triển khai.",
-        "items": [
-          {
-            "title": "Tôi chưa có đủ thông số thì LASAN có thể bắt đầu không?",
-            "content": "Có. Những thông tin như loại tàu, công năng, vùng hoạt động, kích thước dự kiến hoặc hồ sơ hiện trạng là đủ để bắt đầu trao đổi. Sau khi xem thông tin, chúng tôi sẽ trao đổi phần dữ liệu nào cần bổ sung cho công việc đang xem xét."
-          },
-          {
-            "title": "Có thể chỉ thuê một hạng mục tính toán thay vì toàn bộ hồ sơ không?",
-            "content": "Có. LASAN có thể chỉ thực hiện ổn định, sức cản, công suất, chân vịt, hệ trục, kết cấu hoặc một số bản vẽ cụ thể nếu dự án chỉ cần những hạng mục đó."
-          },
-          {
-            "title": "Có nhận thiết kế cải hoán tàu đang khai thác không?",
-            "content": "Có. LASAN sẽ xem hồ sơ và hiện trạng phương tiện để xác định những phần bị ảnh hưởng khi thay đổi công năng, kích thước, tải trọng, thiết bị hoặc hệ động lực, sau đó trao đổi các hạng mục cần cải hoán."
-          },
-          {
-            "title": "LASAN có hỗ trợ trong quá trình thẩm tra, đăng kiểm không?",
-            "content": "Có. Với phần hồ sơ do LASAN thực hiện, đội ngũ sẽ phối hợp giải trình và cập nhật theo các ý kiến chuyên môn phát sinh trong quá trình thẩm tra hoặc đăng kiểm."
-          },
-          {
-            "title": "Thời gian thực hiện một bộ hồ sơ phụ thuộc vào những yếu tố nào?",
-            "content": "Tiến độ phụ thuộc vào loại tàu, mức độ đầy đủ của hồ sơ đầu vào, số lượng tính toán và bản vẽ cần thực hiện. Sau khi xem tài liệu hiện có, chúng tôi sẽ trao đổi mốc thời gian dự kiến để khách hàng chủ động kế hoạch."
-          }
-        ],
-        "open_first": 0,
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "contact-statement",
-      "fields": {
-        "heading": "Hồ sơ hiện có là đủ để bắt đầu trao đổi",
-        "description": "Loại tàu, vùng hoạt động, kích thước dự kiến, bản vẽ cũ hoặc ảnh hiện trạng đều hữu ích cho buổi trao đổi đầu tiên. Sau khi xem hồ sơ, chúng tôi sẽ trao đổi những hạng mục có thể thực hiện và tài liệu dự kiến bàn giao.",
-        "phone": "0834 310 781",
-        "email": "hello@lasanmarine.com",
-        "cta": {
-          "label": "Gửi thông tin dự án",
-          "page": "contact"
-        },
-        "custom_class": ""
-      }
-    }
-  ]
+	"key": "service_01",
+	"title": "Thiết kế tàu",
+	"slug": "thiet-ke-tau",
+	"lang": "vi",
+	"parent": "capabilities",
+	"seo": {
+		"title": "Thiết kế tàu, cải hoán và hồ sơ đăng kiểm | LASAN MARINE",
+		"description": "Dịch vụ thiết kế tàu gồm đóng mới, cải hoán, các nhóm tính toán thủy tĩnh, ổn định, kết cấu, sức cản, hệ động lực và hồ sơ phục vụ thẩm tra, đăng kiểm."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Thiết kế tàu từ yêu cầu khai thác đến hồ sơ kỹ thuật",
+				"heading_level": "h1",
+				"lead": "LASAN MARINE thực hiện thiết kế đóng mới, cải hoán và các hạng mục tính toán chuyên biệt. Tùy tình trạng dự án, chúng tôi có thể triển khai toàn bộ hồ sơ hoặc chỉ thực hiện những bản tính, bản vẽ và tài liệu còn thiếu.",
+				"height": 420,
+				"actions": [
+					{
+						"link": {
+							"label": "Dự án thiết kế tiêu biểu",
+							"url": "#du-an-thiet-ke-tieu-bieu"
+						}
+					},
+					{
+						"link": {
+							"label": "Bạn đang ở giai đoạn nào?",
+							"url": "#ban-dang-o-giai-doan-nao"
+						}
+					},
+					{
+						"link": {
+							"label": "Phạm vi công việc",
+							"url": "#pham-vi-cong-viec"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Bạn đang ở giai đoạn nào?",
+				"intro": "",
+				"solution_label": "Chúng tôi có thể thực hiện",
+				"items": [
+					{
+						"problem": "Tôi đang chuẩn bị đóng một tàu mới",
+						"context": "Bạn đã xác định loại tàu, công năng, vùng hoạt động hoặc một số giới hạn chính nhưng chưa có phương án kỹ thuật hoàn chỉnh.",
+						"solution": "Phát triển kích thước chính, tuyến hình, bố trí chung, kết cấu và hệ động lực; sau đó triển khai các bản tính, bản vẽ và hồ sơ theo phạm vi đã thống nhất.",
+						"link": {
+							"label": "Xây dựng nhiệm vụ thư",
+							"page": "design_brief"
+						}
+					},
+					{
+						"problem": "Tôi cần cải hoán một tàu đang khai thác",
+						"context": "Kéo dài thân · Nâng cabin · Đổi công năng · Thay máy · Lắp thêm thiết bị",
+						"solution": "Rà soát hồ sơ và hiện trạng để xác định những phần bị ảnh hưởng, từ đó kiểm tra lại tính toán và cập nhật các bản vẽ cần thiết.",
+						"link": {
+							"label": "Trao đổi phương án cải hoán",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Tôi chỉ cần một hạng mục tính toán",
+						"context": "Không nhất thiết phải triển khai lại toàn bộ hồ sơ.",
+						"solution": "Thực hiện độc lập các bài toán như thủy tĩnh, ổn định, sức cản, công suất máy, chân vịt, hệ trục hoặc kết cấu.",
+						"link": {
+							"label": "Gửi bài toán cần tính",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Tôi đã có hồ sơ nhưng còn thiếu một số hạng mục",
+						"context": "Một số bản tính, bản vẽ hoặc tài liệu chưa đủ cho mục tiêu thẩm tra, đăng kiểm hoặc hoàn công.",
+						"solution": "Kiểm tra bộ hồ sơ hiện có, xác định những phần còn thiếu và bổ sung các bản tính, bản vẽ hoặc tài liệu cần thiết.",
+						"link": {
+							"label": "Gửi hồ sơ hiện có",
+							"page": "contact"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "service-architecture",
+			"fields": {
+				"heading": "Phạm vi công việc",
+				"view_all": "Xem dự án đã thực hiện",
+				"view_all_link": {
+					"label": "Xem dự án đã thực hiện",
+					"page": "projects"
+				},
+				"items": [
+					{
+						"name": "Thiết kế đóng mới",
+						"desc": "",
+						"note": "",
+						"link": {
+							"label": "",
+							"page": "contact"
+						},
+						"image": "",
+						"children": [
+							{
+								"name": "Kích thước chính, tuyến hình, bố trí chung"
+							},
+							{
+								"name": "Kết cấu thân tàu và hệ thống"
+							},
+							{
+								"name": "Hệ động lực, chân vịt và thiết bị"
+							},
+							{
+								"name": "Hồ sơ phục vụ thẩm tra và đăng kiểm"
+							}
+						]
+					},
+					{
+						"name": "Thiết kế cải hoán",
+						"desc": "",
+						"note": "",
+						"link": {
+							"label": "",
+							"page": "contact"
+						},
+						"image": "",
+						"children": [
+							{
+								"name": "Thay đổi công năng"
+							},
+							{
+								"name": "Kéo dài thân, nâng mạn, thay đổi kích thước"
+							},
+							{
+								"name": "Nâng cabin, gia cố và lắp thiết bị"
+							},
+							{
+								"name": "Thay máy, hệ trục hoặc hệ thống lái"
+							}
+						]
+					},
+					{
+						"name": "Tính toán và hoàn thiện hồ sơ",
+						"desc": "",
+						"note": "",
+						"link": {
+							"label": "",
+							"page": "contact"
+						},
+						"image": "",
+						"children": [
+							{
+								"name": "Thủy tĩnh, ổn định và chống chìm"
+							},
+							{
+								"name": "Sức cản, công suất, chân vịt và hệ trục"
+							},
+							{
+								"name": "Kết cấu"
+							},
+							{
+								"name": "Hồ sơ hoàn công và tài liệu kỹ thuật"
+							}
+						]
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "service-spotlight",
+			"fields": {
+				"label": "",
+				"image": {
+					"media": "alexander-grey-tn57ji3cewi-unsplash"
+				},
+				"caption": "Bản tính · Bản vẽ · Tài liệu kỹ thuật",
+				"heading": "Bạn sẽ nhận được gì?",
+				"body": "Nội dung bàn giao được thống nhất trước khi triển khai. Tùy dự án, kết quả có thể gồm:",
+				"items": [
+					{
+						"text": "Bản tính kỹ thuật"
+					},
+					{
+						"text": "Bản vẽ thiết kế"
+					},
+					{
+						"text": "Thuyết minh, sổ tay và tài liệu kỹ thuật"
+					},
+					{
+						"text": "Hồ sơ phục vụ thẩm tra, đăng kiểm hoặc hoàn công"
+					},
+					{
+						"text": "Phối hợp giải trình đối với phần chúng tôi thực hiện"
+					}
+				],
+				"cta": {
+					"label": "Trao đổi về hồ sơ cần thực hiện",
+					"page": "contact"
+				},
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "Quy trình triển khai",
+				"intro": "",
+				"steps": [
+					{
+						"title": "Xem yêu cầu và hồ sơ",
+						"desc": "Xác định mục tiêu, dữ liệu đầu vào và phạm vi công việc."
+					},
+					{
+						"title": "Phát triển phương án",
+						"desc": "Kiểm tra kích thước, tuyến hình, bố trí và các tính toán cơ sở."
+					},
+					{
+						"title": "Triển khai hồ sơ",
+						"desc": "Thực hiện bản tính, bản vẽ và tài liệu theo phạm vi thống nhất."
+					},
+					{
+						"title": "Phối hợp thẩm tra",
+						"desc": "Giải trình và cập nhật phần hồ sơ chúng tôi thực hiện khi có phản hồi chuyên môn."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Dự án thiết kế tiêu biểu",
+				"intro": "",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-hau-can-bv-99889-ts",
+					"tau-ca-vo-thep-qna-91312-ts",
+					"cano-lam-hai"
+				]
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp",
+				"intro": "",
+				"items": [
+					{
+						"title": "Tôi chưa có đầy đủ hồ sơ thì có thể bắt đầu không?",
+						"content": "<p>Có. Chỉ cần gửi thông tin và tài liệu hiện có.</p>"
+					},
+					{
+						"title": "Thời gian thực hiện phụ thuộc vào gì?",
+						"content": "<p>Loại tàu, phạm vi công việc, tình trạng dữ liệu đầu vào và mức độ thẩm tra.</p>"
+					},
+					{
+						"title": "LASAN MARINE có hỗ trợ trong quá trình đăng kiểm không?",
+						"content": "<p>Có, đối với phần hồ sơ do chúng tôi thực hiện.</p>"
+					}
+				],
+				"open_first": 0,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn không cần chuẩn bị đầy đủ hồ sơ trước khi liên hệ</p>",
+				"description": "Hãy gửi loại tàu, yêu cầu cần xử lý và những tài liệu hiện có. Chúng tôi sẽ xem thông tin và trao đổi những phần cần bổ sung trước khi triển khai.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi thông tin dự án",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
 }

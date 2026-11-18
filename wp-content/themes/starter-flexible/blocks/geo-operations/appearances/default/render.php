@@ -41,7 +41,7 @@ if ( empty( $data->should_render ) ) {
 				</ul>
 			</div>
 
-			<div class="geo__plate">
+			<div class="geo__plate" data-reveal-stagger=".geo__island, [data-geo-pin]">
 				<svg viewBox="0 0 <?php echo esc_attr( (string) $data->map_width ); ?> <?php echo esc_attr( (string) $data->map_height ); ?>" role="img" aria-label="<?php echo esc_attr( $data->heading ); ?>">
 					<g class="geo__grid" aria-hidden="true">
 						<?php foreach ( $data->grid_y as $y ) : ?>

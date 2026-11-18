@@ -2381,3 +2381,37 @@ html[data-nav-open='true'] .hdr.is-tucked {
 .hdr__menu[aria-expanded='true'] .hdr__menu-x {
 	display: inline-flex;
 }
+
+/* --- phones and tablets: one header, always (2026-11-18) ----------------------
+   The floating pill was see-through (82% white, blurred), so the page read
+   through it, and opening the menu reshaped it into the flush bar — a jump.
+   Below the desktop layout the header is the flush, opaque bar in every
+   state, exactly as when the menu is open, so opening the menu moves
+   nothing. (Desktop keeps the pill.) */
+@media (max-width: 1024px) {
+	.hdr:has(.hdr__bar.is-stuck) {
+		padding: 0;
+	}
+	.hdr__bar.is-stuck,
+	html[data-nav-open='true'] .hdr__bar.is-stuck {
+		height: 76px;
+		margin: 0;
+		border-color: transparent;
+		border-bottom-color: var(--line-soft);
+		border-radius: 0;
+		box-shadow: none;
+		background: var(--paper);
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
+	.hdr__bar.is-stuck .hdr__bar-inner,
+	html[data-nav-open='true'] .hdr__bar.is-stuck .hdr__bar-inner {
+		padding-inline: var(--gutter);
+	}
+}
+@media (max-width: 600px) {
+	.hdr__bar.is-stuck,
+	html[data-nav-open='true'] .hdr__bar.is-stuck {
+		height: 64px;
+	}
+}

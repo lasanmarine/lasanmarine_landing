@@ -233,13 +233,30 @@
 	border-radius: var(--r-xl);
 	background: var(--surface);
 	color: var(--navy);
-	transition: background 260ms var(--ease), box-shadow 260ms var(--ease), transform 260ms var(--ease);
+	/* The hover ground (paper, hairline, soft shadow) is its own layer that
+	   fades in: the lift is opacity + transform only, never a repaint. */
+	position: relative;
+	isolation: isolate;
+	transition: transform var(--spring-soft-ms) var(--spring-soft);
+}
+.pj-card--gallery > .pj-card__in::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	border-radius: inherit;
+	background: var(--paper);
+	box-shadow: inset 0 0 0 1px var(--line-soft), 0 22px 44px -28px rgba(10, 114, 200, 0.45);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--spring-snappy-ms) var(--spring-snappy);
 }
 .pj-card--gallery[hidden] { display: none; }
 .pj-card--gallery:hover > .pj-card__in {
-	background: var(--paper);
-	box-shadow: inset 0 0 0 1px var(--line-soft), 0 22px 44px -28px rgba(10, 114, 200, 0.45);
 	transform: translateY(-3px);
+}
+.pj-card--gallery:hover > .pj-card__in::before {
+	opacity: 1;
 }
 .pj-card--gallery .frame--natural {
 	aspect-ratio: auto;
@@ -288,3 +305,29 @@
 }
 /* Darker teal on the pale card: passes WCAG AA at this size. */
 .pj-card__tag { color: #066664; }
+
+/* --- motion (MOTION.md: project-index, insights) ----------------------------
+   Entrance: the wall fills as a diagonal wave (data-reveal-order="grid"), each
+   card rising a little and opening from just under full size.
+   Filter: the thumb travels (tab-thumb.js) and the cards re-flow (View
+   Transition, behaviour.js). The block itself does not fade as a whole: on a
+   phone it is many screens tall, and the cards carry the entrance. */
+.lasanmarine-project-index,
+.in--index {
+	--reveal-y: 28px;
+	--reveal-scale: 0.97;
+	--reveal-origin: 50% 100%;
+	--reveal-ms: var(--spring-out-ms);
+}
+.reveal-on .lasanmarine-project-index[data-reveal],
+.reveal-on .in--index[data-reveal] {
+	opacity: 1;
+	transform: none;
+	transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.pj-card--gallery > .pj-card__in,
+	.pj-card--gallery > .pj-card__in::before {
+		transition: none;
+	}
+}

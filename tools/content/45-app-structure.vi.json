@@ -1,0 +1,21 @@
+{
+	"key": "app_structure",
+	"title": "Mô phỏng kết cấu tàu vỏ thép 3D",
+	"slug": "mo-phong-ket-cau-tau",
+	"lang": "vi",
+	"parent": "tools",
+	"template": "page-app.php",
+	"seo": {
+		"title": "Mô phỏng kết cấu tàu vỏ thép 3D | LASAN MARINE",
+		"description": "Mô phỏng 3D kết cấu tàu vỏ thép miễn phí: quan sát chi tiết, panel, phân đoạn, tổng đoạn; đi vào trong tàu, xem trình tự lắp ráp và làm bài thực hành có chấm điểm."
+	},
+	"blocks": [
+		{
+			"type": "app-embed",
+			"fields": {
+				"app": "mo-phong-ket-cau-tau",
+				"title": "Mô phỏng kết cấu tàu vỏ thép"
+			}
+		}
+	]
+}

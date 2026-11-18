@@ -50,7 +50,8 @@ $is_english   = function_exists( 'pll_current_language' ) && 'en' === pll_curren
 			</div>
 		<?php endif; ?>
 
-		<div class="hdr__bar" data-hdr-bar>
+		<?php /* Always the floating pill (`is-stuck`): it used to reshape from a full-width bar on the first scroll, a 300ms transition of height and colours that read as a stutter. */ ?>
+		<div class="hdr__bar is-stuck" data-hdr-bar>
 			<div class="container hdr__bar-inner">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hdr__brand" aria-label="<?php echo esc_attr( $site_name ); ?>">
 					<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="150" height="34" />

@@ -59,3 +59,13 @@
 }
 .ae__close[hidden] { display: none; }
 html.has-app-full { overflow: hidden; }
+
+/* --- motion (MOTION.md: app-embed) ------------------------------------------
+   Entrance: the frame opens from .97 in place (a picture opens, it does not
+   travel). The item is the frame, never .ae itself: a transform on .ae
+   would trap the full-screen overlay (position: fixed) inside it. */
+.ae__frame {
+	--reveal-y: 0px;
+	--reveal-scale: 0.97;
+	--reveal-origin: 50% 0%;
+}

@@ -128,3 +128,9 @@
 .is-scrub .pt__fill {
 	transition: none;
 }
+
+/* --- motion (MOTION.md: process-timeline) --------------------------------
+   The rail fills with the scroll; each node pops (scale .6 → 1 on the soft
+   spring, compositor only) as the rail reaches it. The pop is played by
+   behaviour.js, and only for a node reached by scrolling — a node already
+   reached when the page loads is shown as it is (no motion at first paint). */

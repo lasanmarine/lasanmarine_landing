@@ -124,3 +124,10 @@
 .el__pager[hidden] {
 	@apply hidden;
 }
+
+/* Result change (MOTION.md: tool-shell): the count and the page number settle
+   (settle.js). A transform needs a box, so the count is an inline block —
+   same line, same width. */
+.el__count {
+	display: inline-block;
+}

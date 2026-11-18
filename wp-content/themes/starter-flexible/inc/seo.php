@@ -38,12 +38,24 @@ function starter_flexible_schema_organization( $graph ) {
 
 	$org_id     = home_url( '/#organization' );
 	$is_english = starter_flexible_seo_is_english();
-	// The short brand Google should show as the site name; the registered name
-	// goes in legalName. (The Site Settings names are display text for the
-	// header and footer, in capitals, so they are not used here.)
-	$name       = (string) get_bloginfo( 'name' );
-	$legal_name = 'Công ty TNHH Lasan Marine';
-	$alt_names  = array( $legal_name, 'Lasan Marine' );
+	// The name Google shows above the link in results is the WebSite name.
+	// It comes from Yoast's "Website name" (Settings → Site basics), falling
+	// back to the site title; Yoast's "Alternate website name" and the site
+	// title go in alternateName. The registered name goes in legalName.
+	// (The Site Settings names are display text for the header and footer, in
+	// capitals, so they are not used here.)
+	$brand      = (string) get_bloginfo( 'name' );
+	$titles     = (array) get_option( 'wpseo_titles', array() );
+	$name       = trim( (string) ( $titles['website_name'] ?? '' ) ) ?: $brand;
+	$legal_name = 'Công ty TNHH LASAN MARINE';
+	$alt_names  = array_values(
+		array_unique(
+			array_filter(
+				array( trim( (string) ( $titles['alternate_website_name'] ?? '' ) ), $brand, $legal_name ),
+				static fn( $n ) => '' !== $n && $n !== $name
+			)
+		)
+	);
 	$phone      = (string) starter_flexible_setting( 'phone', '' );
 	$email      = (string) starter_flexible_setting( 'email', '' );
 	$address    = (string) starter_flexible_setting( 'address', '' );
@@ -128,6 +140,20 @@ function starter_flexible_schema_organization( $graph ) {
 	return $graph;
 }
 add_filter( 'wpseo_schema_graph', 'starter_flexible_schema_organization', 20 );
+
+/**
+ * og:site_name: Yoast prints the WordPress site title here, not its "Website
+ * name". Google reads both when choosing the name it shows above a result,
+ * so give them the same value as the WebSite schema above.
+ */
+add_filter(
+	'wpseo_opengraph_site_name',
+	static function ( $site_name ) {
+		$titles = (array) get_option( 'wpseo_titles', array() );
+		$name   = trim( (string) ( $titles['website_name'] ?? '' ) );
+		return '' !== $name ? $name : $site_name;
+	}
+);
 
 /* -------------------------------------------------------------------------
  * Projects: a title and description written from the vessel's own record.

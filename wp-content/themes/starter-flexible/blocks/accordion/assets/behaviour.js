@@ -1,39 +1,35 @@
 // Accordion — each panel is `hidden` until opened, so the markup works with
-// scripting off; this toggles it and animates the height on the way in and
-// out with the Web Animations API (skipped when motion is reduced).
+// scripting off; this toggles it. The panel is a one-row grid whose row grows
+// 0fr → 1fr (style.scss, `--spring-snappy`): the browser lays it out once at
+// each end instead of a script writing a height every frame.
 import { motion } from '$lib/stores/motion.svelte.js';
 import { on, cleanupAll } from '$lib/dom';
 
 export const selector = '[data-accordion]';
 
-const TIMING = { duration: 360, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' };
-
-function animateHeight(panel, from, to) {
-	panel.getAnimations().forEach((a) => a.cancel());
-	const anim = panel.animate(
-		[
-			{ height: `${from}px`, opacity: from ? 1 : 0 },
-			{ height: `${to}px`, opacity: to ? 1 : 0 },
-		],
-		TIMING,
-	);
-	return anim.finished.catch(() => {});
-}
-
-function open(panel) {
+function open(trigger, panel) {
 	panel.hidden = false;
-	if (motion.allowed) animateHeight(panel, 0, panel.scrollHeight);
+	// Lay the panel out at 0fr before the row grows, or there is nothing to
+	// transition from.
+	if (motion.allowed) void panel.offsetHeight;
+	trigger.setAttribute('aria-expanded', 'true');
 }
 
-function close(panel) {
+function close(trigger, panel) {
+	trigger.setAttribute('aria-expanded', 'false');
 	if (!motion.allowed) {
 		panel.hidden = true;
 		return;
 	}
-	animateHeight(panel, panel.offsetHeight, 0).then(() => {
+	const done = (e) => {
+		if (e && (e.target !== panel || e.propertyName !== 'grid-template-rows')) return;
+		panel.removeEventListener('transitionend', done);
+		panel.removeEventListener('transitioncancel', done);
 		// Reopened while closing? Then it stays.
-		if (panel.dataset.state !== 'open') panel.hidden = true;
-	});
+		if (trigger.getAttribute('aria-expanded') !== 'true') panel.hidden = true;
+	};
+	panel.addEventListener('transitionend', done);
+	panel.addEventListener('transitioncancel', done);
 }
 
 export default function accordion(list) {
@@ -42,11 +38,8 @@ export default function accordion(list) {
 			const panel = document.getElementById(trigger.getAttribute('aria-controls'));
 			if (!panel) return null;
 			return on(trigger, 'click', () => {
-				const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-				trigger.setAttribute('aria-expanded', String(!isOpen));
-				panel.dataset.state = isOpen ? 'closed' : 'open';
-				if (isOpen) close(panel);
-				else open(panel);
+				if (trigger.getAttribute('aria-expanded') === 'true') close(trigger, panel);
+				else open(trigger, panel);
 			});
 		}),
 	);

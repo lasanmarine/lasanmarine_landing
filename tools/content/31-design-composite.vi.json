@@ -1,0 +1,193 @@
+{
+	"key": "design_composite",
+	"title": "Thiết kế tàu cá & cano composite (FRP)",
+	"slug": "tau-composite",
+	"lang": "vi",
+	"parent": "service_01",
+	"seo": {
+		"title": "Thiết kế tàu cá & cano composite (FRP) | LASAN MARINE",
+		"description": "Thiết kế tàu cá vỏ composite và cano FRP: tuyến hình, kết cấu lớp vỏ, ổn định, sức cản – công suất và hồ sơ đăng kiểm. Gọi hoặc Zalo 0834 310 781."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Thiết kế tàu composite: tàu cá và cano vỏ FRP",
+				"heading_level": "h1",
+				"lead": "Thiết kế tàu cá vỏ composite thay tàu gỗ, cano và xuồng FRP, với kết cấu lớp vỏ, ổn định và công suất được tính toán để tàu nhẹ, bền và tiết kiệm nhiên liệu.",
+				"height": 420,
+				"actions": [
+					{
+						"link": {
+							"label": "Tàu composite đã thiết kế",
+							"url": "#tau-composite-da-thiet-ke"
+						}
+					},
+					{
+						"link": {
+							"label": "Những tình huống chủ tàu hay gặp",
+							"url": "#nhung-tinh-huong-chu-tau-hay-gap"
+						}
+					},
+					{
+						"link": {
+							"label": "Bạn nhận được gì",
+							"url": "#ban-nhan-duoc-gi"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Những tình huống chủ tàu hay gặp",
+				"intro": "",
+				"solution_label": "Chúng tôi xử lý",
+				"items": [
+					{
+						"problem": "Muốn chuyển từ tàu gỗ sang composite",
+						"context": "Tàu gỗ xuống cấp, chi phí bảo dưỡng cao, khó đăng kiểm lại.",
+						"solution": "Thiết kế phương án vỏ composite tương đương công năng, tính lại kết cấu và ổn định cho vật liệu mới.",
+						"link": {
+							"label": "Trao đổi phương án",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Cần cano chạy nhanh, tiết kiệm",
+						"context": "Cano chở khách, cano dịch vụ, xuồng cao tốc.",
+						"solution": "Tối ưu tuyến hình lướt, ước tính sức cản – công suất để chọn máy phù hợp.",
+						"link": {
+							"label": "Thử mô phỏng sức cản",
+							"page": "app_resistance"
+						}
+					},
+					{
+						"problem": "Xưởng cần bản vẽ để thi công khuôn",
+						"context": "Đã có mẫu tàu nhưng thiếu bản vẽ, bản tính đầy đủ.",
+						"solution": "Lập bản vẽ tuyến hình, kết cấu lớp vỏ và hồ sơ thiết kế phục vụ thi công, đăng kiểm.",
+						"link": {
+							"label": "Gửi yêu cầu",
+							"page": "contact"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "Bạn nhận được gì",
+				"intro": "Hồ sơ thiết kế tàu composite cho thi công khuôn và trình thẩm tra.",
+				"note_label": "Thời gian",
+				"note": "Thời gian được thống nhất khi báo giá, tùy loại tàu, phạm vi công việc và hồ sơ hiện có. Bạn biết trước mốc bàn giao từng phần.",
+				"items": [
+					{
+						"title": "Tuyến hình và bố trí chung",
+						"desc": "Phù hợp công nghệ làm khuôn của xưởng",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Kết cấu lớp vỏ composite",
+						"desc": "Sơ đồ lớp, chiều dày, gia cường",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Bản tính ổn định, sức cản – công suất",
+						"desc": "Chọn máy và chân vịt phù hợp",
+						"format": "PDF"
+					},
+					{
+						"title": "Hồ sơ trình thẩm tra",
+						"desc": "Giải trình đến khi được duyệt",
+						"format": "PDF"
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "Làm việc với chúng tôi thế nào?",
+				"intro": "",
+				"steps": [
+					{
+						"title": "Gửi thông tin qua Zalo hoặc điện thoại",
+						"desc": "Loại tàu, kích thước dự kiến, vùng hoạt động và ảnh hoặc hồ sơ hiện có."
+					},
+					{
+						"title": "Khảo sát và báo giá",
+						"desc": "Xác định phạm vi, hạng mục bàn giao và mốc thời gian, báo giá rõ từng phần."
+					},
+					{
+						"title": "Thiết kế và tính toán",
+						"desc": "Triển khai bản vẽ, bản tính bằng công cụ chuyên ngành và công cụ tự phát triển."
+					},
+					{
+						"title": "Thẩm tra và bàn giao",
+						"desc": "Phối hợp giải trình khi thẩm tra, cập nhật hồ sơ và bàn giao bản cuối."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Tàu composite đã thiết kế",
+				"intro": "",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-ca-composite-kh-95177-ts",
+					"tau-ca-composite-bth-94111-ts",
+					"cano-clc-02",
+					"cano-lam-hai"
+				]
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp",
+				"intro": "",
+				"items": [
+					{
+						"title": "Tàu composite có bền bằng tàu thép hay gỗ không?",
+						"content": "<p>Khi kết cấu lớp vỏ được tính đúng và thi công đúng quy trình, tàu composite nhẹ, không mục, ít bảo dưỡng. Chúng tôi tính kết cấu theo tải trọng và vùng hoạt động thực tế.</p>"
+					},
+					{
+						"title": "Thiết kế có phù hợp xưởng của tôi không?",
+						"content": "<p>Bản vẽ được lập theo công nghệ làm khuôn và vật liệu xưởng đang dùng; chúng tôi trao đổi trực tiếp với xưởng khi cần.</p>"
+					},
+					{
+						"title": "Có thể gửi ảnh tàu mẫu qua Zalo không?",
+						"content": "<p>Có. Gửi ảnh và kích thước sơ bộ qua Zalo 0834 310 781 để được tư vấn.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn muốn đóng tàu hoặc cano composite?</p>",
+				"description": "Gọi hoặc nhắn Zalo cho chúng tôi công năng, kích thước dự kiến và xưởng sẽ thi công.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu qua form",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

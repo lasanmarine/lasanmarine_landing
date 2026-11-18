@@ -5,6 +5,7 @@
 	import { untrack } from 'svelte';
 	import MultiSelect from '$components/MultiSelect.svelte';
 	import CopyButton from '$components/CopyButton.svelte';
+	import { settle } from '../../power-converter/assets/settle.js';
 	import { plainNumber, toNumber } from '$lib/format';
 
 	/**
@@ -123,8 +124,8 @@
 </script>
 
 <div class={moduleClass}>
-	<div class="pc__grid el__grid">
-		<div class="pc__inputs" data-reveal="left">
+	<div class="pc__grid el__grid" data-reveal-stagger=":scope > *">
+		<div class="pc__inputs">
 			<div class="field">
 				<label class="field__label sr-only" for={searchId}>{labels.search}</label>
 				<input class="field__control" id={searchId} type="search" placeholder={labels.search_hint} bind:value={query} />
@@ -189,10 +190,10 @@
 			</button>
 		</div>
 
-		<div class="pc__results" data-reveal="right">
+		<div class="pc__results">
 			<div class="el__head">
 				<h2 class="pc__heading">{labels.results}</h2>
-				<span class="meta"><span>{filtered.length}</span> {labels.rows_found}</span>
+				<span class="meta"><span class="el__count" use:settle={filtered.length}>{filtered.length}</span> {labels.rows_found}</span>
 			</div>
 
 			<div class="el__scroll">
@@ -214,7 +215,7 @@
 							{/each}
 						</tr>
 					</thead>
-					<tbody>
+					<tbody use:settle={slice}>
 						{#each slice as engine, i (`${engine.make}|${engine.model}|${i}`)}
 							<tr>
 								{#each columns as column (column.key)}
@@ -245,7 +246,7 @@
 				<button type="button" class="icon-btn icon-btn--sm" aria-label={labels.prev} disabled={current === 0} onclick={() => (page = current - 1)}>
 					{@html icons.prev}
 				</button>
-				<span class="meta">{current + 1} / {pages}</span>
+				<span class="meta el__page" use:settle={current}>{current + 1} / {pages}</span>
 				<button
 					type="button"
 					class="icon-btn icon-btn--sm"

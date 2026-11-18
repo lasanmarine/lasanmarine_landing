@@ -1,0 +1,22 @@
+{
+	"key": "app_resistance_en",
+	"title": "Ship Resistance & Power Calculator Online",
+	"slug": "resistance-power-simulator",
+	"lang": "en",
+	"translation_of": "app_resistance",
+	"parent": "tools_en",
+	"template": "page-app.php",
+	"seo": {
+		"title": "Ship Resistance & Power Calculator Online | LASAN MARINE",
+		"description": "Free resistance and power calculator for speedboats and small passenger vessels (Savitsky, Holtrop–Mennen): effective power, brake power and % MCR."
+	},
+	"blocks": [
+		{
+			"type": "app-embed",
+			"fields": {
+				"app": "suc-can-cong-suat",
+				"title": "Resistance & Power Simulator for Small Fast Craft"
+			}
+		}
+	]
+}

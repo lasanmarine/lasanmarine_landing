@@ -75,3 +75,27 @@
 	.phero__actions { flex-direction: column; align-items: stretch; width: 100%; }
 	.phero__action { justify-content: center; text-align: center; }
 }
+
+/* --- motion (MOTION.md: page-hero) -------------------------------------------
+   No entrance: the panel is the first screen (FCP/LCP) and first-paint
+   content does not animate in (site rule). Interaction only: */
+/* Buttons: a soft press. `scale` is its own property, so it adds to the
+   button's transitions (restated here) without touching its hover. */
+.phero__action {
+	transition:
+		background 220ms ease,
+		color 200ms ease,
+		border-color 200ms ease,
+		transform 220ms var(--ease),
+		box-shadow 220ms var(--ease),
+		scale var(--spring-soft-ms) var(--spring-soft);
+}
+.phero__action:not(.btn--secondary):not(.btn--ghost) {
+	transition:
+		background-position 520ms var(--ease),
+		box-shadow 260ms var(--ease),
+		scale var(--spring-soft-ms) var(--spring-soft);
+}
+.phero__action:active {
+	scale: 0.97;
+}

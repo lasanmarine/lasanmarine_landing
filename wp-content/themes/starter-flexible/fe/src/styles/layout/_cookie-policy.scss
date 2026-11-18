@@ -1,0 +1,15 @@
+/* ==========================================================================
+   The cookie policy (Complianz document) inside the site's reading column.
+   --------------------------------------------------------------------------
+   Complianz's document CSS gives its lists a native disc and a 15px indent,
+   while the theme's prose already draws its own teal bullet (li::before):
+   each item showed two bullets. The prose bullet is the site's; the native
+   one goes, and so does the extra indent.
+   ========================================================================== */
+.prose .cmplz-document ul,
+.prose .cmplz-document ol {
+	margin-left: 0 !important; // Complianz sets it with an id selector
+}
+.prose .cmplz-document ul > li {
+	list-style: none;
+}

@@ -68,12 +68,14 @@ Một file có khoá `posts` mô tả nhiều bài của một post type thay v�
         "project_material": ["Composite"],
         "project_use": ["Chở khách"]
       },
-      "fields": { "lmax": 9.5, "power_kw": 85 }     // theo inc/fields/project.json
+      "fields": { "lmax": 9.5, "power_kw": 85 },    // theo inc/fields/project.json
+      "meta": { "lm_service_page": { "page": "design_passenger" } } // post meta thường; {page: key} → permalink lúc apply
     }
   ]
 }
 ```
 
+Dựng lại từ bản tĩnh: `tools/static-import/sync build projects-cpt`.
 Khớp bài theo `slug`, chạy lại là sửa chứ không nhân bản. Trang `/du-an/` liệt kê chúng
 qua khối `project-index`, không nhập tay nữa.
 

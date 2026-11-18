@@ -1,0 +1,57 @@
+{
+	"key": "app_stability_about",
+	"title": "Giới thiệu – Mô phỏng ổn định tàu thủy – đường cong cánh tay đòn GZ",
+	"slug": "gioi-thieu",
+	"lang": "vi",
+	"parent": "app_stability",
+	"seo": {
+		"title": "Giới thiệu – Mô phỏng ổn định tàu thủy – đường cong cánh tay đòn GZ - LASAN MARINE",
+		"description": "",
+		"og_title": "Giới thiệu – Mô phỏng ổn định tàu thủy – đường cong cánh tay đòn GZ"
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Mô phỏng ổn định tàu thủy – đường cong cánh tay đòn GZ",
+				"heading_level": "h1",
+				"lead": "Công cụ mô phỏng ổn định tàu miễn phí của Lasan Marine, do TS. Huỳnh Lê Hồng Thái phát triển. Nhập chiều rộng, chiều cao mạn, góc vát đáy, bán kính hông, chiều chìm và chiều cao trọng tâm KG; công cụ tính ngay đường nước cân bằng, đường cong cánh tay đòn ổn định GZ, chiều cao tâm nghiêng GM, GZ lớn nhất, góc lật và diện tích dưới đường cong.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "app-embed",
+			"fields": {
+				"app": "mo-phong-on-dinh-tau",
+				"title": "Mô phỏng ổn định tàu thủy – đường cong cánh tay đòn GZ",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"heading": "",
+				"content": "<h2>Tính năng</h2>\n<ul><li>Đồ thị ổn định GZ theo góc nghiêng, mặt cắt ngang 2D với K, G, B, M và mô hình 3D khi tàu nghiêng.</li>\n<li>Kiểm tra các tiêu chí ổn định cơ bản theo IS Code 2008: diện tích 0–30°, 0–40°, 30–40°, GZ tại 30°, góc GZmax, GM ban đầu.</li>\n<li>Mô phỏng lắc ngang và so sánh nhiều trường hợp tải trọng trên cùng một đồ thị.</li>\n<li>Xuất báo cáo ổn định tàu ra Word và Excel; giao diện tiếng Việt và tiếng Anh.</li>\n</ul><h2>Dùng cho ai</h2>\n<p>\nKỹ sư thiết kế tàu, sinh viên ngành vỏ tàu thủy và chủ tàu cần đánh giá nhanh ổn định ngang ở giai đoạn sơ bộ.<br>\nKết quả mang tính tham khảo; hồ sơ đăng kiểm cần tính toán ổn định đầy đủ –<br><a href=\"/nang-luc/thiet-ke-tau/\">dịch vụ thiết kế tàu của Lasan Marine</a>.\n</p>\n<p>\nXem thêm: <a href=\"/cong-cu/suc-can-cong-suat/\">mô phỏng sức cản và công suất tàu</a> ·<br><a href=\"/cong-cu/\">các công cụ tính toán khác</a></p>",
+				"align": "left",
+				"width": "narrow",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Cần tính toán đầy đủ cho hồ sơ đăng kiểm?</p>",
+				"description": "Kết quả mô phỏng dùng để tham khảo ở giai đoạn sơ bộ. Gửi thông số tàu để chúng tôi tính toán và hoàn thiện hồ sơ theo yêu cầu đăng kiểm.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

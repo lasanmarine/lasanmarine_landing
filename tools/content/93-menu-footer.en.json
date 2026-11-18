@@ -5,39 +5,31 @@
   "items": [
     {
       "label": "About",
-      "page": "about"
+      "page": "about_en"
     },
     {
       "label": "Capabilities",
-      "page": "capabilities"
+      "page": "capabilities_en"
     },
     {
       "label": "Ship Design",
-      "page": "service_01"
+      "page": "service_01_en"
     },
     {
       "label": "Software",
-      "page": "service_03"
+      "page": "service_03_en"
     },
     {
       "label": "R&D",
-      "page": "service_rnd"
-    },
-    {
-      "label": "Projects",
-      "page": "projects"
-    },
-    {
-      "label": "Tools",
-      "page": "tools"
+      "page": "service_rnd_en"
     },
     {
       "label": "Insights",
-      "page": "insights"
+      "page": "insights_en"
     },
     {
       "label": "Contact",
-      "page": "contact"
+      "page": "contact_en"
     }
   ]
 }

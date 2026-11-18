@@ -1,6 +1,3 @@
-#apply {
-	scroll-margin-top: 140px;
-}
 .ef {
 	@apply grid items-start;
 	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
@@ -270,4 +267,79 @@ textarea.form-control {
 	.ef__intro { text-align: left; align-items: flex-start; }
 	.consult-form .wpcf7-submit,
 	.consult-form .form-actions .btn { width: 100%; justify-content: center; }
+}
+
+/* --- motion (MOTION.md: enquiry-form) ------------------------------------
+   Entrance: the fields rise in turn (reveal kit, `.ef__form`). Focus: the
+   field's label shifts toward it and a focus ring grows around the control —
+   the ring is a pseudo-element that scales and fades in (compositor only)
+   instead of a box-shadow that repaints every frame. */
+.lasanmarine-enquiry-form {
+	--reveal-y: 20px;
+	--reveal-scale: 1;
+}
+.consult-form .form-field > p:has(> .form-label) {
+	transition: transform var(--spring-snappy-ms) var(--spring-snappy);
+}
+.consult-form .form-field:focus-within > p:has(> .form-label) {
+	transform: translateX(4px);
+}
+/* Inputs: the wrap is exactly the control's box. A textarea sits on the
+   text baseline, so its wrap is a few px taller: there the ring is anchored
+   to the textarea itself (anchor positioning), and where that is not
+   supported it keeps the plain box-shadow ring. A field showing an error tip
+   (wrap taller than the control) keeps the plain ring too. */
+.consult-form .wpcf7-form-control-wrap:has(> input.form-control):not(:has(> .wpcf7-not-valid-tip)) {
+	position: relative;
+}
+.consult-form .wpcf7-form-control-wrap:has(> input.form-control):not(:has(> .wpcf7-not-valid-tip))::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: var(--r-md);
+	box-shadow: var(--ring);
+	opacity: 0;
+	transform: scale(0.985, 0.92);
+	pointer-events: none;
+	transition:
+		opacity var(--spring-snappy-ms) var(--spring-snappy),
+		transform var(--spring-snappy-ms) var(--spring-snappy);
+}
+.consult-form .wpcf7-form-control-wrap:has(> .form-control:focus):not(:has(> .wpcf7-not-valid-tip))::after {
+	opacity: 1;
+	transform: none;
+}
+.consult-form .wpcf7-form-control-wrap:not(:has(> .wpcf7-not-valid-tip)) > input.form-control:focus {
+	box-shadow: none;
+}
+@supports (anchor-name: --a) {
+	.consult-form .wpcf7-form-control-wrap:has(> textarea.form-control) {
+		anchor-scope: --ef-control;
+	}
+	.consult-form .wpcf7-form-control-wrap > textarea.form-control {
+		anchor-name: --ef-control;
+	}
+	.consult-form .wpcf7-form-control-wrap:has(> textarea.form-control):not(:has(> .wpcf7-not-valid-tip)) {
+		position: relative;
+	}
+	.consult-form .wpcf7-form-control-wrap:has(> textarea.form-control):not(:has(> .wpcf7-not-valid-tip))::after {
+		content: '';
+		position: absolute;
+		position-anchor: --ef-control;
+		top: anchor(top);
+		right: anchor(right);
+		bottom: anchor(bottom);
+		left: anchor(left);
+		border-radius: var(--r-md);
+		box-shadow: var(--ring);
+		opacity: 0;
+		transform: scale(0.985, 0.97);
+		pointer-events: none;
+		transition:
+			opacity var(--spring-snappy-ms) var(--spring-snappy),
+			transform var(--spring-snappy-ms) var(--spring-snappy);
+	}
+	.consult-form .wpcf7-form-control-wrap:not(:has(> .wpcf7-not-valid-tip)) > textarea.form-control:focus {
+		box-shadow: none;
+	}
 }

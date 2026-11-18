@@ -1,0 +1,21 @@
+{
+	"key": "app_stability",
+	"title": "Mô phỏng ổn định tàu online – Đường cong GZ",
+	"slug": "mo-phong-on-dinh-tau",
+	"lang": "vi",
+	"parent": "tools",
+	"template": "page-app.php",
+	"seo": {
+		"title": "Mô phỏng ổn định tàu online – Đường cong GZ | LASAN MARINE",
+		"description": "Mô phỏng ổn định tàu miễn phí: đường cong cánh tay đòn GZ, GM, góc lật, mặt cắt nghiêng 3D, kiểm tra IS Code 2008 và xuất báo cáo Word, Excel."
+	},
+	"blocks": [
+		{
+			"type": "app-embed",
+			"fields": {
+				"app": "mo-phong-on-dinh-tau",
+				"title": "Mô phỏng ổn định tàu thủy – đường cong cánh tay đòn GZ"
+			}
+		}
+	]
+}

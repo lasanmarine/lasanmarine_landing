@@ -185,3 +185,58 @@ a.ps__card:hover {
 	.ps__stat:first-child { grid-column: 1 / -1; }
 }
 .ps__stat b { white-space: normal; overflow: visible; }
+
+/* --- motion (MOTION.md: project-showcase) -------------------------------------
+   Entrance: the cards arrive from the right, one after another, along the
+   rail they sit on. Driven by the block's own reveal (the section's
+   `data-reveal` → `.is-revealed`), not by per-card observation: a card that
+   only peeks in at the rail's edge would otherwise wait off to the right,
+   invisible, until it was swiped in — and the peek is the cue to swipe.
+   Delays follow `staggerDelay(i)` (lib/motion-math: 0, 56, 106, 150, 189,
+   224, 255 ms; the rest 280 ms).
+   Hover: the card lifts 4px (`translate`, so it never waits for the
+   entrance's delayed `transform`), its picture grows to 1.03 — as a
+   `transform` on the image, since the scroll-linked settle (_motion.scss)
+   owns its `scale`. */
+.lasanmarine-project-showcase .ps__stack > .ps__card {
+	transition:
+		opacity calc(var(--spring-out-ms) * 0.78) var(--spring-out) var(--ps-in, 0ms),
+		transform var(--spring-out-ms) var(--spring-out) var(--ps-in, 0ms),
+		translate var(--spring-soft-ms) var(--spring-soft),
+		background 260ms var(--ease),
+		box-shadow 260ms var(--ease);
+}
+.reveal-on .lasanmarine-project-showcase:not(.is-revealed) .ps__stack > .ps__card {
+	opacity: 0;
+	transform: translateX(40px);
+}
+.lasanmarine-project-showcase .ps__card:nth-child(2) { --ps-in: 56ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(3) { --ps-in: 106ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(4) { --ps-in: 150ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(5) { --ps-in: 189ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(6) { --ps-in: 224ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(7) { --ps-in: 255ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(n + 8) { --ps-in: 280ms; }
+/* Never hidden where the entrance does not run (the footer toggle; the OS
+   setting drops `reveal-on` itself) or on the first screen. */
+html.reduce-motion.reveal-on .lasanmarine-project-showcase:not(.is-revealed) .ps__stack > .ps__card,
+.reveal-on .block-stream > .lasanmarine-project-showcase:first-child:not(.is-revealed) .ps__stack > .ps__card {
+	opacity: 1;
+	transform: none;
+}
+.lasanmarine-project-showcase .ps__stack > a.ps__card:hover {
+	transform: none;
+	translate: 0 -4px;
+}
+.lasanmarine-project-showcase .ps__media .frame > img {
+	transition: transform var(--spring-soft-ms) var(--spring-soft);
+}
+.lasanmarine-project-showcase a.ps__card:hover .ps__media .frame > img {
+	transform: scale(1.03);
+}
+@media (prefers-reduced-motion: reduce) {
+	.lasanmarine-project-showcase .ps__stack > a.ps__card:hover { translate: none; }
+	.lasanmarine-project-showcase a.ps__card:hover .ps__media .frame > img { transform: none; }
+}
+html.reduce-motion .lasanmarine-project-showcase .ps__stack > a.ps__card:hover { translate: none; }
+html.reduce-motion .lasanmarine-project-showcase a.ps__card:hover .ps__media .frame > img { transform: none; }

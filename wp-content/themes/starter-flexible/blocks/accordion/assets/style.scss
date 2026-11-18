@@ -55,7 +55,7 @@
 	width: 100%;
 	height: 1.5px;
 	transform: translateY(-50%);
-	transition: transform 280ms var(--ease);
+	transition: transform var(--spring-snappy-ms) var(--spring-snappy);
 }
 .ac__sign::after {
 	transform: translateY(-50%) rotate(90deg);
@@ -141,4 +141,46 @@
 	.ac__sign::after {
 		transition: none;
 	}
+}
+
+/* --- motion (MOTION.md: accordion) ---------------------------------------
+   Entrance: the questions rise in turn (reveal kit). Open/close: the panel is
+   a one-row grid whose row grows 0fr → 1fr — one layout at each end, no
+   height written per frame — while the answer fades in and the plus turns
+   into a minus, all on `--spring-snappy`. */
+.lasanmarine-accordion {
+	--reveal-y: 20px;
+	--reveal-scale: 1;
+}
+/* The card's own colour change sits beside the reveal's transform/opacity
+   (the shared card rule would otherwise replace the entrance transition). */
+.reveal-on .lasanmarine-accordion .ac__item[data-reveal-item]:not(.reveal-instant) {
+	transition:
+		opacity calc(var(--reveal-ms, var(--spring-out-ms)) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms, var(--spring-out-ms)) var(--spring-out) var(--reveal-delay, 0ms),
+		background 320ms var(--ease),
+		box-shadow 320ms var(--ease),
+		color 320ms var(--ease);
+}
+.lasanmarine-accordion .ac__panel {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows var(--spring-snappy-ms) var(--spring-snappy);
+}
+.lasanmarine-accordion .ac__panel[hidden] {
+	display: none;
+}
+.lasanmarine-accordion .ac__item:has(> .ac__row [aria-expanded='true']) .ac__panel {
+	grid-template-rows: 1fr;
+}
+.ac__clip {
+	min-height: 0;
+	overflow: hidden;
+}
+.lasanmarine-accordion .ac__body {
+	opacity: 0;
+	transition: opacity var(--spring-snappy-ms) var(--spring-snappy);
+}
+.lasanmarine-accordion .ac__item:has(> .ac__row [aria-expanded='true']) .ac__body {
+	opacity: 1;
 }

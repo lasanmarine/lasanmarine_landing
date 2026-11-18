@@ -30,7 +30,7 @@ if ( empty( $data->should_render ) ) {
 		</header>
 	<?php endif; ?>
 
-	<div class="vf" data-reveal-stagger>
+	<div class="vf" data-reveal-stagger data-reveal-order="grid">
 		<?php foreach ( $data->items as $i => $item ) : ?>
 			<?php
 			$is_link = '' !== $item['url'];

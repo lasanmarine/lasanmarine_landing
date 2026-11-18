@@ -68,3 +68,43 @@
 	letter-spacing: -0.02em;
 }
 .cb__content { @apply text-steel; }
+
+/* --- motion (MOTION.md: cta-banner) ---------------------------------------------
+   The panel scales up from .96, then its lines rise in turn — label, heading,
+   copy, each button. One stagger on the section (render.php), in document
+   order, so the panel always leads. */
+.lasanmarine-cta-banner {
+	--reveal-x: 0px;
+	--reveal-y: 20px;
+	--reveal-scale: 1;
+	--reveal-ms: var(--spring-out-ms);
+}
+.lasanmarine-cta-banner .cb {
+	--reveal-y: 0px;
+	--reveal-scale: 0.96;
+	--reveal-origin: 50% 50%;
+}
+/* Items inside the panel take the text values again (the panel's own
+   values would otherwise be inherited). */
+.lasanmarine-cta-banner .cb__inner {
+	--reveal-y: 20px;
+	--reveal-scale: 1;
+}
+/* The buttons are reveal items: the entrance's transition list replaces the
+   button's, so its hover transitions are listed again beside it. */
+.lasanmarine-cta-banner .cb__actions > .btn {
+	transition:
+		opacity calc(var(--reveal-ms) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms) var(--spring-out) var(--reveal-delay, 0ms),
+		background 220ms ease,
+		color 200ms ease,
+		border-color 200ms ease,
+		box-shadow 220ms var(--ease);
+}
+.lasanmarine-cta-banner .cb__actions > .btn:not(.btn--secondary):not(.btn--ghost) {
+	transition:
+		opacity calc(var(--reveal-ms) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms) var(--spring-out) var(--reveal-delay, 0ms),
+		background-position 520ms var(--ease),
+		box-shadow 260ms var(--ease);
+}
