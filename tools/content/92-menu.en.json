@@ -5,19 +5,26 @@
   "items": [
     {
       "label": "About",
-      "page": "about"
+      "page": "about_en",
+      "description": "Ship design is our core discipline; R&D and software grew out of the same hands-on work.",
+      "classes": [
+        "nav-intro"
+      ],
+      "children": [
+        {
+          "label": "View all",
+          "page": "about_en"
+        }
+      ]
     },
     {
       "label": "Capabilities",
-      "page": "capabilities",
-      "classes": [
-        "has-mega"
-      ],
+      "page": "capabilities_en",
       "description": "Ship design is our core discipline. R&D extends our ability to investigate technical questions, while software turns recurring workflow problems into usable systems.",
       "children": [
         {
           "label": "Ship Design",
-          "page": "service_01",
+          "page": "service_01_en",
           "description": "Newbuild and conversion design, calculations, drawings and technical documentation.",
           "children": [
             {
@@ -28,16 +35,12 @@
             },
             {
               "label": "Calculations & documentation"
-            },
-            {
-              "label": "Build a design brief",
-              "page": "design_brief"
             }
           ]
         },
         {
           "label": "Research & Development",
-          "page": "service_rnd",
+          "page": "service_rnd_en",
           "description": "CFD, structural analysis, measurement and comparison with real-world data.",
           "children": [
             {
@@ -48,12 +51,16 @@
             },
             {
               "label": "Measurement and validation"
+            },
+            {
+              "label": "Published research",
+              "page": "publications_en"
             }
           ]
         },
         {
           "label": "Software",
-          "page": "service_03",
+          "page": "service_03_en",
           "description": "Management systems, websites, automation and applied AI.",
           "children": [
             {
@@ -71,15 +78,60 @@
     },
     {
       "label": "Projects",
-      "page": "projects"
+      "page": "projects_en"
     },
     {
       "label": "Tools",
-      "page": "tools"
+      "page": "tools_en",
+      "children": [
+        {
+          "label": "Ship stability",
+          "page": "app_stability_en"
+        },
+        {
+          "label": "Resistance & power",
+          "page": "app_resistance_en"
+        },
+        {
+          "label": "Power Converter",
+          "page": "tool_power_en"
+        },
+        {
+          "label": "Propeller Shaft Diameter",
+          "page": "tool_shaft_en"
+        },
+        {
+          "label": "Engine Lookup",
+          "page": "tool_engine_en"
+        },
+        {
+          "label": "Design brief",
+          "page": "design_brief_en"
+        }
+      ]
     },
     {
       "label": "Insights",
-      "page": "insights"
+      "page": "insights_en",
+      "description": "Technical notes and updates from the LASAN MARINE team.",
+      "children": [
+        {
+          "label": "All articles",
+          "page": "insights_en"
+        },
+        {
+          "label": "Ship design",
+          "page": "service_01_en"
+        },
+        {
+          "label": "Research & Development",
+          "page": "service_rnd_en"
+        },
+        {
+          "label": "Software",
+          "page": "service_03_en"
+        }
+      ]
     }
   ]
 }

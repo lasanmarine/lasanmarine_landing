@@ -13,6 +13,7 @@ class Viewport {
 	hdrH = $state(76);
 
 	#subs = new Set();
+	#readers = new Map();
 	#queued = false;
 	#scrolled = false;
 	#resized = false;
@@ -33,7 +34,16 @@ class Viewport {
 		const snap = this.snapshot({ scrolled: this.#scrolled, resized: this.#resized });
 		this.#scrolled = false;
 		this.#resized = false;
-		this.#subs.forEach((fn) => fn(snap));
+		// Two phases, like fastdom: every subscriber's `read` (geometry) runs
+		// before any subscriber writes. Interleaved, each read after another
+		// effect's style write forced a synchronous layout; batched, the frame
+		// lays out once.
+		const reads = new Map();
+		this.#subs.forEach((fn) => {
+			const read = this.#readers.get(fn);
+			if (read) reads.set(fn, read(snap));
+		});
+		this.#subs.forEach((fn) => fn(snap, reads.get(fn)));
 	};
 
 	#queue() {
@@ -83,12 +93,24 @@ class Viewport {
 		this.#queue();
 	}
 
-	/** Call `fn(snapshot)` now and on every frame the page scrolled or resized. */
-	subscribe(fn, { immediate = true } = {}) {
+	/**
+	 * Call `fn(snapshot, measured)` now and on every frame the page scrolled or
+	 * resized. With `read`, `read(snapshot)` runs first in the frame's read
+	 * phase (layout reads only, no style writes) and its result is passed to
+	 * `fn` as `measured`; `fn` should then only write.
+	 */
+	subscribe(fn, { immediate = true, read = null } = {}) {
 		this.#start();
 		this.#subs.add(fn);
-		if (immediate) fn(this.snapshot({ scrolled: false, resized: true }));
-		return () => this.#subs.delete(fn);
+		if (read) this.#readers.set(fn, read);
+		if (immediate) {
+			const snap = this.snapshot({ scrolled: false, resized: true });
+			fn(snap, read ? read(snap) : undefined);
+		}
+		return () => {
+			this.#subs.delete(fn);
+			this.#readers.delete(fn);
+		};
 	}
 }
 

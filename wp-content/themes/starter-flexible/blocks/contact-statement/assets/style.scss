@@ -216,3 +216,52 @@ a.spec__value:hover { @apply text-marine; }
 .cs .cs__description { max-width: 52ch; }
 .cs .cs__heading { max-width: 18em; }
 .cs__cta { margin-top: 0; }
+
+/* --- motion (MOTION.md: contact-statement) -------------------------------------
+   Entrance: the heading rises, the description follows, then the Call / Zalo
+   buttons pop in turn (from .9 on the soft spring), then the hint (contact
+   rows, when there are any, rise in turn beside it). The aqua glow swells
+   with the scroll (_motion.scss).
+   Press: the buttons give a soft press (scale .97). `scale` is its own
+   property, so it adds to the entrance's `transform` and to the button's
+   hover transitions (restated here, as the entrance replaces them). */
+.lasanmarine-contact-statement .cs__body {
+	--reveal-y: 24px;
+	--reveal-scale: 1;
+	--reveal-ms: var(--spring-out-ms);
+}
+.lasanmarine-contact-statement .cs__actions > .btn {
+	--reveal-y: 6px;
+	--reveal-scale: 0.9;
+	--reveal-ms: var(--spring-soft-ms);
+	--reveal-ease: var(--spring-soft);
+	transition:
+		opacity calc(var(--reveal-ms) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms) var(--reveal-ease) var(--reveal-delay, 0ms),
+		scale var(--spring-soft-ms) var(--spring-soft),
+		background 220ms ease,
+		color 200ms ease,
+		border-color 200ms ease,
+		box-shadow 220ms var(--ease);
+}
+.lasanmarine-contact-statement .cs__actions > .btn:not(.btn--secondary):not(.btn--ghost) {
+	transition:
+		opacity calc(var(--reveal-ms) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms) var(--reveal-ease) var(--reveal-delay, 0ms),
+		scale var(--spring-soft-ms) var(--spring-soft),
+		background-position 520ms var(--ease),
+		box-shadow 260ms var(--ease);
+}
+.lasanmarine-contact-statement .cs__cta {
+	transition:
+		opacity calc(var(--reveal-ms) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms) var(--spring-out) var(--reveal-delay, 0ms),
+		scale var(--spring-soft-ms) var(--spring-soft),
+		background 220ms ease,
+		color 200ms ease,
+		border-color 200ms ease,
+		box-shadow 220ms var(--ease);
+}
+.lasanmarine-contact-statement :is(.cs__actions > .btn, .cs__cta):active {
+	scale: 0.97;
+}

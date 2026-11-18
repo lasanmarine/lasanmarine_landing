@@ -6,7 +6,6 @@
 	transition: background 220ms ease;
 	gap: 12px;
 	padding: clamp(22px, 2.4vw, 32px);
-	scroll-margin-top: 140px;
 }
 .cm__cell:hover {
 	@apply bg-pale;
@@ -247,3 +246,51 @@
 .cm--tools .cm__desc { max-width: none; }
 .cm--tools .cm__cell { display: flex; flex-direction: column; }
 .cm--tools .cm__cta { margin-top: auto; }
+
+/* --- motion (MOTION.md: capability-matrix) -------------------------------------
+   Entrance: a diagonal wave across the matrix (`data-reveal-order="grid"`),
+   each cell rising a little and growing from its foot.
+   Hover: the cell lifts into the brand card (_v3-blocks.scss) and its arrow
+   travels 4px on the soft spring (besides the glyph swap). The lift is
+   `translate`, so it neither waits for nor fights the entrance, which owns
+   opacity/transform and its stagger delay. */
+.lasanmarine-capability-matrix {
+	--reveal-y: 20px;
+	--reveal-scale: 0.97;
+	--reveal-origin: 50% 100%;
+	--reveal-ms: var(--spring-out-ms);
+}
+.lasanmarine-capability-matrix .cm .cm__cell {
+	transition:
+		opacity calc(var(--reveal-ms) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms) var(--spring-out) var(--reveal-delay, 0ms),
+		translate var(--spring-soft-ms) var(--spring-soft),
+		background 360ms var(--ease),
+		border-color 240ms var(--ease),
+		box-shadow 360ms var(--ease),
+		color 260ms var(--ease);
+}
+.lasanmarine-capability-matrix .cm .cm__cell:hover {
+	transform: none;
+	translate: 0 -3px;
+}
+/* Tool cards stay put under the cursor (v2): only the arrow travels. */
+.cm--tools .cm .cm__cell:hover {
+	translate: none;
+}
+.lasanmarine-capability-matrix .cm__cta .btn__icon {
+	transition: translate var(--spring-soft-ms) var(--spring-soft);
+}
+.lasanmarine-capability-matrix .cm__cell:hover .cm__cta .btn__icon {
+	translate: 4px 0;
+}
+@media (prefers-reduced-motion: reduce) {
+	.lasanmarine-capability-matrix .cm .cm__cell:hover,
+	.lasanmarine-capability-matrix .cm__cell:hover .cm__cta .btn__icon {
+		translate: none;
+	}
+}
+html.reduce-motion .lasanmarine-capability-matrix .cm .cm__cell:hover,
+html.reduce-motion .lasanmarine-capability-matrix .cm__cell:hover .cm__cta .btn__icon {
+	translate: none;
+}

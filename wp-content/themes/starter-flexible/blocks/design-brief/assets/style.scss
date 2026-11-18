@@ -288,3 +288,22 @@
 	flex-direction: column;
 	gap: 16px;
 }
+
+/* --- motion (MOTION.md: design-brief) ---------------------------------------
+   Entrance: the sheet rises as one — every section in view arrives together,
+   and the ones further down rise as they come into view (the form is many
+   screens tall, so one element would wait for a share of itself that a phone
+   screen cannot show). The intro is the island's placeholder, already on
+   screen before the island mounts, so it stays put rather than blink.
+   The block does not also fade as a whole (it is not a stacked sheet's job,
+   and on a phone it would compound with the sections' rise).
+   Interaction: an added engine rises into place (settle.js enter()). */
+.lasanmarine-design-brief {
+	--reveal-y: 32px;
+	--reveal-scale: 1;
+}
+.reveal-on .lasanmarine-design-brief[data-reveal] {
+	opacity: 1;
+	transform: none;
+	transition: none;
+}

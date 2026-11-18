@@ -26,6 +26,7 @@
 	import { copyText } from '$lib/clipboard';
 	import { printHtml } from '$lib/print';
 	import { readJson, writeJson, removeKey } from '$lib/storage';
+	import { enter } from '../../power-converter/assets/settle.js';
 
 	/**
 	 * @type {{
@@ -103,7 +104,9 @@
 		engines.push(newScope());
 		writeDraft();
 		await tick();
-		engineEls[engines.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+		const added = engineEls[engines.length - 1];
+		enter(added);
+		added?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 	}
 
 	function removeEngine(index) {
@@ -241,7 +244,12 @@
 	{/each}
 {/snippet}
 
-<form class="db__form" novalidate bind:this={formEl} onsubmit={(e) => e.preventDefault()} onreset={clearAll}>
+<form
+	class="db__form"
+	data-reveal-stagger=".db__section, .db__actions"
+	data-reveal-order="together"
+	novalidate
+	bind:this={formEl} onsubmit={(e) => e.preventDefault()} onreset={clearAll}>
 	<header class="db__intro">
 		{#if heading.trim()}<h2 class="h3">{heading}</h2>{/if}
 		{#if intro}<p class="copy">{intro}</p>{/if}

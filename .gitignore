@@ -29,3 +29,4 @@
 local-xdebuginfo.php
 .claude/settings.local.json
 /output/sync/
+/output/backup/

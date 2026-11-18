@@ -1,0 +1,21 @@
+{
+	"key": "app_resistance",
+	"title": "Mô phỏng sức cản công suất tàu online",
+	"slug": "suc-can-cong-suat",
+	"lang": "vi",
+	"parent": "tools",
+	"template": "page-app.php",
+	"seo": {
+		"title": "Mô phỏng sức cản công suất tàu online | LASAN MARINE",
+		"description": "Mô phỏng sức cản công suất tàu miễn phí: canô lướt theo Savitsky, tàu khách theo Holtrop–Mennen; công suất kéo, công suất máy, % MCR. Xuất Word, Excel."
+	},
+	"blocks": [
+		{
+			"type": "app-embed",
+			"fields": {
+				"app": "suc-can-cong-suat",
+				"title": "Mô phỏng sức cản & công suất tàu cao tốc cỡ nhỏ"
+			}
+		}
+	]
+}

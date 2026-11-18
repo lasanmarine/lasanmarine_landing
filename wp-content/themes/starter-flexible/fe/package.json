@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "vite",
 		"icons": "node scripts/icons.mjs",
-		"prebuild": "node scripts/icons.mjs",
+		"easing": "node scripts/easing.mjs",
+		"prebuild": "node scripts/icons.mjs && node scripts/easing.mjs",
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "vitest run"

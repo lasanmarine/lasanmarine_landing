@@ -4,6 +4,7 @@
 	// back to the formula's units (kW, rpm); the formula is lib/shaft.js, the
 	// same one the Design Brief uses.
 	import CopyButton from '$components/CopyButton.svelte';
+	import { settle } from '../../power-converter/assets/settle.js';
 	import { propellerRpm, shaftDiameter } from '$lib/shaft';
 	import { plainNumber, toNumber } from '$lib/format';
 
@@ -44,8 +45,8 @@
 </script>
 
 <form class={moduleClass} novalidate onsubmit={(e) => e.preventDefault()} onreset={reset}>
-	<div class="pc__grid">
-		<div class="pc__inputs" data-reveal="left">
+	<div class="pc__grid" data-reveal-stagger=":scope > *">
+		<div class="pc__inputs">
 			{#each combos as combo (combo.key)}
 				<div class="field">
 					<label class="field__label" for={ids[combo.key]}>{combo.label}</label>
@@ -107,13 +108,13 @@
 			</button>
 		</div>
 
-		<div class="pc__results" data-reveal="right">
+		<div class="pc__results">
 			<h2 class="pc__heading">{labels.results}</h2>
 			<div class="pc__result-list" aria-live="polite" aria-atomic="true" data-reveal-stagger>
 				{#each rows as row (row.id)}
 					<div class="pc__result">
 						<span class="pc__result-label">{row.label}</span>
-						<output class="pc__result-value" aria-label={row.label}>{row.text}</output>
+						<output use:settle={row.text} class="pc__result-value" aria-label={row.label}>{row.text}</output>
 						<CopyButton value={row.plain} label={labels.copy} {icons} />
 					</div>
 				{/each}

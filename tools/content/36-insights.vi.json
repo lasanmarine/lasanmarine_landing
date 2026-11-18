@@ -1,0 +1,45 @@
+{
+	"key": "insights",
+	"title": "Kiến thức tàu thủy và ghi chú kỹ thuật",
+	"slug": "tin-tuc",
+	"lang": "vi",
+	"seo": {
+		"title": "Kiến thức tàu thủy và ghi chú kỹ thuật | LASAN MARINE",
+		"description": "Đọc kiến thức tàu thủy về tuyến hình, kết cấu, hệ động lực và hồ sơ kỹ thuật. Khám phá các ghi chú chuyên ngành cùng Lasan Marine để chuẩn bị dự án."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Danh sách bài viết",
+				"heading_level": "h1",
+				"lead": "",
+				"height": 300,
+				"actions": []
+			}
+		},
+		{
+			"type": "insights",
+			"fields": {
+				"heading": "",
+				"layout": "index",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Liên hệ chúng tôi</p>",
+				"description": "",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Chi tiết thông tin liên hệ",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

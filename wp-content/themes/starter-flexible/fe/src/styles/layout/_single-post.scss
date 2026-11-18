@@ -1125,9 +1125,10 @@ html body .post-nav .nav-next {
 	letter-spacing: -0.02em;
 }
 
-/* Anchored headings land below the fixed bar and the reading bar. */
+/* Anchored headings land below the header (html's scroll-padding-top) and
+   also clear the reading bar fixed under it. */
 .post-single__body h2 {
-	scroll-margin-top: calc(var(--hdr-h, 74px) + 88px);
+	scroll-margin-top: 56px;
 }
 
 /* --- phone tier for the post and project pages ---------------------------- */

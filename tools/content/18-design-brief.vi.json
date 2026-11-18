@@ -1,34 +1,35 @@
 {
-  "key": "design_brief",
-  "title": "Nhiệm vụ thư",
-  "slug": "nhiem-vu-thu",
-  "parent": "tools",
-  "lang": "vi",
-  "seo": {
-    "title": "Xây dựng nhiệm vụ thư thiết kế — LASAN MARINE",
-    "description": "Biểu mẫu nội bộ để lập nhiệm vụ thư thiết kế: thông tin khách hàng, kích thước tàu, kết cấu thân vỏ, khai thác và hệ động lực."
-  },
-  "blocks": [
-    {
-      "type": "page-hero",
-      "fields": {
-        "headline": "Nhiệm vụ thư thiết kế",
-        "lead": "Điền một lần, mọi thông số cần cho hồ sơ đều nằm ở đây. Công suất, vòng quay chân vịt và đường kính trục tối thiểu được tính tự động theo dòng máy và vật liệu đã chọn.",
-        "placeholder": "DESIGN BRIEF",
-        "heading_level": "h1",
-        "height": 340,
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "design-brief",
-      "fields": {
-        "label": "BIỂU MẪU",
-        "heading": "Xây dựng nhiệm vụ thư",
-        "intro": "Bản nháp được lưu ngay trên máy bạn, đóng tab mở lại vẫn còn. Điền xong bấm Sao chép để dán vào hồ sơ, hoặc In / Lưu PDF.",
-        "custom_class": "",
-        "cf7_form": "nhiem-vu-thu-thiet-ke"
-      }
-    }
-  ]
+	"key": "design_brief",
+	"title": "Nhiệm vụ thư",
+	"slug": "nhiem-vu-thu",
+	"lang": "vi",
+	"parent": "tools",
+	"seo": {
+		"title": "Mẫu nhiệm vụ thư thiết kế tàu online | LASAN MARINE",
+		"description": "Lập nhiệm vụ thư thiết kế tàu trực tuyến: thông số chính, máy, trang thiết bị, yêu cầu đăng kiểm. Lưu nháp trên máy, sao chép hoặc in PDF."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Nhiệm vụ thư thiết kế",
+				"heading_level": "h1",
+				"lead": "",
+				"height": 200,
+				"actions": []
+			}
+		},
+		{
+			"type": "design-brief",
+			"fields": {
+				"heading": "",
+				"intro": "Bản nháp được lưu ngay trên máy bạn, đóng tab mở lại vẫn còn. Điền xong bấm Sao chép để dán vào hồ sơ, hoặc In / Lưu PDF.",
+				"doc_org": "",
+				"doc_place": "Khánh Hòa",
+				"doc_symbol": "NVT-LSM",
+				"cf7_form": "nhiem-vu-thu-thiet-ke",
+				"custom_class": ""
+			}
+		}
+	]
 }

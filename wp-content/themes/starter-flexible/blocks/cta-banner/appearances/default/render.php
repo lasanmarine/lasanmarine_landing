@@ -18,7 +18,7 @@ if ( empty( $data->should_render ) ) {
 }
 
 ?>
-<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
+<section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal data-reveal-stagger=".cb, .cb__label, .cb__heading, .cb__content, .cb__actions .btn"<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
 	<div class="band cb cb--<?php echo esc_attr( $data->theme ); ?> <?php echo esc_attr( $data->band_class ); ?>">
 		<div class="container cb__inner">
 			<div class="cb__body">

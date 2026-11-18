@@ -1,0 +1,198 @@
+{
+	"key": "design_steel",
+	"title": "Thiết kế tàu cá vỏ thép xa bờ, bản vẽ & hồ sơ",
+	"slug": "tau-ca-vo-thep",
+	"lang": "vi",
+	"parent": "service_01",
+	"seo": {
+		"title": "Thiết kế tàu cá vỏ thép xa bờ, bản vẽ & hồ sơ | LASAN MARINE",
+		"description": "Thiết kế tàu cá vỏ thép đóng mới, tàu khai thác xa bờ và tàu hậu cần: bản vẽ, tính toán ổn định, kết cấu và hồ sơ đăng kiểm. Gọi hoặc Zalo 0834 310 781."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Thiết kế tàu cá vỏ thép: bản vẽ, tính toán và hồ sơ đăng kiểm",
+				"heading_level": "h1",
+				"lead": "Thiết kế đóng mới tàu cá vỏ thép khai thác xa bờ và tàu hậu cần thủy sản, từ kích thước chính, tuyến hình đến bộ hồ sơ trình thẩm tra. Hồ sơ đúng quy chuẩn ngay từ đầu, hạn chế phải sửa đi sửa lại.",
+				"height": 420,
+				"actions": [
+					{
+						"link": {
+							"label": "Tàu cá vỏ thép đã thiết kế",
+							"url": "#tau-ca-vo-thep-da-thiet-ke"
+						}
+					},
+					{
+						"link": {
+							"label": "Những tình huống chủ tàu hay gặp",
+							"url": "#nhung-tinh-huong-chu-tau-hay-gap"
+						}
+					},
+					{
+						"link": {
+							"label": "Bạn nhận được gì",
+							"url": "#ban-nhan-duoc-gi"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Những tình huống chủ tàu hay gặp",
+				"intro": "",
+				"solution_label": "Chúng tôi xử lý",
+				"items": [
+					{
+						"problem": "Muốn đóng tàu mới nhưng chưa có phương án",
+						"context": "Mới có ý tưởng về nghề, cỡ tàu và vùng khai thác.",
+						"solution": "Đề xuất kích thước chính, bố trí chung và công suất máy phù hợp nghề; lập nhiệm vụ thư làm cơ sở thiết kế.",
+						"link": {
+							"label": "Lập nhiệm vụ thư",
+							"page": "design_brief"
+						}
+					},
+					{
+						"problem": "Hồ sơ bị trả về sửa nhiều lần",
+						"context": "Thiếu bản tính, bản vẽ chưa khớp hoặc chưa đúng quy chuẩn hiện hành.",
+						"solution": "Rà soát toàn bộ hồ sơ, bổ sung bản tính ổn định, kết cấu, máy và chỉnh bản vẽ theo yêu cầu thẩm tra.",
+						"link": {
+							"label": "Xem dịch vụ hồ sơ đăng kiểm",
+							"page": "approval_docs"
+						}
+					},
+					{
+						"problem": "Cần tính lại khi đổi máy hoặc tăng tải",
+						"context": "Thay máy lớn hơn, lắp thêm thiết bị, thay đổi bố trí hầm.",
+						"solution": "Kiểm tra lại ổn định, sức cản – công suất, chân vịt và hệ trục; cập nhật bản vẽ liên quan.",
+						"link": {
+							"label": "Thử công cụ tính nhanh",
+							"page": "tools"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "Bạn nhận được gì",
+				"intro": "Bộ hồ sơ thiết kế tàu cá vỏ thép đầy đủ để đóng mới và trình thẩm tra.",
+				"note_label": "Thời gian",
+				"note": "Thời gian được thống nhất khi báo giá, tùy loại tàu, phạm vi công việc và hồ sơ hiện có. Bạn biết trước mốc bàn giao từng phần.",
+				"items": [
+					{
+						"title": "Bản vẽ thiết kế kỹ thuật",
+						"desc": "Tuyến hình, bố trí chung, kết cấu, hệ động lực, hệ thống",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Thuyết minh và bản tính",
+						"desc": "Thủy tĩnh, ổn định, mạn khô, kết cấu, sức cản – công suất, chân vịt, hệ trục",
+						"format": "PDF"
+					},
+					{
+						"title": "Hồ sơ trình thẩm tra",
+						"desc": "Đủ thành phần theo yêu cầu đăng kiểm tàu cá",
+						"format": "PDF"
+					},
+					{
+						"title": "Giải trình khi thẩm tra",
+						"desc": "Phối hợp sửa đổi đến khi hồ sơ được duyệt",
+						"format": ""
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "Làm việc với chúng tôi thế nào?",
+				"intro": "",
+				"steps": [
+					{
+						"title": "Gửi thông tin qua Zalo hoặc điện thoại",
+						"desc": "Loại tàu, kích thước dự kiến, vùng hoạt động và ảnh hoặc hồ sơ hiện có."
+					},
+					{
+						"title": "Khảo sát và báo giá",
+						"desc": "Xác định phạm vi, hạng mục bàn giao và mốc thời gian, báo giá rõ từng phần."
+					},
+					{
+						"title": "Thiết kế và tính toán",
+						"desc": "Triển khai bản vẽ, bản tính bằng công cụ chuyên ngành và công cụ tự phát triển."
+					},
+					{
+						"title": "Thẩm tra và bàn giao",
+						"desc": "Phối hợp giải trình khi thẩm tra, cập nhật hồ sơ và bàn giao bản cuối."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Tàu cá vỏ thép đã thiết kế",
+				"intro": "",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-ca-vo-thep-na-95678-ts",
+					"tau-ca-vo-thep-qna-91304-ts",
+					"tau-ca-vo-thep-qna-91312-ts",
+					"tau-hau-can-bv-99889-ts",
+					"tau-hau-can-bt-98144-ts"
+				]
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp",
+				"intro": "",
+				"items": [
+					{
+						"title": "Tôi chưa có bản vẽ gì thì bắt đầu thế nào?",
+						"content": "<p>Chỉ cần cho biết nghề khai thác, cỡ tàu mong muốn, vùng hoạt động và ngân sách dự kiến. Chúng tôi sẽ đề xuất phương án và lập nhiệm vụ thư làm cơ sở thiết kế.</p>"
+					},
+					{
+						"title": "Thiết kế tàu cá vỏ thép mất bao lâu?",
+						"content": "<p>Tùy cỡ tàu, mức độ hoàn thiện của yêu cầu và hồ sơ hiện có. Mốc thời gian từng phần được thống nhất khi báo giá.</p>"
+					},
+					{
+						"title": "Hồ sơ có dùng để trình đăng kiểm được không?",
+						"content": "<p>Có. Hồ sơ được lập theo quy chuẩn và yêu cầu đăng kiểm tàu cá hiện hành, và chúng tôi phối hợp giải trình khi thẩm tra.</p>"
+					},
+					{
+						"title": "Có thể gửi thông tin qua Zalo không?",
+						"content": "<p>Có. Gửi ảnh tàu, bản vẽ cũ hoặc mô tả qua Zalo 0834 310 781 để được tư vấn nhanh.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn đang chuẩn bị đóng tàu cá vỏ thép?</p>",
+				"description": "Gọi hoặc nhắn Zalo cho chúng tôi loại nghề, cỡ tàu và vùng khai thác. Chúng tôi phản hồi phương án và báo giá rõ ràng.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu qua form",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

@@ -43,7 +43,7 @@ if ( ! empty( $data->is_index ) ) :
 		</p>
 	</div>
 
-	<div class="pi__list pi__list--gallery in__gallery">
+	<div class="pi__list pi__list--gallery in__gallery" data-reveal-stagger="[data-pi-item]" data-reveal-order="grid">
 		<?php foreach ( $data->articles as $i => $article ) : ?>
 			<a href="<?php echo esc_url( $article['url'] ); ?>" class="in__card in__card--tile" data-pi-item data-terms="<?php echo esc_attr( $article['terms'] ); ?>">
 				<span class="in__tile">
@@ -130,7 +130,7 @@ endif;
 		</div>
 	<?php endif; ?>
 
-	<div class="in__row" data-slider data-slider-min="3" data-reveal-stagger>
+	<div class="in__row" data-slider data-slider-min="3" data-reveal-stagger data-reveal-order="grid">
 		<?php foreach ( $data->articles as $article ) : ?>
 			<a href="<?php echo esc_url( $article['url'] ); ?>" class="in__card">
 				<span class="in__card-media">

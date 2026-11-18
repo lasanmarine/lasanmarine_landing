@@ -51,7 +51,10 @@
 	   the container's content edge, never with its own private inset. */
 	--band-inset: max(var(--gutter), calc((100% - 1560px) / 2 + var(--gutter)));
 	--block-gap: clamp(64px, 9vw, 140px);
-	--ease: cubic-bezier(0.22, 1, 0.36, 1);
+	/* --ease and the spring curves live in _easing.scss (generated). */
+	/* Anchor landing: the bar's height (measured by header.js) plus a gap
+	   that scales with the screen, 24px on a phone to 64px on a tall desktop. */
+	--anchor-gap: calc(var(--hdr-h, 76px) + clamp(24px, 6vh, 64px));
 }
 
 /* --- base --------------------------------------------------------------- */
@@ -64,6 +67,12 @@
 
 html {
 	@apply scroll-smooth;
+	/* Where anything scrolled to lands — #links, the contents list, the
+	   keyboard, find-in-page: below the bar, with room to breathe. A heading
+	   flush against the bar reads as cut off and sits in the eye's blind band
+	   under it; one screen-tenth lower it lands in the upper third, where the
+	   eye starts reading a page (and where toc.js marks a section current). */
+	scroll-padding-top: var(--anchor-gap);
 }
 
 /* Entrance animations start their elements off to the side; clip that here

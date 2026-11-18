@@ -36,6 +36,7 @@ export default function stack(stream) {
 	let raf = 0;
 	let active = false;
 	let stops = []; // { y, flowEnd? }, ascending
+	let docTop = []; // each sheet's top in the document flow (sticky and transforms aside)
 
 	const hdrH = () => viewport.hdrH || 76;
 
@@ -46,7 +47,8 @@ export default function stack(stream) {
 		el.style.zIndex = '';
 		el.style.transform = '';
 		el.style.removeProperty('--veil');
-		el.style.visibility = '';
+		el.style.removeProperty('--bleed');
+		el.style.opacity = '';
 	}
 
 	function measure() {
@@ -71,6 +73,15 @@ export default function stack(stream) {
 		const avail = vh - hdr;
 		stream.style.setProperty('--avail', `${avail}px`);
 
+		// Paper margins: how far each sheet falls short of the screen's edges
+		// (_sheets.scss paints exactly that much, never more).
+		const vw = document.documentElement.clientWidth;
+		cards.forEach((el) => {
+			const r = el.getBoundingClientRect();
+			const bleed = Math.ceil(Math.max(r.left, vw - r.right, 0));
+			if (bleed > 0) el.style.setProperty('--bleed', `${bleed}px`);
+		});
+
 		// Pass 1: size every sheet. Each one is a screen tall (_sheets.scss);
 		// only a block whose content is taller than that scrolls as a flow sheet.
 		cards.forEach((el, i) => {
@@ -94,8 +105,10 @@ export default function stack(stream) {
 		const sc = getComputedStyle(stream);
 		const gapY = parseFloat(sc.rowGap) || 0;
 		let y = stream.getBoundingClientRect().top + window.scrollY + (parseFloat(sc.paddingTop) || 0);
+		docTop = [];
 		cards.forEach((el, i) => {
 			const h = el.offsetHeight;
+			docTop[i] = y;
 			const top = Math.max(0, y - hdr);
 			if (el.classList.contains('is-flow')) {
 				stops.push({ y: top, flowEnd: Math.max(top, y + h - vh) });
@@ -119,21 +132,21 @@ export default function stack(stream) {
 		kick();
 	}
 
-	function targets() {
+	// How far each sheet has been covered: the next sheet's top travels from
+	// 60% of the screen up to the bar. Between layouts a sheet's position is
+	// affine in the scroll, top(y) = docTop − y (once it sticks the clamp
+	// holds the result at 1), so this is arithmetic on numbers measured in
+	// measure(): no layout read per frame, where it used to read every sheet.
+	function targets(scrollY = window.scrollY) {
 		if (!active) return;
 		const vh = window.innerHeight;
 		const hdr = hdrH();
-		cards.forEach((el, i) => {
-			const next = cards[i + 1];
-			if (!next) return;
-			// Measure where the next sheet sits in the flow, not where its own
-			// recede transform has nudged it (translateY up to 36px).
-			const n = state[i + 1];
-			const np = n ? n.cur * n.cur * (3 - 2 * n.cur) : 0;
-			const top = next.getBoundingClientRect().top - np * 36;
-			const start = vh * 0.6;
-			state[i].target = Math.min(1, Math.max(0, (start - top) / Math.max(1, start - hdr)));
-		});
+		const start = vh * 0.6;
+		const span = Math.max(1, start - hdr);
+		for (let i = 0; i < cards.length - 1; i++) {
+			const top = docTop[i + 1] - scrollY;
+			state[i].target = Math.min(1, Math.max(0, (start - top) / span));
+		}
 	}
 
 	function frame() {
@@ -156,7 +169,10 @@ export default function stack(stream) {
 			// the gap a long (flow) sheet leaves when it scrolls away.
 			// (The pinned next sheet sits a few px under the bar, so a covered
 			// sheet tops out just short of 1; count 0.97 as covered.)
-			el.style.visibility = p > 0.97 ? 'hidden' : '';
+			// Opacity, not visibility: a child may set `visibility: visible`
+			// again (the hero's current slide does), and then its headline
+			// floated, without its sheet, in the gaps between later sheets.
+			el.style.opacity = p > 0.97 ? '0' : '';
 		});
 	}
 	const kick = () => {
@@ -231,7 +247,7 @@ export default function stack(stream) {
 		// The viewport store already calls this inside an animation frame: draw
 		// now. Waiting for another frame would leave the sheets one frame behind
 		// the scroll, which reads as a shudder.
-		targets();
+		targets(y);
 		frame();
 		if (!selfScroll) {
 			if (Math.abs(y - lastY) > 0.5) dir = Math.sign(y - lastY);

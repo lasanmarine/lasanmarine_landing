@@ -25,12 +25,14 @@ export function scrub(root, { pin, run, progress, reset = () => {} }) {
 	let pinTop = 0; // the pin's sticky offset, read once per layout
 	let pinH = 0;
 
-	const drive = () => {
+	// The spacer stays in the flow, so it shows where the pin would be
+	// without sticking; how far the pin has been held is the difference.
+	// One layout read per frame, in the viewport store's read phase; the
+	// pin's own size and offset are cached.
+	const read = () => (active ? spacer.getBoundingClientRect().top : 0);
+	const drive = (spacerTop = read()) => {
 		if (!active) return;
-		// The spacer stays in the flow, so it shows where the pin would be
-		// without sticking; how far the pin has been held is the difference.
-		// One layout read per frame; the pin's own size and offset are cached.
-		const natural = spacer.getBoundingClientRect().top - pinH;
+		const natural = spacerTop - pinH;
 		const travelled = pinTop - natural;
 		progress(clamp(travelled / Math.max(distance, 1), 0, 1));
 	};
@@ -56,7 +58,7 @@ export function scrub(root, { pin, run, progress, reset = () => {} }) {
 
 	measure();
 	return cleanupAll([
-		viewport.subscribe((snap) => (snap.resized ? measure() : drive())),
+		viewport.subscribe((snap, top) => (snap.resized ? measure() : drive(top)), { read }),
 		on(mq, 'change', measure),
 		motion.subscribe(() => measure()),
 		() => {

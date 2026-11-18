@@ -1,0 +1,141 @@
+{
+	"key": "publications_en",
+	"title": "Published Ship Hydrodynamics Research",
+	"slug": "publications",
+	"lang": "en",
+	"translation_of": "publications",
+	"parent": "service_rnd_en",
+	"seo": {
+		"title": "Published Ship Hydrodynamics Research | LASAN MARINE",
+		"description": "Scientific papers by the LASAN MARINE team on flow around fishing-vessel hulls, propeller and rudder interaction, tip-vortex cavitation and structures."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Published research",
+				"heading_level": "h1",
+				"lead": "All papers, reports and book chapters by our team, marine research first.",
+				"height": 320,
+				"actions": [
+					{
+						"link": {
+							"label": "Publications",
+							"url": "#publications"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "document-center",
+			"fields": {
+				"heading": "Publications",
+				"view_all": {
+					"label": "Back to R&D",
+					"page": "service_rnd_en"
+				},
+				"all_label": "All",
+				"empty_text": "No publications in this group.",
+				"groups": [
+					{
+						"name": "HYDRODYNAMICS &amp; PROPELLERS",
+						"items": [
+							{
+								"title": "Mesh Refinement Investigation to Simulate Tip Vortex Cavitation under Non-Cavitating Conditions (Dynamics – MDPI, 2024)",
+								"size": "Open-access PDF",
+								"file": ""
+							},
+							{
+								"title": "Simulation of flow around a fishing vessel hull considering propeller and rudder effects (Tạp chí KH-CN Thủy sản, 2024)",
+								"size": "1.2 MB",
+								"file": ""
+							},
+							{
+								"title": "Simulation the Instability of the Fishing Vessel Propeller Structure During Operation (MSDI, 2023)",
+								"size": "Abstract",
+								"file": ""
+							},
+							{
+								"title": "Effects of Computational Geometry to the Laminar Viscous Flow Around the Vertical Circular Cylinder (Springer, 2021)",
+								"size": "Book chapter",
+								"file": ""
+							}
+						]
+					},
+					{
+						"name": "STRUCTURES &amp; PROPULSION",
+						"items": [
+							{
+								"title": "Selecting fault-warning parameters for offshore fishing vessel propulsion systems (Tạp chí KH-CN Thủy sản, 2018)",
+								"size": "1.1 MB",
+								"file": ""
+							},
+							{
+								"title": "Strength check of a single-cylinder engine crankshaft by simulation (TNU-JST, 2021)",
+								"size": "850 KB",
+								"file": ""
+							},
+							{
+								"title": "Applying CAE Tool for Analysis Stress and Optimization of the Crankshaft in the Internal Combustion Engine (2010)",
+								"size": "Research paper",
+								"file": ""
+							}
+						]
+					},
+					{
+						"name": "Measurement",
+						"items": [
+							{
+								"title": "Design and fabrication of a CMM for measuring marine propeller geometry (Tạp chí KH-CN Thủy sản, 2024)",
+								"size": "1.8 MB",
+								"file": ""
+							}
+						]
+					},
+					{
+						"name": "Other foundational research",
+						"items": [
+							{
+								"title": "Analysis Stability of Brake Related to Squeal by Finite Element Method (GRANT Journal, 2012)",
+								"size": "650 KB",
+								"file": ""
+							},
+							{
+								"title": "Model Predict Vibration and Noise of Disc Brake (Scientific.Net, 2012)",
+								"size": "Research paper",
+								"file": ""
+							},
+							{
+								"title": "Identify Source Vibration and Noise of Disc Brake (IRMES Proceedings, 2011)",
+								"size": "Conference paper",
+								"file": ""
+							},
+							{
+								"title": "Estimate the Elastic Modulus and Strength of Composites with Basalt Woven Fiber Reinforcement by ANSYS (2011)",
+								"size": "Research paper",
+								"file": ""
+							}
+						]
+					}
+				],
+				"custom_class": ""
+			},
+			"anchor": "publications"
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Have a problem that needs research or verification?</p>",
+				"description": "Send your question, hypothesis, data or current design. We will review it and discuss the right method, the extra data needed and the form of the deliverables.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Discuss an R&D problem",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
+}

@@ -1,0 +1,63 @@
+{
+	"key": "tool_power_en",
+	"title": "Power Converter for kW, HP and PS | Lasan Marine",
+	"slug": "power-converter",
+	"lang": "en",
+	"translation_of": "tool_power",
+	"parent": "tools_en",
+	"seo": {
+		"title": "Power Converter for kW, HP and PS | Lasan Marine",
+		"description": "Use the power converter to switch between kW, HP and PS. Select the source unit and compare the converted value with the engine manufacturer’s original data."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Power Converter",
+				"heading_level": "h1",
+				"lead": "Enter a value, the remaining units are converted immediately.",
+				"height": 420,
+				"actions": [
+					{
+						"link": {
+							"label": "Enter parameters",
+							"url": "#enter-parameters"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "tool-shell",
+			"fields": {
+				"custom_class": ""
+			},
+			"inner": [
+				{
+					"type": "power-converter",
+					"fields": {
+						"custom_class": ""
+					}
+				}
+			]
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Contact us</p>",
+				"description": "",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Detailed contact information",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		},
+		{
+			"type": "core",
+			"html": "<!-- wp:group {\"className\":\"container\"} -->\n<div class=\"wp-block-group container\"><!-- wp:heading -->\n<h2 class=\"wp-block-heading\">More about power converter</h2>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>The power converter helps compare figures from different documents in one unit. First, check the original label because HP and PS are different units. Then enter the value and select the matching source unit. Keep the original figure beside the converted result when preparing a comparison table.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Explore our <a href=\"{{page:capabilities_en}}\">capabilities and service scope</a>, or <a href=\"{{page:contact_en}}\">send an enquiry</a> to discuss your requirements.</p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:group -->"
+		}
+	]
+}

@@ -23,12 +23,17 @@
 
 	/* Sheets are opaque, edge to edge: a sheet sliding up hides the one it
 	   covers completely, instead of letting it show through its margins.
-	   (A spread shadow paints the full width; clip-path keeps it from
-	   spilling above or below.) */
+	   A spread shadow paints the margins; clip-path keeps it from spilling
+	   above or below. The spread is the sheet's own margin, `--bleed`, which
+	   stack.js measures: a 100vmax spread made every moving sheet a
+	   compositor layer three screens wide, and the GPU filled all of it on
+	   every frame. A sheet as wide as the screen needs no shadow at all. */
 	.block-stream.is-stacked > .block[class*='lasanmarine-'] {
 		background-color: var(--paper);
-		box-shadow: 0 0 0 100vmax var(--paper);
-		clip-path: inset(0 -100vmax);
+	}
+	.block-stream.is-stacked > .block[class*='lasanmarine-'][style*='--bleed'] {
+		box-shadow: 0 0 0 var(--bleed) var(--paper);
+		clip-path: inset(0 calc(-1 * var(--bleed)));
 	}
 
 	/* Every sheet is a screen tall; its content is centred in it. */

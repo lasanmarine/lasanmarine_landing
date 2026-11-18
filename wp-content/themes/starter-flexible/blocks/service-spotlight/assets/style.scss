@@ -65,3 +65,25 @@
 .is-stacked .spotlight { max-height: calc(var(--avail, 100svh) - 24px); }
 .is-stacked .spotlight__panel { padding-block: clamp(24px, 5vh, 72px); gap: clamp(14px, 2.4vh, 24px); }
 .is-stacked .spotlight__panel { padding-block: clamp(18px, 3.6vh, 64px); }
+
+/* --- motion (MOTION.md: service-spotlight) -------------------------------
+   The photo opens with the scroll (_motion.scss); the panel slides in from
+   the photo's side — heading, copy, each list item and the button in turn
+   (reveal kit on `.spotlight__panel`). Below 1024px the panel sits under the photo, so it
+   rises instead. The .spotlight clips the travel, so nothing spills. */
+.spotlight__panel {
+	--reveal-x: 32px;
+	--reveal-y: 0px;
+	--reveal-scale: 1;
+}
+@media (max-width: 1024px) {
+	.spotlight__panel {
+		--reveal-x: 0px;
+		--reveal-y: 20px;
+	}
+}
+/* The button sits in a wrapper that makes the entrance (render.php). */
+.spotlight__cta {
+	display: flex;
+	align-self: flex-start;
+}

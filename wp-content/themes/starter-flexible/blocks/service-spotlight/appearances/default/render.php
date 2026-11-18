@@ -42,18 +42,21 @@ if ( empty( $data->should_render ) ) {
 				<p class="spotlight__label"><?php echo esc_html( $data->label ); ?></p>
 			<?php endif; ?>
 		</div>
-		<div class="spotlight__panel band--navy-mid">
+		<div class="spotlight__panel band--navy-mid" data-reveal-stagger="<?php echo esc_attr( ':scope > :not(ul), .spotlight__items > li' ); ?>">
 			<h3 class="h4 spotlight__heading"><?php echo esc_html( $data->heading ); ?></h3>
 			<?php if ( '' !== trim( (string) $data->body ) ) : ?>
 				<p class="copy"><?php echo esc_html( $data->body ); ?></p>
 			<?php endif; ?>
-			<ul class="spotlight__items" data-reveal-stagger>
+			<ul class="spotlight__items">
 				<?php foreach ( $data->items as $item ) : ?>
 					<li><?php echo esc_html( $item ); ?></li>
 				<?php endforeach; ?>
 			</ul>
 			<?php
 			if ( $data->has_cta ) {
+				// Wrapped: the wrapper makes the entrance, so the button's own
+				// hover and press transforms stay its own.
+				echo '<div class="spotlight__cta">';
 				get_template_part(
 					'template-parts/components/button',
 					null,
@@ -63,6 +66,7 @@ if ( empty( $data->should_render ) ) {
 						'attrs' => '_blank' === $data->cta['target'] ? array( 'target' => '_blank', 'rel' => 'noopener' ) : array(),
 					)
 				);
+				echo '</div>';
 			}
 			?>
 		</div>

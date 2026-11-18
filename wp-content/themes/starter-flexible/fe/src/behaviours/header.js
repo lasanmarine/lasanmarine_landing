@@ -46,24 +46,28 @@ function stickyBar() {
 	const footer = document.querySelector('footer, .ftr');
 	let lastY = window.scrollY;
 
-	// The bar turns opaque once the page has scrolled past the hero's top.
-	// Reaching the footer, it slides away so the footer has the whole screen;
+	// The bar is the floating pill from the start (header.php renders it
+	// `is-stuck`), so scrolling never reshapes it. Reaching the footer, it slides away so the footer has the whole screen;
 	// the first scroll back up brings it straight back.
 	// Direction is read from the distance travelled since it last changed, not
 	// per frame: a slow trackpad scroll moves under a pixel a frame and would
 	// otherwise never count as a direction at all.
 	let dir = 0;
-	return viewport.subscribe(({ scrollY, height }) => {
-		bar.classList.toggle('is-stuck', scrollY > 24);
-		const d = scrollY - lastY;
-		if (Math.abs(d) >= 6) {
-			dir = Math.sign(d);
-			lastY = scrollY;
-		}
-		const atFooter = !!footer && footer.getBoundingClientRect().top < height * 0.85;
-		if (!atFooter || dir < 0) header.classList.remove('is-tucked');
-		else if (dir > 0) header.classList.add('is-tucked');
-	});
+	// The footer's position is read in the viewport store's read phase: read
+	// here, after the class toggle above, it forced a layout every frame.
+	return viewport.subscribe(
+		({ scrollY, height }, footerTop) => {
+			const d = scrollY - lastY;
+			if (Math.abs(d) >= 6) {
+				dir = Math.sign(d);
+				lastY = scrollY;
+			}
+			const atFooter = footerTop < height * 0.85;
+			if (!atFooter || dir < 0) header.classList.remove('is-tucked');
+			else if (dir > 0) header.classList.add('is-tucked');
+		},
+		{ read: () => (footer ? footer.getBoundingClientRect().top : Infinity) },
+	);
 }
 
 /* ---- the bar's dropdown panels ------------------------------------------ */

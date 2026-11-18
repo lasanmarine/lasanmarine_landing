@@ -84,3 +84,27 @@ a.spec__value {
 	color: var(--marine);
 	font-weight: 600;
 }
+
+/* --- motion (MOTION.md: spec-list) ---------------------------------------
+   Rows arrive top to bottom (reveal kit); in each, the label comes with its
+   row and the value follows a beat later, so the pair reads left to right. */
+.lasanmarine-spec-list {
+	--reveal-y: 14px;
+	--reveal-scale: 1;
+}
+.sl .spec[data-reveal-item] .spec__value {
+	transition:
+		opacity calc(var(--spring-out-ms) * 0.78) var(--spring-out),
+		transform var(--spring-out-ms) var(--spring-out);
+	transition-delay: calc(var(--reveal-delay, 0ms) + 110ms);
+}
+/* Hidden only while the row waits for its entrance — never when motion is
+   off (no `reveal-on`, or the footer toggle). */
+html.reveal-on:not(.reduce-motion) .sl .spec[data-reveal-item]:not(.is-revealed) .spec__value {
+	opacity: 0;
+	transform: translateY(10px);
+}
+/* Already on screen at load (the kit's `reveal-instant`): no motion at all. */
+.sl .spec.reveal-instant .spec__value {
+	transition: none !important;
+}

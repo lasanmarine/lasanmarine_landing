@@ -34,3 +34,12 @@
 .rt__body {
 	text-wrap: pretty;
 }
+
+/* --- motion (MOTION.md: rich-text) ------------------------------------------
+   Entrance: the heading, then the opening paragraphs rise in turn — a short
+   rise, no scale, as text arrives. Only the first six children of the body
+   take part: a long text should not keep a paragraph waiting. */
+.lasanmarine-rich-text {
+	--reveal-y: 20px;
+	--reveal-scale: 1;
+}

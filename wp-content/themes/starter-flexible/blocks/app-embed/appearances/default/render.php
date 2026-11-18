@@ -19,7 +19,7 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>"<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<div class="ae" id="app" data-app-embed>
+	<div class="ae" id="app" data-app-embed data-reveal-stagger=".ae__frame">
 		<iframe
 			class="ae__frame"
 			src="<?php echo esc_url( $data->src ); ?>"

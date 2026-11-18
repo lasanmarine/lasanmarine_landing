@@ -68,30 +68,11 @@ function starter_flexible_nav_menu_link_attributes( array $atts, $menu_item, $ar
 }
 add_filter( 'nav_menu_link_attributes', 'starter_flexible_nav_menu_link_attributes', 10, 3 );
 
-/**
- * Arm the reveals before first paint; dropped again if the script never runs.
- *
- * Ported from the inline snippet in the Astro site's BaseLayout.
+/*
+ * (No reveal primer: nothing is hidden before the first paint. reveal.js
+ * arms the entrances itself, for what is below the screen only, so the first
+ * contentful paint shows the page as it is, without any entrance.)
  */
-function starter_flexible_print_reveal_primer(): void {
-	$js = <<<'JS'
-(function () {
-	if (
-		window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-		!('IntersectionObserver' in window)
-	)
-		return;
-	var root = document.documentElement;
-	root.classList.add('reveal-on');
-	setTimeout(function () {
-		if (!window.__revealReady) root.classList.remove('reveal-on');
-	}, 2500);
-})();
-JS;
-
-	wp_print_inline_script_tag( $js );
-}
-add_action( 'wp_head', 'starter_flexible_print_reveal_primer', 1 );
 
 /** Keep the Astro page titles and descriptions after moving content to WP. */
 function starter_flexible_lasan_document_title( string $title ): string {

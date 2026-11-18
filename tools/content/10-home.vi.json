@@ -1,217 +1,225 @@
 {
-  "key": "home",
-  "title": "Trang chủ",
-  "slug": "trang-chu",
-  "lang": "vi",
-  "front_page": true,
-  "seo": {
-    "title": "Thiết kế tàu, R&D và phần mềm | LASAN MARINE",
-    "description": "LASAN MARINE chuyên thiết kế tàu, đồng thời thực hiện R&D và phát triển phần mềm cho các nhu cầu nghiên cứu, dữ liệu, quản lý và tự động hóa."
-  },
-  "blocks": [
-    {
-      "type": "hero",
-      "fields": {
-        "items": [
-          {
-            "headline": "Thiết kế tàu bắt đầu từ cách con tàu sẽ được khai thác.",
-            "lead": "Chúng tôi phát triển phương án từ yêu cầu sử dụng thực tế, thực hiện các tính toán và hoàn thiện bản vẽ, hồ sơ phục vụ đóng mới, cải hoán, thẩm tra và đăng kiểm.",
-            "image": 585
-          },
-          {
-            "headline": "Những câu hỏi kỹ thuật còn bỏ ngỏ.",
-            "lead": "Với những vấn đề cần nghiên cứu thêm, chúng tôi dùng mô phỏng, đo kiểm, thực nghiệm và phân tích số liệu để kiểm chứng giả thiết, đối chiếu kết quả và tìm câu trả lời có cơ sở hơn.",
-            "image": 527
-          },
-          {
-            "headline": "Phần mềm chỉ có giá trị khi giải quyết được công việc thật.",
-            "lead": "Chúng tôi phát triển hệ thống quản lý, website, tự động hóa và ứng dụng AI dựa trên quy trình, dữ liệu và nhu cầu sử dụng thực tế của từng đơn vị.",
-            "image": 818
-          }
-        ],
-        "autoplay": 4,
-        "primary": {
-          "label": "Xem năng lực",
-          "page": "capabilities"
-        },
-        "secondary": {
-          "label": "Trao đổi về dự án",
-          "page": "contact"
-        },
-        "heading_level": "h1",
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "proof-strip",
-      "fields": {
-        "items": [
-          {
-            "value": "300+",
-            "label": "Hồ sơ thiết kế tàu",
-            "note": "Đóng mới, cải hoán và hoàn công",
-            "link": {
-              "label": "Xem dự án",
-              "page": "projects"
-            }
-          },
-          {
-            "value": "20+ năm",
-            "label": "Kinh nghiệm của nhân sự nòng cốt",
-            "note": "Thiết kế, tính toán và hoàn thiện hồ sơ"
-          },
-          {
-            "value": "Gỗ · Thép · Composite",
-            "label": "Vật liệu thân vỏ đã thực hiện",
-            "link": {
-              "label": "Xem năng lực",
-              "page": "capabilities"
-            }
-          },
-          {
-            "value": "20+",
-            "label": "Công bố khoa học",
-            "note": "Thủy động lực học, kết cấu và hệ động lực",
-            "link": {
-              "label": "Xem R&D",
-              "page": "service_rnd"
-            }
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "service-architecture",
-      "anchor": "dich-vu",
-      "fields": {
-        "heading": "Dịch vụ",
-        "caption": "Thiết kế tàu là chuyên môn chính. Bên cạnh đó, chúng tôi thực hiện R&D và phát triển phần mềm cho các nhu cầu cụ thể.",
-        "view_all": "Xem toàn bộ năng lực",
-        "view_all_link": {
-          "label": "Xem toàn bộ năng lực",
-          "page": "capabilities"
-        },
-        "items": [
-          {
-            "index": "01",
-            "name": "Thiết kế tàu",
-            "desc": "Từ yêu cầu khai thác hoặc hồ sơ hiện trạng, chúng tôi phát triển phương án, thực hiện các tính toán và hoàn thiện bản vẽ, hồ sơ cho tàu đóng mới, cải hoán và hoàn công.",
-            "link": {
-              "label": "Xem dịch vụ thiết kế tàu",
-              "page": "service_01"
-            },
-            "children": [
-              {
-                "name": "Thiết kế đóng mới và cải hoán"
-              },
-              {
-                "name": "Thủy tĩnh, ổn định, sức cản, kết cấu và hệ động lực"
-              },
-              {
-                "name": "Bản vẽ và hồ sơ phục vụ thẩm tra, đăng kiểm"
-              }
-            ]
-          },
-          {
-            "index": "02",
-            "name": "Nghiên cứu và phát triển (R&D)",
-            "desc": "Chúng tôi thực hiện các bài toán nghiên cứu liên quan đến thủy động lực học, kết cấu, dao động, hệ động lực và đo kiểm. Tùy mục tiêu, phương pháp có thể gồm mô phỏng, thực nghiệm, đo đạc và phân tích số liệu.",
-            "link": {
-              "label": "Xem R&D",
-              "page": "service_rnd"
-            },
-            "children": [
-              {
-                "name": "Mô phỏng CFD và thủy động lực học"
-              },
-              {
-                "name": "Phân tích kết cấu và dao động"
-              },
-              {
-                "name": "Đo kiểm và đối chiếu với dữ liệu thực tế"
-              }
-            ]
-          },
-          {
-            "index": "03",
-            "name": "Phần mềm",
-            "desc": "Mảng phần mềm gồm hệ thống quản lý, website, tự động hóa và ứng dụng AI. Phần lớn sản phẩm được xây dựng theo yêu cầu riêng, dựa trên quy trình và dữ liệu thực tế của từng đơn vị.",
-            "link": {
-              "label": "Xem phần mềm",
-              "page": "service_03"
-            },
-            "children": [
-              {
-                "name": "Hệ thống quản lý và phần mềm theo yêu cầu"
-              },
-              {
-                "name": "Website và nền tảng web"
-              },
-              {
-                "name": "Tự động hóa và ứng dụng AI"
-              }
-            ]
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "service-spotlight",
-      "fields": {
-        "placeholder": "Thiết kế tàu",
-        "caption": "Thiết kế tàu",
-        "heading": "Mỗi dự án bắt đầu ở một điểm khác nhau",
-        "body": "Có dự án mới chỉ có yêu cầu khai thác, cũng có dự án đã có bản vẽ và chỉ cần tính lại một hạng mục cụ thể. Chúng tôi xem hồ sơ và thông tin hiện có, xác định phần việc cần tiếp tục và thống nhất tài liệu sẽ bàn giao trước khi triển khai.",
-        "items": [
-          {
-            "text": "Thiết kế tàu cá, tàu hậu cần, cano chở khách và phương tiện thủy nội địa"
-          },
-          {
-            "text": "Cải hoán công năng, kích thước, kết cấu hoặc hệ động lực"
-          },
-          {
-            "text": "Tính toán ổn định, sức cản, kết cấu, chân vịt và hệ trục"
-          },
-          {
-            "text": "Hoàn thiện hồ sơ theo yêu cầu thẩm tra, đăng kiểm hoặc hoàn công"
-          }
-        ],
-        "cta": {
-          "label": "Xem dịch vụ thiết kế tàu",
-          "page": "service_01"
-        },
-        "custom_class": "",
-        "image": 531
-      }
-    },
-    {
-      "type": "project-showcase",
-      "fields": {
-        "label": "Một số dự án đã thực hiện",
-        "projects": [
-          "tau-hau-can-bv-99889-ts",
-          "tau-ca-vo-thep-qna-91312-ts",
-          "cano-lam-hai"
-        ],
-        "limit": 3,
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "contact-statement",
-      "fields": {
-        "heading": "Bạn đang chuẩn bị một dự án mới?",
-        "description": "Gửi cho chúng tôi yêu cầu, bản vẽ, dữ liệu hoặc mô tả ngắn về công việc đang cần xử lý. Sau khi xem thông tin, chúng tôi sẽ phản hồi về phần việc có thể thực hiện và những tài liệu cần bổ sung nếu có.",
-        "phone": "0834 310 781",
-        "email": "hello@lasanmarine.com",
-        "cta": {
-          "label": "Gửi yêu cầu dự án",
-          "page": "contact"
-        },
-        "custom_class": ""
-      }
-    }
-  ]
+	"key": "home",
+	"title": "Trang chủ",
+	"slug": "trang-chu",
+	"lang": "vi",
+	"front_page": true,
+	"seo": {
+		"title": "Công ty thiết kế tàu cá, tàu khách & hồ sơ đăng kiểm | LASAN MARINE",
+		"description": "Công ty thiết kế tàu tại Nha Trang: thiết kế tàu cá vỏ thép, composite, tàu khách, hoán cải và hồ sơ đăng kiểm. Nhanh, đúng quy chuẩn. Gọi 0834 310 781."
+	},
+	"blocks": [
+		{
+			"type": "hero",
+			"fields": {
+				"items": [
+					{
+						"image": {
+							"media": "look-up-look-down-photography-pl-vqprmpzi-unsplash"
+						},
+						"headline": "Thiết kế tàu cá, tàu khách và hồ sơ đăng kiểm",
+						"headline_accent": "nhanh, đúng quy chuẩn.",
+						"headline_tail": "",
+						"lead": "Từ bản vẽ đóng mới, hoán cải chuyển nghề đến hồ sơ thẩm tra, chúng tôi làm trọn và tính toán bằng công cụ tự phát triển. Gọi hoặc nhắn Zalo để được tư vấn trong ngày."
+					}
+				],
+				"eyebrow": "",
+				"subline": "Công ty thiết kế tàu tại Nha Trang, làm việc với chủ tàu và xưởng đóng tàu khắp cả nước.",
+				"heading_level": "h1",
+				"primary": {
+					"url": "tel:0834310781",
+					"title": "Gọi 0834 310 781",
+					"target": ""
+				},
+				"secondary": {
+					"label": "Liên hệ chúng tôi",
+					"page": "contact"
+				}
+			}
+		},
+		{
+			"type": "vessel-finder",
+			"fields": {
+				"heading": "Bạn cần thiết kế loại tàu nào?",
+				"intro": "Chọn đúng nhu cầu để xem phạm vi công việc, hồ sơ bàn giao và dự án tương tự.",
+				"items": [
+					{
+						"image": {
+							"media": "tau-ca-vo-thep-na-95678-ts"
+						},
+						"title": "Tàu cá vỏ thép",
+						"desc": "Đóng mới tàu khai thác xa bờ và tàu hậu cần thủy sản.",
+						"link": {
+							"label": "",
+							"page": "design_steel"
+						}
+					},
+					{
+						"image": {
+							"media": "tau-ca-composite-kh-95177-ts"
+						},
+						"title": "Tàu composite",
+						"desc": "Tàu cá FRP thay tàu gỗ, cano và xuồng cao tốc.",
+						"link": {
+							"label": "",
+							"page": "design_composite"
+						}
+					},
+					{
+						"image": {
+							"media": "images"
+						},
+						"title": "Hoán cải, chuyển nghề",
+						"desc": "Kéo dài thân, nâng cabin, thay máy, đổi nghề khai thác.",
+						"link": {
+							"label": "",
+							"page": "design_conversion"
+						}
+					},
+					{
+						"image": {
+							"media": "cano-lam-hai"
+						},
+						"title": "Tàu khách, cano du lịch",
+						"desc": "Cano tham quan, tàu khách, phương tiện thủy nội địa.",
+						"link": {
+							"label": "",
+							"page": "design_passenger"
+						}
+					},
+					{
+						"image": {
+							"media": "alexander-grey-tn57ji3cewi-unsplash"
+						},
+						"title": "Hồ sơ đăng kiểm",
+						"desc": "Bổ sung bản tính, bản vẽ, thẩm tra và hoàn công.",
+						"link": {
+							"label": "",
+							"page": "approval_docs"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "value-grid",
+			"fields": {
+				"heading": "Vì sao chủ tàu chọn LASAN MARINE",
+				"items": [
+					{
+						"title": "Hiểu tàu cá và quy trình đăng kiểm",
+						"desc": "Hồ sơ lập đúng quy chuẩn ngay từ đầu, giải trình rõ ràng khi thẩm tra, hạn chế phải sửa đi sửa lại.",
+						"link": {
+							"label": "Hồ sơ đăng kiểm",
+							"page": "approval_docs"
+						},
+						"icon": "award"
+					},
+					{
+						"title": "Nhanh, báo giá rõ ràng",
+						"desc": "Thống nhất phạm vi, hạng mục bàn giao và mốc thời gian trước khi làm. Bạn biết mình nhận được gì, khi nào.",
+						"link": {
+							"label": "Nhận báo giá",
+							"page": "contact"
+						},
+						"icon": "gauge"
+					},
+					{
+						"title": "Quy trình đã được tối ưu hóa",
+						"desc": "Chúng tôi áp dụng nhiều kỹ thuật, bao gồm công nghệ thông tin và tiên phong triển khai mô hình AI First, để rút ngắn thời gian và kiểm chứng phương án trước khi đóng.",
+						"link": {
+							"label": "Xem công cụ",
+							"page": "tools"
+						},
+						"icon": "calculator"
+					}
+				]
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Dự án tiêu biểu",
+				"intro": "Một số tàu cá, tàu hậu cần và cano chở khách chúng tôi đã thiết kế và hoàn thiện hồ sơ.",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-hau-can-bv-99889-ts",
+					"tau-ca-vo-thep-qna-91312-ts",
+					"tau-ca-composite-kh-95177-ts",
+					"cano-lam-hai"
+				]
+			}
+		},
+		{
+			"type": "capability-matrix",
+			"fields": {
+				"heading": "Công cụ tính toán miễn phí",
+				"items": [
+					{
+						"index": "01",
+						"name": "Mô phỏng ổn định tàu",
+						"desc": "Đường cong GZ, GM, góc lật và kiểm tra theo IS Code 2008 ngay trên trình duyệt.",
+						"link": {
+							"label": "Mở công cụ",
+							"page": "app_stability"
+						},
+						"children": [],
+						"icon": "waves"
+					},
+					{
+						"index": "02",
+						"name": "Sức cản & công suất",
+						"desc": "Ước tính công suất máy cho cano và tàu khách cỡ nhỏ theo Savitsky, Holtrop–Mennen.",
+						"link": {
+							"label": "Mở công cụ",
+							"page": "app_resistance"
+						},
+						"children": [],
+						"icon": "gauge"
+					},
+					{
+						"index": "03",
+						"name": "Đường kính trục chân vịt",
+						"desc": "Kiểm tra nhanh đường kính trục tối thiểu từ công suất và vòng quay.",
+						"link": {
+							"label": "Mở công cụ",
+							"page": "tool_shaft"
+						},
+						"children": [],
+						"icon": "ruler"
+					},
+					{
+						"index": "04",
+						"name": "Tra cứu động cơ",
+						"desc": "Lọc hơn 250 đời máy thủy theo hãng, công suất và vòng quay.",
+						"link": {
+							"label": "Mở công cụ",
+							"page": "tool_engine"
+						},
+						"children": [],
+						"icon": "scan"
+					}
+				],
+				"custom_class": "cm--tools"
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn đang chuẩn bị đóng mới hoặc hoán cải tàu?</p>",
+				"description": "Gọi hoặc nhắn Zalo cho chúng tôi loại tàu, kích thước dự kiến và hồ sơ hiện có. Chúng tôi phản hồi phương án và báo giá rõ ràng.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu qua form",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
 }

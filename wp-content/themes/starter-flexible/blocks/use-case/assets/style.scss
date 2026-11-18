@@ -183,3 +183,39 @@
 	-webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32px);
 	mask-image: linear-gradient(90deg, transparent 0, #000 32px);
 }
+
+/* --- motion (MOTION.md: use-case) ----------------------------------------
+   Entrance: the cases arrive along the row, from the right, in turn (reveal
+   kit). Hover: the card lifts on the soft spring. The lift is the separate
+   `translate` property, so it never fights the entrance `transform`. */
+.lasanmarine-use-case {
+	--reveal-x: 32px;
+	--reveal-y: 0px;
+	--reveal-scale: 1;
+}
+.lasanmarine-use-case .uc__case {
+	transition:
+		translate var(--spring-soft-ms) var(--spring-soft),
+		background 320ms var(--ease),
+		box-shadow 320ms var(--ease);
+}
+.reveal-on .lasanmarine-use-case .uc__case[data-reveal-item]:not(.reveal-instant) {
+	transition:
+		opacity calc(var(--reveal-ms, var(--spring-out-ms)) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms, var(--spring-out-ms)) var(--spring-out) var(--reveal-delay, 0ms),
+		translate var(--spring-soft-ms) var(--spring-soft),
+		background 320ms var(--ease),
+		box-shadow 320ms var(--ease);
+}
+/* As a native swipe row (phones, short screens) a card that starts to the
+   right would be pushed out of the row's clip and never be seen to arrive,
+   and the next card's peek would stay blank — there the cases rise. */
+.lasanmarine-use-case:not(.uc--scrub) {
+	--reveal-x: 0px;
+	--reveal-y: 16px;
+}
+@media (hover: hover) {
+	.lasanmarine-use-case .uc__case:hover {
+		translate: 0 -4px;
+	}
+}
