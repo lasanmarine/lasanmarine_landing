@@ -1,7 +1,8 @@
 <?php
 /**
- * Turn on Lasan Static Apps and import the apps that ship in the theme —
- * the same as the "Nhập các app này" button, for a server without a browser.
+ * Turn on Lasan Static Apps, upgrade its data, and install the app versions
+ * bundled in the plugin's apps/ folder that the site has not seen yet — what
+ * opening the admin does after a deploy, for a server without a browser.
  *
  *   WP_PATH=/home/lasanmarinecom/lasanmarine.com WP_HOME=https://lasanmarine.com php ~/lasan-tools/static-apps.php
  *
@@ -33,11 +34,11 @@ if ( ! is_plugin_active( $plugin ) ) {
 	require_once WP_PLUGIN_DIR . '/' . $plugin;
 }
 
-foreach ( \Lasan\StaticApps\Admin::theme_apps_not_imported() as $slug => $label ) {
-	$r = \Lasan\StaticApps\Store::install_dir( get_template_directory() . '/apps/' . $slug, $slug, $label );
-	printf( "  %-24s %s\n", $slug, is_wp_error( $r ) ? 'LỖI ' . $r->get_error_message() : "phiên bản $r ($label)" );
+\Lasan\StaticApps\Store::maybe_upgrade();
+foreach ( \Lasan\StaticApps\Store::sync_bundled() as $slug => $r ) {
+	printf( "  cài %-24s %s\n", $slug, is_wp_error( $r ) ? 'LỖI ' . $r->get_error_message() : $r );
 }
 foreach ( \Lasan\StaticApps\Store::all() as $slug => $app ) {
-	printf( "  %-24s → %s\n", $slug, lasan_static_app_url( $slug ) );
+	printf( "  %-24s %-8s → %s\n", $slug, $app['active'], lasan_static_app_url( $slug ) );
 }
 echo "Xong.\n";

@@ -1,6 +1,6 @@
 <?php
 /**
- * App Embed — a prebuilt single-page app (theme/apps/<slug>/) shown in a frame.
+ * App Embed — a prebuilt single-page app (Lasan Static Apps plugin) shown in a frame.
  *
  * The apps are full-viewport React builds with their own global CSS, so they
  * run in an iframe: neither their styles nor the theme's can leak across.
@@ -26,7 +26,7 @@ final class Starter_Flexible_Block_App_Embed extends Starter_Flexible_Abstract_B
 	}
 
 	protected function prepare( array $data ): array {
-		// The plugin's current version of the app, else the theme's copy (inc/static-apps.php).
+		// The version of the app in use (Lasan Static Apps plugin, inc/static-apps.php).
 		$data['src']           = starter_flexible_app_src( (string) $data['app'] );
 		$data['frame_title']   = '' !== trim( (string) $data['title'] ) ? (string) $data['title'] : __( 'Công cụ mô phỏng', 'starter-flexible' );
 		$data['should_render'] = '' !== $data['src'];

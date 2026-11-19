@@ -25,3 +25,8 @@ function lasan_static_apps(): array {
 function lasan_static_app_url( string $slug ): string {
 	return \Lasan\StaticApps\Store::url( $slug );
 }
+
+/** Version of an app in use (1.2.0), '' when it is not installed. */
+function lasan_static_app_version( string $slug ): string {
+	return \Lasan\StaticApps\Store::active( \Lasan\StaticApps\Store::resolve( $slug ) );
+}

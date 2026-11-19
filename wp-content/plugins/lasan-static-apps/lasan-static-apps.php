@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Lasan Static Apps
- * Description:       Quản lý các công cụ dạng app tĩnh (index.html + assets): tải bản build .zip trong trang quản trị, có phiên bản và khôi phục, hiển thị qua khối “App Embed”.
- * Version:           1.0.0
+ * Description:       Quản lý các công cụ dạng app tĩnh (index.html + assets): tải bản build .zip trong trang quản trị, đánh số phiên bản (1.2.0), ghi chú thay đổi và khôi phục bản cũ, hiển thị qua khối “App Embed”.
+ * Version:           1.1.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            Công ty TNHH Lasan Marine
@@ -22,23 +22,22 @@ require_once __DIR__ . '/includes/functions.php';
 
 final class Plugin {
 
+	const VERSION = '1.1.0';
+
 	public static function init(): void {
+		// On init, not before: an upgrade clears the page cache, which needs rewrite rules.
+		add_action( 'init', array( Store::class, 'maybe_upgrade' ), 1 );
 		if ( is_admin() ) {
 			Admin::init();
 		}
 	}
 
-	/**
-	 * A readable name for an app that still ships in the theme, taken from the
-	 * <title> of its index.html.
-	 */
-	public static function theme_app_label( string $slug ): string {
-		$html = (string) @file_get_contents( get_template_directory() . '/apps/' . $slug . '/index.html', false, null, 0, 20000 ); // phpcs:ignore
-		if ( preg_match( '#<title>([^<]+)</title>#i', $html, $m ) ) {
-			return trim( (string) preg_replace( '/\s*[|–—-]\s*(Lasan Marine|LASAN MARINE).*$/u', '', html_entity_decode( $m[1], ENT_QUOTES, 'UTF-8' ) ) );
-		}
-		return $slug;
+	/** On activation: upgrade stored data and install the bundled apps. */
+	public static function activate(): void {
+		Store::maybe_upgrade();
+		Store::sync_bundled();
 	}
 }
 
 add_action( 'plugins_loaded', array( Plugin::class, 'init' ) );
+register_activation_hook( __FILE__, array( Plugin::class, 'activate' ) );

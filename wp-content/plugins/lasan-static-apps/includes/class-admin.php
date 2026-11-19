@@ -1,7 +1,7 @@
 <?php
 /**
- * The "App tĩnh" screen: upload, switch and remove versions, import the apps
- * that used to ship inside the theme.
+ * The "App tĩnh" screen: upload numbered versions with release notes, switch
+ * and remove versions, and see the apps bundled with the plugin.
  *
  * @package Lasan_Static_Apps
  */
@@ -17,7 +17,8 @@ final class Admin {
 
 	public static function init(): void {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
-		foreach ( array( 'upload', 'activate', 'delete_version', 'delete_app', 'rename', 'import_theme' ) as $action ) {
+		add_action( 'admin_init', array( __CLASS__, 'auto_sync' ) );
+		foreach ( array( 'upload', 'activate', 'delete_version', 'delete_app', 'rename', 'notes', 'sync' ) as $action ) {
 			add_action( 'admin_post_lsa_' . $action, array( __CLASS__, 'handle_' . $action ) );
 		}
 	}
@@ -34,6 +35,20 @@ final class Admin {
 		);
 	}
 
+	/**
+	 * A deploy that brings a new bundled version installs it the next time an
+	 * admin opens the dashboard (or the server runs tools/static-apps.php).
+	 */
+	public static function auto_sync(): void {
+		if ( wp_doing_ajax() || ! current_user_can( self::CAP ) ) {
+			return;
+		}
+		$done = Store::sync_bundled();
+		if ( $done && ! get_transient( 'lsa_notice_' . get_current_user_id() ) ) {
+			set_transient( 'lsa_notice_' . get_current_user_id(), self::sync_message( $done ), 60 );
+		}
+	}
+
 	/* ---------------------------------------------------------------------
 	 * Screen
 	 * ------------------------------------------------------------------ */
@@ -43,13 +58,13 @@ final class Admin {
 			return;
 		}
 		$apps    = Store::all();
-		$pending = self::theme_apps_not_imported();
+		$bundled = Store::bundled();
 		$max     = size_format( wp_max_upload_size() );
 		?>
 		<div class="wrap lsa">
 			<h1><?php esc_html_e( 'App tĩnh', 'lasan-static-apps' ); ?></h1>
 			<p class="description" style="max-width:760px">
-				<?php esc_html_e( 'Các công cụ chạy trong trình duyệt (mô phỏng, máy tính…) được build sẵn thành index.html + assets. Tải file .zip bản build lên đây, rồi chọn app trong khối “App Embed” của trang. Mỗi lần tải là một phiên bản mới; có thể quay lại phiên bản cũ bất cứ lúc nào.', 'lasan-static-apps' ); ?>
+				<?php esc_html_e( 'Các công cụ chạy trong trình duyệt (mô phỏng, máy tính…) được build sẵn thành index.html + assets. Tải file .zip bản build lên đây, rồi chọn app trong khối “App Embed” của trang. Mỗi bản build là một phiên bản có số riêng (1.0.0, 1.1.0…) kèm ghi chú thay đổi; có thể quay lại phiên bản cũ bất cứ lúc nào.', 'lasan-static-apps' ); ?>
 			</p>
 			<?php self::notice(); ?>
 
@@ -77,7 +92,7 @@ final class Admin {
 							<select id="lsa-target" name="lsa_target">
 								<option value=""><?php esc_html_e( '— App mới —', 'lasan-static-apps' ); ?></option>
 								<?php foreach ( $apps as $slug => $app ) : ?>
-									<option value="<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $app['title'] . ' (' . $slug . ')' ); ?></option>
+									<option value="<?php echo esc_attr( $slug ); ?>" data-next="<?php echo esc_attr( Store::next_version( Store::latest( $slug ) ) ); ?>"><?php echo esc_html( $app['title'] . ' (' . $slug . ') — ' . Store::latest( $slug ) ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</td>
@@ -90,8 +105,24 @@ final class Admin {
 						<th scope="row"><label for="lsa-slug"><?php esc_html_e( 'Mã (slug)', 'lasan-static-apps' ); ?></label></th>
 						<td>
 							<input type="text" id="lsa-slug" name="lsa_slug" class="regular-text code" pattern="[a-z0-9-]+" placeholder="mo-phong-on-dinh-tau">
-							<p class="description"><?php esc_html_e( 'Chữ thường không dấu, số và gạch ngang. Dùng trong đường dẫn file, không đổi được sau này.', 'lasan-static-apps' ); ?></p>
+							<p class="description"><?php esc_html_e( 'Chữ thường không dấu, số và gạch ngang. Dùng trong đường dẫn file; đổi được sau này.', 'lasan-static-apps' ); ?></p>
 						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="lsa-version"><?php esc_html_e( 'Phiên bản', 'lasan-static-apps' ); ?></label></th>
+						<td>
+							<input type="text" id="lsa-version" name="lsa_version" class="small-text code" style="width:9em" pattern="[0-9]+\.[0-9]+\.[0-9]+(-[0-9a-z.]+)?" placeholder="1.0.0">
+							<p class="description" id="lsa-version-hint"><?php esc_html_e( 'Dạng MAJOR.MINOR.PATCH: tăng PATCH khi sửa lỗi, MINOR khi thêm tính năng, MAJOR khi thay đổi lớn. Để trống: lấy từ app.json / package.json trong zip, nếu không có thì tự tăng PATCH.', 'lasan-static-apps' ); ?></p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="lsa-notes"><?php esc_html_e( 'Ghi chú thay đổi', 'lasan-static-apps' ); ?></label></th>
+						<td><textarea id="lsa-notes" name="lsa_notes" rows="3" class="large-text" placeholder="<?php esc_attr_e( 'Sửa lỗi tính GZ ở góc nghiêng lớn; thêm xuất PDF…', 'lasan-static-apps' ); ?>"></textarea></td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Sau khi cài', 'lasan-static-apps' ); ?></th>
+						<td><label><input type="checkbox" name="lsa_activate" value="1" checked> <?php esc_html_e( 'Dùng ngay bản này trên site', 'lasan-static-apps' ); ?></label>
+							<p class="description"><?php esc_html_e( 'Bỏ chọn để cài sẵn, xem thử qua link “Mở”, rồi bấm “Dùng bản này” khi đã ổn.', 'lasan-static-apps' ); ?></p></td>
 					</tr>
 				</table>
 				<?php submit_button( __( 'Tải lên và cài', 'lasan-static-apps' ), 'primary', 'submit', false ); ?>
@@ -105,41 +136,85 @@ final class Admin {
 				<?php self::render_app( $slug, $app ); ?>
 			<?php endforeach; ?>
 
-			<?php if ( $pending ) : ?>
-				<h2><?php esc_html_e( 'App có sẵn trong theme', 'lasan-static-apps' ); ?></h2>
-				<p class="description"><?php esc_html_e( 'Các app này vẫn chạy từ thư mục theme. Nhập vào đây để quản lý, cập nhật phiên bản ngay trong trang quản trị (trang đang dùng app không phải sửa gì).', 'lasan-static-apps' ); ?></p>
-				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-					<input type="hidden" name="action" value="lsa_import_theme">
-					<?php wp_nonce_field( 'lsa_import_theme' ); ?>
-					<ul class="ul-disc">
-						<?php foreach ( $pending as $slug => $label ) : ?>
-							<li><code><?php echo esc_html( $slug ); ?></code> — <?php echo esc_html( $label ); ?></li>
-						<?php endforeach; ?>
-					</ul>
-					<?php submit_button( __( 'Nhập các app này', 'lasan-static-apps' ), 'secondary', 'submit', false ); ?>
+			<?php if ( $bundled ) : ?>
+				<h2><?php esc_html_e( 'Gói trong plugin', 'lasan-static-apps' ); ?></h2>
+				<p class="description" style="max-width:760px"><?php esc_html_e( 'Các bản build nằm trong thư mục apps/<slug>/ của plugin (kèm app.json ghi số phiên bản), đi theo code khi deploy. Phiên bản mới ở đây được cài tự động khi quản trị viên mở trang quản trị; nếu mới hơn bản đang dùng thì được dùng luôn.', 'lasan-static-apps' ); ?></p>
+				<table class="widefat striped lsa-bundled">
+					<thead><tr>
+						<th><?php esc_html_e( 'App', 'lasan-static-apps' ); ?></th>
+						<th><?php esc_html_e( 'Phiên bản trong plugin', 'lasan-static-apps' ); ?></th>
+						<th><?php esc_html_e( 'Trên site', 'lasan-static-apps' ); ?></th>
+					</tr></thead>
+					<tbody>
+					<?php foreach ( $bundled as $slug => $b ) : ?>
+						<?php $installed = isset( Store::versions( $slug )[ $b['version'] ] ); ?>
+						<tr>
+							<td><?php echo esc_html( $b['name'] ); ?> <code><?php echo esc_html( $slug ); ?></code></td>
+							<td><code><?php echo esc_html( $b['version'] ); ?></code></td>
+							<td>
+								<?php
+								if ( $installed ) {
+									echo esc_html( Store::active( $slug ) === $b['version'] ? __( 'đã cài, đang dùng', 'lasan-static-apps' ) : __( 'đã cài', 'lasan-static-apps' ) );
+								} else {
+									echo esc_html( Store::get( $slug ) ? __( 'chưa cài (đã bỏ qua hoặc đã xoá)', 'lasan-static-apps' ) : __( 'chưa cài', 'lasan-static-apps' ) );
+								}
+								?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin-top:8px">
+					<input type="hidden" name="action" value="lsa_sync">
+					<?php wp_nonce_field( 'lsa_sync' ); ?>
+					<?php submit_button( __( 'Cài lại các bản chưa có', 'lasan-static-apps' ), 'secondary', 'submit', false ); ?>
 				</form>
 			<?php endif; ?>
 		</div>
 		<style>
 			.lsa-card{background:#fff;border:1px solid #c3c4c7;border-radius:6px;padding:4px 20px 16px;max-width:900px}
-			.lsa-app{background:#fff;border:1px solid #c3c4c7;border-radius:6px;padding:12px 20px 16px;margin:0 0 16px;max-width:900px}
+			.lsa-app{background:#fff;border:1px solid #c3c4c7;border-radius:6px;padding:12px 20px 16px;margin:0 0 16px;max-width:1100px;overflow-x:auto}
+			.lsa-app td{vertical-align:top}
 			.lsa-app h3{margin:.4em 0;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
 			.lsa-app table{margin-top:8px}
 			.lsa-app .lsa-current{font-weight:600}
 			.lsa-inline{display:inline}
+			.lsa-rename{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:flex-end;margin:6px 0 4px}
+			.lsa-rename label{display:flex;flex-direction:column;gap:3px;font-weight:600;font-size:12px}
+			.lsa-rename input.code{width:16em}
+			.lsa-rename .button{min-height:32px;padding:0 14px}
 			.lsa-used{margin:.3em 0 .6em}
+			.lsa-badge{display:inline-block;font-size:11px;line-height:1.6;padding:0 6px;border-radius:9px;background:#dcdcde;margin-left:4px;font-weight:600}
+			.lsa-badge.is-active{background:#00a32a;color:#fff}
+			.lsa-notes{min-width:220px;max-width:340px}
+			.lsa-notes-text{white-space:pre-line;margin:0 0 2px}
+			.lsa-notes details summary{cursor:pointer;color:#2271b1;font-size:12px;width:max-content}
+			.lsa-notes details form{margin:6px 0 0}
+			.lsa-notes textarea{display:block;width:100%;min-height:0;margin:0 0 6px;font-size:13px}
+			.lsa-bundled{max-width:900px}
 		</style>
 		<script>
 			( function () {
 				var sel = document.getElementById( 'lsa-target' );
 				var rows = document.querySelectorAll( '.lsa-new' );
-				var sync = function () { rows.forEach( function ( r ) { r.style.display = sel.value ? 'none' : ''; } ); };
+				var ver = document.getElementById( 'lsa-version' );
+				var sync = function () {
+					rows.forEach( function ( r ) { r.style.display = sel.value ? 'none' : ''; } );
+					var opt = sel.options[ sel.selectedIndex ];
+					ver.placeholder = ( opt && opt.getAttribute( 'data-next' ) ) || '1.0.0';
+				};
 				sel.addEventListener( 'change', sync ); sync();
 				var t = document.getElementById( 'lsa-title' ), s = document.getElementById( 'lsa-slug' ), touched = false;
 				s.addEventListener( 'input', function () { touched = true; } );
 				t.addEventListener( 'input', function () {
 					if ( touched ) { return; }
 					s.value = t.value.normalize( 'NFD' ).replace( /[̀-ͯ]/g, '' ).replace( /đ/g, 'd' ).replace( /Đ/g, 'd' ).toLowerCase().replace( /[^a-z0-9]+/g, '-' ).replace( /^-|-$/g, '' );
+				} );
+				document.querySelectorAll( '.lsa-rename' ).forEach( function ( f ) {
+					f.addEventListener( 'submit', function ( e ) {
+						var old = f.getAttribute( 'data-lsa-slug' ), now = f.elements.new_slug.value.trim();
+						if ( now !== old && ! window.confirm( <?php echo wp_json_encode( __( 'Đổi mã app từ "%1$s" sang "%2$s"? Đường dẫn file của app sẽ đổi; các trang đang dùng được cập nhật tự động, mã cũ vẫn chạy.', 'lasan-static-apps' ) ); ?>.replace( '%1$s', old ).replace( '%2$s', now ) ) ) { e.preventDefault(); }
+					} );
 				} );
 				document.querySelectorAll( '[data-lsa-confirm]' ).forEach( function ( f ) {
 					f.addEventListener( 'submit', function ( e ) { if ( ! window.confirm( f.getAttribute( 'data-lsa-confirm' ) ) ) { e.preventDefault(); } } );
@@ -150,9 +225,9 @@ final class Admin {
 	}
 
 	private static function render_app( string $slug, array $app ): void {
-		$url  = Store::url( $slug );
-		$used = self::pages_using( $slug );
-		krsort( $app['versions'] );
+		$url    = Store::url( $slug );
+		$used   = self::pages_using( $slug );
+		$latest = Store::latest( $slug );
 		?>
 		<div class="lsa-app">
 			<h3>
@@ -172,33 +247,58 @@ final class Admin {
 					<em><?php esc_html_e( 'Chưa trang nào dùng app này (thêm khối “App Embed” vào trang để hiển thị).', 'lasan-static-apps' ); ?></em>
 				<?php endif; ?>
 			</p>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="lsa-inline">
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="lsa-rename" data-lsa-slug="<?php echo esc_attr( $slug ); ?>">
 				<input type="hidden" name="action" value="lsa_rename">
 				<input type="hidden" name="slug" value="<?php echo esc_attr( $slug ); ?>">
 				<?php wp_nonce_field( 'lsa_rename_' . $slug ); ?>
-				<label><?php esc_html_e( 'Tên', 'lasan-static-apps' ); ?> <input type="text" name="title" value="<?php echo esc_attr( $app['title'] ); ?>" class="regular-text"></label>
-				<?php submit_button( __( 'Đổi tên', 'lasan-static-apps' ), 'small', 'submit', false ); ?>
+				<label><span><?php esc_html_e( 'Tên', 'lasan-static-apps' ); ?></span>
+					<input type="text" name="title" value="<?php echo esc_attr( $app['title'] ); ?>" class="regular-text"></label>
+				<label><span><?php esc_html_e( 'Mã (slug)', 'lasan-static-apps' ); ?></span>
+					<input type="text" name="new_slug" value="<?php echo esc_attr( $slug ); ?>" class="code" pattern="[a-z0-9-]+" required></label>
+				<button type="submit" class="button"><?php esc_html_e( 'Lưu tên & mã', 'lasan-static-apps' ); ?></button>
 			</form>
 			<table class="widefat striped">
 				<thead><tr>
 					<th><?php esc_html_e( 'Phiên bản', 'lasan-static-apps' ); ?></th>
-					<th><?php esc_html_e( 'Tải lên', 'lasan-static-apps' ); ?></th>
+					<th><?php esc_html_e( 'Ghi chú thay đổi', 'lasan-static-apps' ); ?></th>
+					<th><?php esc_html_e( 'Cài lúc', 'lasan-static-apps' ); ?></th>
 					<th><?php esc_html_e( 'Dung lượng', 'lasan-static-apps' ); ?></th>
 					<th><?php esc_html_e( 'Nguồn', 'lasan-static-apps' ); ?></th>
 					<th></th>
 				</tr></thead>
 				<tbody>
-				<?php foreach ( $app['versions'] as $version => $info ) : ?>
-					<?php $current = ( $app['active'] ?? '' ) === (string) $version; ?>
+				<?php foreach ( Store::versions( $slug ) as $version => $info ) : ?>
+					<?php
+					$version = (string) $version;
+					$current = ( $app['active'] ?? '' ) === $version;
+					?>
 					<tr>
-						<td class="<?php echo $current ? 'lsa-current' : ''; ?>"><code><?php echo esc_html( (string) $version ); ?></code><?php echo $current ? ' — ' . esc_html__( 'đang dùng', 'lasan-static-apps' ) : ''; ?></td>
+						<td class="<?php echo $current ? 'lsa-current' : ''; ?>">
+							<a href="<?php echo esc_url( Store::url( $slug, $version ) ); ?>" target="_blank" rel="noopener"><code><?php echo esc_html( $version ); ?></code></a>
+							<?php if ( $current ) : ?><span class="lsa-badge is-active"><?php esc_html_e( 'đang dùng', 'lasan-static-apps' ); ?></span><?php endif; ?>
+							<?php if ( $latest === $version && ! $current ) : ?><span class="lsa-badge"><?php esc_html_e( 'mới nhất', 'lasan-static-apps' ); ?></span><?php endif; ?>
+						</td>
+						<td class="lsa-notes">
+							<div class="lsa-notes-text"><?php echo '' !== (string) ( $info['notes'] ?? '' ) ? esc_html( (string) $info['notes'] ) : '<em>—</em>'; ?></div>
+							<details>
+								<summary><?php esc_html_e( 'Sửa', 'lasan-static-apps' ); ?></summary>
+								<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+									<input type="hidden" name="action" value="lsa_notes">
+									<input type="hidden" name="slug" value="<?php echo esc_attr( $slug ); ?>">
+									<input type="hidden" name="version" value="<?php echo esc_attr( $version ); ?>">
+									<?php wp_nonce_field( 'lsa_notes_' . $slug . '_' . $version ); ?>
+									<textarea name="notes" rows="3"><?php echo esc_textarea( (string) ( $info['notes'] ?? '' ) ); ?></textarea>
+									<button type="submit" class="button button-small"><?php esc_html_e( 'Lưu ghi chú', 'lasan-static-apps' ); ?></button>
+								</form>
+							</details>
+						</td>
 						<td><?php echo esc_html( wp_date( 'd/m/Y H:i', (int) $info['added'] ) ); ?></td>
 						<td><?php echo esc_html( size_format( (int) $info['bytes'] ) . ' · ' . (int) $info['files'] . ' file' ); ?></td>
 						<td><?php echo esc_html( (string) $info['source'] ); ?></td>
 						<td>
 							<?php if ( ! $current ) : ?>
-								<?php self::action_button( 'activate', $slug, (string) $version, __( 'Dùng bản này', 'lasan-static-apps' ) ); ?>
-								<?php self::action_button( 'delete_version', $slug, (string) $version, __( 'Xoá', 'lasan-static-apps' ), __( 'Xoá phiên bản này?', 'lasan-static-apps' ) ); ?>
+								<?php self::action_button( 'activate', $slug, $version, __( 'Dùng bản này', 'lasan-static-apps' ) ); ?>
+								<?php self::action_button( 'delete_version', $slug, $version, __( 'Xoá', 'lasan-static-apps' ), __( 'Xoá phiên bản này?', 'lasan-static-apps' ) ); ?>
 							<?php endif; ?>
 						</td>
 					</tr>
@@ -250,12 +350,25 @@ final class Admin {
 			/* translators: %s: app slug */
 			self::back( 'error', sprintf( __( 'Mã "%s" đã có app khác dùng. Chọn app đó trong ô “Cho app” để tải phiên bản mới, hoặc đặt mã khác.', 'lasan-static-apps' ), $slug ) );
 		}
-		$result = Store::install_zip( (string) $file['tmp_name'], $slug, $title );
+		$activate = ! empty( $_POST['lsa_activate'] );
+		$result   = Store::install_zip(
+			(string) $file['tmp_name'],
+			$slug,
+			$title,
+			array(
+				'version'  => sanitize_text_field( wp_unslash( $_POST['lsa_version'] ?? '' ) ),
+				'notes'    => sanitize_textarea_field( wp_unslash( $_POST['lsa_notes'] ?? '' ) ),
+				'activate' => $activate,
+			)
+		);
 		if ( is_wp_error( $result ) ) {
 			self::back( 'error', $result->get_error_message() );
 		}
-		/* translators: 1: app slug, 2: version */
-		self::back( 'success', sprintf( __( 'Đã cài %1$s, phiên bản %2$s, và đặt làm bản đang dùng.', 'lasan-static-apps' ), $slug, $result ) );
+		$activate || Store::active( $slug ) === $result
+			/* translators: 1: app slug, 2: version */
+			? self::back( 'success', sprintf( __( 'Đã cài %1$s phiên bản %2$s và đang dùng bản này.', 'lasan-static-apps' ), $slug, $result ) )
+			/* translators: 1: app slug, 2: version */
+			: self::back( 'success', sprintf( __( 'Đã cài %1$s phiên bản %2$s (chưa dùng). Mở link phiên bản để xem thử, rồi bấm “Dùng bản này”.', 'lasan-static-apps' ), $slug, $result ) );
 	}
 
 	public static function handle_activate(): void {
@@ -284,20 +397,44 @@ final class Admin {
 		$slug = Store::sanitize_slug( sanitize_text_field( wp_unslash( $_POST['slug'] ?? '' ) ) );
 		self::guard( 'lsa_rename_' . $slug );
 		Store::rename( $slug, sanitize_text_field( wp_unslash( $_POST['title'] ?? '' ) ) );
-		self::back( 'success', __( 'Đã đổi tên.', 'lasan-static-apps' ) );
+		$new = Store::sanitize_slug( sanitize_text_field( wp_unslash( $_POST['new_slug'] ?? '' ) ) );
+		if ( '' === $new || $new === $slug ) {
+			self::back( 'success', __( 'Đã lưu tên.', 'lasan-static-apps' ) );
+		}
+		$r = Store::change_slug( $slug, $new );
+		is_wp_error( $r )
+			? self::back( 'error', $r->get_error_message() )
+			/* translators: 1: old slug, 2: new slug */
+			: self::back( 'success', sprintf( __( 'Đã đổi mã %1$s → %2$s. Các trang đang dùng đã được cập nhật; mã cũ vẫn chạy.', 'lasan-static-apps' ), $slug, $new ) );
 	}
 
-	public static function handle_import_theme(): void {
-		self::guard( 'lsa_import_theme' );
-		$done = array();
-		foreach ( self::theme_apps_not_imported() as $slug => $label ) {
-			$r = Store::install_dir( self::theme_apps_dir() . '/' . $slug, $slug, $label );
-			if ( ! is_wp_error( $r ) ) {
-				$done[] = $slug;
-			}
+	public static function handle_notes(): void {
+		[ $slug, $version ] = self::target( 'notes' );
+		Store::set_notes( $slug, $version, sanitize_textarea_field( wp_unslash( $_POST['notes'] ?? '' ) ) )
+			? self::back( 'success', __( 'Đã lưu ghi chú.', 'lasan-static-apps' ) )
+			: self::back( 'error', __( 'Không lưu được ghi chú.', 'lasan-static-apps' ) );
+	}
+
+	/** Install bundled versions again, including ones skipped or deleted before. */
+	public static function handle_sync(): void {
+		self::guard( 'lsa_sync' );
+		delete_option( Store::SEEN_OPT );
+		$done = Store::sync_bundled();
+		$done ? self::back( ...self::sync_message( $done ) ) : self::back( 'success', __( 'Mọi bản trong plugin đã có trên site.', 'lasan-static-apps' ) );
+	}
+
+	/** @param array<string, string|\WP_Error> $done */
+	private static function sync_message( array $done ): array {
+		$ok  = array();
+		$bad = array();
+		foreach ( $done as $slug => $r ) {
+			is_wp_error( $r ) ? $bad[] = $slug . ': ' . $r->get_error_message() : $ok[] = $slug . ' ' . $r;
 		}
-		/* translators: %s: list of app slugs */
-		self::back( 'success', sprintf( __( 'Đã nhập: %s', 'lasan-static-apps' ), $done ? implode( ', ', $done ) : '—' ) );
+		/* translators: %s: list of "slug version" */
+		$msg = $ok ? sprintf( __( 'Đã cài bản mới từ plugin: %s.', 'lasan-static-apps' ), implode( ', ', $ok ) ) : '';
+		/* translators: %s: list of errors */
+		$msg .= $bad ? ' ' . sprintf( __( 'Lỗi: %s', 'lasan-static-apps' ), implode( '; ', $bad ) ) : '';
+		return array( $bad ? 'error' : 'success', trim( $msg ) );
 	}
 
 	/* ---------------------------------------------------------------------
@@ -314,7 +451,7 @@ final class Admin {
 	/** @return array{0:string,1:string} */
 	private static function target( string $action ): array {
 		$slug    = Store::sanitize_slug( sanitize_text_field( wp_unslash( $_POST['slug'] ?? '' ) ) );
-		$version = (string) preg_replace( '/[^0-9-]/', '', (string) wp_unslash( $_POST['version'] ?? '' ) );
+		$version = (string) preg_replace( '/[^0-9a-z.-]/', '', strtolower( (string) wp_unslash( $_POST['version'] ?? '' ) ) );
 		self::guard( 'lsa_' . $action . '_' . $slug . '_' . $version );
 		return array( $slug, $version );
 	}
@@ -342,21 +479,5 @@ final class Admin {
 		$like = '%' . $wpdb->esc_like( '"app":"' . $slug . '"' ) . '%';
 		$ids  = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type IN ('page','post') AND post_content LIKE %s ORDER BY post_title", $like ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 		return array_map( 'intval', $ids );
-	}
-
-	public static function theme_apps_dir(): string {
-		return get_template_directory() . '/apps';
-	}
-
-	/** Apps in the theme's apps/ folder that are not in the registry yet. @return array<string,string> */
-	public static function theme_apps_not_imported(): array {
-		$out = array();
-		foreach ( (array) glob( self::theme_apps_dir() . '/*/index.html' ) as $index ) {
-			$slug = basename( dirname( (string) $index ) );
-			if ( ! Store::get( $slug ) ) {
-				$out[ $slug ] = Plugin::theme_app_label( $slug );
-			}
-		}
-		return $out;
 	}
 }
