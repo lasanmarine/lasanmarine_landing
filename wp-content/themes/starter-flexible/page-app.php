@@ -20,11 +20,10 @@ $sf_page  = get_queried_object();
 $sf_app   = array();
 foreach ( parse_blocks( (string) $sf_page->post_content ) as $sf_block ) {
 	if ( 'acf/app-embed' === ( $sf_block['blockName'] ?? '' ) ) {
-		// Same lookup as the block (blocks/app-embed/inc/helpers.php).
+		// Same lookup as the block (inc/static-apps.php).
 		$sf_data = (array) ( $sf_block['attrs']['data'] ?? array() );
-		$sf_slug = sanitize_key( (string) ( $sf_data['app'] ?? '' ) );
 		$sf_app  = array(
-			'src'         => ( '' !== $sf_slug && is_file( get_template_directory() . '/apps/' . $sf_slug . '/index.html' ) ) ? get_template_directory_uri() . '/apps/' . $sf_slug . '/index.html' : '',
+			'src'         => starter_flexible_app_src( (string) ( $sf_data['app'] ?? '' ) ),
 			'frame_title' => html_entity_decode( (string) ( $sf_data['title'] ?? '' ) ),
 		);
 		break;

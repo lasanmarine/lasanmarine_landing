@@ -26,10 +26,8 @@ final class Starter_Flexible_Block_App_Embed extends Starter_Flexible_Abstract_B
 	}
 
 	protected function prepare( array $data ): array {
-		$slug  = sanitize_key( (string) $data['app'] );
-		$index = get_template_directory() . '/apps/' . $slug . '/index.html';
-
-		$data['src']           = ( '' !== $slug && is_file( $index ) ) ? get_template_directory_uri() . '/apps/' . $slug . '/index.html' : '';
+		// The plugin's current version of the app, else the theme's copy (inc/static-apps.php).
+		$data['src']           = starter_flexible_app_src( (string) $data['app'] );
 		$data['frame_title']   = '' !== trim( (string) $data['title'] ) ? (string) $data['title'] : __( 'Công cụ mô phỏng', 'starter-flexible' );
 		$data['should_render'] = '' !== $data['src'];
 
