@@ -1,13 +1,19 @@
 // Project Showcase — a heading beside a rail of project cards.
 //
-// The rail is a native horizontal scroller everywhere: swipe, trackpad,
-// shift+wheel or the arrow buttons, which step one card. The page scroll is
-// never taken over. The buttons' state follows the rail's own scroll events,
-// at most once a frame.
+// On a desktop with motion allowed, the rail moves as the page scrolls: a
+// CSS scroll-driven animation (style.scss, `ps-rail`) slides the cards to
+// the left while the block crosses the screen, on the compositor, with no
+// pinning and no script per frame. This module only measures how far the
+// rail has to travel (once per layout) and turns the mode on.
+// Elsewhere (phones, reduced motion, browsers without scroll timelines) the
+// rail is a native horizontal scroller with arrow buttons that step one card.
 import { on, cleanupAll } from '$lib/dom';
 import { motion } from '$lib/stores/motion.svelte.js';
 
 export const selector = '[data-showcase-stack]';
+
+const DRIVEN_MQ = '(min-width: 1024px)';
+const supportsTimeline = typeof CSS !== 'undefined' && CSS.supports?.('animation-timeline: view()');
 
 export default function showcase(root) {
 	const row = root.querySelector('.ps__stack');
@@ -15,6 +21,7 @@ export default function showcase(root) {
 	if (!row || cards.length < 2) return null;
 	const prev = root.querySelector('[data-ps-prev]');
 	const next = root.querySelector('[data-ps-next]');
+	const mq = window.matchMedia(DRIVEN_MQ);
 
 	const max = () => Math.max(0, row.scrollWidth - row.clientWidth);
 	const step = () => {
@@ -22,9 +29,30 @@ export default function showcase(root) {
 		return cards[0].getBoundingClientRect().width + gap;
 	};
 
+	// How far the last card must move for its right edge to meet the rail's.
+	// offsetLeft/offsetWidth ignore transforms, so the animation in progress
+	// does not skew the measurement.
+	const travel = () => {
+		const first = cards[0];
+		const last = cards[cards.length - 1];
+		const cs = getComputedStyle(row);
+		const inner = row.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+		return Math.max(0, last.offsetLeft - first.offsetLeft + last.offsetWidth - inner);
+	};
+
 	let raf = 0;
 	const sync = () => {
 		raf = 0;
+		const driven = supportsTimeline && mq.matches && motion.allowed;
+		root.classList.toggle('is-scroll-driven', driven);
+		if (driven) {
+			row.scrollLeft = 0;
+			const t = travel();
+			root.style.setProperty('--ps-shift', `${-t}px`);
+			root.classList.toggle('ps--fits', t <= 2);
+			return;
+		}
+		root.style.removeProperty('--ps-shift');
 		const m = max();
 		const x = row.scrollLeft;
 		if (prev) prev.disabled = x <= 2;
@@ -41,9 +69,12 @@ export default function showcase(root) {
 		[
 			on(row, 'scroll', queue, { passive: true }),
 			on(window, 'resize', queue, { passive: true }),
+			on(mq, 'change', queue),
+			motion.subscribe(() => queue()),
 			prev && on(prev, 'click', () => go(-1)),
 			next && on(next, 'click', () => go(1)),
 			() => cancelAnimationFrame(raf),
+			() => root.classList.remove('is-scroll-driven'),
 		].filter(Boolean)
 	);
 }

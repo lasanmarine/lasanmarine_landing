@@ -243,3 +243,30 @@ html.reduce-motion.reveal-on .lasanmarine-project-showcase:not(.is-revealed) .ps
 }
 html.reduce-motion .lasanmarine-project-showcase .ps__stack > a.ps__card:hover { translate: none; }
 html.reduce-motion .lasanmarine-project-showcase a.ps__card:hover .ps__media .frame > img { transform: none; }
+
+/* --- scroll-driven rail (desktop, motion allowed) ------------------------------
+   The cards slide left as the block crosses the screen. A view timeline on
+   the block drives a `translate` on each card; `animation-composition: add`
+   keeps the hover lift (also a translate) on top. The rail clips instead of
+   scrolling, and the arrows step aside. --ps-shift is measured in
+   behaviour.js. */
+@keyframes ps-rail {
+	from { translate: 0 0; }
+	to { translate: var(--ps-shift, 0px) 0; }
+}
+@supports (animation-timeline: view()) {
+	.ps.is-scroll-driven {
+		view-timeline: --ps-view block;
+	}
+	.ps.is-scroll-driven .ps__stack {
+		overflow: clip;
+		scroll-snap-type: none;
+	}
+	.ps.is-scroll-driven .ps__stack > .ps__card {
+		animation: ps-rail linear both;
+		animation-timeline: --ps-view;
+		animation-range: cover 18% cover 82%;
+		animation-composition: add;
+	}
+	.ps.is-scroll-driven .ps__nav { display: none; }
+}
