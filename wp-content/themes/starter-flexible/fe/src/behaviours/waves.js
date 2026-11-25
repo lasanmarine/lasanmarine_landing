@@ -17,9 +17,10 @@ export default function waves(svg) {
 	const amp = Number(svg.dataset.wave) || 1;
 	let allowed = true;
 
-	const draw = ({ height: vh }) => {
-		if (!allowed) return;
-		const rect = svg.getBoundingClientRect();
+	// Read phase: where the mark is (viewport store, before anyone writes).
+	const read = () => (allowed ? svg.getBoundingClientRect() : null);
+	const draw = ({ height: vh }, rect) => {
+		if (!allowed || !rect) return;
 		// Hidden (display: none), or well outside the viewport: no work.
 		if (!rect.width || rect.bottom < 0 || rect.top > vh) return;
 		const progress = (rect.top + rect.height / 2 - vh / 2) / vh; // -1 above, 0 centred, +1 below
@@ -36,7 +37,7 @@ export default function waves(svg) {
 		if (!ok) paths.forEach((p) => (p.style.transform = ''));
 		else viewport.invalidate();
 	});
-	const offScroll = viewport.subscribe(draw);
+	const offScroll = viewport.subscribe(draw, { read });
 
 	return () => {
 		offMotion();

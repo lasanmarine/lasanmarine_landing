@@ -1,246 +1,126 @@
 {
-  "key": "about",
-  "title": "Giới thiệu",
-  "slug": "gioi-thieu",
-  "lang": "vi",
-  "seo": {
-    "title": "Giới thiệu LASAN MARINE | Thiết kế tàu, R&D và phần mềm",
-    "description": "Chuyên môn chính của LASAN MARINE là thiết kế tàu. Từ quá trình làm việc thực tế, công ty phát triển thêm R&D và phần mềm thành hai hướng dịch vụ bên cạnh thiết kế tàu."
-  },
-  "blocks": [
-    {
-      "type": "page-hero",
-      "fields": {
-        "headline": "Chuyên môn chính của chúng tôi là thiết kế tàu",
-        "lead": "Từ thiết kế đóng mới, cải hoán đến các nhóm tính toán và hồ sơ chuyên biệt, chúng tôi đã tích lũy kinh nghiệm qua nhiều loại phương tiện và vật liệu thân vỏ. Từ chính những nhu cầu nảy sinh trong quá trình làm việc, chúng tôi phát triển thêm R&D và phần mềm thành hai hướng dịch vụ riêng.",
-        "placeholder": "LASAN MARINE",
-        "heading_level": "h1",
-        "height": 420,
-        "custom_class": "",
-        "image": 592
-      }
-    },
-    {
-      "type": "image-text",
-      "fields": {
-        "heading": "R&D và phần mềm phát triển từ những nhu cầu có thật trong quá trình làm việc",
-        "content": "Trong quá trình thiết kế, có những câu hỏi cần mô phỏng, đo kiểm hoặc thực nghiệm để kiểm chứng. Cũng có những công việc về dữ liệu, hồ sơ và quy trình phù hợp để giải quyết bằng phần mềm. Từ các nhu cầu đó, chúng tôi phát triển R&D và phần mềm thành hai hướng dịch vụ bên cạnh thiết kế tàu.",
-        "placeholder": "Thiết kế tàu và hoạt động nghiên cứu",
-        "caption": "Nền tảng phát triển",
-        "image_position": "right",
-        "split": "even",
-        "ratio": "ratio-4-3",
-        "cta": {
-          "label": "Xem năng lực tổng thể",
-          "page": "capabilities"
-        },
-        "custom_class": "",
-        "image": 576
-      }
-    },
-    {
-      "type": "proof-strip",
-      "fields": {
-        "items": [
-          {
-            "value": "300+",
-            "label": "Hồ sơ thiết kế tàu",
-            "link": {
-              "label": "Xem dự án",
-              "page": "projects"
-            }
-          },
-          {
-            "value": "20+ năm",
-            "label": "Kinh nghiệm của nhân sự nòng cốt"
-          },
-          {
-            "value": "3",
-            "label": "Nhóm vật liệu thân vỏ",
-            "note": "Gỗ · Thép · Composite"
-          },
-          {
-            "value": "20+",
-            "label": "Công bố khoa học",
-            "link": {
-              "label": "Xem R&D",
-              "page": "service_rnd"
-            }
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "value-grid",
-      "fields": {
-        "label": "Nguyên tắc làm việc",
-        "items": [
-          {
-            "icon": "ruler",
-            "title": "Thống nhất công việc ngay từ đầu",
-            "desc": "Trước khi bắt đầu, LASAN trao đổi với khách hàng về phần việc sẽ thực hiện, tài liệu sẽ bàn giao và những thông tin còn thiếu. Nhờ đó, hai bên có cùng một cách hiểu về dự án."
-          },
-          {
-            "icon": "calculator",
-            "title": "Trình bày rõ cơ sở tính toán",
-            "desc": "Các giả thiết, số liệu và kết quả tính toán được trình bày rõ ràng để khách hàng thuận tiện kiểm tra, đối chiếu và sử dụng cho những bước kỹ thuật tiếp theo."
-          },
-          {
-            "icon": "wrench",
-            "title": "Xem xét cả điều kiện triển khai thực tế",
-            "desc": "Khi xây dựng phương án, LASAN không chỉ nhìn vào bản vẽ mà còn xem xét hiện trạng, điều kiện thi công và giới hạn vận hành. Nhờ vậy, hồ sơ bám sát hơn với những điều kiện sẽ gặp khi triển khai thực tế."
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "team",
-      "fields": {
-        "heading": "Đội ngũ nòng cốt",
-        "placeholder": "Đội ngũ LASAN MARINE",
-        "people": [
-          {
-            "name": "TS. Huỳnh Lê Hồng Thái",
-            "role": "Giám đốc · Kỹ thuật tàu thủy, kết cấu máy và thiết bị · 2005–nay"
-          },
-          {
-            "name": "ThS. Trần Đình Tứ",
-            "role": "Chuyên gia · Kỹ thuật tàu thủy, kỹ thuật hệ thống tàu · 2009–nay"
-          },
-          {
-            "name": "KS. Huỳnh Tấn Đạt",
-            "role": "Cơ khí tàu thuyền · 2002–nay"
-          },
-          {
-            "name": "KS. Nguyễn Minh Nhật",
-            "role": "Công nghệ chế tạo máy · 2008–nay"
-          },
-          {
-            "name": "KS. Nguyễn Văn Hiền",
-            "role": "Đóng tàu thủy · 2009–nay"
-          },
-          {
-            "name": "KS. Nguyễn Văn Thắng",
-            "role": "Kỹ thuật điện · 2010–nay"
-          },
-          {
-            "name": "KS. Nguyễn Tuấn Anh",
-            "role": "Kỹ thuật tàu thủy · 2017–nay"
-          },
-          {
-            "name": "KS. Nguyễn Công Chánh",
-            "role": "Kỹ thuật tàu thủy · 2021–nay"
-          },
-          {
-            "name": "KS. Ngô Hoàng Thịnh",
-            "role": "Kỹ thuật tàu thủy · 2023–nay"
-          },
-          {
-            "name": "KS. Nguyễn Thái Nguyên",
-            "role": "Kỹ thuật tàu thủy · 2024–nay"
-          }
-        ],
-        "custom_class": "",
-        "image": 587
-      }
-    },
-    {
-      "type": "geo-operations",
-      "fields": {
-        "heading": "Chúng tôi đã thực hiện dự án tại nhiều địa bàn và điều kiện khai thác khác nhau",
-        "note": "Các địa bàn dưới đây được tổng hợp từ danh mục dự án hiện có, cho thấy những khu vực LASAN MARINE đã có kinh nghiệm làm việc thực tế.",
-        "provinces": [
-          {
-            "name": "Khánh Hòa (trụ sở chính)",
-            "x": 68,
-            "y": 62
-          },
-          {
-            "name": "Hải Phòng (tàu hàng và phương tiện thủy nội địa)",
-            "x": 58,
-            "y": 22
-          },
-          {
-            "name": "Nghệ An (đội tàu cá vỏ gỗ xa bờ)",
-            "x": 50,
-            "y": 34
-          },
-          {
-            "name": "Quảng Nam (đội tàu cá vỏ thép công suất lớn)",
-            "x": 64,
-            "y": 47
-          },
-          {
-            "name": "Bà Rịa – Vũng Tàu (tàu dịch vụ và tàu hậu cần xa bờ)",
-            "x": 56,
-            "y": 78
-          },
-          {
-            "name": "Cần Thơ và Đồng bằng sông Cửu Long (sà lan và phương tiện vận tải thủy)",
-            "x": 46,
-            "y": 84
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "spec-list",
-      "fields": {
-        "heading": "Thông tin doanh nghiệp",
-        "note": "Thông tin pháp lý và kênh liên hệ chính thức của Công ty TNHH Lasan Marine.",
-        "rows": [
-          {
-            "label": "Tên công ty",
-            "value": "Công ty TNHH Lasan Marine"
-          },
-          {
-            "label": "Tên quốc tế",
-            "value": "LASAN MARINE CO., LTD."
-          },
-          {
-            "label": "Mã số thuế",
-            "value": "4202063521"
-          },
-          {
-            "label": "Địa chỉ",
-            "value": "03 Trần Lư, Phường Bắc Nha Trang, tỉnh Khánh Hòa"
-          },
-          {
-            "label": "Tài khoản",
-            "value": "310781 – Techcombank, CN Mã Vòng, Bắc Nha Trang, Khánh Hòa"
-          },
-          {
-            "label": "Điện thoại và Zalo",
-            "value": "0834 310 781"
-          },
-          {
-            "label": "Website",
-            "value": "lasanmarine.com"
-          },
-          {
-            "label": "Email",
-            "value": "hello@lasanmarine.com"
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "contact-statement",
-      "fields": {
-        "heading": "Có một dự án cần trao đổi?",
-        "description": "Bạn có thể gửi yêu cầu, hồ sơ hoặc mô tả ngắn nhu cầu hiện tại. Chúng tôi sẽ xem thông tin và trao đổi cụ thể theo từng trường hợp, dù đó là thiết kế tàu, R&D hay phần mềm.",
-        "phone": "0834 310 781",
-        "email": "hello@lasanmarine.com",
-        "cta": {
-          "label": "Trao đổi về dự án",
-          "page": "contact"
-        },
-        "custom_class": ""
-      }
-    }
-  ]
+	"key": "about",
+	"title": "Giới thiệu",
+	"slug": "gioi-thieu",
+	"lang": "vi",
+	"seo": {
+		"title": "Về chúng tôi: thiết kế tàu & phần mềm | Công ty TNHH Lasan Marine",
+		"description": "Chuyên môn chính của Lasan Marine là thiết kế tàu. Từ công việc thực tế, công ty phát triển thêm R&D và phần mềm thành hai hướng dịch vụ riêng."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Chuyên môn cốt lõi của chúng tôi là thiết kế tàu",
+				"heading_level": "h1",
+				"lead": "Công ty TNHH Lasan Marine (Nha Trang, Khánh Hòa) thực hiện thiết kế đóng mới, cải hoán, tính toán kỹ thuật và hoàn thiện hồ sơ cho các phương tiện thủy. Từ những bài toán phát sinh trong quá trình làm việc, chúng tôi phát triển thêm năng lực R&D và các giải pháp số phục vụ công việc thực tế.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "image-text",
+			"fields": {
+				"heading": "Từ công việc kỹ thuật thực tế đến R&D và giải pháp số",
+				"content": "<p>Các hướng R&amp;D và giải pháp số của chúng tôi không được phát triển tách rời công việc kỹ thuật. Chúng xuất phát từ những bài toán cần mô phỏng, đo kiểm, xử lý dữ liệu hoặc tự động hóa trong quá trình thiết kế và triển khai dự án.</p>",
+				"cta": {
+					"label": "Xem năng lực",
+					"page": "capabilities"
+				},
+				"image": {
+					"media": "thisisengineering-f4puucc3m0g-unsplash"
+				},
+				"image_position": "right",
+				"split": "even",
+				"ratio": "ratio-4-3"
+			}
+		},
+		{
+			"type": "value-grid",
+			"fields": {
+				"heading": "Cách chúng tôi làm việc",
+				"items": [
+					{
+						"title": "Thống nhất phạm vi ngay từ đầu",
+						"desc": "Trước khi triển khai, hai bên thống nhất phạm vi công việc, dữ liệu đầu vào, kết quả cần bàn giao và những thông tin còn thiếu.",
+						"link": [],
+						"icon": "ruler"
+					},
+					{
+						"title": "Làm rõ cơ sở tính toán",
+						"desc": "Các giả thiết, dữ liệu đầu vào, phương pháp và kết quả được trình bày rõ để thuận tiện kiểm tra và đối chiếu.",
+						"link": [],
+						"icon": "calculator"
+					},
+					{
+						"title": "Bám sát điều kiện thực tế",
+						"desc": "Phương án được xem xét cùng hiện trạng, điều kiện thi công và giới hạn vận hành, không chỉ dựa trên bản vẽ.",
+						"link": [],
+						"icon": "wrench"
+					}
+				]
+			},
+			"anchor": "nguyen-tac"
+		},
+		{
+			"type": "geo-operations",
+			"fields": {
+				"label": "",
+				"heading": "Kinh nghiệm trên nhiều địa bàn",
+				"note": "Các dự án của chúng tôi trải rộng trên nhiều tỉnh thành, loại phương tiện và điều kiện khai thác khác nhau.",
+				"provinces": []
+			},
+			"anchor": "dia-ban"
+		},
+		{
+			"type": "spec-list",
+			"fields": {
+				"heading": "Thông tin doanh nghiệp",
+				"heading_level": "h2",
+				"note": "Thông tin pháp lý và kênh liên hệ chính thức của Công ty TNHH Lasan Marine.",
+				"rows": [
+					{
+						"label": "Tên công ty",
+						"value": "Công ty TNHH Lasan Marine"
+					},
+					{
+						"label": "Tên quốc tế",
+						"value": "Lasan Marine CO., LTD."
+					},
+					{
+						"label": "Mã số thuế",
+						"value": "4202063521"
+					},
+					{
+						"label": "Địa chỉ",
+						"value": "03 Trần Lư, Phường Bắc Nha Trang, tỉnh Khánh Hòa"
+					},
+					{
+						"label": "Điện thoại và Zalo",
+						"value": "0834 310 781"
+					},
+					{
+						"label": "Email",
+						"value": "hello@lasanmarine.com"
+					}
+				]
+			},
+			"anchor": "thong-tin-doanh-nghiep"
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Có một dự án cần trao đổi?</p>",
+				"description": "Gửi cho chúng tôi yêu cầu, hồ sơ hoặc mô tả ngắn về công việc. Chúng tôi sẽ xem thông tin và trao đổi cụ thể về phạm vi có thể thực hiện.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Trao đổi về dự án",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
 }

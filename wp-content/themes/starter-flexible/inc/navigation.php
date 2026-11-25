@@ -510,7 +510,9 @@ function starter_flexible_render_nav_overlay_markup( array $cta, array $contacts
 						<?php
 						foreach ( $social as $row ) :
 							$link = starter_flexible_link( $row['link'] ?? array() );
-							if ( '' === $link['url'] ) {
+							// A placeholder ("#", or the site's own address) is not a profile yet.
+							$frag_only = '' === trim( (string) wp_parse_url( $link['url'], PHP_URL_PATH ), '/' ) && str_ends_with( $link['url'], '#' );
+							if ( '' === $link['url'] || '#' === $link['url'] || $frag_only ) {
 								continue;
 							}
 							?>

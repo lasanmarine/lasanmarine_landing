@@ -1,5 +1,14 @@
 name: Deploy Lasan Marine
 
+# Deploys the code this repository owns — the theme, the plugins and the
+# language packs — to the hosting over SSH. WordPress core, wp-config.php,
+# uploads and the database live on the server and are never touched; tools/,
+# docker/ and output/ never leave the repository.
+#
+# Secrets: DEPLOY_HOST, DEPLOY_PORT, DEPLOY_USER, DEPLOY_PATH (the WordPress
+# root on the server) and DEPLOY_SSH_KEY — which holds the SSH *password* of
+# DEPLOY_USER (the account logs in by password).
+
 on:
   push:
     branches: [main]
@@ -7,7 +16,7 @@ on:
 
 concurrency:
   group: deploy-production
-  cancel-in-progress: true
+  cancel-in-progress: false # never cut a deploy off half-way
 
 jobs:
   deploy:
@@ -27,19 +36,77 @@ jobs:
         run: |
           npm ci
           npm run build
+          npx vitest run
 
-      - name: Backup and deploy
+      - name: Prepare SSH (password login)
         env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -eu
+          test -n "$DEPLOY_HOST" && test -n "$DEPLOY_PASSWORD"
+          d="$RUNNER_TEMP/ssh"; mkdir -p "$d"; chmod 700 "$d"
+          # OpenSSH asks this program for the password (no sshpass needed).
+          printf '#!/bin/sh\nprintf "%%s\\n" "$DEPLOY_PASSWORD"\n' > "$d/askpass"
+          chmod 700 "$d/askpass"
+          ssh-keyscan -p "${DEPLOY_PORT:-22}" -H "$DEPLOY_HOST" > "$d/known_hosts" 2>/dev/null
+          test -s "$d/known_hosts"
+          {
+            echo "SSH_ASKPASS=$d/askpass"
+            echo "SSH_ASKPASS_REQUIRE=force"
+            echo "DISPLAY=none"
+            echo "SSH_OPTS=-p ${DEPLOY_PORT:-22} -o UserKnownHostsFile=$d/known_hosts -o StrictHostKeyChecking=yes -o PreferredAuthentications=password,keyboard-interactive -o PubkeyAuthentication=no -o ConnectTimeout=20"
+          } >> "$GITHUB_ENV"
+
+      - name: Check the target is a WordPress site
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_SSH_KEY }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
           set -eu
-          test -n "$DEPLOY_PATH"
-          mkdir -p "$DEPLOY_PATH" "$DEPLOY_PATH/.backups"
-          stamp=$(date +%Y%m%d-%H%M%S)
-          if [ -f "$DEPLOY_PATH/wp-config.php" ] || [ -d "$DEPLOY_PATH/wp-content" ]; then
-            tar -czf "$DEPLOY_PATH/.backups/site-$stamp.tgz" -C "$DEPLOY_PATH" --exclude=.backups .
-          fi
-          rsync -a --delete \
-            --exclude='.git/' --exclude='wp-content/uploads/' --exclude='wp-content/cache/' \
-            --exclude='wp-content/upgrade/' --exclude='node_modules/' --exclude='.backups/' \
-            "$GITHUB_WORKSPACE/" "$DEPLOY_PATH/"
+          # Refuse to deploy anywhere that is not the WordPress root.
+          ssh $SSH_OPTS "$DEPLOY_USER@$DEPLOY_HOST" \
+            "test -f '$DEPLOY_PATH/wp-config.php' && test -d '$DEPLOY_PATH/wp-content' && command -v rsync >/dev/null" \
+            || { echo "::error::$DEPLOY_PATH is not a WordPress root (no wp-config.php / wp-content) or rsync is missing on the server"; exit 1; }
+
+      - name: Back up the current code on the server
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          set -eu
+          # Next to the web root, not inside it: a backup must not be downloadable.
+          ssh $SSH_OPTS "$DEPLOY_USER@$DEPLOY_HOST" "
+            set -e
+            b='$DEPLOY_PATH/../.deploy-backups'; mkdir -p \"\$b\"
+            cd '$DEPLOY_PATH/wp-content'
+            tar -czf \"\$b/code-$(date +%Y%m%d-%H%M%S).tgz\" --ignore-failed-read themes/starter-flexible plugins languages 2>/dev/null || true
+            ls -1t \"\$b\"/code-*.tgz | tail -n +11 | xargs -r rm -f   # keep the last 10
+          "
+
+      - name: Deploy theme, plugins and languages
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          set -eu
+          dest="$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/wp-content"
+          # The theme is entirely ours: mirror it (--delete), minus dev files.
+          rsync -az --delete -e "ssh $SSH_OPTS" \
+            --exclude='fe/node_modules/' --exclude='fe/.vite-dev' \
+            wp-content/themes/starter-flexible/ "$dest/themes/starter-flexible/"
+          # Plugins and language packs: update what the repository has, and
+          # leave anything installed only on the server alone (no --delete).
+          rsync -az -e "ssh $SSH_OPTS" wp-content/plugins/ "$dest/plugins/"
+          rsync -az -e "ssh $SSH_OPTS" wp-content/languages/ "$dest/languages/"
+
+      - name: Clean up
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/ssh"

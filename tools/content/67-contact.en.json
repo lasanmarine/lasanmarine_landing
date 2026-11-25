@@ -1,0 +1,40 @@
+{
+	"key": "contact_en",
+	"title": "Contact Lasan Marine for Vessel Design Support",
+	"slug": "contact",
+	"lang": "en",
+	"translation_of": "contact",
+	"seo": {
+		"title": "Contact Our Naval Architects | Lasan Marine Co., Ltd.",
+		"description": "Contact Lasan Marine to discuss vessel design, conversion and technical documentation. Share your project needs through the enquiry form, phone or email."
+	},
+	"blocks": [
+		{
+			"type": "spec-list",
+			"fields": {
+				"heading": "Contact us",
+				"heading_level": "h1",
+				"note": "",
+				"rows": [
+					{
+						"label": "Phone & Zalo",
+						"value": "0834 310 781"
+					},
+					{
+						"label": "Email",
+						"value": "hello@lasanmarine.com"
+					}
+				]
+			}
+		},
+		{
+			"type": "enquiry-form",
+			"fields": {
+				"heading": "Or send us a message",
+				"note": "We'll get back to you as soon as possible.",
+				"cf7_form": "enquiry-form-en"
+			},
+			"anchor": "apply"
+		}
+	]
+}

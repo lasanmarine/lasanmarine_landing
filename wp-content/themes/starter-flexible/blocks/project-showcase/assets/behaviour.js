@@ -1,43 +1,80 @@
 // Project Showcase — a heading beside a rail of project cards.
 //
-// On a desktop with motion on, the block pins under the header and the page
-// scroll slides the row sideways: as far as the reader scrolls, so far the
-// row moves, until the last card reaches the left edge; then the page moves
-// on (lib/scrub). Elsewhere the row is a native swipe/scroll strip.
-import { scrub } from '$lib/scrub';
+// On a desktop with motion allowed, the rail moves as the page scrolls: a
+// CSS scroll-driven animation (style.scss, `ps-rail`) slides the cards to
+// the left while the block crosses the screen, on the compositor, with no
+// pinning and no script per frame. This module only measures how far the
+// rail has to travel (once per layout) and turns the mode on.
+// Elsewhere (phones, reduced motion, browsers without scroll timelines) the
+// rail is a native horizontal scroller with arrow buttons that step one card.
+import { on, cleanupAll } from '$lib/dom';
+import { motion } from '$lib/stores/motion.svelte.js';
 
 export const selector = '[data-showcase-stack]';
-export const order = 50; // before stack.js sizes the sheets
 
-export default function showcaseSlider(root) {
-	const pin = root.querySelector('[data-ps-pin]');
+const DRIVEN_MQ = '(min-width: 1024px)';
+const supportsTimeline = typeof CSS !== 'undefined' && CSS.supports?.('animation-timeline: view()');
+
+export default function showcase(root) {
 	const row = root.querySelector('.ps__stack');
 	const cards = [...root.querySelectorAll('[data-ps-card]')];
-	if (!pin || !row || cards.length < 2) return null;
+	if (!row || cards.length < 2) return null;
+	const prev = root.querySelector('[data-ps-prev]');
+	const next = root.querySelector('[data-ps-next]');
+	const mq = window.matchMedia(DRIVEN_MQ);
 
-	// --p is set on the bar that draws it, not on the block: a custom property
-	// inherits, so on the block every scroll frame would restyle all the cards.
-	const bar = root.querySelector('.ps__progress span') ?? root;
-	let limit = 0; // measured once per layout, not on every scroll frame
 	const max = () => Math.max(0, row.scrollWidth - row.clientWidth);
+	const step = () => {
+		const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+		return cards[0].getBoundingClientRect().width + gap;
+	};
 
-	return scrub(root, {
-		pin,
-		reset: () => {
-			row.style.paddingRight = '';
+	// How far the last card must move for its right edge to meet the rail's.
+	// offsetLeft/offsetWidth ignore transforms, so the animation in progress
+	// does not skew the measurement.
+	const travel = () => {
+		const first = cards[0];
+		const last = cards[cards.length - 1];
+		const cs = getComputedStyle(row);
+		const inner = row.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+		return Math.max(0, last.offsetLeft - first.offsetLeft + last.offsetWidth - inner);
+	};
+
+	let raf = 0;
+	const sync = () => {
+		raf = 0;
+		const driven = supportsTimeline && mq.matches && motion.allowed;
+		root.classList.toggle('is-scroll-driven', driven);
+		if (driven) {
 			row.scrollLeft = 0;
-			bar.style.removeProperty('--p');
-		},
-		run: () => {
-			// Room after the last card so it can travel to the left edge.
-			const last = cards[cards.length - 1];
-			row.style.paddingRight = `${Math.max(0, row.clientWidth - last.offsetWidth)}px`;
-			limit = max();
-			return limit * 1.2;
-		},
-		progress: (p) => {
-			row.scrollLeft = p * limit;
-			bar.style.setProperty('--p', p.toFixed(3));
-		},
-	});
+			const t = travel();
+			root.style.setProperty('--ps-shift', `${-t}px`);
+			root.classList.toggle('ps--fits', t <= 2);
+			return;
+		}
+		root.style.removeProperty('--ps-shift');
+		const m = max();
+		const x = row.scrollLeft;
+		if (prev) prev.disabled = x <= 2;
+		if (next) next.disabled = x >= m - 2;
+		root.classList.toggle('ps--fits', m <= 2);
+	};
+	const queue = () => {
+		if (!raf) raf = requestAnimationFrame(sync);
+	};
+	const go = (dir) => row.scrollBy({ left: dir * step(), behavior: motion.allowed ? 'smooth' : 'auto' });
+
+	sync();
+	return cleanupAll(
+		[
+			on(row, 'scroll', queue, { passive: true }),
+			on(window, 'resize', queue, { passive: true }),
+			on(mq, 'change', queue),
+			motion.subscribe(() => queue()),
+			prev && on(prev, 'click', () => go(-1)),
+			next && on(next, 'click', () => go(1)),
+			() => cancelAnimationFrame(raf),
+			() => root.classList.remove('is-scroll-driven'),
+		].filter(Boolean)
+	);
 }

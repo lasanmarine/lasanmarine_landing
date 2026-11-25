@@ -37,7 +37,7 @@ if ( empty( $data->should_render ) ) {
 			);
 			?>
 		</div>
-		<div class="it__body">
+		<div class="it__body" data-reveal-stagger>
 			<?php if ( $data->has_heading ) : ?>
 				<h2 class="h3 it__heading"><?php echo esc_html( $data->heading ); ?></h2>
 			<?php endif; ?>

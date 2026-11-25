@@ -12,9 +12,10 @@ import { viewport } from '$lib/stores/viewport.svelte.js';
 import { motion } from '$lib/stores/motion.svelte.js';
 
 export const selector = '[data-use-case]';
-export const order = 50; // before stack.js sizes the sheets
 
-const MQ = '(min-width: 1024px) and (min-height: 640px)';
+// Driving the row from the page scroll is retired (it stuttered on 60 Hz
+// screens): the row is the native snap scroller with arrows everywhere.
+const MQ = 'not all';
 
 export default function useCase(root) {
 	const track = root.querySelector('[data-uc-track]');
@@ -44,12 +45,19 @@ export default function useCase(root) {
 		root.classList.toggle('uc--static', m <= 2);
 	};
 
-	// Map the page scroll onto the row.
-	const drive = () => {
+	// Map the page scroll onto the row. The row's overflow is cached per
+	// layout (`span`); the block's top is read in the viewport store's read
+	// phase, so a frame costs one layout read and one scroll write.
+	let span = 0;
+	const read = () => (scrub ? root.getBoundingClientRect().top : 0);
+	const drive = (rootTop = read()) => {
 		if (!scrub) return;
-		const top = root.getBoundingClientRect().top - (viewport.hdrH || 76);
-		track.scrollLeft = clamp(-top / Math.max(run, 1), 0, 1) * max();
-		sync();
+		const top = rootTop - (viewport.hdrH || 76);
+		const x = clamp(-top / Math.max(run, 1), 0, 1) * span;
+		if (Math.abs(track.scrollLeft - x) < 0.5) return;
+		track.scrollLeft = x;
+		prev.disabled = x <= 2;
+		next.disabled = x >= span - 2;
 	};
 
 	const measure = () => {
@@ -66,7 +74,8 @@ export default function useCase(root) {
 			const pad = parseFloat(getComputedStyle(track).paddingRight) || 0;
 			if (last) track.style.paddingRight = `${pad + Math.max(0, track.clientWidth - last.getBoundingClientRect().width - pad)}px`;
 			// Scroll a little more than the row moves, so it doesn't race.
-			run = Math.round(max() * 1.4);
+			span = max();
+			run = Math.round(span * 1.4);
 			root.style.setProperty('--uc-run', `${run}px`);
 			root.classList.add('uc--scrub');
 			pin.after(spacer);
@@ -92,7 +101,7 @@ export default function useCase(root) {
 		on(prev, 'click', () => go(-1)),
 		on(next, 'click', () => go(1)),
 		on(track, 'scroll', () => !scrub && sync(), { passive: true }),
-		viewport.subscribe((snap) => (snap.resized ? measure() : drive())),
+		viewport.subscribe((snap, top) => (snap.resized ? measure() : drive(top)), { read }),
 		on(mq, 'change', measure),
 		motion.subscribe(() => measure()),
 		() => {

@@ -3,6 +3,7 @@
 	// Everything shown is a $derived of three inputs: value, unit, precision.
 	import { untrack } from 'svelte';
 	import CopyButton from '$components/CopyButton.svelte';
+	import { settle } from './settle.js';
 	import { formatNumber, plainNumber, clamp, toNumber } from '$lib/format';
 	import { pageLocale } from '$lib/i18n';
 
@@ -51,8 +52,8 @@
 </script>
 
 <form class={moduleClass} novalidate onsubmit={(e) => e.preventDefault()} onreset={reset}>
-	<div class="pc__grid">
-		<div class="pc__inputs" data-reveal="left">
+	<div class="pc__grid" data-reveal-stagger=":scope > *">
+		<div class="pc__inputs">
 			<div class="field">
 				<label class="field__label" for={inputId}>{labels.input}</label>
 				<input
@@ -104,13 +105,13 @@
 			</button>
 		</div>
 
-		<div class="pc__results" data-reveal="right">
+		<div class="pc__results">
 			<h2 class="pc__heading">{labels.results}</h2>
 			<div class="pc__result-list" aria-live="polite" aria-atomic="true" data-reveal-stagger>
 				{#each results as row (row.id)}
 					<div class="pc__result" class:is-source={row.id === unitId}>
 						<span class="pc__result-label">{row.label}</span>
-						<output class="pc__result-value" for={inputId} aria-label={row.label}>{row.text}</output>
+						<output use:settle={row.text} class="pc__result-value" for={inputId} aria-label={row.label}>{row.text}</output>
 						<CopyButton value={row.plain} label={labels.copy} {icons} />
 					</div>
 				{/each}

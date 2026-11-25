@@ -1,300 +1,238 @@
 {
-  "key": "service_rnd_en",
-  "title": "Research & Development (R&D)",
-  "slug": "research-development",
-  "lang": "en",
-  "translation_of": "service_rnd",
-  "seo": {
-    "title": "Marine R&D, CFD Simulation & Measurement | LASAN MARINE",
-    "description": "R&D for ship-design questions involving hydrodynamics, CFD, structures, vibration, propulsion, measurement and applied research."
-  },
-  "blocks": [
-    {
-      "type": "page-hero",
-      "fields": {
-        "headline": "For the technical questions that remain open",
-        "lead": "We use CFD, structural analysis, measurement, testing and data analysis to investigate questions around hydrodynamics, structures, vibration and propulsion. The method follows the question—not the other way around.",
-        "placeholder": "Research, simulation and measurement",
-        "heading_level": "h1",
-        "height": 420,
-        "custom_class": "",
-        "image": 527
-      }
-    },
-    {
-      "type": "use-case",
-      "fields": {
-        "heading": "Every research problem starts with a question worth answering",
-        "intro": "R&D does not replace the calculations that belong in normal ship design. It is where we investigate a hypothesis, study a phenomenon, develop a method or compare a model with measured data when the question calls for a dedicated investigation.",
-        "items": [
-          {
-            "problem": "I need to compare two geometries or operating conditions",
-            "context": "Visual inspection alone cannot show which change is driving resistance, flow behaviour or hydrodynamic loading.",
-            "solution": "CFD lets us compare cases on the same basis, identify the direction and scale of change, and locate areas that deserve closer attention before the design is revised.",
-            "link": {
-              "label": "View related research",
-              "url": "#publications"
-            }
-          },
-          {
-            "problem": "I need to understand cavitation risk or unfavourable flow around a propeller",
-            "context": "Cavitation and local flow behaviour depend strongly on geometry, velocity and operating condition, making them difficult to assess from external observation alone.",
-            "solution": "Simulation can reveal pressure distribution, velocity fields and potentially adverse regions, giving the project better evidence before deciding whether a design change is justified.",
-            "link": {
-              "label": "View hydrodynamics research",
-              "url": "#publications"
-            }
-          },
-          {
-            "problem": "I need to investigate stress, vibration or structural strength",
-            "context": "Critical regions may only appear under a specific load case, restraint condition or operating state.",
-            "solution": "Structural analysis helps compare operating states, identify high-stress regions and examine vibration behaviour before a design change is made.",
-            "link": {
-              "label": "View structural research",
-              "url": "#publications"
-            }
-          },
-          {
-            "problem": "I need measured data to check a design or model",
-            "context": "Geometric deviation and real operating parameters can materially affect a calculation or simulation result.",
-            "solution": "Measurement provides data that can be compared with design values and model outputs, helping us judge whether the model represents the real system closely enough for the conclusion being drawn.",
-            "link": {
-              "label": "View measurement work",
-              "url": "#publications"
-            }
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "capability-matrix",
-      "fields": {
-        "heading": "Current research areas: hydrodynamics, structures and measurement",
-        "items": [
-          {
-            "index": "01",
-            "icon": "waves",
-            "name": "Flow Simulation & Hydrodynamics",
-            "desc": "Simulation of flow around hulls, propellers and rudders to compare designs and investigate resistance, loading and other hydrodynamic behaviour.",
-            "link": {
-              "label": "View related research",
-              "url": "#publications"
-            },
-            "children": [
-              {
-                "name": "Flow around vessel hulls"
-              },
-              {
-                "name": "Hull–propeller–rudder interaction"
-              },
-              {
-                "name": "Tip-vortex cavitation"
-              },
-              {
-                "name": "Resistance, loading and hydrodynamic performance"
-              }
-            ]
-          },
-          {
-            "index": "02",
-            "icon": "wrench",
-            "name": "Structures, Propulsion & Vibration",
-            "desc": "Stress, deformation and vibration analysis for strength checks, operating-state comparison and investigation of areas that may require design attention.",
-            "link": {
-              "label": "View related research",
-              "url": "#publications"
-            },
-            "children": [
-              {
-                "name": "Structural stress and strength"
-              },
-              {
-                "name": "Vibration and resonance risk"
-              },
-              {
-                "name": "Crankshafts and propulsion systems"
-              },
-              {
-                "name": "Noise and materials"
-              }
-            ]
-          },
-          {
-            "index": "03",
-            "icon": "scan",
-            "name": "Measurement & Model Validation",
-            "desc": "Real-world measurement for geometry and operating parameters, used to compare design intent, calculation models and workshop or field conditions.",
-            "link": {
-              "label": "View related research",
-              "url": "#publications"
-            },
-            "children": [
-              {
-                "name": "Dedicated CMM for marine propellers"
-              },
-              {
-                "name": "Propeller pitch measurement and correction"
-              },
-              {
-                "name": "Workshop and field measurement data"
-              },
-              {
-                "name": "Comparison of measured data with simulation models"
-              }
-            ]
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "image-text",
-      "fields": {
-        "heading": "A simulation result is only as useful as the model behind it",
-        "content": "We pay close attention to geometry, mesh quality, boundary conditions and convergence because each can change the result. Where measured data or a reliable reference is available, we use it to challenge the model and make the limits of the conclusion explicit.",
-        "placeholder": "Flow simulation and calculation data",
-        "caption": "Simulation and validation",
-        "image_position": "left",
-        "split": "media",
-        "ratio": "ratio-16-9",
-        "custom_class": "",
-        "image": 526
-      }
-    },
-    {
-      "type": "document-center",
-      "anchor": "publications",
-      "fields": {
-        "label": "Research papers and publications",
-        "all_label": "ALL PUBLICATIONS",
-        "groups": [
-          {
-            "name": "Hydrodynamics & Marine Propellers",
-            "items": [
-              {
-                "title": "Mesh Refinement Investigation to Simulate Tip Vortex Cavitation under Non-Cavitating Conditions (Dynamics – MDPI, 2024)",
-                "size": "Open-access PDF"
-              },
-              {
-                "title": "Nghiên cứu mô phỏng dòng lưu chất qua vỏ tàu cá có xét ảnh hưởng của chân vịt và bánh lái (Tạp chí KH-CN Thủy sản, 2024)",
-                "size": "1.2 MB"
-              },
-              {
-                "title": "Thiết kế, chế tạo máy CMM đo thông số hình học chân vịt tàu thủy (Tạp chí KH-CN Thủy sản, 2024)",
-                "size": "1.8 MB"
-              },
-              {
-                "title": "Simulation the Instability of the Fishing Vessel Propeller Structure During Operation (MSDI, 2023)",
-                "size": "Abstract"
-              },
-              {
-                "title": "Effects of Computational Geometry to the Laminar Viscous Flow Around the Vertical Circular Cylinder (Springer, 2021)",
-                "size": "Book chapter"
-              }
-            ]
-          },
-          {
-            "name": "Structures & Propulsion",
-            "items": [
-              {
-                "title": "Kiểm tra độ bền trục khuỷu động cơ một xy lanh bằng phương pháp mô phỏng (TNU-JST, 2021)",
-                "size": "850 KB"
-              },
-              {
-                "title": "Lựa chọn các thông số cảnh báo sự cố hệ động lực tàu cá xa bờ (Tạp chí KH-CN Thủy sản, 2018)",
-                "size": "1.1 MB"
-              },
-              {
-                "title": "Applying CAE Tool for Analysis Stress and Optimization of the Crankshaft in the Internal Combustion Engine (2010)",
-                "size": "Research paper"
-              }
-            ]
-          },
-          {
-            "name": "Vibration, Noise & Materials",
-            "items": [
-              {
-                "title": "Analysis Stability of Brake Related to Squeal by Finite Element Method (GRANT Journal, 2012)",
-                "size": "650 KB"
-              },
-              {
-                "title": "Model Predict Vibration and Noise of Disc Brake (Scientific.Net, 2012)",
-                "size": "Research paper"
-              },
-              {
-                "title": "Identify Source Vibration and Noise of Disc Brake (IRMES Proceedings, 2011)",
-                "size": "Conference paper"
-              },
-              {
-                "title": "Estimate the Elastic Modulus and Strength of Composites with Basalt Woven Fiber Reinforcement by ANSYS (2011)",
-                "size": "Research paper"
-              }
-            ]
-          }
-        ],
-        "empty_text": "No publications in this group.",
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "proof-strip",
-      "fields": {
-        "items": [
-          {
-            "value": "20+",
-            "label": "Scientific publications",
-            "note": "Domestic and international"
-          },
-          {
-            "value": "3",
-            "label": "Main research areas",
-            "note": "Hydrodynamics · Structures · Vibration"
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "accordion",
-      "fields": {
-        "heading": "Common questions about simulation, measurement and research",
-        "intro": "Every investigation has a different level of uncertainty, data availability and validation need. The questions below explain how we choose methods and what the resulting work can look like.",
-        "items": [
-          {
-            "title": "I have a technical problem but do not know whether it needs simulation or measurement. Can you help define the approach?",
-            "content": "Yes. Start with the phenomenon, hypothesis or decision you need to investigate. We will review the available data and discuss whether simulation, measurement, data analysis or a combination makes the most sense."
-          },
-          {
-            "title": "Does every simulation need measured data for validation?",
-            "content": "Not always. The need for measured data depends on the question, the available references and how much confidence the conclusion requires. We will be explicit when real-world data is important to the result."
-          },
-          {
-            "title": "What do you deliver from a simulation study?",
-            "content": "Depending on the question, deliverables may include data fields, plots, visualisations, comparison tables and a technical report. We agree the format around how the client needs to use the result."
-          },
-          {
-            "title": "Can the free online tools replace project-specific engineering work?",
-            "content": "No. They are intended for quick reference and preliminary checks. Problems with multiple load cases, boundary conditions or design assumptions still need a project-specific calculation or model."
-          }
-        ],
-        "open_first": 0,
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "contact-statement",
-      "fields": {
-        "heading": "Have a technical question worth investigating?",
-        "description": "Send us the phenomenon, hypothesis, measured data or design alternatives you are working with. We will review the question and discuss the method, the evidence needed and the most useful form of the final result.",
-        "phone": "+84 834 310 781",
-        "email": "hello@lasanmarine.com",
-        "cta": {
-          "label": "Discuss an R&D project",
-          "page": "contact"
-        },
-        "custom_class": ""
-      }
-    }
-  ]
+	"key": "service_rnd_en",
+	"title": "Research & Development (R&D)",
+	"slug": "research-development",
+	"lang": "en",
+	"translation_of": "service_rnd",
+	"parent": "capabilities_en",
+	"seo": {
+		"title": "Marine R&D and CFD Simulation | Lasan Marine Co., Ltd.",
+		"description": "Ship CFD simulation, hydrodynamic and structural analysis and measurements for fishing and passenger vessels — verify a design before it is built."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Research & Development (R&D)",
+				"heading_level": "h1",
+				"lead": "Getting to the bottom of engineering problems that need simulation, measurement or deeper verification. From a specific question or hypothesis, we choose the right method — CFD, structural analysis, measurement, testing or data analysis — to clarify the problem and check it against real data where possible.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "What do you need to find out?",
+				"intro": "",
+				"solution_label": "",
+				"items": [
+					{
+						"problem": "I need to compare hydrodynamic options",
+						"context": "When the effect of a change in geometry or operating condition can't be judged by eye, CFD can compare resistance, flow field, loads and related quantities.",
+						"solution": "",
+						"link": {
+							"label": "See related research",
+							"url": "#publications"
+						}
+					},
+					{
+						"problem": "I need to check the flow or cavitation around a propeller",
+						"context": "Simulation can show the pressure and velocity distribution and the unfavourable flow regions, to support the assessment of a design.",
+						"solution": "",
+						"link": {
+							"label": "See hydrodynamics research",
+							"url": "#publications"
+						}
+					},
+					{
+						"problem": "I need to check structure or vibration",
+						"context": "Numerical analysis identifies stress, deformation, vibration characteristics and the areas that need closer checks under specific load cases.",
+						"solution": "",
+						"link": {
+							"label": "See structural research",
+							"url": "#publications"
+						}
+					},
+					{
+						"problem": "I need to verify with real data",
+						"context": "We can measure geometry or real operating parameters to compare against the design and check how well the calculation model fits.",
+						"solution": "",
+						"link": {
+							"label": "See measurement work",
+							"url": "#publications"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "capability-matrix",
+			"fields": {
+				"heading": "Methods and research scope",
+				"items": [
+					{
+						"index": "01",
+						"name": "CFD and hydrodynamics",
+						"desc": "Flow around the hull · Hull – propeller – rudder · Cavitation · Resistance · Hydrodynamic loads",
+						"link": {
+							"label": "See related publications",
+							"url": "#publications"
+						},
+						"children": [],
+						"icon": "waves"
+					},
+					{
+						"index": "02",
+						"name": "Structures and vibration",
+						"desc": "Stress · Deformation · Vibration · Resonance · Propulsion systems · Materials",
+						"link": {
+							"label": "See related publications",
+							"url": "#publications"
+						},
+						"children": [],
+						"icon": "wrench"
+					},
+					{
+						"index": "03",
+						"name": "Measurement and real data",
+						"desc": "Geometric measurement · Propeller CMM · Pitch · Field data · Model validation",
+						"link": {
+							"label": "See related publications",
+							"url": "#publications"
+						},
+						"children": [],
+						"icon": "scan"
+					}
+				]
+			}
+		},
+		{
+			"type": "service-spotlight",
+			"fields": {
+				"label": "",
+				"image": {
+					"media": "phan-mem-propcad"
+				},
+				"caption": "Research, simulation and measurement",
+				"heading": "What results can include",
+				"body": "",
+				"items": [
+					{
+						"text": "The agreed model and calculation conditions"
+					},
+					{
+						"text": "Velocity, pressure, stress or other fields to be assessed"
+					},
+					{
+						"text": "Comparison between options or operating states"
+					},
+					{
+						"text": "Measurement results and processed data"
+					},
+					{
+						"text": "Comparison between simulation, measured data or reference material"
+					},
+					{
+						"text": "A technical report setting out method, assumptions, results and model limits"
+					}
+				],
+				"cta": {
+					"label": "Discuss the deliverables",
+					"page": "contact_en"
+				},
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "image-text",
+			"fields": {
+				"heading": "Simulation results depend on the quality of the model",
+				"content": "<p>We control geometry, mesh, boundary conditions and convergence criteria. Where measured data or reference results exist, they are used to validate the model. The report also states the assumptions and the limits of the results.</p>",
+				"cta": [],
+				"image": {
+					"media": "pexels-phamthe-17282383"
+				},
+				"image_position": "left",
+				"split": "media",
+				"ratio": "ratio-16-9"
+			}
+		},
+		{
+			"type": "document-center",
+			"fields": {
+				"heading": "Selected publications",
+				"view_all": {
+					"label": "See all publications",
+					"url": "/capabilities/research-development/publications/"
+				},
+				"all_label": "All",
+				"empty_text": "No publications in this group.",
+				"groups": [
+					{
+						"name": "HYDRODYNAMICS &amp; PROPELLERS",
+						"items": [
+							{
+								"title": "Mesh Refinement Investigation to Simulate Tip Vortex Cavitation under Non-Cavitating Conditions (Dynamics – MDPI, 2024)",
+								"size": "Open-access PDF",
+								"file": ""
+							},
+							{
+								"title": "Simulation of flow around a fishing vessel hull considering propeller and rudder effects (Tạp chí KH-CN Thủy sản, 2024)",
+								"size": "1.2 MB",
+								"file": ""
+							},
+							{
+								"title": "Simulation the Instability of the Fishing Vessel Propeller Structure During Operation (MSDI, 2023)",
+								"size": "Abstract",
+								"file": ""
+							}
+						]
+					},
+					{
+						"name": "STRUCTURES &amp; PROPULSION",
+						"items": [
+							{
+								"title": "Selecting fault-warning parameters for offshore fishing vessel propulsion systems (Tạp chí KH-CN Thủy sản, 2018)",
+								"size": "1.1 MB",
+								"file": ""
+							},
+							{
+								"title": "Strength check of a single-cylinder engine crankshaft by simulation (TNU-JST, 2021)",
+								"size": "850 KB",
+								"file": ""
+							}
+						]
+					},
+					{
+						"name": "Measurement",
+						"items": [
+							{
+								"title": "Design and fabrication of a CMM for measuring marine propeller geometry (Tạp chí KH-CN Thủy sản, 2024)",
+								"size": "1.8 MB",
+								"file": ""
+							}
+						]
+					}
+				],
+				"custom_class": ""
+			},
+			"anchor": "publications"
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Have a problem that needs research or verification?</p>",
+				"description": "Send your question, hypothesis, data or current design. We will review it and discuss the right method, the extra data needed and the form of the deliverables.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Discuss an R&D problem",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
 }

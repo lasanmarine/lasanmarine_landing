@@ -1,0 +1,225 @@
+{
+	"key": "design_conversion",
+	"title": "Hoán cải tàu cá & chuyển đổi nghề khai thác",
+	"slug": "hoan-cai-chuyen-nghe",
+	"lang": "vi",
+	"parent": "service_01",
+	"seo": {
+		"title": "Hoán cải, chuyển đổi nghề tàu cá | Công ty TNHH Lasan Marine",
+		"description": "Thiết kế hoán cải tàu cá: chuyển đổi nghề, thay máy, kéo dài thân. Tính lại ổn định, kết cấu, lập hồ sơ thẩm định đăng kiểm. Gọi hoặc Zalo 0834 310 781."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Hoán cải tàu cá, chuyển đổi nghề và thay máy",
+				"heading_level": "h1",
+				"lead": "Lasan Marine thiết kế hoán cải (cải hoán) tàu cá cho chủ tàu, hợp tác xã và xưởng đóng tàu: chuyển đổi nghề, thay máy chính, kéo dài thân, nâng mạn, nâng cabin. Chúng tôi khảo sát tàu, tính lại ổn định, kết cấu, máy – chân vịt – trục và lập hồ sơ để cơ sở đăng kiểm tàu cá thẩm định.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"label": "",
+				"heading": "Thay máy, chuyển nghề có phải làm thủ tục cải hoán không?",
+				"content": "<p><strong>Có.</strong> Theo khoản 5 Điều 3 Thông tư 02/2026/TT-BNNMT (hiệu lực từ 01/01/2026), cải hoán tàu cá là việc thay đổi một hoặc một số thông số kỹ thuật của tàu: <strong>kích thước cơ bản, máy chính, công dụng, nghề, vùng hoạt động</strong>, làm ảnh hưởng đến tính năng kỹ thuật của tàu. Vì vậy đổi máy chính, chuyển nghề, kéo dài thân hay đổi vùng hoạt động đều là cải hoán (nhiều người vẫn gọi là hoán cải). Còn sửa chữa, thay thế để đưa tàu về đúng trạng thái ban đầu thì là sửa chữa phục hồi.</p><h3>Ba giấy tờ chủ tàu cần có</h3><ul><li><strong>Văn bản chấp thuận cải hoán</strong> của cơ quan quản lý thủy sản cấp tỉnh. Hồ sơ là tờ khai theo Mẫu số 12.TC Phụ lục IV Nghị định 41/2026/NĐ-CP. Cơ quan này xét theo hạn ngạch giấy phép khai thác và tiêu chí riêng của tỉnh.</li><li><strong>Hồ sơ thiết kế cải hoán được thẩm định</strong>: bắt buộc với tàu cá có chiều dài lớn nhất từ 12 m trở lên, phải có trước khi thi công (Điều 15 Thông tư 02/2026/TT-BNNMT). Đây là phần chúng tôi làm.</li><li><strong>Giấy chứng nhận an toàn kỹ thuật và đăng ký lại tàu</strong> sau khi thi công xong dưới sự giám sát của đăng kiểm.</li></ul><h3>Nghề nào được chuyển sang?</h3><p>Khoản 6 Điều 43 Nghị định 41/2026/NĐ-CP: <strong>không chấp thuận cải hoán tàu đang làm nghề khác sang lưới kéo hoặc lưới rê thu ngừ</strong>. Tàu đang làm hai nghề này thì được cải hoán sang nghề khác. Việc chuyển hạn ngạch giấy phép giữa các nghề do UBND tỉnh quyết định, theo hướng chỉ cho chuyển sang nghề thân thiện với nguồn lợi thủy sản (Điều 25 cùng Nghị định). Vì vậy, trước khi đặt thiết kế, hãy hỏi cơ quan quản lý thủy sản nơi tàu đăng ký xem nghề bạn định chuyển còn hạn ngạch không.</p><h3>Quy chuẩn áp dụng</h3><p>Từ 10/3/2026, tàu cá dài từ 12 m đến dưới 24 m áp dụng QCVN 92:2025/BNNMT (thay QCVN 02-35:2021/BNNPTNT), tàu từ 24 m trở lên áp dụng QCVN 91:2025/BNNMT, theo Thông tư 57/2025/TT-BNNMT. Hồ sơ cải hoán của chúng tôi lập theo quy chuẩn đang có hiệu lực.</p><p><em>Căn cứ: <a href=\"https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/9/81-vbhn-bnnmt.signed.pdf\" rel=\"noopener\" target=\"_blank\">Thông tư 02/2026/TT-BNNMT</a> (văn bản hợp nhất 81/VBHN-BNNMT, gồm sửa đổi của Thông tư 33/2026/TT-BNNMT), Nghị định 41/2026/NĐ-CP và <a href=\"https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/9/57-bnnmt.pdf\" rel=\"noopener\" target=\"_blank\">Thông tư 57/2025/TT-BNNMT</a>. Cập nhật tháng 11/2026. Quy định có thể thay đổi; hãy hỏi lại chúng tôi hoặc cơ quan quản lý trước khi nộp hồ sơ.</em></p>",
+				"align": "left",
+				"width": "medium",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Những trường hợp hoán cải thường gặp",
+				"intro": "",
+				"solution_label": "Chúng tôi xử lý",
+				"items": [
+					{
+						"problem": "Chuyển đổi nghề khai thác",
+						"context": "Ví dụ rút lưới kéo sang câu, chụp mực, lưới vây hoặc làm dịch vụ hậu cần. Tời, ngư cụ, hầm và đá thay đổi nên trọng tâm tàu cũng thay đổi.",
+						"solution": "Bố trí lại boong, hầm, thiết bị khai thác; tính ổn định cho các trạng thái tải của nghề mới: ra khơi, đang khai thác, về bến đầy hàng.",
+						"link": {
+							"label": "Đọc lưu ý kỹ thuật khi chuyển nghề",
+							"url": "/tin-tuc/nhung-luu-y-ky-thuat-khi-chuyen-hoan-nghe-cho-tau-ca/"
+						}
+					},
+					{
+						"problem": "Thay máy, tăng công suất máy tàu cá",
+						"context": "Máy cũ hỏng hoặc muốn máy mạnh hơn. Đổi máy chính là cải hoán, kể cả khi vỏ tàu giữ nguyên.",
+						"solution": "Tính sức cản và công suất cần thiết, chọn chân vịt, kiểm tra đường kính trục, bệ máy và ảnh hưởng của trọng lượng máy mới đến ổn định.",
+						"link": {
+							"label": "Đọc: kiểm tra bệ máy khi nâng công suất",
+							"url": "/tin-tuc/kiem-tra-ket-cau-dam-be-may-khi-nang-cong-suat-dong-co/"
+						}
+					},
+					{
+						"problem": "Kéo dài thân, nâng mạn, nâng cabin, thêm hầm",
+						"context": "Muốn tăng sức chở, thêm chỗ ở cho thuyền viên hoặc hầm bảo quản.",
+						"solution": "Tính lại kết cấu, ổn định, mạn khô và dung tích; cập nhật toàn bộ bản vẽ liên quan để hồ sơ khớp với tàu sau cải hoán.",
+						"link": {
+							"label": "Trao đổi phương án",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Đổi vùng hoạt động hoặc công dụng",
+						"context": "Ví dụ chuyển tàu khai thác sang làm dịch vụ hậu cần nghề cá, hoặc đổi vùng hoạt động.",
+						"solution": "Kiểm tra lại kết cấu, mạn khô, ổn định và trang thiết bị theo công dụng, vùng mới; cân nhắc giữa hoán cải và đóng mới trước khi làm.",
+						"link": {
+							"label": "So sánh hoán cải và đóng mới",
+							"url": "/tin-tuc/so-sanh-hieu-qua-kinh-te-ky-thuat-giua-dong-moi-va-hoan-cai/"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "Các bước hoán cải tàu cá: ai làm việc gì",
+				"intro": "Chủ tàu lo giấy tờ với cơ quan quản lý; Lasan Marine lo phần kỹ thuật và hồ sơ thiết kế.",
+				"steps": [
+					{
+						"title": "1. Chủ tàu gửi thông tin",
+						"desc": "Ảnh tàu, giấy chứng nhận đăng ký, giấy chứng nhận an toàn kỹ thuật, bản vẽ cũ nếu còn; nghề đang làm và nghề muốn chuyển, hoặc máy định lắp. Gửi qua Zalo 0834 310 781 là đủ để bắt đầu."
+					},
+					{
+						"title": "2. Lasan Marine xem khả thi",
+						"desc": "Chúng tôi cho biết thay đổi đó có làm được về kỹ thuật không, phần nào của tàu phải tính lại, và báo giá theo đúng phạm vi."
+					},
+					{
+						"title": "3. Chủ tàu xin văn bản chấp thuận",
+						"desc": "Nộp tờ khai Mẫu số 12.TC tại cơ quan quản lý thủy sản cấp tỉnh. Chúng tôi cung cấp thông số kỹ thuật dự kiến để bạn khai cho đúng."
+					},
+					{
+						"title": "4. Khảo sát và thiết kế",
+						"desc": "Đo đạc hiện trạng, dựng lại bản vẽ nếu tàu không còn hồ sơ gốc, rồi lập bản vẽ và bản tính cải hoán."
+					},
+					{
+						"title": "5. Thẩm định thiết kế",
+						"desc": "Hồ sơ được trình cơ sở đăng kiểm tàu cá phù hợp với chiều dài tàu. Chúng tôi giải trình và sửa theo góp ý cho đến khi có Giấy chứng nhận thẩm định thiết kế."
+					},
+					{
+						"title": "6. Thi công, giám sát, đăng ký lại",
+						"desc": "Xưởng thi công theo hồ sơ đã thẩm định, đăng kiểm giám sát. Nếu thực tế có sai khác, chúng tôi cập nhật hồ sơ. Chủ tàu nhận giấy chứng nhận an toàn kỹ thuật và làm đăng ký lại tàu."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "Bạn nhận được gì",
+				"intro": "Hồ sơ thiết kế cải hoán đủ để thi công và trình thẩm định.",
+				"note_label": "Chi phí và thời gian phụ thuộc vào",
+				"note": "Chiều dài và loại tàu; mức độ thay đổi (chỉ thay máy khác với chuyển nghề kèm kéo dài thân); tàu còn bản vẽ gốc hay phải đo đạc dựng lại; nơi tàu nằm khi khảo sát; số hạng mục phải tính lại. Chúng tôi báo giá và mốc bàn giao sau khi xem thông tin tàu.",
+				"items": [
+					{
+						"title": "Đánh giá hiện trạng và phương án",
+						"desc": "Phần nào thay đổi, phần nào giữ nguyên, phần nào phải tính lại",
+						"format": "PDF"
+					},
+					{
+						"title": "Bản vẽ cải hoán",
+						"desc": "Bố trí chung, kết cấu phần thay đổi, buồng máy, hệ trục, thiết bị khai thác",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Bản tính kiểm tra lại",
+						"desc": "Ổn định theo các trạng thái tải, mạn khô, kết cấu, sức cản – công suất, chân vịt, hệ trục",
+						"format": "PDF"
+					},
+					{
+						"title": "Hồ sơ trình thẩm định",
+						"desc": "Đủ thành phần theo yêu cầu cơ sở đăng kiểm; giải trình đến khi được duyệt",
+						"format": "PDF"
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp về hoán cải tàu cá",
+				"intro": "",
+				"items": [
+					{
+						"title": "Thay máy tàu cá có phải làm hồ sơ cải hoán không?",
+						"content": "<p>Có. Máy chính nằm trong các thông số mà khi thay đổi thì được tính là cải hoán (khoản 5 Điều 3 Thông tư 02/2026/TT-BNNMT). Tàu từ 12 m trở lên cần văn bản chấp thuận cải hoán và hồ sơ thiết kế được thẩm định trước khi lắp máy. Máy mới thường nặng và mạnh hơn, nên chân vịt, trục, bệ máy và ổn định đều phải kiểm tra lại. Bạn có thể tự ước tính trước bằng công cụ <a href=\"{{page:tool_shaft}}\">kiểm tra đường kính trục chân vịt</a> và <a href=\"{{page:tool_engine}}\">tra cứu động cơ thủy</a>.</p>"
+					},
+					{
+						"title": "Thủ tục cải hoán tàu cá năm 2026 gồm những bước nào?",
+						"content": "<p>Xin văn bản chấp thuận cải hoán (tờ khai Mẫu số 12.TC, Nghị định 41/2026/NĐ-CP) → lập hồ sơ thiết kế cải hoán → cơ sở đăng kiểm tàu cá thẩm định → thi công dưới giám sát đăng kiểm → cấp giấy chứng nhận an toàn kỹ thuật và đăng ký lại tàu. Theo khoản 4 Điều 43 Nghị định 41/2026/NĐ-CP, chủ tàu phải hoàn thành đăng ký tàu trong 06 tháng kể từ ngày văn bản chấp thuận cải hoán có hiệu lực, nên cần chuẩn bị thiết kế và xưởng trước để không bị trễ hạn.</p>"
+					},
+					{
+						"title": "Tàu lưới kéo chuyển sang nghề nào thì được chấp thuận?",
+						"content": "<p>Tàu lưới kéo, lưới rê thu ngừ được cải hoán sang nghề khác; ngược lại, không được cải hoán tàu nghề khác sang lưới kéo hoặc lưới rê thu ngừ (khoản 6 Điều 43 Nghị định 41/2026/NĐ-CP). Nghề cụ thể có được chấp thuận hay không còn tùy hạn ngạch giấy phép và tiêu chí của tỉnh, nên hãy hỏi cơ quan quản lý thủy sản nơi tàu đăng ký trước khi đặt thiết kế.</p>"
+					},
+					{
+						"title": "Tàu không còn bản vẽ gốc thì hoán cải được không?",
+						"content": "<p>Được. Chúng tôi khảo sát, đo đạc hiện trạng và dựng lại các bản vẽ cần thiết trước khi lập phương án cải hoán. Việc này làm tăng khối lượng công việc, nên được tính riêng trong báo giá.</p>"
+					},
+					{
+						"title": "Chuyển nghề, nâng cabin có phải tính lại ổn định không?",
+						"content": "<p>Gần như luôn phải. Tời, ngư cụ, hầm, đá và cabin cao hơn đều làm thay đổi trọng lượng và trọng tâm tàu. Tàu cơi nới nhiều lần mà không tính lại thường bị nghiêng, lắc nặng. Muốn hình dung ổn định thay đổi thế nào, bạn có thể thử <a href=\"{{page:app_stability}}\">mô phỏng ổn định tàu</a> của chúng tôi.</p>"
+					},
+					{
+						"title": "Nên hoán cải hay đóng mới?",
+						"content": "<p>Tùy tuổi và tình trạng vỏ tàu, mức độ thay đổi và kế hoạch khai thác. Nếu vỏ đã yếu hoặc phải thay đổi quá nhiều thứ, đóng mới có thể hợp lý hơn. Xem thêm bài <a href=\"/tin-tuc/so-sanh-hieu-qua-kinh-te-ky-thuat-giua-dong-moi-va-hoan-cai/\">so sánh hiệu quả giữa đóng mới và hoán cải</a>, hoặc gửi thông tin tàu để chúng tôi cho ý kiến.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"label": "",
+				"heading": "Vì sao hồ sơ hoán cải hay bị trả về",
+				"content": "<p>Phần lớn hồ sơ bị yêu cầu sửa vì những lỗi lặp lại. Chúng tôi kiểm tra các điểm này trước khi trình:</p><ul><li>Bản vẽ, bản tính và thuyết minh ghi số liệu khác nhau (kích thước, máy, trọng lượng thiết bị).</li><li>Chỉ tính ổn định cho một trạng thái tải, thiếu các trạng thái mà nghề mới thực sự gặp.</li><li>Thay máy nhưng không kiểm tra lại trục, chân vịt và bệ máy.</li><li>Lấy số liệu tàu theo giấy tờ cũ, không đo lại hiện trạng sau nhiều lần sửa chữa, cơi nới.</li><li>Tính theo QCVN 02-35:2021/BNNPTNT trong khi quy chuẩn áp dụng đã là QCVN 92:2025/BNNMT hoặc QCVN 91:2025/BNNMT.</li><li>Làm thiết kế xong mới biết nghề định chuyển không được chấp thuận.</li></ul><h3>Tính bằng công cụ do chính chúng tôi viết</h3><p>Lasan Marine là văn phòng thiết kế tàu tự viết phần mềm tính toán. Nhờ vậy chúng tôi thử được nhiều phương án máy, chân vịt, bố trí hầm trước khi chốt, và số liệu giữa bản vẽ với bản tính đi cùng một nguồn. Một phần công cụ được mở miễn phí tại <a href=\"{{page:tools}}\">trang Công cụ</a> để bạn ước tính trước; số liệu chính thức trong hồ sơ do kỹ sư của chúng tôi tính và kiểm tra.</p>",
+				"align": "left",
+				"width": "medium",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Tàu cá đã thiết kế",
+				"intro": "Một số tàu cá vỏ thép, composite và gỗ chúng tôi đã lập hồ sơ thiết kế.",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-ca-vo-thep-qna-91312-ts",
+					"tau-ca-composite-kh-95177-ts",
+					"tau-ca-vo-go-nghe-an",
+					"tau-ca-vo-thep-na-95678-ts"
+				]
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn đang tính hoán cải, chuyển nghề hoặc thay máy?</p>",
+				"description": "Gửi ảnh tàu, giấy tờ hiện có và mô tả thay đổi qua Zalo 0834 310 781. Chúng tôi cho biết phần nào cần tính lại, cần chuẩn bị giấy tờ gì và báo giá theo phạm vi.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu qua form",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

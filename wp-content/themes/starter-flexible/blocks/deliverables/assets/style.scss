@@ -123,3 +123,44 @@
 		justify-self: start;
 	}
 }
+
+/* --- motion (MOTION.md: deliverables) ------------------------------------
+   Each item ticks in: the row fades up (reveal kit), its check mark pops on
+   the soft spring, then the text and the format tag follow. */
+.lasanmarine-deliverables {
+	--reveal-y: 14px;
+	--reveal-scale: 1;
+}
+.reveal-on .lasanmarine-deliverables .dl__item[data-reveal-item]:not(.reveal-instant) {
+	transition:
+		opacity calc(var(--reveal-ms, var(--spring-out-ms)) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms, var(--spring-out-ms)) var(--spring-out) var(--reveal-delay, 0ms),
+		background 260ms var(--ease),
+		box-shadow 260ms var(--ease);
+}
+.dl__item[data-reveal-item] .dl__check {
+	transition:
+		opacity 200ms var(--ease),
+		transform var(--spring-soft-ms) var(--spring-soft);
+	transition-delay: calc(var(--reveal-delay, 0ms) + 90ms);
+}
+.dl__item[data-reveal-item] :is(.dl__text, .dl__format) {
+	transition:
+		opacity calc(var(--spring-out-ms) * 0.78) var(--spring-out),
+		transform var(--spring-out-ms) var(--spring-out);
+	transition-delay: calc(var(--reveal-delay, 0ms) + 200ms);
+}
+/* Hidden only while the item waits for its entrance — never when motion is
+   off (no `reveal-on`, or the footer toggle). */
+html.reveal-on:not(.reduce-motion) .dl__item[data-reveal-item]:not(.is-revealed) .dl__check {
+	opacity: 0;
+	transform: scale(0.6);
+}
+html.reveal-on:not(.reduce-motion) .dl__item[data-reveal-item]:not(.is-revealed) :is(.dl__text, .dl__format) {
+	opacity: 0;
+	transform: translateX(-10px);
+}
+/* Already on screen at load (the kit's `reveal-instant`): no motion at all. */
+.dl__item.reveal-instant :is(.dl__check, .dl__text, .dl__format) {
+	transition: none !important;
+}

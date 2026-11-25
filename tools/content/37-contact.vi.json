@@ -1,0 +1,39 @@
+{
+	"key": "contact",
+	"title": "Liên hệ tư vấn thiết kế phương tiện thủy",
+	"slug": "lien-he",
+	"lang": "vi",
+	"seo": {
+		"title": "Liên hệ tư vấn thiết kế tàu | Công ty TNHH Lasan Marine",
+		"description": "Liên hệ tư vấn với Lasan Marine về thiết kế, hoán cải và hồ sơ phương tiện thủy. Gửi nhu cầu qua biểu mẫu, hotline hoặc email để trao đổi phạm vi dự án."
+	},
+	"blocks": [
+		{
+			"type": "spec-list",
+			"fields": {
+				"heading": "Liên hệ chúng tôi",
+				"heading_level": "h1",
+				"note": "",
+				"rows": [
+					{
+						"label": "Điện thoại và Zalo",
+						"value": "0834 310 781"
+					},
+					{
+						"label": "Email",
+						"value": "hello@lasanmarine.com"
+					}
+				]
+			}
+		},
+		{
+			"type": "enquiry-form",
+			"fields": {
+				"heading": "Hoặc gửi tin nhắn cho chúng tôi",
+				"note": "Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất có thể",
+				"cf7_form": "enquiry-form-vi"
+			},
+			"anchor": "apply"
+		}
+	]
+}

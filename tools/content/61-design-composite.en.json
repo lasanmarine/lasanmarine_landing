@@ -1,0 +1,152 @@
+{
+	"key": "design_composite_en",
+	"title": "FRP Composite Boat & Fishing Vessel Design",
+	"slug": "frp-composite-boat-design",
+	"lang": "en",
+	"translation_of": "design_composite",
+	"parent": "service_01_en",
+	"seo": {
+		"title": "FRP Composite Boat Design | Lasan Marine Co., Ltd.",
+		"description": "Design of composite (FRP) fishing vessels and speedboats: hull lines, laminate structure, stability, resistance and power, approval documents."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Composite boat design: FRP fishing vessels and speedboats",
+				"heading_level": "h1",
+				"lead": "FRP fishing vessels to replace timber hulls, plus speedboats and small craft — laminate structure, stability and power worked out for a light, durable, efficient boat.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Situations owners bring to us",
+				"intro": "",
+				"solution_label": "How we handle it",
+				"items": [
+					{
+						"problem": "Replacing a timber hull",
+						"context": "Ageing wood, high upkeep, harder to re-certify.",
+						"solution": "A composite hull with the same function, with structure and stability recalculated for the new material.",
+						"link": {
+							"label": "Discuss your boat",
+							"page": "contact_en"
+						}
+					},
+					{
+						"problem": "A fast, economical speedboat",
+						"context": "Passenger, service or patrol craft.",
+						"solution": "Planing hull lines and a resistance and power estimate to choose the right engine.",
+						"link": {
+							"label": "Ask for an estimate",
+							"page": "contact_en"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "What you receive",
+				"intro": "A design set for mould-building and plan approval.",
+				"note_label": "Lead time",
+				"note": "Lead time is agreed with the quote, depending on vessel type, scope and existing documents. You know each delivery date in advance.",
+				"items": [
+					{
+						"title": "Lines plan and general arrangement",
+						"desc": "Matched to the yard’s moulding process",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Laminate structure",
+						"desc": "Lay-up schedule, thickness, stiffeners",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Stability, resistance and power",
+						"desc": "Engine and propeller selection",
+						"format": "PDF"
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "How we work",
+				"intro": "",
+				"steps": [
+					{
+						"title": "Send us the brief",
+						"desc": "Vessel type, target dimensions, operating area and any photos or documents you have."
+					},
+					{
+						"title": "Scope and quote",
+						"desc": "We agree the scope, deliverables and schedule, with a clear price for each part."
+					},
+					{
+						"title": "Design and calculations",
+						"desc": "Drawings and calculations with industry software and our own engineering tools."
+					},
+					{
+						"title": "Review and handover",
+						"desc": "We answer the reviewer’s comments, update the documents and hand over the final set."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Composite boats we have designed",
+				"intro": "",
+				"view_all": {
+					"label": "See all projects",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-ca-composite-kh-95177-ts",
+					"tau-ca-composite-bth-94111-ts",
+					"cano-clc-02",
+					"cano-lam-hai"
+				]
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Frequently asked questions",
+				"intro": "",
+				"items": [
+					{
+						"title": "Is a composite hull as durable as steel or wood?",
+						"content": "<p>With a correctly calculated laminate and proper building practice, an FRP hull is light, rot-free and low-maintenance.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Building a composite boat?</p>",
+				"description": "Call us with the purpose, target size and the yard that will build it.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Send a request",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
+}

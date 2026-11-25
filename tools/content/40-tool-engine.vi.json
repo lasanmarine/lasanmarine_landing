@@ -1,0 +1,44 @@
+{
+	"key": "tool_engine",
+	"title": "Tra cứu động cơ theo hãng và công suất",
+	"slug": "tra-cuu-dong-co",
+	"lang": "vi",
+	"parent": "tools",
+	"seo": {
+		"title": "Tra cứu động cơ tàu thủy | Công ty TNHH Lasan Marine",
+		"description": "Tra cứu động cơ thủy theo hãng, mã hiệu và dải công suất. Lọc nhanh để đối chiếu thông số với tài liệu nhà sản xuất."
+	},
+	"blocks": [
+		{
+			"type": "tool-shell",
+			"fields": {
+				"heading": "Tra cứu động cơ",
+				"lead": "Lọc theo hãng, model hoặc dải công suất.",
+				"custom_class": ""
+			},
+			"inner": [
+				{
+					"type": "engine-lookup",
+					"fields": {
+						"custom_class": ""
+					}
+				}
+			]
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Liên hệ chúng tôi</p>",
+				"description": "",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Chi tiết thông tin liên hệ",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

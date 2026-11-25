@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $theme_uri = defined( 'STARTER_FLEXIBLE_THEME_URI' ) ? STARTER_FLEXIBLE_THEME_URI : get_template_directory_uri();
 
-$site_name   = (string) starter_flexible_setting( 'site_name', get_bloginfo( 'name' ) );
+$site_name   = function_exists( 'starter_flexible_company_name' ) ? starter_flexible_company_name() : (string) starter_flexible_setting( 'site_name', get_bloginfo( 'name' ) );
 $logo_id     = (int) starter_flexible_setting( 'header_logo', 0 );
 $logo_url    = $logo_id ? (string) wp_get_attachment_image_url( $logo_id, 'full' ) : $theme_uri . '/assets/images/logo-lasan.svg';
 $legal_name  = (string) starter_flexible_setting( 'legal_name', '' );
@@ -24,6 +24,7 @@ $wordmark    = (string) starter_flexible_setting( 'wordmark', 'ENGINEERING|FOR T
 $footer_cta  = starter_flexible_link( starter_flexible_setting( 'footer_cta', array() ) );
 $bank        = (array) starter_flexible_setting( 'bank', array() );
 $legal_links = (array) starter_flexible_setting( 'legal_links', array() );
+$legal_links = function_exists( 'starter_flexible_a11y_legal_link' ) ? starter_flexible_a11y_legal_link( $legal_links ) : $legal_links;
 $is_english  = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 
 $wordmark_lines = array_values( array_filter( array_map( 'trim', explode( '|', $wordmark ) ) ) );

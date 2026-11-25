@@ -1,0 +1,12 @@
+/* ==========================================================================
+   Choreography: each module's own entrance and interaction.
+   --------------------------------------------------------------------------
+   Built on the shared reveal (behaviours/reveal.js, _system.scss): a block
+   marks the children that arrive with `data-reveal-stagger` (optionally
+   `data-reveal-order="grid" | "together"`), and here it sets how they arrive
+   through --reveal-x / --reveal-y / --reveal-scale / --reveal-rotate /
+   --reveal-origin / --reveal-ms / --reveal-ease. Curves and durations come
+   from _easing.scss (spring physics). Only transform and opacity move, so
+   every entrance stays on the compositor; reduced motion turns all of it off
+   (_system.scss, html.reduce-motion).
+   ========================================================================== */

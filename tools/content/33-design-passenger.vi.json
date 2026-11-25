@@ -1,0 +1,199 @@
+{
+	"key": "design_passenger",
+	"title": "Thiết kế tàu khách, cano du lịch & phương tiện thủy nội địa",
+	"slug": "tau-khach-cano",
+	"lang": "vi",
+	"parent": "service_01",
+	"seo": {
+		"title": "Thiết kế tàu khách, cano du lịch | Công ty TNHH Lasan Marine",
+		"description": "Thiết kế cano du lịch, tàu khách, tàu tham quan: bố trí ghế, ổn định, cứu sinh, chọn máy và hồ sơ trình đăng kiểm duyệt. Gọi hoặc Zalo 0834 310 781."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Thiết kế tàu khách, cano du lịch và phương tiện thủy nội địa",
+				"heading_level": "h1",
+				"lead": "Lasan Marine thiết kế cano du lịch, tàu khách và tàu tham quan cho doanh nghiệp, hộ kinh doanh du lịch biển và đường thủy: bố trí ghế, ổn định khi khách dồn một mạn, phương tiện cứu sinh, chọn máy và hồ sơ trình đăng kiểm duyệt.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"label": "",
+				"heading": "Cần chốt gì trước khi thiết kế cano, tàu khách?",
+				"content": "<p>Với tàu chở khách, an toàn của người trên tàu là yêu cầu đầu tiên của cả chủ tàu lẫn đăng kiểm. Chốt sớm những thông tin dưới đây giúp hồ sơ đi đúng hướng ngay từ đầu:</p><ul><li><strong>Vùng và tuyến hoạt động</strong>: sông, hồ, vịnh, ven biển hay ra đảo. Vùng hoạt động quyết định cấp tàu và quy chuẩn áp dụng (phương tiện thủy nội địa hay tàu biển cỡ nhỏ), từ đó quyết định yêu cầu về kết cấu, mạn khô, trang bị. Xem thêm bài <a href=\"/tin-tuc/thu-tuc-va-ho-so-khi-chuyen-vung-hoat-dong-sang-vr-sb/\">thủ tục và hồ sơ khi chuyển vùng hoạt động sang VR-SB</a>.</li><li><strong>Số khách và thuyền viên</strong>: quyết định bố trí ghế, lối đi, số phao và xuồng cứu sinh.</li><li><strong>Tốc độ khai thác</strong>: quyết định dạng thân (lướt hay không lướt) và công suất máy.</li><li><strong>Vật liệu và xưởng</strong>: vỏ composite hay vật liệu khác; xưởng đã có khuôn hay làm mới.</li></ul><p>Tàu khách, cano du lịch do cơ quan đăng kiểm phương tiện thủy nội địa hoặc tàu biển duyệt, không phải cơ sở đăng kiểm tàu cá. Chúng tôi lập hồ sơ theo quy chuẩn hiện hành cho đúng loại phương tiện và vùng hoạt động của bạn.</p>",
+				"align": "left",
+				"width": "medium",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Những nhu cầu thường gặp",
+				"intro": "",
+				"solution_label": "Chúng tôi xử lý",
+				"items": [
+					{
+						"problem": "Cano đưa đón khách tham quan đảo",
+						"context": "Cần chạy nhanh, êm, chở đúng số khách đăng ký.",
+						"solution": "Tuyến hình lướt, bố trí ghế, tính ổn định và chọn máy theo tốc độ khai thác.",
+						"link": {
+							"label": "Thử mô phỏng sức cản",
+							"page": "app_resistance"
+						}
+					},
+					{
+						"problem": "Tàu tham quan, nhà hàng nổi",
+						"context": "Không gian rộng, nhiều tầng, đông khách.",
+						"solution": "Bố trí chung, ổn định khi khách dồn một mạn, trang thiết bị an toàn và lối thoát hiểm.",
+						"link": {
+							"label": "Trao đổi phương án",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Phương tiện thủy nội địa",
+						"context": "Đò ngang, phà nhỏ, xuồng dịch vụ trên sông, hồ.",
+						"solution": "Thiết kế và hồ sơ theo quy chuẩn phương tiện thủy nội địa.",
+						"link": {
+							"label": "Gửi yêu cầu",
+							"page": "contact"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "Bạn nhận được gì",
+				"intro": "Hồ sơ thiết kế tàu khách để đóng mới và trình duyệt.",
+				"note_label": "Chi phí và thời gian phụ thuộc vào",
+				"note": "Loại tàu và chiều dài; số khách; vùng hoạt động và cấp tàu; số tầng, mức độ bố trí nội thất; xưởng đã có khuôn hay thiết kế từ đầu. Chúng tôi báo giá và mốc bàn giao từng phần trước khi làm.",
+				"items": [
+					{
+						"title": "Bố trí chung, bố trí ghế khách",
+						"desc": "Lối đi, thoát hiểm, khu vực tiện ích",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Bản tính ổn định",
+						"desc": "Gồm trạng thái khách dồn một mạn",
+						"format": "PDF"
+					},
+					{
+						"title": "Trang thiết bị an toàn, cứu sinh",
+						"desc": "Theo quy chuẩn và số người trên tàu",
+						"format": "PDF"
+					},
+					{
+						"title": "Kết cấu, máy, hồ sơ trình duyệt",
+						"desc": "Giải trình theo góp ý đến khi được duyệt",
+						"format": "PDF · DWG"
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "Các bước thiết kế tàu khách",
+				"intro": "",
+				"steps": [
+					{
+						"title": "1. Chủ tàu gửi yêu cầu",
+						"desc": "Tuyến khai thác, số khách, tốc độ mong muốn, vật liệu và xưởng dự kiến. Gửi qua Zalo 0834 310 781."
+					},
+					{
+						"title": "2. Lasan Marine lập phương án và báo giá",
+						"desc": "Đề xuất kích thước, bố trí ghế, công suất máy; xác định quy chuẩn áp dụng theo vùng hoạt động."
+					},
+					{
+						"title": "3. Thiết kế và tính toán",
+						"desc": "Bản vẽ bố trí, kết cấu, hệ động lực; bản tính ổn định với các trạng thái khách; trang thiết bị an toàn."
+					},
+					{
+						"title": "4. Duyệt hồ sơ và bàn giao",
+						"desc": "Hồ sơ được trình cơ quan đăng kiểm có thẩm quyền; chúng tôi giải trình theo góp ý đến khi được duyệt, rồi bàn giao cho chủ tàu và xưởng."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp về thiết kế cano, tàu khách",
+				"intro": "",
+				"items": [
+					{
+						"title": "Thiết kế cano du lịch cần những thông tin gì?",
+						"content": "<p>Tuyến hoạt động, số khách, tốc độ mong muốn, vật liệu vỏ và xưởng dự kiến. Có ảnh cano mẫu thì gửi kèm. Bạn cũng có thể điền <a href=\"{{page:design_brief}}\">nhiệm vụ thư thiết kế</a> trên website.</p>"
+					},
+					{
+						"title": "Cano được chở tối đa bao nhiêu khách?",
+						"content": "<p>Số khách do thiết kế quyết định: ổn định khi khách dồn một mạn, mạn khô, chỗ ngồi, phương tiện cứu sinh. Con số được duyệt ghi trong hồ sơ và giấy chứng nhận của tàu; không tự ý chở thêm hoặc thêm ghế khi chưa tính lại.</p>"
+					},
+					{
+						"title": "Tàu khách đăng kiểm ở đâu, có khác tàu cá không?",
+						"content": "<p>Khác. Tàu khách, cano du lịch do cơ quan đăng kiểm phương tiện thủy nội địa hoặc tàu biển duyệt, theo quy chuẩn của phương tiện thủy nội địa hoặc tàu biển cỡ nhỏ tùy vùng hoạt động. Ví dụ cano Lam Hải do chúng tôi thiết kế được Đăng kiểm V79 duyệt. Tàu cá do cơ sở đăng kiểm tàu cá thẩm định theo quy chuẩn tàu cá.</p>"
+					},
+					{
+						"title": "Có hoán cải tàu cá thành tàu du lịch được không?",
+						"content": "<p>Cần xem từng trường hợp. Chuyển sang chở khách là đổi công dụng: tàu phải đáp ứng yêu cầu của tàu chở khách về ổn định, kết cấu, cứu sinh, thoát hiểm và chuyển sang cơ quan đăng kiểm khác. Gửi hồ sơ tàu để chúng tôi cho biết có khả thi không. Xem thêm trang <a href=\"{{page:design_conversion}}\">hoán cải tàu cá</a>.</p>"
+					},
+					{
+						"title": "Lỗi nào hay khiến hồ sơ tàu khách bị yêu cầu sửa?",
+						"content": "<p>Bản tính ổn định thiếu trạng thái khách dồn một mạn; số phao, xuồng cứu sinh không khớp số người; lối đi, lối thoát hiểm hẹp; bố trí ghế trên bản vẽ khác số khách đề nghị duyệt; máy chọn theo cảm tính không có bản tính công suất.</p>"
+					},
+					{
+						"title": "Có thiết kế cano composite chở khách không?",
+						"content": "<p>Có. Cano Lam Hải (dài 9,5 m, vỏ composite) đã được Đăng kiểm V79 duyệt; cano CLC 02 dài 7 m, máy 110 kW. Xem chi tiết ở phần dự án bên dưới.</p>"
+					},
+					{
+						"title": "Chi phí thiết kế tàu khách phụ thuộc vào gì?",
+						"content": "<p>Loại và chiều dài tàu, số khách, vùng hoạt động, số tầng và mức độ bố trí, xưởng có khuôn sẵn hay không. Gửi thông tin để nhận báo giá theo phạm vi.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Cano chở khách đã thiết kế",
+				"intro": "Cano chở khách vỏ composite hoạt động vùng IV.",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
+				},
+				"projects": [
+					"cano-lam-hai",
+					"cano-clc-02"
+				]
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn cần cano du lịch hoặc tàu khách?</p>",
+				"description": "Gọi hoặc nhắn Zalo cho chúng tôi số khách, tuyến khai thác và tốc độ mong muốn. Chúng tôi đề xuất phương án và báo giá theo phạm vi.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu qua form",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

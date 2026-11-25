@@ -1,0 +1,150 @@
+{
+	"key": "design_passenger_en",
+	"title": "Passenger Boat & Tourist Speedboat Design",
+	"slug": "passenger-boat-design",
+	"lang": "en",
+	"translation_of": "design_passenger",
+	"parent": "service_01_en",
+	"seo": {
+		"title": "Passenger Boat & Speedboat Design | Lasan Marine Co., Ltd.",
+		"description": "Design of passenger boats, tourist speedboats and inland vessels: seating, stability with passengers crowding, life-saving equipment and approval documents."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Passenger boats, tourist speedboats and inland vessels",
+				"heading_level": "h1",
+				"lead": "A passenger boat is about safety first: stability when passengers crowd one side, enough life-saving equipment and sensible escape routes — designed to pass review and earn its keep.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Typical requests",
+				"intro": "",
+				"solution_label": "How we handle it",
+				"items": [
+					{
+						"problem": "Island-hopping speedboats",
+						"context": "Fast, comfortable, carrying the licensed number of passengers.",
+						"solution": "Planing lines, seating layout, stability and engine choice for the service speed.",
+						"link": {
+							"label": "Ask for a concept",
+							"page": "contact_en"
+						}
+					},
+					{
+						"problem": "Sightseeing and floating-restaurant boats",
+						"context": "Wide, multi-deck, many passengers.",
+						"solution": "Arrangement, crowding stability, safety and escape.",
+						"link": {
+							"label": "Discuss your boat",
+							"page": "contact_en"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "What you receive",
+				"intro": "A full design set for building and approval.",
+				"note_label": "Lead time",
+				"note": "Lead time is agreed with the quote, depending on vessel type, scope and existing documents. You know each delivery date in advance.",
+				"items": [
+					{
+						"title": "General arrangement and seating",
+						"desc": "Aisles, escape routes, amenities",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Stability calculations",
+						"desc": "Including passengers crowding one side",
+						"format": "PDF"
+					},
+					{
+						"title": "Safety and life-saving equipment",
+						"desc": "Matched to rules and passenger count",
+						"format": "PDF"
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "How we work",
+				"intro": "",
+				"steps": [
+					{
+						"title": "Send us the brief",
+						"desc": "Vessel type, target dimensions, operating area and any photos or documents you have."
+					},
+					{
+						"title": "Scope and quote",
+						"desc": "We agree the scope, deliverables and schedule, with a clear price for each part."
+					},
+					{
+						"title": "Design and calculations",
+						"desc": "Drawings and calculations with industry software and our own engineering tools."
+					},
+					{
+						"title": "Review and handover",
+						"desc": "We answer the reviewer’s comments, update the documents and hand over the final set."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Passenger speedboats we have designed",
+				"intro": "",
+				"view_all": {
+					"label": "See all projects",
+					"page": "projects"
+				},
+				"projects": [
+					"cano-lam-hai",
+					"cano-clc-02"
+				]
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Frequently asked questions",
+				"intro": "",
+				"items": [
+					{
+						"title": "What matters most in passenger boat design?",
+						"content": "<p>Stability with passengers on one side, life-saving equipment for the passenger count, and escape routes — the points reviewers check most closely.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Need a passenger boat?</p>",
+				"description": "Call us with the passenger count, route and target speed. We propose a suitable concept.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Send a request",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
+}

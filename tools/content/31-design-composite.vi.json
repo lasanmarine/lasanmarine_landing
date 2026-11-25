@@ -1,0 +1,201 @@
+{
+	"key": "design_composite",
+	"title": "Thiết kế tàu cá & cano composite (FRP)",
+	"slug": "tau-composite",
+	"lang": "vi",
+	"parent": "service_01",
+	"seo": {
+		"title": "Thiết kế tàu cá, cano composite | Công ty TNHH Lasan Marine",
+		"description": "Thiết kế tàu cá composite và cano FRP: tuyến hình, kết cấu lớp vỏ, ổn định, chọn máy, hồ sơ thẩm định đăng kiểm. Gọi hoặc Zalo 0834 310 781."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Thiết kế tàu composite: tàu cá và cano vỏ FRP",
+				"heading_level": "h1",
+				"lead": "Lasan Marine thiết kế tàu cá vỏ composite (FRP) và cano composite cho chủ tàu và xưởng làm khuôn: tuyến hình, kết cấu lớp vỏ, ổn định, sức cản – công suất và hồ sơ trình thẩm định. Phù hợp khi bạn muốn thay tàu gỗ đã xuống cấp hoặc đóng nhiều chiếc theo một khuôn.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"label": "",
+				"heading": "Tàu composite, vỏ thép hay vỏ gỗ: chọn thế nào?",
+				"content": "<p>Không có vật liệu tốt nhất cho mọi tàu. Lựa chọn phụ thuộc vào cỡ tàu, nghề, xưởng gần bạn và việc bạn đóng một hay nhiều chiếc cùng mẫu.</p><h3>Vỏ composite (FRP)</h3><ul><li>Không gỉ, không mục, ít bảo dưỡng vỏ hơn thép và gỗ.</li><li>Vỏ nhẹ hơn tàu thép cùng cỡ, nên với cùng tốc độ thường cần ít công suất hơn.</li><li>Cần khuôn. Đáng đầu tư khi đóng nhiều chiếc cùng mẫu hoặc xưởng đã có khuôn phù hợp.</li><li>Chất lượng phụ thuộc nhiều vào tay nghề và điều kiện xưởng; sửa chữa cần thợ quen vật liệu composite.</li></ul><h3>Vỏ thép</h3><ul><li>Hợp với tàu lớn, tàu hậu cần, tàu chở nặng.</li><li>Nhiều xưởng hàn, sửa chữa được dọc bờ biển.</li><li>Phải chống gỉ, sơn bảo dưỡng định kỳ; vỏ nặng hơn.</li></ul><h3>Vỏ gỗ</h3><ul><li>Quen thuộc ở nhiều địa phương, đóng được theo mẫu tàu truyền thống.</li><li>Dễ mục, hà ăn; gỗ tốt ngày càng khó tìm.</li><li>Tàu từ 12 m trở lên đóng theo mẫu truyền thống vẫn cần hồ sơ thiết kế mẫu đã được cơ sở đăng kiểm tàu cá sao duyệt (Điều 15 Thông tư 02/2026/TT-BNNMT).</li></ul><p>Nếu còn phân vân, chúng tôi có thể so sánh phương án composite và <a href=\"{{page:design_steel}}\">tàu cá vỏ thép</a> theo cùng yêu cầu khai thác của bạn.</p>",
+				"align": "left",
+				"width": "medium",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Những tình huống chủ tàu hay gặp",
+				"intro": "",
+				"solution_label": "Chúng tôi xử lý",
+				"items": [
+					{
+						"problem": "Muốn thay tàu gỗ bằng tàu composite",
+						"context": "Tàu gỗ xuống cấp, bảo dưỡng tốn kém, muốn tàu mới cùng nghề.",
+						"solution": "Thiết kế tàu vỏ composite tương đương công năng; tính kết cấu lớp vỏ, ổn định và công suất cho vật liệu mới.",
+						"link": {
+							"label": "Trao đổi phương án",
+							"page": "contact"
+						}
+					},
+					{
+						"problem": "Cần cano chạy nhanh, tiết kiệm dầu",
+						"context": "Cano chở khách, cano dịch vụ, xuồng cao tốc.",
+						"solution": "Thiết kế tuyến hình lướt, ước tính sức cản – công suất để chọn máy và chân vịt hợp tốc độ khai thác.",
+						"link": {
+							"label": "Thử mô phỏng sức cản",
+							"page": "app_resistance"
+						}
+					},
+					{
+						"problem": "Xưởng cần bản vẽ để làm khuôn",
+						"context": "Đã có mẫu tàu nhưng thiếu bản vẽ, bản tính đầy đủ để làm khuôn và trình đăng kiểm.",
+						"solution": "Lập tuyến hình, kết cấu lớp vỏ theo vật liệu và cách làm của xưởng, cùng hồ sơ thiết kế để thẩm định.",
+						"link": {
+							"label": "Gửi yêu cầu",
+							"page": "contact"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "Bạn nhận được gì",
+				"intro": "Hồ sơ thiết kế tàu composite để làm khuôn, thi công và trình thẩm định.",
+				"note_label": "Chi phí và thời gian phụ thuộc vào",
+				"note": "Loại và chiều dài tàu; tàu cá hay cano chở khách; xưởng đã có khuôn, mẫu tàu hay thiết kế từ đầu; mức độ chi tiết bản vẽ lớp vỏ xưởng cần. Chúng tôi báo giá và mốc bàn giao từng phần trước khi làm.",
+				"items": [
+					{
+						"title": "Tuyến hình và bố trí chung",
+						"desc": "Phù hợp cách làm khuôn của xưởng",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Kết cấu lớp vỏ composite",
+						"desc": "Sơ đồ lớp, chiều dày, gia cường tại bệ máy, đáy, mạn, boong",
+						"format": "PDF · DWG"
+					},
+					{
+						"title": "Bản tính",
+						"desc": "Ổn định, mạn khô, kết cấu, sức cản – công suất, chân vịt, hệ trục",
+						"format": "PDF"
+					},
+					{
+						"title": "Hồ sơ trình thẩm định",
+						"desc": "Giải trình theo góp ý đến khi được duyệt",
+						"format": "PDF"
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "Các bước thiết kế tàu composite",
+				"intro": "",
+				"steps": [
+					{
+						"title": "1. Chủ tàu hoặc xưởng gửi yêu cầu",
+						"desc": "Công năng, kích thước dự kiến, tốc độ, máy dự kiến, xưởng sẽ thi công. Có ảnh tàu mẫu thì gửi kèm qua Zalo 0834 310 781."
+					},
+					{
+						"title": "2. Lasan Marine lập phương án và báo giá",
+						"desc": "Đề xuất kích thước, tuyến hình, công suất; thống nhất hạng mục bàn giao với chủ tàu và xưởng."
+					},
+					{
+						"title": "3. Thiết kế và tính toán",
+						"desc": "Tuyến hình, bố trí, kết cấu lớp vỏ theo vật liệu xưởng dùng; bản tính ổn định, công suất, chân vịt."
+					},
+					{
+						"title": "4. Thẩm định và bàn giao",
+						"desc": "Hồ sơ được trình cơ quan đăng kiểm phù hợp loại tàu; chúng tôi giải trình đến khi được duyệt và bàn giao bản cuối cho xưởng."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Câu hỏi thường gặp về tàu composite",
+				"intro": "",
+				"items": [
+					{
+						"title": "Tàu composite có bền bằng tàu thép không?",
+						"content": "<p>Khi kết cấu lớp vỏ được tính đúng và xưởng thi công đúng quy trình, tàu composite bền, không gỉ, không mục và ít bảo dưỡng vỏ. Độ bền thực tế phụ thuộc nhiều vào chất lượng thi công, nên bản vẽ lớp vỏ phải rõ để xưởng làm đúng.</p>"
+					},
+					{
+						"title": "Nên đóng tàu cá composite hay vỏ thép?",
+						"content": "<p>Tùy cỡ tàu, nghề, xưởng gần bạn và số tàu định đóng. Tàu lớn, chở nặng thường hợp vỏ thép; tàu cỡ vừa và nhỏ, đóng nhiều chiếc cùng khuôn thường hợp composite. Xem phần so sánh ở đầu trang hoặc gửi yêu cầu để chúng tôi so sánh theo trường hợp của bạn.</p>"
+					},
+					{
+						"title": "Tàu cá composite có phải thẩm định thiết kế không?",
+						"content": "<p>Có. Tàu cá từ 12 m trở lên, dù vỏ thép, gỗ hay composite, phải có hồ sơ thiết kế kỹ thuật được thẩm định trước khi đóng mới (Điều 15 Thông tư 02/2026/TT-BNNMT). Xem thêm trang <a href=\"{{page:approval_docs}}\">hồ sơ đăng kiểm tàu cá</a>.</p>"
+					},
+					{
+						"title": "Thiết kế có theo khuôn và cách làm của xưởng tôi không?",
+						"content": "<p>Có. Bản vẽ lập theo vật liệu, cách làm khuôn và thói quen thi công của xưởng; chúng tôi trao đổi trực tiếp với xưởng khi cần.</p>"
+					},
+					{
+						"title": "Cano composite chở khách cần lưu ý gì thêm?",
+						"content": "<p>Ổn định khi khách dồn một mạn, số khách, phương tiện cứu sinh và lối thoát hiểm. Xem trang <a href=\"{{page:design_passenger}}\">thiết kế tàu khách, cano du lịch</a>.</p>"
+					},
+					{
+						"title": "Lỗi nào hay khiến hồ sơ tàu composite bị trả về?",
+						"content": "<p>Sơ đồ lớp, chiều dày không khớp với vật liệu xưởng thực tế dùng; thiếu gia cường ở bệ máy, ống bao trục, chỗ đặt tời; ước tính trọng lượng vỏ sai làm sai bản tính ổn định; bản vẽ và bản tính ghi số liệu khác nhau.</p>"
+					},
+					{
+						"title": "Chi phí thiết kế tàu composite phụ thuộc vào gì?",
+						"content": "<p>Loại và chiều dài tàu, xưởng đã có khuôn hay thiết kế từ đầu, và phạm vi bàn giao. Gửi ảnh tàu mẫu và kích thước sơ bộ qua Zalo 0834 310 781 để nhận báo giá.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Tàu composite đã thiết kế",
+				"intro": "Tàu cá vỏ composite 21 m và 24 m, cùng cano chở khách composite 7 m và 9,5 m.",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-ca-composite-kh-95177-ts",
+					"tau-ca-composite-bth-94111-ts",
+					"cano-clc-02",
+					"cano-lam-hai"
+				]
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn muốn đóng tàu cá hoặc cano composite?</p>",
+				"description": "Gọi hoặc nhắn Zalo cho chúng tôi công năng, kích thước dự kiến và xưởng sẽ thi công. Chúng tôi phản hồi phương án và báo giá theo phạm vi.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu qua form",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

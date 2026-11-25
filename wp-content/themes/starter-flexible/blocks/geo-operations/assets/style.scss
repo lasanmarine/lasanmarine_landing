@@ -99,7 +99,6 @@
 	fill: var(--marine-bright);
 }
 
-
 /* --- v2 light minimal ---------------------------------------------------- */
 .geo__heading {
 	letter-spacing: -0.02em;
@@ -148,11 +147,31 @@
 	}
 }
 
-/* Stacked mode: the map plate is bounded by the screen height. */
-.is-stacked .band--pad { padding-block: clamp(24px, 5vh, 80px); }
-.is-stacked .geo__plate { max-height: calc(var(--avail, 100svh) - 120px); aspect-ratio: auto; height: calc(var(--avail, 100svh) - 120px); }
-.is-stacked .geo__plate svg { height: 100%; width: auto; margin-inline: auto; }
-.is-stacked .geo__plate { height: calc(var(--avail, 100svh) - 240px); max-height: calc(var(--avail, 100svh) - 240px); }
-
 /* Balance: the copy column reads at the same weight as the map beside it. */
 .geo__note { font-size: clamp(15.5px, 1.15vw, 17.5px); line-height: 1.7; max-width: 34em; }
+
+/* --- motion (MOTION.md: geo-operations) ----------------------------------
+   The plate opens with the scroll (_motion.scss); once it is up, the markers
+   drop onto the map in turn — a short fall from above on the soft spring, so
+   each lands with a small bounce. Pointing at a pin swells it. */
+.geo__plate {
+	--reveal-x: 0px;
+	--reveal-y: -12px;
+	--reveal-scale: 1;
+	--reveal-ms: var(--spring-soft-ms);
+	--reveal-ease: var(--spring-soft);
+}
+/* The plate needs a moment to open before the first marker lands. */
+.reveal-on .geo__plate [data-reveal-item] {
+	transition-delay: calc(var(--reveal-delay, 0ms) + 240ms);
+}
+.geo__pin-dot {
+	transform-box: fill-box;
+	transform-origin: center;
+	transition:
+		fill 240ms var(--ease),
+		transform var(--spring-soft-ms) var(--spring-soft);
+}
+.geo__pin:hover .geo__pin-dot {
+	transform: scale(1.15);
+}

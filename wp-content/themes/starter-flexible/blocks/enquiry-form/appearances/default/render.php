@@ -31,7 +31,7 @@ if ( empty( $data->should_render ) ) {
 			</div>
 		<?php endif; ?>
 
-		<div class="ef__form">
+		<div class="ef__form" data-reveal-stagger=".form-field, .form-actions">
 			<?php
 			if ( $data->cf7_id > 0 ) {
 				echo $data->form_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

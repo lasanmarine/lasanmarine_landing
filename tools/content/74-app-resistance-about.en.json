@@ -1,0 +1,56 @@
+{
+	"key": "app_resistance_about_en",
+	"title": "About – Resistance & Power Simulator for Small Fast Craft",
+	"slug": "about",
+	"lang": "en",
+	"translation_of": "app_resistance_about",
+	"parent": "app_resistance_en",
+	"seo": {
+		"title": "Resistance & Power Simulator Guide | Lasan Marine Co., Ltd.",
+		"description": "How to use the free resistance and power simulator for small fast craft: inputs, Savitsky and Holtrop–Mennen methods, and reading PE, PB and % MCR."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Resistance & Power Simulator for Small Fast Craft",
+				"heading_level": "h1",
+				"lead": "A free resistance and power simulator for speedboats and small passenger vessels: enter hull dimensions, displacement, deadrise and design speed to sweep speed and plot resistance, effective power, brake power and % MCR.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "app-embed",
+			"fields": {
+				"app": "suc-can-cong-suat",
+				"title": "Resistance & Power Simulator for Small Fast Craft",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"heading": "",
+				"content": "<h2>Methods</h2>\n<ul><li><strong>Planing craft — Savitsky (1964):</strong> force and moment balance with thrust angle, ITTC-57 friction, spray, wind and appendages.</li>\n<li><strong>Small passenger vessels — Holtrop–Mennen:</strong> friction with form factor, wave, transom, correlation, appendages and wind.</li>\n</ul><h2>Results</h2>\n<ul><li>Resistance and power curves by speed, with the resistance broken down by component.</li>\n<li>Method validity range and porpoising limit checks.</li>\n<li>Word and Excel reports; Vietnamese and English interface.</li>\n</ul><p>Results are for a preliminary estimate of main-engine power; a final design needs a full calculation — see our <a href=\"/en/capabilities/ship-design/passenger-boat-design/\">passenger boat design</a>.</p>",
+				"align": "left",
+				"width": "narrow",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Need a full calculation for approval?</p>",
+				"description": "Simulation results are indicative at the preliminary stage. Send us the vessel particulars and we will prepare the calculations and documents for approval.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Send a request",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
+}

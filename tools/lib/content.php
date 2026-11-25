@@ -171,7 +171,8 @@ function lasan_content_link( array $link ): array {
 		if ( ! $id ) {
 			fwrite( STDERR, "  ! link tới trang không tìm thấy: {$link['page']}\n" );
 		}
-	} elseif ( '' !== $url && ! preg_match( '#^(https?:)?//#', $url ) && ! str_starts_with( $url, '#' ) ) {
+	} elseif ( '' !== $url && ! preg_match( '#^(https?:)?//#', $url ) && ! preg_match( '#^[a-z][a-z0-9+.-]*:#i', $url ) && ! str_starts_with( $url, '#' ) ) {
+		// tel:, mailto: and other schemes are kept as they are.
 		// A bare `#anchor` stays as it is; anything else relative gets the site root.
 		$url = home_url( $url );
 	}
@@ -352,7 +353,10 @@ function lasan_content_media_id( string $key ): int {
 		)
 	);
 
-	return $cache[ $key ] = $found ? (int) $found[0]->ID : 0;
+	if ( ! $found ) {
+		return 0; // not cached: the file may be imported later in this run
+	}
+	return $cache[ $key ] = (int) $found[0]->ID;
 }
 
 /** The media key an attachment was imported under, if any. */
@@ -535,6 +539,137 @@ function lasan_content_find_page( string $ref ): int {
 }
 
 /**
+ * Core (non-ACF) blocks authored as serialized block markup:
+ * `{ "type": "core", "html": "<!-- wp:paragraph -->…" }`. `{{page:key}}`
+ * inside the markup becomes that page's permalink, so the file stays host-free.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function lasan_content_core_blocks( string $html ): array {
+	$html = lasan_content_placeholders( $html );
+	return array_values( array_filter( parse_blocks( $html ), static fn( $b ) => null !== $b['blockName'] ) );
+}
+
+/** Replace `{{page:key}}` with that page's permalink. */
+function lasan_content_placeholders( string $html ): string {
+	return (string) preg_replace_callback(
+		'/\{\{page:([a-z0-9_-]+)\}\}/i',
+		static function ( $m ) {
+			$id = lasan_content_find_page( $m[1] );
+			if ( ! $id ) {
+				fwrite( STDERR, "  ! link tới trang không tìm thấy: {$m[1]}\n" );
+			}
+			return $id ? (string) get_permalink( $id ) : '#';
+		},
+		$html
+	);
+}
+
+/**
+ * Term ids for a post's terms. Each term is a name, or
+ * `{ "name", "slug", "parent": "<parent slug>" }` for hierarchical taxonomies.
+ * Missing terms are created.
+ *
+ * @param array<int, mixed> $specs
+ * @return array<int, int>
+ */
+function lasan_content_term_ids( string $taxonomy, array $specs ): array {
+	$ids = array();
+	foreach ( $specs as $spec ) {
+		$spec   = is_array( $spec ) ? $spec : array( 'name' => (string) $spec );
+		$name   = (string) ( $spec['name'] ?? '' );
+		$slug   = (string) ( $spec['slug'] ?? sanitize_title( $name ) );
+		$parent = 0;
+		if ( ! empty( $spec['parent'] ) ) {
+			$p      = get_term_by( 'slug', (string) $spec['parent'], $taxonomy );
+			$parent = $p ? (int) $p->term_id : 0;
+		}
+		$term = get_term_by( 'slug', $slug, $taxonomy );
+		if ( ! $term && '' !== $name ) {
+			$made = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug, 'parent' => $parent ) );
+			$ids[] = is_wp_error( $made ) ? 0 : (int) $made['term_id'];
+			continue;
+		}
+		if ( $term ) {
+			if ( ( '' !== $name && $term->name !== $name ) || ( $parent && (int) $term->parent !== $parent ) ) {
+				wp_update_term( (int) $term->term_id, $taxonomy, array( 'name' => '' !== $name ? $name : $term->name, 'parent' => $parent ?: (int) $term->parent ) );
+			}
+			$ids[] = (int) $term->term_id;
+		}
+	}
+	return array_values( array_filter( $ids ) );
+}
+
+/**
+ * Whether saving $postarr would change nothing on the existing post it names
+ * (title, slug, content, excerpt, status, parent, order, author, date).
+ *
+ * @param array<string, mixed> $postarr
+ */
+function lasan_content_unchanged( array $postarr ): bool {
+	$id = (int) ( $postarr['ID'] ?? 0 );
+	$post = $id ? get_post( $id, ARRAY_A ) : null;
+	if ( ! $post ) {
+		return false;
+	}
+	foreach ( array( 'post_title', 'post_name', 'post_content', 'post_excerpt', 'post_status', 'post_parent', 'menu_order', 'post_author', 'post_date_gmt' ) as $field ) {
+		if ( array_key_exists( $field, $postarr ) && (string) $postarr[ $field ] !== (string) $post[ $field ] ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/** The page carrying this importer key, preferring the language being applied. */
+function lasan_content_find_page_by_key( string $key ): int {
+	return lasan_content_pick(
+		get_posts(
+			array(
+				'post_type'      => 'page',
+				'post_status'    => 'any',
+				'posts_per_page' => -1,
+				'meta_key'       => '_lasan_content_key',
+				'meta_value'     => $key,
+				'lang'           => '',
+			)
+		)
+	);
+}
+
+/**
+ * Find the page `apply` should update when its key is not on any page yet.
+ * Matches post_name only (never another page's importer key), only pages no
+ * key owns yet, and, with
+ * Polylang, only in the language being applied: otherwise the English page
+ * with slug "home" would land on the Vietnamese page whose key is "home".
+ */
+function lasan_content_find_page_by_slug( string $slug ): int {
+	$want  = lasan_content_lang();
+	$posts = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'any',
+			'posts_per_page' => -1,
+			'name'           => $slug,
+			'lang'           => '',
+		)
+	);
+	foreach ( $posts as $post ) {
+		// A page already owned by another key is a different page that happens
+		// to share the slug under another parent (e.g. two …/gioi-thieu/).
+		if ( '' !== (string) get_post_meta( (int) $post->ID, '_lasan_content_key', true ) ) {
+			continue;
+		}
+		if ( '' === $want || ! function_exists( 'pll_get_post_language' )
+			|| in_array( pll_get_post_language( (int) $post->ID ), array( $want, false, '' ), true ) ) {
+			return (int) $post->ID;
+		}
+	}
+
+	return 0;
+}
+
+/**
  * Apply one authored page document. Returns the page id.
  *
  * @param array<string, mixed> $doc
@@ -554,7 +689,9 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 
 	$blocks = array();
 	foreach ( (array) ( $doc['blocks'] ?? array() ) as $entry ) {
-		if ( is_array( $entry ) ) {
+		if ( is_array( $entry ) && 'core' === ( $entry['type'] ?? '' ) ) {
+			array_push( $blocks, ...lasan_content_core_blocks( (string) ( $entry['html'] ?? '' ) ) );
+		} elseif ( is_array( $entry ) ) {
 			$blocks[] = lasan_content_block( $entry, $problems );
 		}
 	}
@@ -562,9 +699,18 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 
 	$seo         = is_array( $doc['seo'] ?? null ) ? $doc['seo'] : array();
 	$description = (string) ( $seo['description'] ?? '' );
-	$existing    = lasan_content_find_page( $key );
+	// Strictly by key, then by a slug no key owns yet: the loose lookup used
+	// for links would match another language's page with that slug.
+	$existing = lasan_content_find_page_by_key( $key );
 	if ( ! $existing ) {
-		$existing = lasan_content_find_page( $slug );
+		$existing = lasan_content_find_page_by_slug( $slug );
+	}
+	$parent = 0;
+	if ( isset( $doc['parent'] ) ) {
+		$parent = lasan_content_find_page( (string) $doc['parent'] );
+		if ( ! $parent ) {
+			$problems[] = $key . ': không tìm thấy trang cha ' . $doc['parent'];
+		}
 	}
 
 	if ( $dry_run ) {
@@ -587,8 +733,16 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 		'post_content' => $content,
 		'post_excerpt' => $description,
 	);
+	if ( $parent ) {
+		// Set with the insert so the slug is checked against its siblings,
+		// not the top level (else …/gioi-thieu/ becomes gioi-thieu-2).
+		$postarr['post_parent'] = $parent;
+	}
 
-	$id = wp_insert_post( wp_slash( $postarr ), true );
+	// Unchanged pages are not saved again: a save bumps post_modified, and
+	// with it every sitemap's lastmod — applying all files used to tell Google
+	// the whole site had just been rewritten.
+	$id = lasan_content_unchanged( $postarr ) ? (int) $existing : wp_insert_post( wp_slash( $postarr ), true );
 	if ( is_wp_error( $id ) ) {
 		$problems[] = $key . ': ' . $id->get_error_message();
 		return 0;
@@ -605,14 +759,10 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 	if ( defined( 'WPSEO_VERSION' ) ) {
 		update_post_meta( $id, '_yoast_wpseo_title', (string) ( $seo['title'] ?? $title ) );
 		update_post_meta( $id, '_yoast_wpseo_metadesc', $description );
-	}
-
-	if ( isset( $doc['parent'] ) ) {
-		$parent = lasan_content_find_page( (string) $doc['parent'] );
-		if ( $parent ) {
-			wp_update_post( array( 'ID' => $id, 'post_parent' => $parent ) );
+		if ( isset( $seo['og_title'] ) ) {
+			update_post_meta( $id, '_yoast_wpseo_opengraph-title', (string) $seo['og_title'] );
 		} else {
-			$problems[] = $key . ': không tìm thấy trang cha ' . $doc['parent'];
+			delete_post_meta( $id, '_yoast_wpseo_opengraph-title' ); // falls back to the title
 		}
 	}
 
@@ -620,6 +770,11 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 	$lang = (string) ( $doc['lang'] ?? '' );
 	if ( '' !== $lang && function_exists( 'pll_set_post_language' ) ) {
 		pll_set_post_language( $id, $lang );
+		// Polylang lets languages share a slug only once the language is set;
+		// a page created just now may have been given "slug-2".
+		if ( get_post_field( 'post_name', $id ) !== $slug ) {
+			wp_update_post( array( 'ID' => $id, 'post_name' => $slug ) );
+		}
 
 		$source_ref = (string) ( $doc['translation_of'] ?? '' );
 		if ( '' !== $source_ref && function_exists( 'pll_save_post_translations' ) ) {
@@ -631,6 +786,10 @@ function lasan_content_apply( array $doc, array &$problems, bool $dry_run = fals
 				$problems[] = $key . ': không tìm thấy bản gốc ' . $source_ref;
 			}
 		}
+	}
+
+	if ( isset( $doc['template'] ) ) {
+		update_post_meta( $id, '_wp_page_template', (string) $doc['template'] );
 	}
 
 	if ( ! empty( $doc['front_page'] ) ) {
@@ -677,6 +836,13 @@ function lasan_content_apply_posts( array $doc, array &$problems, bool $dry_run 
 	$defs = lasan_content_type_defs( $post_type );
 	lasan_content_lang( (string) ( $doc['lang'] ?? '' ) );
 
+	// Terms declared for the whole document exist even when no post uses them.
+	foreach ( (array) ( $doc['terms'] ?? array() ) as $taxonomy => $specs ) {
+		if ( ! $dry_run && taxonomy_exists( (string) $taxonomy ) ) {
+			lasan_content_term_ids( (string) $taxonomy, (array) $specs );
+		}
+	}
+
 	foreach ( (array) ( $doc['posts'] ?? array() ) as $index => $entry ) {
 		if ( ! is_array( $entry ) ) {
 			continue;
@@ -704,21 +870,32 @@ function lasan_content_apply_posts( array $doc, array &$problems, bool $dry_run 
 			continue;
 		}
 
-		$id = (int) wp_insert_post(
-			wp_slash(
-				array(
-					'ID'           => $id,
-					'post_type'    => $post_type,
-					'post_status'  => (string) ( $entry['status'] ?? 'publish' ),
-					'post_title'   => $title,
-					'post_name'    => $slug,
-					'post_content' => (string) ( $entry['content'] ?? '' ),
-					'post_excerpt' => (string) ( $entry['excerpt'] ?? '' ),
-					'menu_order'   => (int) ( $entry['order'] ?? $index ),
-				)
-			),
-			true
+		$postarr = array(
+			'ID'           => $id,
+			'post_type'    => $post_type,
+			'post_status'  => (string) ( $entry['status'] ?? 'publish' ),
+			'post_title'   => $title,
+			'post_name'    => $slug,
+			// Block markup; `{{page:key}}` becomes that page's permalink.
+			'post_content' => lasan_content_placeholders( (string) ( $entry['content'] ?? '' ) ),
+			'post_excerpt' => (string) ( $entry['excerpt'] ?? '' ),
+			'menu_order'   => (int) ( $entry['order'] ?? $index ),
 		);
+		if ( ! empty( $entry['date'] ) ) {
+			$ts                      = strtotime( (string) $entry['date'] );
+			$postarr['post_date_gmt'] = gmdate( 'Y-m-d H:i:s', $ts );
+			$postarr['post_date']     = get_date_from_gmt( $postarr['post_date_gmt'] );
+			$postarr['edit_date']     = true;
+		}
+		if ( ! empty( $entry['author'] ) ) {
+			$user = get_user_by( 'login', (string) $entry['author'] );
+			if ( $user ) {
+				$postarr['post_author'] = (int) $user->ID;
+			} else {
+				$problems[] = "{$slug}: không có user `{$entry['author']}`";
+			}
+		}
+		$id = lasan_content_unchanged( $postarr ) ? (int) $postarr['ID'] : (int) wp_insert_post( wp_slash( $postarr ), true );
 		if ( ! $id ) {
 			$problems[] = "{$slug}: không lưu được";
 			continue;
@@ -742,7 +919,9 @@ function lasan_content_apply_posts( array $doc, array &$problems, bool $dry_run 
 				$problems[] = "{$slug}: taxonomy không tồn tại {$taxonomy}";
 				continue;
 			}
-			wp_set_object_terms( $id, array_map( 'strval', (array) $names ), (string) $taxonomy, false );
+			$has_objects = (bool) array_filter( (array) $names, 'is_array' );
+			$terms       = $has_objects ? lasan_content_term_ids( (string) $taxonomy, (array) $names ) : array_map( 'strval', (array) $names );
+			wp_set_object_terms( $id, $terms, (string) $taxonomy, false );
 		}
 
 		if ( $defs && isset( $entry['fields'] ) && is_array( $entry['fields'] ) ) {
@@ -753,6 +932,36 @@ function lasan_content_apply_posts( array $doc, array &$problems, bool $dry_run 
 				} else {
 					update_post_meta( $id, (string) $name, $value );
 				}
+			}
+		}
+
+		// Plain post meta (not ACF): a `{ "page": key }` value is stored as
+		// that page's permalink; strings may use `{{page:key}}`.
+		foreach ( (array) ( $entry['meta'] ?? array() ) as $meta_key => $meta_value ) {
+			if ( is_array( $meta_value ) && isset( $meta_value['page'] ) ) {
+				$page_id    = lasan_content_find_page( (string) $meta_value['page'] );
+				$meta_value = $page_id ? (string) get_permalink( $page_id ) : '';
+				if ( ! $page_id ) {
+					$problems[] = "{$slug}: không có trang `{$entry['meta'][ $meta_key ]['page']}` cho meta {$meta_key}";
+				}
+			} elseif ( is_string( $meta_value ) ) {
+				$meta_value = lasan_content_placeholders( $meta_value );
+			}
+			if ( '' === $meta_value || null === $meta_value ) {
+				delete_post_meta( $id, (string) $meta_key );
+			} else {
+				update_post_meta( $id, (string) $meta_key, wp_slash( $meta_value ) );
+			}
+		}
+
+		if ( isset( $entry['seo'] ) && is_array( $entry['seo'] ) ) {
+			$seo_title = (string) ( $entry['seo']['title'] ?? '' );
+			$seo_desc  = (string) ( $entry['seo']['description'] ?? '' );
+			update_post_meta( $id, '_lasan_meta_title', $seo_title );
+			update_post_meta( $id, '_lasan_meta_description', $seo_desc );
+			if ( defined( 'WPSEO_VERSION' ) ) {
+				update_post_meta( $id, '_yoast_wpseo_title', $seo_title );
+				update_post_meta( $id, '_yoast_wpseo_metadesc', $seo_desc );
 			}
 		}
 
@@ -874,6 +1083,18 @@ function lasan_content_apply_menu( array $doc, array &$problems, bool $dry_run =
 
 		$locations[ $slot ] = $menu_id;
 		set_theme_mod( 'nav_menu_locations', $locations );
+
+		// Polylang reads front-end locations from its own `nav_menus` option
+		// (theme → location → language) and ignores the theme mod there.
+		$pll_lang = '' !== $lang ? $lang : $default;
+		if ( '' !== $pll_lang && function_exists( 'PLL' ) && isset( PLL()->options ) && is_object( PLL()->options ) && method_exists( PLL()->options, 'set' ) ) {
+			$nav = (array) PLL()->options->get( 'nav_menus' );
+			$nav[ get_stylesheet() ][ $location ][ $pll_lang ] = $menu_id;
+			PLL()->options->set( 'nav_menus', $nav );
+			if ( method_exists( PLL()->options, 'save' ) ) {
+				PLL()->options->save();
+			}
+		}
 	}
 
 	if ( '' !== $lang && function_exists( 'pll_set_term_language' ) ) {
@@ -903,8 +1124,11 @@ function lasan_content_dump( string $ref ): ?array {
 
 	$to_entry = static function ( array $block ) use ( &$to_entry ): ?array {
 		$name = (string) ( $block['blockName'] ?? '' );
-		if ( ! str_starts_with( $name, 'acf/' ) ) {
+		if ( '' === $name ) {
 			return null;
+		}
+		if ( ! str_starts_with( $name, 'acf/' ) ) {
+			return array( 'type' => 'core', 'html' => serialize_block( $block ) );
 		}
 		$slug  = substr( $name, 4 );
 		$data  = (array) ( $block['attrs']['data'] ?? array() );

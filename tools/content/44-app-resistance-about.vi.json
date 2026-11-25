@@ -1,0 +1,56 @@
+{
+	"key": "app_resistance_about",
+	"title": "Giới thiệu – Mô phỏng sức cản & công suất tàu cao tốc cỡ nhỏ",
+	"slug": "gioi-thieu",
+	"lang": "vi",
+	"parent": "app_resistance",
+	"seo": {
+		"title": "Hướng dẫn mô phỏng sức cản tàu | Công ty TNHH Lasan Marine",
+		"description": "Cách dùng công cụ mô phỏng sức cản và công suất tàu cao tốc cỡ nhỏ: dữ liệu cần nhập, phương pháp Savitsky và Holtrop–Mennen, cách đọc PE, PB, % MCR."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Mô phỏng sức cản & công suất tàu cao tốc cỡ nhỏ",
+				"heading_level": "h1",
+				"lead": "Công cụ mô phỏng sức cản công suất miễn phí của Lasan Marine, do TS. Huỳnh Lê Hồng Thái phát triển, dành cho canô cao tốc và tàu khách cỡ nhỏ. Nhập kích thước thân tàu, lượng chiếm nước, góc vát đáy và vận tốc thiết kế; công cụ quét vận tốc và vẽ ngay đường sức cản, công suất kéo PE, công suất máy PB và % MCR.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "app-embed",
+			"fields": {
+				"app": "suc-can-cong-suat",
+				"title": "Mô phỏng sức cản & công suất tàu cao tốc cỡ nhỏ",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"heading": "",
+				"content": "<h2>Phương pháp tính</h2>\n<ul><li><strong>Canô lướt – Savitsky (1964)</strong>: cân bằng lực và mô men với góc trục đẩy, ma sát ITTC-57, sức cản tia nước (Savitsky–DeLorme–Datla 2007), gió và phần phụ.</li>\n<li><strong>Tàu khách cỡ nhỏ – Holtrop–Mennen</strong>: R<sub>F</sub>(1+k<sub>1</sub>), sức cản sóng, đuôi transom, hệ số tương quan, phần phụ và gió.</li>\n<li>Chế độ chạy theo số Froude thể tích Fn<sub>∇</sub> (lượn sóng, bán lướt, lướt); nước biển hoặc nước ngọt.</li>\n</ul><h2>Kết quả</h2>\n<ul><li>Đồ thị sức cản và công suất theo vận tốc, phân tách thành phần sức cản, sơ đồ lực trên thân lướt.</li>\n<li>Kiểm tra phạm vi áp dụng của phương pháp và giới hạn porpoising.</li>\n<li>Xuất báo cáo Word và Excel; giao diện tiếng Việt và tiếng Anh.</li>\n</ul><p>\nKết quả dùng để ước tính sơ bộ công suất máy chính; thiết kế chính thức cần tính toán đầy đủ –<br><a href=\"/nang-luc/thiet-ke-tau/\">dịch vụ thiết kế tàu của Lasan Marine</a>.\n</p>\n<p>\nXem thêm: <a href=\"/cong-cu/mo-phong-on-dinh-tau/\">mô phỏng ổn định tàu</a> ·<br><a href=\"/cong-cu/chuyen-doi-cong-suat/\">chuyển đổi công suất kW, HP, PS</a> ·<br><a href=\"/cong-cu/\">các công cụ tính toán khác</a></p>",
+				"align": "left",
+				"width": "narrow",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Cần tính toán đầy đủ cho hồ sơ đăng kiểm?</p>",
+				"description": "Kết quả mô phỏng dùng để tham khảo ở giai đoạn sơ bộ. Gửi thông số tàu để chúng tôi tính toán và hoàn thiện hồ sơ theo yêu cầu đăng kiểm.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi yêu cầu",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

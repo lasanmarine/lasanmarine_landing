@@ -19,7 +19,11 @@ if ( empty( $data->should_render ) ) {
 
 ?>
 <section class="<?php echo esc_attr( $data->module_class ); ?>" data-reveal<?php if ( $data->anchor ) : ?> id="<?php echo esc_attr( $data->anchor ); ?>"<?php endif; ?>>
-	<div class="<?php echo esc_attr( $data->column_class ); ?>">
+	<?php /* Heading and the first paragraphs rise in turn; the rest of a long
+	         text is simply there (MOTION.md: capped). The selector goes through
+	         esc_attr(): a bare ">" in an attribute trips wptexturize, which
+	         then curls the closing quote and breaks the tag. */ ?>
+	<div class="<?php echo esc_attr( $data->column_class ); ?>" data-reveal-stagger="<?php echo esc_attr( '.rt__heading, .rt__body > :nth-child(-n+6)' ); ?>">
 		<?php if ( $data->has_heading ) : ?>
 			<h2 class="h3 rt__heading"><?php echo esc_html( $data->heading ); ?></h2>
 		<?php endif; ?>

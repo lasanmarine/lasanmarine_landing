@@ -13,7 +13,11 @@ import { clamp } from './format';
 import { viewport } from './stores/viewport.svelte.js';
 import { motion } from './stores/motion.svelte.js';
 
-const MQ = '(min-width: 1024px) and (min-height: 640px)';
+// Pinning is retired: taking over the page scroll stuttered on 60 Hz
+// screens (a JS-driven position one frame behind the compositor's sticky).
+// Every block now keeps its static form, the one phones always had; the
+// helper stays so a block can opt back in by changing this query.
+const MQ = 'not all';
 
 export function scrub(root, { pin, run, progress, reset = () => {} }) {
 	const mq = window.matchMedia(MQ);
@@ -25,12 +29,14 @@ export function scrub(root, { pin, run, progress, reset = () => {} }) {
 	let pinTop = 0; // the pin's sticky offset, read once per layout
 	let pinH = 0;
 
-	const drive = () => {
+	// The spacer stays in the flow, so it shows where the pin would be
+	// without sticking; how far the pin has been held is the difference.
+	// One layout read per frame, in the viewport store's read phase; the
+	// pin's own size and offset are cached.
+	const read = () => (active ? spacer.getBoundingClientRect().top : 0);
+	const drive = (spacerTop = read()) => {
 		if (!active) return;
-		// The spacer stays in the flow, so it shows where the pin would be
-		// without sticking; how far the pin has been held is the difference.
-		// One layout read per frame; the pin's own size and offset are cached.
-		const natural = spacer.getBoundingClientRect().top - pinH;
+		const natural = spacerTop - pinH;
 		const travelled = pinTop - natural;
 		progress(clamp(travelled / Math.max(distance, 1), 0, 1));
 	};
@@ -56,7 +62,7 @@ export function scrub(root, { pin, run, progress, reset = () => {} }) {
 
 	measure();
 	return cleanupAll([
-		viewport.subscribe((snap) => (snap.resized ? measure() : drive())),
+		viewport.subscribe((snap, top) => (snap.resized ? measure() : drive(top)), { read }),
 		on(mq, 'change', measure),
 		motion.subscribe(() => measure()),
 		() => {

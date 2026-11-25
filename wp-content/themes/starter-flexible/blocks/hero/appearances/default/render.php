@@ -91,6 +91,13 @@ $slide_label = __( 'Slide %d', 'starter-flexible' );
 					?>
 				</div>
 			<?php endif; ?>
+			<?php if ( $data->badges ) : ?>
+				<ul class="hero__badges">
+					<?php foreach ( $data->badges as $badge ) : ?>
+						<li><?php echo esc_html( $badge ); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
 		</div>
 
 		<?php if ( $data->is_slider ) : ?>

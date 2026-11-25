@@ -42,7 +42,7 @@ $last_index = count( $data->columns ) - 1;
 					<?php endforeach; ?>
 				</ul>
 				<?php if ( $index < $last_index ) : ?>
-					<span class="io__arrow" aria-hidden="true"><?php echo starter_flexible_icon( 'arrow', 22 ); // phpcs:ignore ?></span>
+					<span class="io__arrow" aria-hidden="true"><span class="io__pulse"></span><?php echo starter_flexible_icon( 'arrow', 22 ); // phpcs:ignore ?></span>
 				<?php endif; ?>
 			</div>
 		<?php endforeach; ?>

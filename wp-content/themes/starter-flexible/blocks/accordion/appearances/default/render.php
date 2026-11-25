@@ -53,9 +53,12 @@ if ( empty( $data->should_render ) ) {
 						aria-labelledby="<?php echo esc_attr( $item['button_id'] ); ?>"
 						<?php echo $item['is_open'] ? '' : 'hidden'; ?>
 					>
-						<?php if ( $item['has_body'] ) : ?>
-							<div class="prose ac__body"><?php echo wp_kses_post( $item['content'] ); ?></div>
-						<?php endif; ?>
+						<?php /* The clip is the panel's one grid row: it grows 0fr → 1fr (style.scss). */ ?>
+						<div class="ac__clip">
+							<?php if ( $item['has_body'] ) : ?>
+								<div class="prose ac__body"><?php echo wp_kses_post( $item['content'] ); ?></div>
+							<?php endif; ?>
+						</div>
 					</div>
 				</div>
 			<?php endforeach; ?>

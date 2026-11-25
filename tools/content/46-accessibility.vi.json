@@ -1,0 +1,47 @@
+{
+	"key": "accessibility",
+	"title": "Tuyên bố hỗ trợ tiếp cận",
+	"slug": "ho-tro-tiep-can",
+	"lang": "vi",
+	"seo": {
+		"title": "Tuyên bố hỗ trợ tiếp cận | Công ty TNHH Lasan Marine",
+		"description": "Cam kết hỗ trợ tiếp cận của website Lasan Marine: tiêu chuẩn WCAG 2.2 mức AA, các công cụ hỗ trợ đọc, hạn chế đã biết và cách gửi góp ý cho chúng tôi."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Tuyên bố hỗ trợ tiếp cận",
+				"heading_level": "h1",
+				"lead": "Công ty TNHH Lasan Marine muốn mọi người đều đọc và dùng được website này, kể cả người dùng trình đọc màn hình, bàn phím, phóng to màn hình hay cần giảm chuyển động.",
+				"height": 300,
+				"actions": []
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"heading": "",
+				"content": "<h2>Tiêu chuẩn chúng tôi hướng tới</h2>\n<p>Website được xây dựng và kiểm tra theo <strong>Hướng dẫn tiếp cận nội dung web WCAG 2.2, mức AA</strong> của W3C. Hiện website <strong>đáp ứng một phần</strong> tiêu chuẩn này: phần lớn nội dung đã đạt, các hạn chế còn lại được nêu bên dưới.</p>\n<h2>Công cụ hỗ trợ trên website</h2>\n<p>Nút <strong>Hỗ trợ tiếp cận</strong> ở cạnh phải màn hình (trên điện thoại là góc dưới) mở bảng tùy chọn. Lựa chọn của bạn được lưu trên trình duyệt đang dùng:</p>\n<ul>\n<li><strong>Cỡ chữ</strong>: phóng to cả trang theo bốn mức.</li>\n<li><strong>Tương phản cao</strong>: chữ và đường viền đậm hơn, bỏ chữ màu chuyển sắc.</li>\n<li><strong>Thang xám</strong>: hiển thị không màu.</li>\n<li><strong>Gạch chân liên kết</strong>: dễ nhận ra chỗ bấm được.</li>\n<li><strong>Phông dễ đọc</strong>: chuyển sang phông chữ đơn giản, nét rộng.</li>\n<li><strong>Giãn dòng, giãn chữ</strong>: khoảng cách dòng, chữ, từ và đoạn theo tiêu chí 1.4.12 của WCAG.</li>\n<li><strong>Dừng hiệu ứng</strong>: tắt mọi chuyển động; website cũng tự tôn trọng cài đặt “giảm chuyển động” của hệ điều hành.</li>\n<li><strong>Con trỏ lớn</strong> và <strong>thước đọc</strong>: dải sáng đi theo con trỏ để giữ dòng đang đọc.</li>\n</ul>\n<h2>Những gì website đã làm</h2>\n<ul>\n<li>Liên kết “Tới nội dung chính” ở đầu trang cho người dùng bàn phím.</li>\n<li>Mọi chức năng dùng được bằng bàn phím, có viền nổi rõ ở phần tử đang được chọn.</li>\n<li>Mỗi trang có một tiêu đề chính và cấu trúc tiêu đề theo thứ bậc; vùng điều hướng, nội dung và chân trang được đánh dấu.</li>\n<li>Ảnh mang thông tin có mô tả thay thế; biểu tượng trang trí được ẩn khỏi trình đọc màn hình.</li>\n<li>Biểu mẫu có nhãn cho từng ô nhập.</li>\n<li>Nội dung có phiên bản tiếng Việt và tiếng Anh, ngôn ngữ của trang được khai báo cho trình đọc màn hình.</li>\n</ul>\n<h2>Hạn chế đã biết</h2>\n<ul>\n<li><strong>Các mô phỏng 3D</strong> (ổn định tàu, kết cấu tàu vỏ thép…) vẽ bằng đồ họa trình duyệt, nên trình đọc màn hình chưa đọc được hình vẽ. Kết quả tính toán chính có thể xuất ra Word hoặc Excel; nếu bạn cần kết quả ở dạng khác, hãy liên hệ chúng tôi.</li>\n<li><strong>Bản vẽ kỹ thuật và ảnh dự án</strong> chỉ có mô tả ngắn, không mô tả đầy đủ từng chi tiết bản vẽ.</li>\n<li><strong>Nội dung bên thứ ba</strong> như bản đồ Google và Zalo tuân theo khả năng hỗ trợ tiếp cận của nhà cung cấp đó.</li>\n</ul>\n<h2>Góp ý</h2>\n<p>Nếu bạn gặp khó khăn khi đọc hay dùng bất kỳ phần nào của website, hãy gọi hoặc nhắn Zalo <a href=\"tel:0834310781\">0834 310 781</a>, hoặc gửi email tới <a href=\"mailto:hello@lasanmarine.com\">hello@lasanmarine.com</a>. Chúng tôi sẽ sửa, hoặc gửi bạn thông tin theo cách phù hợp.</p>\n<p>Tuyên bố này được lập ngày 25/11/2026 và sẽ được cập nhật khi website thay đổi.</p>",
+				"align": "left",
+				"width": "narrow",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Gặp khó khăn khi dùng website?</p>",
+				"description": "Cho chúng tôi biết trang nào, thao tác nào và bạn đang dùng thiết bị hay công cụ hỗ trợ gì; chúng tôi sẽ sửa, hoặc gửi bạn thông tin theo cách khác.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Gửi góp ý",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

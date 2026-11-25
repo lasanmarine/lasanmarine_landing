@@ -3,9 +3,8 @@
  * Template Name: Ứng dụng toàn màn hình
  *
  * A tool's own address opens the tool itself: the embedded app fills the
- * screen under a slim bar (brand, tool name, a link to the tool's
- * introduction page and back to all tools). The introduction lives on a
- * child page (…/gioi-thieu/).
+ * screen, with no bar around it: the app carries its own logo and title.
+ * The introduction lives on a child page (…/gioi-thieu/).
  *
  * The app comes from the page's App Embed block (the page's content is that
  * block alone); the frame is the same one the block draws.
@@ -21,21 +20,32 @@ $sf_page  = get_queried_object();
 $sf_app   = array();
 foreach ( parse_blocks( (string) $sf_page->post_content ) as $sf_block ) {
 	if ( 'acf/app-embed' === ( $sf_block['blockName'] ?? '' ) ) {
-		// Same lookup as the block (blocks/app-embed/inc/helpers.php).
+		// Same lookup as the block (inc/static-apps.php).
 		$sf_data = (array) ( $sf_block['attrs']['data'] ?? array() );
-		$sf_slug = sanitize_key( (string) ( $sf_data['app'] ?? '' ) );
 		$sf_app  = array(
-			'src'         => ( '' !== $sf_slug && is_file( get_template_directory() . '/apps/' . $sf_slug . '/index.html' ) ) ? get_template_directory_uri() . '/apps/' . $sf_slug . '/index.html' : '',
+			'src'         => starter_flexible_app_src( (string) ( $sf_data['app'] ?? '' ) ),
 			'frame_title' => html_entity_decode( (string) ( $sf_data['title'] ?? '' ) ),
 		);
 		break;
 	}
 }
 $sf_app   = (object) $sf_app;
+
+// What the frame shows, as text on the page itself: the tool's name (the
+// page's one H1), what it does, and its guide. Read by screen readers and
+// search engines; the screen shows the app, which carries the same title.
+$sf_desc  = (string) get_post_meta( $sf_page->ID, '_yoast_wpseo_metadesc', true );
+$sf_desc  = '' !== trim( $sf_desc ) ? $sf_desc : (string) $sf_page->post_excerpt;
+$sf_guide = get_pages(
+	array(
+		'parent'      => $sf_page->ID,
+		'post_status' => 'publish',
+		'number'      => 1,
+		'sort_column' => 'menu_order',
+	)
+);
+$sf_guide = $sf_guide ? $sf_guide[0] : null;
 $sf_title = '' !== trim( (string) ( $sf_app->frame_title ?? '' ) ) ? (string) $sf_app->frame_title : get_the_title( $sf_page );
-$sf_intro = get_page_by_path( get_page_uri( $sf_page ) . '/gioi-thieu' ) ?: get_page_by_path( get_page_uri( $sf_page ) . '/about' );
-$sf_en    = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
-$sf_tools = $sf_page->post_parent ? get_permalink( $sf_page->post_parent ) : home_url( '/' );
 $sf_logo  = (int) starter_flexible_setting( 'header_logo', 0 );
 $sf_logo  = $sf_logo ? (string) wp_get_attachment_image_url( $sf_logo, 'full' ) : get_template_directory_uri() . '/assets/images/logo-lasan.svg';
 ?>
@@ -48,14 +58,16 @@ $sf_logo  = $sf_logo ? (string) wp_get_attachment_image_url( $sf_logo, 'full' ) 
 </head>
 <body <?php body_class( 'app-page' ); ?>>
 <?php wp_body_open(); ?>
+<header class="sr-only">
+	<h1><?php echo esc_html( get_the_title( $sf_page ) ); ?></h1>
+	<?php if ( '' !== trim( $sf_desc ) ) : ?>
+		<p><?php echo esc_html( $sf_desc ); ?></p>
+	<?php endif; ?>
+	<?php if ( $sf_guide ) : ?>
+		<p><a href="<?php echo esc_url( get_permalink( $sf_guide ) ); ?>"><?php echo esc_html( get_the_title( $sf_guide ) ); ?></a></p>
+	<?php endif; ?>
+</header>
 <div class="appx">
-	<?php /* The app carries its own logo and title; this strip only links out. */ ?>
-	<nav class="appx__bar" aria-label="<?php echo esc_attr( $sf_title ); ?>">
-		<a class="appx__link" href="<?php echo esc_url( $sf_tools ); ?>"><?php echo starter_flexible_icon( 'arrowLeft', 16 ); // phpcs:ignore ?><?php echo esc_html( $sf_en ? 'All tools' : 'Tất cả công cụ' ); ?></a>
-		<?php if ( $sf_intro instanceof WP_Post ) : ?>
-			<a class="appx__link" href="<?php echo esc_url( get_permalink( $sf_intro ) ); ?>"><?php echo esc_html( $sf_en ? 'About this tool' : 'Giới thiệu công cụ' ); ?><?php echo starter_flexible_icon( 'arrow', 16 ); // phpcs:ignore ?></a>
-		<?php endif; ?>
-	</nav>
 	<?php if ( ! empty( $sf_app->src ) ) : ?>
 		<iframe class="appx__frame" src="<?php echo esc_url( $sf_app->src ); ?>" title="<?php echo esc_attr( $sf_title ); ?>" allow="fullscreen; clipboard-write"></iframe>
 	<?php else : ?>

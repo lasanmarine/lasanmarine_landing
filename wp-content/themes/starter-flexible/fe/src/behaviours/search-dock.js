@@ -47,11 +47,12 @@ export default function searchDock(label) {
 	};
 
 	return cleanupAll([
-		viewport.subscribe(() => {
-			const hdr = viewport.hdrH || 76;
-			const r = root.getBoundingClientRect();
-			// Out of view above, while the list itself is still on screen.
-			setShown(label.getBoundingClientRect().bottom < hdr && r.bottom > hdr + 160);
+		viewport.subscribe((snap, shown) => setShown(shown), {
+			// Read phase: out of view above, while the list itself is still on screen.
+			read: () => {
+				const hdr = viewport.hdrH || 76;
+				return label.getBoundingClientRect().bottom < hdr && root.getBoundingClientRect().bottom > hdr + 160;
+			},
 		}),
 		on(copy, 'input', () => {
 			input.value = copy.value;
@@ -65,7 +66,9 @@ export default function searchDock(label) {
 				chips[i].click();
 				syncChips();
 				// Bring the list's top into view so the result is seen.
-				const y = root.getBoundingClientRect().top + window.scrollY - (viewport.hdrH || 76) - 24;
+				// Same landing as every anchor: html's scroll-padding-top (--anchor-gap).
+				const gap = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || (viewport.hdrH || 76) + 24;
+				const y = root.getBoundingClientRect().top + window.scrollY - gap;
 				if (window.scrollY > y) window.scrollTo({ top: y, behavior: 'smooth' });
 			}),
 		),

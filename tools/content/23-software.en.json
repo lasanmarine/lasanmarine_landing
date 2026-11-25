@@ -1,276 +1,463 @@
 {
-  "key": "service_03_en",
-  "title": "Software",
-  "slug": "software",
-  "lang": "en",
-  "translation_of": "service_03",
-  "seo": {
-    "title": "Custom Software, Websites, Automation & AI | LASAN MARINE",
-    "description": "Custom management systems, websites, workflow automation and AI-enabled applications built around real workflows, data and operational needs."
-  },
-  "blocks": [
-    {
-      "type": "page-hero",
-      "fields": {
-        "headline": "Software should remove work, not add more of it",
-        "lead": "We build management systems, websites, automation and AI-enabled applications around real workflows and real data. The starting point is the work that needs to run better—not a fixed feature list.",
-        "placeholder": "Custom software and digital systems",
-        "heading_level": "h1",
-        "height": 420,
-        "custom_class": "",
-        "image": 818
-      }
-    },
-    {
-      "type": "image-text",
-      "fields": {
-        "heading": "Built around real workflows, not feature lists",
-        "content": "Our software work began with recurring problems in calculations, document handling and technical data. It has since expanded into management systems, websites, automation and AI for a wider range of operational needs. We first understand the work, the users and the data; technology comes after that.",
-        "placeholder": "Workflow and data",
-        "caption": "From recurring work to software",
-        "image_position": "right",
-        "split": "even",
-        "ratio": "ratio-4-3",
-        "custom_class": "",
-        "image": 576
-      }
-    },
-    {
-      "type": "use-case",
-      "fields": {
-        "heading": "Good software starts with a specific problem",
-        "intro": "Some projects start with scattered spreadsheets. Some start with a website that is hard to manage. Others involve repetitive work that should be automated or a well-defined AI use case. We focus on the problem before deciding what to build.",
-        "items": [
-          {
-            "problem": "Our data and day-to-day work are spread across spreadsheets, forms and separate files",
-            "context": "Information is difficult to track, several people work on different versions, and reporting takes too much manual consolidation.",
-            "solution": "We build a shared system around the actual data, user roles and process, then refine it as the workflow evolves in practice.",
-            "link": {
-              "label": "Discuss a management system",
-              "page": "contact"
-            }
-          },
-          {
-            "problem": "Our website no longer explains the business clearly or is difficult to maintain",
-            "context": "The content exists, but the structure is hard to follow, updates depend on developers, or the site is weak for search and measurement.",
-            "solution": "We redesign the information structure, user experience and content-management setup so the site is clearer to customers and easier for the internal team to operate.",
-            "link": {
-              "label": "Discuss a website project",
-              "page": "contact"
-            }
-          },
-          {
-            "problem": "The same information is being re-entered or processed manually across several steps",
-            "context": "Data moves between forms, spreadsheets, email and separate systems, creating delays and avoidable errors.",
-            "solution": "We automate repeatable steps to move data, generate reports, send notifications or trigger the next action without asking people to copy the same information again.",
-            "link": {
-              "label": "Discuss automation",
-              "page": "contact"
-            }
-          },
-          {
-            "problem": "We want to use AI, but the useful task is not yet clear",
-            "context": "Data and documents exist, but there is no clear view of where AI should be used or how the output will be checked.",
-            "solution": "We look for specific tasks such as extraction, categorisation, search, question answering or recognition. If a conventional solution works better, we do not force AI into the project.",
-            "link": {
-              "label": "Discuss an AI use case",
-              "page": "contact"
-            }
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "service-architecture",
-      "fields": {
-        "heading": "Management systems, websites, automation and applied AI",
-        "caption": "Every project starts with the workflow, the data and the people who will use the system. Once those are clear, we choose the technology that fits the job.",
-        "view_all": "Explore all capabilities",
-        "view_all_link": {
-          "label": "Explore all capabilities",
-          "page": "capabilities"
-        },
-        "items": [
-          {
-            "index": "01",
-            "name": "Custom Management Systems",
-            "desc": "Systems built around real operational data and processes, from project tracking and document control to inventory, equipment, approvals and reporting.",
-            "link": {
-              "label": "Discuss a management system",
-              "page": "contact"
-            },
-            "children": [
-              {
-                "name": "Work, schedule and assignment management"
-              },
-              {
-                "name": "Documents, data and revision control"
-              },
-              {
-                "name": "Inventory, materials and equipment"
-              },
-              {
-                "name": "Reporting and data dashboards"
-              }
-            ]
-          },
-          {
-            "index": "02",
-            "name": "Websites & Web Products",
-            "desc": "Company websites, landing pages and web products with clear information architecture, responsive interfaces and manageable content operations after handover.",
-            "link": {
-              "label": "Discuss a website",
-              "page": "contact"
-            },
-            "children": [
-              {
-                "name": "Corporate and capability websites"
-              },
-              {
-                "name": "Product and service landing pages"
-              },
-              {
-                "name": "Content management systems"
-              },
-              {
-                "name": "Search-friendly structure and analytics"
-              }
-            ]
-          },
-          {
-            "index": "03",
-            "name": "Automation & Applied AI",
-            "desc": "Automation for repeatable rules-based work and AI for tasks where the data, success criteria and intended use are clear enough to evaluate the result.",
-            "link": {
-              "label": "Discuss automation",
-              "page": "contact"
-            },
-            "children": [
-              {
-                "name": "Data sync, notifications and automated reporting"
-              },
-              {
-                "name": "Data extraction from documents and images"
-              },
-              {
-                "name": "Search and question answering over internal documents"
-              },
-              {
-                "name": "Recognition and categorisation for defined datasets"
-              }
-            ]
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "process-timeline",
-      "fields": {
-        "label": "How we build",
-        "steps": [
-          {
-            "index": "01",
-            "title": "Understand the workflow and the friction",
-            "desc": "We speak with the people doing the work to understand the current process, where time is being lost and where data becomes difficult to track."
-          },
-          {
-            "index": "02",
-            "title": "Design the data and user flow",
-            "desc": "We shape the data model, permissions and key actions around the real roles that will use the system."
-          },
-          {
-            "index": "03",
-            "title": "Build in testable pieces",
-            "desc": "We put useful parts of the system in front of users early, with realistic data, so problems are found before the project grows larger."
-          },
-          {
-            "index": "04",
-            "title": "Hand over, then extend when it makes sense",
-            "desc": "The agreed system is delivered with usage documentation. New integrations or features can be added later instead of forcing every possible requirement into version one."
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "value-grid",
-      "fields": {
-        "label": "What should improve in daily work",
-        "items": [
-          {
-            "icon": "link",
-            "title": "Less time searching for the right information",
-            "desc": "Reduce time spent finding files, checking versions and combining data from disconnected sources."
-          },
-          {
-            "icon": "gauge",
-            "title": "Less re-entry and repetitive processing",
-            "desc": "Automate repeatable steps so people spend more time on the work that still needs judgement."
-          },
-          {
-            "icon": "award",
-            "title": "A clearer view of what is happening",
-            "desc": "Roles, status and history stay visible, making work easier to follow across the team."
-          },
-          {
-            "icon": "wrench",
-            "title": "Room to grow without rebuilding everything",
-            "desc": "We structure systems so useful features and integrations can be added later as the operation changes."
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "accordion",
-      "fields": {
-        "heading": "Common questions before a software project starts",
-        "intro": "You do not need a complete software specification before the first conversation. A workflow, sample spreadsheet, existing website or recurring task is enough to start defining the problem.",
-        "items": [
-          {
-            "title": "Do we need to replace everything we already use?",
-            "content": "Usually not. We first look at what already works and what is actually creating friction. Many projects can start with one process or one system boundary and expand only when there is a reason to."
-          },
-          {
-            "title": "Can you work with the Excel data we already have?",
-            "content": "Yes. Existing spreadsheets, forms and data files are useful because they show how information is currently structured and handled. We can keep what is useful and reorganise only what needs to change."
-          },
-          {
-            "title": "Can we start with one small module?",
-            "content": "Yes. If the problem can be separated cleanly, starting with one module lets users test the approach in real work before committing to a wider rollout."
-          },
-          {
-            "title": "Does every project need AI?",
-            "content": "No. We only recommend AI when the task and the data make it worthwhile. For many management problems, a clean data structure and ordinary automation deliver more value with less complexity."
-          },
-          {
-            "title": "Can the system be extended after handover?",
-            "content": "Yes. We review the existing architecture and data before adding new features or integrations so the system can grow without becoming unnecessarily complicated."
-          },
-          {
-            "title": "What should we prepare for the first conversation?",
-            "content": "A current workflow, a few sample forms or spreadsheets, the main user groups and the steps that waste the most time are enough. You do not need to write a complete software requirements document first."
-          }
-        ],
-        "open_first": 0,
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "contact-statement",
-      "fields": {
-        "heading": "Need a system, website or workflow automated?",
-        "description": "Send us the current process, sample data, website requirements or a short description of the work you want to improve. We will help define what is worth building first and what can wait.",
-        "phone": "+84 834 310 781",
-        "email": "hello@lasanmarine.com",
-        "cta": {
-          "label": "Discuss a software project",
-          "page": "contact"
-        },
-        "custom_class": ""
-      }
-    }
-  ]
+	"key": "service_03_en",
+	"title": "Software",
+	"slug": "software",
+	"lang": "en",
+	"translation_of": "service_03",
+	"parent": "capabilities_en",
+	"seo": {
+		"title": "Marine Engineering Software Development | Lasan Marine Co., Ltd.",
+		"description": "Marine engineering software development by naval architects: stability and hydrostatics tools, Rhino/Grasshopper plugins, Maxsurf automation, AI agents."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Marine engineering software development, by naval architects",
+				"heading_level": "h1",
+				"lead": "Lasan Marine Co., Ltd. builds custom software for naval architecture and marine engineering teams: calculation tools for stability, hydrostatics, resistance and structure; Rhino/Grasshopper plugins, AutoCAD and Maxsurf automation; web apps for shipyards and design offices; and AI agents for technical documents. We design vessels ourselves, so a naval architect reviews every tool before you see it.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Problems we solve for engineering teams",
+				"intro": "Most requests start with a task an engineer repeats on every project. These are the ones we hear most often.",
+				"solution_label": "What we build",
+				"items": [
+					{
+						"problem": "Loading conditions are run one by one in Maxsurf",
+						"context": "Every change to lightship, tanks or cargo means re-running loadcases by hand and copying the results into the stability booklet.",
+						"solution": "A script that drives Maxsurf through its automation interface, runs the loadcase batch and writes the results straight into your report template.",
+						"link": {
+							"label": "Discuss Maxsurf automation",
+							"page": "contact_en"
+						}
+					},
+					{
+						"problem": "The same modelling steps repeat on every hull",
+						"context": "Frames, longitudinals, plate expansions or hull variants are rebuilt manually in Rhino each time a parameter changes.",
+						"solution": "Grasshopper components or a RhinoCommon plugin that generates the geometry from your own design rules and parameters.",
+						"link": {
+							"label": "Discuss a Rhino plugin",
+							"page": "contact_en"
+						}
+					},
+					{
+						"problem": "Critical calculations live in spreadsheets nobody wants to touch",
+						"context": "Hydrostatics, criteria checks or scantlings sit in workbooks with hidden formulas, no tests and one person who understands them.",
+						"solution": "A tested calculation tool with the same method made explicit, which also generates the calculation document from the same inputs.",
+						"link": {
+							"label": "Discuss a calculation tool",
+							"page": "contact_en"
+						}
+					},
+					{
+						"problem": "Estimates, materials and drawing revisions are spread across files",
+						"context": "Quotes are rebuilt from scratch, the BOM lives in Excel and nobody is sure which drawing revision the reviewer commented on.",
+						"solution": "A web app for estimating, material take-off and drawing and document control, with access for your team and, if you wish, your clients.",
+						"link": {
+							"label": "Discuss a web app",
+							"page": "contact_en"
+						}
+					},
+					{
+						"problem": "Engineers spend hours on rule look-ups and routine documents",
+						"context": "Finding the right clause, drafting standard reports and pulling data out of specifications takes time that should go into design.",
+						"solution": "AI agents that search the rules and standards you provide, draft routine documents and extract technical data, with an engineer checking the output.",
+						"link": {
+							"label": "Discuss AI automation",
+							"page": "contact_en"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "capability-matrix",
+			"fields": {
+				"heading": "What we build",
+				"items": [
+					{
+						"index": "01",
+						"name": "Engineering calculation tools",
+						"desc": "Stability, hydrostatics, resistance and power, and structural calculations as desktop, web or scripted tools that also produce the calculation document.",
+						"link": {
+							"label": "Discuss a calculation tool",
+							"page": "contact_en"
+						},
+						"children": [
+							{
+								"name": "Hydrostatics and intact stability criteria"
+							},
+							{
+								"name": "Resistance and power prediction"
+							},
+							{
+								"name": "Structural and scantling checks"
+							},
+							{
+								"name": "Calculation reports in Word, Excel or PDF"
+							}
+						],
+						"icon": "calculator"
+					},
+					{
+						"index": "02",
+						"name": "CAD plugins and design automation",
+						"desc": "Plugins and scripts for the design software your team already uses, so repetitive modelling and drafting run on rules instead of clicks.",
+						"link": {
+							"label": "Discuss a plugin",
+							"page": "contact_en"
+						},
+						"children": [
+							{
+								"name": "Rhino plugins (RhinoCommon, C#) and Grasshopper components"
+							},
+							{
+								"name": "AutoCAD automation and drawing generation"
+							},
+							{
+								"name": "Maxsurf automation and batch runs"
+							},
+							{
+								"name": "Data exchange between design tools"
+							}
+						],
+						"icon": "compass"
+					},
+					{
+						"index": "03",
+						"name": "Web apps for shipyards and design offices",
+						"desc": "Management software built around how a yard or design office actually works, not around a generic ERP template.",
+						"link": {
+							"label": "Discuss a web app",
+							"page": "contact_en"
+						},
+						"children": [
+							{
+								"name": "Estimating and quotation"
+							},
+							{
+								"name": "Material take-off and BOM"
+							},
+							{
+								"name": "Drawing register, revisions and review comments"
+							},
+							{
+								"name": "Role-based access for staff and clients"
+							}
+						],
+						"icon": "link"
+					},
+					{
+						"index": "04",
+						"name": "AI agents and workflow automation",
+						"desc": "Agents that handle the reading and drafting around engineering work, designed so an engineer stays in control of what goes out.",
+						"link": {
+							"label": "Discuss an AI agent",
+							"page": "contact_en"
+						},
+						"children": [
+							{
+								"name": "Rule and standard look-up over your documents"
+							},
+							{
+								"name": "Drafting routine technical documents"
+							},
+							{
+								"name": "Extracting data from specifications and PDFs"
+							},
+							{
+								"name": "Human review built into the workflow"
+							}
+						],
+						"icon": "scan"
+					}
+				]
+			}
+		},
+		{
+			"type": "value-grid",
+			"fields": {
+				"heading": "Why hire naval architects who write code",
+				"items": [
+					{
+						"title": "Domain review on every deliverable",
+						"desc": "Formulas, units, sign conventions, criteria and edge cases are checked by a naval architect, not only by a test suite.",
+						"link": [],
+						"icon": "ship"
+					},
+					{
+						"title": "No translation layer",
+						"desc": "You discuss GZ curves, loadcases and frame spacing directly with the people who write the code, so requirements do not get lost between a project manager and a developer.",
+						"link": [],
+						"icon": "waves"
+					},
+					{
+						"title": "Tools we use in our own design work",
+						"desc": "Our calculation tools are built for and tested in our own ship-design projects. Several are public and free, so you can judge the work before you contact us.",
+						"link": {
+							"label": "Try the free tools",
+							"page": "tools_en"
+						},
+						"icon": "gauge"
+					}
+				]
+			}
+		},
+		{
+			"type": "capability-matrix",
+			"fields": {
+				"heading": "In-house tools you can open today",
+				"items": [
+					{
+						"index": "01",
+						"name": "Ship stability simulator",
+						"desc": "Problem: checking transverse stability quickly at the concept stage. What it does: computes the GZ curve, GM and angle of vanishing stability in the browser, checks basic IS Code 2008 criteria and exports a report to Word and Excel.",
+						"link": {
+							"label": "Open the simulator",
+							"page": "app_stability_en"
+						},
+						"children": [],
+						"icon": "waves"
+					},
+					{
+						"index": "02",
+						"name": "Resistance and power simulator",
+						"desc": "Problem: estimating installed power for planing craft and small passenger vessels. What it does: Savitsky and Holtrop–Mennen predictions of effective and brake power across the speed range.",
+						"link": {
+							"label": "Open the simulator",
+							"page": "app_resistance_en"
+						},
+						"children": [],
+						"icon": "gauge"
+					},
+					{
+						"index": "03",
+						"name": "3D steel structure simulator",
+						"desc": "Problem: explaining how a steel hull is built up. What it does: an interactive 3D model of parts, panels, sections and blocks, with a walk-through inside the hull, the assembly sequence and graded exercises (Vietnamese interface).",
+						"link": {
+							"label": "Open the simulator",
+							"url": "/cong-cu/mo-phong-ket-cau-tau/"
+						},
+						"children": [],
+						"icon": "ship"
+					},
+					{
+						"index": "04",
+						"name": "Shaft, engine and power tools",
+						"desc": "Problem: quick checks during machinery selection. What they do: a preliminary propeller-shaft diameter check, a searchable marine-engine database and a kW/HP/PS converter.",
+						"link": {
+							"label": "Open the shaft check",
+							"page": "tool_shaft_en"
+						},
+						"children": [
+							{
+								"name": "Engine lookup"
+							},
+							{
+								"name": "Power converter"
+							}
+						],
+						"icon": "ruler"
+					},
+					{
+						"index": "05",
+						"name": "Ship design brief app",
+						"desc": "Problem: incomplete requirements at the start of a design. What it does: a structured brief that saves drafts in the browser and exports a clean document to share or print.",
+						"link": {
+							"label": "Open the brief",
+							"page": "design_brief_en"
+						},
+						"children": [],
+						"icon": "compass"
+					}
+				]
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "How a project runs",
+				"intro": "The same five stages apply to a small Grasshopper component and to a full web application; only their length changes.",
+				"steps": [
+					{
+						"title": "Discovery",
+						"desc": "A call about the task, the users and the software involved. We sign an NDA before you share drawings, models or internal methods."
+					},
+					{
+						"title": "Specification",
+						"desc": "A written spec: inputs, outputs, methods, reference cases and acceptance tests, with a fixed-scope quote or a time-and-materials estimate."
+					},
+					{
+						"title": "Iterations",
+						"desc": "Working builds in short cycles, so your engineers test on real projects early and adjust the requirements before they are expensive to change."
+					},
+					{
+						"title": "Validation",
+						"desc": "Results compared with your reference tools, hand calculations or test data and with the agreed test cases. Any differences are explained and documented."
+					},
+					{
+						"title": "Handover",
+						"desc": "Source code, build and deployment instructions, documentation and training, followed by maintenance if you want it."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"heading": "Engagement models, IP and time zone",
+				"content": "<h3>Three ways to work with us</h3>\n<ul>\n<li><strong>Fixed scope.</strong> For a well-defined tool or plugin. We agree the specification and price before work starts; changes are handled through written change requests, so there are no surprises on the invoice.</li>\n<li><strong>Time and materials.</strong> For work where the requirements will evolve, such as automating an existing workflow step by step. You pay for the time spent and receive regular progress reports.</li>\n<li><strong>Dedicated developer.</strong> A developer working on your backlog, in your repository and communication channels, with naval-architect review available when the work needs it.</li>\n</ul>\n<h3>Your IP stays yours</h3>\n<p>Source code, models and documentation written for your project belong to you, as set out in the contract. We sign an NDA before you share any details. Your drawings, models and data are used only for your project, are shared only with the people working on it, and are returned or deleted at the end if you ask.</p>\n<h3>Working across time zones</h3>\n<p>We are in Nha Trang, Vietnam (UTC+7) and work in English by email, chat and video call. Our afternoon overlaps the European morning, our morning overlaps the afternoon in Australia and New Zealand, and Japan and Korea are only two hours ahead, so we share most of the working day.</p>",
+				"align": "left",
+				"width": "medium",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "input-output",
+			"fields": {
+				"heading": "From your workflow to a validated tool",
+				"intro": "We start from the way your engineers work today and the results you already trust, and end with software you own and can maintain.",
+				"input_title": "What you share",
+				"input": [
+					{
+						"text": "Current spreadsheets, macros or scripts"
+					},
+					{
+						"text": "Reference calculations and results"
+					},
+					{
+						"text": "Sample models, drawings and templates"
+					},
+					{
+						"text": "The rules and standards you work to"
+					}
+				],
+				"process_title": "What we do",
+				"process": [
+					{
+						"text": "Write a specification you can sign off"
+					},
+					{
+						"text": "Build in short, testable iterations"
+					},
+					{
+						"text": "Validate against your reference results"
+					}
+				],
+				"output_title": "What you get",
+				"output": [
+					{
+						"text": "Source code in your repository"
+					},
+					{
+						"text": "Test cases and a validation record"
+					},
+					{
+						"text": "User and developer documentation"
+					},
+					{
+						"text": "Handover and training"
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "service-spotlight",
+			"fields": {
+				"label": "",
+				"image": {
+					"media": "thisisengineering-w_ze6qlkqka-unsplash"
+				},
+				"caption": "Software · Validation · Handover",
+				"heading": "What you receive at handover",
+				"body": "Deliverables are agreed in the specification. Depending on the project, they include:",
+				"items": [
+					{
+						"text": "Full source code, delivered to your repository"
+					},
+					{
+						"text": "Build, installation and deployment instructions"
+					},
+					{
+						"text": "Test cases and the validation record"
+					},
+					{
+						"text": "User guide and developer notes"
+					},
+					{
+						"text": "Training for the engineers who will use it"
+					},
+					{
+						"text": "Optional maintenance and updates"
+					}
+				],
+				"cta": {
+					"label": "Discuss your project",
+					"page": "contact_en"
+				},
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Frequently asked questions",
+				"intro": "",
+				"items": [
+					{
+						"title": "Who owns the source code and the IP?",
+						"content": "<p>You do. Source code, models and documentation written for your project belong to you, and this is stated in the contract. The code is delivered to your repository, not held back on our side.</p>"
+					},
+					{
+						"title": "Will you sign an NDA before we share details?",
+						"content": "<p>Yes. We sign your NDA, or provide ours, before you send drawings, models, rules or internal calculation methods. Your data is used only for your project and returned or deleted at the end if you ask.</p>"
+					},
+					{
+						"title": "Which CAD and engineering platforms do you work with?",
+						"content": "<p>Rhino and Grasshopper (RhinoCommon plugins in C#, Grasshopper components and scripts), AutoCAD, Maxsurf through its automation interface, Excel, and web applications. If your software exposes an API or a scripting interface we can usually work with it. Tell us the product and version and we will confirm before quoting.</p>"
+					},
+					{
+						"title": "How do you validate engineering results?",
+						"content": "<p>Reference cases are agreed in the specification: results from the tools you already trust, hand calculations, published examples or test data. Every release is checked against them and a naval architect reviews the method and the results. Differences are explained in a validation record you keep.</p>"
+					},
+					{
+						"title": "Can you take over our existing spreadsheets, macros or code?",
+						"content": "<p>Yes. We often start from an existing workbook or script, document what it actually calculates, add tests and then rebuild or extend it. Your current results become the first reference cases.</p>"
+					},
+					{
+						"title": "Do you provide maintenance after handover?",
+						"content": "<p>Yes, if you want it. We can fix issues, update the software for new versions of the host CAD platform and add features under a maintenance arrangement or as new fixed-scope work. Because you hold the source code, you can also maintain it in-house.</p>"
+					},
+					{
+						"title": "How do we start?",
+						"content": "<p>Email <a href=\"mailto:hello@lasanmarine.com\">hello@lasanmarine.com</a> with a short description of the task and the software involved. We arrange a call, sign an NDA, look at sample files and send a proposal with the scope and the engagement model that fits.</p>"
+					}
+				],
+				"open_first": 0,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Have a task your engineers repeat on every project?</p>",
+				"description": "Send a short description, the software you use and a sample file if you can share one. We will tell you how we would approach it and which engagement model fits.",
+				"phone": "+84 834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Discuss your project",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
 }

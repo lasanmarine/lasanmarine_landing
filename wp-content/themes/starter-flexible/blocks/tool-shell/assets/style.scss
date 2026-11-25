@@ -1,3 +1,36 @@
 .tool {
 	width: 100%;
 }
+
+/* A tool page opens on the tool itself: no hero, just a compact title row
+   above the calculator. As the first block, the stream clears the fixed
+   header (the same rule as the page hero). */
+.block-stream:has(> .lasanmarine-tool-shell:first-child) {
+	padding-top: calc(var(--hdr-h, 76px) + 12px);
+}
+/* Stacked sheets centre their content in a tall panel; a tool starts at the top. */
+.block-stream > .block.lasanmarine-tool-shell.tool-shell--headed {
+	justify-content: flex-start;
+}
+@media (max-width: 900px) {
+	.block-stream:has(> .lasanmarine-tool-shell:first-child) { padding-top: calc(var(--hdr-h, 64px) + 10px); }
+}
+.tool__head {
+	@apply flex flex-col;
+	gap: 8px;
+	margin-bottom: clamp(18px, 2.4vw, 28px);
+}
+.tool__title {
+	@apply m-0 font-display font-semibold text-navy;
+	font-size: clamp(26px, 2.4vw, 38px);
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.tool__lead {
+	@apply m-0 text-steel;
+	max-width: 720px;
+	font-size: clamp(15px, 1.05vw, 16.5px);
+	line-height: 1.6;
+	text-wrap: pretty;
+}

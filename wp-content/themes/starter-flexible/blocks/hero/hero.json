@@ -118,6 +118,16 @@
       "return_format": "array"
     },
     {
+      "key": "field_hero_badges",
+      "label": "Huy hiệu (mỗi dòng một ý)",
+      "name": "badges",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "instructions": "Các ý ngắn hiện thành hàng nhãn dưới nút, ví dụ quy chuẩn áp dụng, hồ sơ bàn giao.",
+      "required": 0
+    },
+    {
       "key": "field_hero_autoplay",
       "label": "Tự chuyển slide sau (giây)",
       "name": "autoplay",

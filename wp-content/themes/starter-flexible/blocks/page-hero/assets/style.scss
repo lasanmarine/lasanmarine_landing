@@ -15,13 +15,30 @@
 	background-origin: border-box;
 	background-repeat: no-repeat;
 }
-/* The stream, not the panel, clears the fixed header: the panel sits just
-   under it with the same small gap as the page edge. */
-.block-stream:has(> .lasanmarine-page-hero:first-child) {
-	padding-top: calc(var(--hdr-h, 76px) + 12px);
+/* Full bleed: the wash runs edge to edge across the viewport and up behind
+   the fixed header (no inset card, no rounded corners); the copy clears the
+   header with its own padding, and the wash fades into the white page below. */
+.block-stream > .lasanmarine-page-hero.phero {
+	width: 100%;
+	margin-inline: 0;
+	border-radius: 0;
+	min-height: calc(var(--phero-h, 420px) + var(--hdr-h, 76px));
+	padding-top: calc(var(--hdr-h, 76px) + clamp(16px, 2vw, 32px));
+	padding-bottom: clamp(24px, 3vw, 48px);
+	background:
+		/* Top layer: the whole wash fades into the white page at the foot. */
+		linear-gradient(180deg, rgba(255, 255, 255, 0) 62%, #fff 100%),
+		radial-gradient(60% 90% at 6% 0%, rgba(20, 200, 200, 0.24), transparent 65%),
+		radial-gradient(55% 80% at 100% 55%, rgba(10, 114, 200, 0.16), transparent 65%),
+		radial-gradient(40% 60% at 82% 6%, rgba(77, 163, 232, 0.16), transparent 70%),
+		linear-gradient(180deg, #eef6fb 0%, var(--surface) 70%, #fff 100%);
 }
 @media (max-width: 900px) {
-	.block-stream:has(> .lasanmarine-page-hero:first-child) { padding-top: calc(var(--hdr-h, 64px) + 10px); }
+	.block-stream > .lasanmarine-page-hero.phero {
+		min-height: 0;
+		padding-top: calc(var(--hdr-h, 64px) + 28px);
+		padding-bottom: 36px;
+	}
 }
 
 .phero__body {
@@ -74,4 +91,28 @@
 @media (max-width: 600px) {
 	.phero__actions { flex-direction: column; align-items: stretch; width: 100%; }
 	.phero__action { justify-content: center; text-align: center; }
+}
+
+/* --- motion (MOTION.md: page-hero) -------------------------------------------
+   No entrance: the panel is the first screen (FCP/LCP) and first-paint
+   content does not animate in (site rule). Interaction only: */
+/* Buttons: a soft press. `scale` is its own property, so it adds to the
+   button's transitions (restated here) without touching its hover. */
+.phero__action {
+	transition:
+		background 220ms ease,
+		color 200ms ease,
+		border-color 200ms ease,
+		transform 220ms var(--ease),
+		box-shadow 220ms var(--ease),
+		scale var(--spring-soft-ms) var(--spring-soft);
+}
+.phero__action:not(.btn--secondary):not(.btn--ghost) {
+	transition:
+		background-position 520ms var(--ease),
+		box-shadow 260ms var(--ease),
+		scale var(--spring-soft-ms) var(--spring-soft);
+}
+.phero__action:active {
+	scale: 0.97;
 }

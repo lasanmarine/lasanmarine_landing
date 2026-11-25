@@ -1,11 +1,14 @@
 // Styles index — global base, shared system and layout only.
 // Block styles are independent Vite entries in production.
+@forward './easing';
 @forward './base';
 @forward './system';
 @forward './layout/header';
 @forward './layout/footer';
 @forward './layout/single-post';
 @forward './layout/blog';
+@forward './layout/a11y-panel';
+@forward './layout/cookie-policy';
 @forward './v3-blocks';
-@forward './sheets';
 @forward './motion';
+@forward './choreography';

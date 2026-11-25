@@ -1,50 +1,160 @@
 {
-  "menu": "LASAN Header",
-  "location": "header_menu",
-  "lang": "vi",
-  "items": [
-    { "label": "Giới thiệu", "page": "about" },
-    {
-      "label": "Năng lực",
-      "page": "capabilities",
-      "classes": ["has-mega"],
-      "description": "Thiết kế tàu là chuyên môn chính. Bên cạnh đó, chúng tôi thực hiện R&D và phát triển phần mềm cho các nhu cầu cụ thể.",
-      "children": [
-        {
-          "label": "Thiết kế tàu",
-          "page": "service_01",
-          "description": "Đóng mới, cải hoán và hồ sơ phục vụ thẩm tra, đăng kiểm.",
-          "children": [
-            { "label": "Thiết kế đóng mới" },
-            { "label": "Thiết kế cải hoán" },
-            { "label": "Tính toán và hoàn thiện hồ sơ" },
-            { "label": "Xây dựng nhiệm vụ thư", "page": "design_brief" }
-          ]
-        },
-        {
-          "label": "Nghiên cứu và phát triển (R&D)",
-          "page": "service_rnd",
-          "description": "Mô phỏng, phân tích kết cấu, đo kiểm và đối chiếu với dữ liệu thực tế.",
-          "children": [
-            { "label": "Mô phỏng CFD và thủy động lực học" },
-            { "label": "Phân tích kết cấu và dao động" },
-            { "label": "Đo kiểm và đối chiếu dữ liệu" }
-          ]
-        },
-        {
-          "label": "Giải pháp số",
-          "page": "service_03",
-          "description": "Hệ thống quản lý, website, tự động hóa và ứng dụng AI.",
-          "children": [
-            { "label": "Hệ thống phần mềm quản lý" },
-            { "label": "Website và sản phẩm số" },
-            { "label": "Tự động hóa và ứng dụng AI" }
-          ]
-        }
-      ]
-    },
-    { "label": "Dự án", "page": "projects" },
-    { "label": "Công cụ", "page": "tools" },
-    { "label": "Tin tức", "page": "insights" }
-  ]
+	"menu": "LASAN Header",
+	"location": "header_menu",
+	"lang": "vi",
+	"items": [
+		{
+			"label": "Giới thiệu",
+			"page": "about",
+			"description": "Chuyên môn chính là thiết kế tàu; R&D và phần mềm phát triển từ chính công việc thực tế.",
+			"classes": [
+				"nav-intro"
+			],
+			"children": [
+				{
+					"label": "Xem tất cả",
+					"page": "about"
+				}
+			]
+		},
+		{
+			"label": "Năng lực",
+			"page": "capabilities",
+			"description": "Thiết kế tàu là chuyên môn chính. Bên cạnh đó, chúng tôi thực hiện R&D và phát triển phần mềm cho các nhu cầu cụ thể.",
+			"children": [
+				{
+					"label": "Thiết kế tàu",
+					"page": "service_01",
+					"description": "Đóng mới, cải hoán và hồ sơ phục vụ thẩm tra, đăng kiểm.",
+					"children": [
+						{
+							"label": "Thiết kế đóng mới"
+						},
+						{
+							"label": "Thiết kế cải hoán"
+						},
+						{
+							"label": "Tính toán và hoàn thiện hồ sơ"
+						},
+						{
+							"label": "Xây dựng nhiệm vụ thư",
+							"page": "design_brief"
+						}
+					]
+				},
+				{
+					"label": "Nghiên cứu và phát triển (R&D)",
+					"page": "service_rnd",
+					"description": "Mô phỏng, phân tích kết cấu, đo kiểm và đối chiếu với dữ liệu thực tế.",
+					"children": [
+						{
+							"label": "Mô phỏng CFD và thủy động lực học"
+						},
+						{
+							"label": "Phân tích kết cấu và dao động"
+						},
+						{
+							"label": "Đo kiểm và đối chiếu dữ liệu"
+						},
+						{
+							"label": "Công trình đã công bố",
+							"page": "publications"
+						}
+					]
+				},
+				{
+					"label": "Giải pháp số",
+					"page": "service_03",
+					"description": "Hệ thống quản lý, website, tự động hóa và ứng dụng AI.",
+					"children": [
+						{
+							"label": "Hệ thống phần mềm quản lý"
+						},
+						{
+							"label": "Website và sản phẩm số"
+						},
+						{
+							"label": "Tự động hóa và ứng dụng AI"
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Dự án",
+			"page": "projects",
+			"description": "Danh mục tàu đã thiết kế, lọc theo vật liệu thân vỏ hoặc công dụng.",
+			"classes": [
+				"nav-intro"
+			],
+			"children": [
+				{
+					"label": "Xem tất cả",
+					"page": "projects"
+				}
+			]
+		},
+		{
+			"label": "Công cụ",
+			"page": "tools",
+			"description": "Tra cứu và tính toán nhanh ngay trên trình duyệt.",
+			"children": [
+				{
+					"label": "Mô phỏng ổn định tàu",
+					"page": "app_stability"
+				},
+				{
+					"label": "Sức cản & công suất",
+					"page": "app_resistance"
+				},
+				{
+					"label": "Chuyển đổi công suất",
+					"page": "tool_power"
+				},
+				{
+					"label": "Đường kính trục chân vịt",
+					"page": "tool_shaft"
+				},
+				{
+					"label": "Tra cứu động cơ",
+					"page": "tool_engine"
+				},
+				{
+					"label": "Xây dựng nhiệm vụ thư",
+					"page": "design_brief"
+				}
+			]
+		},
+		{
+			"label": "Tin tức",
+			"page": "insights",
+			"description": "Ghi chú kỹ thuật và cập nhật công việc từ đội ngũ Lasan Marine.",
+			"children": [
+				{
+					"label": "Chủ đề kỹ thuật",
+					"page": "insights",
+					"children": [
+						{
+							"label": "Tính toán và mô phỏng",
+							"url": "/tin-tuc/category/bai-viet/tinh-toan-va-mo-phong/"
+						},
+						{
+							"label": "Thiết kế và hoán cải tàu cá",
+							"url": "/tin-tuc/category/bai-viet/thiet-ke-va-hoan-cai-tau-ca/"
+						}
+					]
+				},
+				{
+					"label": "Hồ sơ và quy chuẩn",
+					"page": "insights",
+					"children": [
+						{
+							"label": "Đăng kiểm và quy chuẩn",
+							"url": "/tin-tuc/category/bai-viet/dang-kiem-va-quy-chuan/"
+						}
+					]
+				}
+			]
+		}
+	]
 }

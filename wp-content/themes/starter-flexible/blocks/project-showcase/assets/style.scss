@@ -28,13 +28,29 @@
 	margin: 0;
 	max-width: 30em;
 }
+.ps__controls {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	width: 100%;
+	margin-top: auto;
+}
+.ps__nav {
+	display: flex;
+	gap: 8px;
+}
+.ps--fits .ps__controls { display: none; }
+.ps__stack:focus-visible {
+	outline: 2px solid var(--marine);
+	outline-offset: 4px;
+	border-radius: var(--r-lg, 12px);
+}
 .ps__progress {
 	position: relative;
 	display: block;
 	width: 100%;
 	max-width: 220px;
 	height: 3px;
-	margin-top: auto;
 	border-radius: 3px;
 	background: var(--line-soft);
 	overflow: hidden;
@@ -152,15 +168,6 @@ a.ps__card:hover {
 	white-space: nowrap;
 }
 
-/* --- pinned and scrubbed (desktop, motion on) ------------------------------- */
-.ps--rail.is-scrub .ps__pin {
-	position: sticky;
-	top: calc(var(--hdr-h, 76px) + 104px);
-}
-.ps--rail.is-scrub .ps__stack {
-	overflow-x: hidden;
-	scroll-snap-type: none;
-}
 
 /* --- narrow: heading on top, swipe the rail ---------------------------------- */
 @media (max-width: 1023px) {
@@ -169,15 +176,11 @@ a.ps__card:hover {
 		gap: 24px;
 	}
 	.ps__progress { display: none; }
+	.ps__controls { margin-top: 0; }
 	.ps__card { flex-basis: min(340px, 84%); }
 }
 @media (prefers-reduced-motion: reduce) {
 	.ps__card { transition: none; }
-}
-/* The card leaving on the left fades out instead of being sliced. */
-.ps--rail.is-scrub .ps__stack {
-	-webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32px);
-	mask-image: linear-gradient(90deg, transparent 0, #000 32px);
 }
 /* Narrow cards: the dimensions take their own line rather than an ellipsis. */
 @media (max-width: 1023px) {
@@ -185,3 +188,85 @@ a.ps__card:hover {
 	.ps__stat:first-child { grid-column: 1 / -1; }
 }
 .ps__stat b { white-space: normal; overflow: visible; }
+
+/* --- motion (MOTION.md: project-showcase) -------------------------------------
+   Entrance: the cards arrive from the right, one after another, along the
+   rail they sit on. Driven by the block's own reveal (the section's
+   `data-reveal` → `.is-revealed`), not by per-card observation: a card that
+   only peeks in at the rail's edge would otherwise wait off to the right,
+   invisible, until it was swiped in — and the peek is the cue to swipe.
+   Delays follow `staggerDelay(i)` (lib/motion-math: 0, 56, 106, 150, 189,
+   224, 255 ms; the rest 280 ms).
+   Hover: the card lifts 4px (`translate`, so it never waits for the
+   entrance's delayed `transform`), its picture grows to 1.03 — as a
+   `transform` on the image, since the scroll-linked settle (_motion.scss)
+   owns its `scale`. */
+.lasanmarine-project-showcase .ps__stack > .ps__card {
+	transition:
+		opacity calc(var(--spring-out-ms) * 0.78) var(--spring-out) var(--ps-in, 0ms),
+		transform var(--spring-out-ms) var(--spring-out) var(--ps-in, 0ms),
+		translate var(--spring-soft-ms) var(--spring-soft),
+		background 260ms var(--ease),
+		box-shadow 260ms var(--ease);
+}
+.reveal-on .lasanmarine-project-showcase:not(.is-revealed) .ps__stack > .ps__card {
+	opacity: 0;
+	transform: translateX(40px);
+}
+.lasanmarine-project-showcase .ps__card:nth-child(2) { --ps-in: 56ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(3) { --ps-in: 106ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(4) { --ps-in: 150ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(5) { --ps-in: 189ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(6) { --ps-in: 224ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(7) { --ps-in: 255ms; }
+.lasanmarine-project-showcase .ps__card:nth-child(n + 8) { --ps-in: 280ms; }
+/* Never hidden where the entrance does not run (the footer toggle; the OS
+   setting drops `reveal-on` itself) or on the first screen. */
+html.reduce-motion.reveal-on .lasanmarine-project-showcase:not(.is-revealed) .ps__stack > .ps__card,
+.reveal-on .block-stream > .lasanmarine-project-showcase:first-child:not(.is-revealed) .ps__stack > .ps__card {
+	opacity: 1;
+	transform: none;
+}
+.lasanmarine-project-showcase .ps__stack > a.ps__card:hover {
+	transform: none;
+	translate: 0 -4px;
+}
+.lasanmarine-project-showcase .ps__media .frame > img {
+	transition: transform var(--spring-soft-ms) var(--spring-soft);
+}
+.lasanmarine-project-showcase a.ps__card:hover .ps__media .frame > img {
+	transform: scale(1.03);
+}
+@media (prefers-reduced-motion: reduce) {
+	.lasanmarine-project-showcase .ps__stack > a.ps__card:hover { translate: none; }
+	.lasanmarine-project-showcase a.ps__card:hover .ps__media .frame > img { transform: none; }
+}
+html.reduce-motion .lasanmarine-project-showcase .ps__stack > a.ps__card:hover { translate: none; }
+html.reduce-motion .lasanmarine-project-showcase a.ps__card:hover .ps__media .frame > img { transform: none; }
+
+/* --- scroll-driven rail (desktop, motion allowed) ------------------------------
+   The cards slide left as the block crosses the screen. A view timeline on
+   the block drives a `translate` on each card; `animation-composition: add`
+   keeps the hover lift (also a translate) on top. The rail clips instead of
+   scrolling, and the arrows step aside. --ps-shift is measured in
+   behaviour.js. */
+@keyframes ps-rail {
+	from { translate: 0 0; }
+	to { translate: var(--ps-shift, 0px) 0; }
+}
+@supports (animation-timeline: view()) {
+	.ps.is-scroll-driven {
+		view-timeline: --ps-view block;
+	}
+	.ps.is-scroll-driven .ps__stack {
+		overflow: clip;
+		scroll-snap-type: none;
+	}
+	.ps.is-scroll-driven .ps__stack > .ps__card {
+		animation: ps-rail linear both;
+		animation-timeline: --ps-view;
+		animation-range: cover 18% cover 82%;
+		animation-composition: add;
+	}
+	.ps.is-scroll-driven .ps__nav { display: none; }
+}

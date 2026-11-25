@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# Rebuild tools/content/*.json from the static export and verify it.
+#
+#   tools/static-import/sync copy                  chép bản tĩnh vào container
+#   tools/static-import/sync build [key…]          ghi tools/content/*.json + tools/media/
+#                                                  (key news = 06-news, projects-cpt = 05-projects-cpt)
+#   tools/static-import/sync verify [key…] [--block=slug] [--diff]
+#   tools/static-import/sync static|render|fields <key> <n>
+#
+# Bản tĩnh mặc định ở ../lasanmarine.github.io/docs (đổi bằng LS_DOCS_HOST).
+set -euo pipefail
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$HERE/../.." && pwd)"
+CONTAINER="${LASAN_WP_CONTAINER:-lasan_wp}"
+DOCS_HOST="${LS_DOCS_HOST:-$ROOT/../lasanmarine.github.io/docs}"
+WP_HOME="${WP_HOME:-http://192.168.1.199:49731}"
+
+run() { docker exec -i -u www-data -e WP_HOME="$WP_HOME" "$CONTAINER" php /var/www/html/tools/static-import/run.php "$@"; }
+
+cmd="${1:-}"; shift || true
+case "$cmd" in
+  copy)
+    docker exec "$CONTAINER" rm -rf /srv/static-docs
+    docker cp "$DOCS_HOST" "$CONTAINER":/srv/static-docs
+    docker exec "$CONTAINER" chown -R www-data /srv/static-docs
+    echo "đã chép $DOCS_HOST"
+    ;;
+  build)
+    tmp="$(mktemp)"
+    run build "$@" > "$tmp"
+    python3 -I - "$tmp" "$ROOT" "$DOCS_HOST" <<'PY'
+import json, os, re, shutil, sys, glob
+bundle = json.load(open(sys.argv[1], encoding="utf-8"))
+root, docs_host = sys.argv[2], sys.argv[3]
+content = os.path.join(root, "tools", "content")
+existing = {}
+for f in glob.glob(os.path.join(content, "*.json")):
+    try:
+        d = json.load(open(f, encoding="utf-8"))
+    except Exception:
+        continue
+    if isinstance(d, dict) and "key" in d:
+        existing[d["key"]] = f
+bundle["docs"] = bundle.get("docs") or {}
+bundle["files"] = bundle.get("files") or {}
+order = list(bundle["docs"].keys())
+for i, (key, doc) in enumerate(bundle["docs"].items()):
+    path = existing.get(key)
+    if not path:
+        base = 30 if doc.get("lang") == "vi" else 60
+        n = base + sum(1 for k in order[:i] if k not in existing and bundle["docs"][k].get("lang") == doc.get("lang"))
+        path = os.path.join(content, f"{n:02d}-{re.sub(r'_en$', '', key).replace('_', '-')}.{doc.get('lang','vi')}.json")
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, ensure_ascii=False, indent="\t")
+        fh.write("\n")
+    print(f"  ✓ {os.path.relpath(path, root)}")
+for name, doc in (bundle.get("files") or {}).items():
+    path = os.path.join(content, name)
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, ensure_ascii=False, indent="\t")
+        fh.write("\n")
+    print(f"  ✓ {os.path.relpath(path, root)}")
+media = os.path.join(root, "tools", "media")
+os.makedirs(media, exist_ok=True)
+for key, src in (bundle.get("media") or {}).items():
+    ext = os.path.splitext(src)[1]
+    dst = os.path.join(media, key + ext)
+    host_src = src.replace("/srv/static-docs", docs_host, 1)
+    if not os.path.exists(dst) and os.path.exists(host_src):
+        shutil.copyfile(host_src, dst)
+        print(f"  + tools/media/{key}{ext}")
+PY
+    rm -f "$tmp"
+    ;;
+  verify|static|render|fields|compare)
+    run "$cmd" "$@"
+    ;;
+  *)
+    sed -n '2,9p' "${BASH_SOURCE[0]}"
+    exit 1
+    ;;
+esac

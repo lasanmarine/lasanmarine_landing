@@ -10,9 +10,6 @@
 
 @supports (animation-timeline: view()) {
 	@media (prefers-reduced-motion: no-preference) {
-		/* (Heroes are pinned sheets: stack.js already sets them back as the
-		   next sheet covers them, so they get no motion of their own here.) */
-
 		/* --- large pictures open from a framed card to their full size ------- */
 		html:not(.reduce-motion) :is(
 				.spotlight__media img,
@@ -62,21 +59,19 @@
 	}
 }
 
-/* Endless decorative loops rest while off screen (behaviours/offscreen.js). */
+/* Endless decorative loops rest while off screen (behaviours/offscreen.js).
+   !important: an `animation:` shorthand on a more specific selector (the
+   footer wordmark's `.ftr__wordmark span`) resets the play state to running,
+   so without it the loop never paused and repainted for the whole visit. */
 .is-offscreen,
 .is-offscreen::before,
 .is-offscreen::after,
-.is-offscreen * {
-	animation-play-state: paused;
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after {
+	animation-play-state: paused !important;
 }
 
-/* Per-frame values written by scripts. Registered as non-inheriting, so a
-   change restyles the one element that uses it instead of its whole subtree. */
-@property --veil {
-	syntax: '<number>';
-	inherits: false;
-	initial-value: 0;
-}
 @keyframes lm-settle {
 	from {
 		scale: 1.12;
@@ -101,4 +96,51 @@
 		scale: 0.8;
 		opacity: 0.4;
 	}
+}
+
+/* --- tabs: one highlight that travels (behaviours/tab-thumb.js) ----------- */
+.has-tab-thumb {
+	position: relative;
+	isolation: isolate;
+}
+.tab-thumb {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	border-radius: var(--thumb-r, 999px);
+	background: var(--thumb-bg, var(--navy));
+	opacity: 0;
+	pointer-events: none;
+	transition:
+		transform var(--spring-soft-ms) var(--spring-soft),
+		width var(--spring-soft-ms) var(--spring-soft),
+		height var(--spring-soft-ms) var(--spring-soft),
+		opacity 200ms var(--ease);
+}
+.tab-thumb.is-on {
+	opacity: 1;
+}
+.tab-thumb.is-still {
+	transition: none; // first placement and resizes: no motion (and none at first paint)
+}
+/* The thumb is the selected pill's background now. */
+.has-tab-thumb > :is([aria-current='true'], [aria-pressed='true'], [data-active='true'], [aria-selected='true']) {
+	background: transparent !important;
+	box-shadow: none !important;
+}
+.has-tab-thumb > :not(.tab-thumb) {
+	transition-property: color, background-color, border-color;
+	transition-duration: 240ms;
+	transition-timing-function: var(--ease);
+}
+
+/* --- list changes (lib/view-transition.js) ------------------------------- */
+::view-transition-group(*) {
+	animation-duration: var(--spring-snappy-ms, 380ms);
+	animation-timing-function: var(--spring-snappy);
+}
+::view-transition-old(*),
+::view-transition-new(*) {
+	animation-duration: 220ms;
 }

@@ -32,6 +32,7 @@ if ( ! is_array( $languages ) || count( $languages ) < 2 ) {
 }
 
 $extra   = isset( $args['class'] ) ? ' ' . (string) $args['class'] : '';
+$short   = ! empty( $args['short'] ); // "VI | EN" in the header; the full name stays for screen readers
 $current = (string) pll_current_language( 'slug' );
 ?>
 <div class="lang<?php echo esc_attr( $extra ); ?>" role="group" aria-label="<?php esc_attr_e( 'Ngôn ngữ', 'starter-flexible' ); ?>">
@@ -49,11 +50,15 @@ $current = (string) pll_current_language( 'slug' );
 		<a
 			class="lang__item<?php echo $is_active ? ' is-active' : ''; ?>"
 			href="<?php echo esc_url( (string) ( $language['url'] ?? home_url( '/' ) ) ); ?>"
-			hreflang="<?php echo esc_attr( (string) ( $language['locale'] ?? $slug ) ); ?>"
+			hreflang="<?php echo esc_attr( (string) $slug ); ?>"
 			lang="<?php echo esc_attr( $slug ); ?>"
 			<?php echo $is_active ? 'aria-current="true"' : ''; ?>
 		>
-			<?php echo esc_html( $name ); ?>
+			<?php if ( $short ) : ?>
+				<span aria-hidden="true"><?php echo esc_html( strtoupper( $slug ) ); ?></span><span class="sr-only"><?php echo esc_html( $name ); ?></span>
+			<?php else : ?>
+				<?php echo esc_html( $name ); ?>
+			<?php endif; ?>
 		</a>
 	<?php endforeach; ?>
 </div>

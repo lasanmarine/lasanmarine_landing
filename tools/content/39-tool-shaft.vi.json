@@ -1,0 +1,48 @@
+{
+	"key": "tool_shaft",
+	"title": "Đường kính trục chân vịt: Công cụ sơ bộ",
+	"slug": "kiem-tra-duong-kinh-truc-chan-vit",
+	"lang": "vi",
+	"parent": "tools",
+	"seo": {
+		"title": "Tính đường kính trục chân vịt | Công ty TNHH Lasan Marine",
+		"description": "Tham khảo đường kính trục chân vịt theo công suất, vòng quay và vật liệu. Dùng công cụ Lasan Marine để chuẩn bị dữ liệu cho bước trao đổi kỹ thuật tiếp theo."
+	},
+	"blocks": [
+		{
+			"type": "tool-shell",
+			"fields": {
+				"heading": "Đường kính trục chân vịt",
+				"lead": "Ước tính đường kính trục tối thiểu theo công suất, vòng quay và vật liệu trục.",
+				"custom_class": ""
+			},
+			"inner": [
+				{
+					"type": "shaft-diameter",
+					"fields": {
+						"custom_class": ""
+					}
+				}
+			]
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Liên hệ chúng tôi</p>",
+				"description": "",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Chi tiết thông tin liên hệ",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		},
+		{
+			"type": "core",
+			"html": "<!-- wp:paragraph -->\n<p></p>\n<!-- /wp:paragraph -->"
+		}
+	]
+}

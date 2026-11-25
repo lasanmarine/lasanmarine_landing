@@ -34,7 +34,7 @@ if ( empty( $data->should_render ) ) {
 					</figure>
 				<?php endif; ?>
 
-				<div class="cs__body">
+				<div class="cs__body" data-reveal-stagger=".cs__heading, .cs__description, .cs__actions .btn, .cs__hint, .cs__cta">
 					<h2 class="cs__heading"><?php echo wp_kses_post( $data->heading ); ?></h2>
 
 					<?php if ( $data->has_description ) : ?>

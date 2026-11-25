@@ -1,135 +1,47 @@
 {
-  "key": "projects",
-  "title": "Dự án",
-  "slug": "du-an",
-  "lang": "vi",
-  "seo": {
-    "title": "Dự án thiết kế tàu đã thực hiện | LASAN MARINE",
-    "description": "Danh mục dự án của LASAN MARINE gồm nhiều loại phương tiện, vật liệu thân vỏ, kích thước và dải công suất khác nhau, giúp khách hàng tham khảo kinh nghiệm đã có trước khi trao đổi dự án mới."
-  },
-  "blocks": [
-    {
-      "type": "page-hero",
-      "fields": {
-        "headline": "Các dự án đã thực hiện cho thấy phạm vi công việc chúng tôi từng đảm nhận",
-        "lead": "Danh mục dưới đây tổng hợp các loại phương tiện, vật liệu thân vỏ và dải thông số chúng tôi đã tham gia thiết kế hoặc lập hồ sơ. Những dự án có đặc điểm gần với nhu cầu hiện tại sẽ giúp bạn hình dung rõ hơn kinh nghiệm đã có.",
-        "placeholder": "Dự án thiết kế tàu",
-        "heading_level": "h1",
-        "height": 420,
-        "custom_class": "",
-        "image": 230
-      }
-    },
-    {
-      "type": "proof-strip",
-      "fields": {
-        "items": [
-          {
-            "value": "300+",
-            "label": "Bộ hồ sơ thiết kế tàu",
-            "note": "Theo danh mục hiện có"
-          },
-          {
-            "value": "24",
-            "label": "Tàu vỏ composite"
-          },
-          {
-            "value": "5",
-            "label": "Tàu vỏ thép"
-          },
-          {
-            "value": "2",
-            "label": "Cano cao tốc thủy nội địa"
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "image-text",
-      "fields": {
-        "heading": "Tàu hậu cần thủy sản BV-99889-TS · Lmax 34,86 m",
-        "content": "Tàu hậu cần thủy sản BV-99889-TS có thân vỏ thép, chiều dài lớn nhất 34,86 m và tải trọng 388 tấn. Đây là một trong những hồ sơ chúng tôi đã thực hiện cho nhóm phương tiện hậu cần thủy sản hoạt động xa bờ.",
-        "placeholder": "Tàu hậu cần thủy sản BV-99889-TS",
-        "caption": "Vỏ thép · Hồ sơ kỹ thuật",
-        "image_position": "right",
-        "split": "even",
-        "ratio": "ratio-16-9",
-        "cta": {
-          "label": "Xem dịch vụ thiết kế tàu",
-          "page": "service_01"
-        },
-        "custom_class": "",
-        "image": 535
-      }
-    },
-    {
-      "type": "project-index",
-      "anchor": "danh-muc",
-      "fields": {
-        "label": "Danh mục dự án",
-        "all_label": "TẤT CẢ",
-        "filter_by": "project_material",
-        "limit": 24,
-        "empty_text": "Chưa có dự án trong nhóm này.",
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "spec-list",
-      "fields": {
-        "heading": "Dải thông số trong danh mục dự án hiện có",
-        "note": "Các thông số dưới đây được tổng hợp từ những phương tiện trong danh mục hiện có, cho thấy khoảng kích thước, tải trọng và công suất mà chúng tôi đã tham gia thiết kế hoặc lập hồ sơ.",
-        "rows": [
-          {
-            "label": "Chiều dài lớn nhất Lmax",
-            "value": "7,00 – 34,86 m"
-          },
-          {
-            "label": "Chiều rộng lớn nhất Bmax",
-            "value": "2,20 – 7,40 m"
-          },
-          {
-            "label": "Chiều cao mạn D",
-            "value": "1,25 – 3,70 m"
-          },
-          {
-            "label": "Trọng tải",
-            "value": "0,73 – 388,02 tấn"
-          },
-          {
-            "label": "Công suất máy chính",
-            "value": "85 – 1.452 kW"
-          },
-          {
-            "label": "Vật liệu thân vỏ",
-            "value": "Gỗ · Thép · Composite"
-          },
-          {
-            "label": "Công dụng",
-            "value": "Đánh bắt thủy sản · Hậu cần thủy sản · Chở khách"
-          },
-          {
-            "label": "Vùng hoạt động",
-            "value": "Vùng hạn chế I · Vùng IV"
-          }
-        ],
-        "custom_class": ""
-      }
-    },
-    {
-      "type": "contact-statement",
-      "fields": {
-        "heading": "Mỗi dự án mới có những yêu cầu riêng",
-        "description": "Bạn có thể gửi loại tàu, vật liệu thân vỏ, kích thước hoặc công năng dự kiến. Chúng tôi sẽ dựa trên những dự án đã thực hiện để trao đổi về phần việc có thể đảm nhận và những vấn đề cần lưu ý.",
-        "phone": "0834 310 781",
-        "email": "hello@lasanmarine.com",
-        "cta": {
-          "label": "Trao đổi về dự án",
-          "page": "contact"
-        },
-        "custom_class": ""
-      }
-    }
-  ]
+	"key": "projects",
+	"title": "Dự án",
+	"slug": "du-an",
+	"lang": "vi",
+	"seo": {
+		"title": "Dự án thiết kế tàu đã thực hiện | Công ty TNHH Lasan Marine",
+		"description": "Danh mục dự án Lasan Marine gồm nhiều loại phương tiện, vật liệu thân vỏ và dải công suất khác nhau, giúp tham khảo trước khi trao đổi dự án mới."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Một số phương tiện và hồ sơ Lasan Marine đã tham gia thực hiện",
+				"heading_level": "h1",
+				"lead": "Các dự án bao gồm thiết kế đóng mới, cải hoán, tính toán kỹ thuật và hoàn thiện hồ sơ cho nhiều loại phương tiện, vật liệu và điều kiện khai thác khác nhau.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "project-index",
+			"fields": {
+				"all_label": "Tất cả",
+				"empty_text": "Chưa có dự án trong nhóm này.",
+				"filter_by": "project_material",
+				"custom_class": ""
+			},
+			"anchor": "danh-muc"
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Bạn đang chuẩn bị một phương tiện tương tự?</p>",
+				"description": "Gửi loại tàu, yêu cầu khai thác và những hồ sơ hiện có. Chúng tôi sẽ xem thông tin và trao đổi về phạm vi công việc phù hợp.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Trao đổi dự án",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
 }

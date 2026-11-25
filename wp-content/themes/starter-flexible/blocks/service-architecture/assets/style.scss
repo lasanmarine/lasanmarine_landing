@@ -162,14 +162,6 @@
 .sa__row::after { content: none; }
 .sa__list { display: flex; flex-direction: column; gap: 6px; }
 
-/* Stacked mode: rows tighten with the screen height so list + picture fit. */
-.is-stacked .sa__row { padding-block: clamp(10px, 2vh, 28px); }
-.is-stacked .sa__desc { padding-top: 4px; }
-.is-stacked .sa__figure { min-height: 0; max-height: calc(var(--avail, 100svh) - 220px); }
-.is-stacked .sa__row { padding-block: clamp(8px, 1.5vh, 22px); }
-.is-stacked .sa__children { padding-top: 6px; gap: 6px; }
-.is-stacked .sa__children > * { padding-block: 3px; font-size: 12.5px; }
-
 /* No photographs: the list is the whole block, its rows laid out as columns
    with the same top rule. */
 .sa--text {
@@ -182,4 +174,26 @@
 }
 .sa--text .sa__row {
 	align-items: start;
+}
+
+/* --- motion (MOTION.md: service-architecture) ----------------------------
+   Entrance: the layers stack up from the bottom — the last row lands first
+   and each one above settles onto it (reveal kit; behaviour.js reverses the
+   order). Hover: the row's soft fill and its arrow travelling on the soft
+   spring. */
+.lasanmarine-service-architecture {
+	--reveal-y: 24px;
+	--reveal-scale: 0.98;
+	--reveal-origin: 50% 100%;
+}
+.reveal-on .lasanmarine-service-architecture .sa__row[data-reveal-item]:not(.reveal-instant) {
+	transition:
+		opacity calc(var(--reveal-ms, var(--spring-out-ms)) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms, var(--spring-out-ms)) var(--spring-out) var(--reveal-delay, 0ms),
+		background 320ms var(--ease);
+}
+.sa__arrow {
+	transition:
+		transform var(--spring-soft-ms) var(--spring-soft),
+		color 320ms var(--ease);
 }

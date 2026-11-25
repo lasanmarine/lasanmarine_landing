@@ -1,0 +1,56 @@
+{
+	"key": "app_stability_about_en",
+	"title": "About – Ship Stability Simulator — GZ Curve",
+	"slug": "about",
+	"lang": "en",
+	"translation_of": "app_stability_about",
+	"parent": "app_stability_en",
+	"seo": {
+		"title": "Ship Stability Simulator Guide | Lasan Marine Co., Ltd.",
+		"description": "How to use the free online ship stability simulator: inputs, building the GZ righting-arm curve, reading GM and vanishing angle, IS Code 2008 checks."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Ship Stability Simulator — GZ Curve",
+				"heading_level": "h1",
+				"lead": "A free online ship stability simulator: enter breadth, depth, deadrise, bilge radius, draught and KG to get the equilibrium waterline, the GZ righting-arm curve, GM, maximum GZ, angle of vanishing stability and areas under the curve.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "app-embed",
+			"fields": {
+				"app": "mo-phong-on-dinh-tau",
+				"title": "Ship Stability Simulator — GZ Curve",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"heading": "",
+				"content": "<h2>Features</h2>\n<ul><li>GZ curve by heel angle, 2D section with K, G, B, M and a 3D model as the vessel heels.</li>\n<li>Basic IS Code 2008 criteria: areas 0–30°, 0–40°, 30–40°, GZ at 30°, angle of GZmax, initial GM.</li>\n<li>Roll simulation and several loading conditions on one chart.</li>\n<li>Word and Excel reports; Vietnamese and English interface.</li>\n</ul><h2>Who it is for</h2>\n<p>Naval architects, students and owners who need a quick check of transverse stability at the preliminary stage. Results are indicative; approval documents need a full stability calculation — see our <a href=\"/en/capabilities/ship-design/\">ship design services</a>.</p>",
+				"align": "left",
+				"width": "narrow",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Need a full calculation for approval?</p>",
+				"description": "Simulation results are indicative at the preliminary stage. Send us the vessel particulars and we will prepare the calculations and documents for approval.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Send a request",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
+}

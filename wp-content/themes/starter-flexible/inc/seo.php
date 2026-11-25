@@ -17,6 +17,24 @@ function starter_flexible_seo_is_english(): bool {
 	return function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 }
 
+/**
+ * The company's full legal name in the page's language: what the logo is
+ * called (alt, aria-label) and the name the schema leads with, so every
+ * signal Google reads for the site name says the same thing.
+ */
+function starter_flexible_company_name(): string {
+	return starter_flexible_seo_is_english() ? 'Lasan Marine Co., Ltd.' : 'Công ty TNHH Lasan Marine';
+}
+
+/** A raster logo for structured data: Google does not accept SVG logos. */
+function starter_flexible_schema_logo(): array {
+	return array(
+		'url'    => get_template_directory_uri() . '/assets/images/logo-lasan-square.png',
+		'width'  => 600,
+		'height' => 600,
+	);
+}
+
 /* -------------------------------------------------------------------------
  * Schema: the company as an Organization / ProfessionalService node.
  * ---------------------------------------------------------------------- */
@@ -38,26 +56,48 @@ function starter_flexible_schema_organization( $graph ) {
 
 	$org_id     = home_url( '/#organization' );
 	$is_english = starter_flexible_seo_is_english();
-	// The short brand Google should show as the site name; the registered name
-	// goes in legalName. (The Site Settings names are display text for the
-	// header and footer, in capitals, so they are not used here.)
-	$name       = (string) get_bloginfo( 'name' );
+	// The name Google shows above the link in results is the WebSite name.
+	// It comes from Yoast's "Website name" (Settings → Site basics), falling
+	// back to the site title; Yoast's "Alternate website name" and the site
+	// title go in alternateName. The registered name goes in legalName.
+	// (The Site Settings names are display text for the header and footer, in
+	// capitals, so they are not used here.)
+	$brand      = (string) get_bloginfo( 'name' );
+	$titles     = (array) get_option( 'wpseo_titles', array() );
+	$name       = trim( (string) ( $titles['website_name'] ?? '' ) ) ?: $brand;
 	$legal_name = 'Công ty TNHH Lasan Marine';
-	$alt_names  = array( $legal_name, 'Lasan Marine' );
+	// Every way people type the name, so a search for any of them — "Lasan
+	// Marine" as two words, the capitalised logo form, the domain's one word,
+	// the English company name — resolves to this organisation.
+	$alt_names  = array_values(
+		array_unique(
+			array_filter(
+				array( trim( (string) ( $titles['alternate_website_name'] ?? '' ) ), 'Lasan Marine', 'LASAN MARINE', 'lasanmarine', 'Lasan Marine Co., Ltd.', $brand, $legal_name ),
+				static fn( $n ) => '' !== $n && $n !== $name
+			)
+		)
+	);
 	$phone      = (string) starter_flexible_setting( 'phone', '' );
 	$email      = (string) starter_flexible_setting( 'email', '' );
 	$address    = (string) starter_flexible_setting( 'address', '' );
 	$tax_code   = (string) starter_flexible_setting( 'tax_code', '' );
-	$logo_id    = (int) starter_flexible_setting( 'header_logo', 0 );
-	$logo_url   = $logo_id ? (string) wp_get_attachment_image_url( $logo_id, 'full' ) : get_template_directory_uri() . '/assets/images/logo-lasan.svg';
 
 	$same_as = array();
 	foreach ( (array) starter_flexible_setting( 'social', array() ) as $row ) {
 		$link = starter_flexible_link( $row['link'] ?? array() );
-		if ( '' !== $link['url'] ) {
+		// Only real profiles elsewhere: a link back to this site is not one.
+		$host = (string) wp_parse_url( (string) $link['url'], PHP_URL_HOST );
+		if ( '' !== $host && $host !== (string) wp_parse_url( home_url(), PHP_URL_HOST ) ) {
 			$same_as[] = $link['url'];
 		}
 	}
+
+	// Zalo is the company's one public channel (zalo.me/<phone>).
+	$zalo = preg_replace( '/\D+/', '', (string) starter_flexible_setting( 'phone', '' ) );
+	if ( '' !== $zalo ) {
+		$same_as[] = 'https://zalo.me/' . $zalo;
+	}
+	$same_as = array_values( array_unique( $same_as ) );
 
 	$org = array(
 		'@type'       => array( 'Organization', 'ProfessionalService' ),
@@ -66,18 +106,22 @@ function starter_flexible_schema_organization( $graph ) {
 		'alternateName' => $alt_names,
 		'url'         => home_url( '/' ),
 		'logo'        => array(
-			'@type' => 'ImageObject',
-			'@id'   => home_url( '/#logo' ),
-			'url'   => $logo_url,
+			'@type'      => 'ImageObject',
+			'@id'        => home_url( '/#logo' ),
+			'url'        => starter_flexible_schema_logo()['url'],
+			'contentUrl' => starter_flexible_schema_logo()['url'],
+			'width'      => starter_flexible_schema_logo()['width'],
+			'height'     => starter_flexible_schema_logo()['height'],
+			'caption'    => starter_flexible_company_name(),
 		),
 		'image'       => array( '@id' => home_url( '/#logo' ) ),
 		'description' => $is_english
-			? 'Naval architecture firm in Nha Trang, Vietnam: fishing vessel, support vessel and passenger boat design, conversions, stability and structural calculations, and class/registry approval documents.'
-			: 'Công ty thiết kế tàu tại Nha Trang, Khánh Hòa: thiết kế tàu cá, tàu hậu cần thủy sản, cano chở khách; hoán cải, tính toán ổn định, kết cấu và hoàn thiện hồ sơ thiết kế, đăng kiểm.',
+			? 'Lasan Marine Co., Ltd. is a naval architecture and marine software firm in Nha Trang, Vietnam: fishing vessel, support vessel and passenger boat design, conversions, stability and structural calculations, approval documents, and marine engineering software development.'
+			: 'Công ty TNHH Lasan Marine là công ty thiết kế tàu và phần mềm hàng hải tại Nha Trang, Khánh Hòa: thiết kế tàu cá, tàu hậu cần thủy sản, cano chở khách; hoán cải, tính toán ổn định, kết cấu, hồ sơ thiết kế, đăng kiểm và phát triển phần mềm chuyên ngành hàng hải.',
 		'areaServed'  => array( '@type' => 'Country', 'name' => 'Vietnam' ),
 		'knowsAbout'  => $is_english
-			? array( 'Ship design', 'Fishing vessel design', 'Vessel conversion', 'Stability calculation', 'Hull structure', 'Marine R&D', 'CFD simulation' )
-			: array( 'Thiết kế tàu', 'Thiết kế tàu cá', 'Thiết kế tàu vỏ thép', 'Thiết kế tàu composite', 'Hoán cải tàu cá', 'Hồ sơ đăng kiểm tàu cá', 'Tính toán ổn định tàu', 'Mô phỏng CFD' ),
+			? array( 'Ship design', 'Naval architecture', 'Fishing vessel design', 'Vessel conversion', 'Stability calculation', 'Hull structure', 'Marine R&D', 'CFD simulation', 'Marine engineering software development', 'Software outsourcing' )
+			: array( 'Thiết kế tàu', 'Thiết kế tàu cá', 'Thiết kế tàu vỏ thép', 'Thiết kế tàu composite', 'Hoán cải tàu cá', 'Hồ sơ đăng kiểm tàu cá', 'Tính toán ổn định tàu', 'Mô phỏng CFD', 'Phần mềm chuyên ngành hàng hải', 'Gia công phần mềm' ),
 	);
 
 	if ( '' !== $legal_name ) {
@@ -129,6 +173,20 @@ function starter_flexible_schema_organization( $graph ) {
 }
 add_filter( 'wpseo_schema_graph', 'starter_flexible_schema_organization', 20 );
 
+/**
+ * og:site_name: Yoast prints the WordPress site title here, not its "Website
+ * name". Google reads both when choosing the name it shows above a result,
+ * so give them the same value as the WebSite schema above.
+ */
+add_filter(
+	'wpseo_opengraph_site_name',
+	static function ( $site_name ) {
+		$titles = (array) get_option( 'wpseo_titles', array() );
+		$name   = trim( (string) ( $titles['website_name'] ?? '' ) );
+		return '' !== $name ? $name : $site_name;
+	}
+);
+
 /* -------------------------------------------------------------------------
  * Projects: a title and description written from the vessel's own record.
  * ---------------------------------------------------------------------- */
@@ -159,15 +217,16 @@ function starter_flexible_project_seo(): ?array {
 	$material   = is_array( $materials ) && $materials ? mb_strtolower( (string) $materials[0] ) : '';
 
 	// The material joins the title only when the vessel's name does not already say it.
-	$suffix = ( '' !== $material && false === mb_stripos( $card['title'], $material ) ) ? ' tàu vỏ ' . $material : '';
+	$suffix = ( '' !== $material && false === mb_stripos( $card['title'], $material ) ) ? ' vỏ ' . $material : '';
+	// "<content> | Company": the site's title pattern (see tools/content/*.json).
 	$title  = $is_english
-		? sprintf( '%s — Vessel Design Documents | LASAN MARINE', $card['title'] )
-		: sprintf( '%s — Hồ sơ thiết kế%s | LASAN MARINE', $card['title'], $suffix );
+		? sprintf( '%s Design | Lasan Marine Co., Ltd.', $card['title'] )
+		: sprintf( 'Thiết kế %s%s | Công ty TNHH Lasan Marine', mb_strtolower( mb_substr( $card['title'], 0, 1 ) ) . mb_substr( $card['title'], 1 ), $suffix );
 
 	$facts = implode( ', ', array_filter( array( $card['tag'], $card['meta'], $card['location'] ) ) );
 	$tail  = $is_english
-		? 'Design, conversion and approval drawings by LASAN MARINE.'
-		: 'Thiết kế, hoán cải và hồ sơ đăng kiểm: LASAN MARINE.';
+		? 'Design, conversion and approval drawings by Lasan Marine.'
+		: 'Thiết kế, hoán cải và hồ sơ đăng kiểm: Lasan Marine.';
 	$head  = $card['title'] . ( '' !== $facts ? ': ' . $facts : '' ) . '.';
 
 	// The facts give way before the closing line does: it carries the keywords.
@@ -338,6 +397,52 @@ function starter_flexible_schema_page_extras( $graph ) {
 		);
 	}
 
+	// WebApplication: a tool page that opens the tool full screen.
+	if ( 'page-app.php' === get_page_template_slug( get_queried_object_id() ) ) {
+		$desc    = (string) get_post_meta( get_queried_object_id(), '_yoast_wpseo_metadesc', true );
+		$graph[] = array(
+			'@type'               => 'WebApplication',
+			'@id'                 => $url . '#app',
+			'name'                => wp_strip_all_tags( get_the_title( get_queried_object_id() ) ),
+			'description'         => $desc,
+			'url'                 => $url,
+			'applicationCategory' => 'DesignApplication',
+			'operatingSystem'     => 'Any (web browser)',
+			'browserRequirements' => 'Requires JavaScript',
+			'inLanguage'          => starter_flexible_seo_is_english() ? 'en' : 'vi',
+			'isAccessibleForFree' => true,
+			'offers'              => array(
+				'@type'         => 'Offer',
+				'price'         => '0',
+				'priceCurrency' => 'VND',
+			),
+			'publisher'           => array( '@id' => home_url( '/#organization' ) ),
+			'mainEntityOfPage'    => array( '@id' => $url ),
+		);
+	}
+
 	return $graph;
 }
 add_filter( 'wpseo_schema_graph', 'starter_flexible_schema_page_extras', 30 );
+
+/**
+ * Sitemaps list pages people search for: not the accessibility plugin's
+ * internal statistics type, nor the thin project filter archives
+ * (material, use), which only re-list the projects page.
+ */
+add_filter(
+	'wpseo_sitemap_exclude_post_type',
+	static function ( $excluded, $post_type ) {
+		return in_array( $post_type, array( 'wpa-stats', 'wpa-stats-type' ), true ) ? true : $excluded;
+	},
+	10,
+	2
+);
+add_filter(
+	'wpseo_sitemap_exclude_taxonomy',
+	static function ( $excluded, $taxonomy ) {
+		return in_array( $taxonomy, array( 'project_material', 'project_use', 'wpa-stats-type' ), true ) ? true : $excluded;
+	},
+	10,
+	2
+);

@@ -1,0 +1,151 @@
+{
+	"key": "approval_docs_en",
+	"title": "Vessel Plan Approval & As-Built Documents",
+	"slug": "approval-documents",
+	"lang": "en",
+	"translation_of": "approval_docs",
+	"parent": "capabilities_en",
+	"seo": {
+		"title": "Plan Approval & As-Built Drawings | Lasan Marine Co., Ltd.",
+		"description": "Preparing and completing approval documents for fishing vessels: missing calculations and drawings, plan review responses and as-built documentation."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Approval documents: plan review, as-built, missing items",
+				"heading_level": "h1",
+				"lead": "You do not need to redo the whole set. We review it, point out what is missing or not to the rules, and add the calculations and drawings needed for approval.",
+				"height": 420,
+				"actions": []
+			}
+		},
+		{
+			"type": "use-case",
+			"fields": {
+				"heading": "Typical situations",
+				"intro": "",
+				"solution_label": "How we handle it",
+				"items": [
+					{
+						"problem": "Documents returned with comments",
+						"context": "The reviewer sent back a list of comments.",
+						"solution": "We address each item and write the response.",
+						"link": {
+							"label": "Send your documents",
+							"page": "contact_en"
+						}
+					},
+					{
+						"problem": "As-built documents after building",
+						"context": "The vessel as built differs from the design.",
+						"solution": "Drawings and calculations updated to the vessel as built.",
+						"link": {
+							"label": "Ask about as-built",
+							"page": "contact_en"
+						}
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "deliverables",
+			"fields": {
+				"heading": "What you receive",
+				"intro": "Exactly the part of the set you need, ready for approval.",
+				"note_label": "Lead time",
+				"note": "Lead time is agreed with the quote, depending on vessel type, scope and existing documents. You know each delivery date in advance.",
+				"items": [
+					{
+						"title": "Review of your documents",
+						"desc": "List of missing or non-compliant items",
+						"format": "PDF"
+					},
+					{
+						"title": "Additional calculations",
+						"desc": "Stability, freeboard, structure, machinery, shafting",
+						"format": "PDF"
+					},
+					{
+						"title": "Response to the reviewer",
+						"desc": "Until approval",
+						"format": ""
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "process-timeline",
+			"fields": {
+				"heading": "How we work",
+				"intro": "",
+				"steps": [
+					{
+						"title": "Send us the brief",
+						"desc": "Vessel type, target dimensions, operating area and any photos or documents you have."
+					},
+					{
+						"title": "Scope and quote",
+						"desc": "We agree the scope, deliverables and schedule, with a clear price for each part."
+					},
+					{
+						"title": "Design and calculations",
+						"desc": "Drawings and calculations with industry software and our own engineering tools."
+					},
+					{
+						"title": "Review and handover",
+						"desc": "We answer the reviewer’s comments, update the documents and hand over the final set."
+					}
+				],
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Some documents we have prepared",
+				"intro": "",
+				"view_all": {
+					"label": "See all projects",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-hau-can-bv-99889-ts",
+					"tau-ca-vo-thep-qna-91312-ts",
+					"tau-ca-composite-kh-95177-ts"
+				]
+			}
+		},
+		{
+			"type": "accordion",
+			"fields": {
+				"heading": "Frequently asked questions",
+				"intro": "",
+				"items": [
+					{
+						"title": "Can you complete only part of the set?",
+						"content": "<p>Yes. We do only the missing items; a full redo is not required.</p>"
+					}
+				],
+				"open_first": 1,
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Stuck in plan review?</p>",
+				"description": "Send us the reviewer’s comments or your current documents and we tell you what is needed.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Send a request",
+					"page": "contact_en"
+				},
+				"mascot": ""
+			}
+		}
+	]
+}

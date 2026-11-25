@@ -22,6 +22,7 @@ final class Starter_Flexible_Block_Hero extends Starter_Flexible_Abstract_Block 
 			'image'           => 0,
 			'eyebrow'         => '',
 			'subline'         => '',
+			'badges'          => '',
 			'headline'        => '',
 			'headline_accent' => '',
 			'headline_tail'   => '',
@@ -68,6 +69,7 @@ final class Starter_Flexible_Block_Hero extends Starter_Flexible_Abstract_Block 
 		$data['slides']    = $slides;
 		$data['eyebrow']   = trim( (string) $data['eyebrow'] );
 		$data['subline']   = trim( (string) $data['subline'] );
+		$data['badges']    = array_values( array_filter( array_map( 'trim', preg_split( '/\R/', (string) $data['badges'] ) ?: array() ) ) );
 		$data['primary']   = starter_flexible_hero_link( $data['primary'] );
 		$data['secondary'] = starter_flexible_hero_link( $data['secondary'] );
 

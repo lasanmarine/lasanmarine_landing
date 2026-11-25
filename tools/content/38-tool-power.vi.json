@@ -1,0 +1,44 @@
+{
+	"key": "tool_power",
+	"title": "Chuyển đổi công suất kW, HP và PS",
+	"slug": "chuyen-doi-cong-suat",
+	"lang": "vi",
+	"parent": "tools",
+	"seo": {
+		"title": "Chuyển đổi công suất kW, HP, PS | Công ty TNHH Lasan Marine",
+		"description": "Chuyển đổi công suất giữa kW, HP và PS bằng công cụ Lasan Marine. Chọn đúng đơn vị nguồn và đối chiếu kết quả với thông số động cơ trong tài liệu gốc."
+	},
+	"blocks": [
+		{
+			"type": "tool-shell",
+			"fields": {
+				"heading": "Chuyển đổi công suất",
+				"lead": "Nhập một giá trị, các đơn vị còn lại hiện ngay.",
+				"custom_class": ""
+			},
+			"inner": [
+				{
+					"type": "power-converter",
+					"fields": {
+						"custom_class": ""
+					}
+				}
+			]
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Liên hệ chúng tôi</p>",
+				"description": "",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Chi tiết thông tin liên hệ",
+					"page": "contact"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

@@ -72,7 +72,7 @@
 }
 /* Xem PDF — the scan glyph zooms slightly on hover. */
 .dc__view svg {
-	transition: transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: transform var(--spring-soft-ms) var(--spring-soft);
 }
 .dc__view:hover svg {
 	transform: scale(1.18);
@@ -168,7 +168,6 @@
 	@apply border-navy bg-paper text-navy;
 }
 .dc__dl.is-inert { opacity: 0.45; }
-.is-stacked .dc__row { padding-block: clamp(8px, 1.5vh, 18px); }
 
 /* --- publications as cards -------------------------------------------------
    Year and source on top, the title, then the group, file size and the way
@@ -188,12 +187,29 @@
 	padding: clamp(20px, 2.2vw, 28px);
 	border-radius: var(--r-lg);
 	background: var(--surface);
-	transition: background 260ms var(--ease), box-shadow 260ms var(--ease), transform 260ms var(--ease);
+	/* The hover ground (paper, hairline, soft shadow) is a layer of its own that
+	   fades in, so the lift is opacity + translate only — no repaint per frame. */
+	position: relative;
+	isolation: isolate;
+	transition: translate var(--spring-soft-ms) var(--spring-soft);
 }
-.dc__card:hover {
+.dc__card::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	border-radius: inherit;
 	background: var(--paper);
 	box-shadow: inset 0 0 0 1px var(--line-soft), 0 18px 40px -26px rgba(10, 114, 200, 0.45);
-	transform: translateY(-2px);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--spring-snappy-ms) var(--spring-snappy);
+}
+.dc__card:hover {
+	translate: 0 -2px;
+}
+.dc__card:hover::before {
+	opacity: 1;
 }
 .dc__card[hidden] {
 	display: none;
@@ -268,4 +284,30 @@
 .dc__filters .dc__filter {
 	text-transform: none;
 	letter-spacing: 0;
+}
+
+/* --- motion (MOTION.md: document-center) ------------------------------------
+   Entrance: the publications rise one after another, in reading order (the
+   list wraps into two columns, so document order reads row by row).
+   Filter: the thumb travels (tab-thumb.js) and the cards re-flow (View
+   Transition, behaviour.js). */
+.lasanmarine-document-center {
+	--reveal-y: 24px;
+	--reveal-scale: 1;
+	--reveal-ms: var(--spring-out-ms);
+}
+/* The reveal kit owns the item's `transition`; the hover lift's `translate`
+   is added to the same list so it answers at once instead of waiting out the
+   entrance's stagger delay. */
+.reveal-on .lasanmarine-document-center .dc__card[data-reveal-item] {
+	transition:
+		opacity calc(var(--reveal-ms) * 0.78) var(--spring-out) var(--reveal-delay, 0ms),
+		transform var(--reveal-ms) var(--spring-out) var(--reveal-delay, 0ms),
+		translate var(--spring-soft-ms) var(--spring-soft) 0ms;
+}
+@media (prefers-reduced-motion: reduce) {
+	.dc__card,
+	.dc__card::before {
+		transition: none;
+	}
 }

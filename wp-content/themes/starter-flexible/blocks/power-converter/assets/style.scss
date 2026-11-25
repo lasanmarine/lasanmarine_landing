@@ -210,11 +210,24 @@
 	@apply bg-surface;
 	padding: clamp(20px, 2.4vw, 32px);
 	border-radius: var(--r-xl);
-	transition: box-shadow 260ms var(--ease);
+	/* The lift is a shadow layer that fades in: opacity, not box-shadow. */
+	position: relative;
+	isolation: isolate;
 }
-.pc:focus-within .pc__results,
-.pc__results:hover {
+.pc__results::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	border-radius: inherit;
 	box-shadow: var(--lift);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--spring-snappy-ms) var(--ease);
+}
+.pc:focus-within .pc__results::before,
+.pc__results:hover::before {
+	opacity: 1;
 }
 .pc__heading {
 	@apply font-display font-semibold text-navy;
@@ -346,5 +359,28 @@
 	.pc *,
 	.pc__results {
 		transition: none !important;
+	}
+}
+
+/* --- motion (MOTION.md: tool-shell) -----------------------------------------
+   Entrance: the inputs card rises, then the result card, then its rows — the
+   order a calculation is read in. The kit numbers the two cards 0 and 1; the
+   gap between them is stretched (× 3) so the result clearly follows, and the
+   rows start once their card is on its way.
+   Result change: the number settles (settle.js) — no layout shift. */
+.pc {
+	--reveal-y: 28px;
+	--reveal-scale: 1;
+}
+.reveal-on .pc__grid > [data-reveal-item] {
+	transition-delay: calc(var(--reveal-delay, 0ms) * 3);
+}
+.reveal-on .pc__result-list > [data-reveal-item] {
+	--reveal-y: 14px;
+	transition-delay: calc(var(--reveal-delay, 0ms) + 240ms);
+}
+@media (prefers-reduced-motion: reduce) {
+	.pc__results::before {
+		transition: none;
 	}
 }
