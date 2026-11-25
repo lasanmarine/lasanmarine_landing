@@ -30,6 +30,21 @@ foreach ( parse_blocks( (string) $sf_page->post_content ) as $sf_block ) {
 	}
 }
 $sf_app   = (object) $sf_app;
+
+// What the frame shows, as text on the page itself: the tool's name (the
+// page's one H1), what it does, and its guide. Read by screen readers and
+// search engines; the screen shows the app, which carries the same title.
+$sf_desc  = (string) get_post_meta( $sf_page->ID, '_yoast_wpseo_metadesc', true );
+$sf_desc  = '' !== trim( $sf_desc ) ? $sf_desc : (string) $sf_page->post_excerpt;
+$sf_guide = get_pages(
+	array(
+		'parent'      => $sf_page->ID,
+		'post_status' => 'publish',
+		'number'      => 1,
+		'sort_column' => 'menu_order',
+	)
+);
+$sf_guide = $sf_guide ? $sf_guide[0] : null;
 $sf_title = '' !== trim( (string) ( $sf_app->frame_title ?? '' ) ) ? (string) $sf_app->frame_title : get_the_title( $sf_page );
 $sf_logo  = (int) starter_flexible_setting( 'header_logo', 0 );
 $sf_logo  = $sf_logo ? (string) wp_get_attachment_image_url( $sf_logo, 'full' ) : get_template_directory_uri() . '/assets/images/logo-lasan.svg';
@@ -43,6 +58,15 @@ $sf_logo  = $sf_logo ? (string) wp_get_attachment_image_url( $sf_logo, 'full' ) 
 </head>
 <body <?php body_class( 'app-page' ); ?>>
 <?php wp_body_open(); ?>
+<header class="sr-only">
+	<h1><?php echo esc_html( get_the_title( $sf_page ) ); ?></h1>
+	<?php if ( '' !== trim( $sf_desc ) ) : ?>
+		<p><?php echo esc_html( $sf_desc ); ?></p>
+	<?php endif; ?>
+	<?php if ( $sf_guide ) : ?>
+		<p><a href="<?php echo esc_url( get_permalink( $sf_guide ) ); ?>"><?php echo esc_html( get_the_title( $sf_guide ) ); ?></a></p>
+	<?php endif; ?>
+</header>
 <div class="appx">
 	<?php if ( ! empty( $sf_app->src ) ) : ?>
 		<iframe class="appx__frame" src="<?php echo esc_url( $sf_app->src ); ?>" title="<?php echo esc_attr( $sf_title ); ?>" allow="fullscreen; clipboard-write"></iframe>

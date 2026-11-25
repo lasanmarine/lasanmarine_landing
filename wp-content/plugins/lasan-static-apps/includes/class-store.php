@@ -36,7 +36,9 @@ final class Store {
 	const SCHEMA_OPT = 'lasan_static_apps_schema';
 	const SEEN_OPT   = 'lasan_static_apps_bundled';
 	const ALIAS_OPT  = 'lasan_static_apps_aliases';
-	const SCHEMA     = 2;
+	const SCHEMA     = 3;
+	/** On an app's own index.html: not a page of its own, but indexable as part of the tool page that frames it. */
+	const ROBOTS     = '<meta name="robots" content="noindex, indexifembedded">';
 	const DIR        = 'static-apps';
 
 	/** MAJOR.MINOR.PATCH with an optional pre-release tag: 1.2.0, 2.0.0-beta.1. Also a safe folder name. */
@@ -352,6 +354,7 @@ final class Store {
 		}
 		self::rebase( $dir, self::version_path( $slug, $version ) );
 		self::harden();
+		$warnings = self::analyze( $dir );
 
 		[ $files, $bytes ] = self::measure( $dir );
 
@@ -362,8 +365,9 @@ final class Store {
 			'added'  => time(),
 			'files'  => $files,
 			'bytes'  => $bytes,
-			'source' => $source,
-			'notes'  => $meta['notes'],
+			'source'   => $source,
+			'notes'    => $meta['notes'],
+			'warnings' => $warnings,
 		);
 		if ( $meta['activate'] || empty( $app['active'] ) ) {
 			$app['active'] = $version;
@@ -450,6 +454,9 @@ final class Store {
 		if ( $from < 2 ) {
 			self::upgrade_to_2();
 		}
+		if ( $from < 3 ) {
+			self::upgrade_to_3();
+		}
 		update_option( self::SCHEMA_OPT, self::SCHEMA, true );
 	}
 
@@ -495,6 +502,19 @@ final class Store {
 		self::changed();
 	}
 
+	/** 1.2: installed apps let their content count for the page framing them. */
+	private static function upgrade_to_3(): void {
+		foreach ( self::all() as $slug => $app ) {
+			foreach ( array_keys( (array) ( $app['versions'] ?? array() ) ) as $version ) {
+				$index = self::version_dir( (string) $slug, (string) $version ) . '/index.html';
+				if ( is_file( $index ) ) {
+					file_put_contents( $index, self::robots( (string) file_get_contents( $index ) ) );
+				}
+			}
+		}
+		self::changed();
+	}
+
 	/* ---------------------------------------------------------------------
 	 * Manage
 	 * ------------------------------------------------------------------ */
@@ -514,6 +534,15 @@ final class Store {
 		$apps = self::all();
 		if ( isset( $apps[ $slug ] ) && '' !== trim( $title ) ) {
 			$apps[ $slug ]['title'] = sanitize_text_field( $title );
+			self::save( $apps );
+		}
+	}
+
+	/** Short description of the app, for its tool page and card. */
+	public static function set_desc( string $slug, string $desc ): void {
+		$apps = self::all();
+		if ( isset( $apps[ $slug ] ) ) {
+			$apps[ $slug ]['desc'] = sanitize_textarea_field( $desc );
 			self::save( $apps );
 		}
 	}
@@ -694,7 +723,10 @@ final class Store {
 			}
 		}
 
-		if ( null !== $old && $old !== $new_path ) {
+		if ( '/' === $old ) {
+			self::rebase_root( $dir, $new_path, $targets );
+			$html = (string) file_get_contents( $index );
+		} elseif ( null !== $old && $old !== $new_path ) {
 			$replace = array();
 			// The same path written with any origin in front of it, then bare.
 			if ( preg_match_all( '#https?://[a-z0-9.\-:]+' . preg_quote( $old, '#' ) . '#i', $html . implode( '', array_map( 'file_get_contents', $targets ) ), $m ) ) {
@@ -713,12 +745,81 @@ final class Store {
 			$html = (string) file_get_contents( $index );
 		}
 
-		// The app's own page is not a page of the site: the site's tool page
-		// that embeds it is. Keep search engines off the bare file.
+		file_put_contents( $index, self::robots( $html ) );
+	}
+
+	/**
+	 * A build made for the root of a domain (Vite's default `base: '/'`).
+	 *
+	 * "/" is also every other slash in the files, so the base cannot simply be
+	 * swapped. Only references to the build's own files are rewritten: a "/"
+	 * that starts a string, url() or attribute and is followed by one of the
+	 * build's top-level names ("/assets/…", "/favicon.svg"). Vite's module
+	 * preload helper (`return"/"+e`) gets the new base too.
+	 *
+	 * @param string[] $targets Text files of the build.
+	 */
+	private static function rebase_root( string $dir, string $new_path, array $targets ): void {
+		$names = array();
+		foreach ( (array) scandir( $dir ) as $name ) {
+			if ( '.' !== $name && '..' !== $name && 'index.html' !== $name ) {
+				$names[] = preg_quote( (string) $name, '#' );
+			}
+		}
+		if ( ! $names ) {
+			return;
+		}
+		// Longest first, so "assets-old" is not read as "assets".
+		usort( $names, static fn( $a, $b ) => strlen( $b ) <=> strlen( $a ) );
+		$own    = '#(?<=["\'`(=,\s])/(' . implode( '|', $names ) . ')(?=[/"\'`)?\#\s,]|$)#';
+		$helper = '#function\((\w+)\)\{return"/"\+\1\}#';
+		foreach ( $targets as $file ) {
+			$text = (string) file_get_contents( $file );
+			$new  = (string) preg_replace( $own, $new_path . '$1', $text );
+			$new  = (string) preg_replace( $helper, 'function($1){return"' . $new_path . '"+$1}', $new );
+			if ( $new !== $text ) {
+				file_put_contents( $file, $new );
+			}
+		}
+	}
+
+	/**
+	 * Signs that a build is not a self-contained static app: it calls an API
+	 * on the server it is served from, or navigates to fixed paths of that
+	 * server. Such an app installs, but cannot work here on its own.
+	 *
+	 * @return string[] Human-readable warnings.
+	 */
+	public static function analyze( string $dir ): array {
+		$found = array();
+		$it    = new \RecursiveIteratorIterator( new \RecursiveDirectoryIterator( $dir, \FilesystemIterator::SKIP_DOTS ) );
+		foreach ( $it as $f ) {
+			if ( ! in_array( strtolower( $f->getExtension() ), array( 'js', 'mjs', 'html' ), true ) ) {
+				continue;
+			}
+			$text = (string) file_get_contents( (string) $f->getPathname() );
+			if ( preg_match( '#(?:fetch|axios(?:\.\w+)?|baseURL\s*:)\s*\(?\s*["\'`](/(?:api|graphql|auth|socket\.io)\b[^"\'`]{0,40})#i', $text, $m )
+				|| preg_match( '#["\'`](/(?:api|graphql))["\'`]\s*\+#i', $text, $m ) ) {
+				/* translators: %s: request path, e.g. /api */
+				$found['api'] = sprintf( __( 'App gọi API trên máy chủ của chính nó (%s…). Trên website không có API này, nên các chức năng cần máy chủ (đăng nhập, lưu dữ liệu…) sẽ không chạy. Cần build lại để gọi đúng địa chỉ máy chủ API, hoặc dùng bản chạy không cần máy chủ.', 'lasan-static-apps' ), $m[1] );
+			}
+			if ( preg_match( '#location\.(?:href|pathname)\s*=\s*["\'`](/[a-z][^"\'`]{0,30})["\'`]#i', $text, $m ) ) {
+				/* translators: %s: path, e.g. /login */
+				$found['nav'] = sprintf( __( 'App chuyển trang tới đường dẫn cố định của máy chủ (%s), sẽ ra trang lỗi 404 khi chạy trong website.', 'lasan-static-apps' ), $m[1] );
+			}
+		}
+		return array_values( $found );
+	}
+
+	/**
+	 * The app's own page is not a page of the site: the tool page that frames
+	 * it is. Keep the bare file out of search results, but let its content
+	 * count for the tool page (Google's indexifembedded).
+	 */
+	private static function robots( string $html ): string {
 		$html = (string) preg_replace( '#<meta\s+name=["\']robots["\'][^>]*>\s*#i', '', $html );
 		$html = (string) preg_replace( '#<link\s+rel=["\'](canonical|alternate)["\'][^>]*>\s*#i', '', $html );
-		$html = (string) preg_replace( '#<head([^>]*)>#i', '<head$1>' . "\n" . '<meta name="robots" content="noindex, follow">', $html, 1 );
-		file_put_contents( $index, $html );
+		return (string) preg_replace( '#<head([^>]*)>#i', '<head$1>' . "\n" . self::ROBOTS, $html, 1 );
 	}
 
 	/** The folder an absolute-base build was made for, read off its index.html. */

@@ -10,25 +10,10 @@
 	},
 	"blocks": [
 		{
-			"type": "page-hero",
-			"fields": {
-				"headline": "Tra cứu động cơ",
-				"heading_level": "h1",
-				"lead": "",
-				"height": 200,
-				"actions": [
-					{
-						"link": {
-							"label": "Nhập thông số",
-							"url": "#nhap-thong-so"
-						}
-					}
-				]
-			}
-		},
-		{
 			"type": "tool-shell",
 			"fields": {
+				"heading": "Tra cứu động cơ",
+				"lead": "Lọc theo hãng, model hoặc dải công suất.",
 				"custom_class": ""
 			},
 			"inner": [

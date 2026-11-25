@@ -370,6 +370,30 @@ function starter_flexible_schema_page_extras( $graph ) {
 		);
 	}
 
+	// WebApplication: a tool page that opens the tool full screen.
+	if ( 'page-app.php' === get_page_template_slug( get_queried_object_id() ) ) {
+		$desc    = (string) get_post_meta( get_queried_object_id(), '_yoast_wpseo_metadesc', true );
+		$graph[] = array(
+			'@type'               => 'WebApplication',
+			'@id'                 => $url . '#app',
+			'name'                => wp_strip_all_tags( get_the_title( get_queried_object_id() ) ),
+			'description'         => $desc,
+			'url'                 => $url,
+			'applicationCategory' => 'DesignApplication',
+			'operatingSystem'     => 'Any (web browser)',
+			'browserRequirements' => 'Requires JavaScript',
+			'inLanguage'          => starter_flexible_seo_is_english() ? 'en' : 'vi',
+			'isAccessibleForFree' => true,
+			'offers'              => array(
+				'@type'         => 'Offer',
+				'price'         => '0',
+				'priceCurrency' => 'VND',
+			),
+			'publisher'           => array( '@id' => home_url( '/#organization' ) ),
+			'mainEntityOfPage'    => array( '@id' => $url ),
+		);
+	}
+
 	return $graph;
 }
 add_filter( 'wpseo_schema_graph', 'starter_flexible_schema_page_extras', 30 );

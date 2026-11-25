@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Lasan Static Apps
  * Description:       Quản lý các công cụ dạng app tĩnh (index.html + assets): tải bản build .zip trong trang quản trị, đánh số phiên bản (1.2.0), ghi chú thay đổi và khôi phục bản cũ, hiển thị qua khối “App Embed”.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            Công ty TNHH Lasan Marine
@@ -22,7 +22,7 @@ require_once __DIR__ . '/includes/functions.php';
 
 final class Plugin {
 
-	const VERSION = '1.1.0';
+	const VERSION = '1.2.0';
 
 	public static function init(): void {
 		// On init, not before: an upgrade clears the page cache, which needs rewrite rules.

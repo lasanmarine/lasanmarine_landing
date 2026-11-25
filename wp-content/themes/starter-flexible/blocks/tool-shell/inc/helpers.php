@@ -11,7 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Starter_Flexible_Block_Tool_Shell extends Starter_Flexible_Abstract_Block {
 	protected function defaults(): array {
-		return array( 'custom_class' => '' );
+		return array(
+			'heading'      => '',
+			'lead'         => '',
+			'custom_class' => '',
+		);
 	}
 
 	protected function base_class(): string {
@@ -21,6 +25,11 @@ final class Starter_Flexible_Block_Tool_Shell extends Starter_Flexible_Abstract_
 	protected function prepare( array $data ): array {
 
 		$data['should_render'] = true;
+		$data['has_heading']   = $this->has_text( $data['heading'] );
+		$data['has_lead']      = $this->has_text( $data['lead'] );
+		if ( $data['has_heading'] ) {
+			$data['custom_class'] = trim( $data['custom_class'] . ' tool-shell--headed' );
+		}
 
 		$data['allowed'] = wp_json_encode( array( 'acf/engine-lookup', 'acf/power-converter', 'acf/shaft-diameter' ) );
 		$data['template'] = wp_json_encode( array() );

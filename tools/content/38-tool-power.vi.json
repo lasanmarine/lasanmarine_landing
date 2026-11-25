@@ -10,25 +10,10 @@
 	},
 	"blocks": [
 		{
-			"type": "page-hero",
-			"fields": {
-				"headline": "Chuyển đổi công suất",
-				"heading_level": "h1",
-				"lead": "",
-				"height": 300,
-				"actions": [
-					{
-						"link": {
-							"label": "Nhập thông số",
-							"url": "#nhap-thong-so"
-						}
-					}
-				]
-			}
-		},
-		{
 			"type": "tool-shell",
 			"fields": {
+				"heading": "Chuyển đổi công suất",
+				"lead": "Nhập một giá trị, các đơn vị còn lại hiện ngay.",
 				"custom_class": ""
 			},
 			"inner": [

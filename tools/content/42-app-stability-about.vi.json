@@ -5,8 +5,8 @@
 	"lang": "vi",
 	"parent": "app_stability",
 	"seo": {
-		"title": "Giới thiệu mô phỏng ổn định tàu | Công ty TNHH Lasan Marine",
-		"description": ""
+		"title": "Hướng dẫn mô phỏng ổn định tàu | Công ty TNHH Lasan Marine",
+		"description": "Cách dùng công cụ mô phỏng ổn định tàu online: dữ liệu cần nhập, dựng đường cong cánh tay đòn GZ, đọc GM, góc lật và kiểm tra tiêu chí IS Code 2008."
 	},
 	"blocks": [
 		{

@@ -128,7 +128,8 @@
 						"children": [],
 						"icon": "gauge"
 					}
-				]
+				],
+				"custom_class": "cm--tools"
 			}
 		},
 		{

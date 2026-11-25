@@ -10,25 +10,10 @@
 	},
 	"blocks": [
 		{
-			"type": "page-hero",
-			"fields": {
-				"headline": "Đường kính trục chân vịt",
-				"heading_level": "h1",
-				"lead": "",
-				"height": 200,
-				"actions": [
-					{
-						"link": {
-							"label": "Nhập thông số",
-							"url": "#nhap-thong-so"
-						}
-					}
-				]
-			}
-		},
-		{
 			"type": "tool-shell",
 			"fields": {
+				"heading": "Đường kính trục chân vịt",
+				"lead": "Ước tính đường kính trục tối thiểu theo công suất, vòng quay và vật liệu trục.",
 				"custom_class": ""
 			},
 			"inner": [

@@ -6,8 +6,8 @@
 	"translation_of": "app_stability_about",
 	"parent": "app_stability_en",
 	"seo": {
-		"title": "About the Ship Stability Simulator | Lasan Marine Co., Ltd.",
-		"description": ""
+		"title": "Ship Stability Simulator Guide | Lasan Marine Co., Ltd.",
+		"description": "How to use the free online ship stability simulator: inputs, building the GZ righting-arm curve, reading GM and vanishing angle, IS Code 2008 checks."
 	},
 	"blocks": [
 		{

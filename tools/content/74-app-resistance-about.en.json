@@ -6,8 +6,8 @@
 	"translation_of": "app_resistance_about",
 	"parent": "app_resistance_en",
 	"seo": {
-		"title": "About the Resistance & Power Simulator | Lasan Marine Co., Ltd.",
-		"description": ""
+		"title": "Resistance & Power Simulator Guide | Lasan Marine Co., Ltd.",
+		"description": "How to use the free resistance and power simulator for small fast craft: inputs, Savitsky and Holtrop–Mennen methods, and reading PE, PB and % MCR."
 	},
 	"blocks": [
 		{

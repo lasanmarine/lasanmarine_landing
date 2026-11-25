@@ -11,25 +11,10 @@
 	},
 	"blocks": [
 		{
-			"type": "page-hero",
-			"fields": {
-				"headline": "Engine Lookup",
-				"heading_level": "h1",
-				"lead": "Filter by brand, model or capacity range.",
-				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Enter parameters",
-							"url": "#enter-parameters"
-						}
-					}
-				]
-			}
-		},
-		{
 			"type": "tool-shell",
 			"fields": {
+				"heading": "Engine Lookup",
+				"lead": "Filter by brand, model or capacity range.",
 				"custom_class": ""
 			},
 			"inner": [

@@ -11,25 +11,10 @@
 	},
 	"blocks": [
 		{
-			"type": "page-hero",
-			"fields": {
-				"headline": "Power Converter",
-				"heading_level": "h1",
-				"lead": "Enter a value, the remaining units are converted immediately.",
-				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Enter parameters",
-							"url": "#enter-parameters"
-						}
-					}
-				]
-			}
-		},
-		{
 			"type": "tool-shell",
 			"fields": {
+				"heading": "Power Converter",
+				"lead": "Enter a value, the remaining units are converted immediately.",
 				"custom_class": ""
 			},
 			"inner": [

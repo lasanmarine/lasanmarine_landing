@@ -18,7 +18,7 @@ final class Admin {
 	public static function init(): void {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
 		add_action( 'admin_init', array( __CLASS__, 'auto_sync' ) );
-		foreach ( array( 'upload', 'activate', 'delete_version', 'delete_app', 'rename', 'notes', 'sync' ) as $action ) {
+		foreach ( array( 'upload', 'activate', 'delete_version', 'delete_app', 'rename', 'notes', 'sync', 'create_page' ) as $action ) {
 			add_action( 'admin_post_lsa_' . $action, array( __CLASS__, 'handle_' . $action ) );
 		}
 	}
@@ -183,7 +183,11 @@ final class Admin {
 			.lsa-rename label{display:flex;flex-direction:column;gap:3px;font-weight:600;font-size:12px}
 			.lsa-rename input.code{width:16em}
 			.lsa-rename .button{min-height:32px;padding:0 14px}
-			.lsa-used{margin:.3em 0 .6em}
+			.lsa-used{margin:.3em 0 .8em;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+			.lsa-warn{margin:8px 0 10px !important}
+			.lsa-warn ul{margin:.2em 0 .6em 1.5em}
+			.lsa-rename .lsa-desc{flex:1 1 100%;order:3}
+			.lsa-rename .lsa-desc textarea{width:100%;max-width:720px;font-weight:400}
 			.lsa-badge{display:inline-block;font-size:11px;line-height:1.6;padding:0 6px;border-radius:9px;background:#dcdcde;margin-left:4px;font-weight:600}
 			.lsa-badge.is-active{background:#00a32a;color:#fff}
 			.lsa-notes{min-width:220px;max-width:340px}
@@ -237,16 +241,33 @@ final class Admin {
 					<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Mở bản đang dùng ↗', 'lasan-static-apps' ); ?></a>
 				<?php endif; ?>
 			</h3>
-			<p class="lsa-used">
+			<?php
+			$warnings = (array) ( $app['versions'][ $app['active'] ?? '' ]['warnings'] ?? array() );
+			if ( $warnings ) :
+				?>
+				<div class="notice notice-warning inline lsa-warn"><p><strong><?php esc_html_e( 'Bản đang dùng có thể không chạy được trên website:', 'lasan-static-apps' ); ?></strong></p>
+					<ul class="ul-disc"><?php foreach ( $warnings as $w ) : ?><li><?php echo esc_html( (string) $w ); ?></li><?php endforeach; ?></ul></div>
+			<?php endif; ?>
+			<div class="lsa-used">
 				<?php if ( $used ) : ?>
-					<?php esc_html_e( 'Đang dùng ở:', 'lasan-static-apps' ); ?>
+					<?php esc_html_e( 'Trang dùng app:', 'lasan-static-apps' ); ?>
 					<?php foreach ( $used as $i => $post ) : ?>
 						<?php echo $i ? ', ' : ''; ?><a href="<?php echo esc_url( get_permalink( $post ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( get_the_title( $post ) ); ?></a>
+						<?php if ( 'publish' !== get_post_status( $post ) ) : ?>
+							<span class="lsa-badge"><?php echo esc_html( (string) get_post_status_object( (string) get_post_status( $post ) )->label ); ?></span>
+						<?php endif; ?>
+						<a href="<?php echo esc_url( (string) get_edit_post_link( $post ) ); ?>">(<?php esc_html_e( 'sửa', 'lasan-static-apps' ); ?>)</a>
 					<?php endforeach; ?>
 				<?php else : ?>
-					<em><?php esc_html_e( 'Chưa trang nào dùng app này (thêm khối “App Embed” vào trang để hiển thị).', 'lasan-static-apps' ); ?></em>
+					<em><?php esc_html_e( 'Chưa có trang nào dùng app này, nên app chưa hiện trên website.', 'lasan-static-apps' ); ?></em>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="lsa-inline">
+						<input type="hidden" name="action" value="lsa_create_page">
+						<input type="hidden" name="slug" value="<?php echo esc_attr( $slug ); ?>">
+						<?php wp_nonce_field( 'lsa_create_page_' . $slug ); ?>
+						<button type="submit" class="button button-primary"><?php echo esc_html( sprintf( /* translators: %s: hub path */ __( 'Tạo trang công cụ trong %s', 'lasan-static-apps' ), '/' . self::hub_path() . '/' ) ); ?></button>
+					</form>
 				<?php endif; ?>
-			</p>
+			</div>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="lsa-rename" data-lsa-slug="<?php echo esc_attr( $slug ); ?>">
 				<input type="hidden" name="action" value="lsa_rename">
 				<input type="hidden" name="slug" value="<?php echo esc_attr( $slug ); ?>">
@@ -255,7 +276,9 @@ final class Admin {
 					<input type="text" name="title" value="<?php echo esc_attr( $app['title'] ); ?>" class="regular-text"></label>
 				<label><span><?php esc_html_e( 'Mã (slug)', 'lasan-static-apps' ); ?></span>
 					<input type="text" name="new_slug" value="<?php echo esc_attr( $slug ); ?>" class="code" pattern="[a-z0-9-]+" required></label>
-				<button type="submit" class="button"><?php esc_html_e( 'Lưu tên & mã', 'lasan-static-apps' ); ?></button>
+				<label class="lsa-desc"><span><?php esc_html_e( 'Mô tả ngắn (hiện trên thẻ công cụ và trong kết quả Google)', 'lasan-static-apps' ); ?></span>
+					<textarea name="desc" rows="2" maxlength="300"><?php echo esc_textarea( (string) ( $app['desc'] ?? '' ) ); ?></textarea></label>
+				<button type="submit" class="button"><?php esc_html_e( 'Lưu thay đổi', 'lasan-static-apps' ); ?></button>
 			</form>
 			<table class="widefat striped">
 				<thead><tr>
@@ -397,6 +420,7 @@ final class Admin {
 		$slug = Store::sanitize_slug( sanitize_text_field( wp_unslash( $_POST['slug'] ?? '' ) ) );
 		self::guard( 'lsa_rename_' . $slug );
 		Store::rename( $slug, sanitize_text_field( wp_unslash( $_POST['title'] ?? '' ) ) );
+		Store::set_desc( $slug, sanitize_textarea_field( wp_unslash( $_POST['desc'] ?? '' ) ) );
 		$new = Store::sanitize_slug( sanitize_text_field( wp_unslash( $_POST['new_slug'] ?? '' ) ) );
 		if ( '' === $new || $new === $slug ) {
 			self::back( 'success', __( 'Đã lưu tên.', 'lasan-static-apps' ) );
@@ -406,6 +430,71 @@ final class Admin {
 			? self::back( 'error', $r->get_error_message() )
 			/* translators: 1: old slug, 2: new slug */
 			: self::back( 'success', sprintf( __( 'Đã đổi mã %1$s → %2$s. Các trang đang dùng đã được cập nhật; mã cũ vẫn chạy.', 'lasan-static-apps' ), $slug, $new ) );
+	}
+
+	/** Hub page that lists the tools: /cong-cu/ unless filtered. */
+	public static function hub_path(): string {
+		return trim( (string) apply_filters( 'lasan_static_apps_hub_path', 'cong-cu' ), '/' );
+	}
+
+	/**
+	 * A page for the app under the tools hub, using the full-screen app
+	 * template, so the tool has an address and shows in the hub's list. An
+	 * app the scan flagged as needing a server starts as a draft.
+	 */
+	public static function handle_create_page(): void {
+		$slug = Store::sanitize_slug( sanitize_text_field( wp_unslash( $_POST['slug'] ?? '' ) ) );
+		self::guard( 'lsa_create_page_' . $slug );
+		$app = Store::get( $slug );
+		if ( ! $app ) {
+			self::back( 'error', __( 'Không thấy app.', 'lasan-static-apps' ) );
+		}
+		$hub = get_page_by_path( self::hub_path() );
+		if ( ! $hub ) {
+			/* translators: %s: hub path */
+			self::back( 'error', sprintf( __( 'Không thấy trang /%s/ để đặt trang công cụ vào.', 'lasan-static-apps' ), self::hub_path() ) );
+		}
+		$warnings = (array) ( $app['versions'][ $app['active'] ?? '' ]['warnings'] ?? array() );
+		$title    = (string) $app['title'];
+		$desc     = (string) ( $app['desc'] ?? '' );
+		$block    = array(
+			'name' => 'acf/app-embed',
+			'data' => array(
+				'app'    => $slug,
+				'_app'   => 'field_ae_app',
+				'title'  => $title,
+				'_title' => 'field_ae_title',
+			),
+			'mode' => 'preview',
+		);
+		$id       = wp_insert_post(
+			array(
+				'post_type'     => 'page',
+				'post_status'   => $warnings ? 'draft' : 'publish',
+				'post_title'    => $title,
+				'post_name'     => $slug,
+				'post_parent'   => (int) $hub->ID,
+				'post_excerpt'  => $desc,
+				'post_content'  => '<!-- wp:acf/app-embed ' . wp_json_encode( $block, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . ' /-->',
+				'page_template' => 'page-app.php',
+				'menu_order'    => 100,
+			),
+			true
+		);
+		if ( is_wp_error( $id ) ) {
+			self::back( 'error', $id->get_error_message() );
+		}
+		if ( function_exists( 'pll_set_post_language' ) && function_exists( 'pll_get_post_language' ) ) {
+			pll_set_post_language( $id, (string) ( pll_get_post_language( (int) $hub->ID ) ?: pll_default_language() ) );
+		}
+		if ( '' !== $desc ) {
+			update_post_meta( $id, '_yoast_wpseo_metadesc', $desc );
+		}
+		$warnings
+			/* translators: %s: page URL */
+			? self::back( 'error', sprintf( __( 'Đã tạo trang ở dạng NHÁP (%s) vì app cần máy chủ riêng, đăng lên bây giờ khách sẽ gặp lỗi. Xem cảnh báo trên thẻ app.', 'lasan-static-apps' ), get_permalink( $id ) ) )
+			/* translators: %s: page URL */
+			: self::back( 'success', sprintf( __( 'Đã tạo trang %s; công cụ đã hiện trong danh sách ở trang công cụ.', 'lasan-static-apps' ), get_permalink( $id ) ) );
 	}
 
 	public static function handle_notes(): void {
@@ -477,7 +566,7 @@ final class Admin {
 	private static function pages_using( string $slug ): array {
 		global $wpdb;
 		$like = '%' . $wpdb->esc_like( '"app":"' . $slug . '"' ) . '%';
-		$ids  = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type IN ('page','post') AND post_content LIKE %s ORDER BY post_title", $like ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$ids  = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_status IN ('publish','draft','pending','private','future') AND post_type IN ('page','post') AND post_content LIKE %s ORDER BY post_title", $like ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 		return array_map( 'intval', $ids );
 	}
 }

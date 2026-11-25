@@ -54,6 +54,11 @@ final class Starter_Flexible_Block_Capability_Matrix extends Starter_Flexible_Ab
 			);
 		}
 
+		// On a tools hub, app pages not listed by hand get a card too (inc/static-apps.php).
+		if ( function_exists( 'starter_flexible_app_page_cards' ) ) {
+			$items = array_merge( $items, starter_flexible_app_page_cards( $items ) );
+		}
+
 		$data['items']         = $items;
 		$data['has_heading']   = '' !== trim( (string) $data['heading'] );
 		$data['should_render'] = ! empty( $items );

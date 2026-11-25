@@ -242,6 +242,8 @@
 @media (min-width: 1100px) {
 	.cm--tools .cm:has(> :nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 	.cm--tools .cm:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	/* A full directory (five tools or more, e.g. /cong-cu/): three to a row. */
+	.cm--tools .cm:has(> :nth-child(5)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 .cm--tools .cm__desc { max-width: none; }
 .cm--tools .cm__cell { display: flex; flex-direction: column; }

@@ -11,25 +11,10 @@
 	},
 	"blocks": [
 		{
-			"type": "page-hero",
-			"fields": {
-				"headline": "Propeller Shaft Diameter",
-				"heading_level": "h1",
-				"lead": "Estimate minimum diameter according to capacity, rotation and shaft material.",
-				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Enter parameters",
-							"url": "#enter-parameters"
-						}
-					}
-				]
-			}
-		},
-		{
 			"type": "tool-shell",
 			"fields": {
+				"heading": "Propeller Shaft Diameter",
+				"lead": "Estimate minimum diameter according to capacity, rotation and shaft material.",
 				"custom_class": ""
 			},
 			"inner": [
