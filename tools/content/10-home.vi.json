@@ -20,11 +20,11 @@
 						"headline": "Lasan Marine thiết kế tàu cá, tàu khách và hồ sơ đăng kiểm",
 						"headline_accent": "nhanh, đúng quy chuẩn.",
 						"headline_tail": "",
-						"lead": "Công ty thiết kế tàu ở Nha Trang, Khánh Hòa. Chúng tôi lập bản vẽ đóng mới, hoán cải chuyển nghề, thay máy và hồ sơ thẩm định cho chủ tàu, hợp tác xã và xưởng đóng tàu. Gọi hoặc nhắn Zalo 0834 310 781."
+						"lead": "Chúng tôi lập bản vẽ đóng mới, hoán cải chuyển nghề, thay máy và hồ sơ thẩm định cho chủ tàu, hợp tác xã và xưởng đóng tàu. Gọi hoặc nhắn Zalo 0834 310 781."
 					}
 				],
-				"eyebrow": "",
-				"subline": "Công ty TNHH Lasan Marine, 03 Trần Lư, phường Bắc Nha Trang, Khánh Hòa. Ngoài thiết kế tàu, chúng tôi viết phần mềm chuyên ngành cho xưởng đóng tàu và văn phòng thiết kế.",
+				"eyebrow": "Công ty TNHH Lasan Marine · Nha Trang, Khánh Hòa",
+				"subline": "Thiết kế tàu cá, tàu hậu cần, cano và tàu khách; ngoài thiết kế tàu, chúng tôi viết phần mềm chuyên ngành cho xưởng đóng tàu và văn phòng thiết kế.",
 				"heading_level": "h1",
 				"primary": {
 					"url": "tel:0834310781",
@@ -34,7 +34,8 @@
 				"secondary": {
 					"label": "Liên hệ chúng tôi",
 					"page": "contact"
-				}
+				},
+				"badges": "Thiết kế theo QCVN 91, 92:2025\nĐứng tên cơ sở thiết kế, nộp hồ sơ thẩm định\nBàn giao bản vẽ DWG, PDF và mô hình 3D"
 			}
 		},
 		{
@@ -58,6 +59,7 @@
 						"image": {
 							"media": "tau-ca-composite-kh-95177-ts"
 						},
+						"style": "drawing",
 						"title": "Tàu composite",
 						"desc": "Tàu cá composite thay tàu gỗ, cano và xuồng FRP.",
 						"link": {
@@ -80,6 +82,7 @@
 						"image": {
 							"media": "cano-lam-hai"
 						},
+						"style": "drawing",
 						"title": "Tàu khách, cano du lịch",
 						"desc": "Cano du lịch, tàu khách, tàu tham quan.",
 						"link": {
@@ -102,21 +105,20 @@
 			}
 		},
 		{
-			"type": "cta-banner",
+			"type": "project-showcase",
 			"fields": {
-				"label": "Phần mềm chuyên ngành",
-				"heading": "Phần mềm cho xưởng đóng tàu và văn phòng thiết kế",
-				"content": "Dịch vụ thứ hai của chúng tôi: công cụ tính toán, dự toán, quản lý vật tư và hồ sơ, plugin CAD và AI agent cho ngành tàu. Người viết phần mềm cũng là người thiết kế tàu, nên hiểu bài toán của bạn mà không cần phiên dịch.",
-				"primary_cta": {
-					"label": "Xem dịch vụ phần mềm",
-					"page": "service_03"
+				"heading": "Dự án tiêu biểu",
+				"intro": "Tàu cá, tàu hậu cần và cano chở khách chúng tôi đã thiết kế và hoàn thiện hồ sơ, ở Khánh Hòa, Quảng Nam, Bình Thuận, Bà Rịa – Vũng Tàu và Nghệ An.",
+				"view_all": {
+					"label": "Xem tất cả dự án",
+					"page": "projects"
 				},
-				"secondary_cta": {
-					"label": "Dùng thử công cụ miễn phí",
-					"page": "tools"
-				},
-				"theme": "pale",
-				"custom_class": ""
+				"projects": [
+					"tau-hau-can-bv-99889-ts",
+					"tau-ca-vo-thep-qna-91312-ts",
+					"tau-ca-composite-kh-95177-ts",
+					"cano-lam-hai"
+				]
 			}
 		},
 		{
@@ -155,20 +157,21 @@
 			}
 		},
 		{
-			"type": "project-showcase",
+			"type": "cta-banner",
 			"fields": {
-				"heading": "Dự án tiêu biểu",
-				"intro": "Tàu cá, tàu hậu cần và cano chở khách chúng tôi đã thiết kế và hoàn thiện hồ sơ, ở Khánh Hòa, Quảng Nam, Bình Thuận, Bà Rịa – Vũng Tàu và Nghệ An.",
-				"view_all": {
-					"label": "Xem tất cả dự án",
-					"page": "projects"
+				"label": "Phần mềm chuyên ngành",
+				"heading": "Phần mềm cho xưởng đóng tàu và văn phòng thiết kế",
+				"content": "Dịch vụ thứ hai của chúng tôi: công cụ tính toán, dự toán, quản lý vật tư và hồ sơ, plugin CAD và AI agent cho ngành tàu. Người viết phần mềm cũng là người thiết kế tàu, nên hiểu bài toán của bạn mà không cần phiên dịch.",
+				"primary_cta": {
+					"label": "Xem dịch vụ phần mềm",
+					"page": "service_03"
 				},
-				"projects": [
-					"tau-hau-can-bv-99889-ts",
-					"tau-ca-vo-thep-qna-91312-ts",
-					"tau-ca-composite-kh-95177-ts",
-					"cano-lam-hai"
-				]
+				"secondary_cta": {
+					"label": "Dùng thử công cụ miễn phí",
+					"page": "tools"
+				},
+				"theme": "pale",
+				"custom_class": ""
 			}
 		},
 		{

@@ -231,6 +231,47 @@ a.vf__card:hover .btn__icon svg:nth-child(2) {
 	align-self: end;
 }
 
+/* --- drawings -----------------------------------------------------------------
+   A technical drawing on white is shown whole and sharp on a pale blueprint
+   grid, with navy type on a light caption, instead of under a dark scrim. */
+.vf__card--drawing {
+	background-color: #f3f8fd;
+	background-image:
+		linear-gradient(rgba(10, 114, 200, 0.07) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(10, 114, 200, 0.07) 1px, transparent 1px);
+	background-size: 24px 24px;
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+.vf__card--drawing::before { content: none; }
+.lasanmarine-vessel-finder .vf__card.vf__card--drawing {
+	justify-content: flex-start;
+	gap: 10px;
+	padding: 14px;
+}
+/* The drawing takes the space above the caption: in the flow, not behind it. */
+.lasanmarine-vessel-finder .vf__card--drawing .vf__media {
+	position: relative;
+	flex: 1 1 auto;
+	min-height: 70px;
+}
+.lasanmarine-vessel-finder .vf__card--drawing .vf__media img {
+	z-index: 0;
+	object-fit: contain;
+	mix-blend-mode: multiply;
+}
+.vf__card--drawing .vf__body {
+	position: relative;
+	margin-top: auto;
+	background: rgba(255, 255, 255, 0.94);
+	border-radius: var(--r-md);
+	padding: 12px 14px;
+	max-width: none;
+	box-shadow: inset 0 0 0 1px var(--line-soft);
+}
+.vf__card--drawing .vf__title { color: var(--navy); text-shadow: none; }
+.vf__card--drawing .vf__desc { color: var(--steel); text-shadow: none; }
+.vf__card--drawing .vf__go { background: var(--navy); color: #fff; }
+
 /* --- motion (MOTION.md: vessel-finder) ---------------------------------------
    Entrance: the bento fills as a diagonal wave from its top-left corner
    (`data-reveal-order="grid"`), each photo tile opening from .94.

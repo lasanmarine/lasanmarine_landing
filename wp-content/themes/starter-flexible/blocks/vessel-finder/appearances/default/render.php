@@ -34,7 +34,7 @@ if ( empty( $data->should_render ) ) {
 		<?php foreach ( $data->items as $i => $item ) : ?>
 			<?php
 			$is_link = '' !== $item['url'];
-			$classes = 'vf__card' . ( 0 === $i ? ' vf__card--lead' : '' ) . ( $item['image_id'] ? ' vf__card--photo' : '' );
+			$classes = 'vf__card' . ( 0 === $i ? ' vf__card--lead' : '' ) . ( $item['image_id'] ? ( $item['drawing'] ? ' vf__card--drawing' : ' vf__card--photo' ) : '' );
 			?>
 			<?php if ( $is_link ) : ?>
 				<a class="<?php echo esc_attr( $classes ); ?>" href="<?php echo esc_url( $item['url'] ); ?>"<?php echo '_blank' === $item['target'] ? ' target="_blank" rel="noopener"' : ''; ?>>

@@ -1,0 +1,330 @@
+/* ==========================================================================
+   "Hỗ trợ tiếp cận" — the panel (inc/accessibility.php,
+   behaviours/a11y-panel.js) and the reading aids it switches on.
+   Every aid is a class on <html>; the panel itself is never zoomed out of
+   reach or greyed beyond use.
+   ========================================================================== */
+
+/* --- trigger and panel ---------------------------------------------------- */
+.a11y__trigger {
+	position: fixed;
+	z-index: 170; // above the header (150) and its second row, below dialogs
+	top: 50%;
+	right: clamp(10px, 1.4vw, 20px);
+	translate: 0 -50%;
+	display: grid;
+	place-items: center;
+	width: 52px;
+	height: 52px;
+	padding: 0;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: var(--navy);
+	color: #fff;
+	box-shadow: 0 14px 30px -14px rgba(6, 18, 45, 0.55);
+	cursor: pointer;
+	transition: background 200ms var(--ease), scale 200ms var(--ease);
+}
+.a11y__trigger:hover { background: var(--marine); }
+.a11y__trigger:focus-visible { outline: 3px solid var(--aqua); outline-offset: 3px; }
+.a11y.is-open .a11y__trigger { background: var(--marine); }
+
+.a11y__panel {
+	position: fixed;
+	z-index: 171;
+	top: 50%;
+	right: calc(clamp(10px, 1.4vw, 20px) + 64px);
+	translate: 0 -50%;
+	width: min(360px, calc(100vw - 96px));
+	max-height: min(640px, calc(100svh - 24px));
+	overflow: auto;
+	overscroll-behavior: contain;
+	padding: 18px;
+	border: 1px solid var(--line);
+	border-radius: var(--r-lg, 16px);
+	background: #fff;
+	color: var(--navy);
+	box-shadow: 0 30px 60px -24px rgba(6, 18, 45, 0.45);
+	font-family: var(--sans, inherit);
+}
+.a11y__panel[hidden] { display: none; }
+@media (max-width: 600px) {
+	.a11y__trigger { top: auto; bottom: 16px; translate: none; width: 48px; height: 48px; }
+	.a11y__panel {
+		top: auto;
+		bottom: 76px;
+		right: 12px;
+		left: 12px;
+		translate: none;
+		width: auto;
+		max-height: calc(100svh - 100px);
+	}
+}
+
+.a11y__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 14px;
+}
+.a11y__title {
+	margin: 0;
+	font-family: var(--display, inherit);
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+.a11y__close {
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: #fff;
+	color: var(--navy);
+	font-size: 22px;
+	line-height: 1;
+	cursor: pointer;
+}
+.a11y__close:hover { background: var(--surface); }
+
+.a11y__size {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 10px 12px;
+	border-radius: var(--r-md, 12px);
+	background: var(--surface);
+}
+.a11y__label { font-size: 14.5px; font-weight: 600; }
+.a11y__stepper { display: flex; align-items: center; gap: 6px; }
+.a11y__step {
+	min-width: 44px;
+	height: 40px;
+	padding: 0 10px;
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	background: #fff;
+	color: var(--navy);
+	font-size: 15px;
+	font-weight: 700;
+	cursor: pointer;
+}
+.a11y__step:hover:not(:disabled) { border-color: var(--marine); color: var(--marine); }
+.a11y__step:disabled { opacity: 0.4; cursor: default; }
+.a11y__value { min-width: 48px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 14px; }
+
+.a11y__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px;
+	margin: 12px 0 0;
+	padding: 0;
+	list-style: none;
+}
+.a11y__toggle {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	width: 100%;
+	min-height: 78px;
+	padding: 12px;
+	border: 1px solid var(--line);
+	border-radius: var(--r-md, 12px);
+	background: #fff;
+	color: var(--navy);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.3;
+	text-align: left;
+	cursor: pointer;
+	transition: border-color 160ms var(--ease), background 160ms var(--ease);
+}
+.a11y__toggle:hover { border-color: var(--marine); }
+.a11y__toggle[aria-pressed='true'] {
+	border-color: var(--navy);
+	background: var(--navy);
+	color: #fff;
+}
+.a11y__toggle:focus-visible,
+.a11y__step:focus-visible,
+.a11y__close:focus-visible,
+.a11y__reset:focus-visible,
+.a11y__link:focus-visible { outline: 3px solid var(--marine); outline-offset: 2px; }
+
+/* A small drawn glyph per aid; a tick replaces it once the aid is on. */
+.a11y__glyph {
+	display: grid;
+	place-items: center;
+	width: 26px;
+	height: 26px;
+	border-radius: 8px;
+	background: var(--surface);
+	color: var(--marine);
+	font-size: 13px;
+	font-weight: 800;
+	line-height: 1;
+}
+.a11y__toggle[aria-pressed='true'] .a11y__glyph { background: rgba(255, 255, 255, 0.16); color: #fff; }
+.a11y__toggle--contrast .a11y__glyph::before { content: '◐'; font-size: 16px; }
+.a11y__toggle--gray .a11y__glyph::before { content: '▦'; font-size: 15px; }
+.a11y__toggle--links .a11y__glyph::before { content: 'U'; text-decoration: underline; }
+.a11y__toggle--readable .a11y__glyph::before { content: 'Aa'; }
+.a11y__toggle--spacing .a11y__glyph::before { content: '↕'; font-size: 15px; }
+.a11y__toggle--motion .a11y__glyph::before { content: 'II'; letter-spacing: -1px; }
+.a11y__toggle--cursor .a11y__glyph::before { content: '➚'; font-size: 15px; }
+.a11y__toggle--guide .a11y__glyph::before { content: '═'; font-size: 15px; }
+
+.a11y__foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin-top: 14px;
+}
+.a11y__reset {
+	height: 40px;
+	padding: 0 16px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: #fff;
+	color: var(--navy);
+	font-weight: 600;
+	font-size: 14px;
+	cursor: pointer;
+}
+.a11y__reset:hover { border-color: var(--marine); color: var(--marine); }
+.a11y__link { color: var(--marine); font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 0.2em; }
+.a11y__note { margin: 10px 0 0; color: var(--steel); font-size: 12.5px; line-height: 1.5; }
+
+/* --- reading guide ----------------------------------------------------------
+   A clear band, its own height, with the rest of the screen dimmed by the
+   band's shadow; moved by transform (compositor only). */
+.a11y__ruler {
+	position: fixed;
+	z-index: 165;
+	top: -36px;
+	left: 0;
+	right: 0;
+	height: 72px;
+	pointer-events: none;
+	box-shadow: 0 0 0 100vmax rgba(6, 18, 45, 0.45);
+	border-block: 2px solid var(--aqua);
+	will-change: transform;
+}
+.a11y__ruler[hidden] { display: none; }
+
+/* --- text size (zoom, so px type grows too) ------------------------------ */
+html.a11y-text-1 body { zoom: 1.12; }
+html.a11y-text-2 body { zoom: 1.25; }
+html.a11y-text-3 body { zoom: 1.4; }
+html[class*='a11y-text-'] body { overflow-x: clip; }
+/* The panel keeps its own size so it always fits the screen. */
+html.a11y-text-1 .a11y { zoom: calc(1 / 1.12); }
+html.a11y-text-2 .a11y { zoom: calc(1 / 1.25); }
+html.a11y-text-3 .a11y { zoom: calc(1 / 1.4); }
+
+/* --- high contrast ------------------------------------------------------------ */
+html.a11y-contrast {
+	--steel: #1a2433;
+	--mute: #1a2433;
+	--line: #59657a;
+	--line-soft: #8792a5;
+	--surface: #ffffff;
+	--marine: #0a5aa3;
+}
+html.a11y-contrast body { background: #fff; color: #0b1430; }
+/* Gradient and translucent type becomes solid. */
+html.a11y-contrast body * {
+	-webkit-text-fill-color: currentColor !important;
+	text-shadow: none !important;
+}
+html.a11y-contrast :is(.hero__headline span, .ftr__wordmark span) { color: var(--marine) !important; }
+html.a11y-contrast :is(p, li, dd, dt, td, th, label, figcaption, .copy) { color: inherit; }
+/* Captions over photographs sit on solid navy. */
+html.a11y-contrast :is(.vf__card--photo .vf__body, .ps__card .ps__body) { background: #06122d !important; color: #fff !important; }
+html.a11y-contrast ::placeholder { color: #3b4658; opacity: 1; }
+html.a11y-contrast :focus-visible { outline: 3px solid #000 !important; outline-offset: 3px !important; box-shadow: 0 0 0 6px #ffd400 !important; }
+html.a11y-contrast :is(.btn, button, input, select, textarea) { border-color: #0b1430; }
+
+/* --- grayscale ----------------------------------------------------------------- */
+/* On the root: a filter on body would become the containing block of the
+   fixed header and panel (the root element is exempt). */
+html.a11y-gray { filter: grayscale(1); }
+
+/* --- underline links ------------------------------------------------------------ */
+html.a11y-links a:not(.a11y__trigger) {
+	text-decoration: underline !important;
+	text-decoration-thickness: 2px !important;
+	text-underline-offset: 0.18em !important;
+}
+html.a11y-links a.btn,
+html.a11y-links :is(.vf__card, .ps__card, .cm__cell a) {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+/* --- readable font ----------------------------------------------------------------- */
+html.a11y-readable body,
+html.a11y-readable body :not(svg):not(svg *):not(code):not(pre):not(.a11y__glyph) {
+	font-family: Verdana, Tahoma, 'Segoe UI', Arial, sans-serif !important;
+	font-style: normal !important;
+}
+
+/* --- text spacing (WCAG 1.4.12) --------------------------------------------------------- */
+html.a11y-spacing body :not(svg):not(svg *):not(.a11y *) {
+	line-height: 1.6 !important;
+	letter-spacing: 0.12em !important;
+	word-spacing: 0.16em !important;
+}
+html.a11y-spacing body :is(p, li, dd):not(.a11y *) { margin-bottom: 2em !important; }
+html.a11y-spacing :is(.btn, button, .lang__item) { white-space: normal !important; }
+
+/* --- large cursor ----------------------------------------------------------------- */
+html.a11y-cursor,
+html.a11y-cursor * {
+	cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpath d='M6 3l28 16-12 3 7 14-6 3-7-14-10 9z' fill='%23000' stroke='%23fff' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 6 3, auto !important;
+}
+html.a11y-cursor :is(a, button, [role='button'], label, summary, select),
+html.a11y-cursor :is(a, button, [role='button'], label, summary, select) * {
+	cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpath d='M16 4a4 4 0 0 1 4 4v12l2-1a4 4 0 0 1 5 2l1-.5a4 4 0 0 1 5 2l1-.3a4 4 0 0 1 4 3.3V32c0 6-4 10-10 10h-4c-4 0-6-2-8-5l-7-9a3.5 3.5 0 0 1 5-5l2 2V8a4 4 0 0 1 4-4z' fill='%23000' stroke='%23fff' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 16 4, pointer !important;
+}
+
+/* --- stop animations ---------------------------------------------------------------------
+   The motion store's class; every transition and animation is cut, not only
+   the ones the site's own motion layer checks. */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+	animation-duration: 1ms !important;
+	animation-iteration-count: 1 !important;
+	transition-duration: 1ms !important;
+	scroll-behavior: auto !important;
+}
+
+/* --- skip link: visible when it receives focus ------------------------------------------ */
+.skip-link:focus {
+	position: fixed;
+	z-index: 300;
+	top: 12px;
+	left: 12px;
+	width: auto;
+	height: auto;
+	clip: auto;
+	padding: 12px 18px;
+	border-radius: 10px;
+	background: var(--navy);
+	color: #fff;
+	font-weight: 600;
+	white-space: normal;
+}
+
+/* Grayscale and the guide never hide the panel from someone who needs it. */
+@media print {
+	.a11y { display: none; }
+}

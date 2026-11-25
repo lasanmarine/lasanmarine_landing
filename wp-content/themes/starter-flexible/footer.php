@@ -24,6 +24,7 @@ $wordmark    = (string) starter_flexible_setting( 'wordmark', 'ENGINEERING|FOR T
 $footer_cta  = starter_flexible_link( starter_flexible_setting( 'footer_cta', array() ) );
 $bank        = (array) starter_flexible_setting( 'bank', array() );
 $legal_links = (array) starter_flexible_setting( 'legal_links', array() );
+$legal_links = function_exists( 'starter_flexible_a11y_legal_link' ) ? starter_flexible_a11y_legal_link( $legal_links ) : $legal_links;
 $is_english  = function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 
 $wordmark_lines = array_values( array_filter( array_map( 'trim', explode( '|', $wordmark ) ) ) );

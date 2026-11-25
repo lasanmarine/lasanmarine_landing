@@ -19,13 +19,14 @@
 		transform 360ms var(--ease),
 		color 260ms var(--ease);
 }
+/* Hover: the card stays light — a marine hairline, a soft lift and a
+   brighter icon — rather than flipping a large area from light to dark. */
 %v3-card-hover {
-	color: #fff;
-	background:
-		radial-gradient(120% 80% at 100% 0%, rgba(20, 200, 200, 0.42), transparent 60%),
-		linear-gradient(155deg, var(--navy) 0%, #0d2f73 60%, var(--marine) 130%);
-	box-shadow: 0 26px 50px -28px rgba(6, 18, 45, 0.6);
-	transform: translateY(-3px);
+	background: var(--paper);
+	box-shadow:
+		inset 0 0 0 1px var(--marine),
+		0 18px 40px -28px rgba(6, 18, 45, 0.35);
+	transform: translateY(-2px);
 }
 %v3-num {
 	font-family: var(--display);
@@ -83,11 +84,9 @@
 .lasanmarine-value-grid .vg__cell:hover {
 	@extend %v3-card-hover;
 }
-.lasanmarine-value-grid .vg__cell:hover .vg__desc { color: rgba(255, 255, 255, 0.8); }
 .lasanmarine-value-grid .vg__cell:hover .vg__title,
-.lasanmarine-value-grid .vg__cell:hover .vg__link { color: #fff; }
-.lasanmarine-value-grid .vg__cell:hover .vg__icon { background: rgba(255, 255, 255, 0.14); color: var(--aqua); box-shadow: none; }
-.lasanmarine-value-grid .vg__cell:hover::before { -webkit-text-fill-color: var(--aqua); background: none; }
+.lasanmarine-value-grid .vg__cell:hover .vg__link { color: var(--marine); }
+.lasanmarine-value-grid .vg__cell:hover .vg__icon { color: var(--marine-bright, var(--marine)); }
 
 /* --- capability-matrix: same cards (solution areas, tools) ---------------- */
 .lasanmarine-capability-matrix .cm {
@@ -128,11 +127,8 @@
 	@extend %v3-card-hover;
 }
 .lasanmarine-capability-matrix .cm__cell:hover .cm__name,
-.lasanmarine-capability-matrix .cm__cell:hover .cm__cta,
-.lasanmarine-capability-matrix .cm__cell:hover .cm__children > * { color: #fff; }
-.lasanmarine-capability-matrix .cm__cell:hover .cm__desc { color: rgba(255, 255, 255, 0.8); }
-.lasanmarine-capability-matrix .cm__cell:hover .cm__icon { background: rgba(255, 255, 255, 0.14); color: var(--aqua); box-shadow: none; }
-.lasanmarine-capability-matrix .cm__cell:hover::before { -webkit-text-fill-color: var(--aqua); background: none; }
+.lasanmarine-capability-matrix .cm__cell:hover .cm__cta { color: var(--marine); }
+.lasanmarine-capability-matrix .cm__cell:hover .cm__icon { color: var(--marine-bright, var(--marine)); }
 
 /* --- accordion: questions as cards; the open one is the brand card -------- */
 .lasanmarine-accordion .ac__list { gap: 10px; }

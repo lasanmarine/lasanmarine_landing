@@ -13,3 +13,12 @@
 .prose .cmplz-document ul > li {
 	list-style: none;
 }
+
+/* Complianz's "accept to see the map" button: white on its default grey was
+   3.9:1. Navy keeps it well above 4.5:1. */
+.cmplz-blocked-content-notice,
+button.cmplz-blocked-content-notice {
+	background: var(--navy) !important;
+	color: #fff !important;
+	border-radius: 999px;
+}

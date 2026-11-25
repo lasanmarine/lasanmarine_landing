@@ -32,6 +32,7 @@ final class Starter_Flexible_Block_Vessel_Finder extends Starter_Flexible_Abstra
 				'desc'     => (string) ( $item['desc'] ?? '' ),
 				'icon'     => (string) ( $item['icon'] ?? 'ship' ),
 				'image_id' => (int) ( $item['image'] ?? 0 ),
+				'drawing'  => 'drawing' === ( $item['style'] ?? '' ),
 				'url'      => (string) ( $link['url'] ?? '' ),
 				'target'   => ! empty( $link['target'] ) ? (string) $link['target'] : '_self',
 			);

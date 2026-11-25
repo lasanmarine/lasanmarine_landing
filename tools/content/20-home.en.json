@@ -23,8 +23,8 @@
 						"lead": "From new-build drawings and conversions to plan-approval documents, calculated with engineering software we write ourselves. The same team builds custom software for naval architects and shipyards."
 					}
 				],
-				"eyebrow": "",
-				"subline": "Lasan Marine Co., Ltd. is a naval architecture and marine software firm in Nha Trang, Vietnam, working with owners, shipyards and engineering firms in Vietnam and overseas.",
+				"eyebrow": "Lasan Marine Co., Ltd. · Nha Trang, Vietnam",
+				"subline": "A naval architecture and marine software firm working with owners, shipyards and engineering firms in Vietnam and overseas.",
 				"heading_level": "h1",
 				"primary": {
 					"url": "tel:+84834310781",
@@ -34,7 +34,8 @@
 				"secondary": {
 					"label": "Send a request",
 					"page": "contact_en"
-				}
+				},
+				"badges": "Designer of record for plan approval\nDWG, PDF and 3D model deliverables\nWe work in English"
 			}
 		},
 		{
@@ -58,6 +59,7 @@
 						"image": {
 							"media": "tau-ca-composite-kh-95177-ts"
 						},
+						"style": "drawing",
 						"title": "Composite boats",
 						"desc": "FRP fishing vessels, speedboats and small craft.",
 						"link": {
@@ -80,6 +82,7 @@
 						"image": {
 							"media": "cano-lam-hai"
 						},
+						"style": "drawing",
 						"title": "Passenger boats",
 						"desc": "Tourist speedboats, passenger and inland vessels.",
 						"link": {
@@ -98,6 +101,23 @@
 							"page": "approval_docs_en"
 						}
 					}
+				]
+			}
+		},
+		{
+			"type": "project-showcase",
+			"fields": {
+				"heading": "Selected projects",
+				"intro": "Fishing vessels, support vessels and passenger speedboats we have designed and documented.",
+				"view_all": {
+					"label": "See all projects",
+					"page": "projects"
+				},
+				"projects": [
+					"tau-hau-can-bv-99889-ts",
+					"tau-ca-vo-thep-qna-91312-ts",
+					"tau-ca-composite-kh-95177-ts",
+					"cano-lam-hai"
 				]
 			}
 		},
@@ -134,6 +154,23 @@
 						"icon": "calculator"
 					}
 				]
+			}
+		},
+		{
+			"type": "cta-banner",
+			"fields": {
+				"heading": "Outsourcing design or software work to Vietnam?",
+				"content": "We work remotely in English from Nha Trang (UTC+7), in your templates and standards. We sign an NDA before you share details, and the code and design work we produce for you is yours.",
+				"primary_cta": {
+					"label": "Ship design outsourcing",
+					"page": "service_01_en"
+				},
+				"secondary_cta": {
+					"label": "Software development",
+					"page": "service_03_en"
+				},
+				"theme": "pale",
+				"custom_class": ""
 			}
 		},
 		{
@@ -186,40 +223,6 @@
 						"icon": "scan"
 					}
 				]
-			}
-		},
-		{
-			"type": "project-showcase",
-			"fields": {
-				"heading": "Selected projects",
-				"intro": "Fishing vessels, support vessels and passenger speedboats we have designed and documented.",
-				"view_all": {
-					"label": "See all projects",
-					"page": "projects"
-				},
-				"projects": [
-					"tau-hau-can-bv-99889-ts",
-					"tau-ca-vo-thep-qna-91312-ts",
-					"tau-ca-composite-kh-95177-ts",
-					"cano-lam-hai"
-				]
-			}
-		},
-		{
-			"type": "cta-banner",
-			"fields": {
-				"heading": "Outsourcing design or software work to Vietnam?",
-				"content": "We work remotely in English from Nha Trang (UTC+7), in your templates and standards. We sign an NDA before you share details, and the code and design work we produce for you is yours.",
-				"primary_cta": {
-					"label": "Ship design outsourcing",
-					"page": "service_01_en"
-				},
-				"secondary_cta": {
-					"label": "Software development",
-					"page": "service_03_en"
-				},
-				"theme": "pale",
-				"custom_class": ""
 			}
 		},
 		{

@@ -1,0 +1,48 @@
+{
+	"key": "accessibility_en",
+	"title": "Accessibility statement",
+	"slug": "accessibility",
+	"lang": "en",
+	"translation_of": "accessibility",
+	"seo": {
+		"title": "Accessibility Statement | Lasan Marine Co., Ltd.",
+		"description": "How the Lasan Marine website supports accessibility: WCAG 2.2 level AA as the target, built-in reading aids, known limitations and how to send us feedback."
+	},
+	"blocks": [
+		{
+			"type": "page-hero",
+			"fields": {
+				"headline": "Accessibility statement",
+				"heading_level": "h1",
+				"lead": "Lasan Marine Co., Ltd. wants everyone to be able to read and use this website, including people who use screen readers, keyboards, screen magnification or need less motion.",
+				"height": 300,
+				"actions": []
+			}
+		},
+		{
+			"type": "rich-text",
+			"fields": {
+				"heading": "",
+				"content": "<h2>The standard we aim for</h2>\n<p>The site is built and checked against the W3C <strong>Web Content Accessibility Guidelines (WCAG) 2.2, level AA</strong>. It is currently <strong>partially conformant</strong>: most content meets the standard, and the remaining limitations are listed below.</p>\n<h2>Reading aids on the site</h2>\n<p>The <strong>Accessibility</strong> button on the right edge of the screen (bottom corner on phones) opens a panel of options. Your choices are kept in the browser you use:</p>\n<ul>\n<li><strong>Text size</strong>: enlarges the whole page in four steps.</li>\n<li><strong>High contrast</strong>: darker text and borders, no gradient type.</li>\n<li><strong>Grayscale</strong>: shows the site without colour.</li>\n<li><strong>Underline links</strong>: makes every link easy to spot.</li>\n<li><strong>Readable font</strong>: switches to a plain, wide typeface.</li>\n<li><strong>Text spacing</strong>: line, letter, word and paragraph spacing per WCAG success criterion 1.4.12.</li>\n<li><strong>Stop animations</strong>: turns all motion off; the site also follows your operating system’s “reduce motion” setting.</li>\n<li><strong>Large cursor</strong> and <strong>reading guide</strong>: a clear band that follows the pointer to keep your place.</li>\n</ul>\n<h2>What the site already does</h2>\n<ul>\n<li>A “Skip to main content” link at the top for keyboard users.</li>\n<li>Everything works with a keyboard, with a clear outline on the focused element.</li>\n<li>One main heading per page and an ordered heading structure; navigation, content and footer are marked as landmarks.</li>\n<li>Informative images have text alternatives; decorative icons are hidden from screen readers.</li>\n<li>Every form field has a label.</li>\n<li>Content is available in Vietnamese and English, and each page declares its language.</li>\n</ul>\n<h2>Known limitations</h2>\n<ul>\n<li><strong>The 3D simulators</strong> (ship stability, steel hull structure…) draw with browser graphics, so screen readers cannot yet read the drawing. The main results can be exported to Word or Excel; if you need them in another form, contact us.</li>\n<li><strong>Technical drawings and project photos</strong> have short descriptions, not a full description of every detail.</li>\n<li><strong>Third-party content</strong> such as Google Maps and Zalo follows that provider’s accessibility support.</li>\n</ul>\n<h2>Feedback</h2>\n<p>If anything on this site is hard to read or use, call or message us on Zalo at <a href=\"tel:+84834310781\">+84 834 310 781</a>, or email <a href=\"mailto:hello@lasanmarine.com\">hello@lasanmarine.com</a>. We will fix it, or send you the information in a form that works for you.</p>\n<p>This statement was prepared on 25 November 2026 and will be updated as the site changes.</p>",
+				"align": "left",
+				"width": "narrow",
+				"custom_class": ""
+			}
+		},
+		{
+			"type": "contact-statement",
+			"fields": {
+				"heading": "<p>Trouble using the site?</p>",
+				"description": "Tell us which page, what you were doing and which device or assistive technology you use; we will fix it or send you the information another way.",
+				"phone": "0834 310 781",
+				"email": "hello@lasanmarine.com",
+				"cta": {
+					"label": "Send feedback",
+					"page": "contact_en"
+				},
+				"zalo": "0834310781",
+				"mascot": ""
+			}
+		}
+	]
+}

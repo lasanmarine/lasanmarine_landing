@@ -36,7 +36,7 @@ $is_english   = function_exists( 'pll_current_language' ) && 'en' === pll_curren
 <body <?php body_class(); ?> id="top">
 	<?php wp_body_open(); ?>
 
-	<a href="#main" class="sr-only"><?php echo esc_html( $is_english ? 'Skip to main content' : 'Tới nội dung chính' ); ?></a>
+	<a href="#main" class="sr-only skip-link"><?php echo esc_html( $is_english ? 'Skip to main content' : 'Tới nội dung chính' ); ?></a>
 
 	<header class="hdr" data-header>
 		<?php if ( '' !== $announcement ) : ?>
@@ -62,6 +62,7 @@ $is_english   = function_exists( 'pll_current_language' ) && 'en' === pll_curren
 				</nav>
 
 				<div class="hdr__actions">
+					<?php get_template_part( 'template-parts/components/lang-switch', null, array( 'class' => 'lang--hdr', 'short' => true ) ); ?>
 					<?php if ( '' !== $header_cta['url'] ) : ?>
 						<a href="<?php echo esc_url( $header_cta['url'] ); ?>" class="btn btn--sm hdr__cta">
 							<?php echo esc_html( $header_cta['label'] ); ?>
