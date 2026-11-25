@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine lập và hoàn thiện hồ sơ thiết kế tàu cá để trình cơ sở đăng kiểm tàu cá thẩm định: làm trọn bộ, bổ sung phần còn thiếu theo góp ý, hoặc lập hồ sơ hoàn công sau khi đóng. Nếu chỉ thiếu vài bản tính, bản vẽ, bạn không cần làm lại cả bộ.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Hồ sơ gồm những gì?",
-							"url": "#ho-so-thiet-ke-tau-ca-gom-nhung-gi-ai-th"
-						}
-					},
-					{
-						"link": {
-							"label": "Bạn nhận được gì",
-							"url": "#ban-nhan-duoc-gi"
-						}
-					},
-					{
-						"link": {
-							"label": "Câu hỏi thường gặp",
-							"url": "#cau-hoi-thuong-gap-ve-ho-so-dang-kiem-ta"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

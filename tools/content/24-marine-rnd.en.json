@@ -17,26 +17,7 @@
 				"heading_level": "h1",
 				"lead": "Getting to the bottom of engineering problems that need simulation, measurement or deeper verification. From a specific question or hypothesis, we choose the right method — CFD, structural analysis, measurement, testing or data analysis — to clarify the problem and check it against real data where possible.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "What do you need to find out?",
-							"url": "#what-do-you-need-to-find-out"
-						}
-					},
-					{
-						"link": {
-							"label": "Methods and research scope",
-							"url": "#methods-and-research-scope"
-						}
-					},
-					{
-						"link": {
-							"label": "Selected publications",
-							"url": "#publications"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

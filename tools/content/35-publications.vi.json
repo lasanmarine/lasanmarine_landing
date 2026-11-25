@@ -16,14 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Toàn bộ bài báo, báo cáo và chương sách của đội ngũ Lasan Marine, ưu tiên các nghiên cứu về tàu thủy.",
 				"height": 320,
-				"actions": [
-					{
-						"link": {
-							"label": "Danh sách công trình",
-							"url": "#cong-trinh"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

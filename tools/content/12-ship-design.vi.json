@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine nhận thiết kế tàu theo yêu cầu cho chủ tàu cá, hợp tác xã, xưởng đóng tàu và đơn vị khai thác tàu du lịch: tàu cá vỏ thép, composite, gỗ, tàu khách, cano. Bạn có thể đặt trọn bộ hồ sơ để thẩm định, hoặc chỉ những bản tính, bản vẽ còn thiếu.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Bạn đang ở giai đoạn nào?",
-							"url": "#ban-dang-o-giai-doan-nao"
-						}
-					},
-					{
-						"link": {
-							"label": "Cần giấy tờ gì?",
-							"url": "#dong-moi-cai-hoan-sua-chua-can-giay-to-g"
-						}
-					},
-					{
-						"link": {
-							"label": "Phạm vi công việc",
-							"url": "#pham-vi-cong-viec"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

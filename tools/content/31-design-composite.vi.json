@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine thiết kế tàu cá vỏ composite (FRP) và cano composite cho chủ tàu và xưởng làm khuôn: tuyến hình, kết cấu lớp vỏ, ổn định, sức cản – công suất và hồ sơ trình thẩm định. Phù hợp khi bạn muốn thay tàu gỗ đã xuống cấp hoặc đóng nhiều chiếc theo một khuôn.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Composite, thép hay gỗ?",
-							"url": "#tau-composite-vo-thep-hay-vo-go-chon-the"
-						}
-					},
-					{
-						"link": {
-							"label": "Bạn nhận được gì",
-							"url": "#ban-nhan-duoc-gi"
-						}
-					},
-					{
-						"link": {
-							"label": "Câu hỏi thường gặp",
-							"url": "#cau-hoi-thuong-gap-ve-tau-composite"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

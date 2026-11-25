@@ -17,26 +17,7 @@
 				"heading_level": "h1",
 				"lead": "A passenger boat is about safety first: stability when passengers crowd one side, enough life-saving equipment and sensible escape routes — designed to pass review and earn its keep.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Passenger speedboats we have designed",
-							"url": "#passenger-speedboats-we-have-designed"
-						}
-					},
-					{
-						"link": {
-							"label": "Typical requests",
-							"url": "#typical-requests"
-						}
-					},
-					{
-						"link": {
-							"label": "What you receive",
-							"url": "#what-you-receive"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

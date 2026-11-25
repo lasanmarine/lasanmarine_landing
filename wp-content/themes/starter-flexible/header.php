@@ -62,7 +62,6 @@ $is_english   = function_exists( 'pll_current_language' ) && 'en' === pll_curren
 				</nav>
 
 				<div class="hdr__actions">
-					<?php get_template_part( 'template-parts/components/lang-switch', null, array( 'class' => 'lang--hdr', 'short' => true ) ); ?>
 					<?php if ( '' !== $header_cta['url'] ) : ?>
 						<a href="<?php echo esc_url( $header_cta['url'] ); ?>" class="btn btn--sm hdr__cta">
 							<?php echo esc_html( $header_cta['label'] ); ?>

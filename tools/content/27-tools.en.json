@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Five free calculation and simulation tools that run in the browser, for the quick checks of everyday ship-design work.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Five tools for common technical checks",
-							"url": "#five-tools-for-common-technical-checks"
-						}
-					},
-					{
-						"link": {
-							"label": "What these tools are for",
-							"url": "#what-these-tools-are-for"
-						}
-					},
-					{
-						"link": {
-							"label": "Common questions about the tools",
-							"url": "#common-questions-about-the-tools"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

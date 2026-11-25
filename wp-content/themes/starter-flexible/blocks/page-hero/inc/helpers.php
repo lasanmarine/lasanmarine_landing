@@ -74,7 +74,9 @@ final class Starter_Flexible_Block_Page_Hero extends Starter_Flexible_Abstract_B
 				'primary' => ! $out,
 			);
 		}
-		$out = $out ? array_slice( $out, 0, 3 ) : $this->auto_actions();
+		// Only the buttons written for the page: no shortcuts to the page's
+		// own sections are made up when there are none.
+		$out = array_slice( $out, 0, 3 );
 
 		// A page built around an embedded app (app-embed) leads with opening
 		// that app full screen, in place, on this same URL.
@@ -110,42 +112,6 @@ final class Starter_Flexible_Block_Page_Hero extends Starter_Flexible_Abstract_B
 		return $out;
 	}
 
-	/** @return array<int, array{url: string, label: string, target: string, primary: bool}> */
-	private function auto_actions(): array {
-		$post_id = (int) get_the_ID();
-		if ( ! $post_id ) {
-			return array();
-		}
-		// Sections worth a shortcut, most useful first. The label comes from
-		// the block's own heading.
-		$priority = array( 'vessel-finder', 'project-showcase', 'project-index', 'use-case', 'service-architecture', 'capability-matrix', 'tool-shell', 'document-center', 'insights', 'deliverables', 'input-output', 'process-timeline', 'service-spotlight', 'value-grid', 'geo-operations', 'image-text', 'spec-list', 'accordion' );
-		$found    = array();
-		foreach ( parse_blocks( (string) get_post_field( 'post_content', $post_id ) ) as $block ) {
-			$slug = str_replace( 'acf/', '', (string) ( $block['blockName'] ?? '' ) );
-			$data = (array) ( $block['attrs']['data'] ?? array() );
-			$head = trim( wp_strip_all_tags( (string) ( $data['heading'] ?? '' ) ) );
-			$id   = (string) ( $block['attrs']['anchor'] ?? '' );
-			$rank = array_search( $slug, $priority, true );
-			if ( false === $rank || '' === $head ) {
-				continue;
-			}
-			$found[ $rank * 100 + count( $found ) ] = array(
-				'url'     => '#' . ( '' !== $id ? $id : starter_flexible_page_hero_slug( $head ) ),
-				'label'   => $head,
-				'target'  => '',
-				'primary' => false,
-			);
-		}
-		ksort( $found );
-
-		// The shortcuts name what the page holds; contact already sits in the
-		// header and at the foot of the page.
-		$actions = array_slice( array_values( $found ), 0, 3 );
-		if ( $actions ) {
-			$actions[0]['primary'] = true;
-		}
-		return $actions;
-	}
 }
 
 

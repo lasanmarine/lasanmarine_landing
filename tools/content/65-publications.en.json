@@ -17,14 +17,7 @@
 				"heading_level": "h1",
 				"lead": "All papers, reports and book chapters by our team, marine research first.",
 				"height": 320,
-				"actions": [
-					{
-						"link": {
-							"label": "Publications",
-							"url": "#publications"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

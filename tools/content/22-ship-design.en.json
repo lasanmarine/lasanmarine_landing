@@ -17,26 +17,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine Co., Ltd. is a naval architecture office in Nha Trang, Vietnam. Shipyards, owners and design firms outsource concept, basic and detail design to us, together with the calculations and drawings needed for plan approval, delivered remotely in the formats your team works with.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Scope of work",
-							"url": "#scope-of-work"
-						}
-					},
-					{
-						"link": {
-							"label": "Working with us remotely",
-							"url": "#working-with-us-remotely"
-						}
-					},
-					{
-						"link": {
-							"label": "Our process",
-							"url": "#our-process"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

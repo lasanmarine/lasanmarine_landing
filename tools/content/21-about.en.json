@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine Co., Ltd. (Nha Trang, Vietnam) designs newbuilds and conversions, carries out engineering calculations and completes technical documentation for vessels. From problems that arise in that work, we have built R&D and digital solutions for real-world use.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "How we work",
-							"url": "#principles"
-						}
-					},
-					{
-						"link": {
-							"label": "Experience across many regions",
-							"url": "#where-we-work"
-						}
-					},
-					{
-						"link": {
-							"label": "From real engineering work to R&D and digital solutions",
-							"url": "#from-real-engineering-work-to-r-amp-d-an"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

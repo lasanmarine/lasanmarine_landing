@@ -17,26 +17,7 @@
 				"heading_level": "h1",
 				"lead": "You do not need to redo the whole set. We review it, point out what is missing or not to the rules, and add the calculations and drawings needed for approval.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Some documents we have prepared",
-							"url": "#some-documents-we-have-prepared"
-						}
-					},
-					{
-						"link": {
-							"label": "Typical situations",
-							"url": "#typical-situations"
-						}
-					},
-					{
-						"link": {
-							"label": "What you receive",
-							"url": "#what-you-receive"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

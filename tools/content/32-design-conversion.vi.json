@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine thiết kế hoán cải (cải hoán) tàu cá cho chủ tàu, hợp tác xã và xưởng đóng tàu: chuyển đổi nghề, thay máy chính, kéo dài thân, nâng mạn, nâng cabin. Chúng tôi khảo sát tàu, tính lại ổn định, kết cấu, máy – chân vịt – trục và lập hồ sơ để cơ sở đăng kiểm tàu cá thẩm định.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Có phải làm thủ tục cải hoán?",
-							"url": "#thay-may-chuyen-nghe-co-phai-lam-thu-tuc"
-						}
-					},
-					{
-						"link": {
-							"label": "Các bước hoán cải",
-							"url": "#cac-buoc-hoan-cai-tau-ca-ai-lam-viec-gi"
-						}
-					},
-					{
-						"link": {
-							"label": "Câu hỏi thường gặp",
-							"url": "#cau-hoi-thuong-gap-ve-hoan-cai-tau-ca"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

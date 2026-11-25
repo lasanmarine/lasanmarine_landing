@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine thiết kế tàu cá vỏ thép đóng mới cho chủ tàu, hợp tác xã và xưởng đóng tàu: tàu khai thác xa bờ và tàu dịch vụ hậu cần nghề cá. Bộ hồ sơ gồm bản vẽ và bản tính theo QCVN 91:2025/BNNMT hoặc QCVN 92:2025/BNNMT tùy chiều dài tàu, sẵn sàng trình thẩm định.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Quy chuẩn áp dụng",
-							"url": "#tau-cua-ban-ap-dung-quy-chuan-nao"
-						}
-					},
-					{
-						"link": {
-							"label": "Bạn nhận được gì",
-							"url": "#ban-nhan-duoc-gi"
-						}
-					},
-					{
-						"link": {
-							"label": "Câu hỏi thường gặp",
-							"url": "#cau-hoi-thuong-gap-ve-thiet-ke-tau-ca-vo"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

@@ -17,26 +17,7 @@
 				"heading_level": "h1",
 				"lead": "New-build design for offshore steel fishing vessels and fishery support vessels — from main dimensions and hull lines to the document set for plan approval.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Steel vessels we have designed",
-							"url": "#steel-vessels-we-have-designed"
-						}
-					},
-					{
-						"link": {
-							"label": "Situations owners bring to us",
-							"url": "#situations-owners-bring-to-us"
-						}
-					},
-					{
-						"link": {
-							"label": "What you receive",
-							"url": "#what-you-receive"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

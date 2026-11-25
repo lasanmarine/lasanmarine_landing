@@ -17,26 +17,7 @@
 				"heading_level": "h1",
 				"lead": "FRP fishing vessels to replace timber hulls, plus speedboats and small craft — laminate structure, stability and power worked out for a light, durable, efficient boat.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Composite boats we have designed",
-							"url": "#composite-boats-we-have-designed"
-						}
-					},
-					{
-						"link": {
-							"label": "Situations owners bring to us",
-							"url": "#situations-owners-bring-to-us"
-						}
-					},
-					{
-						"link": {
-							"label": "What you receive",
-							"url": "#what-you-receive"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

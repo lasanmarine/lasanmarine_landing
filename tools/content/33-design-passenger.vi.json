@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine thiết kế cano du lịch, tàu khách và tàu tham quan cho doanh nghiệp, hộ kinh doanh du lịch biển và đường thủy: bố trí ghế, ổn định khi khách dồn một mạn, phương tiện cứu sinh, chọn máy và hồ sơ trình đăng kiểm duyệt.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Cần chốt gì trước?",
-							"url": "#can-chot-gi-truoc-khi-thiet-ke-cano-tau-"
-						}
-					},
-					{
-						"link": {
-							"label": "Bạn nhận được gì",
-							"url": "#ban-nhan-duoc-gi"
-						}
-					},
-					{
-						"link": {
-							"label": "Câu hỏi thường gặp",
-							"url": "#cau-hoi-thuong-gap-ve-thiet-ke-cano-tau-"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

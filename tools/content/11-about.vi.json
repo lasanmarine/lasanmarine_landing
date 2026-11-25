@@ -15,26 +15,7 @@
 				"heading_level": "h1",
 				"lead": "Công ty TNHH Lasan Marine (Nha Trang, Khánh Hòa) thực hiện thiết kế đóng mới, cải hoán, tính toán kỹ thuật và hoàn thiện hồ sơ cho các phương tiện thủy. Từ những bài toán phát sinh trong quá trình làm việc, chúng tôi phát triển thêm năng lực R&D và các giải pháp số phục vụ công việc thực tế.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Cách chúng tôi làm việc",
-							"url": "#nguyen-tac"
-						}
-					},
-					{
-						"link": {
-							"label": "Kinh nghiệm trên nhiều địa bàn",
-							"url": "#dia-ban"
-						}
-					},
-					{
-						"link": {
-							"label": "Từ công việc kỹ thuật thực tế đến R&D và giải pháp số",
-							"url": "#tu-cong-viec-ky-thuat-thuc-te-den-r-amp-"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

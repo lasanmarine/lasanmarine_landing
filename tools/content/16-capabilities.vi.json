@@ -15,26 +15,7 @@
 				"heading_level": "h1",
 				"lead": "Thiết kế tàu là chuyên môn cốt lõi. Bên cạnh đó, chúng tôi thực hiện nghiên cứu kỹ thuật và phát triển các giải pháp số từ những nhu cầu thực tế trong quá trình làm việc.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Dự án tiêu biểu",
-							"url": "#du-an-tieu-bieu"
-						}
-					},
-					{
-						"link": {
-							"label": "Ba nhóm năng lực chính",
-							"url": "#chuyen-mon"
-						}
-					},
-					{
-						"link": {
-							"label": "Kinh nghiệm thiết kế tàu",
-							"url": "#kinh-nghiem-thiet-ke-tau"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Công ty TNHH Lasan Marine nhận gia công phần mềm kỹ thuật cho ngành tàu: công cụ tính ổn định, sức cản, kết cấu và soạn thuyết minh; tự động hoá thiết kế tàu trên Rhino/Grasshopper, AutoCAD, Maxsurf; phần mềm dự toán, quản lý vật tư, bản vẽ và hồ sơ đăng kiểm; AI agent hỗ trợ soạn hồ sơ. Chúng tôi là kỹ sư thiết kế tàu, nên hiểu việc của bạn trước khi viết code.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Bạn đang gặp vấn đề gì?",
-							"url": "#ban-dang-gap-van-de-gi"
-						}
-					},
-					{
-						"link": {
-							"label": "Chúng tôi nhận làm",
-							"url": "#chung-toi-nhan-lam"
-						}
-					},
-					{
-						"link": {
-							"label": "Công cụ dùng thử ngay",
-							"url": "#cong-cu-da-lam-dung-thu-ngay"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

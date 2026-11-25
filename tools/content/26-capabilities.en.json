@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Ship design is our core expertise. Alongside it, we carry out engineering research and builds digital solutions from real needs that arise in the work.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Selected projects",
-							"url": "#selected-projects"
-						}
-					},
-					{
-						"link": {
-							"label": "Three core capabilities",
-							"url": "#chuyen-mon"
-						}
-					},
-					{
-						"link": {
-							"label": "Ship design experience",
-							"url": "#ship-design-experience"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

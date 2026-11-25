@@ -16,26 +16,7 @@
 				"heading_level": "h1",
 				"lead": "Làm rõ những bài toán kỹ thuật cần mô phỏng, đo kiểm hoặc kiểm chứng sâu hơn. Từ một câu hỏi hoặc giả thiết cụ thể, chúng tôi lựa chọn phương pháp phù hợp như CFD, phân tích kết cấu, đo kiểm, thực nghiệm hoặc phân tích dữ liệu để làm rõ vấn đề và đối chiếu với dữ liệu thực tế khi có thể.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Bạn đang cần làm rõ vấn đề gì?",
-							"url": "#ban-dang-can-lam-ro-van-de-gi"
-						}
-					},
-					{
-						"link": {
-							"label": "Phương pháp và phạm vi nghiên cứu",
-							"url": "#phuong-phap-va-pham-vi-nghien-cuu"
-						}
-					},
-					{
-						"link": {
-							"label": "Công trình tiêu biểu",
-							"url": "#cong-trinh"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

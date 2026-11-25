@@ -17,26 +17,7 @@
 				"heading_level": "h1",
 				"lead": "Lasan Marine Co., Ltd. builds custom software for naval architecture and marine engineering teams: calculation tools for stability, hydrostatics, resistance and structure; Rhino/Grasshopper plugins, AutoCAD and Maxsurf automation; web apps for shipyards and design offices; and AI agents for technical documents. We design vessels ourselves, so a naval architect reviews every tool before you see it.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "What we build",
-							"url": "#what-we-build"
-						}
-					},
-					{
-						"link": {
-							"label": "Tools you can try",
-							"url": "#in-house-tools-you-can-open-today"
-						}
-					},
-					{
-						"link": {
-							"label": "How a project runs",
-							"url": "#how-a-project-runs"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{

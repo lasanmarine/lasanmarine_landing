@@ -17,26 +17,7 @@
 				"heading_level": "h1",
 				"lead": "Lengthening, a new deckhouse, a new engine or a new fishing method all change stability and structure. We recalculate exactly what is affected and prepare the conversion documents.",
 				"height": 420,
-				"actions": [
-					{
-						"link": {
-							"label": "Fishing vessels we have designed",
-							"url": "#fishing-vessels-we-have-designed"
-						}
-					},
-					{
-						"link": {
-							"label": "Common conversions",
-							"url": "#common-conversions"
-						}
-					},
-					{
-						"link": {
-							"label": "What you receive",
-							"url": "#what-you-receive"
-						}
-					}
-				]
+				"actions": []
 			}
 		},
 		{
