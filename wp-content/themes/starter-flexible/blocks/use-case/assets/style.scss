@@ -73,11 +73,6 @@
 	}
 }
 
-/* Stacked mode: cards tighten with the screen height. */
-.is-stacked .uc__case { padding: clamp(18px, 3vh, 40px) clamp(20px, 2.4vw, 40px); gap: clamp(8px, 1.4vh, 14px); }
-.is-stacked .uc { gap: clamp(10px, 1.8vh, 20px); }
-.is-stacked .uc__case { padding-block: clamp(14px, 2.4vh, 36px); }
-
 /* Three cases sit in one row instead of leaving a lone card. */
 @media (min-width: 1025px) {
 	.uc:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }

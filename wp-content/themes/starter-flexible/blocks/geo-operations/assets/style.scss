@@ -99,7 +99,6 @@
 	fill: var(--marine-bright);
 }
 
-
 /* --- v2 light minimal ---------------------------------------------------- */
 .geo__heading {
 	letter-spacing: -0.02em;
@@ -147,12 +146,6 @@
 		transition: none;
 	}
 }
-
-/* Stacked mode: the map plate is bounded by the screen height. */
-.is-stacked .band--pad { padding-block: clamp(24px, 5vh, 80px); }
-.is-stacked .geo__plate { max-height: calc(var(--avail, 100svh) - 120px); aspect-ratio: auto; height: calc(var(--avail, 100svh) - 120px); }
-.is-stacked .geo__plate svg { height: 100%; width: auto; margin-inline: auto; }
-.is-stacked .geo__plate { height: calc(var(--avail, 100svh) - 240px); max-height: calc(var(--avail, 100svh) - 240px); }
 
 /* Balance: the copy column reads at the same weight as the map beside it. */
 .geo__note { font-size: clamp(15.5px, 1.15vw, 17.5px); line-height: 1.7; max-width: 34em; }

@@ -182,8 +182,6 @@
 	padding-top: clamp(0px, 0.6vw, 8px);
 }
 
-
-
 @media (max-width: 900px) { .hero__split { grid-template-columns: minmax(0,1fr); } .hero__media { min-height: 260px; order: -1; } }
 
 /* --- v2 light minimal — image-led hero --------------------------------------
@@ -223,9 +221,9 @@
 	padding: clamp(24px, 2.6vw, 40px);
 	gap: 18px;
 	border-radius: var(--r-lg);
-	background: rgba(255, 255, 255, 0.95);
-	backdrop-filter: blur(18px) saturate(1.4);
-	-webkit-backdrop-filter: blur(18px) saturate(1.4);
+	/* Solid, not frosted: a blur behind a card this large is re-rendered by
+	   the GPU on every scroll frame. */
+	background: #fff;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 24px 60px -28px rgba(6, 18, 45, 0.45);
 }
 /* No photograph: the card simply sits on the page. */
@@ -334,10 +332,6 @@
 	}
 }
 
-/* Stacked mode: the hero is exactly one screen under the bar. */
-.is-stacked .hero__split { padding-block: 12px; }
-.is-stacked .hero__media { min-height: 0; height: calc(var(--avail, 100svh) - 24px); }
-
 /* Phone: a shorter photo and a card that rides higher, so the headline and
    the main action are both in the first screen. */
 @media (max-width: 760px) {
@@ -366,9 +360,7 @@
 	margin-inline: auto;
 	padding: calc(var(--hdr-h, 76px) + var(--hero-gap)) var(--gutter) var(--hero-gap);
 }
-.is-stacked .lasanmarine-hero .hero__split {
-	padding-top: var(--hero-gap);
-}
+
 .lasanmarine-hero .hero__media {
 	grid-area: stage;
 	height: calc(100svh - var(--hdr-h, 76px) - 2 * var(--hero-gap));

@@ -17,6 +17,24 @@ function starter_flexible_seo_is_english(): bool {
 	return function_exists( 'pll_current_language' ) && 'en' === pll_current_language( 'slug' );
 }
 
+/**
+ * The company's full legal name in the page's language: what the logo is
+ * called (alt, aria-label) and the name the schema leads with, so every
+ * signal Google reads for the site name says the same thing.
+ */
+function starter_flexible_company_name(): string {
+	return starter_flexible_seo_is_english() ? 'Lasan Marine Co., Ltd.' : 'Công ty TNHH Lasan Marine';
+}
+
+/** A raster logo for structured data: Google does not accept SVG logos. */
+function starter_flexible_schema_logo(): array {
+	return array(
+		'url'    => get_template_directory_uri() . '/assets/images/logo-lasan-square.png',
+		'width'  => 600,
+		'height' => 600,
+	);
+}
+
 /* -------------------------------------------------------------------------
  * Schema: the company as an Organization / ProfessionalService node.
  * ---------------------------------------------------------------------- */
@@ -63,8 +81,6 @@ function starter_flexible_schema_organization( $graph ) {
 	$email      = (string) starter_flexible_setting( 'email', '' );
 	$address    = (string) starter_flexible_setting( 'address', '' );
 	$tax_code   = (string) starter_flexible_setting( 'tax_code', '' );
-	$logo_id    = (int) starter_flexible_setting( 'header_logo', 0 );
-	$logo_url   = $logo_id ? (string) wp_get_attachment_image_url( $logo_id, 'full' ) : get_template_directory_uri() . '/assets/images/logo-lasan.svg';
 
 	$same_as = array();
 	foreach ( (array) starter_flexible_setting( 'social', array() ) as $row ) {
@@ -76,6 +92,13 @@ function starter_flexible_schema_organization( $graph ) {
 		}
 	}
 
+	// Zalo is the company's one public channel (zalo.me/<phone>).
+	$zalo = preg_replace( '/\D+/', '', (string) starter_flexible_setting( 'phone', '' ) );
+	if ( '' !== $zalo ) {
+		$same_as[] = 'https://zalo.me/' . $zalo;
+	}
+	$same_as = array_values( array_unique( $same_as ) );
+
 	$org = array(
 		'@type'       => array( 'Organization', 'ProfessionalService' ),
 		'@id'         => $org_id,
@@ -83,9 +106,13 @@ function starter_flexible_schema_organization( $graph ) {
 		'alternateName' => $alt_names,
 		'url'         => home_url( '/' ),
 		'logo'        => array(
-			'@type' => 'ImageObject',
-			'@id'   => home_url( '/#logo' ),
-			'url'   => $logo_url,
+			'@type'      => 'ImageObject',
+			'@id'        => home_url( '/#logo' ),
+			'url'        => starter_flexible_schema_logo()['url'],
+			'contentUrl' => starter_flexible_schema_logo()['url'],
+			'width'      => starter_flexible_schema_logo()['width'],
+			'height'     => starter_flexible_schema_logo()['height'],
+			'caption'    => starter_flexible_company_name(),
 		),
 		'image'       => array( '@id' => home_url( '/#logo' ) ),
 		'description' => $is_english
@@ -397,3 +424,25 @@ function starter_flexible_schema_page_extras( $graph ) {
 	return $graph;
 }
 add_filter( 'wpseo_schema_graph', 'starter_flexible_schema_page_extras', 30 );
+
+/**
+ * Sitemaps list pages people search for: not the accessibility plugin's
+ * internal statistics type, nor the thin project filter archives
+ * (material, use), which only re-list the projects page.
+ */
+add_filter(
+	'wpseo_sitemap_exclude_post_type',
+	static function ( $excluded, $post_type ) {
+		return in_array( $post_type, array( 'wpa-stats', 'wpa-stats-type' ), true ) ? true : $excluded;
+	},
+	10,
+	2
+);
+add_filter(
+	'wpseo_sitemap_exclude_taxonomy',
+	static function ( $excluded, $taxonomy ) {
+		return in_array( $taxonomy, array( 'project_material', 'project_use', 'wpa-stats-type' ), true ) ? true : $excluded;
+	},
+	10,
+	2
+);

@@ -11,7 +11,6 @@ import { scrub } from '$lib/scrub';
 import { motion } from '$lib/stores/motion.svelte.js';
 
 export const selector = '[data-timeline]';
-export const order = 50; // before stack.js sizes the sheets
 
 export default function timeline(pin) {
 	const fill = pin.querySelector('[data-timeline-fill]');

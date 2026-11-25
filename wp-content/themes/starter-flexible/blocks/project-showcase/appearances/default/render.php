@@ -49,11 +49,17 @@ if ( empty( $data->should_render ) ) {
 							<?php echo starter_flexible_icon_swap( 'arrow', 18 ); // phpcs:ignore ?>
 						</a>
 					<?php endif; ?>
-					<span class="ps__progress" aria-hidden="true"><span></span></span>
+					<div class="ps__controls">
+						<span class="ps__progress" aria-hidden="true"><span></span></span>
+						<div class="ps__nav">
+							<button type="button" class="icon-btn" data-ps-prev aria-label="<?php echo esc_attr( $ps_en ? 'Previous projects' : 'Dự án trước' ); ?>"><?php echo starter_flexible_icon( 'chevronLeft', 20 ); // phpcs:ignore ?></button>
+							<button type="button" class="icon-btn" data-ps-next aria-label="<?php echo esc_attr( $ps_en ? 'More projects' : 'Dự án tiếp theo' ); ?>"><?php echo starter_flexible_icon( 'chevronRight', 20 ); // phpcs:ignore ?></button>
+						</div>
+					</div>
 				</div>
 			<?php endif; ?>
 
-			<div class="ps__stack">
+			<div class="ps__stack" tabindex="0" role="region" aria-label="<?php echo esc_attr( $ps_en ? 'Projects, scroll sideways' : 'Danh sách dự án, cuộn ngang' ); ?>">
 				<?php foreach ( $data->items as $i => $item ) : ?>
 					<?php
 					$ps_tag   = '' !== (string) $item['url'] ? 'a' : 'div';

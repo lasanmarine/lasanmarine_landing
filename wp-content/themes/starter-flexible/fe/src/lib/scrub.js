@@ -13,7 +13,11 @@ import { clamp } from './format';
 import { viewport } from './stores/viewport.svelte.js';
 import { motion } from './stores/motion.svelte.js';
 
-const MQ = '(min-width: 1024px) and (min-height: 640px)';
+// Pinning is retired: taking over the page scroll stuttered on 60 Hz
+// screens (a JS-driven position one frame behind the compositor's sticky).
+// Every block now keeps its static form, the one phones always had; the
+// helper stays so a block can opt back in by changing this query.
+const MQ = 'not all';
 
 export function scrub(root, { pin, run, progress, reset = () => {} }) {
 	const mq = window.matchMedia(MQ);

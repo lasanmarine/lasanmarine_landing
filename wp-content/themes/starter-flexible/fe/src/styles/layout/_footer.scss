@@ -467,10 +467,8 @@
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
-	animation: ftr-current 9s linear infinite;
-}@keyframes ftr-current {
-	from { background-position: 0% 50%; }
-	to { background-position: -250% 50%; }
+	/* Still: an endless background-position loop repaints the wordmark on
+	   every frame (it does not run on the compositor). */
 }
 @media (max-width: 760px) {
 	.ftr__wordmark {

@@ -1,43 +1,52 @@
 // Project Showcase — a heading beside a rail of project cards.
 //
-// On a desktop with motion on, the block pins under the header and the page
-// scroll slides the row sideways: as far as the reader scrolls, so far the
-// row moves, until the last card reaches the left edge; then the page moves
-// on (lib/scrub). Elsewhere the row is a native swipe/scroll strip.
-import { scrub } from '$lib/scrub';
+// The rail is a native horizontal scroller everywhere: swipe, trackpad,
+// shift+wheel or the arrow buttons, which step one card. The page scroll is
+// never taken over. The bar under the heading shows how far along the rail
+// the reader is; it is updated from the rail's own scroll events, at most
+// once a frame.
+import { on, cleanupAll } from '$lib/dom';
+import { motion } from '$lib/stores/motion.svelte.js';
 
 export const selector = '[data-showcase-stack]';
-export const order = 50; // before stack.js sizes the sheets
 
-export default function showcaseSlider(root) {
-	const pin = root.querySelector('[data-ps-pin]');
+export default function showcase(root) {
 	const row = root.querySelector('.ps__stack');
 	const cards = [...root.querySelectorAll('[data-ps-card]')];
-	if (!pin || !row || cards.length < 2) return null;
+	if (!row || cards.length < 2) return null;
+	const prev = root.querySelector('[data-ps-prev]');
+	const next = root.querySelector('[data-ps-next]');
+	const bar = root.querySelector('.ps__progress span');
 
-	// --p is set on the bar that draws it, not on the block: a custom property
-	// inherits, so on the block every scroll frame would restyle all the cards.
-	const bar = root.querySelector('.ps__progress span') ?? root;
-	let limit = 0; // measured once per layout, not on every scroll frame
 	const max = () => Math.max(0, row.scrollWidth - row.clientWidth);
+	const step = () => {
+		const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+		return cards[0].getBoundingClientRect().width + gap;
+	};
 
-	return scrub(root, {
-		pin,
-		reset: () => {
-			row.style.paddingRight = '';
-			row.scrollLeft = 0;
-			bar.style.removeProperty('--p');
-		},
-		run: () => {
-			// Room after the last card so it can travel to the left edge.
-			const last = cards[cards.length - 1];
-			row.style.paddingRight = `${Math.max(0, row.clientWidth - last.offsetWidth)}px`;
-			limit = max();
-			return limit * 1.2;
-		},
-		progress: (p) => {
-			row.scrollLeft = p * limit;
-			bar.style.setProperty('--p', p.toFixed(3));
-		},
-	});
+	let raf = 0;
+	const sync = () => {
+		raf = 0;
+		const m = max();
+		const x = row.scrollLeft;
+		bar?.style.setProperty('--p', (m ? x / m : 0).toFixed(3));
+		if (prev) prev.disabled = x <= 2;
+		if (next) next.disabled = x >= m - 2;
+		root.classList.toggle('ps--fits', m <= 2);
+	};
+	const queue = () => {
+		if (!raf) raf = requestAnimationFrame(sync);
+	};
+	const go = (dir) => row.scrollBy({ left: dir * step(), behavior: motion.allowed ? 'smooth' : 'auto' });
+
+	sync();
+	return cleanupAll(
+		[
+			on(row, 'scroll', queue, { passive: true }),
+			on(window, 'resize', queue, { passive: true }),
+			prev && on(prev, 'click', () => go(-1)),
+			next && on(next, 'click', () => go(1)),
+			() => cancelAnimationFrame(raf),
+		].filter(Boolean)
+	);
 }

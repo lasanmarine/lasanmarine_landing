@@ -59,13 +59,6 @@
 	}
 }
 
-
-/* Stacked mode: the panel and picture fit one screen. */
-.is-stacked .spotlight__media { min-height: 0; height: auto; }
-.is-stacked .spotlight { max-height: calc(var(--avail, 100svh) - 24px); }
-.is-stacked .spotlight__panel { padding-block: clamp(24px, 5vh, 72px); gap: clamp(14px, 2.4vh, 24px); }
-.is-stacked .spotlight__panel { padding-block: clamp(18px, 3.6vh, 64px); }
-
 /* --- motion (MOTION.md: service-spotlight) -------------------------------
    The photo opens with the scroll (_motion.scss); the panel slides in from
    the photo's side — heading, copy, each list item and the button in turn

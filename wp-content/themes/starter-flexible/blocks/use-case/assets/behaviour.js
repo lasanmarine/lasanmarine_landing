@@ -12,9 +12,10 @@ import { viewport } from '$lib/stores/viewport.svelte.js';
 import { motion } from '$lib/stores/motion.svelte.js';
 
 export const selector = '[data-use-case]';
-export const order = 50; // before stack.js sizes the sheets
 
-const MQ = '(min-width: 1024px) and (min-height: 640px)';
+// Driving the row from the page scroll is retired (it stuttered on 60 Hz
+// screens): the row is the native snap scroller with arrows everywhere.
+const MQ = 'not all';
 
 export default function useCase(root) {
 	const track = root.querySelector('[data-uc-track]');

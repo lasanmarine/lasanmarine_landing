@@ -9,8 +9,7 @@
 	padding-top: calc(var(--hdr-h, 76px) + 12px);
 }
 /* Stacked sheets centre their content in a tall panel; a tool starts at the top. */
-.block-stream > .block.lasanmarine-tool-shell.tool-shell--headed,
-.block-stream.is-stacked > .block.lasanmarine-tool-shell.tool-shell--headed:not(.is-flow) {
+.block-stream > .block.lasanmarine-tool-shell.tool-shell--headed {
 	justify-content: flex-start;
 }
 @media (max-width: 900px) {

@@ -10,9 +10,6 @@
 
 @supports (animation-timeline: view()) {
 	@media (prefers-reduced-motion: no-preference) {
-		/* (Heroes are pinned sheets: stack.js already sets them back as the
-		   next sheet covers them, so they get no motion of their own here.) */
-
 		/* --- large pictures open from a framed card to their full size ------- */
 		html:not(.reduce-motion) :is(
 				.spotlight__media img,
@@ -75,13 +72,6 @@
 	animation-play-state: paused !important;
 }
 
-/* Per-frame values written by scripts. Registered as non-inheriting, so a
-   change restyles the one element that uses it instead of its whole subtree. */
-@property --veil {
-	syntax: '<number>';
-	inherits: false;
-	initial-value: 0;
-}
 @keyframes lm-settle {
 	from {
 		scale: 1.12;

@@ -49,7 +49,7 @@ $current = (string) pll_current_language( 'slug' );
 		<a
 			class="lang__item<?php echo $is_active ? ' is-active' : ''; ?>"
 			href="<?php echo esc_url( (string) ( $language['url'] ?? home_url( '/' ) ) ); ?>"
-			hreflang="<?php echo esc_attr( (string) ( $language['locale'] ?? $slug ) ); ?>"
+			hreflang="<?php echo esc_attr( (string) $slug ); ?>"
 			lang="<?php echo esc_attr( $slug ); ?>"
 			<?php echo $is_active ? 'aria-current="true"' : ''; ?>
 		>

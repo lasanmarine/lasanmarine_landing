@@ -228,11 +228,6 @@
 .cm__children { padding-bottom: 4px; }
 .cm__index { display: none; }
 
-/* Stacked mode: cards tighten with the screen height. */
-.is-stacked .cm__cell { padding-block: clamp(16px, 2.6vh, 32px); }
-.is-stacked .cm__cta { padding-top: clamp(8px, 1.6vh, 18px); }
-.is-stacked .cm__cell { padding-block: clamp(12px, 2vh, 28px); }
-.is-stacked .cm__desc { margin-bottom: 0; }
 /* No decorative numerals on tool cards (beats the older variant rule). */
 .lasanmarine-capability-matrix .cm__index,
 .cm--tools .cm__index { display: none; }

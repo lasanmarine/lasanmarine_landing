@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $theme_uri = defined( 'STARTER_FLEXIBLE_THEME_URI' ) ? STARTER_FLEXIBLE_THEME_URI : get_template_directory_uri();
 
-$site_name    = (string) starter_flexible_setting( 'site_name', get_bloginfo( 'name' ) );
+$site_name    = function_exists( 'starter_flexible_company_name' ) ? starter_flexible_company_name() : (string) starter_flexible_setting( 'site_name', get_bloginfo( 'name' ) );
 $logo_id      = (int) starter_flexible_setting( 'header_logo', 0 );
 $logo_url     = $logo_id ? (string) wp_get_attachment_image_url( $logo_id, 'full' ) : $theme_uri . '/assets/images/logo-lasan.svg';
 $announcement = (string) starter_flexible_setting( 'announcement_text', '' );

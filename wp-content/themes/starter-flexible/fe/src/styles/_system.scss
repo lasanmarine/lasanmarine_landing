@@ -739,7 +739,6 @@ select.field__control {
 	letter-spacing: 0.04em;
 }
 
-
 /* --- phone tier ------------------------------------------------------------
    The fluid clamps above bottom out at sizes meant for a small tablet; on a
    phone the type steps down once more and the blocks sit closer together. */
@@ -787,8 +786,6 @@ select.field__control {
 		padding-inline: 24px;
 	}
 }
-
-
 
 /* --- panels: one edge -------------------------------------------------------
    Every panel in the stream (heroes, bands, spotlight, CTA) lines up with the
@@ -935,44 +932,6 @@ a:hover .frame::after,
 	margin-inline: auto;
 }
 
-/* --- v2: full-screen stacking sheets (driven by site/stack.js) ------------
-   --fill (set by JS) adds equal transparent borders so a short block fills
-   one screen with its content centred, without touching its own padding.
-   margin-bottom is the dwell: the pinned sheet stays in full view for that
-   much scrolling before the next one starts to slide over it. */
-.block-stream.is-stacked > * {
-	position: sticky;
-	box-sizing: border-box;
-	border-top: var(--fill, 0px) solid transparent;
-	border-bottom: var(--fill, 0px) solid transparent;
-	background-color: var(--paper);
-	background-clip: border-box;
-	transform-origin: 50% 0;
-}
-/* Snapping drives the glide itself. */
-html.is-snapping { scroll-behavior: auto; }
-/* An inset panel is the visible sheet; around it the page stays plain white. */
-/* (The paper around a sheet narrower than the screen is `--bleed` wide,
-   measured by stack.js — see _sheets.scss.) */
-.block-stream.is-stacked > :is(.band, .lasanmarine-page-hero, .lasanmarine-cta-banner, .lasanmarine-contact-statement) {
-	background-color: transparent;
-	box-shadow: none;
-	clip-path: none;
-}
-.block-stream.is-stacked > :is(.band, .lasanmarine-page-hero, .lasanmarine-cta-banner, .lasanmarine-contact-statement)[style*='--bleed'] {
-	box-shadow: 0 0 0 var(--bleed) var(--paper);
-	clip-path: inset(0 calc(-1 * var(--bleed)));
-}
-/* Opaque from the start: the sheet's own fade-in is dropped (its children
-   still arrive with their stagger). */
-.reveal-on .block-stream.is-stacked > [data-reveal],
-.reveal-on .block-stream.is-stacked > [data-reveal].is-revealed {
-	filter: none;
-	transition: none;
-}
-#main:has(.block-stream.is-stacked) { overflow-x: visible; }
-body:has(.block-stream.is-stacked) { overflow-x: clip; }
-
 /* --- v2: eyebrow labels retired ---------------------------------------------
    No dot, no uppercase tracking: a label is plain small grey text. */
 .meta,
@@ -996,41 +955,6 @@ body:has(.block-stream.is-stacked) { overflow-x: clip; }
 .hero__eyebrow { gap: 0; font-size: 13.5px; }
 .meta,
 .hero__eyebrow { gap: 0.3em; }
-
-/* --- v2: sheets sized to the screen (stacked mode only) ----------------------
-   Rhythm and media follow the viewport height so a presentation block fits
-   in the space under the bar. --avail is set by stack.js. */
-.block-stream.is-stacked {
-	--module-pad: clamp(28px, 5.5vh, 88px);
-}
-.block-stream.is-stacked .block {
-	gap: clamp(18px, 3.4vh, 48px);
-}
-.block-stream.is-stacked .h2,
-.block-stream.is-stacked .h3 {
-	font-size: clamp(26px, min(2.5vw, 4.4vh), 40px);
-}
-/* Long-read blocks scroll normally: never pinned, never covered early. */
-.block-stream.is-stacked > .is-flow {
-	position: relative;
-	top: auto !important;
-	border-top-width: 0;
-	border-bottom-width: 0;
-}
-/* The receding sheet is veiled in paper white, never made transparent, so
-   sheets further down the stack can't show through. */
-.block-stream.is-stacked > *::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: 50;
-	pointer-events: none;
-	background: var(--paper);
-	/* --veil does not inherit (_motion.scss), so the veil asks for it. */
-	--veil: inherit;
-	opacity: var(--veil, 0);
-}
-.block-stream.is-stacked > .is-flow::after { content: none; }
 
 /* --- "on this page": a second row of the header pill ----------------------
    Mounted inside `.hdr__bar` (behaviours/onpage-nav.js). Collapsed until the
@@ -1119,8 +1043,6 @@ html.reduce-motion.reveal-on [data-reveal-item] {
 	transform: none !important;
 	filter: none !important;
 }
-
-
 
 /* --- card sliders (behaviours/slider.js) -------------------------------------
    A row of cards that scrolls sideways with snap points; the buttons sit at
@@ -1376,16 +1298,6 @@ html body .hdr__panel--intro .hdr__panel-intro {
 /* A page that opens without a hero still starts below the fixed header. */
 .block-stream:not(:has(> :is(.lasanmarine-hero, .lasanmarine-page-hero):first-child)) {
 	padding-top: calc(var(--hdr-h, 76px) + 16px);
-}
-
-/* Every sheet is opaque edge to edge in stack mode, the hero included, so a
-   sheet sliding over never shows a half-covered one through its gaps. */
-.block-stream.is-stacked > .lasanmarine-hero {
-	background-color: var(--paper);
-}
-.block-stream.is-stacked > .lasanmarine-hero[style*='--bleed'] {
-	box-shadow: 0 0 0 var(--bleed) var(--paper);
-	clip-path: inset(0 calc(-1 * var(--bleed)));
 }
 
 /* --- mobile fixes (2026-11-08) --------------------------------------------- */
