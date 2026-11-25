@@ -987,6 +987,13 @@ html body .post-nav .nav-next {
 .post-share__btn svg {
 	@apply text-marine;
 }
+/* Brand marks keep their own colour; in forced/high contrast they follow the text. */
+.post-share__btn .brand-icon { color: inherit; }
+html.a11y-contrast .post-share__btn .brand-icon,
+html.a11y-gray .post-share__btn .brand-icon { fill: currentColor; }
+@media (forced-colors: active) {
+	.post-share__btn .brand-icon { fill: CanvasText; }
+}
 .post-share__btn:hover,
 .post-share__btn[data-state='done'] {
 	@apply border-aqua;

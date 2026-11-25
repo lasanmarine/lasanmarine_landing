@@ -120,11 +120,11 @@ get_template_part(
 				<span class="post-share__label"><?php esc_html_e( 'Chia sẻ', 'starter-flexible' ); ?></span>
 				<div class="post-share__row">
 					<a class="post-share__btn" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo esc_attr( $share_url ); ?>" target="_blank" rel="noopener">
-						<?php echo starter_flexible_icon( 'share', 16 ); // phpcs:ignore ?>
+						<?php echo starter_flexible_brand_icon( 'facebook' ); // phpcs:ignore ?>
 						Facebook
 					</a>
 					<a class="post-share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo esc_attr( $share_url ); ?>" target="_blank" rel="noopener">
-						<?php echo starter_flexible_icon( 'share', 16 ); // phpcs:ignore ?>
+						<?php echo starter_flexible_brand_icon( 'linkedin' ); // phpcs:ignore ?>
 						LinkedIn
 					</a>
 					<button
@@ -132,7 +132,7 @@ get_template_part(
 						class="post-share__btn"
 						data-copy="<?php echo esc_attr( (string) get_permalink() ); ?>"
 						data-copied="<?php esc_attr_e( 'Đã chép', 'starter-flexible' ); ?>"
-					><?php echo starter_flexible_icon( 'link', 16 ); // phpcs:ignore ?><span data-copy-label><?php esc_html_e( 'Chép link', 'starter-flexible' ); ?></span></button>
+					><?php echo starter_flexible_icon( 'link', 18 ); // phpcs:ignore ?><span data-copy-label><?php esc_html_e( 'Chép link', 'starter-flexible' ); ?></span></button>
 				</div>
 			</div>
 		</aside>
