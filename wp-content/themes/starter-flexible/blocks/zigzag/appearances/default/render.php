@@ -31,7 +31,7 @@ if ( empty( $data->should_render ) ) {
 	<?php endif; ?>
 	<ol class="zz">
 		<?php foreach ( $data->items as $i => $item ) : ?>
-			<li class="zz__item">
+			<li class="zz__item" style="--zz-row:<?php echo (int) $i + 1; ?>">
 				<span class="zz__node" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
 				<div class="zz__card">
 					<?php if ( '' !== $item['title'] ) : ?>

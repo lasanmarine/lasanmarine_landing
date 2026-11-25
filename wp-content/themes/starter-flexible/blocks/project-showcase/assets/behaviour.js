@@ -1,10 +1,11 @@
 // Project Showcase — a heading beside a rail of project cards.
 //
-// On a desktop with motion allowed, the rail moves as the page scrolls: a
-// CSS scroll-driven animation (style.scss, `ps-rail`) slides the cards to
-// the left while the block crosses the screen, on the compositor, with no
-// pinning and no script per frame. This module only measures how far the
-// rail has to travel (once per layout) and turns the mode on.
+// On a desktop with motion allowed: pin, then slide. The content sticks
+// under the header and the cards slide left as far as the page scrolls,
+// from the first card in full view to the last (style.scss, `ps-rail`): CSS
+// sticky plus a CSS scroll-driven animation, both on the compositor, so
+// nothing lags the scroll. This module only measures the travel and the
+// pinned height (once per layout) and turns the mode on when it fits.
 // Elsewhere (phones, reduced motion, browsers without scroll timelines) the
 // rail is a native horizontal scroller with arrow buttons that step one card.
 import { on, cleanupAll } from '$lib/dom';
@@ -43,16 +44,22 @@ export default function showcase(root) {
 	let raf = 0;
 	const sync = () => {
 		raf = 0;
-		const driven = supportsTimeline && mq.matches && motion.allowed;
+		const pin = root.querySelector('[data-ps-pin]');
+		const hdr = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hdr-h')) || 76;
+		// Pin only when the held content fits under the header.
+		const fits = pin && pin.offsetHeight + hdr + 48 <= window.innerHeight;
+		const t = supportsTimeline && mq.matches && motion.allowed && fits ? travel() : 0;
+		const driven = t > 2;
 		root.classList.toggle('is-scroll-driven', driven);
 		if (driven) {
 			row.scrollLeft = 0;
-			const t = travel();
-			root.style.setProperty('--ps-shift', `${-t}px`);
-			root.classList.toggle('ps--fits', t <= 2);
+			root.style.setProperty('--ps-travel', `${Math.round(t)}px`);
+			root.style.setProperty('--ps-pin-h', `${pin.offsetHeight}px`);
+			root.classList.remove('ps--fits');
 			return;
 		}
-		root.style.removeProperty('--ps-shift');
+		root.style.removeProperty('--ps-travel');
+		root.style.removeProperty('--ps-pin-h');
 		const m = max();
 		const x = row.scrollLeft;
 		if (prev) prev.disabled = x <= 2;

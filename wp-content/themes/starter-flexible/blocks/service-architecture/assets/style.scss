@@ -43,6 +43,9 @@
 	@apply font-display font-semibold;
 	display: block;
 	font-size: clamp(19px, 1.8vw, 26px);
+	/* A title's own leading: the inherited 1.75 of body copy split a
+	   two-line name into two far-apart lines. */
+	line-height: 1.2;
 	letter-spacing: -0.02em;
 	text-wrap: balance;
 }

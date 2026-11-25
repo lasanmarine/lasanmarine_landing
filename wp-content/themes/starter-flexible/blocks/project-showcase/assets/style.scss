@@ -245,27 +245,41 @@ html.reduce-motion .lasanmarine-project-showcase .ps__stack > a.ps__card:hover {
 html.reduce-motion .lasanmarine-project-showcase a.ps__card:hover .ps__media .frame > img { transform: none; }
 
 /* --- scroll-driven rail (desktop, motion allowed) ------------------------------
-   The cards slide left as the block crosses the screen. A view timeline on
-   the block drives a `translate` on each card; `animation-composition: add`
-   keeps the hover lift (also a translate) on top. The rail clips instead of
-   scrolling, and the arrows step aside. --ps-shift is measured in
-   behaviour.js. */
+   Pin, then slide: the block grows by the rail's travel; its content sticks
+   under the header (position: sticky) and, while it is held there, the
+   cards slide left exactly as far as the page scrolls — from the first card
+   in full view to the last. Both the sticking and the sliding run on the
+   compositor (CSS sticky + a view-timeline animation), so they move in the
+   same frame: no script per frame, nothing lagging behind the scroll.
+   `animation-composition: add` keeps the hover lift (also a translate).
+   behaviour.js measures --ps-travel and --ps-pin-h once per layout. */
 @keyframes ps-rail {
 	from { translate: 0 0; }
-	to { translate: var(--ps-shift, 0px) 0; }
+	to { translate: calc(-1 * var(--ps-travel, 0px)) 0; }
 }
 @supports (animation-timeline: view()) {
 	.ps.is-scroll-driven {
+		--ps-top: calc(var(--hdr-h, 76px) + 24px);
 		view-timeline: --ps-view block;
+		min-height: calc(var(--ps-pin-h, 0px) + var(--ps-travel, 0px));
+	}
+	.ps.is-scroll-driven .ps__pin {
+		position: sticky;
+		top: var(--ps-top);
 	}
 	.ps.is-scroll-driven .ps__stack {
 		overflow: clip;
 		scroll-snap-type: none;
 	}
+	/* The range starts when the block's top reaches the sticky line and
+	   lasts exactly the travel: progress = how far the page has scrolled
+	   while the content is held. */
 	.ps.is-scroll-driven .ps__stack > .ps__card {
 		animation: ps-rail linear both;
 		animation-timeline: --ps-view;
-		animation-range: cover 18% cover 82%;
+		animation-range:
+			cover calc(100vh - var(--ps-top))
+			cover calc(100vh - var(--ps-top) + var(--ps-travel, 0px));
 		animation-composition: add;
 	}
 	.ps.is-scroll-driven .ps__nav { display: none; }
