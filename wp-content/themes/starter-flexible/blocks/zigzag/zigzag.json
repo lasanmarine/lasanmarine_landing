@@ -1,0 +1,19 @@
+{
+  "key": "group_zigzag",
+  "title": "Zigzag",
+  "fields": [
+    { "key": "field_zz_heading", "label": "Heading", "name": "heading", "type": "text" },
+    { "key": "field_zz_heading_level", "label": "Heading Level", "name": "heading_level", "type": "select", "choices": { "h2": "H2", "h1": "H1 (page has no hero)" }, "default_value": "h2", "return_format": "value" },
+    { "key": "field_zz_intro", "label": "Intro / note", "name": "intro", "type": "textarea", "rows": 3, "new_lines": "" },
+    {
+      "key": "field_zz_items", "label": "Items", "name": "items", "type": "repeater",
+      "layout": "row", "button_label": "Add item",
+      "sub_fields": [
+        { "key": "field_zz_item_title", "label": "Tình huống", "name": "title", "type": "text" },
+        { "key": "field_zz_item_text", "label": "Cần có / nội dung", "name": "text", "type": "textarea", "rows": 3, "new_lines": "" }
+      ]
+    },
+    { "key": "field_zz_custom_class", "label": "Custom Class", "name": "custom_class", "type": "text", "required": 0 }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/zigzag" }]]
+}

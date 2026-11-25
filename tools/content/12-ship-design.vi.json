@@ -67,39 +67,39 @@
 			}
 		},
 		{
-			"type": "spec-list",
+			"type": "zigzag",
 			"fields": {
 				"heading": "Đóng mới, cải hoán, sửa chữa: cần giấy tờ gì?",
 				"heading_level": "h2",
-				"note": "Áp dụng cho tàu cá theo Thông tư 02/2026/TT-BNNMT, Nghị định 41/2026/NĐ-CP và QCVN 91, 92:2025/BNNMT (áp dụng từ 10/3/2026). Cập nhật tháng 11/2026; hỏi lại chúng tôi trước khi nộp hồ sơ.",
-				"rows": [
+				"intro": "Áp dụng cho tàu cá theo Thông tư 02/2026/TT-BNNMT, Nghị định 41/2026/NĐ-CP và QCVN 91, 92:2025/BNNMT (áp dụng từ 10/3/2026). Cập nhật tháng 11/2026; hỏi lại chúng tôi trước khi nộp hồ sơ.",
+				"items": [
 					{
-						"label": "Đóng mới tàu cá từ 12 m",
-						"value": "Văn bản chấp thuận đóng mới của cơ quan quản lý thủy sản cấp tỉnh (tờ khai Mẫu 12.TC) và hồ sơ thiết kế kỹ thuật được thẩm định trước khi đóng."
+						"title": "Đóng mới tàu cá từ 12 m",
+						"text": "Văn bản chấp thuận đóng mới của cơ quan quản lý thủy sản cấp tỉnh (tờ khai Mẫu 12.TC) và hồ sơ thiết kế kỹ thuật được thẩm định trước khi đóng."
 					},
 					{
-						"label": "Cải hoán: thay máy chính, chuyển nghề, đổi kích thước, công dụng, vùng hoạt động",
-						"value": "Văn bản chấp thuận cải hoán và hồ sơ thiết kế cải hoán được thẩm định trước khi thi công."
+						"title": "Cải hoán: thay máy chính, chuyển nghề, đổi kích thước, công dụng, vùng hoạt động",
+						"text": "Văn bản chấp thuận cải hoán và hồ sơ thiết kế cải hoán được thẩm định trước khi thi công."
 					},
 					{
-						"label": "Sửa chữa đưa tàu về trạng thái ban đầu",
-						"value": "Là sửa chữa phục hồi, không phải cải hoán; tàu được đăng kiểm giám sát khi sửa chữa."
+						"title": "Sửa chữa đưa tàu về trạng thái ban đầu",
+						"text": "Là sửa chữa phục hồi, không phải cải hoán; tàu được đăng kiểm giám sát khi sửa chữa."
 					},
 					{
-						"label": "Tàu gỗ đóng theo mẫu truyền thống",
-						"value": "Hồ sơ thiết kế mẫu đã được cơ sở đăng kiểm tàu cá sao duyệt."
+						"title": "Tàu gỗ đóng theo mẫu truyền thống",
+						"text": "Hồ sơ thiết kế mẫu đã được cơ sở đăng kiểm tàu cá sao duyệt."
 					},
 					{
-						"label": "Tàu cá dưới 12 m",
-						"value": "Không bắt buộc đăng kiểm; phải lắp trang thiết bị an toàn theo Phụ lục III Thông tư 02/2026/TT-BNNMT."
+						"title": "Tàu cá dưới 12 m",
+						"text": "Không bắt buộc đăng kiểm; phải lắp trang thiết bị an toàn theo Phụ lục III Thông tư 02/2026/TT-BNNMT."
 					},
 					{
-						"label": "Tàu từ 12 m đến dưới 24 m / từ 24 m",
-						"value": "Thiết kế theo QCVN 92:2025/BNNMT / QCVN 91:2025/BNNMT."
+						"title": "Tàu từ 12 m đến dưới 24 m / từ 24 m",
+						"text": "Thiết kế theo QCVN 92:2025/BNNMT / QCVN 91:2025/BNNMT."
 					},
 					{
-						"label": "Tàu khách, cano du lịch",
-						"value": "Duyệt bởi cơ quan đăng kiểm phương tiện thủy nội địa hoặc tàu biển, theo quy chuẩn tương ứng với vùng hoạt động."
+						"title": "Tàu khách, cano du lịch",
+						"text": "Duyệt bởi cơ quan đăng kiểm phương tiện thủy nội địa hoặc tàu biển, theo quy chuẩn tương ứng với vùng hoạt động."
 					}
 				],
 				"custom_class": ""

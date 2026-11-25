@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/zigzag",
+    "title": "LASAN — Zigzag",
+    "description": "Các trường hợp xen kẽ trái phải dọc một trục: tình huống và điều cần có.",
+    "category": "flexible-blocks",
+    "icon": "randomize",
+    "keywords": ["zigzag", "timeline", "cases", "steps"],
+    "supports": { "anchor": true, "jsx": false },
+    "acf": { "blockVersion": 3, "mode": "preview", "renderCallback": "AcfBlockRenderCallback" }
+}

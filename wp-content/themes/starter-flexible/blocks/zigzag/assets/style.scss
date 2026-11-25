@@ -1,0 +1,151 @@
+/* Zigzag: cases alternate left and right of a vertical spine; each has a
+   numbered node on the spine and a short horizontal tie to its card.
+   Narrow screens: one column, the spine down the left edge. */
+.zz__head {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	max-width: 46em;
+}
+.zz__heading { margin: 0; }
+.zz__intro { margin: 0; color: var(--steel); }
+
+.zz {
+	--zz-node: 44px;
+	--zz-gap: clamp(28px, 4vw, 64px);
+	position: relative;
+	display: grid;
+	gap: clamp(14px, 1.6vw, 22px);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: zz;
+}
+/* The spine. */
+.zz::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: calc(var(--zz-node) / 2);
+	width: 2px;
+	translate: -1px 0;
+	background: linear-gradient(180deg, transparent 0, var(--line) 24px, var(--line) calc(100% - 24px), transparent 100%);
+}
+.zz__item {
+	position: relative;
+	display: grid;
+	grid-template-columns: var(--zz-node) minmax(0, 1fr);
+	column-gap: 18px;
+	align-items: start;
+}
+.zz__node {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	place-items: center;
+	width: var(--zz-node);
+	height: var(--zz-node);
+	border: 2px solid var(--marine);
+	border-radius: 999px;
+	background: #fff;
+	color: var(--marine);
+	font-family: var(--display, inherit);
+	font-size: 14px;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+.zz__card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: clamp(18px, 2vw, 26px);
+	border: 1px solid var(--line);
+	border-radius: var(--r-lg);
+	background: var(--surface);
+	transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease), translate 240ms var(--ease);
+}
+.zz__item:hover .zz__card {
+	border-color: var(--marine);
+	box-shadow: 0 18px 40px -28px rgba(6, 18, 45, 0.35);
+	background: #fff;
+}
+.zz__item:hover .zz__node { background: var(--marine); color: #fff; }
+.zz__title {
+	margin: 0;
+	color: var(--marine);
+	font-family: var(--display, inherit);
+	font-size: clamp(14.5px, 1.05vw, 16px);
+	font-weight: 600;
+	line-height: 1.4;
+}
+.zz__text {
+	margin: 0;
+	color: var(--navy);
+	font-size: clamp(16px, 1.25vw, 19px);
+	line-height: 1.55;
+	text-wrap: pretty;
+}
+
+/* Desktop: two lanes either side of a centred spine. Odd items sit left,
+   even items right; each card is tied to its node by a short rule, and the
+   lanes overlap vertically so the eye moves in a zigzag. */
+@media (min-width: 900px) {
+	.zz {
+		row-gap: 0;
+	}
+	.zz::before { left: 50%; }
+	.zz__item {
+		grid-template-columns: minmax(0, 1fr) var(--zz-node) minmax(0, 1fr);
+		column-gap: var(--zz-gap);
+		align-items: center;
+	}
+	.zz__item + .zz__item { margin-top: calc(-1 * clamp(20px, 3vw, 56px)); }
+	.zz__node { grid-column: 2; grid-row: 1; }
+	.zz__card { grid-row: 1; }
+	.zz__item:nth-child(odd) .zz__card { grid-column: 1; }
+	.zz__item:nth-child(even) .zz__card { grid-column: 3; }
+	/* The tie from card to node. */
+	.zz__card::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		width: var(--zz-gap);
+		height: 2px;
+		translate: 0 -1px;
+		background: var(--line);
+	}
+	.zz__item:nth-child(odd) .zz__card::after { left: 100%; }
+	.zz__item:nth-child(even) .zz__card::after { right: 100%; }
+	.zz__item:hover .zz__card::after { background: var(--marine); }
+}
+
+/* --- motion: cards arrive from their own side ------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+	html.reveal-on:not(.reduce-motion) .lasanmarine-zigzag:not(.is-revealed) .zz__card { opacity: 0; translate: 0 16px; }
+	html.reveal-on:not(.reduce-motion) .lasanmarine-zigzag:not(.is-revealed) .zz__node { opacity: 0; scale: 0.6; }
+	.lasanmarine-zigzag .zz__card,
+	.lasanmarine-zigzag .zz__node {
+		transition:
+			opacity 520ms var(--ease) calc(var(--i, 0) * 70ms),
+			translate var(--spring-out-ms, 700ms) var(--spring-out, var(--ease)) calc(var(--i, 0) * 70ms),
+			scale 420ms var(--ease) calc(var(--i, 0) * 70ms),
+			border-color 240ms var(--ease),
+			box-shadow 240ms var(--ease),
+			background 240ms var(--ease),
+			color 240ms var(--ease);
+	}
+	@media (min-width: 900px) {
+		html.reveal-on:not(.reduce-motion) .lasanmarine-zigzag:not(.is-revealed) .zz__item:nth-child(odd) .zz__card { translate: -24px 0; }
+		html.reveal-on:not(.reduce-motion) .lasanmarine-zigzag:not(.is-revealed) .zz__item:nth-child(even) .zz__card { translate: 24px 0; }
+	}
+}
+.zz__item:nth-child(1) { --i: 0; }
+.zz__item:nth-child(2) { --i: 1; }
+.zz__item:nth-child(3) { --i: 2; }
+.zz__item:nth-child(4) { --i: 3; }
+.zz__item:nth-child(5) { --i: 4; }
+.zz__item:nth-child(6) { --i: 5; }
+.zz__item:nth-child(7) { --i: 6; }
+.zz__item:nth-child(n + 8) { --i: 7; }

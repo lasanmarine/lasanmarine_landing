@@ -41,17 +41,22 @@
 	}
 }
 
+/* Full bleed, so the copy sits on the shared shell grid (not the inset
+   panel's padding) and lines up with the blocks below. */
+.block-stream > .lasanmarine-page-hero.phero .phero__body.container {
+	@apply max-w-shell;
+	padding-inline: var(--gutter);
+}
 .phero__body {
-	@apply relative flex flex-col items-center text-center;
+	/* Left-aligned on the content edge, like the blocks below it. */
+	@apply relative flex flex-col items-start text-left;
 	gap: 20px;
-	max-width: 820px;
-	margin-inline: auto;
 	padding-block: clamp(48px, 6vw, 88px);
 }
 
 .phero__headline {
 	@apply m-0 font-display font-semibold text-navy;
-	width: 100%;
+	max-width: 22em;
 	font-size: clamp(28px, 2.9vw, 44px);
 	line-height: 1.15;
 	letter-spacing: -0.02em;
@@ -68,7 +73,7 @@
 
 /* Short labels under the lead: what the page covers, at a glance. */
 .phero__tags {
-	@apply m-0 flex list-none flex-wrap justify-center p-0;
+	@apply m-0 flex list-none flex-wrap justify-start p-0;
 	gap: 8px;
 	padding-top: 4px;
 }
@@ -83,7 +88,7 @@
 
 /* Quick links: the main action, then shortcuts to the page's key sections. */
 .phero__actions {
-	@apply flex flex-wrap justify-center;
+	@apply flex flex-wrap justify-start;
 	gap: 10px;
 	padding-top: 8px;
 }
