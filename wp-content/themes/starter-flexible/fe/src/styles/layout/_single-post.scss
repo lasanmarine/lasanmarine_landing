@@ -1474,3 +1474,36 @@ body.single-post .hdr__bar:not(.is-stuck) {
 	background: #fff;
 	color: var(--navy-deep);
 }
+
+/* "Ý chính": the answer first — the key points at
+   the top of an article, for readers in a hurry and for answer engines that
+   quote it. Written into the post content (wp:group .post-summary). */
+.post-single__body .post-summary {
+	margin: 0 0 clamp(28px, 3vw, 40px);
+	padding: clamp(18px, 2.2vw, 28px);
+	border: 1px solid var(--line);
+	border-left: 4px solid var(--marine);
+	border-radius: var(--r-lg);
+	background: var(--surface);
+}
+.post-single__body .post-summary > * { margin-top: 0; }
+.post-single__body .post-summary > * + * { margin-top: 10px; }
+.post-single__body .post-summary__label {
+	color: var(--marine);
+	font-family: var(--display, inherit);
+	font-size: 13.5px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+.post-single__body .post-summary__lead {
+	color: var(--navy);
+	font-size: clamp(16.5px, 1.25vw, 18px);
+	font-weight: 500;
+	line-height: 1.6;
+}
+.post-single__body .post-summary ul {
+	margin-bottom: 0;
+	padding-left: 1.2em;
+}
+.post-single__body .post-summary li { margin: 4px 0; color: var(--navy); }
+.post-single__body .post-summary li::marker { color: var(--aqua); }
