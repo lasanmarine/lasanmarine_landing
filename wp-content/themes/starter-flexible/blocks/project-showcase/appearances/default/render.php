@@ -50,7 +50,6 @@ if ( empty( $data->should_render ) ) {
 						</a>
 					<?php endif; ?>
 					<div class="ps__controls">
-						<span class="ps__progress" aria-hidden="true"><span></span></span>
 						<div class="ps__nav">
 							<button type="button" class="icon-btn" data-ps-prev aria-label="<?php echo esc_attr( $ps_en ? 'Previous projects' : 'Dự án trước' ); ?>"><?php echo starter_flexible_icon( 'chevronLeft', 20 ); // phpcs:ignore ?></button>
 							<button type="button" class="icon-btn" data-ps-next aria-label="<?php echo esc_attr( $ps_en ? 'More projects' : 'Dự án tiếp theo' ); ?>"><?php echo starter_flexible_icon( 'chevronRight', 20 ); // phpcs:ignore ?></button>

@@ -232,41 +232,25 @@ a.vf__card:hover .btn__icon svg:nth-child(2) {
 }
 
 /* --- drawings -----------------------------------------------------------------
-   A technical drawing on white is shown whole and sharp on a pale blueprint
-   grid, with navy type on a light caption, instead of under a dark scrim. */
+   A technical drawing on white fills the card the way a photograph does,
+   sharp and uncovered by any dark scrim; its caption is the same rounded
+   panel as on photo cards, in white with navy type. */
 .vf__card--drawing {
-	background-color: #f3f8fd;
-	background-image:
-		linear-gradient(rgba(10, 114, 200, 0.07) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(10, 114, 200, 0.07) 1px, transparent 1px);
-	background-size: 24px 24px;
-	box-shadow: inset 0 0 0 1px var(--line-soft);
+	background: #fff;
+	box-shadow: inset 0 0 0 1px var(--line);
+	color: var(--navy);
 }
 .vf__card--drawing::before { content: none; }
-.lasanmarine-vessel-finder .vf__card.vf__card--drawing {
-	justify-content: flex-start;
-	gap: 10px;
-	padding: 14px;
-}
-/* The drawing takes the space above the caption: in the flow, not behind it. */
-.lasanmarine-vessel-finder .vf__card--drawing .vf__media {
-	position: relative;
-	flex: 1 1 auto;
-	min-height: 70px;
-}
 .lasanmarine-vessel-finder .vf__card--drawing .vf__media img {
-	z-index: 0;
-	object-fit: contain;
-	mix-blend-mode: multiply;
+	object-fit: cover;
+	object-position: 50% 35%;
 }
 .vf__card--drawing .vf__body {
-	position: relative;
-	margin-top: auto;
-	background: rgba(255, 255, 255, 0.94);
-	border-radius: var(--r-md);
 	padding: 12px 14px;
-	max-width: none;
-	box-shadow: inset 0 0 0 1px var(--line-soft);
+	border-radius: var(--r-md);
+	background: rgba(255, 255, 255, 0.96);
+	box-shadow: 0 10px 30px -16px rgba(6, 18, 45, 0.35), inset 0 0 0 1px var(--line);
+	max-width: calc(100% - 40px);
 }
 .vf__card--drawing .vf__title { color: var(--navy); text-shadow: none; }
 .vf__card--drawing .vf__desc { color: var(--steel); text-shadow: none; }

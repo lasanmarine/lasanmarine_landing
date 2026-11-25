@@ -78,13 +78,13 @@
 .a11y__close {
 	display: grid;
 	place-items: center;
-	width: 40px;
-	height: 40px;
+	width: 44px;
+	height: 44px;
 	border: 1px solid var(--line);
 	border-radius: 999px;
 	background: #fff;
 	color: var(--navy);
-	font-size: 22px;
+	font-size: 26px;
 	line-height: 1;
 	cursor: pointer;
 }
@@ -131,8 +131,8 @@
 	align-items: flex-start;
 	gap: 8px;
 	width: 100%;
-	min-height: 78px;
-	padding: 12px;
+	min-height: 96px;
+	padding: 12px 14px;
 	border: 1px solid var(--line);
 	border-radius: var(--r-md, 12px);
 	background: #fff;
@@ -160,24 +160,24 @@
 .a11y__glyph {
 	display: grid;
 	place-items: center;
-	width: 26px;
-	height: 26px;
-	border-radius: 8px;
+	width: 40px;
+	height: 40px;
+	border-radius: 11px;
 	background: var(--surface);
 	color: var(--marine);
-	font-size: 13px;
+	font-size: 19px;
 	font-weight: 800;
 	line-height: 1;
 }
 .a11y__toggle[aria-pressed='true'] .a11y__glyph { background: rgba(255, 255, 255, 0.16); color: #fff; }
-.a11y__toggle--contrast .a11y__glyph::before { content: '◐'; font-size: 16px; }
-.a11y__toggle--gray .a11y__glyph::before { content: '▦'; font-size: 15px; }
+.a11y__toggle--contrast .a11y__glyph::before { content: '◐'; font-size: 24px; }
+.a11y__toggle--gray .a11y__glyph::before { content: '▦'; font-size: 24px; }
 .a11y__toggle--links .a11y__glyph::before { content: 'U'; text-decoration: underline; }
 .a11y__toggle--readable .a11y__glyph::before { content: 'Aa'; }
-.a11y__toggle--spacing .a11y__glyph::before { content: '↕'; font-size: 15px; }
+.a11y__toggle--spacing .a11y__glyph::before { content: '↕'; font-size: 24px; }
 .a11y__toggle--motion .a11y__glyph::before { content: 'II'; letter-spacing: -1px; }
-.a11y__toggle--cursor .a11y__glyph::before { content: '➚'; font-size: 15px; }
-.a11y__toggle--guide .a11y__glyph::before { content: '═'; font-size: 15px; }
+.a11y__toggle--cursor .a11y__glyph::before { content: '➚'; font-size: 24px; }
+.a11y__toggle--guide .a11y__glyph::before { content: '═'; font-size: 24px; }
 
 .a11y__foot {
 	display: flex;

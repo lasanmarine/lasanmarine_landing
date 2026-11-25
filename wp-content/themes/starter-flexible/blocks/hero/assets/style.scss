@@ -345,3 +345,18 @@
 		visibility 0s,
 		translate var(--spring-out-ms) var(--spring-out) 90ms;
 }
+
+/* The company line and the facts stay in the page for search engines and
+   screen readers, but are not shown: visually hidden, not display:none. */
+.lasanmarine-hero .hero__eyebrow,
+.lasanmarine-hero .hero__badges {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
