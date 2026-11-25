@@ -166,6 +166,12 @@ function starter_flexible_robots_body(): string {
 }
 function starter_flexible_write_ai_files(): bool {
 	delete_transient( 'starter_flexible_llms_txt' );
+	foreach ( array( 'llms.txt', 'robots.txt' ) as $file ) {
+		$path = ABSPATH . $file;
+		if ( file_exists( $path ) ? ! wp_is_writable( $path ) : ! wp_is_writable( ABSPATH ) ) {
+			return false; // A read-only web root: /llms.txt is still served by parse_request.
+		}
+	}
 	$ok  = false !== file_put_contents( ABSPATH . 'llms.txt', starter_flexible_llms_txt() ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	$ok  = $ok && false !== file_put_contents( ABSPATH . 'robots.txt', starter_flexible_robots_body() ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	return $ok;
